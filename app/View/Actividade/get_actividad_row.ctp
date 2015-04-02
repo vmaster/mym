@@ -1,0 +1,1 @@
+<?php echo $this->element('Actividade/actividad_row',array('actividad_id'=>$actividad_id)); ?>
