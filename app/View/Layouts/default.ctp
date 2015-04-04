@@ -18,6 +18,9 @@
     <!-- AUTOCOMPLETE -->
     <link href="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/content/styles.css" rel="stylesheet" />
     
+    <!-- SELECT 2 -->
+    <link href="<?= ENV_WEBROOT_FULL_URL;?>lib/select2-4.0.0-rc.2/dist/css/select2.min.css" rel="stylesheet" />
+    
     <script>var env_webroot_script = '<?php echo ENV_WEBROOT_FULL_URL; ?>';</script>
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
@@ -40,6 +43,8 @@
     
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_datepicker/jquery.ui.datepicker-es.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/alertify-0.3.11/alertify.min.js" type="text/javascript"></script>
+    
+    
 </head>
 <body>
 	<div
@@ -495,6 +500,7 @@
     <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/src/jquery.autocomplete.js"></script>
     <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/scripts/countries.js"></script>
     <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/scripts/demo.js"></script>
-   
+    <!-- SCRIPT SELECT2 -->
+	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/select2-4.0.0-rc.2/dist/js/select2.min.js"></script>
 </body>
 </html>

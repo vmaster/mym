@@ -164,13 +164,15 @@ class ActasController extends AppController{
 		$this->loadModel('CondicionesSubestandare');
 		$this->loadModel('CierreActa');
 		
+		$list_all_empresas = $this->Empresa->listEmpresas();
+		$this->set(compact('list_all_empresas'));
 		
 		if($this->request->is('post')  || $this->request->is('put')){
 				//insert
 				
-				$error_validation = '';
+				/*$error_validation = '';
 				
-				if($this->request->data['EmpresaActa']['empresa'] == ''){
+				if($this->request->data['Acta']['empresa_id'] == ''){
 					
 							$arr_validation['empresa_id'] = array(__('La Empresa es requerida'));
 							$error_validation = true;
@@ -179,22 +181,14 @@ class ActasController extends AppController{
 				if($error_validation == true){
 					echo json_encode(array('success' =>false, 'msg' => __('No se pudo guardar'), 'validation' => $arr_validation));
 					exit();
-				}
+				}*/
 				
 				$this->formatFecha($this->request->data['Acta']['fecha']);
 				
-				if($this->request->data['EmpresaActa']['empresa'] != null && $this->request->data['EmpresaActa']['empresa_id'] != ''){
+				/*if($this->request->data['EmpresaActa']['empresa'] != null && $this->request->data['EmpresaActa']['empresa_id'] != ''){
 						
 					$this->request->data['Acta']['empresa_id'] = $this->request->data['EmpresaActa']['empresa_id'];
 						
-				}/*elseif($this->request->data['EmpresaActa']['empresa'] != null && $this->request->data['EmpresaActa']['empresa_id'] == ''){
-						
-					$new_empresa['Empresa']['nombre'] = $this->request->data['EmpresaActa']['empresa'];
-					$this->Empresa->create();
-						
-					if ($this->Empresa->save($new_empresa)) {
-						$this->request->data['Acta']['empresa_id'] = $this->Empresa->id;
-					}
 				}*/
 				
 				/* Verificamos el Responsable de la Actividad previo y post a la corrección */
@@ -567,6 +561,9 @@ class ActasController extends AppController{
 		$this->loadModel('ActosSubestandare');
 		$this->loadModel('CondicionesSubestandare');
 		$this->loadModel('CierreActa');
+		
+		$list_all_empresas = $this->Empresa->listEmpresas();
+		$this->set(compact('list_all_empresas'));
 	
 	
 		if($this->request->is('post')  || $this->request->is('put')){
