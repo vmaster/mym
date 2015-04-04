@@ -54,7 +54,7 @@
 						<table class="table table-striped table-bordered table-hover"
 							id="dataTables-example">
 							<tr>
-								<td style="vertical-align: middle">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle; width: 55%;">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
 								<td style="vertical-align: middle"><?php echo utf8_encode('Sector/Área'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
@@ -96,10 +96,11 @@
 								</td>
 							</tr>
 							<tr>
-								<td style="vertical-align: middle">Planeada: <input
-									name="data[Acta][tipo]" type="radio" value="P" id="rbTipo1">
+								<td style="vertical-align: middle">
+									Planeada: <input
+									name="data[Acta][tipo]" type="radio" value="P" id="rbTipo1" <?php echo ($obj_acta->getAttr('tipo') == 'P')? 'checked':''; ?>>
 									Inopinada: <input name="data[Acta][tipo]" type="radio"
-									value="I" id="rbTipo2">
+									value="I" id="rbTipo2" <?php echo ($obj_acta->getAttr('tipo') == 'I')? 'checked':''; ?>>
 								</td>
 								<td>Fecha: <input name="data[Acta][fecha]"
 									class="txtFecha form-control hasDatepicker" id="txtFecha"
