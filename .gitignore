@@ -105,3 +105,7 @@ app/tmp/cache/persistent/myapp_cake_core_default_es-es
 app/tmp/cache/persistent/myapp_cake_core_file_map
 app/tmp/cache/persistent/myapp_cake_core_method_cache
 app/tmp/logs/error.log
+app/tmp/cache/models/myapp_cake_model_default_dbmym_list
+app/tmp/cache/models/myapp_cake_model_default_dbmym_list
+app/tmp/cache/models/myapp_cake_model_default_dbmym_tipo_usuarios
+app/tmp/cache/models/myapp_cake_model_default_dbmym_trabajadores
