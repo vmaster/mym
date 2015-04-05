@@ -8,8 +8,6 @@
     <link rel="stylesheet" type="text/css" href="<?= ENV_WEBROOT_FULL_URL;?>lib/theme/css/bootstrap.css">
      <!-- FONTAWESOME STYLES-->
      <link rel="stylesheet" href="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/css/font-awesome.css">
-     <!-- MORRIS CHART STYLES-->
-    <link rel="stylesheet" href="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/morris/morris-0.4.3.min.css">
     <!-- CUSTOM STYLES-->
     <link rel="stylesheet" href="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/css/custom.css">
     <!-- DATATABLE -->
@@ -95,21 +93,11 @@
     <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/jquery.metisMenu.js"></script>
-     <!-- MORRIS CHART SCRIPTS -->
-     <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/morris/morris.js"></script>
-      <!-- CUSTOM SCRIPTS -->
+    <!-- CUSTOM SCRIPTS -->
     <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/custom.js"></script>
     
     <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/dataTables/jquery.dataTables.js"></script>
 
-    
-    <!-- SCRIPT AUTOCOMPLETE -->
-    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/scripts/jquery.mockjax.js"></script>
-    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/src/jquery.autocomplete.js"></script>
-    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/scripts/countries.js"></script>
-    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/scripts/demo.js"></script>    
-    
     <!-- FILE:UPLOAD -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
@@ -147,6 +135,12 @@
 	<script src="js/cors/jquery.xdr-transport.js"></script>
 	<![endif]-->
     <!-- END FILE UPLOAD -->
+    
+    <!-- SCRIPT AUTOCOMPLETE -->
+    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/scripts/jquery.mockjax.js"></script>
+    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/src/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/scripts/countries.js"></script>
+    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/scripts/demo.js"></script>    
 
     <!-- SCRIPT SELECT2 -->
 	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/select2-4.0.0-rc.2/dist/js/select2.min.js"></script>

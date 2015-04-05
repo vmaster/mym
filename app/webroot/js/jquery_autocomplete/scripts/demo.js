@@ -7,7 +7,7 @@ $(function () {
     var countriesArray = $.map(countries, function (value, key) { return { value: value, data: key }; });
 
     // Setup jQuery ajax mock:
-    $.mockjax({
+/*    $.mockjax({
         url: '*',
         responseTime: 2000,
         response: function (settings) {
@@ -26,7 +26,7 @@ $(function () {
             this.responseText = JSON.stringify(response);
         }
     });
-
+*/
     // Initialize ajax autocomplete:
     $('#autocomplete-ajax').autocomplete({
         // serviceUrl: '/autosuggest/service/url',
