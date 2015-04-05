@@ -7,7 +7,7 @@
 
 
 			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'index')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>index" id="link-dashboard"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a></li>
-			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'actas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>actas" id="link-acta"><i class="fa fa-desktop fa-3x"></i> <?php echo ' '.__('Actas'); ?></a>
+			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'actas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>actas" id="link-acta"><i class="fa fa-desktop fa-3x"></i> <?php echo ' '.__('Informes'); ?></a>
 			</li>
 			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'actividades')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>actividades" id="link-actividad"><i class="fa fa-qrcode fa-3x"></i> <?php echo ' '.__('Actividades'); ?></a></li>
 			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'users')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>users" id="link-usuario"><i class="fa fa-user fa-3x"></i>Usuarios</a></li>

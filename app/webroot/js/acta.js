@@ -714,4 +714,11 @@ $(document).ready(function(){
 		$('#table-mc-inf tr:last').after(new_row);
 	});
 	
+	
+	
+	$(".js-example-placeholder-single").select2({
+		  placeholder: "Seleccione una empresa",
+		  allowClear: true
+		});
+	
 });

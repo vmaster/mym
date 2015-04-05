@@ -1,6 +1,9 @@
+<script>
+
+</script>
 <div class="row">
 	<div class="col-md-12">
-		<h2>Registrar Nueva Acta</h2>
+		<h2>Crear un Nuevo Informe</h2>
 	</div>
 </div>
 <hr />
@@ -54,18 +57,23 @@
 						<table class="table table-striped table-bordered table-hover"
 							id="dataTables-example">
 							<tr>
-								<td style="vertical-align: middle">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle; width: 55%;">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
 								<td style="vertical-align: middle"><?php echo utf8_encode('Sector/Área'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
 							</tr>
 							<tr>
-								<td>Empresa:<input name="data[EmpresaActa][empresa]"
-									class="txtEmpresa2 form-control" id="txtEmpresa2" type="text"
-									style="text-transform: uppercase;"
-									onkeyup="javascript:this.value=this.value.toUpperCase();">
-									<input name='data[EmpresaActa][empresa_id]' type='hidden'
-									value='' id='txtEmpresaid'>
+								<td>Empresa:<br>
+								<select name="data[Acta][empresa_id]"
+									class="js-example-placeholder-single form-control">
+										<?php 
+										if (isset($list_all_empresas)){
+										foreach ($list_all_empresas as $id => $des):
+										echo "<option value = ".$id.">".$des."</option>";
+										endforeach;
+										}
+										?>
+								</select>
 								</td>
 								<td>Nro de Trabjadores: <?php echo $this->Form->input('nro_trabajadores', array('div' => false, 'label' => false, 'class'=> 'txtNroTrabajadores form-control','id' =>'txtNroTrabajadores')); ?>
 								</td>
