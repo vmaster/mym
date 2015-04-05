@@ -97,8 +97,22 @@ App::uses('AppModel','Model');
     public function listVehiculos() {
     	return $this->find('list',
     			array(
-    					'fields' => array('id','descripcion'),
-    					'order' => array('Vehiculo.id ASC'),
+    					'fields' => array('id','nro_placa'),
+    					'conditions'=>array(
+    							'Vehiculo.estado != '=> 0
+    					),
+    					'order' => array('Vehiculo.nro_placa ASC')
+    			));
+    }
+    
+    public function listCodigos() {
+    	return $this->find('list',
+    			array(
+    					'fields' => array('id','codigo'),
+    					'conditions'=>array(
+    							'Codigo.estado != '=> 0
+    					),
+    					'order' => array('Codigo.codigo ASC')
     			));
     }
     

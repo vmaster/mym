@@ -134,7 +134,7 @@ App::uses('AppModel','Model');
     					'conditions'=>array(
     							'Codigo.estado != '=> 0
     					),
-    					'order' => array('Codigo.id ASC')
+    					'order' => array('Codigo.codigo ASC')
     			));
     }
     

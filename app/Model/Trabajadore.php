@@ -228,6 +228,18 @@ App::uses('AppModel','Model');
     	return $this->find('first',array('conditions' => array('Trabajadore.id' => $trabajador_id)));
     }
     
+    /* Usado para los Combos del Informe*/
+    public function listTrabajadores() {
+    	return $this->find('list',
+    			array(
+    					'fields' => array('id','apellido_nombre'),
+    					'conditions'=>array(
+    							'Trabajadore.estado != '=> 0
+    					),
+    					'order' => array('Trabajadore.apellido_nombre ASC')
+    			));
+    }
+    
     
   }
 ?>

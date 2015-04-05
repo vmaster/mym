@@ -149,7 +149,7 @@ $('#container_page .pagination li.active').live('click',function(){
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<h2>Listado de Actas</h2>
+		<h2>Listado de Informes</h2>
 	</div>
 </div>
 <hr />
@@ -158,7 +158,7 @@ $('#container_page .pagination li.active').live('click',function(){
 	</div>
 	
 	<div class="btn-toolbar">
-	    <a class="btn btn-primary btn-nuevo-acta" href="<?= ENV_WEBROOT_FULL_URL; ?>actas/nuevo_informe"><i class="icon-plus"></i> <?php echo __('Nueva Acta'); ?></a>
+	    <a class="btn btn-primary btn-nuevo-acta" href="<?= ENV_WEBROOT_FULL_URL; ?>actas/nuevo_informe"><i class="icon-plus"></i> <?php echo __('Nuevo Informe'); ?></a>
 	  <div class="btn-group">
 	  </div>
 	</div>

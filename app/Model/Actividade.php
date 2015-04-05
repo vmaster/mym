@@ -123,7 +123,7 @@ App::uses('AppModel','Model');
     					'conditions'=>array(
     							'Actividade.estado != '=> 0
     					),
-    					'order' => array('Actividade.id ASC')
+    					'order' => array('Actividade.descripcion ASC')
     			));
     }
     
