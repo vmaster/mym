@@ -220,6 +220,10 @@ App::uses('AppModel','Model');
     	}
     }
     
+    public function listActas() {
+    	return $this->find('all');
+    }
+    
     
   }
 ?>

@@ -17,9 +17,15 @@
 						<table class="table table-striped table-bordered table-hover"
 							id="dataTables-example">
 							<tr>
-								<td rowspan=3 style="vertical-align: middle; width: 15%">
+								<td rowspan=3 style="vertical-align: middle; width: 22%">
+									<div class="form-group input-group" style="margin-bottom: -13px;">
+										<span class="input-group-addon"><?php echo utf8_encode('N° I') ?>
+										</span>
+										<?php echo $this->Form->input('num_informe', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'7','value'=>(isset($codigo_completo))? $codigo_completo: '', 'readonly'=>'readonly')); ?>
+									</div>
+									<br>									
 									<div class="form-group input-group">
-										<span class="input-group-addon"><?php echo utf8_encode('N°') ?>
+										<span class="input-group-addon"><?php echo utf8_encode('N° A') ?>
 										</span>
 										<?php echo $this->Form->input('numero', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'7')); ?>
 									</div>

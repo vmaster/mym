@@ -48974,3 +48974,547 @@ Request URL: /mym/lib/theme/css/bootstrap.css.map
 Stack Trace:
 #0 C:\wamp\www\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2015-04-05 21:37:15 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-05 21:43:44 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 21:58:54 Error: Fatal Error (1): Call to undefined function html() in [C:\wamp\www\GitHub\mym\app\View\Acta\editar_informe.ctp, line 317]
+2015-04-05 21:58:54 Error: [FatalErrorException] Call to undefined function html()
+Request URL: /GitHub/mym/actas/editar_informe/20
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 317)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 317, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\wamp\www\Git...', 317, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 21:58:54 Error: Fatal Error (1): Call to undefined function html() in [C:\wamp\www\GitHub\mym\app\View\Acta\editar_informe.ctp, line 317]
+2015-04-05 21:58:54 Error: [FatalErrorException] Call to undefined function html()
+Request URL: /GitHub/mym/actas/editar_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 317)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 317, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\wamp\www\Git...', 317, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 21:59:49 Error: Fatal Error (1): Call to undefined function html() in [C:\wamp\www\GitHub\mym\app\View\Acta\editar_informe.ctp, line 317]
+2015-04-05 21:59:49 Error: [FatalErrorException] Call to undefined function html()
+Request URL: /GitHub/mym/actas/editar_informe/20
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 317)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 317, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\wamp\www\Git...', 317, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 21:59:51 Error: Fatal Error (1): Call to undefined function html() in [C:\wamp\www\GitHub\mym\app\View\Acta\editar_informe.ctp, line 317]
+2015-04-05 21:59:51 Error: [FatalErrorException] Call to undefined function html()
+Request URL: /GitHub/mym/actas/editar_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 317)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 317, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\wamp\www\Git...', 317, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 22:02:00 Error: Fatal Error (1): Class 'Sanitize' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\editar_informe.ctp, line 317]
+2015-04-05 22:02:00 Error: [FatalErrorException] Class 'Sanitize' not found
+Request URL: /GitHub/mym/actas/editar_informe/20
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 22:02:01 Error: Fatal Error (1): Class 'Sanitize' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\editar_informe.ctp, line 317]
+2015-04-05 22:02:01 Error: [FatalErrorException] Class 'Sanitize' not found
+Request URL: /GitHub/mym/actas/editar_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 22:02:43 Error: Fatal Error (1): Class 'Sanitize' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\editar_informe.ctp, line 317]
+2015-04-05 22:02:43 Error: [FatalErrorException] Class 'Sanitize' not found
+Request URL: /GitHub/mym/actas/editar_informe/20
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 22:02:44 Error: Fatal Error (1): Class 'Sanitize' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\editar_informe.ctp, line 317]
+2015-04-05 22:02:44 Error: [FatalErrorException] Class 'Sanitize' not found
+Request URL: /GitHub/mym/actas/editar_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'Sanitize...', 'C:\wamp\www\Git...', 317, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 22:13:26 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 22:18:04 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-05 22:19:20 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 22:42:19 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-05 22:44:07 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 22:49:54 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-05 22:52:08 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-05 22:52:10 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-05 22:52:11 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-05 22:54:29 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 22:59:31 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-05 23:01:26 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-05 23:14:52 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-05 23:15:44 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-05 23:15:45 Error: Fatal Error (1): Call to a member function listActas() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 175]
+2015-04-05 23:15:45 Error: [FatalErrorException] Call to a member function listActas() on a non-object
+Request URL: /GitHub/mym/actas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 23:15:46 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 23:16:16 Error: Fatal Error (1): Call to a member function listActas() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 175]
+2015-04-05 23:16:16 Error: [FatalErrorException] Call to a member function listActas() on a non-object
+Request URL: /GitHub/mym/actas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 23:16:20 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 23:16:42 Error: Fatal Error (1): Call to a member function listActas() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 175]
+2015-04-05 23:16:42 Error: [FatalErrorException] Call to a member function listActas() on a non-object
+Request URL: /GitHub/mym/actas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 23:16:49 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 23:17:29 Error: Fatal Error (1): Call to a member function listActas() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 175]
+2015-04-05 23:17:29 Error: [FatalErrorException] Call to a member function listActas() on a non-object
+Request URL: /GitHub/mym/actas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 23:17:33 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 23:18:25 Error: Fatal Error (1): Call to a member function listActas() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 175]
+2015-04-05 23:18:25 Error: [FatalErrorException] Call to a member function listActas() on a non-object
+Request URL: /GitHub/mym/actas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 23:18:26 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 23:20:26 Error: Fatal Error (1): Call to a member function listActas() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 175]
+2015-04-05 23:20:26 Error: [FatalErrorException] Call to a member function listActas() on a non-object
+Request URL: /GitHub/mym/actas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 23:20:27 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 23:38:38 Error: Fatal Error (1): Call to a member function listActas() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 175]
+2015-04-05 23:38:38 Error: [FatalErrorException] Call to a member function listActas() on a non-object
+Request URL: /GitHub/mym/actas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 23:38:39 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 23:41:36 Error: Fatal Error (1): Call to a member function find() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 175]
+2015-04-05 23:41:36 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /GitHub/mym/actas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 175, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 23:41:37 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 23:46:56 Error: Fatal Error (1): Call to a member function find() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 174]
+2015-04-05 23:46:56 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /GitHub/mym/actas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 174)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 174, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 174, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 23:46:56 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 23:47:32 Error: Fatal Error (1): Call to a member function listActas() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 174]
+2015-04-05 23:47:32 Error: [FatalErrorException] Call to a member function listActas() on a non-object
+Request URL: /GitHub/mym/actas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 174)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 174, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 174, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-05 23:47:33 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-05 23:47:43 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Empresa.estado' in 'where clause'
+Request URL: /GitHub/mym/actas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Model\Datasource\DboSource.php(458): PDOStatement->execute(Array)
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT `Acta`.`...', Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Model\Datasource\DboSource.php(665): DboSource->execute('SELECT `Acta`.`...', Array, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Model\Datasource\DboSource.php(1077): DboSource->fetchAll('SELECT `Acta`.`...', false)
+#4 C:\wamp\www\GitHub\mym\lib\Cake\Model\Model.php(2902): DboSource->read(Object(Acta), Array)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\Model\Model.php(2874): Model->_readDataSource('all', Array)
+#6 C:\wamp\www\GitHub\mym\app\Model\AppModel.php(177): Model->find('all', Array)
+#7 C:\wamp\www\GitHub\mym\app\Model\Acta.php(230): AppModel->findObjects('all', Array)
+#8 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(174): Acta->listActas()
+#9 [internal function]: ActasController->nuevo_informe()
+#10 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#11 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#12 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#13 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2015-04-05 23:47:44 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 01:09:49 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 01:15:48 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 01:18:15 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-06 01:18:16 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-06 01:20:22 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-06 01:20:59 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 01:27:46 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}

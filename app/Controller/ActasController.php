@@ -170,8 +170,17 @@ class ActasController extends AppController{
 		$list_all_actividades = $this->Actividade->listActividades();
 		$list_all_codigos = $this->Codigo->listCodigos();
 		$list_all_vehiculos = $this->Vehiculo->listVehiculos();
-		$this->set(compact('list_all_empresas','list_all_trabajadores','list_all_actividades','list_all_codigos','list_all_vehiculos'));
 		
+		$total_registros = $this->Acta->find('count') + 1;
+		$codigo = str_pad($total_registros, 4, "0", STR_PAD_LEFT);
+		$string_complement = " - M&M/SST-".date('Y');
+		$codigo_completo = $codigo.$string_complement;
+		
+		
+		$this->set(compact('list_all_empresas','list_all_trabajadores','list_all_actividades','list_all_codigos','list_all_vehiculos','codigo_completo'));
+		
+		
+		//debug($count_actas);
 		if($this->request->is('post')  || $this->request->is('put')){
 				//insert
 				
@@ -223,32 +232,32 @@ class ActasController extends AppController{
 				/* VALORES DEL INFORME */
 				
 				if($this->request->data['Acta']['info_des_epp'] != ''){
-					$formato = nl2br(utf8_encode($this->request->data['Acta']['info_des_epp']));
+					$formato = $this->request->data['Acta']['info_des_epp'];
 					$this->request->data['Acta']['info_des_epp'] = $formato;
 				}
 				
 				if($this->request->data['Acta']['info_des_se_de'] != ''){
-					$formato = nl2br(utf8_encode($this->request->data['Acta']['info_des_se_de']));
+					$formato = $this->request->data['Acta']['info_des_se_de'];
 					$this->request->data['Acta']['info_des_se_de'] = $formato;
 				}
 				
 				if($this->request->data['Acta']['info_des_um'] != ''){
-					$formato = nl2br(utf8_encode($this->request->data['Acta']['info_des_um']));
+					$formato = $this->request->data['Acta']['info_des_um'];
 					$this->request->data['Acta']['info_des_um'] = $formato;
 				}
 				
 				if($this->request->data['Acta']['info_des_act_cond'] != ''){
-					$formato = nl2br(utf8_encode($this->request->data['Acta']['info_des_act_cond']));
+					$formato = $this->request->data['Acta']['info_des_act_cond'];
 					$this->request->data['Acta']['info_des_act_cond'] = $formato;
 				}
 				
 				if($this->request->data['Acta']['info_des_conclusion'] != ''){
-					$formato = nl2br(utf8_encode($this->request->data['Acta']['info_des_conclusion']));
+					$formato = $this->request->data['Acta']['info_des_conclusion'];
 					$this->request->data['Acta']['info_des_conclusion'] = $formato;
 				}
 				
 				if($this->request->data['Acta']['info_des_rec'] != ''){
-					$formato = nl2br(utf8_encode($this->request->data['Acta']['info_des_rec']));
+					$formato = $this->request->data['Acta']['info_des_rec'];
 					$this->request->data['Acta']['info_des_rec'] = $formato;
 				}
 				
@@ -799,14 +808,23 @@ class ActasController extends AppController{
 	
 		if($this->request->is('post')){
 			$acta_id = $this->request->data['acta_id'];
-			if($this->Acta->deleteActa($acta_id)){
+			
+			$obj_acta = $this->Acta->findById($acta_id);
+			if($obj_acta->saveField('estado', 0)){
+				echo json_encode(array('success'=>true,'msg'=>__('Eliminado con &eacute;xito.')));
+				exit();
+			}else{
+				echo json_encode(array('success'=>false,'msg'=>__('Error inesperado.')));
+				exit();
+			}
+			/*if($this->Acta->deleteActa($acta_id)){
 				echo json_encode(array('success'=>true,'msg'=>__('Eliminado con &eacute;xito.')));
 				//exit();
 			}else{
 				echo json_encode(array('success'=>false,'msg'=>__('Error inesperado.')));
 				//exit();
 			}
-			exit();
+			exit();*/
 		}
 	
 	
