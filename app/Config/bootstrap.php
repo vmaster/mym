@@ -108,7 +108,7 @@ CakeLog::config('error', array(
 
 switch (Configure::read('environment')){
 	case 'localhost':
-		Configure::write('mym.url','http://localhost/mym/');
+		Configure::write('mym.url','http://localhost/GitHub/mym/');
 		//Configure::write('SCRIPT_MIN','');
 		break;
 	case 'production':
@@ -116,7 +116,7 @@ switch (Configure::read('environment')){
 		//Configure::write('SCRIPT_MIN','.min');
 		break;
 	default:
-		Configure::write('mym.url','http://localhost/mym/');
+		Configure::write('mym.url','http://localhost/GitHub/mym/');
 		//Configure::write('SCRIPT_MIN','');
 }
 

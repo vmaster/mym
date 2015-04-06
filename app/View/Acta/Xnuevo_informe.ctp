@@ -65,10 +65,9 @@
 							<tr>
 								<td>Empresa:<br>
 								<select name="data[Acta][empresa_id]"
-									class="cbo-empresas-select2 form-control">
+									class="js-example-placeholder-single form-control">
 										<?php 
 										if (isset($list_all_empresas)){
-										echo "<option></option>";
 										foreach ($list_all_empresas as $id => $des):
 										echo "<option value = ".$id.">".$des."</option>";
 										endforeach;
@@ -134,32 +133,14 @@
 							for ($i = 1; $i <= 10; $i++) {
 								    echo "<tr>";
 								    echo "<td>".$i."</td>";
-								    echo "<td style='width:28%;'>";
-								    echo "<select name='data[TrabajadorActa".$i."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-							 	    if (isset($list_all_trabajadores)){
-										echo "<option></option>";
-								    	foreach ($list_all_trabajadores as $id => $nom):
-								    	echo "<option value = ".$id.">".$nom."</option>";
-								    	endforeach;
-								    }
-									echo "</select></td>";
-									echo "<td><select name='data[TrabajadorActividad".$i."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-									if (isset($list_all_actividades)){
-										echo "<option>--Actividad--</option>";
-										foreach ($list_all_actividades as $id => $des):
-										echo "<option value = ".$id.">".$des."</option>";
-										endforeach;
-									}
-									echo "</select></td>";
+								    echo "<td style='width:28%;'><input name='data[TrabajadorActa".$i."][nombre_trabajador]' id='Trabajador".$i."' class='form-control txt-trabajador' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/></td>";
+								    echo "<input name='data[TrabajadorActa][trabajador_id".$i."]' type='hidden' value='' id='txtTrabajadorid".$i."'>";
+								    echo "<td style='width:15%;'><input name='data[ActividadPersona".$i."][actividad]' id='Actividad".$i."' class='form-control txt-actividad' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
+								    echo "<input name='data[TrabajadorActividad][actividad_id".$i."]' type='hidden' value='' id='HiddenActividadid".$i."'></td>";
+								    
 								    for($j= 1; $j <=7; $j++){
-								   		echo "<td><select name='data[NiActa][ni-id".$i."-".$j."]' class='cbo-nincumplidas-select2 form-control' id='ni-".$i."-".$j."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								   		echo "<option></option>";
-								   		if (isset($list_all_codigos)){
-								   			foreach ($list_all_codigos as $id => $cod):
-								   			echo "<option value = ".$id.">".$cod."</option>";
-								   			endforeach;
-								   		}
-								   		echo "</select></td>";
+								    	echo "<td style='width:7%;'><input name='data[NiActa][ni-".$i."-".$j."]' id='ni-".$i."-".$j."' class='form-control txt-ni".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
+								   		echo "<input name='data[NiActa][ni-id".$i."-".$j."]' type='hidden' value='' id='hiddenNid".$i."-".$j."'></td>";
 								    }
 								    echo "</tr>";
 								}
@@ -242,6 +223,7 @@
 								        <!-- The table listing the files available for upload/download -->
 								        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
 								    </div>
+									<!-- <input name="data[IppFoto][foto]" type="file" id="fileIpp" /> -->
 									</td>
 								</tr>
 							</tbody>
@@ -313,30 +295,14 @@
 							for ($i = 1; $i <= 4; $i++) {
 								    echo "<tr>";
 								    echo "<td>".$i."</td>";
-								   // echo "<td style='width:14%;'><input name='data[UnidadMovil".$i."][nro_placa]' id='PlacaActa".$i."' class='form-control txt-nro-placa' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-								    //echo "<input name='data[UnidadMovil][nro_placa_id".$i."]' type='hidden' value='' id='hiddenPlacaId".$i."'></td>";
-								    echo "<td style='width:14%;'><select name='data[UnidadMovil".$i."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								    if (isset($list_all_vehiculos)){
-								    	echo "<option></option>";
-								    	foreach ($list_all_vehiculos as $id => $pla):
-								    	echo "<option value = ".$id.">".$pla."</option>";
-								    	endforeach;
-								    }
-								    echo "</select></td>";
+								    echo "<td style='width:14%;'><input name='data[UnidadMovil".$i."][nro_placa]' id='PlacaActa".$i."' class='form-control txt-nro-placa' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
+								    echo "<input name='data[UnidadMovil][nro_placa_id".$i."]' type='hidden' value='' id='hiddenPlacaId".$i."'></td>";
 								    echo "<td style='width:15%;'><input name='data[TipoUnidadMovil".$i."][vehiculo]' id='TipoVehiculoActa".$i."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/></td>";
 								    echo "<input name='data[TipoUnidadMovil][vehiculo_id".$i."]' type='hidden' value='' id='hiddenVehiculoid".$i."'></td>";
 										
 										for($j= 1; $j <=9; $j++){
-											//echo "<td><input name='data[UnidadNorma][ni-".$i."-".$j."]' id='ni-placa-".$i."-".$j."' class='form-control txt-ni-placa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-											//echo "<input name='data[UnidadNorma][ni-id".$i."-".$j."]' type='hidden' value='' id='hiddenPlacaNid".$i."-".$j."'></td>";
-											echo "<td><select name='data[UnidadNorma][ni-id".$i."-".$j."]' class='cbo-nincumplidas-select2 form-control' id='ni-".$i."-".$j."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-											echo "<option></option>";
-											if (isset($list_all_codigos)){
-												foreach ($list_all_codigos as $id => $cod):
-												echo "<option value = ".$id.">".$cod."</option>";
-												endforeach;
-											}
-											echo "</select></td>";
+											echo "<td><input name='data[UnidadNorma][ni-".$i."-".$j."]' id='ni-placa-".$i."-".$j."' class='form-control txt-ni-placa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
+											echo "<input name='data[UnidadNorma][ni-id".$i."-".$j."]' type='hidden' value='' id='hiddenPlacaNid".$i."-".$j."'></td>";
 										}
 										echo "</tr>";
 								}
@@ -413,16 +379,8 @@
 								    echo "<tr>";
 								    echo "<td>".$i."</td>";
 								    echo "<td style='width:89%;'><input name='data[ActoSubestandar".$i."][descripcion]' id='txtActoSubDes".$i."' class='form-control'/></td>";
-								    //echo "<td><input name='data[ActoSubestandar".$i."][ni]' id='txtActoSubNi".$i."' class='form-control txt-acto-sub-ni' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								    //echo "<input name='data[ActoSubestandar".$i."][ni-id]' id='hiddenActoSubNid".$i."' type='hidden' class='form-control' value=''></td>";
-								    echo "<td><select name='data[ActoSubestandar".$i."][ni-id]' class='cbo-nincumplidas-select2 form-control' id='ActoSubNid-".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								    echo "<option></option>";
-								    if (isset($list_all_codigos)){
-								    	foreach ($list_all_codigos as $id => $cod):
-								    	echo "<option value = ".$id.">".$cod."</option>";
-								    	endforeach;
-								    }
-								    echo "</select></td>";
+								    echo "<td><input name='data[ActoSubestandar".$i."][ni]' id='txtActoSubNi".$i."' class='form-control txt-acto-sub-ni' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+								    echo "<input name='data[ActoSubestandar".$i."][ni-id]' id='hiddenActoSubNid".$i."' type='hidden' class='form-control' value=''></td>";
 								    echo "</tr>";
 								}
 								?>
@@ -463,16 +421,8 @@
 								    echo "<tr>";
 								    echo "<td style='width:4%;'>".$i."</td>";
 								    echo "<td style='width:89%;'><input name='data[CondiSubestandar".$i."][descripcion]' id='txtCondiSubDes".$i."' class='form-control'/></td>";
-								    //echo "<td><input name='data[CondiSubestandar".$i."][ni]' id='txtCondiSubNi".$i."' class='form-control txt-cond-sub-ni' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								    //echo "<input name='data[CondiSubestandar".$i."][ni-id]' id='hiddenCondiSubNid".$i."' type='hidden' class='form-control' value=''></td>";
-								    echo "<td><select name='data[CondiSubestandar".$i."][ni-id]' class='cbo-nincumplidas-select2 form-control' id='CondiSubNid-".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								    echo "<option></option>";
-								    if (isset($list_all_codigos)){
-								    	foreach ($list_all_codigos as $id => $cod):
-								    	echo "<option value = ".$id.">".$cod."</option>";
-								    	endforeach;
-								    }
-								    echo "</select></td>";
+								    echo "<td><input name='data[CondiSubestandar".$i."][ni]' id='txtCondiSubNi".$i."' class='form-control txt-cond-sub-ni' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+								    echo "<input name='data[CondiSubestandar".$i."][ni-id]' id='hiddenCondiSubNid".$i."' type='hidden' class='form-control' value=''></td>";
 								    echo "</tr>";
 								}
 								?>
@@ -541,47 +491,27 @@
 								<td rowspan="3" style="vertical-align: bottom;"><hr> Firma</td>
 							</tr>
 							<tr>
-								<td style='width:35%;'>Nombre:
-								<!-- <input name='data[ResponsableAct1][nom_res_act]'
+								<td style='width:35%;'>Nombre: <input name='data[ResponsableAct1][nom_res_act]'
 									id='txtResAct1' class='form-control'
 									style='text-transform: uppercase;'
 									onkeyup='javascript:this.value=this.value.toUpperCase();' />
 								</td>
 								<input name='data[ResponsableAct1][res_act_id1]' type='hidden'
-									value='' id='hiddenResActId1'></td>-->
-								<?php echo "<select name='data[Acta][reponsable_act_id]' class='cbo-responsable-select2 form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-							 	    if (isset($list_all_trabajadores)){
-										echo "<option></option>";
-								    	foreach ($list_all_trabajadores as $id => $nom):
-								    	echo "<option value = ".$id.">".$nom."</option>";
-								    	endforeach;
-								    }
-									echo "</select></td>";
-								?>
-								<td style='width:35%;'>Nombre:
-								<!-- <input name='data[ResponsableSup1][nom_res_sup]'
+									value='' id='hiddenResActId1'>
+								<td style='width:35%;'>Nombre:<input name='data[ResponsableSup1][nom_res_sup]'
 									id='txtResSup1' class='form-control'
 									style='text-transform: uppercase;'
 									onkeyup='javascript:this.value=this.value.toUpperCase();' />
 								</td>
 								<input name='data[ResponsableSup1][res_sup_id]' type='hidden'
-									value='' id='hiddenResSupId1'>-->
-								<?php echo "<select name='data[Acta][reponsable_sup_id]' class='cbo-responsable-select2 form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-							 	    if (isset($list_all_trabajadores)){
-										echo "<option></option>";
-								    	foreach ($list_all_trabajadores as $id => $nom):
-								    	echo "<option value = ".$id.">".$nom."</option>";
-								    	endforeach;
-								    }
-									echo "</select></td>";
-								?>
+									value='' id='hiddenResSupId1'>
 							</tr>
 							<tr>
 								<td>DNI:<input name='data[ResponsableAct1][dni_res_act]'
-									id='txtDniRes1' class='form-control' maxlength=8 />
+									id='txtDniResAct1' class='form-control' maxlength=8 />
 								</td>
 								<td>DNI:<input name='data[ResponsableSup1][dni_res_sup]'
-									id='txtDniRes2' class='form-control' maxlength=8 />
+									id='txtDniRespSup1' class='form-control' maxlength=8 />
 								</td>
 							</tr>
 						</table>
@@ -629,7 +559,6 @@
 						</div>
 					</div>
 					<br>
-					<?php /*>
 					<div class="table-responsive">
 						<table class="table table-striped table-bordered table-hover"
 							id="dataTables-example">
@@ -667,7 +596,6 @@
 							</tr>
 						</table>
 					</div>
-					*/ ?>
 				</div>
 			</div>
 		</div>
@@ -753,7 +681,7 @@
     {% } %}
     </script>
     <!-- The template to display files available for download -->
- <script id="template-download" type="text/x-tmpl">
+    <script id="template-download" type="text/x-tmpl">
     {% for (var i=0, file; file=o.files[i]; i++) { %}
         <tr class="template-download fade">
             <td>
@@ -795,4 +723,4 @@
             </td>
         </tr>
     {% } %}
- </script>
+    </script>

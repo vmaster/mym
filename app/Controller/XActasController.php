@@ -163,14 +163,9 @@ class ActasController extends AppController{
 		$this->loadModel('ActosSubestandare');
 		$this->loadModel('CondicionesSubestandare');
 		$this->loadModel('CierreActa');
-		$this->loadModel('Codigo');
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
-		$list_all_trabajadores = $this->Trabajadore->listTrabajadores();
-		$list_all_actividades = $this->Actividade->listActividades();
-		$list_all_codigos = $this->Codigo->listCodigos();
-		$list_all_vehiculos = $this->Vehiculo->listVehiculos();
-		$this->set(compact('list_all_empresas','list_all_trabajadores','list_all_actividades','list_all_codigos','list_all_vehiculos'));
+		$this->set(compact('list_all_empresas'));
 		
 		if($this->request->is('post')  || $this->request->is('put')){
 				//insert
@@ -190,33 +185,79 @@ class ActasController extends AppController{
 				
 				$this->formatFecha($this->request->data['Acta']['fecha']);
 				
+				/*if($this->request->data['EmpresaActa']['empresa'] != null && $this->request->data['EmpresaActa']['empresa_id'] != ''){
+						
+					$this->request->data['Acta']['empresa_id'] = $this->request->data['EmpresaActa']['empresa_id'];
+						
+				}*/
+				
 				/* Verificamos el Responsable de la Actividad previo y post a la corrección */
 				
-				/*if($this->request->data['ResponsableAct1']['nom_res_act'] != null && $this->request->data['ResponsableAct1']['res_act_id1'] != ''){
+				if($this->request->data['ResponsableAct1']['nom_res_act'] != null && $this->request->data['ResponsableAct1']['res_act_id1'] != ''){
 				
 					$this->request->data['Acta']['reponsable_act_id'] = $this->request->data['ResponsableAct1']['res_act_id1'];
 				
-				}
+				}/*elseif($this->request->data['ResponsableAct1']['nom_res_act'] != null && $this->request->data['ResponsableAct1']['res_act_id1'] == ''){
+				
+					$new_trabajador_res['Trabajadore']['apellido_nombre'] = $this->request->data['ResponsableAct1']['nom_res_act'];
+					$new_trabajador_res['Trabajadore']['nro_documento'] = $this->request->data['ResponsableAct1']['dni_res_act'];
+					$new_trabajador_res['Trabajadore']['tipo_trabajador'] = 'I';
+					$new_trabajador_res['Trabajadore']['distrito_id'] = '140101';
+					$this->Trabajadore->create();
+					if ($this->Trabajadore->save($new_trabajador_res)) {
+						$this->request->data['Acta']['reponsable_act_id'] = $this->Trabajadore->id;
+					}
+				}*/
 				
 				if($this->request->data['ResponsableAct2']['nom_res_act'] != null && $this->request->data['ResponsableAct2']['res_act_id'] != ''){
 				
 					$this->request->data['Acta']['reponsable_corr_id'] = $this->request->data['ResponsableAct2']['res_act_id'];
 				
+				}/*elseif($this->request->data['ResponsableAct2']['nom_res_act'] != null && $this->request->data['ResponsableAct2']['res_act_id'] == ''){
+				
+					$new_trabajador_corr['Trabajadore']['apellido_nombre'] = $this->request->data['ResponsableAct2']['nom_res_act'];
+					$new_trabajador_corr['Trabajadore']['nro_documento'] = $this->request->data['ResponsableAct2']['dni_res_act'];
+					$new_trabajador_corr['Trabajadore']['tipo_trabajador'] = 'I';
+					$new_trabajador_corr['Trabajadore']['distrito_id'] = '140101';
+					$this->Trabajadore->create();
+					if ($this->Trabajadore->save($new_trabajador_corr)) {
+						$this->request->data['Acta']['reponsable_corr_id'] = $this->Trabajadore->id;
+					}
 				}*/
 				
 				
 				/* Verificamos el Responsable de la Supervisión previo y post a la corrección */
 				
-				/*if($this->request->data['ResponsableSup1']['nom_res_sup'] != null && $this->request->data['ResponsableSup1']['res_sup_id'] != ''){
+				if($this->request->data['ResponsableSup1']['nom_res_sup'] != null && $this->request->data['ResponsableSup1']['res_sup_id'] != ''){
 				
 					$this->request->data['Acta']['reponsable_sup_id'] = $this->request->data['ResponsableSup1']['res_sup_id'];
 				
-				}
+				}/*elseif($this->request->data['ResponsableSup1']['nom_res_sup'] != null && $this->request->data['ResponsableSup1']['res_sup_id'] == ''){
+				
+					$new_trabajador_sup['Trabajadore']['apellido_nombre'] = $this->request->data['ResponsableSup1']['nom_res_sup'];
+					$new_trabajador_sup['Trabajadore']['nro_documento'] = $this->request->data['ResponsableSup1']['dni_res_sup'];
+					$new_trabajador_sup['Trabajadore']['tipo_trabajador'] = 'E';
+					$new_trabajador_sup['Trabajadore']['distrito_id'] = '140101';
+					$this->Trabajadore->create();
+					if ($this->Trabajadore->save($new_trabajador_sup)) {
+						$this->request->data['Acta']['reponsable_sup_id'] = $this->Trabajadore->id;
+					}
+				}*/
 				
 				if($this->request->data['ResponsableSup2']['nom_res_sup'] != null && $this->request->data['ResponsableSup2']['res_sup_id'] != ''){
 				
 					$this->request->data['Acta']['reponsable_sup_corr_id'] = $this->request->data['ResponsableSup2']['res_sup_id'];
 				
+				}/*elseif($this->request->data['ResponsableSup2']['nom_res_sup'] != null && $this->request->data['ResponsableSup2']['res_sup_id'] == ''){
+				
+					$new_trabajador_sup_corr['Trabajadore']['apellido_nombre'] = $this->request->data['ResponsableSup2']['nom_res_sup'];
+					$new_trabajador_sup_corr['Trabajadore']['nro_documento'] = $this->request->data['ResponsableSup2']['dni_res_sup'];
+					$new_trabajador_sup_corr['Trabajadore']['tipo_trabajador'] = 'E';
+					$new_trabajador_sup_corr['Trabajadore']['distrito_id'] = '140101';
+					$this->Trabajadore->create();
+					if ($this->Trabajadore->save($new_trabajador_sup_corr)) {
+						$this->request->data['Acta']['reponsable_sup_corr_id'] = $this->Trabajadore->id;
+					}
 				}*/
 				
 				
@@ -252,20 +293,114 @@ class ActasController extends AppController{
 					$this->request->data['Acta']['info_des_rec'] = $formato;
 				}
 				
+				/*INTENTANDO SUBIR FOTO
+				if($this->request->data['Acta']['foto']=!'')
+				{ 
+					$file = new File($this->request->data['Acta']['foto']['tmp_name']);
+					$path_parts = pathinfo($this->request->data['Acta']['foto']['name']);
+					$ext = $path_parts['extension'];
+						
+					if ($ext != 'jpg' && $ext != 'jpeg' && $ext != 'gif' && $ext != 'png') {
+						$this->Session->setFlash('Solo puedes subir imagenes.');
+						$this->render();
+					} else {
+						$date = $this->request->data['Acta']['foto']['name'];
+						$filename =$date.'-post-image.'.$ext;
+
+						$data = $file->read();
+						$file->close();
+
+						$file = new File(ENV_WEBROOT_FULL_URL.'/uploads/'.$filename,true);
+						$file->write($data);
+						$file->close();
+					}
+						
+
+					$this->loadModel('IppFoto');
+					$newfoto['IppFoto']['archivo'] = $this->request->data['Acta']['foto']['name'];
+					$this->IppFoto->create();
+					if ($this->IppFoto->save($newfoto)) {
+						$this->Session->setFlash(__('The sector has been saved'));
+						//$this->redirect(array('action' => 'index'));
+					} else {
+						$this->Session->setFlash(__('The sector could not be saved. Please, try again.'));
+					}
+				}*/
+				
 				$this->Acta->create();
 				if ($this->Acta->save($this->request->data)) {
 
 				/* IMPLEMENTOS DE PROTECCIÓN PERSONAL */	
 					for($i =1 ; $i <=10 ; $i++){
-						if($this->request->data['TrabajadorActa'.$i]['trabajador_id'] > 0 && $this->request->data['TrabajadorActa'.$i]['trabajador_id'] != ''){
+						if($this->request->data['TrabajadorActa'.$i]['nombre_trabajador'] != null && $this->request->data['TrabajadorActa']['trabajador_id'.$i] != ''){
 							//verificar actividad if no exist => se inserta a la tabla activ y no a la tabla trabaj ademas obtenemos su ID para PPT
 							//if exits solo se inserta a la tabla PPT
-							if($this->request->data['TrabajadorActividad'.$i]['actividad_id'] != ''){
-								$imp_pp_acta['ImpProtPersonale']['actividad_id'] = $this->request->data['TrabajadorActividad'.$i]['actividad_id'];
+							if($this->request->data['TrabajadorActividad']['actividad_id'.$i] != ''){
+								$imp_pp_acta['ImpProtPersonale']['actividad_id'] = $this->request->data['TrabajadorActividad']['actividad_id'.$i];
+								/*if($this->Actividade->ExistActividad(trim($this->request->data['ActividadPersona'.$i]['actividad']))){
+									//Obtengo el ID de la actividad por su nombre.
+									$arr_obj_actividad = $this->Actividade->find('first',
+											array(
+													'conditions'=>array(
+									    					'Actividade.descripcion' => trim($this->request->data['ActividadPersona'.$i]['actividad'])
+									    			),
+													'fields' => array('id'),
+													'order' => array('Actividade.descripcion ASC'),
+											));
+									
+									$actividad_id =  $arr_obj_actividad['Actividade']['id'];
+									
+									$imp_pp_acta['ImpProtPersonale']['actividad_id'] = $actividad_id;
+								}else{
+									$new_actividad['Actividade']['descripcion'] = $this->request->data['ActividadPersona'.$i]['actividad'];
+									$this->Actividade->create();
+									if ($this->Actividade->save($new_actividad)) {
+										$imp_pp_acta['ImpProtPersonale']['actividad_id'] = $this->Actividade->id;
+									}
+								}*/
 							}
 							
-							/* Inserción en la tabla "imp_prot_personales" y su tabla detalle "ipp_normas_incumplidas" */
-							$imp_pp_acta['ImpProtPersonale']['trabajador_id'] = $this->request->data['TrabajadorActa'.$i]['trabajador_id'];
+							$imp_pp_acta['ImpProtPersonale']['trabajador_id'] = $this->request->data['TrabajadorActa']['trabajador_id'.$i];
+						
+						}/*elseif($this->request->data['TrabajadorActa'.$i]['nombre_trabajador'] != null && $this->request->data['TrabajadorActa']['trabajador_id'.$i] == ''){
+							//verificar actividad if no exist => se inserta a la tabla activ y En la tabla trabaj ademas obtenemos su ID para PPT
+							//if exits solo se inserta a la tabla PPT
+							if($this->request->data['ActividadPersona'.$i]['actividad'] != null){
+								if($this->Actividade->ExistActividad(trim($this->request->data['ActividadPersona'.$i]['actividad']))){
+									//Obtengo el ID de la actividad por su nombre.
+									$arr_obj_actividad = $this->Actividade->find('first',
+											array(
+													'conditions'=>array(
+															'Actividade.descripcion' => trim($this->request->data['ActividadPersona'.$i]['actividad'])
+													),
+													'fields' => array('id'),
+													'order' => array('Actividade.descripcion ASC'),
+											));
+										
+									$actividad_id =  $arr_obj_actividad['Actividade']['id'];
+										
+									$imp_pp_acta['ImpProtPersonale']['actividad_id'] = $actividad_id;
+									$new_trabajador['Trabajadore']['actividade_id'] = $actividad_id;
+								}else{
+									$new_actividad['Actividade']['descripcion'] = $this->request->data['ActividadPersona'.$i]['actividad'];
+									$this->Actividade->create();
+									if ($this->Actividade->save($new_actividad)) {
+										$imp_pp_acta['ImpProtPersonale']['actividad_id'] = $this->Actividade->id;
+										$new_trabajador['Trabajadore']['actividade_id'] = $this->Actividade->id;
+									}
+								}
+							}
+							
+							$new_trabajador['Trabajadore']['apellido_nombre'] = $this->request->data['TrabajadorActa'.$i]['nombre_trabajador'];
+							$new_trabajador['Trabajadore']['distrito_id'] = '140101';
+							$this->Trabajadore->create();
+							if ($this->Trabajadore->save($new_trabajador)) {
+								$imp_pp_acta['ImpProtPersonale']['trabajador_id'] = $this->Trabajadore->id;
+							}
+						}*/
+						
+						/* Inserción en la tabla "imp_prot_personales" y su tabla detalle "ipp_normas_incumplidas" */
+						if($this->request->data['TrabajadorActa'.$i]['nombre_trabajador'] != null){
 							$imp_pp_acta['ImpProtPersonale']['acta_id'] = $this->Acta->id;
 							$this->ImpProtPersonale->create();
 							if ($this->ImpProtPersonale->save($imp_pp_acta)) {
@@ -293,12 +428,6 @@ class ActasController extends AppController{
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->ImpProtPersonale->validationErrors));
 								//exit();
 							}
-						
-						}
-						
-						/* Inserción en la tabla "imp_prot_personales" y su tabla detalle "ipp_normas_incumplidas" */
-						if($this->request->data['TrabajadorActa'.$i]['trabajador_id'] != null){
-							
 						}
 					}//FIN DEL FOR 
 					
@@ -306,10 +435,10 @@ class ActasController extends AppController{
 					/*UNIDAD MOVIL */
 					for($i =1 ; $i <=4 ; $i++){
 					
-						if($this->request->data['UnidadMovil'.$i]['nro_placa_id'] != ''){
+						if($this->request->data['UnidadMovil']['nro_placa_id'.$i] != ''){
 							
 							$new_um_acta['UnidadesMovile']['acta_id'] = $this->Acta->id;
-							$new_um_acta['UnidadesMovile']['vehiculo_id'] = $this->request->data['UnidadMovil'.$i]['nro_placa_id'];
+							$new_um_acta['UnidadesMovile']['vehiculo_id'] = $this->request->data['UnidadMovil']['nro_placa_id'.$i];
 							
 							$this->UnidadesMovile->create();
 							if ($this->UnidadesMovile->save($new_um_acta)) {
@@ -432,15 +561,9 @@ class ActasController extends AppController{
 		$this->loadModel('ActosSubestandare');
 		$this->loadModel('CondicionesSubestandare');
 		$this->loadModel('CierreActa');
-		$this->loadModel('Codigo');
-		
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
-		$list_all_trabajadores = $this->Trabajadore->listTrabajadores();
-		$list_all_actividades = $this->Actividade->listActividades();
-		$list_all_codigos = $this->Codigo->listCodigos();
-		$list_all_vehiculos = $this->Vehiculo->listVehiculos();
-		$this->set(compact('list_all_empresas','list_all_trabajadores','list_all_actividades','list_all_codigos','list_all_vehiculos'));
+		$this->set(compact('list_all_empresas'));
 	
 	
 		if($this->request->is('post')  || $this->request->is('put')){
@@ -458,12 +581,12 @@ class ActasController extends AppController{
 						//ACTUALIZANDO REGISTRO DE IPP
 						
 						$ipp_id = $this->request->data['TrabajadorActa']['ipp_id'.$i];
-						if($this->request->data['TrabajadorActa'.$i]['trabajador_id'] !='' && $this->request->data['TrabajadorActa'.$i]['trabajador_id'] > 0){
+						if($this->request->data['TrabajadorActa']['trabajador_id'.$i] !='' && $this->request->data['TrabajadorActa'.$i]['nombre_trabajador'] !=''){
 							
 							$this->ImpProtPersonale->id = $ipp_id;
 							
-							$update_ipp['ImpProtPersonale']['trabajador_id'] = $this->request->data['TrabajadorActa'.$i]['trabajador_id'];
-							$update_ipp['ImpProtPersonale']['actividad_id'] = $this->request->data['TrabajadorActividad'.$i]['actividad_id'];
+							$update_ipp['ImpProtPersonale']['trabajador_id'] = $this->request->data['TrabajadorActa']['trabajador_id'.$i];
+							$update_ipp['ImpProtPersonale']['actividad_id'] = $this->request->data['TrabajadorActividad']['actividad_id'.$i];
 							if ($this->ImpProtPersonale->save($update_ipp)) {
 								//echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'ImpProtPersonale_id'=>$this->request->data['TrabajadorActa']['ipp_id'.$i]));
 								//exit();
@@ -473,7 +596,7 @@ class ActasController extends AppController{
 										
 										$ipp_ni_id = $this->request->data['IppNi']['ippni-id'.$i."-".$n];
 										//Verifico si los valores no son vacíos de lo contrarío que eliminen el registro de la BD
-										if($this->request->data['NiActa']['ni-id'.$i.'-'.$n] > 0 && $this->request->data['NiActa']['ni-id'.$i.'-'.$n] !=''){
+										if($this->request->data['NiActa']['ni-'.$i.'-'.$n] !='' && $this->request->data['NiActa']['ni-id'.$i.'-'.$n] !=''){
 											$this->IppNormasIncumplida->id = $ipp_ni_id;
 											
 											$update_ipp_ni['IppNormasIncumplida']['codigo_id'] = $this->request->data['NiActa']['ni-id'.$i.'-'.$n];
@@ -482,7 +605,7 @@ class ActasController extends AppController{
 											$this->IppNormasIncumplida->deleteAll(array('IppNormasIncumplida.id' => $ipp_ni_id), $cascada = true);
 										}
 									}else{
-										if($this->request->data['NiActa']['ni-id'.$i.'-'.$n] > 0 && $this->request->data['NiActa']['ni-id'.$i.'-'.$n] !=''){
+										if($this->request->data['NiActa']['ni-id'.$i.'-'.$n] !='' && $this->request->data['NiActa']['ni-'.$i.'-'.$n] !=''){
 											$this->IppNormasIncumplida->create();
 											
 											$new_ipp_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
@@ -509,12 +632,12 @@ class ActasController extends AppController{
 							}
 							
 						}
-					}elseif($this->request->data['TrabajadorActa']['ipp_id'.$i] == '' && $this->request->data['TrabajadorActa'.$i]['trabajador_id'] != ''){
+					}elseif($this->request->data['TrabajadorActa']['ipp_id'.$i] == '' && $this->request->data['TrabajadorActa']['trabajador_id'.$i] != ''){
 						//CREANDO NUEVO REGISTRO DE IPP
 						
 						$new_ipp['ImpProtPersonale']['acta_id'] = $acta_id;
-						$new_ipp['ImpProtPersonale']['trabajador_id'] = $this->request->data['TrabajadorActa'.$i]['trabajador_id'];
-						$new_ipp['ImpProtPersonale']['actividad_id'] = $this->request->data['TrabajadorActividad'.$i]['actividad_id'];
+						$new_ipp['ImpProtPersonale']['trabajador_id'] = $this->request->data['TrabajadorActa']['trabajador_id'.$i];
+						$new_ipp['ImpProtPersonale']['actividad_id'] = $this->request->data['TrabajadorActividad']['actividad_id'.$i];
 						
 						$this->ImpProtPersonale->create();
 						if ($this->ImpProtPersonale->save($new_ipp)) {
@@ -522,7 +645,7 @@ class ActasController extends AppController{
 							
 							for($n =1 ; $n <=7 ; $n++){
 								//Verifico si el id del Ni ipp
-									if($this->request->data['NiActa']['ni-id'.$i.'-'.$n] > 0 && $this->request->data['NiActa']['ni-id'.$i.'-'.$n] !=''){
+									if($this->request->data['NiActa']['ni-'.$i.'-'.$n] !='' && $this->request->data['NiActa']['ni-id'.$i.'-'.$n] !=''){
 										$this->IppNormasIncumplida->create();
 											
 										$new_ipp_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
@@ -548,11 +671,11 @@ class ActasController extends AppController{
 						//ACTUALIZANDO REGISTRO DE UM
 				
 						$um_id = $this->request->data['UnidadMovil']['um_id'.$i]; 
-						if($this->request->data['UnidadMovil'.$i]['nro_placa_id'] > 0 && $this->request->data['UnidadMovil'.$i]['nro_placa_id'] !=''){
+						if($this->request->data['UnidadMovil']['nro_placa_id'.$i] !='' && $this->request->data['UnidadMovil'.$i]['nro_placa'] !=''){
 								
 							$this->UnidadesMovile->id = $um_id;
 								
-							$update_um['UnidadesMovile']['vehiculo_id'] = $this->request->data['UnidadMovil'.$i]['nro_placa_id'];
+							$update_um['UnidadesMovile']['vehiculo_id'] = $this->request->data['UnidadMovil']['nro_placa_id'.$i];
 							if ($this->UnidadesMovile->save($update_um)) {
 								//echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'ImpProtPersonale_id'=>$this->request->data['TrabajadorActa']['ipp_id'.$i]));
 								//exit();
@@ -562,16 +685,16 @@ class ActasController extends AppController{
 				
 										$um_ni_id = $this->request->data['UmNi']['umni-id'.$i."-".$n];
 										//Verifico si los valores no son vacíos de lo contrarío que eliminen el registro de la BD
-										if($this->request->data['UnidadNorma']['ni-id'.$i.'-'.$n] > 0 && $this->request->data['UnidadNorma']['ni-id'.$i.'-'.$n] !=''){
+										if($this->request->data['UnidadNorma']['ni-'.$i.'-'.$n] !='' && $this->request->data['UnidadNorma']['ni-id'.$i.'-'.$n] !=''){
 											$this->UmNormasIncumplida->id = $um_ni_id;
 												
 											$update_um_ni['UmNormasIncumplida']['codigo_id'] = $this->request->data['UnidadNorma']['ni-id'.$i.'-'.$n];
-											$this->UmNormasIncumplida->save($update_um_ni);
+											$this->UmNormasIncumplida->save($update_ipp_ni);
 										}else{
 											$this->UmNormasIncumplida->deleteAll(array('UmNormasIncumplida.id' => $um_ni_id), $cascada = true);
 										}
 									}else{
-										if($this->request->data['UnidadNorma']['ni-id'.$i.'-'.$n] > 0 && $this->request->data['UnidadNorma']['ni-id'.$i.'-'.$n] !=''){
+										if($this->request->data['UnidadNorma']['ni-'.$i.'-'.$n] !='' && $this->request->data['UnidadNorma']['ni-id'.$i.'-'.$n] !=''){
 											$this->UmNormasIncumplida->create();
 												
 											$new_um_ni['UmNormasIncumplida']['um_id'] = $um_id;
@@ -598,11 +721,11 @@ class ActasController extends AppController{
 							}
 								
 						}
-					}elseif($this->request->data['UnidadMovil']['um_id'.$i] == '' && $this->request->data['UnidadMovil'.$i]['nro_placa_id'] != ''){
+					}elseif($this->request->data['UnidadMovil']['um_id'.$i] == '' && $this->request->data['UnidadMovil']['nro_placa_id'.$i] != ''){
 						//CREANDO NUEVO REGISTRO DE UM
 				
 						$new_um['UnidadesMovile']['acta_id'] = $acta_id;
-						$new_um['UnidadesMovile']['vehiculo_id'] = $this->request->data['UnidadMovil'.$i]['nro_placa_id'];
+						$new_um['UnidadesMovile']['vehiculo_id'] = $this->request->data['UnidadMovil']['nro_placa_id'.$i];
 				
 						$this->UnidadesMovile->create();
 						if ($this->UnidadesMovile->save($new_um)) {
@@ -610,7 +733,7 @@ class ActasController extends AppController{
 								
 							for($n =1 ; $n <=9 ; $n++){
 								//Verifico si el id del Ni UM
-								if($this->request->data['UnidadNorma']['ni-id'.$i.'-'.$n] > 0 && $this->request->data['UnidadNorma']['ni-id'.$i.'-'.$n] !=''){
+								if($this->request->data['UnidadNorma']['ni-'.$i.'-'.$n] !='' && $this->request->data['UnidadNorma']['ni-id'.$i.'-'.$n] !=''){
 									$this->UmNormasIncumplida->create();
 										
 									$new_um_ni['UmNormasIncumplida']['um_id'] = $um_id;
@@ -1031,60 +1154,6 @@ class ActasController extends AppController{
 		}
 	
 		return $this->request->data['Persona']['fec_nac'];
-	}
-	
-	public function add_file_ipp(){
-		$this->layout = 'ajax';
-		$this->loadModel('Actividade');
-		$this->loadModel('Trabajadore');
-		$this->loadModel('Codigo');
-		if($this->request->is('post')){
-			$long_table = $this->request->data['long_table'];
-		}
-		
-		$list_all_trabajadores = $this->Trabajadore->listTrabajadores();
-		$list_all_actividades = $this->Actividade->listActividades();
-		$list_all_codigos = $this->Codigo->listCodigos();
-		//$list_all_vehiculos = $this->Vehiculo->listVehiculos();
-		$this->set(compact('list_all_trabajadores','list_all_actividades','list_all_codigos','long_table'));
-	}
-	
-	public function add_file_um(){
-		$this->layout = 'ajax';
-		$this->loadModel('Vehiculo');
-		$this->loadModel('Codigo');
-		
-		if($this->request->is('post')){
-			$long_table = $this->request->data['long_table'];
-		}
-	
-		$list_all_codigos = $this->Codigo->listCodigos();
-		$list_all_vehiculos = $this->Vehiculo->listVehiculos();
-		$this->set(compact('list_all_vehiculos','list_all_codigos','long_table'));
-	}
-	
-	public function add_file_as(){
-		$this->layout = 'ajax';
-		$this->loadModel('Codigo');
-	
-		if($this->request->is('post')){
-			$long_table = $this->request->data['long_table'];
-		}
-	
-		$list_all_codigos = $this->Codigo->listCodigos();
-		$this->set(compact('list_all_codigos','long_table'));
-	}
-	
-	public function add_file_cs(){
-		$this->layout = 'ajax';
-		$this->loadModel('Codigo');
-	
-		if($this->request->is('post')){
-			$long_table = $this->request->data['long_table'];
-		}
-	
-		$list_all_codigos = $this->Codigo->listCodigos();
-		$this->set(compact('list_all_codigos','long_table'));
 	}
 	
 }
