@@ -1,7 +1,7 @@
 <?php
 class ActasController extends AppController{
 	public $name = 'Acta';
-	
+	public $components = array('RequestHandler');
 	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_nro=null,$search_actividad=null,$search_empresa=null,$search_obra=null) {
 		$this->layout = "default";
@@ -1103,6 +1103,27 @@ class ActasController extends AppController{
 	
 		$list_all_codigos = $this->Codigo->listCodigos();
 		$this->set(compact('list_all_codigos','long_table'));
+	}
+	
+	public function view_informe($acta_id = null)
+	{
+		$this->laxyout = 'pdf'; //esto usara el layout pdf.ctp
+		//$this->render();
+		//$this->autoRender = false;
+		
+		$this->loadModel('Acta');
+		if(!isset($acta_id)){
+			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
+			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
+			exit();
+		}
+		// Sobrescribimos para que no aparezcan los resultados de debuggin
+		// ya que sino daria un error al generar el pdf.
+		//Configure::write('debug',0);
+		//$resultado = $this->MiControlador->findById($id);
+		ini_set('memory_limit', '512M');
+		$obj_acta = $this->Acta->findById($acta_id);
+		$this->set(compact('obj_acta'));
 	}
 	
 }

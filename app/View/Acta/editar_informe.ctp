@@ -14,9 +14,15 @@
 						<table class="table table-striped table-bordered table-hover"
 							id="dataTables-example">
 							<tr>
-								<td rowspan=3 style="vertical-align: middle; width: 15%">
+								<td rowspan=3 style="vertical-align: middle; width: 22%">
+									<div class="form-group input-group" style="margin-bottom: -13px;">
+										<span class="input-group-addon"><?php echo utf8_encode('N° I') ?>
+										</span>
+										<?php echo $this->Form->input('num_informe', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'18','readonly'=>'readonly')); ?>
+									</div>
+									<br>
 									<div class="form-group input-group">
-										<span class="input-group-addon"><?php echo utf8_encode('N°') ?>
+										<span class="input-group-addon"><?php echo utf8_encode('N° A') ?>
 										</span>
 										<?php echo $this->Form->input('numero', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'7')); ?>
 									</div>
@@ -946,6 +952,12 @@
 								<tr>
 									<td><?php echo $this->Form->input('info_des_conclusion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes5 form-control','id' =>'txtInfDes5')); ?></td>
 									<td><?php echo $this->Form->input('info_des_rec', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes6 form-control','id' =>'txtInfDes6')); ?></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="vertical-align: middle; text-align: center;"><strong>MEDIDAS DE CONTROL (PARA EL INFORME)</strong></td>
+								</tr>
+								<tr>
+									<td colspan="2"><?php echo $this->Form->input('info_des_med', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes7 form-control','id' =>'txtInfDes7')); ?></td>
 								</tr>
 							</tbody>
 						</table>

@@ -80,7 +80,7 @@
 						<?php // $obj_trabajador = $acta->Trabajadore->showTrabajador($acta->getAttr('reponsable_act_id'));?>
 						<td><?php //echo $obj_trabajador->getAttr('apellido_nombre'); ?></td>
 						<td	><a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/editar_informe/<?php echo $acta->getAttr('id')?>"><i class="fa fa-pencil"></i> </a>| 
-							<a><i class="fa fa-list-alt"></i> </a> |
+							<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-list-alt"></i> </a> |
 							<a href="#myModalDeleteActa" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-acta"></i> </a>|
 							<a href='mailto:usuario@dominio.com?subject=Titulo del mensaje&body=
 Cuerpo del mensaje&attachment=""c:\temp\file.htm""'><i class="fa fa-envelope"></i> </a>

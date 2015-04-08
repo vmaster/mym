@@ -68,6 +68,58 @@ App::uses('AppModel','Model');
     				'exclusive' => '',
     				'finderQuery' => '',
     				'counterQuery' => ''
+    		),
+    		'FotoIpp' => array(
+    				'className' => 'FotoIpp',
+    				'foreignKey' => 'acta_id',
+    				'dependent' => false,
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => '',
+    				'limit' => '',
+    				'offset' => '',
+    				'exclusive' => '',
+    				'finderQuery' => '',
+    				'counterQuery' => ''
+    		),
+    		'FotoUm' => array(
+    				'className' => 'FotoUm',
+    				'foreignKey' => 'acta_id',
+    				'dependent' => false,
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => '',
+    				'limit' => '',
+    				'offset' => '',
+    				'exclusive' => '',
+    				'finderQuery' => '',
+    				'counterQuery' => ''
+    		),
+    		'FotoSd' => array(
+    				'className' => 'FotoSd',
+    				'foreignKey' => 'acta_id',
+    				'dependent' => false,
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => '',
+    				'limit' => '',
+    				'offset' => '',
+    				'exclusive' => '',
+    				'finderQuery' => '',
+    				'counterQuery' => ''
+    		),
+    		'FotoAc' => array(
+    				'className' => 'FotoAc',
+    				'foreignKey' => 'acta_id',
+    				'dependent' => false,
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => '',
+    				'limit' => '',
+    				'offset' => '',
+    				'exclusive' => '',
+    				'finderQuery' => '',
+    				'counterQuery' => ''
     		)
     );
     
@@ -219,11 +271,6 @@ App::uses('AppModel','Model');
     		return false;
     	}
     }
-    
-    public function listActas() {
-    	return $this->find('all');
-    }
-    
     
   }
 ?>

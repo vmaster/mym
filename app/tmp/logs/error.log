@@ -49518,3 +49518,1285 @@ Stack Trace:
 #1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
 #2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 {main}
+2015-04-06 14:40:45 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-06 15:01:57 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-06 15:02:00 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-06 15:02:04 Error: Fatal Error (1): Call to a member function findById() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 1119]
+2015-04-06 15:02:04 Error: [InternalErrorException] Internal Server Error
+Request URL: /GitHub/mym/actas/view_informe/27
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:02:05 Error: Fatal Error (1): Call to a member function findById() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 1119]
+2015-04-06 15:02:05 Error: [InternalErrorException] Internal Server Error
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:02:16 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-06 15:02:23 Error: Fatal Error (1): Call to a member function findById() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 1119]
+2015-04-06 15:02:23 Error: [InternalErrorException] Internal Server Error
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:02:24 Error: Fatal Error (1): Call to a member function findById() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 1119]
+2015-04-06 15:02:24 Error: [InternalErrorException] Internal Server Error
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:31:58 Error: Fatal Error (1): Call to a member function findById() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 1119]
+2015-04-06 15:31:58 Error: [InternalErrorException] Internal Server Error
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:31:59 Error: Fatal Error (1): Call to a member function findById() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 1119]
+2015-04-06 15:31:59 Error: [InternalErrorException] Internal Server Error
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:37:31 Error: Fatal Error (1): Call to a member function findById() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 1119]
+2015-04-06 15:37:31 Error: [FatalErrorException] Call to a member function findById() on a non-object
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:37:38 Error: Fatal Error (1): Call to a member function findById() on a non-object in [C:\wamp\www\GitHub\mym\app\Controller\ActasController.php, line 1119]
+2015-04-06 15:37:38 Error: [FatalErrorException] Call to a member function findById() on a non-object
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 1119, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:39:17 Error: Fatal Error (1): Class 'XTCPDF' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:39:17 Error: [FatalErrorException] Class 'XTCPDF' not found
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:39:23 Error: Fatal Error (1): Class 'XTCPDF' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:39:23 Error: [FatalErrorException] Class 'XTCPDF' not found
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:41:10 Error: Fatal Error (1): Class 'XTCPDF' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:41:10 Error: [FatalErrorException] Class 'XTCPDF' not found
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:41:14 Error: Fatal Error (1): Class 'XTCPDF' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:41:14 Error: [FatalErrorException] Class 'XTCPDF' not found
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:42:00 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 15:42:01 Error: Fatal Error (1): Class 'XTCPDF' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:42:01 Error: [FatalErrorException] Class 'XTCPDF' not found
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:42:02 Error: Fatal Error (1): Class 'XTCPDF' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:42:02 Error: [FatalErrorException] Class 'XTCPDF' not found
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:42:24 Error: Fatal Error (1): Class 'xtcpdf' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:42:24 Error: [FatalErrorException] Class 'xtcpdf' not found
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:42:26 Error: Fatal Error (1): Class 'xtcpdf' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:42:26 Error: [FatalErrorException] Class 'xtcpdf' not found
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:43:00 Error: Fatal Error (1): Class 'xtcpdf' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:43:00 Error: [FatalErrorException] Class 'xtcpdf' not found
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:43:08 Error: Fatal Error (1): Class 'xtcpdf' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:43:08 Error: [FatalErrorException] Class 'xtcpdf' not found
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:43:12 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 15:43:17 Error: Fatal Error (1): Class 'xtcpdf' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:43:17 Error: [FatalErrorException] Class 'xtcpdf' not found
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:43:18 Error: Fatal Error (1): Class 'xtcpdf' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 15:43:18 Error: [FatalErrorException] Class 'xtcpdf' not found
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'xtcpdf' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:44:28 Error: Fatal Error (64): require_once() [<a href='http://php.net/function.require'>function.require</a>]: Failed opening required 'C:\wamp\www\GitHub\mym\app\Vendor\tcpdf/tcpdf_autoconfig.php' (include_path='C:\wamp\www\GitHub\mym\lib;.;C:\php\pear') in [C:\wamp\www\GitHub\mym\app\Vendor\tcpdf\tcpdf.php, line 111]
+2015-04-06 15:44:28 Error: [FatalErrorException] require_once() [<a href='http://php.net/function.require'>function.require</a>]: Failed opening required 'C:\wamp\www\GitHub\mym\app\Vendor\tcpdf/tcpdf_autoconfig.php' (include_path='C:\wamp\www\GitHub\mym\lib;.;C:\php\pear')
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'require_once() ...', 'C:\wamp\www\Git...', 111)
+#1 [internal function]: ErrorHandler::handleError(64, 'require_once() ...', 'C:\wamp\www\Git...', 111, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'require_once() ...', 'C:\wamp\www\Git...', 111, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:44:31 Error: Fatal Error (64): require_once() [<a href='http://php.net/function.require'>function.require</a>]: Failed opening required 'C:\wamp\www\GitHub\mym\app\Vendor\tcpdf/tcpdf_autoconfig.php' (include_path='C:\wamp\www\GitHub\mym\lib;.;C:\php\pear') in [C:\wamp\www\GitHub\mym\app\Vendor\tcpdf\tcpdf.php, line 111]
+2015-04-06 15:44:31 Error: [FatalErrorException] require_once() [<a href='http://php.net/function.require'>function.require</a>]: Failed opening required 'C:\wamp\www\GitHub\mym\app\Vendor\tcpdf/tcpdf_autoconfig.php' (include_path='C:\wamp\www\GitHub\mym\lib;.;C:\php\pear')
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'require_once() ...', 'C:\wamp\www\Git...', 111)
+#1 [internal function]: ErrorHandler::handleError(64, 'require_once() ...', 'C:\wamp\www\Git...', 111, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 64, 'require_once() ...', 'C:\wamp\www\Git...', 111, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 15:47:48 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 15:54:27 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 16:02:59 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 16:03:00 Error: Fatal Error (1): Class 'XTCPDF' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 16:03:00 Error: [FatalErrorException] Class 'XTCPDF' not found
+Request URL: /GitHub/mym/actas/view_informe/27
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 16:03:00 Error: Fatal Error (1): Class 'XTCPDF' not found in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 3]
+2015-04-06 16:03:00 Error: [FatalErrorException] Class 'XTCPDF' not found
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Class 'XTCPDF' ...', 'C:\wamp\www\Git...', 3, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 16:21:09 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 16:22:41 Error: [MissingViewException] View file "C:\wamp\www\GitHub\mym\app\View\Acta\1.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\wamp\\www\\GitHub\\mym\\app\\View\\Acta\\1.ctp',
+)
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(457): View->_getViewFileName(true)
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(true, NULL)
+#2 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render(true)
+#3 [internal function]: ActasController->view_informe('28')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#6 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2015-04-06 16:22:42 Error: [MissingViewException] View file "C:\wamp\www\GitHub\mym\app\View\Acta\1.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'C:\\wamp\\www\\GitHub\\mym\\app\\View\\Acta\\1.ctp',
+)
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(457): View->_getViewFileName(true)
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(true, NULL)
+#2 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render(true)
+#3 [internal function]: ActasController->view_informe('[object Object]')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#6 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2015-04-06 16:23:33 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 16:23:46 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 16:27:53 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 16:28:03 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-06 21:05:10 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:02:37 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:02:39 Error: [DOMPDF_Exception] Requested HTML document contains no data.
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(676): Frame_Tree->build_tree()
+#1 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(846): DOMPDF->_process_html()
+#2 C:\wamp\www\GitHub\mym\app\View\Layouts\pdf.ctp(9): DOMPDF->render()
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(523): View->_render('C:\wamp\www\Git...')
+#6 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(468): View->renderLayout('', 'pdf')
+#7 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#8 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render()
+#9 [internal function]: ActasController->view_informe('28')
+#10 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#11 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#12 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#13 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2015-04-07 00:02:40 Error: [DOMPDF_Exception] Requested HTML document contains no data.
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(676): Frame_Tree->build_tree()
+#1 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(846): DOMPDF->_process_html()
+#2 C:\wamp\www\GitHub\mym\app\View\Layouts\pdf.ctp(9): DOMPDF->render()
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(523): View->_render('C:\wamp\www\Git...')
+#6 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(468): View->renderLayout('', 'pdf')
+#7 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#8 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render()
+#9 [internal function]: ActasController->view_informe('[object Object]')
+#10 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#11 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#12 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#13 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2015-04-07 00:03:11 Error: [DOMPDF_Exception] Requested HTML document contains no data.
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(676): Frame_Tree->build_tree()
+#1 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(846): DOMPDF->_process_html()
+#2 C:\wamp\www\GitHub\mym\app\View\Layouts\pdf.ctp(9): DOMPDF->render()
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(523): View->_render('C:\wamp\www\Git...')
+#6 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(468): View->renderLayout('', 'pdf')
+#7 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#8 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render()
+#9 [internal function]: ActasController->view_informe('28')
+#10 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#11 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#12 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#13 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2015-04-07 00:03:17 Error: [DOMPDF_Exception] Requested HTML document contains no data.
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(676): Frame_Tree->build_tree()
+#1 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(846): DOMPDF->_process_html()
+#2 C:\wamp\www\GitHub\mym\app\View\Layouts\pdf.ctp(9): DOMPDF->render()
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(523): View->_render('C:\wamp\www\Git...')
+#6 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(468): View->renderLayout('', 'pdf')
+#7 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#8 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render()
+#9 [internal function]: ActasController->view_informe('[object Object]')
+#10 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#11 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#12 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#13 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2015-04-07 00:12:29 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:13:15 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:14:03 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:14:11 Error: [MissingActionException] Action ActaController::view_informe.pdf() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => 'view_informe.pdf',
+)
+Request URL: /GitHub/mym/actas/view_informe.pdf/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 00:14:12 Error: [MissingActionException] Action ActaController::view_informe.pdf() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => 'view_informe.pdf',
+)
+Request URL: /GitHub/mym/actas/view_informe.pdf/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 00:14:25 Error: [MissingActionException] Action ActaController::view_informe.pdf() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => 'view_informe.pdf',
+)
+Request URL: /GitHub/mym/actas/view_informe.pdf/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 00:14:26 Error: [MissingActionException] Action ActaController::view_informe.pdf() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => 'view_informe.pdf',
+)
+Request URL: /GitHub/mym/actas/view_informe.pdf/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 00:14:30 Error: [MissingActionException] Action ActaController::view_pdf() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => 'view_pdf',
+)
+Request URL: /GitHub/mym/actas/view_pdf/28.pdf
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 00:14:53 Error: [MissingActionException] Action ActaController::view_pdf() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => 'view_pdf',
+)
+Request URL: /GitHub/mym/actas/view_pdf/
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 00:14:54 Error: [MissingActionException] Action ActaController::view_pdf() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => 'view_pdf',
+)
+Request URL: /GitHub/mym/actas/view_pdf/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 00:15:19 Error: [MissingActionException] Action ActaController::view_pdf() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => 'view_pdf',
+)
+Request URL: /GitHub/mym/actas/view_pdf/
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 00:15:20 Error: [MissingActionException] Action ActaController::view_pdf() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => 'view_pdf',
+)
+Request URL: /GitHub/mym/actas/view_pdf/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 00:15:28 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:15:29 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:15:42 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:15:45 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:15:46 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:15:48 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:35:09 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:35:12 Error: [LogicException] Function 'DOMPDF_autoload' not found (function 'DOMPDF_autoload' not found or invalid function name)
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\View\Layouts\pdf.ctp(6): spl_autoload_register('DOMPDF_autoload')
+#1 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#2 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(523): View->_render('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(468): View->renderLayout('', 'pdf')
+#5 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#6 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render()
+#7 [internal function]: ActasController->view_informe('28')
+#8 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#9 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#11 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-04-07 00:35:13 Error: [LogicException] Function 'DOMPDF_autoload' not found (function 'DOMPDF_autoload' not found or invalid function name)
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\View\Layouts\pdf.ctp(6): spl_autoload_register('DOMPDF_autoload')
+#1 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#2 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(523): View->_render('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(468): View->renderLayout('', 'pdf')
+#5 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#6 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render()
+#7 [internal function]: ActasController->view_informe('[object Object]')
+#8 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#9 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#11 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2015-04-07 00:35:47 Error: [DOMPDF_Exception] Requested HTML document contains no data.
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(676): Frame_Tree->build_tree()
+#1 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(846): DOMPDF->_process_html()
+#2 C:\wamp\www\GitHub\mym\app\View\Layouts\pdf.ctp(10): DOMPDF->render()
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(523): View->_render('C:\wamp\www\Git...')
+#6 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(468): View->renderLayout('', 'pdf')
+#7 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#8 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render()
+#9 [internal function]: ActasController->view_informe('28')
+#10 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#11 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#12 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#13 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2015-04-07 00:35:48 Error: [DOMPDF_Exception] Requested HTML document contains no data.
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(676): Frame_Tree->build_tree()
+#1 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(846): DOMPDF->_process_html()
+#2 C:\wamp\www\GitHub\mym\app\View\Layouts\pdf.ctp(10): DOMPDF->render()
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(523): View->_render('C:\wamp\www\Git...')
+#6 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(468): View->renderLayout('', 'pdf')
+#7 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#8 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render()
+#9 [internal function]: ActasController->view_informe('[object Object]')
+#10 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#11 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#12 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#13 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2015-04-07 00:45:04 Error: [LogicException] Function 'DOMPDF_autoload' not found (function 'DOMPDF_autoload' not found or invalid function name)
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp(35): spl_autoload_register('DOMPDF_autoload')
+#1 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#2 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(460): View->_render('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(192): Controller->render()
+#6 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2015-04-07 00:45:05 Error: [LogicException] Function 'DOMPDF_autoload' not found (function 'DOMPDF_autoload' not found or invalid function name)
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp(35): spl_autoload_register('DOMPDF_autoload')
+#1 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#2 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(460): View->_render('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(192): Controller->render()
+#6 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2015-04-07 00:46:13 Error: [DOMPDF_Exception] Requested HTML document contains no data.
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(676): Frame_Tree->build_tree()
+#1 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(846): DOMPDF->_process_html()
+#2 C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp(40): DOMPDF->render()
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(460): View->_render('C:\wamp\www\Git...')
+#6 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#7 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render()
+#8 [internal function]: ActasController->view_informe('28')
+#9 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#10 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#12 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2015-04-07 00:46:52 Error: [DOMPDF_Exception] Requested HTML document contains no data.
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(676): Frame_Tree->build_tree()
+#1 C:\wamp\www\GitHub\mym\app\Vendor\dompdf\include\dompdf.cls.php(846): DOMPDF->_process_html()
+#2 C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp(40): DOMPDF->render()
+#3 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(929): include('C:\wamp\www\Git...')
+#4 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(891): View->_evaluate('C:\wamp\www\Git...', Array)
+#5 C:\wamp\www\GitHub\mym\lib\Cake\View\View.php(460): View->_render('C:\wamp\www\Git...')
+#6 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#7 C:\wamp\www\GitHub\mym\app\Controller\ActasController.php(1111): Controller->render()
+#8 [internal function]: ActasController->view_informe('28')
+#9 C:\wamp\www\GitHub\mym\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ActasController), Array)
+#10 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#12 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2015-04-07 00:51:52 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:52:38 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:54:53 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:56:04 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:57:19 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 00:57:20 Error: Fatal Error (1): Call to a member function getAttr() on a non-object in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 30]
+2015-04-07 00:57:20 Error: [FatalErrorException] Call to a member function getAttr() on a non-object
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 30)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 30, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 30, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 00:57:21 Error: Fatal Error (1): Call to a member function getAttr() on a non-object in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 30]
+2015-04-07 00:57:21 Error: [FatalErrorException] Call to a member function getAttr() on a non-object
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 30)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 30, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 30, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 00:57:43 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 01:04:25 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 01:05:01 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 01:12:35 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 01:18:14 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 01:18:21 Error: Fatal Error (4): syntax error, unexpected '1' (T_LNUMBER) in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 33]
+2015-04-07 01:18:21 Error: [FatalErrorException] syntax error, unexpected '1' (T_LNUMBER)
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\wamp\www\Git...', 33)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\wamp\www\Git...', 33, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\wamp\www\Git...', 33, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 01:18:21 Error: Fatal Error (4): syntax error, unexpected '1' (T_LNUMBER) in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 33]
+2015-04-07 01:18:21 Error: [FatalErrorException] syntax error, unexpected '1' (T_LNUMBER)
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\wamp\www\Git...', 33)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\wamp\www\Git...', 33, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\wamp\www\Git...', 33, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 01:32:17 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 01:46:14 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 01:48:27 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 01:55:13 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 01:57:54 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 11:45:59 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 11:56:44 Error: Fatal Error (1): Call to a member function view() on a non-object in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 99]
+2015-04-07 11:56:44 Error: [FatalErrorException] Call to a member function view() on a non-object
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 99)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 99, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 99, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 11:56:44 Error: Fatal Error (1): Call to a member function view() on a non-object in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 99]
+2015-04-07 11:56:44 Error: [FatalErrorException] Call to a member function view() on a non-object
+Request URL: /GitHub/mym/actas/view_informe/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 99)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\Git...', 99, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\Git...', 99, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 12:00:01 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 12:01:28 Error: Fatal Error (1): Call to undefined method DOMPDF::page_text() in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 105]
+2015-04-07 12:01:28 Error: [FatalErrorException] Call to undefined method DOMPDF::page_text()
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 105)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 105, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\wamp\www\Git...', 105, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 12:27:20 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 12:27:22 Error: Fatal Error (1): Call to undefined method DOMPDF::page_text() in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 105]
+2015-04-07 12:27:22 Error: [FatalErrorException] Call to undefined method DOMPDF::page_text()
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 105)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 105, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\wamp\www\Git...', 105, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 12:29:55 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 12:29:57 Error: Fatal Error (1): Call to undefined method DOMPDF::page_text() in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 105]
+2015-04-07 12:29:57 Error: [FatalErrorException] Call to undefined method DOMPDF::page_text()
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 105)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 105, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\wamp\www\Git...', 105, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 12:30:29 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 12:30:32 Error: Fatal Error (1): Call to undefined method DOMPDF::page_text() in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 105]
+2015-04-07 12:30:32 Error: [FatalErrorException] Call to undefined method DOMPDF::page_text()
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 105)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 105, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\wamp\www\Git...', 105, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 12:30:51 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 12:30:52 Error: Fatal Error (1): Call to undefined method DOMPDF::page_text() in [C:\wamp\www\GitHub\mym\app\View\Acta\view_informe.ctp, line 105]
+2015-04-07 12:30:52 Error: [FatalErrorException] Call to undefined method DOMPDF::page_text()
+Request URL: /GitHub/mym/actas/view_informe/28
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 105)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\wamp\www\Git...', 105, Array)
+#2 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\wamp\www\Git...', 105, Array)
+#3 C:\wamp\www\GitHub\mym\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-07 12:32:09 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 12:35:56 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 12:37:40 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 12:47:54 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 12:57:45 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 13:02:36 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 13:03:08 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-07 14:07:06 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 15:12:36 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 15:13:45 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 15:15:02 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 15:16:00 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 15:16:42 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 16:08:19 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 17:36:43 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-07 17:37:18 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}

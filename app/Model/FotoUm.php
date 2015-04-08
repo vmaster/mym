@@ -1,7 +1,7 @@
 <?php
 App::uses('AppModel','Model');
-  class IppFoto extends AppModel {
-    public $name = 'IppFoto';
+  class FotoUm extends AppModel {
+    public $name = 'FotoUm';
 
 
     /*public $hasMany = array(
@@ -18,12 +18,12 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		)
-    );
+    );*/
     
     public $belongsTo = array(
-    		'TipoVehiculo' => array(
-    				'className' => 'TipoVehiculo',
-    				'foreignKey' => 'tipo_vehiculo_id',
+    		'Acta' => array(
+    				'className' => 'Acta',
+    				'foreignKey' => 'acta_id',
     				'conditions' => '',
     				'fields' => '',
     				'order' => ''
@@ -31,7 +31,7 @@ App::uses('AppModel','Model');
     );
     
     
-    public $validate = array(
+    /*public $validate = array(
     		'nro_placa'    => array(
     				'notempty' => array(
     						'rule' => array('notEmpty'),
