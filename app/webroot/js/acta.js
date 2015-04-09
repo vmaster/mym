@@ -21,6 +21,33 @@ $(document).ready(function(){
 					alertify.error(value[0]);
 				}
 			});	
+		},
+		sendReport: function(acta_id, email_destino){
+			$.ajax({
+				type: 'post',
+				url: env_webroot_script + 'actas/send_reporte_email',
+				data:{
+					'acta_id': acta_id,
+					'email_destino': email_destino
+				},
+				dataType: 'json'
+			}).done(function(data){
+				if(data.success == true){
+					alertify.success(data.msg);
+					$('div#myModalSendReport').modal('hide');
+				}else{
+					//alertify.error(value[0]);
+					//alert(data.validation);
+					$.each(data.validation, function( key, value ) {
+						alertify.error(value[0]);
+						//alert(key);
+						$('[name="data[SendEmail]['+key+']"]').parent().addClass('control-group has-error');
+						$('[name="data[SendEmail]['+key+']"]').change(function() {
+						$('[name="data[SendEmail]['+key+']"]').parent().removeClass('control-group has-error');
+						});
+					});
+				}
+			});	
 		}
 	}
 	
@@ -86,6 +113,19 @@ $(document).ready(function(){
 		acta.deleteActa(acta_id);
 	});
 	
+	/*Send Report by Email*/
+	$body.off('click','div#acta .open-model-send-informe');
+	$body.on('click','div#acta .open-model-send-informe', function(){
+		acta_id = $(this).parents('.acta_row_container').attr('acta_id');
+		$('div#myModalSendReport').attr('acta_id', acta_id);
+	});
+	
+	$body.off('click','div#myModalSendReport .send-report-email-trigger');
+	$body.on('click','div#myModalSendReport .send-report-email-trigger', function(){
+		acta_id = $('div#myModalSendReport').attr('acta_id');
+		email_destino = $('div#myModalSendReport #email-destino').val();
+		acta.sendReport(acta_id, email_destino);
+	});
 	
 	
 /*SCRIPTS PARA EL CREAR Y EDITAR INFORME  */
@@ -339,7 +379,8 @@ $(document).ready(function(){
 	function loadATrabajador(){
 	$(".cbo-trabajadores-select2").select2({
 		  placeholder: "Seleccione un trabajador",
-		  allowClear: true
+		  allowClear: true,
+		  width: '100%'
 	});
 	}
 	loadATrabajador();
@@ -372,8 +413,9 @@ $(document).ready(function(){
 	
 	function loadANIncumplicas(){
 		$(".cbo-nincumplidas-select2").select2({
-			  placeholder: "Codigo",
-			  allowClear: true
+			placeholder: "NI",
+			allowClear: true,
+			width: '100%'
 		});
 	}
 	loadANIncumplicas();
@@ -381,7 +423,8 @@ $(document).ready(function(){
 	function loadAPlaca(){
 		$(".cbo-placas-select2").select2({
 			  placeholder: "Nro de Placa",
-			  allowClear: true
+			  allowClear: true,
+			  width: '100%'
 		});
 	}
 	loadAPlaca();

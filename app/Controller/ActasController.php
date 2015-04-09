@@ -1107,7 +1107,7 @@ class ActasController extends AppController{
 	
 	public function view_informe($acta_id = null)
 	{
-		$this->laxyout = 'pdf'; //esto usara el layout pdf.ctp
+		$this->layout = 'pdf'; //esto usara el layout pdf.ctp
 		//$this->render();
 		//$this->autoRender = false;
 		
@@ -1124,6 +1124,33 @@ class ActasController extends AppController{
 		ini_set('memory_limit', '512M');
 		$obj_acta = $this->Acta->findById($acta_id);
 		$this->set(compact('obj_acta'));
+	}
+	
+	public function send_reporte_email()
+	{
+		$this->autoRender = false;
+		$this->loadModel('Acta');
+		if($this->request->is('post')){
+			$acta_id = $this->request->data['acta_id'];
+			$obj_acta = $this->Acta->findById($acta_id);
+			$num_informe = $obj_acta->getAttr('num_informe'); //Obtengo el número de informe
+			$email_destino = $this->request->data['email_destino'];
+
+			$error_validation = '';
+			if(Validation::email($email_destino)){
+				$this->Acta->sendReporteEmail($acta_id, $email_destino, $num_informe);
+				echo json_encode(array('success'=>true,'msg'=>__('El Informe fue enviado')));
+				//exit();
+			}else{
+				$arr_validation['email_destino'] = array(__('Debe ingresar un email v&aacute;lido'));
+				$error_validation = true;
+			}
+			
+			if($error_validation == true){
+				echo json_encode(array('success' =>false, 'msg' => __('No se pudo guardar'), 'validation' => $arr_validation));
+				exit();
+			}
+		}
 	}
 	
 }

@@ -272,5 +272,18 @@ App::uses('AppModel','Model');
     	}
     }
     
+    public function sendReporteEmail($acta_id, $email_destino, $num_informe){
+    	App::uses('CakeEmail', 'Network/Email');
+    	
+    	$Email = new CakeEmail('mym');
+    	$Email->from(array('informes@mym-iceperu.com' => 'M&M'));
+    	$Email->emailFormat('html');
+    	$Email->template('informe','send_informe');
+    	$Email->viewVars(array('acta_id' => $acta_id,'num_informe'=> $num_informe));
+    	$Email->to($email_destino);
+    	$Email->subject(utf8_encode('Informe N° ').$num_informe);
+    	$Email->send('Mi Mensaje');
+    }
+    
   }
 ?>

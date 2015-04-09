@@ -235,4 +235,34 @@ $('#container_page .pagination li.active').live('click',function(){
 		</div>
 	</div>
 	
+	<div class="modal fade" id="myModalSendReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" acta_id= ''>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"><i class="fa fa-times"></i></button>
+					<h3 id="myModalLabel"><?php echo utf8_encode(__('Enviar Informe por Email')); ?></h3>
+				</div>
+				<?php echo $this->Form->create('SendEmail',array('method'=>'post', 'id'=>'form_send_email','action'=> false));?>
+				<div class="modal-body">
+					
+							<div class="row">
+								<div class="span3 col-md-4 col-sm-6 col-xs-6">
+									<label><?php echo utf8_encode(__('Correo de destino')); ?> </label>
+								</div>
+								<div class="span3 col-md-5 col-sm-6 col-xs-6">
+									<?php echo $this->Form->input('email_destino', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'email-destino')); ?>
+								</div>
+							</div>
+							<p>
+				</div>
+				<?php echo $this->Form->end(); ?>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancelar'); ?></button>
+					<button class="btn btn-danger send-report-email-trigger"><?php echo __('Enviar'); ?></button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
 </div>

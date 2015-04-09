@@ -38,6 +38,20 @@
  *
  */
 class EmailConfig {
+	
+	public function __construct() {
+		// Do conditional assignments here.
+	}
+	
+	public $mym = array(
+			'host' => 'ssl://p3plcpnl0375.prod.phx3.secureserver.net',
+			'port' => 465,
+			'username' => 'informes@mym-iceperu.com',
+			'password' => 'secureinfomym2015',
+			'transport' => 'Smtp'
+			//'timeout' => 60,
+			//'tls' => true
+	);
 
 	public $default = array(
 		'transport' => 'Mail',
@@ -48,12 +62,12 @@ class EmailConfig {
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('destajador2014@outlook.com.pe' => 'My Site'),
-		'host' => 'ssl://smtp.gmail.com',
-		'port' => 465,
+		'from' => array('site@localhost' => 'My Site'),
+		'host' => 'localhost',
+		'port' => 25,
 		'timeout' => 30,
-		'username' => 'destajador2014@outlook.com.pe',
-		'password' => 'vmaster7',
+		'username' => 'user',
+		'password' => 'secret',
 		'client' => null,
 		'log' => false,
 		//'charset' => 'utf-8',
