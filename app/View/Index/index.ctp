@@ -4,5 +4,4 @@
 	</div>
 </div>
 <hr />
-<img src="<?= ENV_WEBROOT_FULL_URL; ?>img/logo.png" />
 <img src="<?= ENV_WEBROOT_FULL_URL; ?>/img/iceperu.jpg"/>
