@@ -16,7 +16,7 @@ $codigo = "<style type='text/css'>
 $codigo .= "
  <table class='tg' width='100%'>
   <tr>
-    <th class='tg-031e' rowspan='2'>LOGO</th>
+    <th class='tg-031e' rowspan='2'><img src='".ENV_WEBROOT_FULL_URL."img/logo.png' style='width: 8%;'/></th>
     <th class='tg-031e' rowspan='2'>M&amp;M Ingeniería Ibras y Serivcios E.I.R.L.<h6>Ejecución y supervisión de obras eléctricas, civiles, mineria e industrial.</h6><h6>Especialistas de gestión en Seguridad, salud en el trabajo, calidad y medio ambiente.</h6></th>
     <th class='tg-031e'><h5>SEGURIDAD Y SALUD EN EL TRABAJO</h5>INFORME TÉCNICO</th>
   </tr>

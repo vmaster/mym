@@ -50800,3 +50800,108 @@ Stack Trace:
 #1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
 #2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 {main}
+2015-04-09 22:41:39 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-09 22:41:51 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-09 23:09:33 Error: [MissingActionException] Action EmpresaController::nuevo_informe() could not be found.
+Exception Attributes: array (
+  'controller' => 'EmpresaController',
+  'action' => 'nuevo_informe',
+)
+Request URL: /GitHub/mym/empresas/nuevo_informe
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(EmpresasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-09 23:09:34 Error: [MissingActionException] Action EmpresaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'EmpresaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/empresas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(EmpresasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-09 23:28:49 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-09 23:35:22 Error: [MissingActionException] Action ActaController::[object Object]() could not be found.
+Exception Attributes: array (
+  'controller' => 'ActaController',
+  'action' => '[object Object]',
+)
+Request URL: /GitHub/mym/actas/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\GitHub\mym\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ActasController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2015-04-10 10:51:07 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-10 10:53:14 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-11 12:52:25 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-11 14:39:28 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-04-11 14:40:49 Error: [MissingControllerException] Controller class [objectObject]Controller could not be found.
+Exception Attributes: array (
+  'class' => '[objectObject]Controller',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/[object%20Object]
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

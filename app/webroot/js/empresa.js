@@ -101,4 +101,41 @@ $(document).ready(function(){
 		empresa.deleteEmpresa(empresa_id);
 	});
 	
+	/* CREAR EMPRESA DESDE UN MODAL (EN EL FORMULARIO CREAR INFORME) */
+	$body.off('click','.save-empresa-modal-trigger');
+	$body.on('click','.save-empresa-modal-trigger',function(){
+		cambio=false;
+		$form = $('form#form_create_empresa').eq(0);
+		$.ajax({
+			url: env_webroot_script + 'empresas/add_empresa',
+			data: $form.serialize(),
+			dataType: 'json',
+			type: 'post'
+		}).done(function(data){
+			if(data.success==true){
+				alertify.success(data.msg);
+				//$(this).prop('data-dismiss','modal');
+				//$('div#myModalAddEmpresa').modal('hide');
+				$('div#myModalAddEmpresa').removeClass('in');
+				$('div#myModalAddEmpresa').prop('aria-hidden',false);
+				$('div#myModalAddEmpresa').css('display','none');
+				$('.modal-backdrop').fadeOut(function(){$(this).hide()});
+				txt_empresa = $('#txt-nombre-empresa').val();
+				//id_select_empresa = $('.select2-selection__rendered').attr('id');
+				//valorcito = '#'+id_select_empresa;
+				//$(valorcito).text(txt_empresa);
+				new_option = "<option value='" + data.Empresa_id + "' selected='selected'>"+txt_empresa+"</option>";
+				$('.cbo-empresas-select2 option:last').after(new_option);
+			}else{
+				$.each(data.validation, function( key, value ) {
+					alertify.error(value[0]);
+					$('[name="data[Empresa]['+key+']"]').parent().addClass('control-group has-error');
+					$('[name="data[Empresa]['+key+']"]').change(function() {
+						$('[name="data[Empresa]['+key+']"]').parent().removeClass('control-group has-error');
+					});
+				});
+			}
+		});
+	});
+
 });

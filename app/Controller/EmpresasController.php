@@ -197,8 +197,24 @@ class EmpresasController extends AppController{
 			}
 			exit();*/
 		}
+	}
 	
-	
+	public function add_empresa(){
+		$this->layout = 'ajax';
+		$this->loadModel('Empresa');
+		if($this->request->is('post') || $this->request->is('put')){
+			//debug($this->request->data['Empresa']['nombre']); exit();
+			$this->Empresa->create();
+			if ($this->Empresa->save($this->request->data)) {
+				$empresa_id = $this->Empresa->id;
+				echo json_encode(array('success'=>true,'msg'=>__('La empresa fue agregado con &eacute;xito.'),'Empresa_id'=>$empresa_id));
+				exit();
+			}else{
+				$empresa_id = '';
+				echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->Empresa->validationErrors));
+				exit();
+			}	
+		}
 	}
 	
 }

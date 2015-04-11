@@ -70,6 +70,7 @@
 							</tr>
 							<tr>
 								<td>Empresa:<br>
+								<span style="display: inline-flex;">
 								<select name="data[Acta][empresa_id]"
 									class="cbo-empresas-select2 form-control">
 										<?php 
@@ -81,6 +82,9 @@
 										}
 										?>
 								</select>
+								&nbsp;
+								<a href="#myModalAddEmpresa" class="btn btn-primary" style="height: 28px;" role="button" data-toggle="modal">...</a>
+								</span>
 								</td>
 								<td>Nro de Trabjadores: <?php echo $this->Form->input('nro_trabajadores', array('div' => false, 'label' => false, 'class'=> 'txtNroTrabajadores form-control','id' =>'txtNroTrabajadores')); ?>
 								</td>
@@ -808,3 +812,5 @@
         </tr>
     {% } %}
  </script>
+ 
+ <?php echo $this->Element('Empresa/modal_add_empresa'); ?>
