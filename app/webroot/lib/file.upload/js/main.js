@@ -10,14 +10,17 @@
  */
 
 /* global $, window */
-
+var type;
 $(function () {
     'use strict';
 
     // Initialize the jQuery File Upload widget:
     $('.fileupload').each(function () {
         $(this).fileupload({
-        	url: env_webroot_script+'lib/file.upload/server/php/'
+        	url: env_webroot_script+'lib/file.upload/server/php/',
+        	submit:function (e) {
+        		type = $(this).data('type');
+        	}
         });
     })
     /*

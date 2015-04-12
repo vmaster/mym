@@ -325,7 +325,7 @@
 								<tr>
 									<td>
 									<?php //echo $this->Form->input('foto',array('type' => 'file')); ?>
-									<div class="fileupload">
+									<div class="fileupload" data-type="FotoIpp">
 								        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 								        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 								        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -421,7 +421,7 @@
 								<tr>
 									<td>
 									<?php //echo $this->Form->input('foto',array('type' => 'file')); ?>
-									<div class="fileupload">
+									<div class="fileupload" data-type="FotoSd">
 								        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 								        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 								        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -1158,7 +1158,7 @@
                 <p class="name">
                     {% if (file.url) { %}
                         <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-						<input type="hidden" value="{%=file.name%}" name="data[Imagen][]">
+						<input type="hidden" value="{%=file.name%}" name="data[{%=type%}][Imagen][]">
                     {% } else { %}
                         <span>{%=file.name%}</span>
                     {% } %}

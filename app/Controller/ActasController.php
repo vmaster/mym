@@ -812,8 +812,8 @@ class ActasController extends AppController{
 				// FIN UPDATE
 				
 				//INICIO UPDATE FOTOS IPP
-				if(!empty($this->request->data['Imagen'])){
-					foreach ($this->request->data['Imagen'] as $key => $imagen){
+				if(!empty($this->request->data['FotoIpp']['Imagen'])){
+					foreach ($this->request->data['FotoIpp']['Imagen'] as $key => $imagen){
 						$new_foto_ipp['FotoIpp']['acta_id'] = $acta_id;
 						$new_foto_ipp['FotoIpp']['file_name'] = time().$key.'.'.end(explode(".",strtolower($imagen)));
 						$this->FotoIpp->create();
