@@ -83,7 +83,7 @@
 										?>
 								</select>
 								&nbsp;
-								<a href="#myModalAddEmpresa" class="btn btn-primary" style="height: 28px;" role="button" data-toggle="modal">...</a>
+								<a href="#myModalAddEmpresa" class="btn btn-primary" style="height: 28px;" role="button" data-toggle="modal" id="btn-open-create-empresa">...</a>
 								</span>
 								</td>
 								<td>Nro de Trabjadores: <?php echo $this->Form->input('nro_trabajadores', array('div' => false, 'label' => false, 'class'=> 'txtNroTrabajadores form-control','id' =>'txtNroTrabajadores')); ?>
@@ -783,7 +783,7 @@
                 <p class="name">
                     {% if (file.url) { %}
                         <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-						<input type="hidden" value="{%=file.name%}" name="data[Imagen][imagen_id_{%=i%}]">
+						<input type="hidden" value="{%=file.name%}" name="data[Imagen][]">
                     {% } else { %}
                         <span>{%=file.name%}</span>
                     {% } %}

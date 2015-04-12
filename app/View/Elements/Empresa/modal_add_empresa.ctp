@@ -8,7 +8,8 @@
 				</div>
 				
 				<div class="modal-body">
-				<?php echo $this->Form->create('Empresa',array('method'=>'post', 'id'=>'form_create_empresa','action'=> false));?>
+				<form action="<?= ENV_WEBROOT_FULL_URL; ?>empresas/add_empresa" method="post" id="form_create_empresa" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"></div>
+				<?php //echo $this->Form->create('Empresa',array('method'=>'post', 'id'=>'form_create_empresa','action'=> false));?>
 							<div class="row">
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<label><?php echo utf8_encode(__('Nombre de empresa')); ?> </label>
@@ -17,7 +18,8 @@
 									<?php echo $this->Form->input('nombre', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'txt-nombre-empresa')); ?>
 								</div>
 							</div>
-				<?php echo $this->Form->end(); ?>
+				<?php //echo $this->Form->end(); ?>
+				</form>
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancelar'); ?></button>

@@ -324,8 +324,72 @@
 								</tr>
 								<tr>
 									<td>
-									<?php echo $this->Form->input('foto',array('type' => 'file')); ?>
-									<!-- <input name="data[IppFoto][foto]" type="file" id="fileIpp" /> -->
+									<?php //echo $this->Form->input('foto',array('type' => 'file')); ?>
+									<div class="fileupload">
+								        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+								        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+								        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+								        <div class="row fileupload-buttonbar">
+								            <div class="col-lg-7">
+								                <!-- The fileinput-button span is used to style the file input field as button -->
+								                <span class="btn btn-success fileinput-button">
+								                    <i class="glyphicon glyphicon-plus"></i>
+								                    <span>Add files...</span>
+								                    <input type="file" name="files[]" multiple>
+								                </span>
+								                <button type="submit" class="btn btn-primary start">
+								                    <i class="glyphicon glyphicon-upload"></i>
+								                    <span>Start upload</span>
+								                </button>
+								                <button type="reset" class="btn btn-warning cancel">
+								                    <i class="glyphicon glyphicon-ban-circle"></i>
+								                    <span>Cancel upload</span>
+								                </button>
+								                <!-- The global file processing state -->
+								                <span class="fileupload-process"></span>
+								            </div>
+								            <!-- The global progress state -->
+								            <div class="col-lg-5 fileupload-progress fade">
+								                <!-- The global progress bar -->
+								                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+								                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+								                </div>
+								                <!-- The extended global progress state -->
+								                <div class="progress-extended">&nbsp;</div>
+								            </div>
+								        </div>
+								        <!-- The table listing the files available for upload/download -->
+										<table role="presentation" class="table table-striped">
+											<tbody class="files">
+											<?php foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {?> 
+											<?php $file_name =$obj_foto_ipp->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
+												<tr class="template-download fade in" foto_ipp="<?php echo $file_name_explode[0];?>">
+													<td><span class="preview"> <a
+															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/<?php echo $obj_foto_ipp->getAttr('file_name'); ?>"
+															title="<?php echo $obj_foto_ipp->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/thumbnail/<?php echo $obj_foto_ipp->getAttr('file_name'); ?>">
+														</a>
+													</span>
+													</td>
+													<td>
+														<p class="name">
+															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/<?php echo $obj_foto_ipp->getAttr('file_name'); ?>"
+																title="<?php echo $obj_foto_ipp->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+																data-gallery=""><?php echo $obj_foto_ipp->getAttr('file_name'); ?></a> 
+														</p>
+													</td>
+													<td><span class="size">120.37 KB</span>
+													</td>
+													<td>
+														<a data-url="<?php echo $obj_foto_ipp->getAttr('file_name');?>" data-foto_ipp="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-ipp">
+															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+														</a>
+													</td>
+												</tr>
+												<?php } ?>
+											</tbody>
+										</table>
+								    </div>
 									</td>
 								</tr>
 							</tbody>
@@ -356,8 +420,72 @@
 								</tr>
 								<tr>
 									<td>
-									<?php echo $this->Form->input('foto',array('type' => 'file')); ?>
-									<!-- <input name="data[IppFoto][foto]" type="file" id="fileIpp" /> -->
+									<?php //echo $this->Form->input('foto',array('type' => 'file')); ?>
+									<div class="fileupload">
+								        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+								        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+								        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+								        <div class="row fileupload-buttonbar">
+								            <div class="col-lg-7">
+								                <!-- The fileinput-button span is used to style the file input field as button -->
+								                <span class="btn btn-success fileinput-button">
+								                    <i class="glyphicon glyphicon-plus"></i>
+								                    <span>Add files...</span>
+								                    <input type="file" name="files[]" multiple>
+								                </span>
+								                <button type="submit" class="btn btn-primary start">
+								                    <i class="glyphicon glyphicon-upload"></i>
+								                    <span>Start upload</span>
+								                </button>
+								                <button type="reset" class="btn btn-warning cancel">
+								                    <i class="glyphicon glyphicon-ban-circle"></i>
+								                    <span>Cancel upload</span>
+								                </button>
+								                <!-- The global file processing state -->
+								                <span class="fileupload-process"></span>
+								            </div>
+								            <!-- The global progress state -->
+								            <div class="col-lg-5 fileupload-progress fade">
+								                <!-- The global progress bar -->
+								                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+								                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+								                </div>
+								                <!-- The extended global progress state -->
+								                <div class="progress-extended">&nbsp;</div>
+								            </div>
+								        </div>
+								        <!-- The table listing the files available for upload/download -->
+										<table role="presentation" class="table table-striped">
+											<tbody class="files">
+											<?php foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {?> 
+											<?php $file_name =$obj_foto_sd->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
+												<tr class="template-download fade in" foto_ipp="<?php echo $file_name_explode[0];?>">
+													<td><span class="preview"> <a
+															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/<?php echo $obj_foto_sd->getAttr('file_name'); ?>"
+															title="<?php echo $obj_foto_sd->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/thumbnail/<?php echo $obj_foto_sd->getAttr('file_name'); ?>">
+														</a>
+													</span>
+													</td>
+													<td>
+														<p class="name">
+															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/<?php echo $obj_foto_sd->getAttr('file_name'); ?>"
+																title="<?php echo $obj_foto_sd->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+																data-gallery=""><?php echo $obj_foto_sd->getAttr('file_name'); ?></a> 
+														</p>
+													</td>
+													<td><span class="size">120.37 KB</span>
+													</td>
+													<td>
+														<a data-url="<?php echo $obj_foto_sd->getAttr('file_name');?>" data-foto_ipp="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-ipp">
+															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+														</a>
+													</td>
+												</tr>
+												<?php } ?>
+											</tbody>
+										</table>
+								    </div>
 									</td>
 								</tr>
 							</tbody>
@@ -983,3 +1111,79 @@
 	<?php echo $this->Form->end(); ?>
 <hr>
 </div>
+<!-- The template to display files available for upload -->
+    <script id="template-upload" type="text/x-tmpl">
+    {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-upload fade">
+            <td>
+                <span class="preview"></span>
+            </td>
+            <td>
+                <p class="name">{%=file.name%}</p>
+                <strong class="error text-danger"></strong>
+            </td>
+            <td>
+                <p class="size">Processing...</p>
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+            </td>
+            <td>
+                {% if (!i && !o.options.autoUpload) { %}
+                    <button class="btn btn-primary start" disabled>
+                        <i class="glyphicon glyphicon-upload"></i>
+                        <span>Start</span>
+                    </button>
+                {% } %}
+                {% if (!i) { %}
+                    <button class="btn btn-warning cancel">
+                        <i class="glyphicon glyphicon-ban-circle"></i>
+                        <span>Cancel</span>
+                    </button>
+                {% } %}
+            </td>
+        </tr>
+    {% } %}
+    </script>
+    <!-- The template to display files available for download -->
+ <script id="template-download" type="text/x-tmpl">
+    {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-download fade">
+            <td>
+                <span class="preview">
+                    {% if (file.thumbnailUrl) { %}
+                        <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                    {% } %}
+                </span>
+            </td>
+            <td>
+                <p class="name">
+                    {% if (file.url) { %}
+                        <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+						<input type="hidden" value="{%=file.name%}" name="data[Imagen][]">
+                    {% } else { %}
+                        <span>{%=file.name%}</span>
+                    {% } %}
+                </p>
+                {% if (file.error) { %}
+                    <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+                {% } %}
+            </td>
+            <td>
+                <span class="size">{%=o.formatFileSize(file.size)%}</span>
+            </td>
+            <td>
+                {% if (file.deleteUrl) { %}
+                    <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <span>Delete</span>
+                    </button>
+                {% } else { %}
+                    <button class="btn btn-warning cancel">
+                        <i class="glyphicon glyphicon-ban-circle"></i>
+                        <span>Cancel</span>
+                    </button>
+                {% } %}
+            </td>
+        </tr>
+    {% } %}
+ </script>
+ 

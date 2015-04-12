@@ -164,6 +164,10 @@ class ActasController extends AppController{
 		$this->loadModel('CondicionesSubestandare');
 		$this->loadModel('CierreActa');
 		$this->loadModel('Codigo');
+		$this->loadModel('FotoIpp');
+		$this->loadModel('FotoSd');
+		$this->loadModel('FotoUm');
+		$this->loadModel('FotoAc');
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
 		$list_all_trabajadores = $this->Trabajadore->listTrabajadores();
@@ -411,6 +415,29 @@ class ActasController extends AppController{
 						}
 					}
 					
+					/* INSERTANDO IMAGENES */
+					if(!empty($this->request->data['Imagen'])){
+						foreach ($this->request->data['Imagen'] as $key => $imagen){
+							$new_foto_ipp['FotoIpp']['acta_id'] = $this->Acta->id;
+							$new_foto_ipp['FotoIpp']['file_name'] = time().$key.'.'.end(explode(".",strtolower($imagen)));
+							$this->FotoIpp->create();
+							if ($this->FotoIpp->save($new_foto_ipp)) {
+								$foto_ipp_id = $this->FotoIpp->id;
+								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ipp/'.$new_foto_ipp['FotoIpp']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ipp/thumbnail/'.$new_foto_ipp['FotoIpp']['file_name']);
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							}else{
+								$foto_ipp_id = '';
+								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
+								//exit();
+							}
+							
+						}
+					}
+					
 					$acta_id = $this->Acta->id;
 					echo json_encode(array('success'=>true,'msg'=>__('El Acta fue agregada con &eacute;xito.'),'Acta_id'=>$acta_id));
 					exit();
@@ -442,6 +469,7 @@ class ActasController extends AppController{
 		$this->loadModel('CondicionesSubestandare');
 		$this->loadModel('CierreActa');
 		$this->loadModel('Codigo');
+		$this->loadModel('FotoIpp');
 		
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
@@ -783,9 +811,30 @@ class ActasController extends AppController{
 				}
 				// FIN UPDATE
 				
-				//INICIO UPDATE PERSONA
+				//INICIO UPDATE FOTOS IPP
+				if(!empty($this->request->data['Imagen'])){
+					foreach ($this->request->data['Imagen'] as $key => $imagen){
+						$new_foto_ipp['FotoIpp']['acta_id'] = $acta_id;
+						$new_foto_ipp['FotoIpp']['file_name'] = time().$key.'.'.end(explode(".",strtolower($imagen)));
+						$this->FotoIpp->create();
+						if ($this->FotoIpp->save($new_foto_ipp)) {
+							$foto_ipp_id = $this->FotoIpp->id;
+							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ipp/'.$new_foto_ipp['FotoIpp']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ipp/thumbnail/'.$new_foto_ipp['FotoIpp']['file_name']);
+							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
+							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
+							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+						}else{
+							$foto_ipp_id = '';
+							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
+							//exit();
+						}
+					}
+				}
 				
-	
+				
+				//INICIO UPDATE ACTA
 				if ($this->Acta->save($this->request->data)) {
 					echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'Acta_id'=>$acta_id));
 					exit();
@@ -793,6 +842,7 @@ class ActasController extends AppController{
 					echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->Acta->validationErrors));
 					exit();
 				}
+				
 			}
 		}else{		
 			$obj_acta = $this->Acta->findById($acta_id);
@@ -1148,6 +1198,30 @@ class ActasController extends AppController{
 			
 			if($error_validation == true){
 				echo json_encode(array('success' =>false, 'msg' => __('No se pudo guardar'), 'validation' => $arr_validation));
+				exit();
+			}
+		}
+	}
+	
+	
+	/* ELIMINAR FOTOS IPP*/
+	public function delete_foto_ipp()
+	{
+		$this->layout = "ajax";
+		$this->loadModel('FotoIpp');
+		if($this->request->is('post')){
+			$file_name = $this->request->data['file_name'];
+			if($this->FotoIpp->deleteAll(array('FotoIpp.file_name' => $file_name), $cascada = false)){
+				if(file_exists(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$file_name);
+				}
+				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
+				exit();
+			}else{
+				echo json_encode(array('success' =>false, 'msg' => __('La Foto no fue eliminada')));
 				exit();
 			}
 		}

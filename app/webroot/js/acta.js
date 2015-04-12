@@ -127,6 +127,28 @@ $(document).ready(function(){
 		acta.sendReport(acta_id, email_destino);
 	});
 	
+	/*SCRIPT PARA ELIMINAR FOTOS IPP -  EXISTENTES*/
+	$body.off('click','.delete-file-ipp');
+	$body.on('click','.delete-file-ipp', function(){
+		file_name = $(this).data('url');
+		foto_ipp = $(this).data('foto_ipp');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'actas/delete_foto_ipp',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto_ipp='+foto_ipp+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
+	
+	
 	
 /*SCRIPTS PARA EL CREAR Y EDITAR INFORME  */
 	

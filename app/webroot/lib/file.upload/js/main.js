@@ -15,11 +15,17 @@ $(function () {
     'use strict';
 
     // Initialize the jQuery File Upload widget:
+    $('.fileupload').each(function () {
+        $(this).fileupload({
+        	url: env_webroot_script+'lib/file.upload/server/php/'
+        });
+    })
+    /*
     $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
-        url: env_webroot_script+'lib/file.upload/server/php/'
-    });
+    	url: env_webroot_script+'lib/file.upload/server/php/'
+    });*/
 
     // Enable iframe cross-domain access via redirect option:
     $('#fileupload').fileupload(
@@ -57,6 +63,8 @@ $(function () {
         }
     } else {
         // Load existing files:
+    	//COmentado por Alan Hugo
+    	/*
         $('#fileupload').addClass('fileupload-processing');
         $.ajax({
             // Uncomment the following to send cross-domain cookies:
@@ -70,6 +78,7 @@ $(function () {
             $(this).fileupload('option', 'done')
                 .call(this, $.Event('done'), {result: result});
         });
+        */
     }
 
 });

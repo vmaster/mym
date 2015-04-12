@@ -16,7 +16,7 @@ $codigo = "<style type='text/css'>
 $codigo .= "
  <table class='tg' width='100%'>
   <tr>
-    <th class='tg-031e' rowspan='2'><img src='".ENV_WEBROOT_FULL_URL."img/logo.png' style='width: 8%;'/></th>
+    <th class='tg-031e' rowspan='2'><img src='".ENV_WEBROOT_FULL_URL."img/logo.png' style='width: 300%;'/></th>
     <th class='tg-031e' rowspan='2'>M&amp;M Ingeniería Ibras y Serivcios E.I.R.L.<h6>Ejecución y supervisión de obras eléctricas, civiles, mineria e industrial.</h6><h6>Especialistas de gestión en Seguridad, salud en el trabajo, calidad y medio ambiente.</h6></th>
     <th class='tg-031e'><h5>SEGURIDAD Y SALUD EN EL TRABAJO</h5>INFORME TÉCNICO</th>
   </tr>
@@ -161,25 +161,7 @@ $dompdf->load_html($codigo);
 ini_set('memory_limit', '512M');
 $dompdf->render();
 
-/*$dompdf2 = new DOMPDF();
-$html_footer = "<div class='row'>
-		<div class='span3 col-md-3 col-sm-6 col-xs-6'>Calle Las Piletas 255 - Urb Federico Villareal</div>
-		<div class='span3 col-md-3 col-sm-6 col-xs-6'>Telf. 074-271154 /RPM: *716060 /978007000</div>
-		</div>
-		";*/
-//$footer = $dompdf->get_canvas();
-//$font = Font_Metrics::get_font("helvetica", "bold");
-//$footer->page_text(30, 800, "Page: {PAGE_NUM} of {PAGE_COUNT}", $font, 8, array(0,0,0));
-//$footer->page_text(30, 800, $dompdf2->load_html($html_footer), $font, 8, array(0,0,0));
 $dompdf->stream("ejemplo.pdf",array("Attachment"=>0));
 
 exit();
-//App::import('Vendor','dompdf/dompdf_config.inc');
-/*spl_autoload_register('DOMPDF_autoload');
-$dompdf = new DOMPDF();
-$dompdf->set_paper = 'A4';
-$dompdf->load_html(utf8_decode("hola"), Configure::read('App.encoding'));
-$dompdf->render();
-echo $dompdf->output();
-exit();*/
 ?>
