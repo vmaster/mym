@@ -37,6 +37,36 @@ $(document).ready(function(){
 					alertify.error(value[0]);
 				}
 			});	
+		},
+		
+		saveTrabajador: function(index_button){
+			name_id_select = "#Trabajador"+ index_button;
+			$form = $('form#form_create_trabajador').eq(0);
+			$.ajax({
+				url: env_webroot_script + 'trabajadores/add_trabajador',
+				data: $form.serialize(),
+				dataType: 'json',
+				type: 'post'
+			}).done(function(data){
+				if(data.success==true){
+					alertify.success(data.msg);
+					$('#myModalAddTrabajador').modal('hide');
+					$('.modal-backdrop').fadeOut(function(){$(this).hide()});
+					txt_trabajador = $('#txt-apellido-nombre').val();
+					$('#txt-apellido-nombre').val('');
+					new_option = "<option value='" + data.Trabajador_id + "'>"+txt_trabajador+"</option>";
+					$(name_id_select + ' option:last').after(new_option);
+					$(name_id_select).select2("val", [data.Trabajador_id ,txt_trabajador]);
+				}else{
+					$.each(data.validation, function( key, value ) {
+						alertify.error(value[0]);
+						$('[name="data[Trabajadore]['+key+']"]').parent().addClass('control-group has-error');
+						$('[name="data[Trabjadore]['+key+']"]').change(function() {
+							$('[name="data[Empresa]['+key+']"]').parent().removeClass('control-group has-error');
+						});
+					});
+				}
+			});
 		}
 	}
 	
@@ -160,6 +190,21 @@ $(document).ready(function(){
 			$('#PersonaNroDocumento').attr('maxlength','11'); //RUC
 		}
 	}
+	
+	/* CREAR TRABAJADOR DESDE UN MODAL (EN EL FORMULARIO CREAR INFORME) */
+	$('#txt-apellido-nombre').keypress(function(e) {
+		if(e.which === 13) {
+			index_button = $('div#myModalAddTrabajador').attr('index-button');
+			trabajador.saveTrabajador(index_button);
+			return false;
+		}
+	});
+	
+	$body.off('click','.save-trabajador-modal-trigger');
+	$body.on('click','.save-trabajador-modal-trigger',function(){
+		index_button = $('#myModalAddTrabajador').attr('index-button');
+		trabajador.saveTrabajador(index_button);
+	});
 	
 
 });

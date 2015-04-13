@@ -334,4 +334,25 @@ class TrabajadoresController extends AppController{
 		return $this->request->data['Persona']['fec_nac'];
 	}
 	
+	
+	public function add_trabajador(){
+		$this->layout = 'ajax';
+		$this->loadModel('Trabajadore');
+		if($this->request->is('post') || $this->request->is('put')){
+			//debug($this->request->data['Trabajadore']['apellido_nombre']); exit();
+			$this->Trabajadore->create();
+			if ($this->Trabajadore->save($this->request->data)) {
+				$trabajador_id = $this->Trabajadore->id;
+				$obj_trabajador = $this->Trabajadore->findById($trabajador_id);
+				$actividad_id = $obj_trabajador->getAttr('actividade_id');
+				echo json_encode(array('success'=>true,'msg'=>__('El trabajador fue agregado con &eacute;xito.'),'Trabajador_id'=>$trabajador_id, 'Actividad_id'=>$actividad_id));
+				exit();
+			}else{
+				$trabajador_id = '';
+				echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->Trabajadore->validationErrors));
+				exit();
+			}
+		}
+	}
+	
 }

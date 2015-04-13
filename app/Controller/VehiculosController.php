@@ -229,4 +229,22 @@ class VehiculosController extends AppController{
 		return $this->request->data['Vehiculo'][$campo];
 	}
 	
+	public function add_vehiculo(){
+		$this->layout = 'ajax';
+		$this->loadModel('Vehiculo');
+		if($this->request->is('post') || $this->request->is('put')){
+			//debug($this->request->data['Trabajadore']['apellido_nombre']); exit();
+			$this->Vehiculo->create();
+			if ($this->Vehiculo->save($this->request->data)) {
+				$vehiculo_id = $this->Vehiculo->id;
+				echo json_encode(array('success'=>true,'msg'=>__('El Vehiculo fue agregado con &eacute;xito.'),'Vehiculo_id'=>$vehiculo_id));
+				exit();
+			}else{
+				$vehiculo_id = '';
+				echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->Vehiculo->validationErrors));
+				exit();
+			}
+		}
+	}
+		
 }

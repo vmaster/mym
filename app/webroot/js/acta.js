@@ -66,7 +66,6 @@ $(document).ready(function(){
 	
 	$body.off('click','.btn_crear_acta_trigger');
 	$body.on('click','.btn_crear_acta_trigger',function(){
-		cambio=false;
 		$form = $(this).parents('form').eq(0);
 		$.ajax({
 			url: $form.attr('action'),
@@ -149,166 +148,52 @@ $(document).ready(function(){
 	});
 	
 	
-	
+/***** ENVIAR EL INDEX DEL BOTON CREAR TRABAJADOR AL MODAL ******/
+	function loadSendIndexButtonToModalTrabajador(){
+		$.each($('.btn-open-modal-trabajador'), function(index) {
+			index_current = index + 1;
+			cadena_name_id = "#btn-open-create-trabajador"+ index_current;
+			  
+			  $(cadena_name_id).click(function() {
+				  nombre_id_input_button = $(this).attr('id');
+				  longitud = nombre_id_input_button.length;
+				  if(longitud==27){
+					  index_current = nombre_id_input_button.substring(longitud-1);
+				  }else{
+					  index_current = nombre_id_input_button.substring(longitud-2);
+				  }
+				  $('#txt-apellido-nombre').val('');
+				  $('#txt-apellido-nombre').parent().removeClass('control-group has-error');
+				  $('#myModalAddTrabajador').attr('index-button',index_current);
+			  });
+		});
+	}
+	loadSendIndexButtonToModalTrabajador();
+
+/******* ENVIAR INDEX DEL BOTON CREAR VEHICULO AL MODAL *******/
+	function loadSendIndexButtonToModalVehiculo(){
+		$.each($('.btn-open-modal-vehiculo'), function(index) {
+			index_current = index + 1;
+			cadena_name_id = "#btn-open-create-vehiculo"+ index_current;
+			  
+			  $(cadena_name_id).click(function() {
+				  nombre_id_input_button = $(this).attr('id');
+				  longitud = nombre_id_input_button.length;
+				  if(longitud==25){
+					  index_current = nombre_id_input_button.substring(longitud-1);
+				  }else{
+					  index_current = nombre_id_input_button.substring(longitud-2);
+				  }
+				  $('#txt-nro-placa').val('');
+				  $('#txt-nro-placa').parent().removeClass('control-group has-error');
+				  $('#myModalAddVehiculo').attr('index-button',index_current);
+			  });
+		});
+	}
+	loadSendIndexButtonToModalVehiculo();
+
 /*SCRIPTS PARA EL CREAR Y EDITAR INFORME  */
 	
-/****	Formato de Json recivido para Autocomplete
-    var countries = [
-		                 { value: 'Andorra', data: 'AD' },
-		                 // ...
-		                 { value: 'Zimbabwe', data: 'ZZ' }
-		              ];
-*/	
-	$('#txtEmpresa2').autocomplete({
-	    //lookup: countries,
-	    serviceUrl: env_webroot_script + 'actas/ajax_list_empresa',
-	    onSelect: function (suggestions) {
-	        $("#txtEmpresaid").val('');
-	        $("#txtEmpresaid").val(suggestions.id);
-	    },
-	    onInvalidateSelection: function () {
-	  	  $("#txtEmpresaid").val('');
-	  	  $(this).val('');				///Obliga a seleccionar del autocomplete
-	    }
-	});
-
-	$('#txtEmpresa2').focusout(function() {
-		   if($('#txtEmpresaid').val() == ''){
-		   		$(this).val('');
-		   }
-	})		
-
-	
-	/* Autcomplete Resposable de la actividad 1 y 2 */
-	$('#txtResAct1').autocomplete({
-	    //lookup: countries,
-	    serviceUrl: env_webroot_script + 'actas/ajax_list_trabajador',
-	    onSelect: function (suggestions) {
-	        $("#hiddenResActId1").val('');
-	        $("#hiddenResActId1").val(suggestions.id);
-
-	        //Poblando el DNI
-	        trabajador_id = $('#hiddenResActId1').val();
-	        attr_id_dni = '#txtDniResAct1';
-	        loadDniByTrabajador(trabajador_id, attr_id_dni);
-	    },
-	    onInvalidateSelection: function () {
-	      $("#hiddenResActId1").val('');
-
-	      $(this).val('');				///Obliga a seleccionar del autocomplete
-	      
-	  	  $('#txtDniResAct1').removeAttr('disabled');
-	  	  $('#txtDniResAct1').val('');
-	    }
-	});
-
-	$('#txtResAct1').focusout(function() {
-	    if($('#hiddenResActId1').val() == ''){
-	    	$(this).val('');
-
-	    	$('#txtDniResAct1').removeAttr('disabled');
-		  	$('#txtDniResAct1').val('');
-	    }
-	 })
-
-	$('#txtResAct2').autocomplete({
-	    //lookup: countries,
-	    serviceUrl: env_webroot_script + 'actas/ajax_list_trabajador',
-	    onSelect: function (suggestions) {
-	        $("#hiddenResActId2").val('');
-	        $("#hiddenResActId2").val(suggestions.id);
-
-	        //Poblando el DNI
-	        trabajador_id = $('#hiddenResActId2').val();
-	        attr_id_dni = '#txtDniResAct2';
-	        loadDniByTrabajador(trabajador_id, attr_id_dni);
-	    },
-	    onInvalidateSelection: function () {
-	  	  $("#hiddenResActId2").val('');
-
-	  	  $(this).val('');		///Obliga a seleccionar del autocomplete
-	      $('#hiddenResActId2').val('');		
-	  	  
-	  	  $('#txtDniResAct2').removeAttr('disabled');
-	  	  $('#txtDniResAct2').val('');
-	    }
-	});
-
-	$('#txtResAct2').focusout(function() {
-	    if($('#hiddenResActId2').val() == ''){
-	    	$(this).val('');
-
-	    	$('#txtDniResAct2').removeAttr('disabled');
-		  	$('#txtDniResAct2').val('');
-	    }
-	 })
-
-	/* Autcompletes Resposables de la Supervisión 1 y 2 */
-	$('#txtResSup1').autocomplete({
-	    //lookup: countries,
-	    serviceUrl: env_webroot_script + 'actas/ajax_list_trabajador',
-	    onSelect: function (suggestions) {
-	        $("#hiddenResSupId1").val('');
-	        $("#hiddenResSupId1").val(suggestions.id);
-
-	      //Poblando el DNI
-	        trabajador_id = $('#hiddenResSupId1').val();
-	        attr_id_dni = '#txtDniRespSup1';
-	        loadDniByTrabajador(trabajador_id, attr_id_dni);
-	    },
-	    onInvalidateSelection: function () {
-	  	  $("#hiddenResSupId1").val('');
-
-	  	  $(this).val('');		///Obliga a seleccionar del autocomplete
-	      $('#hiddenResSupId1').val('');
-
-	  	  $('#txtDniRespSup1').removeAttr('disabled');
-	  	  $('#txtDniRespSup1').val('');	
-	    }
-	});
-
-	$('#txtResSup1').focusout(function() {
-	    if($('#hiddenResSupId1').val() == ''){
-	    	$(this).val('');
-
-	    	$('#txtDniRespSup1').removeAttr('disabled');
-		  	$('#txtDniRespSup1').val('');
-	    }
-	 })
-
-	$('#txtResSup2').autocomplete({
-	    //lookup: countries,
-	    serviceUrl: env_webroot_script + 'actas/ajax_list_trabajador',
-	    onSelect: function (suggestions) {
-	        $("#hiddenResSupId2").val('');
-	        $("#hiddenResSupId2").val(suggestions.id);
-
-	      //Poblando el DNI
-	        trabajador_id = $('#hiddenResSupId2').val();
-	        attr_id_dni = '#txtDniRespSup2';
-	        loadDniByTrabajador(trabajador_id, attr_id_dni);
-	    },
-	    onInvalidateSelection: function () {
-	  	  $("#hiddenResSupId2").val('');
-
-	  	  $(this).val('');		///Obliga a seleccionar del autocomplete
-	      $('#hiddenResSupId2').val('');
-
-	  	  $('#txtDniRespSup2').removeAttr('disabled');
-	  	  $('#txtDniRespSup2').val('');	
-	    }
-	});
-
-	$('#txtResSup2').focusout(function() {
-	    if($('#hiddenResSupId2').val() == ''){
-	    	$(this).val('');
-
-	    	$('#txtDniRespSup2').removeAttr('disabled');
-		  	$('#txtDniRespSup2').val('');
-	    }
-	 })
-
-	 
 	/* AGREGAR FILAS A LA TABLA DE IMPLEMENTOS DE PROT PERSO. */
 
 		$("#div-btn-add-ipp .add-more-row-ipp").bind("click", function(e){
@@ -324,6 +209,7 @@ $(document).ready(function(){
 		        	 loadATrabajador();
 		        	 loadEachTrabajador();
 		        	 loadANIncumplicas();
+		        	 loadSendIndexButtonToModalTrabajador();
 		          }
 			 });
 		});
@@ -342,6 +228,7 @@ $(document).ready(function(){
 	       	 loadAPlaca();
 	       	 loadANIncumplicas();
 	       	 loadEachPlaca();
+	       	 loadSendIndexButtonToModalVehiculo();
 	         }
 		 });
 	});
@@ -392,6 +279,7 @@ $(document).ready(function(){
 	});
 	
 	
+	/*AUTOCOMPLETAR CON SELECT2*/
 	
 	$(".cbo-empresas-select2").select2({
 		  placeholder: "Seleccione una empresa",
@@ -446,7 +334,7 @@ $(document).ready(function(){
 		$(".cbo-placas-select2").select2({
 			  placeholder: "Nro de Placa",
 			  allowClear: true,
-			  width: '100%'
+			  width: '80%'
 		});
 	}
 	loadAPlaca();

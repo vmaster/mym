@@ -67,6 +67,7 @@
 							</tr>
 							<tr>
 								<td>Empresa:<br>
+								<span style="display: inline-flex;">
 								<select name="data[Acta][empresa_id]"
 									class="cbo-empresas-select2 form-control">
 										<?php 
@@ -87,6 +88,9 @@
 										}
 										?>
 								</select>
+								&nbsp;
+								<a href="#myModalAddEmpresa" class="btn btn-primary" style="height: 28px;" role="button" data-toggle="modal" id="btn-open-create-empresa">...</a>
+								</span>
 								</td>
 								<td>Nro de Trabjadores: <?php echo $this->Form->input('nro_trabajadores', array('div' => false, 'label' => false, 'class'=> 'txtNroTrabajadores form-control','id' =>'txtNroTrabajadores')); ?>
 								</td>
@@ -156,6 +160,7 @@
 								//echo "<td style='width:28%;'><input name='data[TrabajadorActa".($key+1)."][nombre_trabajador]' id='Trabajador".($key+1)."' class='form-control txt-trabajador' value='". $obj_imp_prot_personal->Trabajadore->getAttr('apellido_nombre')."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
 								//echo "<input name='data[TrabajadorActa][trabajador_id".($key+1)."]' type='hidden' value='".$obj_imp_prot_personal->Trabajadore->getID()."' id='txtTrabajadorid".($key+1)."'>";
 								echo "<td style='width:28%;'>";
+								echo "<span style='display: inline-flex; width: 100%;'>";
 								echo "<select name='data[TrabajadorActa".($key+1)."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								if (isset($list_all_trabajadores)){
 									foreach ($list_all_trabajadores as $id => $nom):
@@ -169,10 +174,9 @@
 									endforeach;
 								}
 								echo "</select>";
-								echo "<input name='data[TrabajadorActa][ipp_id".($key+1)."]' type='hidden' value='".$obj_imp_prot_personal->getID()."' id='hiddenIppid".($key+1)."'></td>";
-								
-								//echo "<td style='width:15%;'><input name='data[ActividadPersona".($key+1)."][actividad]' id='Actividad".($key+1)."' class='form-control' value='".$obj_imp_prot_personal->Actividade->getAttr('descripcion')."' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-								//echo "<input name='data[TrabajadorActividad][actividad_id".($key+1)."]' type='hidden' value='".$obj_imp_prot_personal->getAttr('actividad_id')."' id='HiddenActividadid".($key+1)."'></td>";
+								echo "<input name='data[TrabajadorActa][ipp_id".($key+1)."]' type='hidden' value='".$obj_imp_prot_personal->getID()."' id='hiddenIppid".($key+1)."'>";
+								echo "&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-trabajador' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-trabajador".($key+1)."'>...</a></span>";
+								echo "</td>";
 								
 								echo "<td><select name='data[TrabajadorActividad".($key+1)."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								if (isset($list_all_actividades)){
@@ -209,8 +213,6 @@
 									}
 									
 									for($j= ($k+2); $j <=7; $j++){
-										//echo "<td style='width:7%;'><input name='data[NiActa][ni-".($key+1)."-".$j."]' id='ni-".($key+1)."-".$j."' class='form-control txt-ni".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-										//echo "<input name='data[NiActa][ni-id".($key+1)."-".$j."]' type='hidden' value='' id='hiddenNid".($key+1)."-".$j."'>";
 										echo "<td style='width:7%;'><select name='data[NiActa][ni-id".($key+1)."-".$j."]' class='cbo-nincumplidas-select2 form-control' id='Nid-".($key+1)."-".$j."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 										echo "<option></option>";
 										if (isset($list_all_codigos)){
@@ -223,14 +225,7 @@
 									}
 									
 								}else{
-									/*for($c=1; $c <= $count_obj_ipp_ni ;$c++){
-										echo "<td style='width:7%;'><input name='data[NiActa][ni-".($key+1)."-".$c."]' id='ni-".($key+1)."-".$c."' class='form-control txt-ni".($key+1)."' value='' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-										echo "<input name='data[NiActa][ni-id".($key+1)."-".$c."]' type='hidden' value='' id='hiddenNid".($key+1)."-".$c."'></td>";
-									}*/
-									
 									for($x= 1; $x <=7; $x++){
-										//echo "<td style='width:7%;'><input name='data[NiActa][ni-".($key+1)."-".$x."]' id='ni-".($key+1)."-".$x."' class='form-control txt-ni".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-										//echo "<input name='data[NiActa][ni-id".($key+1)."-".$x."]' type='hidden' value='' id='hiddenNid".($key+1)."-".$x."'>";
 										echo "<td style='width:7%;'><select name='data[NiActa][ni-id".($key+1)."-".$x."]' class='cbo-nincumplidas-select2 form-control' id='Nid-".($key+1)."-".$x."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 										echo "<option></option>";
 										if (isset($list_all_codigos)){
@@ -249,9 +244,8 @@
 							for ($i = ($key+2); $i <= 10; $i++) {
 								    echo "<tr>";
 								    echo "<td>".$i."</td>";
-								    //echo "<td style='width:28%;'><input name='data[TrabajadorActa".$i."][nombre_trabajador]' id='Trabajador".$i."' class='form-control txt-trabajador' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-								    //echo "<input name='data[TrabajadorActa][trabajador_id".$i."]' type='hidden' value='' id='txtTrabajadorid".$i."'>";
 								    echo "<td style='width:28%;'>";
+								    echo "<span style='display: inline-flex; width: 100%;'>";
 								    echo "<select name='data[TrabajadorActa".$i."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								    echo "<option></option>";
 								    if (isset($list_all_trabajadores)){
@@ -260,9 +254,9 @@
 								    	endforeach;
 								    }
 								    echo "</select>";
-								    echo "<input name='data[TrabajadorActa][ipp_id".$i."]' type='hidden' value='' id='hiddenIppid".$i."'></td>";
-								    //echo "<td style='width:15%;'><input name='data[ActividadPersona".$i."][actividad]' id='Actividad".$i."' class='form-control txt-actividad' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-								    //echo "<input name='data[TrabajadorActividad][actividad_id".$i."]' type='hidden' value='' id='HiddenActividadid".$i."'></td>";
+								    echo "<input name='data[TrabajadorActa][ipp_id".$i."]' type='hidden' value='' id='hiddenIppid".$i."'>";
+								    echo "&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-trabajador' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-trabajador".$i."'>...</a></span>";
+								    echo "</td>";
 								    echo "<td><select name='data[TrabajadorActividad".$i."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								    echo "<option>--Actividad--</option>";
 								    if (isset($list_all_actividades)){
@@ -528,12 +522,11 @@
 								$key2 = -1;
 							}
 							foreach ($obj_acta->UnidadesMovile as $key2 => $obj_uni_movil){
-								//echo "<tr><td>".debug($obj_imp_prot_personal)."</td></tr>";
 								echo "<tr>";
 								echo "<td>".($key2 +1)."</td>";
-								//echo "<td style='width:14%;'><input name='data[UnidadMovil".($key2 +1)."][nro_placa]' id='PlacaActa".($key2 +1)."' value='".$obj_uni_movil->Vehiculo->getAttr('nro_placa')."' class='form-control txt-nro-placa' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-								//echo "<input name='data[UnidadMovil][nro_placa_id".($key2 +1)."]' type='hidden' value='".$obj_uni_movil->Vehiculo->getID()."' id='hiddenPlacaId".($key2 +1)."'>";
-								echo "<td style='width:14%;'><select name='data[UnidadMovil".($key2 +1)."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".($key2 +1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+								echo "<td style='width:14%;'>";
+								echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
+								echo "<select name='data[UnidadMovil".($key2 +1)."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".($key2 +1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								if (isset($list_all_vehiculos)){
 									echo "<option></option>";
 									foreach ($list_all_vehiculos as $id => $pla):
@@ -546,15 +539,15 @@
 									endforeach;
 								}
 								echo "</select>";
-								echo "<input name='data[UnidadMovil][um_id".($key2 +1)."]' type='hidden' value='".$obj_uni_movil->getID()."' id='hiddenUmId".($key2 +1)."'></td>";
+								echo "<input name='data[UnidadMovil][um_id".($key2 +1)."]' type='hidden' value='".$obj_uni_movil->getID()."' id='hiddenUmId".($key2 +1)."'>";
+								echo "<a href='#myModalAddVehiculo' class='btn btn-primary btn-open-modal-vehiculo' style='height: 28px; padding-right: 3px; padding-left: 3px;' role='button' data-toggle='modal' id='btn-open-create-vehiculo".($key2 +1)."'>...</a></span>";
+								echo "</td>";
 								echo "<td style='width:15%;'><input name='data[TipoUnidadMovil".($key2 +1)."][vehiculo]' id='TipoVehiculoActa".($key2 +1)."' value='".$obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion')."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
 								echo "<input name='data[TipoUnidadMovil][vehiculo_id".($key2 +1)."]' type='hidden' value='' id='hiddenVehiculoid".($key2 +1)."'></td>";
 								
 								$count_obj_um_ni = count($obj_uni_movil->UmNormasIncumplida);
 								if($count_obj_um_ni > 0){
 									foreach($obj_uni_movil->UmNormasIncumplida as $k =>$v){
-										//echo "<td style='width:7%;'><input name='data[UnidadNorma][ni-".($key2+1)."-".($k+1)."]' id='ni-".($key2+1)."-".($k+1)."' class='form-control txt-ni".($key2+1)."' value='".$v->Codigo->getAttr('codigo')."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-										//echo "<input name='data[UnidadNorma][ni-id".($key2+1)."-".($k+1)."]' type='hidden' value='".$v->getAttr('codigo_id')."' id='hiddenPlacaNid".($key2+1)."-".($k+1)."'>";
 										echo "<td><select name='data[UnidadNorma][ni-id".($key2+1)."-".($k+1)."]' class='cbo-nincumplidas-select2 form-control' id='ni-".($key2+1)."-".($k+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 										echo "<option></option>";
 										if (isset($list_all_codigos)){
@@ -586,7 +579,7 @@
 									}
 									
 								}else{
-									for($x= 1; $x <=7; $x++){
+									for($x= 1; $x <=9; $x++){
 										//echo "<td><input name='data[UnidadNorma][ni-".($key2+1)."-".$x."]' id='ni-placa-".($key2+1)."-".$x."' class='form-control txt-ni-placa".($key2+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
 										//echo "<input name='data[UnidadNorma][ni-id".($key2+1)."-".$x."]' type='hidden' value='' id='hiddenPlacaNid".($key2+1)."-".$x."'>";
 										echo "<td><select name='data[UnidadNorma][ni-id".($key2+1)."-".$x."]' class='cbo-nincumplidas-select2 form-control' id='ni-".($key2+1)."-".$x."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
@@ -609,7 +602,9 @@
 								    echo "<td>".$i."</td>";
 								    //echo "<td style='width:14%;'><input name='data[UnidadMovil".$i."][nro_placa]' id='PlacaActa".$i."' class='form-control txt-nro-placa' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
 								    //echo "<input name='data[UnidadMovil][nro_placa_id".$i."]' type='hidden' value='' id='hiddenPlacaId".$i."'>";
-								    echo "<td style='width:14%;'><select name='data[UnidadMovil".$i."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+								    echo "<td style='width:14%;'>";
+								    echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
+								    echo "<select name='data[UnidadMovil".$i."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								    if (isset($list_all_vehiculos)){
 								    	echo "<option></option>";
 								    	foreach ($list_all_vehiculos as $id => $pla):
@@ -617,7 +612,9 @@
 								    	endforeach;
 								    }
 								    echo "</select>";
-								    echo "<input name='data[UnidadMovil][um_id".$i."]' type='hidden' value='' id='hiddenUmId".$i."'></td>";
+								    echo "<input name='data[UnidadMovil][um_id".$i."]' type='hidden' value='' id='hiddenUmId".$i."'>";
+								    echo "<a href='#myModalAddVehiculo' class='btn btn-primary btn-open-modal-vehiculo' style='height: 28px; padding-right: 3px; padding-left: 3px;' role='button' data-toggle='modal' id='btn-open-create-vehiculo".$i."'>...</a></span>";
+								    echo "</td>";
 								    echo "<td style='width:15%;'><input name='data[TipoUnidadMovil".$i."][vehiculo]' id='TipoVehiculoActa".$i."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/></td>";
 								    echo "<input name='data[TipoUnidadMovil][vehiculo_id".$i."]' type='hidden' value='' id='hiddenVehiculoid".$i."'></td>";
 										
@@ -1186,4 +1183,6 @@
         </tr>
     {% } %}
  </script>
- 
+ <?php echo $this->Element('Empresa/modal_add_empresa'); ?>
+ <?php echo $this->Element('Trabajadore/modal_add_trabajador'); ?>
+ <?php echo $this->Element('Vehiculo/modal_add_vehiculo'); ?>

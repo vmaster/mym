@@ -5,6 +5,7 @@ if(isset($long_table)){
 }
 echo "<td>".$i."</td>";
 echo "<td style='width:28%;'>";
+echo "<span style='display: inline-flex; width: 100%;'>";
 echo "<select name='data[TrabajadorActa".$i."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 echo "<option></option>";
 if (isset($list_all_trabajadores)){
@@ -13,7 +14,9 @@ if (isset($list_all_trabajadores)){
 	endforeach;
 }
 echo "</select>";
-echo "<input name='data[TrabajadorActa][ipp_id".$i."]' type='hidden' value='' id='hiddenIppid".$i."'></td>";
+echo "<input name='data[TrabajadorActa][ipp_id".$i."]' type='hidden' value='' id='hiddenIppid".$i."'>";
+echo "&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-trabajador' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-trabajador".$i."'>...</a></span>";
+echo "</td>";
 
 echo "<td><select name='data[TrabajadorActividad".$i."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 echo "<option>--Actividad--</option>";

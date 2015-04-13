@@ -41,6 +41,36 @@ $(document).ready(function(){
 					alertify.error(value[0]);
 				}
 			});	
+		},
+		
+		saveVehiculo: function(index_button){
+			name_id_select = "#PlacaActa"+ index_button;
+			$form = $('form#form_create_vehiculo').eq(0);
+			$.ajax({
+				url: env_webroot_script + 'vehiculos/add_vehiculo',
+				data: $form.serialize(),
+				dataType: 'json',
+				type: 'post'
+			}).done(function(data){
+				if(data.success==true){
+					alertify.success(data.msg);
+					$('#myModalAddVehiculo').modal('hide');
+					$('.modal-backdrop').fadeOut(function(){$(this).hide()});
+					txt_nro_placa = $('#txt-nro-placa').val();
+					$('#txt-nro-placa').val('');
+					new_option = "<option value='" + data.Vehiculo_id + "'>"+txt_nro_placa+"</option>";
+					$(name_id_select + ' option:last').after(new_option);
+					$(name_id_select).select2("val", [data.Vehiculo_id ,txt_nro_placa]);
+				}else{
+					$.each(data.validation, function( key, value ) {
+						alertify.error(value[0]);
+						$('[name="data[Vehiculo]['+key+']"]').parent().addClass('control-group has-error');
+						$('[name="data[Vehiculo]['+key+']"]').change(function() {
+							$('[name="data[Vehiculo]['+key+']"]').parent().removeClass('control-group has-error');
+						});
+					});
+				}
+			});
 		}
 	}
 	
@@ -99,6 +129,21 @@ $(document).ready(function(){
 	$body.on('click','div#myModalDeleteVehiculo .eliminar-vehiculo-trigger', function(){
 		vehiculo_id = $('div#myModalDeleteVehiculo').attr('vehiculo_id');
 		vehiculo.deleteVehiculo(vehiculo_id);
+	});
+	
+	/* CREAR VEHICULO DESDE UN MODAL (EN EL FORMULARIO CREAR INFORME) */
+	$('#txt-nro-placa').keypress(function(e) {
+		if(e.which === 13) {
+			index_button = $('div#myModalAddVehiculo').attr('index-button');
+			vehiculo.saveVehiculo(index_button);
+			return false;
+		}
+	});
+	
+	$body.off('click','.save-vehiculo-modal-trigger');
+	$body.on('click','.save-vehiculo-modal-trigger',function(){
+		index_button = $('#myModalAddVehiculo').attr('index-button');
+		vehiculo.saveVehiculo(index_button);
 	});
 	
 });

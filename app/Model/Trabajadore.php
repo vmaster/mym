@@ -98,7 +98,7 @@ App::uses('AppModel','Model');
     		'apellido_nombre'     => array(
     				'notempty' => array(
     						'rule' => array('notEmpty'),
-    						'message' => 'El Nombre del trabajador es requerida'
+    						'message' => 'El Nombre del trabajador es requerido'
     				)
     		),
     		/*'apellido'     => array(
