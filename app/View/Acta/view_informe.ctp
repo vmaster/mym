@@ -10,21 +10,19 @@ $codigo = "<style type='text/css'>
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-e3zv{font-weight:bold}
+.tg .tg-e3zv{font-weight:bold; text-align:center;}
 .tg-uni {text-align:center;}
 </style>";
-$codigo .= "
- <table class='tg' width='100%'>
+
+$codigo .="<table class='tg' width='100%'>
   <tr>
-    <th class='tg-031e' rowspan='2'><img src='".ENV_WEBROOT_FULL_URL."img/logo.png' style='width: 80px;'/></th>
-    <th class='tg-031e' rowspan='2'>M&amp;M Ingeniería Ibras y Serivcios E.I.R.L.<h6>Ejecución y supervisión de obras eléctricas, civiles, mineria e industrial.</h6><h6>Especialistas de gestión en Seguridad, salud en el trabajo, calidad y medio ambiente.</h6></th>
-    <th class='tg-031e'><h5>SEGURIDAD Y SALUD EN EL TRABAJO</h5>INFORME TÉCNICO</th>
+    <th class='tg-031e' rowspan='2'><img src='".ENV_WEBROOT_FULL_URL."img/logo-mini.png' style='width: 80px;'/></th>
+    <th class='tg-031e' colspan='2' rowspan='2'>M&amp;M Ingeniería Obras y Serivcios E.I.R.L.<h6>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, civiles, mineria e industrial.</h6><h6>Especialistas de gestión en Seguridad, salud en el trabajo, calidad y medio ambiente.</h6></th>
+    <th class='tg-031e'><h5>SEGURIDAD Y SALUD EN EL TRABAJO</h5>INFORME T&Eacute;CNICO</th>
   </tr>
   <tr>
     <td style='text-align:center;'>N° ".$obj_acta->getAttr('num_informe')."</td>
   </tr>
-</table>";
-$codigo .="<table class='tg' width='100%'>
   <tr>
     <th class='tg-e3zv'>Empresa:</th>
     <th class='tg-031e'>".$obj_acta->Empresa->getAttr('nombre')."</th>
@@ -54,13 +52,13 @@ $codigo .="<table class='tg' width='100%'>
   <tr>
     <td class='tg-e3zv'>Supervisión:</td>
     <td class='tg-031e'>".$tipo_supervision."</td>
-    <td class='tg-031e'>Fecha:</td>
+    <td class='tg-e3zv'>Fecha:</td>
     <td class='tg-031e'>".$obj_acta->getAttr('fecha')."</td>
   </tr>
 </table>";
 $codigo.= "
 	<table class='tg' width='100%'>
-	<tr><td class='tg-e3zv' style='text-align:center'>SUPERVISIÓN DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
+	<tr><td class='tg-e3zv' style='text-align:center'>SUPERVISI&Oacute;N DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
 	<tr><td class='tg-e3zv' style='text-align:center'>CUMPLIMIENTO AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
 	</table>	
 		";
@@ -68,10 +66,10 @@ $codigo.= "
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv'>EQUIPOS DE PROTECCIÓN PERSONAL</th>
+		    <th class='tg-e3zv'>EQUIPOS DE PROTECCI&Oacute;N PERSONAL</th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_epp')."</td>
+		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_epp'))."</td>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
@@ -87,10 +85,10 @@ $codigo.= "</td>
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv'>SEÑALIZACIÓN Y DELIMITACIÓN</th>
+		    <th class='tg-e3zv'>SEÑALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_se_de')."</td>
+		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_se_de'))."</td>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
@@ -107,10 +105,10 @@ $codigo.= "</td>
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv'>UNIDADES MÓVILES</th>
+		    <th class='tg-e3zv'>UNIDADES M&Oacute;VILES</th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_um')."</td>
+		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_um'))."</td>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
@@ -136,7 +134,7 @@ $codigo.= "
 		    <th class='tg-e3zv'>ACTOS Y CONDICIONES SUBESTANDARES</th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_act_cond')."</td>
+		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_act_cond'))."</td>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
@@ -156,12 +154,12 @@ $codigo.="
 		    <th class='tg-hgcj' colspan='2'><strong>CONCLUSIONES, RECOMENDACIONES Y ACCIONES CORRECTIVAS</strong></th>
 		  </tr>
 		  <tr>
-		    <td class='tg-hgcj'>CONCLUSIONES</td>
-		    <td class='tg-hgcj'>RECOMENDACIONES</td>
+		    <td class='tg-e3zv'>CONCLUSIONES</td>
+		    <td class='tg-e3zv'>RECOMENDACIONES</td>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_conclusion')."</td>
-		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_rec')."</td>
+		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_conclusion'))."</td>
+		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_rec'))."</td>
 		  </tr>
 		</table>
 		";
@@ -172,14 +170,13 @@ $codigo.="
 		    <th class='tg-hgcj'><strong>MEDIDAS DE CONTROL</strong></th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_med')."</td>
+		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_med'))."</td>
 		  </tr>
 		</table>
 		";
 
 
-$codigo=utf8_encode($codigo);
-//echo $codigo;exit();
+//$codigo= $codigo;
 $dompdf = new DOMPDF();
 $dompdf->set_paper("A4");
 $dompdf->load_html($codigo);

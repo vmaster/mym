@@ -512,6 +512,25 @@
 							<a class="btn btn-primary add-more-row-as">+</a>
 						</div>
 					</div>
+					<br>
+					<div class="row">
+						<div class="span3 col-md-9 col-sm-6 col-xs-6">
+						<?php 
+						echo "<select name='data[ActoSubestandarTipo][]' class='cbo-tipo-act-sub-select2 form-control' id='ActoSub' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+						echo "<option></option>";
+						if (isset($list_all_tipos_actos_sub)){
+							foreach ($list_all_tipos_actos_sub as $id => $des):
+							echo "<option value = ".$id.">".utf8_encode($des)."</option>";
+							endforeach;
+						}
+						echo "</select>";
+						?>
+						</div>
+						<div class="span3 col-md-3 col-sm-6 col-xs-6" style="text-align: left;">
+						<label>Si <input name="" type="radio" value="S" id="rbTipo1"></label>
+						<label>No <input name="" type="radio" value="N" id="rbTipo1"></label>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

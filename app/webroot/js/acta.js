@@ -381,6 +381,12 @@ $(document).ready(function(){
 	}
 	loadAPlaca();
 	
+	$(".cbo-tipo-act-sub-select2").select2({
+		  placeholder: "Actos Subestandar",
+		  allowClear: true,
+		  width: '100%'
+	});
+	
 	function loadEachTrabajador(){
 		$.each($('.cbo-trabajadores-select2'), function(index) {
 			index_input = (index + 1);

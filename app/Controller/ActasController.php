@@ -168,12 +168,14 @@ class ActasController extends AppController{
 		$this->loadModel('FotoSd');
 		$this->loadModel('FotoUm');
 		$this->loadModel('FotoAc');
+		$this->loadModel('ActosSubestandaresTipo');
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
 		$list_all_trabajadores = $this->Trabajadore->listTrabajadores();
 		$list_all_actividades = $this->Actividade->listActividades();
 		$list_all_codigos = $this->Codigo->listCodigos();
 		$list_all_vehiculos = $this->Vehiculo->listVehiculos();
+		$list_all_tipos_actos_sub = $this->ActosSubestandaresTipo->listTipoActosSubEstandares();
 		
 		$total_registros = $this->Acta->find('count') + 1;
 		$codigo = str_pad($total_registros, 4, "0", STR_PAD_LEFT);
@@ -181,7 +183,7 @@ class ActasController extends AppController{
 		$codigo_completo = $codigo.$string_complement;
 		
 		
-		$this->set(compact('list_all_empresas','list_all_trabajadores','list_all_actividades','list_all_codigos','list_all_vehiculos','codigo_completo'));
+		$this->set(compact('list_all_empresas','list_all_trabajadores','list_all_actividades','list_all_codigos','list_all_vehiculos','codigo_completo','list_all_tipos_actos_sub'));
 		
 		
 		//debug($count_actas);
