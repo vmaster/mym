@@ -414,7 +414,6 @@
 								</tr>
 								<tr>
 									<td>
-									<?php //echo $this->Form->input('foto',array('type' => 'file')); ?>
 									<div class="fileupload" data-type="FotoSd">
 								        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 								        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
@@ -453,17 +452,17 @@
 											<tbody class="files">
 											<?php foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {?> 
 											<?php $file_name =$obj_foto_sd->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
-												<tr class="template-download fade in" foto_ipp="<?php echo $file_name_explode[0];?>">
+												<tr class="template-download fade in" foto_sd="<?php echo $file_name_explode[0];?>">
 													<td><span class="preview"> <a
-															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/<?php echo $obj_foto_sd->getAttr('file_name'); ?>"
+															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_sd/<?php echo $obj_foto_sd->getAttr('file_name'); ?>"
 															title="<?php echo $obj_foto_sd->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/thumbnail/<?php echo $obj_foto_sd->getAttr('file_name'); ?>">
+															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_sd/thumbnail/<?php echo $obj_foto_sd->getAttr('file_name'); ?>">
 														</a>
 													</span>
 													</td>
 													<td>
 														<p class="name">
-															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/<?php echo $obj_foto_sd->getAttr('file_name'); ?>"
+															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_sd/<?php echo $obj_foto_sd->getAttr('file_name'); ?>"
 																title="<?php echo $obj_foto_sd->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
 																data-gallery=""><?php echo $obj_foto_sd->getAttr('file_name'); ?></a> 
 														</p>
@@ -471,7 +470,7 @@
 													<td><span class="size">120.37 KB</span>
 													</td>
 													<td>
-														<a data-url="<?php echo $obj_foto_sd->getAttr('file_name');?>" data-foto_ipp="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-ipp">
+														<a data-url="<?php echo $obj_foto_sd->getAttr('file_name');?>" data-foto_sd="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-sd">
 															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
 														</a>
 													</td>
@@ -668,8 +667,71 @@
 								</tr>
 								<tr>
 									<td>
-									<?php echo $this->Form->input('foto',array('type' => 'file')); ?>
-									<!-- <input name="data[IppFoto][foto]" type="file" id="fileIpp" /> -->
+									<div class="fileupload" data-type="FotoUm">
+								        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+								        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+								        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+								        <div class="row fileupload-buttonbar">
+								            <div class="col-lg-7">
+								                <!-- The fileinput-button span is used to style the file input field as button -->
+								                <span class="btn btn-success fileinput-button">
+								                    <i class="glyphicon glyphicon-plus"></i>
+								                    <span>Add files...</span>
+								                    <input type="file" name="files[]" multiple>
+								                </span>
+								                <button type="submit" class="btn btn-primary start">
+								                    <i class="glyphicon glyphicon-upload"></i>
+								                    <span>Start upload</span>
+								                </button>
+								                <button type="reset" class="btn btn-warning cancel">
+								                    <i class="glyphicon glyphicon-ban-circle"></i>
+								                    <span>Cancel upload</span>
+								                </button>
+								                <!-- The global file processing state -->
+								                <span class="fileupload-process"></span>
+								            </div>
+								            <!-- The global progress state -->
+								            <div class="col-lg-5 fileupload-progress fade">
+								                <!-- The global progress bar -->
+								                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+								                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+								                </div>
+								                <!-- The extended global progress state -->
+								                <div class="progress-extended">&nbsp;</div>
+								            </div>
+								        </div>
+								        <!-- The table listing the files available for upload/download -->
+										<table role="presentation" class="table table-striped">
+											<tbody class="files">
+											<?php foreach($obj_acta->FotoUm as $key => $obj_foto_um) {?> 
+											<?php $file_name =$obj_foto_um->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
+												<tr class="template-download fade in" foto_um="<?php echo $file_name_explode[0];?>">
+													<td><span class="preview"> <a
+															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_um/<?php echo $obj_foto_um->getAttr('file_name'); ?>"
+															title="<?php echo $obj_foto_um->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_um/thumbnail/<?php echo $obj_foto_um->getAttr('file_name'); ?>">
+														</a>
+													</span>
+													</td>
+													<td>
+														<p class="name">
+															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_um/<?php echo $obj_foto_um->getAttr('file_name'); ?>"
+																title="<?php echo $obj_foto_um->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+																data-gallery=""><?php echo $obj_foto_um->getAttr('file_name'); ?></a> 
+														</p>
+													</td>
+													<td><span class="size">120.37 KB</span>
+													</td>
+													<td>
+														<a data-url="<?php echo $obj_foto_um->getAttr('file_name');?>" data-foto_um="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-um">
+															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+														</a>
+													</td>
+												</tr>
+												<?php } ?>
+											</tbody>
+										</table>
+								    </div>
 									</td>
 								</tr>
 							</tbody>
@@ -864,8 +926,71 @@
 								</tr>
 								<tr>
 									<td>
-									<?php echo $this->Form->input('foto',array('type' => 'file')); ?>
-									<!-- <input name="data[IppFoto][foto]" type="file" id="fileIpp" /> -->
+									<div class="fileupload" data-type="FotoAc">
+								        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+								        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+								        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+								        <div class="row fileupload-buttonbar">
+								            <div class="col-lg-7">
+								                <!-- The fileinput-button span is used to style the file input field as button -->
+								                <span class="btn btn-success fileinput-button">
+								                    <i class="glyphicon glyphicon-plus"></i>
+								                    <span>Add files...</span>
+								                    <input type="file" name="files[]" multiple>
+								                </span>
+								                <button type="submit" class="btn btn-primary start">
+								                    <i class="glyphicon glyphicon-upload"></i>
+								                    <span>Start upload</span>
+								                </button>
+								                <button type="reset" class="btn btn-warning cancel">
+								                    <i class="glyphicon glyphicon-ban-circle"></i>
+								                    <span>Cancel upload</span>
+								                </button>
+								                <!-- The global file processing state -->
+								                <span class="fileupload-process"></span>
+								            </div>
+								            <!-- The global progress state -->
+								            <div class="col-lg-5 fileupload-progress fade">
+								                <!-- The global progress bar -->
+								                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+								                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+								                </div>
+								                <!-- The extended global progress state -->
+								                <div class="progress-extended">&nbsp;</div>
+								            </div>
+								        </div>
+								        <!-- The table listing the files available for upload/download -->
+										<table role="presentation" class="table table-striped">
+											<tbody class="files">
+											<?php foreach($obj_acta->FotoAc as $key => $obj_foto_ac) {?> 
+											<?php $file_name =$obj_foto_ac->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
+												<tr class="template-download fade in" foto_ac="<?php echo $file_name_explode[0];?>">
+													<td><span class="preview"> <a
+															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ac/<?php echo $obj_foto_ac->getAttr('file_name'); ?>"
+															title="<?php echo $obj_foto_ac->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_um/thumbnail/<?php echo $obj_foto_ac->getAttr('file_name'); ?>">
+														</a>
+													</span>
+													</td>
+													<td>
+														<p class="name">
+															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ac/<?php echo $obj_foto_ac->getAttr('file_name'); ?>"
+																title="<?php echo $obj_foto_ac->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+																data-gallery=""><?php echo $obj_foto_ac->getAttr('file_name'); ?></a> 
+														</p>
+													</td>
+													<td><span class="size">120.37 KB</span>
+													</td>
+													<td>
+														<a data-url="<?php echo $obj_foto_ac->getAttr('file_name');?>" data-foto_ac="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-ac">
+															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+														</a>
+													</td>
+												</tr>
+												<?php } ?>
+											</tbody>
+										</table>
+								    </div>
 									</td>
 								</tr>
 							</tbody>

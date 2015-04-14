@@ -147,6 +147,48 @@ $(document).ready(function(){
 		});
 	});
 	
+	/*SCRIPT PARA ELIMINAR FOTOS SD -  EXISTENTES*/
+	$body.off('click','.delete-file-sd');
+	$body.on('click','.delete-file-sd', function(){
+		file_name = $(this).data('url');
+		foto_sd = $(this).data('foto_sd');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'actas/delete_foto_sd',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto_sd='+foto_sd+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
+	
+	/*SCRIPT PARA ELIMINAR FOTOS SD -  EXISTENTES*/
+	$body.off('click','.delete-file-um');
+	$body.on('click','.delete-file-um', function(){
+		file_name = $(this).data('url');
+		foto_um = $(this).data('foto_um');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'actas/delete_foto_um',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto_um='+foto_um+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
+	
 	
 /***** ENVIAR EL INDEX DEL BOTON CREAR TRABAJADOR AL MODAL ******/
 	function loadSendIndexButtonToModalTrabajador(){

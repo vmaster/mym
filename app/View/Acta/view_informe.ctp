@@ -16,7 +16,7 @@ $codigo = "<style type='text/css'>
 $codigo .= "
  <table class='tg' width='100%'>
   <tr>
-    <th class='tg-031e' rowspan='2'><img src='".ENV_WEBROOT_FULL_URL."img/logo.png' style='width: 300%;'/></th>
+    <th class='tg-031e' rowspan='2'><img src='".ENV_WEBROOT_FULL_URL."img/logo.png' style='width: 80px;'/></th>
     <th class='tg-031e' rowspan='2'>M&amp;M Ingeniería Ibras y Serivcios E.I.R.L.<h6>Ejecución y supervisión de obras eléctricas, civiles, mineria e industrial.</h6><h6>Especialistas de gestión en Seguridad, salud en el trabajo, calidad y medio ambiente.</h6></th>
     <th class='tg-031e'><h5>SEGURIDAD Y SALUD EN EL TRABAJO</h5>INFORME TÉCNICO</th>
   </tr>
@@ -60,8 +60,8 @@ $codigo .="<table class='tg' width='100%'>
 </table>";
 $codigo.= "
 	<table class='tg' width='100%'>
-	<tr><td class='tg-uni'>SUPERVISIÓN DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
-	<tr><td class='tg-uni'>CUMPLIMIENTO AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
+	<tr><td class='tg-e3zv' style='text-align:center'>SUPERVISIÓN DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
+	<tr><td class='tg-e3zv' style='text-align:center'>CUMPLIMIENTO AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
 	</table>	
 		";
 
@@ -74,10 +74,16 @@ $codigo.= "
 		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_epp')."</td>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>FOTOS IPP</td>
+		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
+			foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
+				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' width='150px' height='150px'>&nbsp;";
+				if($key==4){
+					$codigo.="<br>";
+				}
+			}
+$codigo.= "</td>
 		  </tr>
-		</table><br>
-		";
+		</table><br>";
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
@@ -87,10 +93,16 @@ $codigo.= "
 		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_se_de')."</td>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>FOTOS SEÑALIZACION</td>
+		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
+			foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
+				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='150px' height='150px'>&nbsp;";
+				if($key==4){
+					$codigo.="<br>";
+				}
+			}
+$codigo.= "</td>
 		  </tr>
-		</table>
-		";
+		</table>";
 
 $codigo.= "
 		<table class='tg' width='100%'>
@@ -101,14 +113,20 @@ $codigo.= "
 		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_um')."</td>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>FOTOS UM</td>
+		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
+			foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
+				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' width='150px' height='150px'>&nbsp;";
+				if($key==4){
+					$codigo.="<br>";
+				}
+			}
+$codigo.= "</td>
 		  </tr>
-		</table><br>
-		";
+		</table><br>";
 $codigo.= "
 		<table class='tg' width='100%'>
 		<tr>
-		<th>
+		<th class='tg-e3zv'>
 		INCUMPLIMIENTOS AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO
 		</th>
 		</tr>
@@ -121,10 +139,16 @@ $codigo.= "
 		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_act_cond')."</td>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>FOTOS ACTOS Y CONDI SUB</td>
+		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
+			foreach($obj_acta->FotoAc as $key => $obj_foto_ac) {
+				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ac/thumbnail/".$obj_foto_ac->getAttr('file_name')."' width='150px' height='150px'>&nbsp;";
+				if($key==4){
+					$codigo.="<br>";
+				}
+			}
+$codigo.= "</td>
 		  </tr>
-		</table>
-		";
+		</table>";
 
 $codigo.="
 		<table class='tg' width='100%'>
@@ -155,6 +179,7 @@ $codigo.="
 
 
 $codigo=utf8_encode($codigo);
+//echo $codigo;exit();
 $dompdf = new DOMPDF();
 $dompdf->set_paper("A4");
 $dompdf->load_html($codigo);

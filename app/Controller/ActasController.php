@@ -188,51 +188,8 @@ class ActasController extends AppController{
 		if($this->request->is('post')  || $this->request->is('put')){
 				//insert
 				
-				/*$error_validation = '';
-				
-				if($this->request->data['Acta']['empresa_id'] == ''){
-					
-							$arr_validation['empresa_id'] = array(__('La Empresa es requerida'));
-							$error_validation = true;
-				}
-				
-				if($error_validation == true){
-					echo json_encode(array('success' =>false, 'msg' => __('No se pudo guardar'), 'validation' => $arr_validation));
-					exit();
-				}*/
-				
 				$this->formatFecha($this->request->data['Acta']['fecha']);
-				
-				/* Verificamos el Responsable de la Actividad previo y post a la corrección */
-				
-				/*if($this->request->data['ResponsableAct1']['nom_res_act'] != null && $this->request->data['ResponsableAct1']['res_act_id1'] != ''){
-				
-					$this->request->data['Acta']['reponsable_act_id'] = $this->request->data['ResponsableAct1']['res_act_id1'];
-				
-				}
-				
-				if($this->request->data['ResponsableAct2']['nom_res_act'] != null && $this->request->data['ResponsableAct2']['res_act_id'] != ''){
-				
-					$this->request->data['Acta']['reponsable_corr_id'] = $this->request->data['ResponsableAct2']['res_act_id'];
-				
-				}*/
-				
-				
-				/* Verificamos el Responsable de la Supervisión previo y post a la corrección */
-				
-				/*if($this->request->data['ResponsableSup1']['nom_res_sup'] != null && $this->request->data['ResponsableSup1']['res_sup_id'] != ''){
-				
-					$this->request->data['Acta']['reponsable_sup_id'] = $this->request->data['ResponsableSup1']['res_sup_id'];
-				
-				}
-				
-				if($this->request->data['ResponsableSup2']['nom_res_sup'] != null && $this->request->data['ResponsableSup2']['res_sup_id'] != ''){
-				
-					$this->request->data['Acta']['reponsable_sup_corr_id'] = $this->request->data['ResponsableSup2']['res_sup_id'];
-				
-				}*/
-				
-				
+
 				/* VALORES DEL INFORME */
 				
 				if($this->request->data['Acta']['info_des_epp'] != ''){
@@ -415,11 +372,15 @@ class ActasController extends AppController{
 						}
 					}
 					
-					/* INSERTANDO IMAGENES */
-					if(!empty($this->request->data['Imagen'])){
-						foreach ($this->request->data['Imagen'] as $key => $imagen){
+					/* INSERTANDO IMAGENES IPP */
+					if(!empty($this->request->data['FotoIpp']['Imagen'])){
+						foreach ($this->request->data['FotoIpp']['Imagen'] as $key => $imagen){
+							$arr = explode(".", $imagen);
+							$extension = strtolower(array_pop($arr));
+							$new_file_name = time().$key.'.'.$extension;
+							
 							$new_foto_ipp['FotoIpp']['acta_id'] = $this->Acta->id;
-							$new_foto_ipp['FotoIpp']['file_name'] = time().$key.'.'.end(explode(".",strtolower($imagen)));
+							$new_foto_ipp['FotoIpp']['file_name'] = $new_file_name;
 							$this->FotoIpp->create();
 							if ($this->FotoIpp->save($new_foto_ipp)) {
 								$foto_ipp_id = $this->FotoIpp->id;
@@ -435,6 +396,87 @@ class ActasController extends AppController{
 								//exit();
 							}
 							
+						}
+					}
+					
+					/* INSERTANDO IMAGENES SEÑALIZACIÓN Y DELIMITACIÓN */
+					if(!empty($this->request->data['FotoSd']['Imagen'])){
+						foreach ($this->request->data['FotoSd']['Imagen'] as $key => $imagen){
+							$arr = explode(".", $imagen);
+							$extension = strtolower(array_pop($arr));
+							$new_file_name = time().$key.'.'.$extension;
+								
+							$new_foto_sd['FotoSd']['acta_id'] = $this->Acta->id;
+							$new_foto_sd['FotoSd']['file_name'] = $new_file_name;
+							$this->FotoSd->create();
+							if ($this->FotoSd->save($new_foto_sd)) {
+								$foto_sd_id = $this->FotoSd->id;
+								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/'.$new_foto_sd['FotoSd']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							}else{
+								$foto_sd_id = '';
+								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
+								//exit();
+							}
+								
+						}
+					}
+					
+					/* INSERTANDO IMAGENES UNIDADES MOVILES */
+					if(!empty($this->request->data['FotoUm']['Imagen'])){
+						foreach ($this->request->data['FotoUm']['Imagen'] as $key => $imagen){
+							$arr = explode(".", $imagen);
+							$extension = strtolower(array_pop($arr));
+							$new_file_name = time().$key.'.'.$extension;
+					
+							$new_foto_um['FotoUm']['acta_id'] = $this->Acta->id;
+							$new_foto_um['FotoUm']['file_name'] = $new_file_name;
+							$this->FotoUm->create();
+							if ($this->FotoUm->save($new_foto_um)) {
+								$foto_um_id = $this->FotoUm->id;
+								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/'.$new_foto_um['FotoUm']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							}else{
+								$foto_um_id = '';
+								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
+								//exit();
+							}
+					
+						}
+					}
+					
+					/* INSERTANDO IMAGENES ACTOS & CONDICIONES */
+					if(!empty($this->request->data['FotoAc']['Imagen'])){
+						foreach ($this->request->data['FotoAc']['Imagen'] as $key => $imagen){
+							$arr = explode(".", $imagen);
+							$extension = strtolower(array_pop($arr));
+							$new_file_name = time().$key.'.'.$extension;
+								
+							$new_foto_ac['FotoAc']['acta_id'] = $this->Acta->id;
+							$new_foto_ac['FotoAc']['file_name'] = $new_file_name;
+							$this->FotoAc->create();
+							if ($this->FotoAc->save($new_foto_ac)) {
+								$foto_um_id = $this->FotoUm->id;
+								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ac/'.$new_foto_ac['FotoAc']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ac/thumbnail/'.$new_foto_ac['FotoAc']['file_name']);
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							}else{
+								$foto_um_id = '';
+								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
+								//exit();
+							}
+								
 						}
 					}
 					
@@ -470,6 +512,9 @@ class ActasController extends AppController{
 		$this->loadModel('CierreActa');
 		$this->loadModel('Codigo');
 		$this->loadModel('FotoIpp');
+		$this->loadModel('FotoSd');
+		$this->loadModel('FotoUm');
+		$this->loadModel('FotoAc');
 		
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
@@ -814,8 +859,12 @@ class ActasController extends AppController{
 				//INICIO UPDATE FOTOS IPP
 				if(!empty($this->request->data['FotoIpp']['Imagen'])){
 					foreach ($this->request->data['FotoIpp']['Imagen'] as $key => $imagen){
+						$arr = explode(".", $imagen);
+						$extension = strtolower(array_pop($arr));
+						$new_file_name = time().$key.'.'.$extension;
+						//$new_file_name = time().$key.'.'.strtolower(end(explode(".",$imagen)));
 						$new_foto_ipp['FotoIpp']['acta_id'] = $acta_id;
-						$new_foto_ipp['FotoIpp']['file_name'] = time().$key.'.'.end(explode(".",strtolower($imagen)));
+						$new_foto_ipp['FotoIpp']['file_name'] = $new_file_name;
 						$this->FotoIpp->create();
 						if ($this->FotoIpp->save($new_foto_ipp)) {
 							$foto_ipp_id = $this->FotoIpp->id;
@@ -827,6 +876,84 @@ class ActasController extends AppController{
 							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
 							$foto_ipp_id = '';
+							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
+							//exit();
+						}
+					}
+				}
+				
+				//INICIO UPDATE FOTOS SEÑALIZACIÓN Y DELIMITACIÓN
+				if(!empty($this->request->data['FotoSd']['Imagen'])){
+					foreach ($this->request->data['FotoSd']['Imagen'] as $key => $imagen){
+						$arr = explode(".", $imagen);
+						$extension = strtolower(array_pop($arr));
+						$new_file_name = time().$key.'.'.$extension;
+						//$new_file_name = time().$key.'.'.strtolower(end(explode(".",$imagen)));
+						$new_foto_sd['FotoSd']['acta_id'] = $acta_id;
+						$new_foto_sd['FotoSd']['file_name'] = $new_file_name;
+						$this->FotoSd->create();
+						if ($this->FotoSd->save($new_foto_sd)) {
+							$foto_sd_id = $this->FotoSd->id;
+							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/'.$new_foto_sd['FotoSd']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
+							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
+							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
+							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+						}else{
+							$foto_sd_id = '';
+							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
+							//exit();
+						}
+					}
+				}
+				
+				//INICIO UPDATE FOTOS UNIDADES MOVILES
+				if(!empty($this->request->data['FotoUm']['Imagen'])){
+					foreach ($this->request->data['FotoUm']['Imagen'] as $key => $imagen){
+						$arr = explode(".", $imagen);
+						$extension = strtolower(array_pop($arr));
+						$new_file_name = time().$key.'.'.$extension;
+						//$new_file_name = time().$key.'.'.strtolower(end(explode(".",$imagen)));
+						$new_foto_um['FotoUm']['acta_id'] = $acta_id;
+						$new_foto_um['FotoUm']['file_name'] = $new_file_name;
+						$this->FotoUm->create();
+						if ($this->FotoUm->save($new_foto_sd)) {
+							$foto_um_id = $this->FotoUm->id;
+							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/'.$new_foto_um['FotoUm']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);
+							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
+							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
+							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+						}else{
+							$foto_um_id = '';
+							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
+							//exit();
+						}
+					}
+				}
+				
+				//INICIO UPDATE FOTOS ACTOS & CONDICIONES SUB
+				if(!empty($this->request->data['FotoAc']['Imagen'])){
+					foreach ($this->request->data['FotoAc']['Imagen'] as $key => $imagen){
+						$arr = explode(".", $imagen);
+						$extension = strtolower(array_pop($arr));
+						$new_file_name = time().$key.'.'.$extension;
+						//$new_file_name = time().$key.'.'.strtolower(end(explode(".",$imagen)));
+						$new_foto_ac['FotoAc']['acta_id'] = $acta_id;
+						$new_foto_ac['FotoAc']['file_name'] = $new_file_name;
+						$this->FotoAc->create();
+						if ($this->FotoAc->save($new_foto_ac)) {
+							$foto_ac_id = $this->FotoAc->id;
+							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ac/'.$new_foto_ac['FotoAc']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ac/thumbnail/'.$new_foto_ac['FotoAc']['file_name']);
+							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
+							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
+							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+						}else{
+							$foto_ac_id = '';
 							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
 							//exit();
 						}
@@ -1212,11 +1339,11 @@ class ActasController extends AppController{
 		if($this->request->is('post')){
 			$file_name = $this->request->data['file_name'];
 			if($this->FotoIpp->deleteAll(array('FotoIpp.file_name' => $file_name), $cascada = false)){
-				if(file_exists(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_ipp/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_ipp/'.$file_name);
 				}
-				if(file_exists(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_ipp/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_ipp/thumbnail/'.$file_name);
 				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
@@ -1227,4 +1354,71 @@ class ActasController extends AppController{
 		}
 	}
 	
+	/* ELIMINAR FOTOS SD*/
+	public function delete_foto_sd()
+	{
+		$this->layout = "ajax";
+		$this->loadModel('FotoSd');
+		if($this->request->is('post')){
+			$file_name = $this->request->data['file_name'];
+			if($this->FotoSd->deleteAll(array('FotoSd.file_name' => $file_name), $cascada = false)){
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_sd/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_sd/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$file_name);
+				}
+				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
+				exit();
+			}else{
+				echo json_encode(array('success' =>false, 'msg' => __('La Foto no fue eliminada')));
+				exit();
+			}
+		}
+	}
+	
+	/* ELIMINAR FOTOS UM*/
+	public function delete_foto_um()
+	{
+		$this->layout = "ajax";
+		$this->loadModel('FotoUm');
+		if($this->request->is('post')){
+			$file_name = $this->request->data['file_name'];
+			if($this->FotoUm->deleteAll(array('FotoUm.file_name' => $file_name), $cascada = false)){
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_um/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_um/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$file_name);
+				}
+				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
+				exit();
+			}else{
+				echo json_encode(array('success' =>false, 'msg' => __('La Foto no fue eliminada')));
+				exit();
+			}
+		}
+	}
+	
+	public function delete_foto_ac()
+	{
+		$this->layout = "ajax";
+		$this->loadModel('FotoAc');
+		if($this->request->is('post')){
+			$file_name = $this->request->data['file_name'];
+			if($this->FotoAc->deleteAll(array('FotoAc.file_name' => $file_name), $cascada = false)){
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_ac/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_ac/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_ac/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_ac/thumbnail/'.$file_name);
+				}
+				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
+				exit();
+			}else{
+				echo json_encode(array('success' =>false, 'msg' => __('La Foto no fue eliminada')));
+				exit();
+			}
+		}
+	}
 }
