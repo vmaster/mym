@@ -34,7 +34,8 @@ $(document).ready(function(){
 			}).done(function(data){
 				if(data.success == true){
 					alertify.success(data.msg);
-					$('div#myModalSendReport').modal('hide');
+					$('#myModalSendReport').modal('hide');
+					$('.modal-backdrop').fadeOut(function(){$(this).hide()});
 				}else{
 					//alertify.error(value[0]);
 					//alert(data.validation);
@@ -168,7 +169,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	/*SCRIPT PARA ELIMINAR FOTOS SD -  EXISTENTES*/
+	/*SCRIPT PARA ELIMINAR FOTOS UM -  EXISTENTES*/
 	$body.off('click','.delete-file-um');
 	$body.on('click','.delete-file-um', function(){
 		file_name = $(this).data('url');
@@ -183,6 +184,27 @@ $(document).ready(function(){
 		}).done(function(data){
 			if(data.success == true){
 				$('.template-download[foto_um='+foto_um+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
+	
+	/*SCRIPT PARA ELIMINAR FOTOS AC -  EXISTENTES*/
+	$body.off('click','.delete-file-ac');
+	$body.on('click','.delete-file-ac', function(){
+		file_name = $(this).data('url');
+		foto_ac = $(this).data('foto_ac');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'actas/delete_foto_ac',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto_ac='+foto_ac+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}

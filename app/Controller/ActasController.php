@@ -920,7 +920,7 @@ class ActasController extends AppController{
 						$new_foto_um['FotoUm']['acta_id'] = $acta_id;
 						$new_foto_um['FotoUm']['file_name'] = $new_file_name;
 						$this->FotoUm->create();
-						if ($this->FotoUm->save($new_foto_sd)) {
+						if ($this->FotoUm->save($new_foto_um)) {
 							$foto_um_id = $this->FotoUm->id;
 							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/'.$new_foto_um['FotoUm']['file_name']);
