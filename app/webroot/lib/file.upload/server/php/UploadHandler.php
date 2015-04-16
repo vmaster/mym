@@ -145,8 +145,8 @@ class UploadHandler
                     // Uncomment the following to force the max
                     // dimensions and e.g. create square thumbnails:
                     //'crop' => true,
-                    'max_width' => 80,
-                    'max_height' => 80
+                    'max_width' => 500, //**** POR DEFECTO ES 80  *****// MODIFICADO POR VLADIMIR T.m.
+                    'max_height' => 500 //**** POR DEFECTO ES 80  *****//
                 )
             ),
             'print_response' => true

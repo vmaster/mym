@@ -361,7 +361,7 @@
 													<td><span class="preview"> <a
 															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/<?php echo $obj_foto_ipp->getAttr('file_name'); ?>"
 															title="<?php echo $obj_foto_ipp->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/thumbnail/<?php echo $obj_foto_ipp->getAttr('file_name'); ?>">
+															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/thumbnail/<?php echo $obj_foto_ipp->getAttr('file_name'); ?>" width='80px'>
 														</a>
 													</span>
 													</td>
@@ -456,7 +456,7 @@
 													<td><span class="preview"> <a
 															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_sd/<?php echo $obj_foto_sd->getAttr('file_name'); ?>"
 															title="<?php echo $obj_foto_sd->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_sd/thumbnail/<?php echo $obj_foto_sd->getAttr('file_name'); ?>">
+															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_sd/thumbnail/<?php echo $obj_foto_sd->getAttr('file_name'); ?>" width='80px'>
 														</a>
 													</span>
 													</td>
@@ -709,7 +709,7 @@
 													<td><span class="preview"> <a
 															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_um/<?php echo $obj_foto_um->getAttr('file_name'); ?>"
 															title="<?php echo $obj_foto_um->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_um/thumbnail/<?php echo $obj_foto_um->getAttr('file_name'); ?>">
+															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_um/thumbnail/<?php echo $obj_foto_um->getAttr('file_name'); ?>" width='80px'>
 														</a>
 													</span>
 													</td>
@@ -968,7 +968,7 @@
 													<td><span class="preview"> <a
 															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ac/<?php echo $obj_foto_ac->getAttr('file_name'); ?>"
 															title="<?php echo $obj_foto_ac->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_um/thumbnail/<?php echo $obj_foto_ac->getAttr('file_name'); ?>">
+															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_um/thumbnail/<?php echo $obj_foto_ac->getAttr('file_name'); ?>" width='80px'>
 														</a>
 													</span>
 													</td>

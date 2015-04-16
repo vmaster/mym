@@ -3,6 +3,11 @@ class ActasController extends AppController{
 	public $name = 'Acta';
 	public $components = array('RequestHandler');
 	
+	public function beforeFilter(){
+		$this->Auth->allow(array('view_informe'));
+		parent::beforeFilter();
+		//$this->layout = 'default';
+	}
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_nro=null,$search_actividad=null,$search_empresa=null,$search_obra=null) {
 		$this->layout = "default";
 		$this->loadModel('Acta');

@@ -12,8 +12,28 @@ $codigo = "<style type='text/css'>
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 .tg .tg-e3zv{font-weight:bold; text-align:center;}
 .tg-uni {text-align:center;}
+.pie-pag {
+   position:fixed;
+		
+.pie-pag {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   font: 50% sans-serif; 
+}
 </style>";
-
+$codigo.= "<div class='pie-pag'><hr>";
+$codigo.= "<div class='row'>
+		   <div class='col-md-3 col-sm-6 col-xs-6'>Calle Las Piletas 255 - Urb. Federico Villarreal</div>";
+$codigo.= "<div class='col-md-3 col-sm-6 col-xs-6' style='text-align: right;'>Telf. 074-271154 / RPM *716060 /978007000</div>
+		  </div>";
+$codigo.= "<div class='row'>
+		   <div class='col-md-3 col-sm-6 col-xs-6'>Chiclayo - Chiclayo - Lambayeque</div>";
+$codigo.= "<div class='col-md-3 col-sm-6 col-xs-6' style='text-align: right;'>Email: mym.ingenieria@hotmail.com</div>
+		  </div>";
+$codigo.= "</div>";
 $codigo .="<table class='tg' width='100%'>
   <tr>
     <th class='tg-031e' rowspan='2'><img src='".ENV_WEBROOT_FULL_URL."img/logo-mini.png' style='width: 80px;'/></th>
@@ -50,7 +70,7 @@ $codigo .="<table class='tg' width='100%'>
     <td class='tg-031e'>".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."</td>
   </tr>
   <tr>
-    <td class='tg-e3zv'>Supervisión:</td>
+    <td class='tg-e3zv'>Supervisi&oacute;n:</td>
     <td class='tg-031e'>".$tipo_supervision."</td>
     <td class='tg-e3zv'>Fecha:</td>
     <td class='tg-031e'>".$obj_acta->getAttr('fecha')."</td>
@@ -74,8 +94,8 @@ $codigo.= "
 		  <tr>
 		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
 			foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
-				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' width='150px' height='150px'>&nbsp;";
-				if($key==4){
+				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' width='200px' height='200px'>&nbsp;";
+				if($key==3){
 					$codigo.="<br>";
 				}
 			}
@@ -85,7 +105,7 @@ $codigo.= "</td>
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv'>SEÑALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
+		    <th class='tg-e3zv'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_se_de'))."</td>
@@ -93,14 +113,14 @@ $codigo.= "
 		  <tr>
 		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
 			foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
-				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='150px' height='150px'>&nbsp;";
-				if($key==4){
+				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='200px' height='200px'>&nbsp;";
+				if($key==3){
 					$codigo.="<br>";
 				}
 			}
 $codigo.= "</td>
 		  </tr>
-		</table>";
+		</table><br>";
 
 $codigo.= "
 		<table class='tg' width='100%'>
@@ -113,8 +133,8 @@ $codigo.= "
 		  <tr>
 		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
 			foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
-				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' width='150px' height='150px'>&nbsp;";
-				if($key==4){
+				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' width='200px' height='200px'>&nbsp;";
+				if($key==3){
 					$codigo.="<br>";
 				}
 			}
@@ -139,8 +159,8 @@ $codigo.= "
 		  <tr>
 		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
 			foreach($obj_acta->FotoAc as $key => $obj_foto_ac) {
-				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ac/thumbnail/".$obj_foto_ac->getAttr('file_name')."' width='150px' height='150px'>&nbsp;";
-				if($key==4){
+				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ac/thumbnail/".$obj_foto_ac->getAttr('file_name')."' width='200px' height='200px'>&nbsp;";
+				if($key==3){
 					$codigo.="<br>";
 				}
 			}
@@ -175,8 +195,7 @@ $codigo.="
 		</table>
 		";
 
-
-//$codigo= $codigo;
+//echo $codigo; exit();
 $dompdf = new DOMPDF();
 $dompdf->set_paper("A4");
 $dompdf->load_html($codigo);

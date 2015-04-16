@@ -1,12 +1,10 @@
-<script>
-
-</script>
 <div class="row">
 	<div class="col-md-12">
 		<h2>Crear un Nuevo Informe</h2>
 	</div>
 </div>
 <hr />
+
 <div class="div-crear-acta form" id="div-crear-acta">
 	<?php echo $this->Form->create('Acta',array('method'=>'post', 'id'=>'add_edit_acta'));?>
 	<div class="row">
@@ -105,9 +103,7 @@
 									Inopinada: <input name="data[Acta][tipo]" type="radio"
 									value="I" id="rbTipo2">
 								</td>
-								<td>Fecha: <input name="data[Acta][fecha]"
-									class="txtFecha form-control hasDatepicker" id="txtFecha"
-									placeholder="dd-mm-aaaa" type="text">
+								<td>Fecha: <input type="text" name="data[Acta][fecha]" id="txtFecha">
 								</td>
 							</tr>
 						</table>
@@ -854,7 +850,11 @@
 	<?php echo $this->Form->end(); ?>
 <hr>
 </div>
-
+<script>
+$(function() {
+	$("#txtFecha").datepicker();
+});
+</script>
 <!-- The template to display files available for upload -->
      <script id="template-upload" type="text/x-tmpl">
     {% for (var i=0, file; file=o.files[i]; i++) { %}

@@ -20,7 +20,8 @@ $(function () {
         	url: env_webroot_script+'lib/file.upload/server/php/',
         	submit:function (e) {
         		type = $(this).data('type');
-        	}
+        	},
+        	acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
         });
     })
     /*

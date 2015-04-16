@@ -23,12 +23,13 @@
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
    	<!-- STYLES OF ALERT MESSAGE -->
-    <link href="<?= ENV_WEBROOT_FULL_URL; ?>/lib/alertify-0.3.11/css/alertify.core.css" rel="stylesheet">
-    <link href="<?= ENV_WEBROOT_FULL_URL; ?>/lib/alertify-0.3.11/css/alertify.default.css" rel="stylesheet">
-   
-   
-   	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/jquery-1.8.1.min.js" type="text/javascript"></script>
+    <link href="<?= ENV_WEBROOT_FULL_URL; ?>lib/alertify-0.3.11/css/alertify.core.css" rel="stylesheet">
+    <link href="<?= ENV_WEBROOT_FULL_URL; ?>lib/alertify-0.3.11/css/alertify.default.css" rel="stylesheet">
+    <link href="<?= ENV_WEBROOT_FULL_URL; ?>lib/jquery_ui/css/jquery.ui.all.css" rel="stylesheet">
+
+   	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/jquery_ui/jquery-1.8.3.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/jquery_ui/jquery-ui.min.js" type="text/javascript"></script>
+    
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/user.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/trabajador.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/actividad.js" type="text/javascript"></script>
@@ -88,7 +89,7 @@
 	<!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/jquery-1.10.2.js"></script>
+    <!-- <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/jquery-1.10.2.js"></script> -->
       <!-- BOOTSTRAP SCRIPTS -->
     <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
@@ -99,7 +100,7 @@
     <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/dataTables/jquery.dataTables.js"></script>
 
     <!-- FILE:UPLOAD -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 	<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 	<script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/file.upload/js/vendor/jquery.ui.widget.js"></script>
 	<!-- The Templates plugin is included to render the upload/download listings -->
@@ -109,7 +110,7 @@
 	<!-- The Canvas to Blob plugin is included for image resizing functionality -->
 	<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 	<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 	<!-- blueimp Gallery script -->
 	<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 	<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
