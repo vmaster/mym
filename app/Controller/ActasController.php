@@ -534,6 +534,8 @@ class ActasController extends AppController{
 	
 		if($this->request->is('post')  || $this->request->is('put')){
 			if(isset($acta_id) && intval($acta_id) > 0){
+				
+				$this->formatFecha($this->request->data['Acta']['fecha']);
 	
 				//update
 				$error_validation = '';
@@ -1221,18 +1223,18 @@ class ActasController extends AppController{
 		if(isset($fecha)){
 			$fec_nac = $fecha;//12-12-1990
 	
-			if($fec_nac == '' || $fec_nac == NULL){
-				$fec_nac = '';
+			if($fecha == '' || $fecha == NULL){
+				$fecha = '';
 			}else{
-				$dd = substr($fec_nac, 0, 2);
-				$mm = substr($fec_nac, 3, 2);
-				$yy = substr($fec_nac, -4);
-				$fec_nac = $yy.'-'.$mm.'-'.$dd;//1990-12-12
+				$dd = substr($fecha, 0, 2);
+				$mm = substr($fecha, 3, 2);
+				$yy = substr($fecha, -4);
+				$fecha = $yy.'-'.$mm.'-'.$dd;//1990-12-12
 			}
-			$this->request->data['Persona']['fec_nac'] = $fec_nac;
+			$this->request->data['Acta']['fecha'] = $fecha;
 		}
 	
-		return $this->request->data['Persona']['fec_nac'];
+		return $this->request->data['Acta']['fecha'];
 	}
 	
 	public function add_file_ipp(){

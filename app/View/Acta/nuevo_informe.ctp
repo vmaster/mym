@@ -103,7 +103,7 @@
 									Inopinada: <input name="data[Acta][tipo]" type="radio"
 									value="I" id="rbTipo2">
 								</td>
-								<td>Fecha: <input type="text" name="data[Acta][fecha]" id="txtFecha">
+								<td>Fecha: <input type="text" name="data[Acta][fecha]" id="txtFechaActa" class="form-control" placeholder="dd-mm-aaaa" value="<?php echo date('d-m-y'); ?>">
 								</td>
 							</tr>
 						</table>
@@ -850,11 +850,7 @@
 	<?php echo $this->Form->end(); ?>
 <hr>
 </div>
-<script>
-$(function() {
-	$("#txtFecha").datepicker();
-});
-</script>
+
 <!-- The template to display files available for upload -->
      <script id="template-upload" type="text/x-tmpl">
     {% for (var i=0, file; file=o.files[i]; i++) { %}

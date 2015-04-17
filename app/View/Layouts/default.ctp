@@ -136,14 +136,14 @@
 	<script src="js/cors/jquery.xdr-transport.js"></script>
 	<![endif]-->
     <!-- END FILE UPLOAD -->
-    
-    <!-- SCRIPT AUTOCOMPLETE -->
-    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/scripts/jquery.mockjax.js"></script>
-    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/src/jquery.autocomplete.js"></script>
-    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/scripts/countries.js"></script>
-    <script type="text/javascript" src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_autocomplete/scripts/demo.js"></script>    
 
     <!-- SCRIPT SELECT2 -->
 	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/select2-4.0.0-rc.2/dist/js/select2.min.js"></script>
+	
+	<!-- HIGHCHART -->
+	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/highcharts-4.1.5/highcharts.js"></script>
+	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/highcharts-4.1.5/modules/exporting.js"></script>
+	
+	
 </body>
 </html>

@@ -112,9 +112,19 @@
 									Inopinada: <input name="data[Acta][tipo]" type="radio"
 									value="I" id="rbTipo2" <?php echo ($obj_acta->getAttr('tipo') == 'I')? 'checked':''; ?>>
 								</td>
-								<td>Fecha: <input name="data[Acta][fecha]"
-									class="txtFecha form-control hasDatepicker" id="txtFecha"
-									placeholder="dd-mm-aaaa" type="text">
+								<?php 
+										$fecha = $obj_acta->getAttr('fecha');//1990-12-12
+									
+										if($fecha == '' || $fecha == NULL){
+											$fecha = '';
+										}else{
+											$dd = substr($fecha,-2);
+											$mm = substr($fecha, 5, 2);
+											$yy = substr($fecha, 0, 4);
+											$fecha_format = $dd.'-'.$mm.'-'.$yy;//12-12-1990
+										}
+								?>
+								<td>Fecha: <input type="text" name="data[Acta][fecha]" id="txtFechaActa" class="form-control" placeholder="dd-mm-aaaa" value="<?php echo $fecha_format; ?>">
 								</td>
 							</tr>
 						</table>

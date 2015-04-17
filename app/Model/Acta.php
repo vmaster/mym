@@ -285,5 +285,63 @@ App::uses('AppModel','Model');
     	$Email->send('Mi Mensaje');
     }
     
+    
+    /* CONSULTAS PARA LOS REPORTES */
+    
+    public function listSupervisionByEmpresa(/*$order_by='Actividade.created', $search_actividad='',$order='DESC', $start=0, $per_page=10*/) {
+    	$arr_obj_sup_emp = $this->find('all',array(
+    			'fields' => array('EmpresaJoin.nombre, count(*) as Cantidad'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresaJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresaJoin.id = Acta.empresa_id'
+    							)
+    					)
+    			),
+    			/*'conditions'=>array(
+    					
+    					//'Actividade.descripcion LIKE'=> '%'.$search_actividad.'%',
+    					//'Actividade.estado != ' => 0
+    			)/*,
+    			'order'=> array($order_by.' '.$order),*/
+    			'group'=> array('EmpresaJoin.nombre')
+    	)
+    	);
+    	
+    	//debug($arr_obj_sup_emp);exit();
+    	return $arr_obj_sup_emp;
+    }
+    
+    public function listTotalNormasByTrabajador(/*$order_by='Actividade.created', $search_actividad='',$order='DESC', $start=0, $per_page=10*/) {
+    	$arr_obj_sup_emp = $this->find('all',array(
+    			'fields' => array('EmpresaJoin.nombre, count(*) as Cantidad'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresaJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresaJoin.id = Acta.empresa_id'
+    							)
+    					)
+    			),
+    			/*'conditions'=>array(
+    			 	
+    					//'Actividade.descripcion LIKE'=> '%'.$search_actividad.'%',
+    					//'Actividade.estado != ' => 0
+    			)/*,
+    	'order'=> array($order_by.' '.$order),*/
+    			'group'=> array('EmpresaJoin.nombre')
+    	)
+    	);
+    	 
+    	//debug($arr_obj_sup_emp);exit();
+    	return $arr_obj_sup_emp;
+    }
+    
+    
   }
 ?>

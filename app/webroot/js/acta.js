@@ -513,4 +513,14 @@ $(document).ready(function(){
         })
 	}
 	
+	
+	/* Date Picker */
+	$('#txtFechaActa').datepicker(
+			{
+				changeYear: true, 
+				dateFormat: 'dd-mm-yy',
+				minDate: new Date(1924, 1 - 1, 1),
+				maxDate: new Date()
+			});
+	
 });
