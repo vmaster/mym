@@ -114,9 +114,9 @@
 								</td>
 								<?php 
 										$fecha = $obj_acta->getAttr('fecha');//1990-12-12
-									
+											
 										if($fecha == '' || $fecha == NULL){
-											$fecha = '';
+											$fecha_format = '';
 										}else{
 											$dd = substr($fecha,-2);
 											$mm = substr($fecha, 5, 2);
@@ -1282,7 +1282,7 @@
             <td>
                 <span class="preview">
                     {% if (file.thumbnailUrl) { %}
-                        <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                        <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}" width="80px"></a>
                     {% } %}
                 </span>
             </td>

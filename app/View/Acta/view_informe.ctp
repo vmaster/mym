@@ -18,7 +18,7 @@ $codigo = "<style type='text/css'>
 .pie-pag {
    position:fixed;
    left:0px;
-   bottom:0px;
+   bottom:-20px;
    height:30px;
    width:100%;
    font: 50% sans-serif; 

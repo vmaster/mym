@@ -361,7 +361,8 @@ $(document).ready(function(){
 	
 	$(".cbo-responsable-select2").select2({
 			  placeholder: "Seleccione responsable",
-			  allowClear: true
+			  allowClear: true,
+			  width: '100%'
 	});
 	
 	$.each($('.cbo-responsable-select2'), function(index) {
