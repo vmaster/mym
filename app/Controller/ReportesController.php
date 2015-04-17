@@ -6,9 +6,7 @@ class ReportesController extends AppController{
 	public function rpt_cant_empresas(/*$order_by=null,$order_by_or=null,$search_descripcion=null*/) {
 		$this->layout = "default";
 		$this->loadModel('Acta');
-		
 
-		
 		/*if($this->request->is('get')){
 			if($search_descripcion!=''){
 				$search_descripcion = $search_descripcion;
@@ -25,33 +23,38 @@ class ReportesController extends AppController{
 		$this->set(compact('list_sep_emp'));
 	}
 	
-	public function prueba_data(){
-		header("Content-type: text/json");
+	public function rpt_cant_normas_incumplidas() {
+		$this->layout = "default";
 		$this->loadModel('Acta');
-		$this->autoRender = false;$lista = "";
-		/*
-		$x = time() * 1000;
-		// The y value is a random number
-		$y = rand(1, 100);
-		
-		// Create a PHP array and echo it as JSON
-		$ret = array($x, $y);
-		echo json_encode($ret);*/
-		
+	
+		/*if($this->request->is('get')){
+		 if($search_descripcion!=''){
+		$search_descripcion = $search_descripcion;
+		}else{
+		$search_descripcion = '';
+		}
+	
+		}else{
+		$search_descripcion = '';
+		}*/
+	
+		$list_sep_emp = $this->Acta->listSupervisionByEmpresa();
+	
+		$this->set(compact('list_sep_emp'));
+	}
+	
+	public function prueba_data(){
+		$this->loadModel('Acta');
+		//$this->layout = 'ajax';
+		$this->autoRender = false;
 		
 		$list_sep_emp = $this->Acta->listSupervisionByEmpresa();
-		/*foreach ($list_sep_emp as $key => $arr_emp):
-			$x = $arr_emp['EmpresaJoin']['nombre'];
-			$y = $arr_emp[0]['Cantidad'];
-			//debug(json_encode(array($x, $y)));
-			$lista.= json_encode(array($x,$y)).",";
+		foreach ($list_sep_emp as $key => $arr_emp):
+			$x[] = $arr_emp['EmpresaJoin']['nombre'];
+			$y[] = intval($arr_emp[0]['Cantidad']);
 		endforeach;
-		$lista = substr($lista, 0,strlen($lista) - 1);
-		$result= '{"point": ['.$lista.']}';
-		echo $result;*/
-		//debug($lista);
+		return json_encode(array('success'=>true,'categoria'=>$x, 'name'=>'Empresa', 'data'=>$y));
 		//exit();
-		
 	}
 	
 	public function find_actividades($order_by=null,$order_by_or=null,$search_descripcion=null) {

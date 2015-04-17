@@ -20,6 +20,13 @@
 				<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'codigos')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>codigos" id="link-codigo"><i class="fa fa-gavel fa-3x"></i> <?php echo ' '.__('Normas'); ?> </a></li>
 				</ul>
 			</li>
+			
+			<li><a href="#"><i class="fa fa-file-text fa-3x"></i> Reportes <span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level <?php echo ($this->request->params['controller'] == 'reportes')?"collapse in":"collapse";  ?>">
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_cant_empresas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_cant_empresas" id="link-rpt_cant_empresas"><i class="fa fa-qrcode fa-3x"></i> <?php echo ' '.__('Informes por empresa'); ?></a></li>
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_cant_normas_incumplidas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_cant_normas_incumplidas" id="link-usuario"><i class="fa fa-user fa-3x"></i><?php echo ' '.__('Normas I. por empresa'); ?></a></li>
+				</ul>
+			</li>
 			<!-- 
 			<li><a href="#"><i class="fa fa-sitemap fa-3x"></i> Multi-Level
 					Dropdown<span class="fa arrow"></span>

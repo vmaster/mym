@@ -59,7 +59,7 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: 'N\u00FAmero de supervisiones por empresa - 2014'
+            text: 'N\u00FAmero de Normas incumplidas por empresa - 2014'
         },
         subtitle: {
             text: ''
@@ -84,7 +84,7 @@ $(function () {
         yAxis: {
             min: 0,
             title: {
-                text: 'Total de supervisiones'
+                text: 'Total de Normas incumplidas'
             }
         },
         tooltip: {
@@ -125,7 +125,7 @@ $(function () {
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<h2>Total de Empresas Supervisadas por fecha</h2>
+		<h2><?php echo utf8_encode(__('Total de Normas incumplidas de empresas por Año')); ?></h2>
 	</div>
 </div>
 <hr />
@@ -138,7 +138,9 @@ $(function () {
 		<label><?php echo __('Actividad');?> <input type = "text" name ="txtBuscarDescripcion" id="txtBuscarDescripcion" class="form-control"></label> */?>
 		</div>
 	</div>
-	<div class="well">
+	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<center>
+	<div class="well" style="width:50%;">
 	    <?php 
 		if(empty($list_sep_emp)){ 
 			echo __('No hay datos estad&iacuter;sticos');
@@ -147,25 +149,21 @@ $(function () {
 	      <table class="table" id="table_content">
 			<thead>
 		        <tr>
-		          <th><?php echo __('ID'); ?></th>
 		          <th><?php echo utf8_encode(__('Nombre de Empresa')); ?></th>
-		          <th><?php echo utf8_encode(__('Cantidad')); ?></th>
+		          <th style="text-align:center"><?php echo utf8_encode(__('Total Normas incumplidas')); ?></th>
 		        </tr>
 		    </thead>
 			
 			<tbody>
 			    <?php 
-			$n = 0;
 			foreach ($list_sep_emp as $key => $arr_emp):
-			$n = $n + 1;
 			?>
 					<tr class="actividad_row_container" actividad_id="<?php // echo $nombre; ?>">
-						<td><?php echo $n; ?></td>
 						<td>
 						<?php 
 						echo $arr_emp['EmpresaJoin']['nombre'];
 						?></td>
-						<td>
+						<td style="text-align:center">
 						<?php 
 						echo $arr_emp[0]['Cantidad'];
 						?></td>
@@ -178,7 +176,5 @@ $(function () {
 	      </div>
 	    <?php }?>
 	</div>
-	
-	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	
+	</center>
 </div>

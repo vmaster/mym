@@ -56,7 +56,6 @@
 		<table class="table" id="table_content_actas">
 			<thead>
 		        <tr>
-		          <th><?php echo __('ID'); ?></th>
 		          <th><?php echo utf8_encode(__('Nro Acta')); ?></th>
 		          <th><?php echo utf8_encode(__('Actividad')); ?></th>
 		          <th><?php echo utf8_encode(__('Obra')); ?></th>
@@ -67,22 +66,21 @@
 		        </tr>
 		    </thead>
 			<?php 
-			$n = 0;
+			//$n = 0;
 			foreach ($list_acta as $acta):
-			$n = $n + 1;
+			//$n = $n + 1;
 			?>
 			<tbody>
 					<tr class="acta_row_container" acta_id="<?php echo $acta->getAttr('id'); ?>">
-						<td><?php echo $n; ?></td>
+					
 						<td><?php echo $acta->getAttr('numero'); ?></td>
 						<td><?php echo ($acta->getAttr('actividad')=='')?"":$acta->getAttr('actividad'); ?></td>
 						<td><?php echo $acta->getAttr('obra'); ?></td>
-						<?php // $obj_trabajador = $acta->Trabajadore->showTrabajador($acta->getAttr('reponsable_act_id'));?>
-						<td><?php //echo $obj_trabajador->getAttr('apellido_nombre'); ?></td>
-						<td	><a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/editar_informe/<?php echo $acta->getAttr('id')?>"><i class="fa fa-pencil"></i> </a>| 
-							<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-list-alt"></i> </a> |
-							<a href="#myModalDeleteActa" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-acta"></i> </a>|
-							<a href="#myModalSendReport" role="button" data-toggle="modal"><i class="fa fa-envelope open-model-send-informe"></i> </a>
+						<td><?php echo $acta->Trabajadore2->getAttr('apellido_nombre'); ?></td>
+						<td	><a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/editar_informe/<?php echo $acta->getAttr('id')?>"><i class="fa fa-pencil fa-lg"></i> </a>| 
+							<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-file-text fa-lg"></i> </a> |
+							<a href="#myModalDeleteActa" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-acta fa-lg"></i> </a>|
+							<a href="#myModalSendReport" role="button" data-toggle="modal"><i class="fa fa-envelope open-model-send-informe fa-lg"></i> </a>
 						</td>
 					</tr>
 					<?php 
