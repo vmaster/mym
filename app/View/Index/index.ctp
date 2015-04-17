@@ -6,7 +6,7 @@
             type: 'column'
         },
         title: {
-            text: 'N\u00FAmero de Normas incumplidas por empresa - 2014'
+            text: 'N\u00FAmero de Informes por empresa - 2014'
         },
         subtitle: {
             text: ''
@@ -31,7 +31,7 @@
         yAxis: {
             min: 0,
             title: {
-                text: 'Total de Normas incumplidas'
+                text: 'Cantidad de Informes'
             }
         },
         tooltip: {

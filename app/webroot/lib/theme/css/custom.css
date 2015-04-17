@@ -279,7 +279,8 @@ font-weight: 700;
 	left:20px;
 	width:15px;
 	height:1px;
-	background:#ff0000;
+	/* background:#ff0000;  ORIGINAL */
+	background:#428bca;
 	top:20px;
 }
 .nav-second-level > li > a:after,
@@ -290,7 +291,8 @@ font-weight: 700;
 	left:20px;
 	width:1px;
 	height:100%;
-	background:#ff0000;
+	/* background:#ff0000;  ORIGINAL */
+	background:#428bca;
 	top:0px;
 	z-index:10;
 }
@@ -325,7 +327,8 @@ border:0px solid black;
      
 }
 .navbar-header {
-    background: #A70303;
+    /* background: #A70303; ORIGINAL */
+    background: #428bca;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
 background-color: #B40101;
