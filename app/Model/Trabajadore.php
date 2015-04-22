@@ -80,14 +80,14 @@ App::uses('AppModel','Model');
     						'rule' => array('notEmpty'),
     						'message' => 'El N&uacute;mero de documento es requerido'
     				),*/
-    				'unique' => array(
+    				/*'unique' => array(
     						'rule' => array('isUnique'),
     						'message' => 'El N&uacute;mero de documento ya existe'
-    				),
-    				'numeric' => array(
+    				),*/
+    				/*'numeric' => array(
     						'rule' => array('numeric'),
     						'message' => 'El documento debe ser de tipo num&eacute;rico'
-    				)
+    				)*/
     		),
     		'distrito_id'     => array(
     				'notempty' => array(

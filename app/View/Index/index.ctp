@@ -133,7 +133,7 @@
 				class="fa fa-file-text-o"></i>
 			</span>
 			<div class="text-box">
-				<p class="main-text" style="font-size:20px !important">12 Nuevos</p>
+				<p class="main-text" style="font-size:20px !important"><?php echo (isset($count_informe_day))? $count_informe_day :''; ?> Nuevos</p>
 				<p class="text-muted">Informes</p>
 			</div>
 		</div>
@@ -144,7 +144,7 @@
 				class="fa fa-users"></i>
 			</span>
 			<div class="text-box">
-				<p class="main-text" style="font-size:20px !important">5 Users</p>
+				<p class="main-text" style="font-size:20px !important"><?php echo (isset($count_usuarios))? $count_usuarios :''; ?> Users</p>
 				<p class="text-muted">Registrados</p>
 			</div>
 		</div>
@@ -155,7 +155,7 @@
 				class="fa fa-building-o"></i>
 			</span>
 			<div class="text-box">
-				<p class="main-text" style="font-size:20px !important">20 Empresas</p>
+				<p class="main-text" style="font-size:20px !important"><?php echo (isset($count_empresas))? $count_empresas :''; ?> Empresas</p>
 				<p class="text-muted">Registradas</p>
 			</div>
 		</div>

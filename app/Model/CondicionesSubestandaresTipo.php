@@ -1,13 +1,13 @@
 <?php
 App::uses('AppModel','Model');
-  class TipoVehiculo extends AppModel {
-    public $name = 'TipoVehiculo';
+  class CondicionesSubestandaresTipo extends AppModel {
+    public $name = 'CondicionesSubestandaresTipo';
 
 
     public $hasMany = array(
-    		'Vehiculo' => array(
-    				'className' => 'Vehiculo',
-    				'foreignKey' => 'tipo_vehiculo_id',
+    		'CondicionesSubestandare' => array(
+    				'className' => 'CondicionesSubestandare',
+    				'foreignKey' => 'cond_sub_tipo_id',
     				'dependent' => false,
     				'conditions' => '',
     				'fields' => '',
@@ -46,7 +46,7 @@ App::uses('AppModel','Model');
     );*/
     
     
-    public $validate = array(
+    /*public $validate = array(
     		'descripcion'    => array(
     				'notempty' => array(
     						'rule' => array('notEmpty'),
@@ -71,7 +71,7 @@ App::uses('AppModel','Model');
     	return $arr_obj_tipo_vehiculo;
     }
     
-    public function listFindTipoVehiculos($order_by='TipoVehiculo.created', $search_descripcion='',$order='DESC', $start=0, $per_page=10) {
+    public function listFindTipoVehiculos($order_by='Trabajadore.created', $search_descripcion='',$order='DESC', $start=0, $per_page=10) {
     		$arr_obj_tipo_vehiculo = $this->findObjects('all',array(
     				'conditions'=>array(
     						'TipoVehiculo.descripcion LIKE'=> '%'.$search_descripcion.'%',
@@ -84,7 +84,7 @@ App::uses('AppModel','Model');
     		)
     		);
     	return $arr_obj_tipo_vehiculo;
-    }
+    }*/
     
     /**
      * Delete actividades
@@ -93,23 +93,23 @@ App::uses('AppModel','Model');
      * @author Vladimir
      * @version 16 Marzo 2015
      */
-    public function deleteTipoVehiculo($tipo_vehiculo_id){
+    /*public function deleteTipoVehiculo($tipo_vehiculo_id){
     
     	if($this->deleteAll(array('TipoVehiculo.id' => $tipo_vehiculo_id), $cascada = true)){
     		return true;
     	}else{
     		return false;
     	}
-    }
+    }*/
     
-    public function listTipoVehiculos() {
+    public function listTipoCondicionesSubEstandares() {
     	return $this->find('list',
     			array(
     					'fields' => array('id','descripcion'),
     					'conditions'=>array(
-    							'TipoVehiculo.estado != '=> 0
+    							'CondicionesSubestandaresTipo.estado != '=> 0
     					),
-    					'order' => array('TipoVehiculo.id ASC')
+    					'order' => array('CondicionesSubestandaresTipo.descripcion ASC')
     			));
     }
     

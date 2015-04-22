@@ -162,6 +162,13 @@ class TrabajadoresController extends AppController{
 				//update
 				$error_validation = '';
 				//$this->formatFecha($this->request->data['Trabajadore']['fec_nac']);
+				if(isset($this->request->data['Trabajadore']['poliza_vigente'])){
+					if($this->request->data['Trabajadore']['poliza_vigente'] == null){
+						$this->request->data['Trabajadore']['poliza_vigente'] = 0;
+					}else{
+						$this->request->data['Trabajadore']['poliza_vigente'] = 1;
+					}
+				}
 				
 				if(isset($this->request->data['Trabajadore']['nro_documento'])){
 					$nro_documento = $this->request->data['Trabajadore']['nro_documento'];
@@ -199,6 +206,13 @@ class TrabajadoresController extends AppController{
 				$error_validation = '';
 			
 				//$this->formatFecha($this->request->data['Trabajadore']['fec_nac']);
+				if(isset($this->request->data['Trabajadore']['poliza_vigente'])){
+					if($this->request->data['Trabajadore']['poliza_vigente'] == null){
+						$this->request->data['Trabajadore']['poliza_vigente'] = 0;
+					}else{
+						$this->request->data['Trabajadore']['poliza_vigente'] = 1;
+					}
+				}
 				
 				if(isset($this->request->data['Trabajadore']['nro_documento'])){
 					$nro_documento = $this->request->data['Trabajadore']['nro_documento'];
@@ -339,7 +353,7 @@ class TrabajadoresController extends AppController{
 		$this->layout = 'ajax';
 		$this->loadModel('Trabajadore');
 		if($this->request->is('post') || $this->request->is('put')){
-			//debug($this->request->data['Trabajadore']['apellido_nombre']); exit();
+			$this->request->data['Trabajadore']['distrito_id'] = '140101';
 			$this->Trabajadore->create();
 			if ($this->Trabajadore->save($this->request->data)) {
 				$trabajador_id = $this->Trabajadore->id;

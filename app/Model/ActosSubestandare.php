@@ -17,6 +17,13 @@ App::uses('AppModel','Model');
     				'conditions' => '',
     				'fields' => '',
     				'order' => ''
+    		),
+    		'ActosSubestandaresTipo' => array(
+    				'className' => 'ActosSubestandaresTipo',
+    				'foreignKey' => 'act_sub_tipo_id',
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => ''
     		)
     );
     

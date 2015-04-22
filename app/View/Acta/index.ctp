@@ -248,13 +248,21 @@ $('#container_page .pagination li.active').live('click',function(){
 					
 							<div class="row">
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
-									<label><?php echo utf8_encode(__('Correo de destino')); ?> </label>
+									<label><?php echo utf8_encode(__('Correo de destino:')); ?> </label>
 								</div>
 								<div class="span3 col-md-5 col-sm-6 col-xs-6">
 									<?php echo $this->Form->input('email_destino', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'email-destino')); ?>
 								</div>
 							</div>
-							<p>
+							<br>
+							<div class="row">
+								<div class="span3 col-md-4 col-sm-6 col-xs-6">
+									<label><?php echo utf8_encode(__('Mensaje:')); ?> </label>
+								</div>
+								<div class="span3 col-md-5 col-sm-6 col-xs-6">
+									<?php echo $this->Form->input('mensaje', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes5 form-control','id' =>'txt-mensaje')); ?>
+								</div>
+							</div>
 				</div>
 				<?php echo $this->Form->end(); ?>
 				<div class="modal-footer">

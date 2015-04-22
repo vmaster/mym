@@ -61,7 +61,7 @@ App::uses('AppModel','Model');
     	return $arr_obj_vehiculo;
     }
     
-    public function listFindVehiculos($order_by='Trabajadore.created', $search_nroplaca='', $search_nrosoat='',$order='DESC', $start=0, $per_page=10) {
+    public function listFindVehiculos($order_by='Vehiculo.created', $search_nroplaca='', $search_nrosoat='',$order='DESC', $start=0, $per_page=10) {
     		$arr_obj_vehiculo = $this->findObjects('all',array(
     				'conditions'=>array(
     						'AND' => array(

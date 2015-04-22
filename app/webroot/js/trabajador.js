@@ -67,6 +67,36 @@ $(document).ready(function(){
 					});
 				}
 			});
+		},
+		
+		saveResponsable: function(index_button){
+			name_id_select = "#ResId"+ index_button;
+			$form = $('form#form_create_trabajador').eq(0);
+			$.ajax({
+				url: env_webroot_script + 'trabajadores/add_trabajador',
+				data: $form.serialize(),
+				dataType: 'json',
+				type: 'post'
+			}).done(function(data){
+				if(data.success==true){
+					alertify.success(data.msg);
+					$('#myModalAddTrabajador').modal('hide');
+					$('.modal-backdrop').fadeOut(function(){$(this).hide()});
+					txt_trabajador = $('#txt-apellido-nombre').val();
+					$('#txt-apellido-nombre').val('');
+					new_option = "<option value='" + data.Trabajador_id + "'>"+txt_trabajador+"</option>";
+					$(name_id_select + ' option:last').after(new_option);
+					$(name_id_select).select2("val", [data.Trabajador_id ,txt_trabajador]);
+				}else{
+					$.each(data.validation, function( key, value ) {
+						alertify.error(value[0]);
+						$('[name="data[Trabajadore]['+key+']"]').parent().addClass('control-group has-error');
+						$('[name="data[Trabjadore]['+key+']"]').change(function() {
+							$('[name="data[Empresa]['+key+']"]').parent().removeClass('control-group has-error');
+						});
+					});
+				}
+			});
 		}
 	}
 	
@@ -101,7 +131,7 @@ $(document).ready(function(){
 				setTimeout(function(){
 					alertify.success(data.msg);
 				},2000)
-				window.open(env_webroot_script + 'trabajadores/','_self');
+				window.open(env_webroot_script + 'trabajadores','_self');
 			}else{
 				$.each(data.validation, function( key, value ) {
 					alertify.error(value[0]);
@@ -195,7 +225,11 @@ $(document).ready(function(){
 	$('#txt-apellido-nombre').keypress(function(e) {
 		if(e.which === 13) {
 			index_button = $('div#myModalAddTrabajador').attr('index-button');
-			trabajador.saveTrabajador(index_button);
+			if($('#myModalAddTrabajador').attr('data-type') == 't'){
+				trabajador.saveTrabajador(index_button);
+			}else{
+				trabajador.saveResponsable(index_button);
+			}
 			return false;
 		}
 	});
@@ -203,7 +237,11 @@ $(document).ready(function(){
 	$body.off('click','.save-trabajador-modal-trigger');
 	$body.on('click','.save-trabajador-modal-trigger',function(){
 		index_button = $('#myModalAddTrabajador').attr('index-button');
-		trabajador.saveTrabajador(index_button);
+		if($('#myModalAddTrabajador').attr('data-type') == 't'){
+			trabajador.saveTrabajador(index_button);
+		}else{
+			trabajador.saveResponsable(index_button);
+		}
 	});
 	
 

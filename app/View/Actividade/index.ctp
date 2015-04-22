@@ -48,7 +48,7 @@ $('#container_page .pagination li.active').live('click',function(){
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<h2>Registro de Actividades</h2>
+		<h2>Registro de Cargos</h2>
 	</div>
 </div>
 <hr />
@@ -57,7 +57,7 @@ $('#container_page .pagination li.active').live('click',function(){
 	</div>
 	
 	<div class="btn-toolbar">
-	    <button class="btn btn-primary btn-nuevo-actividad"><i class="icon-plus"></i> <?php echo __('Nueva Actividad'); ?></button>
+	    <button class="btn btn-primary btn-nuevo-actividad"><i class="icon-plus"></i> <?php echo __('Nuevo Cargo'); ?></button>
 	  <div class="btn-group">
 	  </div>
 	</div>
@@ -65,13 +65,13 @@ $('#container_page .pagination li.active').live('click',function(){
 	<div class="row">
 		<div class="col-md-2 col-sm-6 col-xs-6" style="margin-top: 16px;"><label><?php echo __('Buscar por');?>:</label></div>
 		<div class="col-md-3 col-sm-6 col-xs-6">
-		<label><?php echo __('Actividad');?> <input type = "text" name ="txtBuscarDescripcion" id="txtBuscarDescripcion" class="form-control"></label>
+		<label><?php echo __('Cargo');?> <input type = "text" name ="txtBuscarDescripcion" id="txtBuscarDescripcion" class="form-control"></label>
 		</div>
 	</div>
 	<div class="well">
 	    <?php 
 		if(empty($list_actividades)){ 
-			echo __('No hay datos de actividades');
+			echo __('No hay datos de cargos');
 		}else{ ?>  
 	      <div id = "conteiner_all_rows">
 	      <?php 

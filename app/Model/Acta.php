@@ -158,6 +158,13 @@ App::uses('AppModel','Model');
     				'conditions' => '',
     				'fields' => '',
     				'order' => ''
+    		),
+    		'UnidadesNegocio' => array(
+    				'className' => 'UnidadesNegocio',
+    				'foreignKey' => 'uunn_id',
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => ''
     		)
     );
     
@@ -272,19 +279,44 @@ App::uses('AppModel','Model');
     	}
     }
     
-    public function sendReporteEmail($acta_id, $email_destino, $num_informe){
+    public function sendReporteEmail($acta_id, $email_destino, $num_informe, $mensaje){
     	App::uses('CakeEmail', 'Network/Email');
     	
     	$Email = new CakeEmail('mym');
     	$Email->from(array('informes@mym-iceperu.com' => 'M&M'));
     	$Email->emailFormat('html');
     	$Email->template('informe','send_informe');
-    	$Email->viewVars(array('acta_id' => $acta_id,'num_informe'=> $num_informe));
+    	$Email->viewVars(array('acta_id' => $acta_id,'num_informe'=> $num_informe, 'mensaje'=> $mensaje));
     	$Email->to($email_destino);
     	$Email->subject(utf8_encode('Informe N° ').$num_informe);
     	$Email->send('Mi Mensaje');
     }
     
+   
+    /* Usado para el Combo de Acta en Registrar Acta*/
+    public function listActas() {
+    	return $this->find('list',
+    			array(
+    					'fields' => array('id','numero'),
+    					'conditions'=>array(
+    							'Acta.estado != '=> 0
+    					),
+    					'order' => array('Acta.numero ASC')
+    			));
+    }
+    
+    /* Usado para Contar los informes del día */
+    public function TotalActasPorDia() {
+    	return $this->find('list',
+    			array(
+    					'fields' => array('id','numero'),
+    					'conditions'=>array(
+    							'Acta.fecha' => date('Y-m-d'), 
+    							'Acta.estado != '=> 0
+    					),
+    					'order' => array('Acta.numero ASC')
+    			));
+    }
     
     /* CONSULTAS PARA LOS REPORTES */
     
@@ -302,15 +334,15 @@ App::uses('AppModel','Model');
     					)
     			),
     			/*'conditions'=>array(
-    					
+    			 	
     					//'Actividade.descripcion LIKE'=> '%'.$search_actividad.'%',
     					//'Actividade.estado != ' => 0
     			)/*,
-    			'order'=> array($order_by.' '.$order),*/
+    	'order'=> array($order_by.' '.$order),*/
     			'group'=> array('EmpresaJoin.nombre')
     	)
     	);
-    	
+    	 
     	//debug($arr_obj_sup_emp);exit();
     	return $arr_obj_sup_emp;
     }
@@ -337,7 +369,7 @@ App::uses('AppModel','Model');
     			'group'=> array('EmpresaJoin.nombre')
     	)
     	);
-    	 
+    
     	//debug($arr_obj_sup_emp);exit();
     	return $arr_obj_sup_emp;
     }

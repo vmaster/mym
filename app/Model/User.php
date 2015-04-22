@@ -87,6 +87,18 @@ App::uses('AppModel','Model');
     	return $arr_obj_user;
     }
     
+    /* Contar los usuarios usado para el Dashboard */
+    public function TotalUsuarios() {
+    	return $this->find('list',
+    			array(
+    					/*'fields' => array('id','username'),*/
+    					'conditions'=>array(
+    							'User.estado != '=> 0
+    					),
+    					'order' => array('User.username ASC')
+    			));
+    }
+    
     /**
      * Delete users
      * @param int $user_id

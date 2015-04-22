@@ -4,10 +4,10 @@ App::uses('AppModel','Model');
     public $name = 'ActosSubestandaresTipo';
 
 
-    /*public $hasMany = array(
+    public $hasMany = array(
     		'ActosSubestandare' => array(
     				'className' => 'ActosSubestandare',
-    				'foreignKey' => 'tipo_acto_sub_id',
+    				'foreignKey' => 'act_sub_tipo_id',
     				'dependent' => false,
     				'conditions' => '',
     				'fields' => '',
@@ -18,7 +18,7 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		)
-    );*/
+    );
     
     /*public $belongsTo = array(
     		'TipoPersona' => array(

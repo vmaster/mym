@@ -33,6 +33,20 @@
 						</span>
 					</div>
 					-->
+						<?php 
+							echo "<font color='red'>".$this->Session->flash()."</font>";
+							
+							if ($this->Session->check('Message.flash')) {
+								$this->Session->flash();
+							}
+							if ($this->Session->check('Message.auth')) {
+									
+								$this->Session->flash('auth');
+							}
+						?>
+						<?php
+						
+						?>
 					<hr>
 					<!-- Not register ? <a href="registeration.html">click here </a> -->
 					<center>

@@ -16,6 +16,16 @@
 <link href="http://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet" type="text/css">
 
+<!-- ALERTIFY -->
+	<link href="<?= ENV_WEBROOT_FULL_URL; ?>lib/alertify-0.3.11/css/alertify.core.css" rel="stylesheet">
+    <link href="<?= ENV_WEBROOT_FULL_URL; ?>lib/alertify-0.3.11/css/alertify.default.css" rel="stylesheet">
+    
+    
+    <link href="<?= ENV_WEBROOT_FULL_URL; ?>lib/jquery_ui/css/jquery.ui.all.css" rel="stylesheet">
+    
+    <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/jquery_ui/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/jquery_ui/jquery-ui.min.js" type="text/javascript"></script>
+    
 </head>
 <body>
 	<div class="container">
@@ -33,11 +43,12 @@
 		<?php echo $this->fetch('content'); ?>
 	</div>
 
-
+	<!-- ALERTIFY -->
+	
 	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 	<!-- JQUERY SCRIPTS -->
 	<script async="" src="//www.google-analytics.com/analytics.js"></script>
-	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/theme/js/jquery-1.10.2.js"></script>
+	<!--  <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/theme/js/jquery-1.10.2.js"></script>-->
 	<!-- BOOTSTRAP SCRIPTS -->
 	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/theme/js/bootstrap.min.js"></script>
 	<!-- METISMENU SCRIPTS -->

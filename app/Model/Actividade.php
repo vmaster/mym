@@ -63,11 +63,11 @@ App::uses('AppModel','Model');
     		'descripcion'    => array(
     				'notempty' => array(
     						'rule' => array('notEmpty'),
-    						'message' => 'La Actividad es requerida'
+    						'message' => 'El cargo es requerido'
     				),
     				'unique' => array(
     						'rule' => array('isUnique'),
-    						'message' => 'La actividad ya existe'
+    						'message' => 'El cargo ya existe'
     				)
     		)
     );

@@ -18,7 +18,7 @@ class UsersController extends AppController{
 				//$this->User->saveField('ultimo_acceso', date('Y-m-d H:i:s') );
 				$this->redirect($this->Auth->redirectUrl());
 			} else {
-				$this->Session->setFlash(__('Nombre de usuario or Clave is incorrect'),array(),'auth');
+				$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
 			}
 		}else{
 			if($this->Auth->user('id')){

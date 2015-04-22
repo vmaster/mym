@@ -22,13 +22,14 @@ $(document).ready(function(){
 				}
 			});	
 		},
-		sendReport: function(acta_id, email_destino){
+		sendReport: function(acta_id, email_destino, mensaje){
 			$.ajax({
 				type: 'post',
 				url: env_webroot_script + 'actas/send_reporte_email',
 				data:{
 					'acta_id': acta_id,
-					'email_destino': email_destino
+					'email_destino': email_destino,
+					'mensaje': mensaje
 				},
 				dataType: 'json'
 			}).done(function(data){
@@ -124,7 +125,8 @@ $(document).ready(function(){
 	$body.on('click','div#myModalSendReport .send-report-email-trigger', function(){
 		acta_id = $('div#myModalSendReport').attr('acta_id');
 		email_destino = $('div#myModalSendReport #email-destino').val();
-		acta.sendReport(acta_id, email_destino);
+		mensaje = $('div#myModalSendReport #txt-mensaje').val();
+		acta.sendReport(acta_id, email_destino, mensaje);
 	});
 	
 	/*SCRIPT PARA ELIMINAR FOTOS IPP -  EXISTENTES*/
@@ -229,10 +231,31 @@ $(document).ready(function(){
 				  $('#txt-apellido-nombre').val('');
 				  $('#txt-apellido-nombre').parent().removeClass('control-group has-error');
 				  $('#myModalAddTrabajador').attr('index-button',index_current);
+				  $('#myModalAddTrabajador').attr('data-type','t');
 			  });
 		});
 	}
 	loadSendIndexButtonToModalTrabajador();
+
+/***** ENVIAR EL INDEX DEL BOTON CREAR TRABAJADOR AL MODAL ******/
+	function loadSendIndexButtonToModalResponsable(){
+		$.each($('.btn-open-modal-responsable'), function(index) {
+			index_current = index + 1;
+			cadena_name_id = "#btn-open-create-resp"+ index_current;
+			  
+			  $(cadena_name_id).click(function() {
+				  nombre_id_input_button = $(this).attr('id');
+				  longitud = nombre_id_input_button.length;
+				  index_current = nombre_id_input_button.substring(longitud-1);
+
+				  $('#txt-apellido-nombre').val('');
+				  $('#txt-apellido-nombre').parent().removeClass('control-group has-error');
+				  $('#myModalAddTrabajador').attr('index-button',index_current);
+				  $('#myModalAddTrabajador').attr('data-type','r');
+			  });
+		});
+	}
+	loadSendIndexButtonToModalResponsable();
 
 /******* ENVIAR INDEX DEL BOTON CREAR VEHICULO AL MODAL *******/
 	function loadSendIndexButtonToModalVehiculo(){
@@ -308,6 +331,7 @@ $(document).ready(function(){
 	        success: function(html)
 	         {
 	       	 $('#table-as-inf tr:last').after(html);
+	       	 loadAActosSub();
 	       	 loadANIncumplicas();
 	         }
 		 });
@@ -324,6 +348,7 @@ $(document).ready(function(){
 	        success: function(html)
 	         {
 	       	 $('#table-cs-inf tr:last').after(html);
+	       	 loadACondSub();
 	       	 loadANIncumplicas();
 	         }
 		 });
@@ -350,6 +375,16 @@ $(document).ready(function(){
 		  allowClear: true
 		});
 	
+	$(".cbo-acta-refer-select2").select2({
+		  placeholder: "Seleccione acta",
+		  allowClear: true
+		});
+	
+	$(".cbo-uunn-select2").select2({
+		  placeholder: "Seleccione UUNN",
+		  allowClear: true
+		});
+	
 	function loadATrabajador(){
 	$(".cbo-trabajadores-select2").select2({
 		  placeholder: "Seleccione un trabajador",
@@ -358,6 +393,24 @@ $(document).ready(function(){
 	});
 	}
 	loadATrabajador();
+	
+	function loadAActosSub(){
+		$(".cbo-tipo-act-sub-select2").select2({
+			  placeholder: "Acto Subestandar",
+			  allowClear: true,
+			  width: '100%'
+		});
+	}
+	loadAActosSub();
+	
+	function loadACondSub(){
+		$(".cbo-tipo-cond-sub-select2").select2({
+			  placeholder: "Condici\u00F3n Subestandar",
+			  allowClear: true,
+			  width: '100%'
+		});
+	}
+	loadACondSub();
 	
 	$(".cbo-responsable-select2").select2({
 			  placeholder: "Seleccione responsable",
@@ -403,12 +456,6 @@ $(document).ready(function(){
 		});
 	}
 	loadAPlaca();
-	
-	$(".cbo-tipo-act-sub-select2").select2({
-		  placeholder: "Actos Subestandar",
-		  allowClear: true,
-		  width: '100%'
-	});
 	
 	function loadEachTrabajador(){
 		$.each($('.cbo-trabajadores-select2'), function(index) {

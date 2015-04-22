@@ -29,6 +29,14 @@ $(document).ready(function(){
 		}
 	});
 
+	$("#chbox-vigente").click(function() {  
+        if($("#chbox-vigente").is(':checked')) {  
+        	$(this).val(1);
+        } else {  
+        	$(this).val(0);
+        }  
+    });		
+
 })
 </script>
 <div class="row">
@@ -149,10 +157,25 @@ $(document).ready(function(){
 					<?php } ?>
 				</select>
 			</div>
-			
-			
 		</div>
 		<p>
+		
+		<div class="row">
+			<div class="span3 col-md-3 col-sm-6 col-xs-6">
+				<?php echo "<label  id='lblSexo'>".utf8_encode(__('Examen Médico'))."</label>"; ?>
+				<?php echo $this->Form->input('examen_medico', array('div' => false, 'label' => false, 'class'=> 'txtExaMedico form-control','id' =>'txt-exa-medico','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+			</div>
+			<div class="span3 col-md-3 col-sm-6 col-xs-6">
+				<label><?php echo utf8_encode(__('N° de Poliza')); ?> </label>
+				<?php echo $this->Form->input('nro_poliza', array('div' => false, 'label' => false, 'class'=> 'txtNroPoliza form-control','id' =>'txt-nro-poliza','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+			</div>
+			<div class="span3 col-md-3 col-sm-6 col-xs-6">
+				<label><?php echo __('Poliza Videgente'); ?> </label><br>
+				<input name="data[Trabajadore][poliza_vigente]" type="checkbox" value="<?php if(isset($obj_trabajador)){ echo ($obj_trabajador->getAttr('poliza_vigente') == 1)? "1":"0";}else{echo "0";} ?>" id="chbox-vigente" <?php if(isset($obj_trabajador)){ echo ($obj_trabajador->getAttr('poliza_vigente') == '1')? 'checked':'';}else{echo "";} ?>>
+			</div>
+		</div>
+		<p>
+		
 		<div class="row">
 			<?php
 			if(isset($obj_trabajador) || isset($trabajador_id)){
@@ -308,6 +331,7 @@ $(document).ready(function(){
 			</div>
 			
 		</div>
+		<p>
 		<div class="row">
 			<div class="span3 col-md-3 col-sm-6 col-xs-6">
 				<?php echo "<label>".utf8_encode(__('Teléfono/Celular'))."</label>"; ?>

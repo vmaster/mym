@@ -61,7 +61,7 @@ $codigo .="<table class='tg' width='100%'>
     <td class='tg-e3zv'>Lugar:</td>
     <td class='tg-031e'>".$obj_acta->getAttr('lugar')."</td>
     <td class='tg-e3zv'>UU.NN:</td>
-    <td class='tg-031e'>".$obj_acta->getAttr('uunn')."</td>
+    <td class='tg-031e'>".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</td>
   </tr>
   <tr>
     <td class='tg-e3zv'>Responsable:</td>
@@ -92,15 +92,28 @@ $codigo.= "
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_epp'))."</td>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
+		   <td>
+		   	<table class='tg' width='100%'>
+		    ";
+			$cont= 0;
+			$codigo.="<tr>";
 			foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
-				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' width='200px' height='200px'>&nbsp;";
-				if($key==3){
-					$codigo.="<br>";
+				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+						<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' width='200px' height='200px'>
+								<br>".$obj_foto_ipp->getAttr('observacion')."</td>";
+				if($cont == 2){
+					$codigo.="</tr>";
+					$cont = 0;
+					$codigo.="<tr>";
 				}
+				$cont++;
 			}
-$codigo.= "</td>
-		  </tr>
+			
+			
+$codigo.= "	</tr>
+			</table>
+		</td>
+		</tr>
 		</table><br>";
 $codigo.= "
 		<table class='tg' width='100%'>
@@ -111,15 +124,26 @@ $codigo.= "
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_se_de'))."</td>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
+		    <td>
+		   	<table class='tg' width='100%'>
+		    ";
+			$cont= 0;
+			$codigo.="<tr>";
 			foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
-				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='200px' height='200px'>&nbsp;";
-				if($key==3){
-					$codigo.="<br>";
+				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='200px' height='200px'>
+							<br>".$obj_foto_sd->getAttr('observacion')."</td>";
+			if($cont == 2){
+					$codigo.="</tr>";
+					$cont = 0;
+					$codigo.="<tr>";
 				}
+				$cont++;
 			}
-$codigo.= "</td>
-		  </tr>
+$codigo.= "	</tr>
+			</table>
+		</td>
+		</tr>
 		</table><br>";
 
 $codigo.= "
@@ -131,15 +155,26 @@ $codigo.= "
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_um'))."</td>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
+		  	<td>
+		   	<table class='tg' width='100%'>
+		    ";
+			$cont= 0;
+			$codigo.="<tr>";
 			foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
-				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' width='200px' height='200px'>&nbsp;";
-				if($key==3){
-					$codigo.="<br>";
+				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+						  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' width='200px' height='200px'>
+						  <br>".$obj_foto_um->getAttr('observacion')."</td>";
+				if($cont == 2){
+					$codigo.="</tr>";
+					$cont = 0;
+					$codigo.="<tr>";
 				}
+				$cont++;
 			}
-$codigo.= "</td>
-		  </tr>
+$codigo.= "	</tr>
+			</table>
+		 </td>
+		</tr>
 		</table><br>";
 $codigo.= "
 		<table class='tg' width='100%'>
@@ -157,16 +192,27 @@ $codigo.= "
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_act_cond'))."</td>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e' style='vertical-align:middle; text-align:center;'>";
+		   	<td>
+		   	<table class='tg' width='100%'>
+		    ";
+			$cont= 0;
+			$codigo.="<tr>";
 			foreach($obj_acta->FotoAc as $key => $obj_foto_ac) {
-				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ac/thumbnail/".$obj_foto_ac->getAttr('file_name')."' width='200px' height='200px'>&nbsp;";
-				if($key==3){
-					$codigo.="<br>";
+				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ac/thumbnail/".$obj_foto_ac->getAttr('file_name')."' width='200px' height='200px'>
+							<br>".$obj_foto_ac->getAttr('observacion')."</td>";
+				if($cont == 2){
+					$codigo.="</tr>";
+					$cont = 0;
+					$codigo.="<tr>";
 				}
+				$cont++;
 			}
-$codigo.= "</td>
+$codigo.= "	</tr>
+			</table>
+		 </td>
 		  </tr>
-		</table>";
+		</table><br>";
 
 $codigo.="
 		<table class='tg' width='100%'>
@@ -193,7 +239,103 @@ $codigo.="
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_med'))."</td>
 		  </tr>
 		</table>
+		<br>
 		";
+
+$codigo.= "<table class='tg' width='100%'>
+		<thead>
+		<tr>
+		<th class='tg-e3zv' colspan=10 style='text-align: center;'>".utf8_encode('TRABAJADORES SUPERVISADOS').
+		"</th>
+				</tr>
+				<tr>
+				<th>".utf8_encode('N°')."</th>
+				<th>Nombre del trabajador</th>
+				<th>Cargo</th>
+				<th colspan=7 style='vertical-align: middle; text-align: center;'>Normas Incumplidas</th>
+				</tr>
+				</thead>
+		<tbody>";
+
+foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
+	$codigo.= "<tr>";
+	$codigo.= "<td>".($key+1)."</td>";
+	$codigo.= "<td style='width:28%;'>";
+	$codigo.= $obj_imp_prot_personal->Trabajadore->getAttr('apellido_nombre');
+	$codigo.= "</td>";
+
+	$codigo.= "<td>";
+	$codigo.= $obj_imp_prot_personal->Actividade->getAttr('descripcion');
+	$codigo.= "</td>";
+
+	$count_obj_ipp_ni = count($obj_imp_prot_personal->IppNormasIncumplida);
+	if($count_obj_ipp_ni > 0){
+		foreach($obj_imp_prot_personal->IppNormasIncumplida as $k =>$v){
+			$codigo.= "<td style='width:7%;'>";
+			$codigo.= $v->Codigo->getAttr('codigo');
+			$codigo.= "</td>";
+		}
+			
+		for($j= ($k+2); $j <=7; $j++){
+			$codigo.= "<td style='width:7%; text-align: center;'>-";
+			$codigo.= "</td>";
+		}
+			
+	}
+}
+$codigo.= "</tr>";
+$codigo.= "</tbody>";
+$codigo.= "</table><br>";
+
+$codigo.= "<table class='tg' width='100%'>
+		<thead>
+		<tr>
+		<th class='tg-e3zv' colspan=11 style='text-align: center;'>".utf8_encode('VEHICULOS SUPERVISADOS').
+									"</th>
+								</tr>
+								<tr>
+									<th style='width: 6%;'
+										style='vertical-align:middle; text-align: center;'>".utf8_encode('N° T').
+									"</th>
+									<th>".utf8_encode('N° de Placa')."</th>
+									<th>".utf8_encode('Tipo Vehículo')."</th>
+									<th colspan=8
+										style='vertical-align: middle; text-align: center;'>Normas
+										Incumplidas</th>
+								</tr>
+							</thead>
+							<tbody>";
+							
+							foreach ($obj_acta->UnidadesMovile as $key2 => $obj_uni_movil){
+								$codigo.= "<tr>";
+								$codigo.= "<td>".($key2+1)."</td>";
+								$codigo.= "<td style='width:14%;'>";
+								$codigo.= $obj_uni_movil->Vehiculo->getAttr('nro_placa');
+								$codigo.= "</td>";
+							
+								$codigo.= "<td>";
+								$codigo.= $obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion');
+								$codigo.= "</td>";
+							
+								$count_obj_um_ni = count($obj_uni_movil->UmNormasIncumplida);
+								if($count_obj_um_ni > 0){
+									foreach($obj_uni_movil->UmNormasIncumplida as $k =>$v){
+										$codigo.= "<td style='width:7%;'>";
+										$codigo.= $v->Codigo->getAttr('codigo');
+										$codigo.= "</td>";
+									}
+										
+									for($j= ($k+2); $j <=8; $j++){
+										$codigo.= "<td style='width:7%; text-align: center;'>-";
+										$codigo.= "</td>";
+									}
+										
+								}
+							}
+							$codigo.= "</tr>";
+							$codigo.= "</tbody>";
+							$codigo.= "</table>";
+
 
 //echo $codigo; exit();
 $dompdf = new DOMPDF();

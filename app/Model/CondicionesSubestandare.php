@@ -17,6 +17,13 @@ App::uses('AppModel','Model');
     				'conditions' => '',
     				'fields' => '',
     				'order' => ''
+    		),
+    		'CondicionesSubestandaresTipo' => array(
+    				'className' => 'CondicionesSubestandaresTipo',
+    				'foreignKey' => 'cond_sub_tipo_id',
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => ''
     		)
     );
     

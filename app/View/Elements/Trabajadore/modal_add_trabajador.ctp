@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModalAddTrabajador" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" index-button="">
+<div class="modal fade" id="myModalAddTrabajador" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" index-button="" data-type="">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -16,6 +16,16 @@
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<?php //echo $this->Form->input('apellido_nombre', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'txt-apellido-nombre')); ?>
 									<input name="data[Trabajadore][apellido_nombre]" class= 'form-control' id ='txt-apellido-nombre'/>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="span3 col-md-4 col-sm-6 col-xs-6">
+									<label><?php echo utf8_encode(__('DNI:')); ?> </label>
+								</div>
+								<div class="span3 col-md-4 col-sm-6 col-xs-6">
+									<?php //echo $this->Form->input('apellido_nombre', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'txt-apellido-nombre')); ?>
+									<input name="data[Trabajadore][nro_documento]" class= 'form-control' id ='txt-nro-documento' maxlength='8' />
 								</div>
 							</div>
 							<br>
@@ -43,7 +53,7 @@
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancelar'); ?></button>
-					<button class="btn btn-danger save-trabajador-modal-trigger"><?php echo __('Enviar'); ?></button>
+					<button class="btn btn-danger save-trabajador-modal-trigger"><?php echo __('Guardar'); ?></button>
 				</div>
 				
 			</div>
