@@ -19,7 +19,7 @@ $(document).ready(function() {
 		});
 } );
 </script>
-<div class="well" style="width: 50%;">
+<div class="well" style="width: 80%;">
 	<?php	
 	if(empty($list_sep_emp)){
 		echo __('No hay datos estad&iacuter;sticos');

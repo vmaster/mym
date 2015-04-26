@@ -143,7 +143,7 @@ function visitorData (valores) {
 				name="txtBuscarFecFinRep3" id="txtBuscarFecFinRep3"
 				class="form-control" value="<?php echo date('d-m-Y'); ?>" placeholder="dd-mm-aaaa">
 		</div>
-		<div class="col-md-3 col-sm-6 col-xs-6">
+		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-report3"><?php echo __('Consultar');?></button>
 		</div>
 	</div>
