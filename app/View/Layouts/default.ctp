@@ -56,6 +56,14 @@
 	<noscript><link rel="stylesheet" href="<?= ENV_WEBROOT_FULL_URL; ?>lib/file.upload/css/jquery.fileupload-noscript.css"></noscript>
 	<noscript><link rel="stylesheet" href="<?= ENV_WEBROOT_FULL_URL; ?>lib/file.upload/css/jquery.fileupload-ui-noscript.css"></noscript>
 	<!-- END FILE UPLOAD -->
+	
+	
+	<!-- STYLE DATA-TABLE  -->	
+	<link rel="stylesheet" type="text/css" href="<?= ENV_WEBROOT_FULL_URL; ?>lib/data.tables-1.10.6/media/css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="<?= ENV_WEBROOT_FULL_URL; ?>lib/data.tables-1.10.6/extensions/TableTools/css/dataTables.tableTools.css">
+	<link rel="stylesheet" type="text/css" href="<?= ENV_WEBROOT_FULL_URL; ?>lib/data.tables-1.10.6/resources/syntax/shCore.css">
+
+	<!-- END STYLE DATA-TABLE -->
 </head>
 <body>
 	<div id="wrapper">
@@ -98,7 +106,7 @@
     <!-- CUSTOM SCRIPTS -->
     <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/custom.js"></script>
     
-    <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/dataTables/jquery.dataTables.js"></script>
+    <!-- <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/dataTables/jquery.dataTables.js"></script> -->
 
     <!-- FILE:UPLOAD -->
     <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
@@ -144,7 +152,13 @@
 	<!-- HIGHCHART -->
 	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/highcharts-4.1.5/highcharts.js"></script>
 	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/highcharts-4.1.5/modules/exporting.js"></script>
+	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/highcharts-4.1.5/modules/drilldown.js"></script>
 	
+	<!-- DATA TABLE -->	
+	<script type="text/javascript" language="javascript" src="<?= ENV_WEBROOT_FULL_URL; ?>lib/data.tables-1.10.6/media/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" language="javascript" src="<?= ENV_WEBROOT_FULL_URL; ?>lib/data.tables-1.10.6/extensions/TableTools/js/dataTables.tableTools.js"></script>
+	<script type="text/javascript" language="javascript" src="<?= ENV_WEBROOT_FULL_URL; ?>lib/data.tables-1.10.6/resources/syntax/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="<?= ENV_WEBROOT_FULL_URL; ?>lib/data.tables-1.10.6/resources/demo.js"></script>
 	
 </body>
 </html>

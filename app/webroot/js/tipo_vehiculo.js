@@ -41,6 +41,31 @@ $(document).ready(function(){
 					alertify.error(value[0]);
 				}
 			});	
+		},
+		
+		saveTipoVeMantenimiento: function(){
+			$form = $('.btn-crear-tipo-vehiculo-trigger').parents('form').eq(0);
+			$.ajax({
+				url: $form.attr('action'),
+				data: $form.serialize(),
+				dataType: 'json',
+				type: 'post'
+			}).done(function(data){
+				if(data.success==true){
+					$('#add_edit_tipo_vehiculo').hide();
+					$('#conteiner_all_rows').load(env_webroot_script + escape('tipo_vehiculos/find_tipo_vehiculos/1/'+null+'/'+null+'/'+''+'/'+''),function(){
+					});
+					alertify.success(data.msg);
+				}else{
+					$.each(data.validation, function( key, value ) {
+						alertify.error(value[0]);
+						$('[name="data[TipoVehiculo]['+key+']"]').parent().addClass('control-group has-error');
+						$('[name="data[TipoVehiculo]['+key+']"]').change(function() {
+							$('[name="data[TipoVehiculo]['+key+']"]').parent().removeClass('control-group has-error');
+						});
+					});
+				}
+			});
 		}
 	}
 	
@@ -58,29 +83,15 @@ $(document).ready(function(){
 	
 	$body.off('click','.btn-crear-tipo-vehiculo-trigger');
 	$body.on('click','.btn-crear-tipo-vehiculo-trigger',function(){
-		cambio=false;
-		$form = $(this).parents('form').eq(0);
-		$.ajax({
-			url: $form.attr('action'),
-			data: $form.serialize(),
-			dataType: 'json',
-			type: 'post'
-		}).done(function(data){
-			if(data.success==true){
-				$('#add_edit_tipo_vehiculo').hide();
-				$('#conteiner_all_rows').load(env_webroot_script + escape('tipo_vehiculos/find_tipo_vehiculos/1/'+null+'/'+null+'/'+''+'/'+''),function(){
-				});
-				alertify.success(data.msg);
-			}else{
-				$.each(data.validation, function( key, value ) {
-					alertify.error(value[0]);
-					$('[name="data[TipoVehiculo]['+key+']"]').parent().addClass('control-group has-error');
-					$('[name="data[TipoVehiculo]['+key+']"]').change(function() {
-						$('[name="data[TipoVehiculo]['+key+']"]').parent().removeClass('control-group has-error');
-					});
-				});
-			}
-		});
+		tipovehiculo.saveTipoVeMantenimiento();
+	});
+	
+	$body.off('keypress','div#div-crear-tipo-vehiculo #txtTipoVehiculoMant');
+	$body.on('keypress','div#div-crear-tipo-vehiculo #txtTipoVehiculoMant',function(e){
+		if(e.which === 13) {
+			tipovehiculo.saveTipoVeMantenimiento();
+			return false;
+		}
 	});
 
 	$body.off('click','div#tipo_vehiculo .edit-tipo-vehiculo-trigger');

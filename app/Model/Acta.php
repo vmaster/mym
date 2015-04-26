@@ -320,7 +320,7 @@ App::uses('AppModel','Model');
     
     /* CONSULTAS PARA LOS REPORTES */
     
-    public function listSupervisionByEmpresa(/*$order_by='Actividade.created', $search_actividad='',$order='DESC', $start=0, $per_page=10*/) {
+    public function listSupervisionByEmpresa($fec_inicio, $fec_fin) {
     	$arr_obj_sup_emp = $this->find('all',array(
     			'fields' => array('EmpresaJoin.nombre, count(*) as Cantidad'),
     			'joins' => array(
@@ -333,12 +333,10 @@ App::uses('AppModel','Model');
     							)
     					)
     			),
-    			/*'conditions'=>array(
-    			 	
-    					//'Actividade.descripcion LIKE'=> '%'.$search_actividad.'%',
-    					//'Actividade.estado != ' => 0
-    			)/*,
-    	'order'=> array($order_by.' '.$order),*/
+    			'conditions'=>array(
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    			),
+    	/*'order'=> array($order_by.' '.$order),*/
     			'group'=> array('EmpresaJoin.nombre')
     	)
     	);
@@ -347,9 +345,10 @@ App::uses('AppModel','Model');
     	return $arr_obj_sup_emp;
     }
     
-    public function listTotalNormasByTrabajador(/*$order_by='Actividade.created', $search_actividad='',$order='DESC', $start=0, $per_page=10*/) {
-    	$arr_obj_sup_emp = $this->find('all',array(
-    			'fields' => array('EmpresaJoin.nombre, count(*) as Cantidad'),
+    
+    public function listDetalleSupervisionByEmpresa($fec_inicio, $fec_fin) {
+    	$arr_obj_det_sup_emp = $this->findObjects('all',array(
+    			/*'fields' => array('EmpresaJoin.nombre, Acta.fecha, Num'),*/
     			'joins' => array(
     					array(
     							'table' => 'empresas',
@@ -360,19 +359,362 @@ App::uses('AppModel','Model');
     							)
     					)
     			),
-    			/*'conditions'=>array(
-    			 	
-    					//'Actividade.descripcion LIKE'=> '%'.$search_actividad.'%',
-    					//'Actividade.estado != ' => 0
-    			)/*,
-    	'order'=> array($order_by.' '.$order),*/
-    			'group'=> array('EmpresaJoin.nombre')
+    			'conditions'=>array(
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    			),
+    			'order'=> array('EmpresaJoin.nombre')
+    			/*'group'=> array('EmpresaJoin.nombre')*/
     	)
     	);
     
     	//debug($arr_obj_sup_emp);exit();
-    	return $arr_obj_sup_emp;
+    	return $arr_obj_det_sup_emp;
     }
+    
+    
+    public function listSupervisionByUuNn($fec_inicio, $fec_fin) {
+    	$arr_obj_sup_uunn = $this->find('all',array(
+    			'fields' => array('UnidadesNegocioJoin.descripcion, count(*) as Cantidad'),
+    			'joins' => array(
+    					array(
+    							'table' => 'unidades_negocios',
+    							'alias' => 'UnidadesNegocioJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UnidadesNegocioJoin.id = Acta.uunn_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    			),
+    			/*'order'=> array($order_by.' '.$order),*/
+    			'group'=> array('UnidadesNegocioJoin.descripcion')
+    	)
+    	);
+    
+    	//debug($arr_obj_sup_emp);exit();
+    	return $arr_obj_sup_uunn;
+    }
+    
+    public function listDetalleSupervisionByUuNn($fec_inicio, $fec_fin) {
+    	$arr_obj_det_sup_uunn = $this->findObjects('all',array(
+    			'joins' => array(
+    					array(
+    							'table' => 'unidades_negocios',
+    							'alias' => 'UnidadesNegocioJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UnidadesNegocioJoin.id = Acta.uunn_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    			),
+    			'order'=> array('UnidadesNegocioJoin.descripcion'),
+    			//'group'=> array('UnidadesNegocioJoin.descripcion')
+    	)
+    	);
+    
+    	return $arr_obj_det_sup_uunn;
+    }
+    
+    
+    public function listNiByEmpresaTrabajador($fec_inicio, $fec_fin) {
+    	$arr_obj_ni_emp = $this->find('all',array(
+    			'fields' => array('EmpresasJoin.id, EmpresasJoin.nombre, count(*) as Cantidad'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresasJoin.id = Acta.empresa_id'
+    							)
+    					),
+    					array(
+    							'table' => 'imp_prot_personales',
+    							'alias' => 'ImpProtPersonalesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'ImpProtPersonalesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'ipp_normas_incumplidas',
+    							'alias' => 'IppNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'IppNormasIncumplidasJoin.ipp_id = ImpProtPersonalesJoin.id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    			),
+    			/*'order'=> array($order_by.' '.$order),*/
+    			'group'=> array('EmpresasJoin.nombre')
+    	)
+    	);
+    	return $arr_obj_ni_emp;
+    }
+    
+    public function listNiByTrabajador($empresa_id, $fec_inicio, $fec_fin) {
+    	$arr_obj_ni_tra = $this->find('all',array(
+    			'fields' => array('TrabajadorJoin.apellido_nombre, count(*) as Cantidad'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresasJoin.id = Acta.empresa_id'
+    							)
+    					),
+    					array(
+    							'table' => 'imp_prot_personales',
+    							'alias' => 'ImpProtPersonalesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'ImpProtPersonalesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'ipp_normas_incumplidas',
+    							'alias' => 'IppNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'IppNormasIncumplidasJoin.ipp_id = ImpProtPersonalesJoin.id'
+    							)
+    					),
+    					array(
+    							'table' => 'trabajadores',
+    							'alias' => 'TrabajadorJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'TrabajadorJoin.id = ImpProtPersonalesJoin.trabajador_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'AND' => array(
+    							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'Acta.empresa_id'=> $empresa_id
+    							)
+    			),
+    			/*'order'=> array($order_by.' '.$order),*/
+    			'group'=> array('TrabajadorJoin.apellido_nombre')
+    	)
+    	);
+    	return $arr_obj_ni_tra;
+    }
+    
+    public function listDetalleNiByEmpresaTrabajador($fec_inicio, $fec_fin) {
+    	$arr_obj_ni_emp = $this->find('all',array(
+    			'fields' => array('EmpresasJoin.nombre, TrabajadorJoin.apellido_nombre, CodigosJoin.codigo, Acta.num_informe, Acta.fecha'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresasJoin.id = Acta.empresa_id'
+    							)
+    					),
+    					array(
+    							'table' => 'imp_prot_personales',
+    							'alias' => 'ImpProtPersonalesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'ImpProtPersonalesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'trabajadores',
+    							'alias' => 'TrabajadorJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'TrabajadorJoin.id = ImpProtPersonalesJoin.trabajador_id'
+    							)
+    					),
+    					array(
+    							'table' => 'ipp_normas_incumplidas',
+    							'alias' => 'IppNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'IppNormasIncumplidasJoin.ipp_id = ImpProtPersonalesJoin.id'
+    							)
+    					),
+    					array(
+    							'table' => 'codigos',
+    							'alias' => 'CodigosJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'CodigosJoin.id = IppNormasIncumplidasJoin.codigo_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    			)
+    			/*'order'=> array($order_by.' '.$order),*/
+    			//'group'=> array('EmpresasJoin.nombre')
+    	)
+    	);
+    	return $arr_obj_ni_emp;
+    }
+    
+    
+    
+    
+    
+    
+    public function listNiByEmpresaVehiculo($fec_inicio, $fec_fin) {
+    	$arr_obj_ni_emp = $this->find('all',array(
+    			'fields' => array('EmpresasJoin.id, EmpresasJoin.nombre, count(*) as Cantidad'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresasJoin.id = Acta.empresa_id'
+    							)
+    					),
+    					array(
+    							'table' => 'unidades_moviles',
+    							'alias' => 'UnidadesMovilesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UnidadesMovilesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'um_normas_incumplidas',
+    							'alias' => 'UmNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UmNormasIncumplidasJoin.um_id = UnidadesMovilesJoin.id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    			),
+    			/*'order'=> array($order_by.' '.$order),*/
+    			'group'=> array('EmpresasJoin.nombre')
+    	)
+    	);
+    	return $arr_obj_ni_emp;
+    }
+    
+    public function listNiByVehiculo($empresa_id, $fec_inicio, $fec_fin) {
+    	$arr_obj_ni_tra = $this->find('all',array(
+    			'fields' => array('VehiculoJoin.nro_placa, count(*) as Cantidad'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresasJoin.id = Acta.empresa_id'
+    							)
+    					),
+    					array(
+    							'table' => 'unidades_moviles',
+    							'alias' => 'UnidadesMovilesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UnidadesMovilesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'um_normas_incumplidas',
+    							'alias' => 'UmNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UmNormasIncumplidasJoin.um_id = UnidadesMovilesJoin.id'
+    							)
+    					),
+    					array(
+    							'table' => 'vehiculos',
+    							'alias' => 'VehiculoJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'VehiculoJoin.id = UnidadesMovilesJoin.vehiculo_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'AND' => array(
+    							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'Acta.empresa_id'=> $empresa_id
+    					)
+    			),
+    			/*'order'=> array($order_by.' '.$order),*/
+    			'group'=> array('VehiculoJoin.nro_placa')
+    	)
+    	);
+    	return $arr_obj_ni_tra;
+    }
+    
+    public function listDetalleNiByEmpresaVehiculo($fec_inicio, $fec_fin) {
+    	$arr_obj_ni_emp = $this->find('all',array(
+    			'fields' => array('EmpresasJoin.nombre, VehiculosJoin.nro_placa, CodigosJoin.codigo, Acta.num_informe, Acta.fecha'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresasJoin.id = Acta.empresa_id'
+    							)
+    					),
+    					array(
+    							'table' => 'unidades_moviles',
+    							'alias' => 'UnidadesMovilesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UnidadesMovilesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'vehiculos',
+    							'alias' => 'VehiculosJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'VehiculosJoin.id = UnidadesMovilesJoin.vehiculo_id'
+    							)
+    					),
+    					array(
+    							'table' => 'um_normas_incumplidas',
+    							'alias' => 'UmNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UmNormasIncumplidasJoin.um_id = UnidadesMovilesJoin.id'
+    							)
+    					),
+    					array(
+    							'table' => 'codigos',
+    							'alias' => 'CodigosJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'CodigosJoin.id = UmNormasIncumplidasJoin.codigo_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    			)
+    			/*'order'=> array($order_by.' '.$order),*/
+    			//'group'=> array('EmpresasJoin.nombre')
+    	)
+    	);
+    	return $arr_obj_ni_emp;
+    }
+    
+ 
     
     
   }

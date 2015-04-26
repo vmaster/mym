@@ -29,6 +29,31 @@ $(document).ready(function(){
 					alertify.error(value[0]);
 				}
 			});	
+		},
+		
+		saveUuNnMantenimiento: function(){
+			$form = $('.btn-crear-unidades-negocio-trigger').parents('form').eq(0);
+			$.ajax({
+				url: $form.attr('action'),
+				data: $form.serialize(),
+				dataType: 'json',
+				type: 'post'
+			}).done(function(data){
+				if(data.success==true){
+					$('#add_edit_unidades_negocio').hide();
+					$('#conteiner_all_rows').load(env_webroot_script + escape('unidades_negocios/find_uunns/1/'+null+'/'+null+'/'+''+'/'+''),function(){
+					});
+					alertify.success(data.msg);
+				}else{
+					$.each(data.validation, function( key, value ) {
+						alertify.error(value[0]);
+						$('[name="data[UnidadesNegocio]['+key+']"]').parent().addClass('control-group has-error');
+						$('[name="data[UnidadesNegocio]['+key+']"]').change(function() {
+							$('[name="data[UnidadesNegocio]['+key+']"]').parent().removeClass('control-group has-error');
+						});
+					});
+				}
+			});
 		}
 	}
 	
@@ -46,29 +71,15 @@ $(document).ready(function(){
 	
 	$body.off('click','.btn-crear-unidades-negocio-trigger');
 	$body.on('click','.btn-crear-unidades-negocio-trigger',function(){
-		cambio=false;
-		$form = $(this).parents('form').eq(0);
-		$.ajax({
-			url: $form.attr('action'),
-			data: $form.serialize(),
-			dataType: 'json',
-			type: 'post'
-		}).done(function(data){
-			if(data.success==true){
-				$('#add_edit_unidades_negocio').hide();
-				$('#conteiner_all_rows').load(env_webroot_script + escape('unidades_negocios/find_uunns/1/'+null+'/'+null+'/'+''+'/'+''),function(){
-				});
-				alertify.success(data.msg);
-			}else{
-				$.each(data.validation, function( key, value ) {
-					alertify.error(value[0]);
-					$('[name="data[UnidadesNegocio]['+key+']"]').parent().addClass('control-group has-error');
-					$('[name="data[UnidadesNegocio]['+key+']"]').change(function() {
-						$('[name="data[UnidadesNegocio]['+key+']"]').parent().removeClass('control-group has-error');
-					});
-				});
-			}
-		});
+		unidades_negocio.saveUuNnMantenimiento();
+	});
+	
+	$body.off('keypress','div#div-crear-unidades-negocio #txtUuNnMant');
+	$body.on('keypress','div#div-crear-unidades-negocio #txtUuNnMant',function(e){
+		if(e.which === 13) {
+			unidades_negocio.saveUuNnMantenimiento();
+			return false;
+		}
 	});
 
 	$body.off('click','div#unidades_negocio .edit-unidades-negocio-trigger');

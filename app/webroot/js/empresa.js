@@ -11,17 +11,7 @@ $(document).ready(function(){
 			
 			$('div#empresa #add_edit_empresa_container').unbind();
 			$('div#empresa #add_edit_empresa_container').load(env_webroot_script + 'empresas/add_edit_empresa/'+empresa_id,function(){
-				
-				/*Global.setPlaces('EducationPlace','education');
-				$(".icon-search-education-place").click(function (e) {
-					$('#EducationPlaceEdit').val('');
-					$('#EducationPlaceId').val('');				
-					$('.row-education-place').toggle();
-					$('#EducationPlaceEdit').focus();
-				});
-				
-				var targetOffset =$('#add_edit_persona_container').offset().top-130; 
-				$('html,body').animate({scrollTop: targetOffset}, 700);*/
+
 			});
 		},
 		
@@ -43,7 +33,32 @@ $(document).ready(function(){
 			});	
 		},
 		
-		saveEmpresa: function(){
+		saveEmpresaMantenimiento: function(){
+			$form = $('.btn_crear_empresa_trigger').parents('form').eq(0);
+			$.ajax({
+				url: $form.attr('action'),
+				data: $form.serialize(),
+				dataType: 'json',
+				type: 'post'
+			}).done(function(data){
+				if(data.success==true){
+					$('#add_edit_empresa').hide();
+					$('#conteiner_all_rows').load(env_webroot_script + escape('empresas/find_empresas/1/'+null+'/'+null+'/'+''+'/'+''),function(){
+					});
+					alertify.success(data.msg);
+				}else{
+					$.each(data.validation, function( key, value ) {
+						alertify.error(value[0]);
+						$('[name="data[Empresa]['+key+']"]').parent().addClass('control-group has-error');
+						$('[name="data[Empresa]['+key+']"]').change(function() {
+							$('[name="data[Empresa]['+key+']"]').parent().removeClass('control-group has-error');
+						});
+					});
+				}
+			});
+		},
+		
+		saveEmpresaModal: function(){
 			$form = $('form#form_create_empresa').eq(0);
 			$.ajax({
 				url: env_webroot_script + 'empresas/add_empresa',
@@ -87,29 +102,15 @@ $(document).ready(function(){
 	
 	$body.off('click','.btn_crear_empresa_trigger');
 	$body.on('click','.btn_crear_empresa_trigger',function(){
-		cambio=false;
-		$form = $(this).parents('form').eq(0);
-		$.ajax({
-			url: $form.attr('action'),
-			data: $form.serialize(),
-			dataType: 'json',
-			type: 'post'
-		}).done(function(data){
-			if(data.success==true){
-				$('#add_edit_empresa').hide();
-				$('#conteiner_all_rows').load(env_webroot_script + escape('empresas/find_empresas/1/'+null+'/'+null+'/'+''+'/'+''),function(){
-				});
-				alertify.success(data.msg);
-			}else{
-				$.each(data.validation, function( key, value ) {
-					alertify.error(value[0]);
-					$('[name="data[Empresa]['+key+']"]').parent().addClass('control-group has-error');
-					$('[name="data[Empresa]['+key+']"]').change(function() {
-						$('[name="data[Empresa]['+key+']"]').parent().removeClass('control-group has-error');
-					});
-				});
-			}
-		});
+		empresa.saveEmpresaMantenimiento();
+	});
+	
+	$body.off('keypress','div#div-crear-empresa #txtEmpresaMant');
+	$body.on('keypress','div#div-crear-empresa #txtEmpresaMant',function(e){
+		if(e.which === 13) {
+			empresa.saveEmpresaMantenimiento();
+			return false;
+		}
 	});
 
 	$body.off('click','div#empresa .edit-empresa-trigger');
@@ -133,7 +134,7 @@ $(document).ready(function(){
 	/* CREAR EMPRESA DESDE UN MODAL (EN EL FORMULARIO CREAR INFORME) */
 	$('#txt-nombre-empresa').keypress(function(e) {
 		if(e.which == 13) {
-			empresa.saveEmpresa();
+			empresa.saveEmpresaModal();
 			return false;
 		}
 	});
@@ -146,7 +147,7 @@ $(document).ready(function(){
 	
 	$body.off('click','.save-empresa-modal-trigger');
 	$body.on('click','.save-empresa-modal-trigger',function(){
-		empresa.saveEmpresa();
+		empresa.saveEmpresaModal();
 	});
 	
 	

@@ -39,6 +39,31 @@ $(document).ready(function(){
 					alertify.error(value[0]);
 				}
 			});	
+		},
+		
+		saveActividad: function(){
+			$form = $('.btn_crear_actividad_trigger').parents('form').eq(0);
+			$.ajax({
+				url: $form.attr('action'),
+				data: $form.serialize(),
+				dataType: 'json',
+				type: 'post'
+			}).done(function(data){
+				if(data.success==true){
+					$('#add_edit_actividad').hide();
+					$('#conteiner_all_rows').load(env_webroot_script+ escape('actividades/find_actividades/'+null+'/'+null+'/'+''),function(){
+					});
+					alertify.success(data.msg);
+				}else{
+					$.each( data.validation, function( key, value ) {
+						alertify.error(value[0]);
+						$('[name="data[Actividade]['+key+']"]').parent().addClass('control-group has-error');
+						$('[name="data[Actividade]['+key+']"]').change(function() {
+							$('[name="data[Actividade]['+key+']"]').parent().removeClass('control-group has-error');
+						});
+					});
+				}
+			});
 		}
 	}
 	
@@ -56,29 +81,15 @@ $(document).ready(function(){
 	
 	$body.off('click','.btn_crear_actividad_trigger');
 	$body.on('click','.btn_crear_actividad_trigger',function(){
-		cambio=false;
-		$form = $(this).parents('form').eq(0);
-		$.ajax({
-			url: $form.attr('action'),
-			data: $form.serialize(),
-			dataType: 'json',
-			type: 'post'
-		}).done(function(data){
-			if(data.success==true){
-				$('#add_edit_actividad').hide();
-				$('#conteiner_all_rows').load(env_webroot_script+ escape('actividades/find_actividades/'+null+'/'+null+'/'+''),function(){
-				});
-				alertify.success(data.msg);
-			}else{
-				$.each( data.validation, function( key, value ) {
-					alertify.error(value[0]);
-					$('[name="data[Actividade]['+key+']"]').parent().addClass('control-group has-error');
-					$('[name="data[Actividade]['+key+']"]').change(function() {
-						$('[name="data[Actividade]['+key+']"]').parent().removeClass('control-group has-error');
-					});
-				});
-			}
-		});
+		actividad.saveActividad();
+	});
+	
+	$body.off('keypress','div#div-crear-actividad #txtDesActividad');
+	$body.on('keypress','div#div-crear-actividad #txtDesActividad',function(e){
+		if(e.which === 13) {
+			actividad.saveActividad();
+			return false;
+		}
 	});
 
 	$body.off('click','div#actividad .edit-actividad-trigger');
