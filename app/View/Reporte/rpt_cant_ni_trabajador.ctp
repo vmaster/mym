@@ -2,7 +2,8 @@
 function visitorData (valores) {
 	   $('#container-graf3').highcharts({
 	    chart: {
-	        type: 'column'
+	        type: 'column',
+	        marginTop: 80
 	    },
 	    lang: {
 	        drillUpText: '< Regresar a {series.name}'

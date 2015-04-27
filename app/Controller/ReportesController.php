@@ -275,6 +275,88 @@ class ReportesController extends AppController{
 	}
 	
 	
+	/* Normas incumplidas por empresa */
+	public function rpt_reincidencia_ni_empresa() {
+		$this->layout = "default";
+		$this->loadModel('Acta');
+		$this->loadModel('Empresa');
+		$list_all_empresas = $this->Empresa->listEmpresas();
+		$this->set(compact('list_all_empresas'));
+	}
+	
+	public function load_graf_reincidencia_ni_empresa($fec_inicio, $fec_fin, $empresa_id){
+		$this->loadModel('Acta');
+		$this->autoRender = false;
+	
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+	
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+		
+		if(isset($empresa_id)){
+			$empresa_id = $empresa_id;
+		}else{
+			$empresa_id = '';
+		}
+	
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+		$x = "";
+		$y = "";
+	
+		$list_ni_emp1 = $this->Acta->listNiByEmpresa1($fec_inicio_format, $fec_fin_format, $empresa_id);
+		foreach ($list_ni_emp1 as $key1 => $arr_emp1):
+		$x[] = $arr_emp1['CodigosJoin']['codigo'];
+		$y[] = intval($arr_emp1[0]['Cantidad']);
+		endforeach;
+		
+		$list_ni_emp2 = $this->Acta->listNiByEmpresa2($fec_inicio_format, $fec_fin_format, $empresa_id);
+		foreach ($list_ni_emp2 as $key2 => $arr_emp2):
+		$x[] = $arr_emp2['CodigosJoin']['codigo'];
+		$y[] = intval($arr_emp2[0]['Cantidad']);
+		endforeach;
+		return json_encode(array('success'=>true,'categoria'=>$x, 'name'=>'Empresa', 'data'=>$y));
+		//exit();
+	}
+	
+	public function load_list_reincidencia_ni_empresa($fec_inicio, $fec_fin, $empresa_id){
+		$this->layout = "ajax";
+		$this->loadModel('Acta');
+	
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+	
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+		
+		if(isset($empresa_id)){
+			$empresa_id = $empresa_id;
+		}else{
+			$empresa_id = '';
+		}
+	
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+	
+		$list_ni_emp1 = $this->Acta->listDetalleNiByEmpresa1($fec_inicio_format, $fec_fin_format, $empresa_id);
+		$list_ni_emp2 = $this->Acta->listDetalleNiByEmpresa2($fec_inicio_format, $fec_fin_format, $empresa_id);
+		$this->set(compact('list_ni_emp1','list_ni_emp2'));
+	}
+	
+	
 	function formatFecha($fecha){
 		if(isset($fecha)){
 			$fec_nac = $fecha;//12-12-1990
