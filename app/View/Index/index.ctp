@@ -127,54 +127,54 @@
         
                  <!-- /. ROW  -->
 <div class="row">
-	<div class="col-md-4 col-sm-6 col-xs-6">
+	<div class="col-md-3 col-sm-6 col-xs-6">
 		<div class="panel panel-back noti-box">
 			<span class="icon-box bg-color-red set-icon"> <i
 				class="fa fa-file-text-o"></i>
 			</span>
 			<div class="text-box">
-				<p class="main-text" style="font-size:20px !important"><?php echo (isset($count_informe_day))? $count_informe_day :''; ?> Nuevos</p>
-				<p class="text-muted">Informes</p>
+				<p class="main-text" style="font-size:22px !important"><?php echo (isset($count_informe))? $count_informe :''; ?> Informes</p>
+				<p class="text-muted" style="padding-top:10px !important">Registradas</p>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-4 col-sm-6 col-xs-6">
-		<div class="panel panel-back noti-box">
-			<span class="icon-box bg-color-green set-icon"> <i
-				class="fa fa-users"></i>
-			</span>
-			<div class="text-box">
-				<p class="main-text" style="font-size:20px !important"><?php echo (isset($count_usuarios))? $count_usuarios :''; ?> Users</p>
-				<p class="text-muted">Registrados</p>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-4 col-sm-6 col-xs-6">
+	<div class="col-md-3 col-sm-6 col-xs-6">
 		<div class="panel panel-back noti-box">
 			<span class="icon-box bg-color-blue set-icon"> <i
 				class="fa fa-building-o"></i>
 			</span>
 			<div class="text-box">
-				<p class="main-text" style="font-size:20px !important"><?php echo (isset($count_empresas))? $count_empresas :''; ?> Empresas</p>
-				<p class="text-muted">Registradas</p>
+				<p class="main-text" style="font-size:22px !important"><?php echo (isset($count_empresas))? $count_empresas :''; ?> Empresas</p>
+				<p class="text-muted" style="padding-top:10px !important">Registradas</p>
 			</div>
 		</div>
 	</div>
-	<!-- <div class="col-md-3 col-sm-6 col-xs-6">           
-			<div class="panel panel-back noti-box">
-                <span class="icon-box bg-color-brown set-icon">
-                    <i class="fa fa-rocket"></i>
-                </span>
-                <div class="text-box" >
-                    <p class="main-text">3 Orders</p>
-                    <p class="text-muted">Pending</p>
-                </div>
-             </div>
-		     </div>-->
+	<div class="col-md-3 col-sm-6 col-xs-6">
+		<div class="panel panel-back noti-box">
+			<span class="icon-box bg-color-green set-icon"> <i
+				class="fa fa-users"></i>
+			</span>
+			<div class="text-box">
+				<p class="main-text" style="font-size:22px !important"><?php echo (isset($count_trabajadores))? $count_trabajadores :''; ?> Trabajadores</p>
+				<p class="text-muted" style="padding-top:10px !important">Registradas</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-6 col-xs-6">           
+		<div class="panel panel-back noti-box">
+			<span class="icon-box bg-color-brown set-icon">
+            	<i class="fa fa-rocket"></i>
+			</span>
+			<div class="text-box" >
+				<p class="main-text" style="font-size:20px !important"><?php echo (isset($count_unidades_moviles))? $count_unidades_moviles :''; ?> Unidades Moviles</p>
+				<p class="text-muted" style="padding-top:10px !important">Registradas</p>
+        	</div>
+    	</div>
+	</div>
 </div>
 <!-- /. ROW  -->
                 <hr />                
-                <!-- <div class="row">
+                <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12">           
 			<div class="panel panel-back noti-box">
                 <span class="icon-box bg-color-blue">
@@ -210,7 +210,7 @@
               <div class="row">
                 <div class="col-xs-6"> <i class="fa fa-cloud fa-3x"></i> Newyork City </div>
                 <div class="col-xs-6">
-                  <div class="text-temp"> 10° </div>
+                  <div class="text-temp"> 10</div>
                 </div>
               </div>
             </div>
@@ -229,7 +229,7 @@
 			
     </div>
                         
-        </div>-->
+        </div>
                  <!-- /. ROW  -->
                 <div class="row"> 
                     

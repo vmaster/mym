@@ -460,6 +460,42 @@ App::uses('AppModel','Model');
     	return $arr_obj_ni_emp;
     }
     
+    public function listNiByEmpresaTrabajadorSinFecha() {
+    	$arr_obj_ni_emp = $this->find('first',array(
+    			'fields' => array('EmpresasJoin.id, EmpresasJoin.nombre, count(*) as Cantidad'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresasJoin.id = Acta.empresa_id'
+    							)
+    					),
+    					array(
+    							'table' => 'imp_prot_personales',
+    							'alias' => 'ImpProtPersonalesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'ImpProtPersonalesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'ipp_normas_incumplidas',
+    							'alias' => 'IppNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'IppNormasIncumplidasJoin.ipp_id = ImpProtPersonalesJoin.id'
+    							)
+    					)
+    			),
+    			'order'=> array(' Cantidad desc'),
+    			'group'=> array('EmpresasJoin.nombre')
+    	)
+    	);
+    	return $arr_obj_ni_emp;
+    }
+    
     public function listNiByTrabajador($empresa_id, $fec_inicio, $fec_fin) {
     	$arr_obj_ni_tra = $this->find('all',array(
     			'fields' => array('TrabajadorJoin.apellido_nombre, count(*) as Cantidad'),
