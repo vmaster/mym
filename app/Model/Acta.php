@@ -646,7 +646,7 @@ App::uses('AppModel','Model');
     }
     
     public function listNiByVehiculo($empresa_id, $fec_inicio, $fec_fin) {
-    	$arr_obj_ni_tra = $this->find('all',array(
+    	$arr_obj_ni_veh = $this->find('all',array(
     			'fields' => array('VehiculoJoin.nro_placa, count(*) as Cantidad'),
     			'joins' => array(
     					array(
@@ -692,7 +692,7 @@ App::uses('AppModel','Model');
     			'group'=> array('VehiculoJoin.nro_placa')
     	)
     	);
-    	return $arr_obj_ni_tra;
+    	return $arr_obj_ni_veh;
     }
     
     public function listDetalleNiByEmpresaVehiculo($fec_inicio, $fec_fin) {
@@ -750,7 +750,241 @@ App::uses('AppModel','Model');
     	return $arr_obj_ni_emp;
     }
     
- 
+    /* NORMAS INCUMPLIDAS POR EMPRESA */
+    public function listNiByEmpresa1($fec_inicio, $fec_fin, $empresa_id) {
+    	$arr_obj_ni_emp1 = $this->find('all',array(
+    			'fields' => array('IppNormasIncumplidasJoin.codigo_id, CodigosJoin.codigo, count(*) as Cantidad'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresasJoin.id = Acta.empresa_id'
+    							)
+    					),
+    					array(
+    							'table' => 'imp_prot_personales',
+    							'alias' => 'ImpProtPersonalesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'ImpProtPersonalesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'trabajadores',
+    							'alias' => 'TrabajadorJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'TrabajadorJoin.id = ImpProtPersonalesJoin.trabajador_id'
+    							)
+    					),
+    					array(
+    							'table' => 'ipp_normas_incumplidas',
+    							'alias' => 'IppNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'IppNormasIncumplidasJoin.ipp_id = ImpProtPersonalesJoin.id'
+    							)
+    					),
+    					array(
+    							'table' => 'codigos',
+    							'alias' => 'CodigosJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'CodigosJoin.id = IppNormasIncumplidasJoin.codigo_id',
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'AND' => array(
+    							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'Acta.empresa_id' => $empresa_id
+    					)
+    			),
+    			'order'=> array('Cantidad DESC'),
+    			'group'=> array('IppNormasIncumplidasJoin.codigo_id')
+    	)
+    	);
+    
+    	//debug($arr_obj_sup_emp);exit();
+    	return $arr_obj_ni_emp1;
+    }
+    
+    public function listNiByEmpresa2($fec_inicio, $fec_fin, $empresa_id) {
+    	$arr_obj_ni_emp2 = $this->find('all',array(
+    			'fields' => array('CodigosJoin.codigo, count(*) as Cantidad'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresasJoin.id = Acta.empresa_id'
+    							)
+    					),
+    					array(
+    							'table' => 'unidades_moviles',
+    							'alias' => 'UnidadesMovilesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UnidadesMovilesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'vehiculos',
+    							'alias' => 'VehiculosJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'VehiculosJoin.id = UnidadesMovilesJoin.vehiculo_id'
+    							)
+    					),
+    					array(
+    							'table' => 'um_normas_incumplidas',
+    							'alias' => 'UmNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UmNormasIncumplidasJoin.um_id = UnidadesMovilesJoin.id'
+    							)
+    					),
+    					array(
+    							'table' => 'codigos',
+    							'alias' => 'CodigosJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'CodigosJoin.id = UmNormasIncumplidasJoin.codigo_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'AND' => array(
+    							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'Acta.empresa_id' => $empresa_id
+    					)
+    			),
+    			'order'=> array('Cantidad DESC'),
+    			'group'=> array('CodigosJoin.codigo')
+    	)
+    	);
+    
+    	return $arr_obj_ni_emp2;
+    }
+    
+    public function listDetalleNiByEmpresa1($fec_inicio, $fec_fin, $empresa_id) {
+    	$arr_obj_det_ni_emp = $this->find('all',array(
+    			'fields' => array('TrabajadorJoin.apellido_nombre, CodigosJoin.codigo, Acta.num_informe, Acta.fecha'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresasJoin.id = Acta.empresa_id'
+    							)
+    					),
+    					array(
+    							'table' => 'imp_prot_personales',
+    							'alias' => 'ImpProtPersonalesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'ImpProtPersonalesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'trabajadores',
+    							'alias' => 'TrabajadorJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'TrabajadorJoin.id = ImpProtPersonalesJoin.trabajador_id'
+    							)
+    					),
+    					array(
+    							'table' => 'ipp_normas_incumplidas',
+    							'alias' => 'IppNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'IppNormasIncumplidasJoin.ipp_id = ImpProtPersonalesJoin.id'
+    							)
+    					),
+    					array(
+    							'table' => 'codigos',
+    							'alias' => 'CodigosJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'CodigosJoin.id = IppNormasIncumplidasJoin.codigo_id',
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'AND' => array(
+    							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'Acta.empresa_id' => $empresa_id
+    					)
+    			),
+    			'order by'=> array('CodigosJoin.codigo ASC')
+    	)
+    	);
+    
+    	return $arr_obj_det_ni_emp;
+    }
+    
+    public function listDetalleNiByEmpresa2($fec_inicio, $fec_fin, $empresa_id) {
+    	$arr_obj_det_ni_emp = $this->find('all',array(
+    			'fields' => array('VehiculosJoin.nro_placa, CodigosJoin.codigo, Acta.num_informe, Acta.fecha'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresasJoin.id = Acta.empresa_id'
+    							)
+    					),
+    					array(
+    							'table' => 'unidades_moviles',
+    							'alias' => 'UnidadesMovilesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UnidadesMovilesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'vehiculos',
+    							'alias' => 'VehiculosJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'VehiculosJoin.id = UnidadesMovilesJoin.vehiculo_id'
+    							)
+    					),
+    					array(
+    							'table' => 'um_normas_incumplidas',
+    							'alias' => 'UmNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UmNormasIncumplidasJoin.um_id = UnidadesMovilesJoin.id'
+    							)
+    					),
+    					array(
+    							'table' => 'codigos',
+    							'alias' => 'CodigosJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'CodigosJoin.id = UmNormasIncumplidasJoin.codigo_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'AND' => array(
+    							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'Acta.empresa_id' => $empresa_id
+    					)
+    			),
+    			'order by'=> array('CodigosJoin.codigo ASC')
+    	)
+    	);
+    
+    	return $arr_obj_det_ni_emp;
+    }
     
     
   }
