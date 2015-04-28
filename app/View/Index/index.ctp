@@ -374,24 +374,23 @@
 			<div class="main-temp-back">
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-xs-6">
-							<i class="fa fa-cloud fa-3x"></i> Newyork City
-						</div>
-						<div class="col-xs-6">
-							<div class="text-temp">10</div>
-						</div>
+						<span class="icon-box bg-color-white set-icon"> <i
+							class="fa fa-user fa-3x"></i>
+						</span>
+						<div class="main-text">Cordoba Felipe</div>
 					</div>
+					<div class="row">Trabajador con mayor normas incumplidas</div>
 				</div>
 			</div>
 
 		</div>
 		<div class="panel panel-back noti-box">
 			<span class="icon-box bg-color-green set-icon"> <i
-				class="fa fa-desktop"></i>
+				class="fa fa-building-o"></i>
 			</span>
 			<div class="text-box">
-				<p class="main-text">Display</p>
-				<p class="text-muted">Looking Good</p>
+				<p class="main-text"><?php echo (isset($empresa_mayor_numero_normas))? $empresa_mayor_numero_normas: ""; ?></p>
+				<p class="text-muted">Empresa con mayor normas incumplidas</p>
 			</div>
 		</div>
 

@@ -18,7 +18,7 @@
            $list_ultimos_informes = $this->Acta->listUltimosInformes();
 
            $empresa_mayor_numero_normas = $this->Acta->listNiByEmpresaTrabajadorSinFecha();
-           //$empresa_mayor_numero_normas = $empresa_mayor_numero_normas['EmpresasJoin']['nombre'];
+           $empresa_mayor_numero_normas = $empresa_mayor_numero_normas['EmpresasJoin']['nombre'];
            
            $this->set(compact('count_informe_enviados','count_informe_pendientes','count_trabajadores','count_empresas','count_unidades_moviles','empresa_mayor_numero_normas','list_ultimos_informes'));
        }
