@@ -1449,6 +1449,7 @@ class ActasController extends AppController{
 			$error_validation = '';
 			if(Validation::email($email_destino)){
 				$this->Acta->sendReporteEmail($acta_id, $email_destino, $num_informe, $mensaje);
+				$obj_acta->saveField('fecha_envio', date('Y-m-d'));
 				echo json_encode(array('success'=>true,'msg'=>__('El Informe fue enviado')));
 				//exit();
 			}else{

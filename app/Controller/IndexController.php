@@ -9,17 +9,18 @@
            $this->loadModel('Empresa');
            $this->loadModel('Trabajadore');
            $this->loadModel('Vehiculo');
-           //$count_informe_day = count($this->Acta->TotalActasPorDia());
-           $count_informe = count($this->Acta->listActas());
-           //$count_usuarios = count($this->User->TotalUsuarios());
+           
+           $count_informe_enviados = count($this->Acta->listInformesEnviados());
+           $count_informe_pendientes = count($this->Acta->listInformesPendientes());
            $count_empresas = count($this->Empresa->listEmpresas());
            $count_trabajadores = count($this->Trabajadore->listAllTrabajadores());
            $count_unidades_moviles = count($this->Vehiculo->listAllVehiculos());
+           $list_ultimos_informes = $this->Acta->listUltimosInformes();
 
            $empresa_mayor_numero_normas = $this->Acta->listNiByEmpresaTrabajadorSinFecha();
            //$empresa_mayor_numero_normas = $empresa_mayor_numero_normas['EmpresasJoin']['nombre'];
            
-           $this->set(compact('count_informe','count_trabajadores','count_empresas','count_unidades_moviles','empresa_mayor_numero_normas'));
+           $this->set(compact('count_informe_enviados','count_informe_pendientes','count_trabajadores','count_empresas','count_unidades_moviles','empresa_mayor_numero_normas','list_ultimos_informes'));
        }
   }
 ?>

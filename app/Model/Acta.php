@@ -306,15 +306,35 @@ App::uses('AppModel','Model');
     }
     
     /* Usado para Contar los informes del día */
-    public function TotalActasPorDia() {
+    public function listUltimosInformes() {
+    	return $this->findObjects('all',
+    			array(
+    					'order' => array('Acta.created DESC'),
+    					'limit' => 5
+    				)
+    			);
+    }
+    
+    /* Usado para contar los informes enviados */
+    public function listInformesEnviados(){
     	return $this->find('list',
     			array(
-    					'fields' => array('id','numero'),
     					'conditions'=>array(
-    							'Acta.fecha' => date('Y-m-d'), 
-    							'Acta.estado != '=> 0
-    					),
-    					'order' => array('Acta.numero ASC')
+    							'Acta.fecha_envio != '=> NULL
+    					)
+    			));
+    }
+    
+    /* Usado para contar los informes Pendientes */
+    public function listInformesPendientes(){
+    	return $this->find('list',
+    			array(
+    					'conditions'=>array(
+    							'OR' => array( 
+    								'Acta.info_des_conclusion '=> '',
+    								'Acta.info_des_rec '=> '',
+    							)
+    					)
     			));
     }
     
@@ -985,7 +1005,5 @@ App::uses('AppModel','Model');
     
     	return $arr_obj_det_ni_emp;
     }
-    
-    
   }
 ?>

@@ -27,7 +27,8 @@ class ReportesController extends AppController{
 		
 		$fec_inicio_format = $this->formatFecha($fec_inicio);
 		$fec_fin_format = $this->formatFecha($fec_fin);
-		
+		$x ="";
+		$y ="";
 		$list_sep_emp = $this->Acta->listSupervisionByEmpresa($fec_inicio_format, $fec_fin_format);
 		foreach ($list_sep_emp as $key => $arr_emp):
 			$x[] = $arr_emp['EmpresaJoin']['nombre'];

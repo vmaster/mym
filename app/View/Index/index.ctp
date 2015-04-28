@@ -1,119 +1,258 @@
-<script>  
-     
-    $(function () {
-    $('#container').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'N\u00FAmero de Informes por empresa - 2014'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
-                'MONTALVO SAC',
-                'ITALY CORPORATION',
-                'ELECTROCENTRO',
-                'ARSAC'/*,
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec'*/
-            ],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Cantidad de Informes'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">Total: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Empresas',
-            data: [15, 20 , 8, 5/*49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4*/]
-
-        }]
-    });
-
-
-
-
-    $('#container2').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'N\u00FAmero de Normas incumplidas por empresa - 2014'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
-                'MONTALVO SAC',
-                'ITALY CORPORATION',
-                'ELECTROCENTRO',
-                'ARSAC'/*,
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec'*/
-            ],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Total de Normas incumplidas'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">Total: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Empresas',
-            data: [30, 20 , 40, 15/*49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4*/]
-
-        }]
-    });
+<script>
+ $(function () {
+	 var d = new Date(); 
+	 var month = d.getMonth()+1; 
+	 var day = d.getDate();
+	 var fec_fin = (day<10 ? '0' : '') + day + '-' + (month<10 ? '0' : '') + month + '-' + d.getFullYear();
+	 var fec_inicio = '01' + '-' + (month<10 ? '0' : '') + month + '-' + d.getFullYear();
+	 
+	 
+	 function visitorData1 (valores) {
+		   $('#container-graf1').highcharts({
+		    chart: {
+		        type: 'column'
+		    },
+		    title: {
+		        text: 'N\u00FAmero de informes por empresa'
+		    },
+		    xAxis: {
+		        categories: valores.categoria
+		    },
+		    yAxis: {
+		        title: {
+		            text: 'N\u00FAmero de informes'
+		        }
+		    },
+	        plotOptions: {
+	            column: {
+	                pointPadding: 0.2,
+	                borderWidth: 0
+	            }
+	        },
+	        tooltip: {
+	            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+	            pointFormat: '<tr><td style="color:{series.color};padding:0">Total Imformes: {point.y:.f}</td></tr>',
+	            footerFormat: '</table>',
+	            shared: true,
+	            useHTML: true
+	        },        
+		    series: [{
+		    	name: valores.name,
+			    data: valores.data
+		       }]
+		  });
+	}
     
+	function ExecuteReport1(){
+			 $.ajax({
+			    url: env_webroot_script + 'reportes/load_graf_cant_info_emp/'+fec_inicio+'/'+fec_fin,
+			    type: 'GET',
+			    async: true,
+			    dataType: "json",
+			 }).done(function(data){
+					if(data.success == true){
+						visitorData1 (data);
+					}
+			});
+		}
 
-    });
+	ExecuteReport1();
+
+
+	function visitorData2 (valores) {
+		   $('#container-graf2').highcharts({
+		    chart: {
+		        type: 'column'
+		    },
+		    title: {
+		        text: 'N\u00FAmero de informes por Unidad de Negocio'
+		    },
+		    xAxis: {
+		        categories: valores.categoria
+		    },
+		    yAxis: {
+		        title: {
+		            text: 'N\u00FAmero de informes'
+		        }
+		    },
+	        plotOptions: {
+	            column: {
+	                pointPadding: 0.2,
+	                borderWidth: 0
+	            }
+	        },
+	        tooltip: {
+	            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+	            pointFormat: '<tr><td style="color:{series.color};padding:0">Total Imformes: {point.y:.f}</td></tr>',
+	            footerFormat: '</table>',
+	            shared: true,
+	            useHTML: true
+	        },
+	        
+		    series: [{
+		    	name: valores.name,
+			    data: valores.data
+		       }]
+		  });
+	}
+
+	function ExecuteReport2(){
+		 $.ajax({
+		    url: env_webroot_script + 'reportes/load_graf_cant_info_uunn/'+fec_inicio+'/'+fec_fin,
+		    type: 'GET',
+		    async: true,
+		    dataType: "json",
+		 }).done(function(data){
+				if(data.success == true){
+					visitorData2 (data);
+				}
+		});
+	}
+
+	ExecuteReport2();
+
+	
+	function visitorData3 (valores) {
+		   $('#container-graf3').highcharts({
+		    chart: {
+		        type: 'column',
+		        marginTop: 80
+		    },
+		    lang: {
+		        drillUpText: '< Regresar a {series.name}'
+		    },
+		    title: {
+		        text: 'N\u00FAmero de Normas Incumplidas Empresa - Trabajador'
+		    },
+		    xAxis: {
+		        categories: true//valores.categoria
+		    },
+		    yAxis: {
+		        title: {
+		            text: 'Cantidad de Normas Incumplidas'
+		        }
+		    },
+		    drilldown: {
+		        series: valores.data_drilldown
+			           
+		    },
+		    
+		    legend: {
+		        enabled: false
+		    },
+		    
+		    plotOptions: {
+		        series: {
+		            dataLabels: {
+		                enabled: true
+		            },
+		            shadow: false
+		        },
+		        pie: {
+		            size: '80%'
+		        }
+		    },
+
+		    tooltip: {
+	            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+	            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:f}</b> Normas Incumplidas<br/>'
+	        }, 
+
+	        credits: {
+	            enabled: false
+	        },
+	        series: [{
+		    	name: valores.name,
+			    data: valores.data
+		       }]
+		  });
+		}
+
+	function ExecuteReport3(){
+		 $.ajax({
+		    url: env_webroot_script + 'reportes/load_graf_cant_ni_trab/'+fec_inicio+'/'+fec_fin,
+		    type: 'GET',
+		    async: true,
+		    dataType: "json",
+		 }).done(function(data){
+				if(data.success == true){
+					visitorData3 (data);
+				}
+		});
+	}
+
+	ExecuteReport3();
+
+	function visitorData4 (valores) {
+		   $('#container-graf4').highcharts({
+		    chart: {
+		        type: 'column'
+		    },
+		    lang: {
+		        drillUpText: '< Regresar a {series.name}'
+		    },
+		    title: {
+		        text: 'N\u00FAmero de Normas Incumplidas Empresa - Unidad Movil'
+		    },
+		    xAxis: {
+		        categories: true//valores.categoria
+		    },
+		    yAxis: {
+		        title: {
+		            text: 'Cantidad de Normas Incumplidas'
+		        }
+		    },
+		    drilldown: {
+		        series: valores.data_drilldown
+			           
+		    },
+		    
+		    legend: {
+		        enabled: false
+		    },
+		    
+		    plotOptions: {
+		        series: {
+		            dataLabels: {
+		                enabled: true
+		            },
+		            shadow: false
+		        },
+		        pie: {
+		            size: '80%'
+		        }
+		    },
+
+		    tooltip: {
+	            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+	            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:f}</b> Normas Incumplidas<br/>'
+	        }, 
+
+	        credits: {
+	            enabled: false
+	        },
+	        series: [{
+		    	name: valores.name,
+			    data: valores.data
+		       }]
+		  });
+		}
+
+	function ExecuteReport4(){
+		 $.ajax({
+		    url: env_webroot_script + 'reportes/load_graf_cant_ni_ve/'+fec_inicio+'/'+fec_fin,
+		    type: 'GET',
+		    async: true,
+		    dataType: "json",
+		 }).done(function(data){
+				if(data.success == true){
+					visitorData4 (data);
+				}
+		});
+	}
+
+	ExecuteReport4();
+ });
 
 </script>
 <div class="row">
@@ -133,8 +272,8 @@
 				class="fa fa-file-text-o"></i>
 			</span>
 			<div class="text-box">
-				<p class="main-text" style="font-size:22px !important"><?php echo (isset($count_informe))? $count_informe :''; ?> Informes</p>
-				<p class="text-muted" style="padding-top:10px !important">Registradas</p>
+				<p class="main-text" style="font-size:22px !important"><?php echo (isset($count_informe_enviados))? $count_informe_enviados :''; ?> Informes</p>
+				<p class="text-muted" style="padding-top:10px !important">Enviados</p>
 			</div>
 		</div>
 	</div>
@@ -156,7 +295,7 @@
 			</span>
 			<div class="text-box">
 				<p class="main-text" style="font-size:22px !important"><?php echo (isset($count_trabajadores))? $count_trabajadores :''; ?> Trabajadores</p>
-				<p class="text-muted" style="padding-top:10px !important">Registradas</p>
+				<p class="text-muted" style="padding-top:10px !important">Registrados</p>
 			</div>
 		</div>
 	</div>
@@ -173,104 +312,131 @@
 	</div>
 </div>
 <!-- /. ROW  -->
-                <hr />                
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 col-xs-12">           
-			<div class="panel panel-back noti-box">
-                <span class="icon-box bg-color-blue">
-                    <i class="fa fa-warning"></i>
-                </span>
-                <div class="text-box" >
-                    <p class="main-text">52 Important Issues to Fix </p>
-                    <p class="text-muted">Please fix these issues to work smooth</p>
-                    <p class="text-muted">Time Left: 30 mins</p>
-                    <hr />
-                    <p class="text-muted">
-                          <span class="text-muted color-bottom-txt"><i class="fa fa-edit"></i>
-                               Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn. 
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn. 
-                               </span>
-                    </p>
-                </div>
-             </div>
-		     </div>
-                    
-                    
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel back-dash">
-                               <i class="fa fa-dashboard fa-3x"></i><strong> &nbsp; SPEED</strong>
-                             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing sit ametsit amet elit ftr. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                        </div>
-                       
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12 ">
-                        <div class="panel ">
-          <div class="main-temp-back">
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-xs-6"> <i class="fa fa-cloud fa-3x"></i> Newyork City </div>
-                <div class="col-xs-6">
-                  <div class="text-temp"> 10</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-                     <div class="panel panel-back noti-box">
-                <span class="icon-box bg-color-green set-icon">
-                    <i class="fa fa-desktop"></i>
-                </span>
-                <div class="text-box" >
-                    <p class="main-text">Display</p>
-                    <p class="text-muted">Looking Good</p>
-                </div>
-             </div>
-			
-    </div>
-                        
-        </div>
-                 <!-- /. ROW  -->
-                <div class="row"> 
-                    
-                      
-                 <div class="col-md-6 col-sm-12 col-xs-12">                     
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <?php echo utf8_encode("Gráfica: Número de informes por Empresa"); ?>
-                        </div>
-                        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                    </div>            
-                </div>
-                <div class="col-md-6 col-sm-12 col-xs-12">                     
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <?php echo utf8_encode("Gráfica: Número de Normas incumplidas por empresa"); ?>
-                        </div>
-                        <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                    </div>            
-                </div>
-                    <!-- <div class="col-md-3 col-sm-12 col-xs-12">                       
-                    <div class="panel panel-primary text-center no-boder bg-color-green">
-                        <div class="panel-body">
-                            <i class="fa fa-bar-chart-o fa-5x"></i>
-                            <h3>120 GB </h3>
-                        </div>
-                        <div class="panel-footer back-footer-green">
-                           Disk Space Available
-                            
-                        </div>
-                    </div>
-                    <div class="panel panel-primary text-center no-boder bg-color-red">
-                        <div class="panel-body">
-                            <i class="fa fa-edit fa-5x"></i>
-                            <h3>20,000 </h3>
-                        </div>
-                        <div class="panel-footer back-footer-red">
-                            Articles Pending
-                            
-                        </div>
-                    </div>                         
-                        </div> -->
-                
-           </div>
+<hr />
+<div class="row">
+	<div class="col-md-5 col-sm-12 col-xs-12">
+		<div class="panel panel-back noti-box">
+			<span class="icon-box bg-color-blue"> <i class="fa fa-warning"></i>
+			</span>
+			<div class="text-box">
+				<p class="main-text">
+					<?php echo (isset($count_informe_pendientes))? $count_informe_pendientes :''; ?>
+					Informes pendientes
+				</p>
+				<!-- <p class="text-muted">Please fix these issues to work smooth</p>
+                    <p class="text-muted">Time Left: 30 mins</p> -->
+				<hr />
+				<p class="text-muted">
+					<span class="text-muted color-bottom-txt"><i class="fa fa-edit"></i>
+						Aquellos informes que aun faltan registrar sus Conclusiones y
+						Recomendaciones. </span>
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="col-md-4 col-sm-12 col-xs-12">
+		<div class="panel back-dash">
+			<i class="fa fa-dashboard fa-3x"></i><strong> &nbsp; 5 &Uacute;LTIMOS INFORMES</strong>
+				<?php if(isset($list_ultimos_informes)) {?>
+				<table class="table" style="font-size: 13px; text-align:center;">
+				<thead>
+			        <tr>
+			          <th style="text-align:center;"><?php echo utf8_encode(__('N°')); ?></th>
+			          <th style="text-align:center;"><?php echo utf8_encode(__('Nro Informe')); ?></th>
+			          <th style="text-align:center;"><?php echo utf8_encode(__('Enlace')); ?></th>
+			        </tr>
+			    </thead>
+				<?php 
+				$n = 0;
+				?>
+					<tbody>
+						<?php foreach ($list_ultimos_informes as $array_info):
+						$n = $n + 1;
+						?>
+							<tr class="acta_rows">
+								<td><?php echo $n; ?></td>
+								<td><?php echo $array_info->getAttr('num_informe'); ?></td>
+								<td><a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/view_informe/<?php echo $array_info->getAttr('id')?>" target="_blank"><i class="fa fa-file-text fa-lg"></i> </a></td>
+							</tr>
+						<?php 
+							endforeach;
+						?>
+					</tbody>	
+				</table>
+				<?php } ?>
+		</div>
+
+	</div>
+	<div class="col-md-3 col-sm-12 col-xs-12 ">
+		<div class="panel ">
+			<div class="main-temp-back">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-6">
+							<i class="fa fa-cloud fa-3x"></i> Newyork City
+						</div>
+						<div class="col-xs-6">
+							<div class="text-temp">10</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="panel panel-back noti-box">
+			<span class="icon-box bg-color-green set-icon"> <i
+				class="fa fa-desktop"></i>
+			</span>
+			<div class="text-box">
+				<p class="main-text">Display</p>
+				<p class="text-muted">Looking Good</p>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+<!-- /. ROW  -->
+<div class="row">
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<?php echo utf8_encode("Gráfica: Número de informes por Empresa"); ?>
+			</div>
+			<div id="container-graf1"
+				style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		</div>
+	</div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<?php echo utf8_encode("Gráfica: Número de informes por Unidad de Negocio"); ?>
+			</div>
+			<div id="container-graf2"
+				style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<?php echo utf8_encode("Gráfica: Cantidad Normas Incumplidas Empresa - Trabajador"); ?>
+			</div>
+			<div id="container-graf3"
+				style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		</div>
+	</div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<?php echo utf8_encode("Gráfica: Cantidad Normas Incumplidas Empresa - Unidad Móvil"); ?>
+			</div>
+			<div id="container-graf4"
+				style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		</div>
+	</div>
+</div>

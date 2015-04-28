@@ -33,7 +33,7 @@ function visitorData (valores) {
 		    data: valores.data
 	       }]
 	  });
-	}
+}
 	
 	$(document).ready(function() {
 

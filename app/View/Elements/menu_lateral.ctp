@@ -28,6 +28,7 @@
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_cant_info_uunn')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_cant_info_uunn" id="link-rpt_cant_uunn"><i class="fa fa-qrcode fa-3x"></i> <?php echo ' '.__('Informes por UUNN'); ?></a></li>
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_cant_ni_trabajador')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_cant_ni_trabajador" id="link-usuario"><i class="fa fa-user fa-3x"></i><?php echo ' '.__('NI. por Trabajador'); ?></a></li>
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_cant_ni_vehiculo')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_cant_ni_vehiculo" id="link-usuario"><i class="fa fa-user fa-3x"></i><?php echo ' '.__('NI. por Vehiculo'); ?></a></li>
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_reincidencia_ni_empresa')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_reincidencia_ni_empresa" id="link-usuario"><i class="fa fa-user fa-3x"></i><?php echo ' '.__('Reincidencias por Empresa'); ?></a></li>
 				</ul>
 			</li>
 			<!-- 

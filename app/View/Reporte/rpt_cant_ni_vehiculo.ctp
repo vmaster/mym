@@ -8,7 +8,7 @@ function visitorData (valores) {
 	        drillUpText: '< Regresar a {series.name}'
 	    },
 	    title: {
-	        text: 'N\u00FAmero de Normas Incumplidas por empresa'
+	        text: 'N\u00FAmero de Normas Incumplidas Empresa - Unidad Movil'
 	    },
 	    xAxis: {
 	        categories: true//valores.categoria
