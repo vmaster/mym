@@ -106,7 +106,7 @@ function visitorData (valores) {
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<h2><?php echo utf8_encode(__('Normas Incumplidas de Vehiculos por Empresa')); ?></h2>
+		<h2><?php echo utf8_encode(__('Normas Incumplidas de Unidades M&oacute;viles por Empresa')); ?></h2>
 	</div>
 </div>
 <hr />

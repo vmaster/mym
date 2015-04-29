@@ -17,10 +17,13 @@
            $count_unidades_moviles = count($this->Vehiculo->listAllVehiculos());
            $list_ultimos_informes = $this->Acta->listUltimosInformes();
 
-           $empresa_mayor_numero_normas = $this->Acta->listNiByEmpresaTrabajadorSinFecha();
-           $empresa_mayor_numero_normas = $empresa_mayor_numero_normas['EmpresasJoin']['nombre'];
+           $empresa_mayor_numero_normas = $this->Acta->getEmpresaMayorNi();
+           $empresa_mayor_numero_normas = $empresa_mayor_numero_normas[0]['E']['nombre'];
            
-           $this->set(compact('count_informe_enviados','count_informe_pendientes','count_trabajadores','count_empresas','count_unidades_moviles','empresa_mayor_numero_normas','list_ultimos_informes'));
+           $trabajador_mayor_numero_normas = $this->Acta->getTrabajadorMayorNi();
+           $trabajador_mayor_numero_normas = $trabajador_mayor_numero_normas[0]['T']['apellido_nombre'];
+           
+           $this->set(compact('count_informe_enviados','count_informe_pendientes','count_trabajadores','count_empresas','count_unidades_moviles','empresa_mayor_numero_normas','trabajador_mayor_numero_normas','list_ultimos_informes'));
        }
   }
 ?>

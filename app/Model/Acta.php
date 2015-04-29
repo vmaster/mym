@@ -480,42 +480,6 @@ App::uses('AppModel','Model');
     	return $arr_obj_ni_emp;
     }
     
-    public function listNiByEmpresaTrabajadorSinFecha() {
-    	$arr_obj_ni_emp = $this->find('first',array(
-    			'fields' => array('EmpresasJoin.id, EmpresasJoin.nombre, count(*) as Cantidad'),
-    			'joins' => array(
-    					array(
-    							'table' => 'empresas',
-    							'alias' => 'EmpresasJoin',
-    							'type' => 'INNER',
-    							'conditions' => array(
-    									'EmpresasJoin.id = Acta.empresa_id'
-    							)
-    					),
-    					array(
-    							'table' => 'imp_prot_personales',
-    							'alias' => 'ImpProtPersonalesJoin',
-    							'type' => 'INNER',
-    							'conditions' => array(
-    									'ImpProtPersonalesJoin.acta_id = Acta.id'
-    							)
-    					),
-    					array(
-    							'table' => 'ipp_normas_incumplidas',
-    							'alias' => 'IppNormasIncumplidasJoin',
-    							'type' => 'INNER',
-    							'conditions' => array(
-    									'IppNormasIncumplidasJoin.ipp_id = ImpProtPersonalesJoin.id'
-    							)
-    					)
-    			),
-    			'order'=> array(' Cantidad desc'),
-    			'group'=> array('EmpresasJoin.nombre')
-    	)
-    	);
-    	return $arr_obj_ni_emp;
-    }
-    
     public function listNiByTrabajador($empresa_id, $fec_inicio, $fec_fin) {
     	$arr_obj_ni_tra = $this->find('all',array(
     			'fields' => array('TrabajadorJoin.apellido_nombre, count(*) as Cantidad'),
@@ -1004,6 +968,25 @@ App::uses('AppModel','Model');
     	);
     
     	return $arr_obj_det_ni_emp;
+    }
+    
+    
+    
+    public function getEmpresaMayorNi() {
+    	$tmp_array = (array) $this->query('
+			SELECT count(*) as cantidad, E.nombre,((count(*) + 
+    			(SELECT  count(*) from actas INNER JOIN empresas on actas.empresa_id = empresas.id INNER JOIN imp_prot_personales IPP on IPP.acta_id = actas.id INNER JOIN ipp_normas_incumplidas INI on INI.ipp_id = IPP.id WHERE actas.empresa_id=A.empresa_id))
+    			/(SELECT count(*) as totalacta FROM actas WHERE actas.empresa_id = A.empresa_id)) as promedio from actas A INNER JOIN empresas E on A.empresa_id = E.id INNER JOIN unidades_moviles UM on UM.acta_id = A.id INNER JOIN um_normas_incumplidas UNI on UNI.um_id = UM.id GROUP BY A.empresa_id order by promedio desc limit 1');
+    		 
+    		return $tmp_array;
+    }
+    
+    public function getTrabajadorMayorNi() {
+    	$tmp_array = (array) $this->query('
+			SELECT count(*) as cantidad, T.apellido_nombre,(count(*) /(SELECT count(*) as totalacta FROM imp_prot_personales WHERE imp_prot_personales.trabajador_id = T.id)) 
+    			as promedio FROM actas A INNER JOIN imp_prot_personales IPP on IPP.acta_id = A.id INNER JOIN trabajadores T on T.id = IPP.trabajador_id  INNER JOIN ipp_normas_incumplidas INI on INI.ipp_id = IPP.id GROUP BY IPP.trabajador_id order by promedio desc limit 1');
+    	 
+    	return $tmp_array;
     }
   }
 ?>

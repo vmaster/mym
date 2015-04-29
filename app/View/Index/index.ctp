@@ -305,7 +305,7 @@
             	<i class="fa fa-rocket"></i>
 			</span>
 			<div class="text-box" >
-				<p class="main-text" style="font-size:20px !important"><?php echo (isset($count_unidades_moviles))? $count_unidades_moviles :''; ?> Unidades Moviles</p>
+				<p class="main-text" style="font-size:20px !important"><?php echo (isset($count_unidades_moviles))? $count_unidades_moviles :''; ?> Unidades M&oacute;viles</p>
 				<p class="text-muted" style="padding-top:10px !important">Registradas</p>
         	</div>
     	</div>
@@ -377,7 +377,7 @@
 						<span class="icon-box bg-color-white set-icon"> <i
 							class="fa fa-user fa-3x"></i>
 						</span>
-						<div class="main-text">Cordoba Felipe</div>
+						<div class="main-text"><?php echo (isset($trabajador_mayor_numero_normas))? $trabajador_mayor_numero_normas: ""; ?></div>
 					</div>
 					<div class="row">Trabajador con mayor normas incumplidas</div>
 				</div>
