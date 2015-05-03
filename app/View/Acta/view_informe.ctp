@@ -12,8 +12,8 @@ $codigo = "<style type='text/css'>
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 .tg .tg-e3zv{font-weight:bold; text-align:center;}
 .tg-uni {text-align:center;}
-.pie-pag {
-   position:fixed;
+.aling-left {text-align:left;}
+.aling-right {text-align:right;}
 		
 .pie-pag {
    position:fixed;
@@ -21,8 +21,23 @@ $codigo = "<style type='text/css'>
    bottom:-20px;
    height:30px;
    width:100%;
-   font: 50% sans-serif; 
+   font: 50% sans-serif;
+   color:#0062AA 
 }
+
+.back-green{
+ background-color: #D6E3BC;
+}
+		
+.back-green2{
+ background-color: #92D050;
+}
+
+.back-blue{
+ background-color: #C6D9F1;
+}
+		
+img { border:1px solid green}
 </style>";
 $codigo.= "<div class='pie-pag'><hr>";
 $codigo.= "<div class='row'>
@@ -34,53 +49,65 @@ $codigo.= "<div class='row'>
 $codigo.= "<div class='col-md-3 col-sm-6 col-xs-6' style='text-align: right;'>Email: mym.ingenieria@hotmail.com</div>
 		  </div>";
 $codigo.= "</div>";
-$codigo .="<table class='tg' width='100%'>
+
+$codigo.= "<table class='tg' width='100%' style='margin-bottom:-15px'>
+			  <tr>
+			    <th class='tg-031e back-green' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/logo-mini.png' style='width: 80px; border:0px;'/></th>
+			    <th class='tg-031e back-blue' rowspan='2'>M&amp;M Ingeniera Obras y Serivcios E.I.R.L.
+			    <h6>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, civiles, mineria e industrial.<br>Especialistas de gestión en Seguridad, salud en el trabajo, calidad y medio ambiente.</h6>		
+			    </th>
+			    <th class='aling-left back-green'><strong>UUNN:</strong> ".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
+			  </tr>
+			  <tr>
+			    <td class='aling-left back-green'><strong>&Aacute;rea:</strong>".$obj_acta->getAttr('sector')."</td>
+			  </tr>
+			  <tr>
+			    <td class='tg-uni back-blue'><strong>INFORME T&Eacute;CNICO DE SEGURIDAD</strong></td>
+			    <td class='tg-031e back-green'>N&deg; ".$obj_acta->getAttr('num_informe')."</td>
+			  </tr>
+			</table><br>";
+
+
+$codigo .="<table class='tg' width='100%' style='margin-bottom:-10px'>
+
   <tr>
-    <th class='tg-031e' rowspan='2'><img src='".ENV_WEBROOT_FULL_URL."img/logo-mini.png' style='width: 80px;'/></th>
-    <th class='tg-031e' colspan='2' rowspan='2'>M&amp;M Ingeniería Obras y Serivcios E.I.R.L.<h6>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, civiles, mineria e industrial.</h6><h6>Especialistas de gestión en Seguridad, salud en el trabajo, calidad y medio ambiente.</h6></th>
-    <th class='tg-031e'><h5>SEGURIDAD Y SALUD EN EL TRABAJO</h5>INFORME T&Eacute;CNICO</th>
+    <th class='tg-e3zv back-green'>Empresa:</th>
+    <th class='tg-031e aling-left' colspan='3'>".$obj_acta->Empresa->getAttr('nombre')."</th>
   </tr>
   <tr>
-    <td style='text-align:center;'>N° ".$obj_acta->getAttr('num_informe')."</td>
-  </tr>
-  <tr>
-    <th class='tg-e3zv'>Empresa:</th>
-    <th class='tg-031e'>".$obj_acta->Empresa->getAttr('nombre')."</th>
-    <th class='tg-e3zv'>Sector / Área:</th>
-    <th class='tg-031e'>".$obj_acta->getAttr('sector')."</th>
-  </tr>
-  <tr>
-    <td class='tg-e3zv'>Actividad:</td>
+    <td class='tg-e3zv back-green'>Actividad:</td>
     <td class='tg-031e' colspan='3'>".$obj_acta->getAttr('actividad')."</td>
   </tr>
   <tr>
-    <td class='tg-e3zv'>Obra:</td>
-    <td class='tg-031e' colspan='3'>".$obj_acta->getAttr('obra')."</td>
+    <td class='tg-e3zv back-green'>Obra:</td>
+    <td class='tg-031e'>".$obj_acta->getAttr('obra')."</td>
+    <td class='aling-right back-green'><strong>Tipo de Lugar:</strong></td>
+    <td class='tg-031e'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
   </tr>
   <tr>
-    <td class='tg-e3zv'>Lugar:</td>
+    <td class='tg-e3zv back-green'>Lugar:</td>
     <td class='tg-031e'>".$obj_acta->getAttr('lugar')."</td>
-    <td class='tg-e3zv'>UU.NN:</td>
-    <td class='tg-031e'>".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</td>
+    <td class='aling-right back-green'><strong>Fecha:</strong></td>
+    <td class='tg-031e'>".$obj_acta->getAttr('fecha')."</td>
   </tr>
   <tr>
-    <td class='tg-e3zv'>Responsable:</td>
+    <td class='tg-e3zv back-green'>Responsable:</td>
     <td class='tg-031e'>".$obj_acta->Trabajadore1->getAttr('apellido_nombre')."</td>
-    <td class='tg-e3zv'>Supervisor M&amp;M:</td>
+    <td class='aling-right back-green'><strong>Supervisor M&amp;M:</strong></td>
     <td class='tg-031e'>".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."</td>
   </tr>
   <tr>
-    <td class='tg-e3zv'>Supervisi&oacute;n:</td>
+    <td class='tg-e3zv back-green'>Supervisi&oacute;n:</td>
     <td class='tg-031e'>".$tipo_supervision."</td>
-    <td class='tg-e3zv'>Fecha:</td>
-    <td class='tg-031e'>".$obj_acta->getAttr('fecha')."</td>
+    <td class='aling-right back-green'><strong>Empresa supervisada al servicio de:</strong></td>
+    <td class='tg-031e'>".$obj_acta->getAttr('empresa_supervisora')."</td>
   </tr>
-</table>";
+</table><br>";
 $codigo.= "
-	<table class='tg' width='100%'>
-	<tr><td class='tg-e3zv' style='text-align:center'>SUPERVISI&Oacute;N DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
-	<tr><td class='tg-e3zv' style='text-align:center'>CUMPLIMIENTO AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
-	</table>	
+	<table class='tg' width='100%' style='margin-bottom:-10px'>
+	<tr><td class='tg-e3zv back-blue' style='text-align:center'>SUPERVISI&Oacute;N DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
+	<tr><td class='tg-e3zv back-green2' style='text-align:center'>CUMPLIMIENTO AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
+	</table><br>
 		";
 
 $codigo.= "
@@ -217,7 +244,7 @@ $codigo.= "	</tr>
 $codigo.="
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-hgcj' colspan='2'><strong>CONCLUSIONES, RECOMENDACIONES Y ACCIONES CORRECTIVAS</strong></th>
+		    <th class='tg-hgcj back-blue' colspan='2'><strong>CONCLUSIONES, RECOMENDACIONES Y ACCIONES CORRECTIVAS</strong></th>
 		  </tr>
 		  <tr>
 		    <td class='tg-e3zv'>CONCLUSIONES</td>
@@ -281,6 +308,11 @@ foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
 			$codigo.= "</td>";
 		}
 			
+	}else{
+		for($i= 1; $i <=7; $i++){
+			$codigo.= "<td style='width:7%; text-align: center;'>-";
+			$codigo.= "</td>";
+		}
 	}
 }
 $codigo.= "</tr>";
@@ -290,7 +322,7 @@ $codigo.= "</table><br>";
 $codigo.= "<table class='tg' width='100%'>
 		<thead>
 		<tr>
-		<th class='tg-e3zv' colspan=11 style='text-align: center;'>".utf8_encode('VEHICULOS SUPERVISADOS').
+		<th class='tg-e3zv' colspan=11 style='text-align: center;'>".utf8_encode('UNIDADES MÓVILES SUPERVISADAS').
 									"</th>
 								</tr>
 								<tr>
@@ -330,11 +362,58 @@ $codigo.= "<table class='tg' width='100%'>
 										$codigo.= "</td>";
 									}
 										
+								}else{
+									for($i= 1; $i <=8; $i++){
+										$codigo.= "<td style='width:7%; text-align: center;'>-";
+										$codigo.= "</td>";
+									}
 								}
 							}
 							$codigo.= "</tr>";
 							$codigo.= "</tbody>";
-							$codigo.= "</table>";
+							$codigo.= "</table><br>";
+if(isset($info_ni_t) || isset($info_ni_v)){
+	$codigo.= "<table class='tg' width='100%'>";
+	$codigo.= "<thead>
+				<tr>
+					<th class='tg-e3zv' colspan=3 style='text-align: center;'>".utf8_encode('DETALLE DE NORMAS INCUMPLIDAS')."</th>
+				</tr>
+				<tr>
+					<th>".utf8_encode('Código')."</th>
+					<th>".utf8_encode('Categoria')."</th>
+					<th>".utf8_encode('Observación')."</th>
+				</tr>
+			</thead>";
+	foreach ($info_ni_t as $k => $v){
+		$codigo.= "<tr>";
+		$codigo.= "<td>";
+		$codigo.= $v['CodigosJoin']['codigo'];
+		$codigo.= "</td>";
+		$codigo.= "<td>";
+		$codigo.= $v['CategoriaNormasJoin']['descripcion'];
+		$codigo.= "</td>";
+		$codigo.= "<td>";
+		$codigo.= $v['CodigosJoin']['observacion'];
+		$codigo.= "</td>";
+		$codigo.= "</tr>";
+	}
+	
+	foreach ($info_ni_v as $k2 => $v2){
+		$codigo.= "<tr>";
+		$codigo.= "<td>";
+		$codigo.= $v2['CodigosJoin']['codigo'];
+		$codigo.= "</td>";
+		$codigo.= "<td>";
+		$codigo.= $v2['CategoriaNormasJoin']['descripcion'];
+		$codigo.= "</td>";
+		$codigo.= "<td>";
+		$codigo.= $v2['CodigosJoin']['observacion'];
+		$codigo.= "</td>";
+		$codigo.= "</tr>";
+	}
+	
+	$codigo.= "</table>";
+}
 
 
 //echo $codigo; exit();

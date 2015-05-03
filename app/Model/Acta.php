@@ -165,6 +165,13 @@ App::uses('AppModel','Model');
     				'conditions' => '',
     				'fields' => '',
     				'order' => ''
+    		),
+    		'TipoLugare' => array(
+    				'className' => 'TipoLugare',
+    				'foreignKey' => 'tipo_lugar_id',
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => ''
     		)
     );
     
@@ -279,7 +286,7 @@ App::uses('AppModel','Model');
     	}
     }
     
-    public function sendReporteEmail($acta_id, $email_destino, $num_informe, $mensaje){
+    public function sendReporteEmail($acta_id, $email_destino, $num_informe, $asunto, $mensaje){
     	App::uses('CakeEmail', 'Network/Email');
     	
     	$Email = new CakeEmail('mym');
@@ -288,7 +295,7 @@ App::uses('AppModel','Model');
     	$Email->template('informe','send_informe');
     	$Email->viewVars(array('acta_id' => $acta_id,'num_informe'=> $num_informe, 'mensaje'=> $mensaje));
     	$Email->to($email_destino);
-    	$Email->subject(utf8_encode('Informe N° ').$num_informe);
+    	$Email->subject($asunto);
     	$Email->send('Mi Mensaje');
     }
     
@@ -988,5 +995,107 @@ App::uses('AppModel','Model');
     	 
     	return $tmp_array;
     }
+    
+    
+    /* Detalle de las Ni para el View Informe*/
+    public function infoNiT($acta_id){
+    	$arr_obj_det_ni_trab = $this->find('all',array(
+    			'fields' => array('CodigosJoin.codigo', 'CodigosJoin.observacion', 'CategoriaNormasJoin.descripcion'),
+    			'joins' => array(
+    					array(
+    							'table' => 'imp_prot_personales',
+    							'alias' => 'ImpProtPersonalesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'ImpProtPersonalesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'trabajadores',
+    							'alias' => 'TrabajadorJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'TrabajadorJoin.id = ImpProtPersonalesJoin.trabajador_id'
+    							)
+    					),
+    					array(
+    							'table' => 'ipp_normas_incumplidas',
+    							'alias' => 'IppNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'IppNormasIncumplidasJoin.ipp_id = ImpProtPersonalesJoin.id'
+    							)
+    					),
+    					array(
+    							'table' => 'codigos',
+    							'alias' => 'CodigosJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'CodigosJoin.id = IppNormasIncumplidasJoin.codigo_id',
+    							)
+    					),
+    					array(
+    							'table' => 'categoria_normas',
+    							'alias' => 'CategoriaNormasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'CategoriaNormasJoin.id = CodigosJoin.categoria_id'
+    							)
+    					)    				
+    			),
+    			'conditions'=>array('Acta.id' => $acta_id),
+    			'group' => array('CodigosJoin.codigo', 'CodigosJoin.observacion', 'CategoriaNormasJoin.descripcion')
+    	)
+    	);
+    	
+    	return $arr_obj_det_ni_trab;
+    }
+    
+    
+    public function infoNiV($acta_id){
+    	$arr_obj_det_ni_veh = $this->find('all',array(
+    			'fields' => array('CodigosJoin.codigo', 'CodigosJoin.observacion', 'CategoriaNormasJoin.descripcion'),
+    			'joins' => array(
+    					array(
+    							'table' => 'unidades_moviles',
+    							'alias' => 'UnidadesMovilesJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UnidadesMovilesJoin.acta_id = Acta.id'
+    							)
+    					),
+    					array(
+    							'table' => 'um_normas_incumplidas',
+    							'alias' => 'UmNormasIncumplidasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'UmNormasIncumplidasJoin.um_id = UnidadesMovilesJoin.id'
+    							)
+    					),
+    					array(
+    							'table' => 'codigos',
+    							'alias' => 'CodigosJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'CodigosJoin.id = UmNormasIncumplidasJoin.codigo_id'
+    							)
+    					),
+    					array(
+    							'table' => 'categoria_normas',
+    							'alias' => 'CategoriaNormasJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'CategoriaNormasJoin.id = CodigosJoin.categoria_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array('Acta.id' => $acta_id),
+    			'group' => array('CodigosJoin.codigo', 'CodigosJoin.observacion', 'CategoriaNormasJoin.descripcion')
+    	)
+    	);
+    	 
+    	return $arr_obj_det_ni_veh;
+    }
+    
   }
 ?>

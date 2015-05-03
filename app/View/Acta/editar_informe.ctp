@@ -82,7 +82,7 @@
 							<tr>
 								<td style="vertical-align: middle; width: 55%;">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
-								<td style="vertical-align: middle"><?php echo utf8_encode('Sector/Área'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle" colspan=3><?php echo utf8_encode('Sector/Área'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
 							</tr>
 							<tr>
@@ -112,13 +112,13 @@
 								<a href="#myModalAddEmpresa" class="btn btn-primary" style="height: 28px;" role="button" data-toggle="modal" id="btn-open-create-empresa">...</a>
 								</span>
 								</td>
-								<td>Nro de Trabjadores: <?php echo $this->Form->input('nro_trabajadores', array('div' => false, 'label' => false, 'class'=> 'txtNroTrabajadores form-control','id' =>'txtNroTrabajadores')); ?>
+								<td colspan=3>Nro de Trabjadores: <?php echo $this->Form->input('nro_trabajadores', array('div' => false, 'label' => false, 'class'=> 'txtNroTrabajadores form-control','id' =>'txtNroTrabajadores')); ?>
 								</td>
 							</tr>
 							<tr>
 								<td style="vertical-align: middle">Lugar: <?php echo $this->Form->input('lugar', array('div' => false, 'label' => false, 'class'=> 'txtLugar form-control','id' =>'txtLugar','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
-								<td style="vertical-align: middle">UU.NN:<br>
+								<td style="vertical-align: middle" colspan=3>UU.NN:<br>
 								<?php //echo $this->Form->input('uunn', array('div' => false, 'label' => false, 'class'=> 'txtUunn form-control','id' =>'txtUunn','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								<select name="data[Acta][uunn_id]"
 									class="cbo-uunn-select2 form-control">
@@ -143,7 +143,20 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan=2 style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								</td>
+								<td style="vertical-align: middle" colspan=2>
+								Empresa supervisada al servicio de:
+									<div class="radio">
+											<label> MyM <input name="rbtLugar" type="radio" value="M" id="rbMym" <?php echo ($obj_acta->getAttr('empresa_supervisora')=='MyM')? 'checked':'' ?>>
+											</label>
+									</div>
+									<div class="radio" style="display: -webkit-inline-box">
+									<?php if($obj_acta->getAttr('empresa_supervisora')!='MyM') $style_display=""; else  $style_display ="display:none"; ?>
+										<label>Otro <input name="rbtLugar" type="radio" value="O" id="rbOtro" <?php echo ($obj_acta->getAttr('empresa_supervisora')!='MyM')? 'checked':'' ?>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<?php echo $this->Form->input('empresa_supervisora', array('div' => false, 'label' => false, 'class'=> 'txtEmpSup form-control','id' =>'txtEmpSup', 'type' =>'text', 'style' => $style_display)); ?>
+										</label>
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -152,6 +165,28 @@
 									name="data[Acta][tipo]" type="radio" value="P" id="rbTipo1" <?php echo ($obj_acta->getAttr('tipo') == 'P')? 'checked':''; ?>>
 									Inopinada: <input name="data[Acta][tipo]" type="radio"
 									value="I" id="rbTipo2" <?php echo ($obj_acta->getAttr('tipo') == 'I')? 'checked':''; ?>>
+								</td>
+								<td style="vertical-align: middle" width="40%">Tipo de Lugar:
+									<select name="data[Acta][tipo_lugar_id]"
+									class="form-control">
+									<option>--Seleccione--</option>
+										<?php 
+										if (isset($list_all_tipo_lugares)){
+											foreach ($list_all_tipo_lugares as $id => $des):
+											if(isset($obj_acta) || isset($acta_id)){
+												if($id == $obj_acta->getAttr('tipo_lugar_id')){
+													$selected = " selected = 'selected'";
+												}else{
+													$selected = "";
+												}
+											}else{
+												$selected = "";
+											}
+												echo "<option value = ".$id.$selected.">".utf8_encode($des)."</option>";
+											endforeach;
+										}
+										?>
+									</select>
 								</td>
 								<?php 
 										$fecha = $obj_acta->getAttr('fecha');//1990-12-12

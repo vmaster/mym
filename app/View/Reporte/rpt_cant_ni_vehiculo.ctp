@@ -49,6 +49,7 @@ function visitorData (valores) {
         },
         series: [{
 	    	name: valores.name,
+	    	colorByPoint: true,
 		    data: valores.data
 	       }]
 	  });

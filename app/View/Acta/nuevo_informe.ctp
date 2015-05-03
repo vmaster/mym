@@ -73,7 +73,7 @@
 							<tr>
 								<td style="vertical-align: middle; width: 55%;">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
-								<td style="vertical-align: middle"><?php echo utf8_encode('Sector/Área'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle" colspan=3><?php echo utf8_encode('Sector/Área'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
 							</tr>
 							<tr>
@@ -94,13 +94,13 @@
 								<a href="#myModalAddEmpresa" class="btn btn-primary" style="height: 28px;" role="button" data-toggle="modal" id="btn-open-create-empresa">...</a>
 								</span>
 								</td>
-								<td>Nro de Trabjadores: <?php echo $this->Form->input('nro_trabajadores', array('div' => false, 'label' => false, 'class'=> 'txtNroTrabajadores form-control','id' =>'txtNroTrabajadores')); ?>
+								<td colspan=3>Nro de Trabjadores: <?php echo $this->Form->input('nro_trabajadores', array('div' => false, 'label' => false, 'class'=> 'txtNroTrabajadores form-control','id' =>'txtNroTrabajadores')); ?>
 								</td>
 							</tr>
 							<tr>
 								<td style="vertical-align: middle">Lugar: <?php echo $this->Form->input('lugar', array('div' => false, 'label' => false, 'class'=> 'txtLugar form-control','id' =>'txtLugar','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
-								<td style="vertical-align: middle">UU.NN:<br>
+								<td style="vertical-align: middle" colspan=3>UU.NN:<br>
 								<?php //echo $this->Form->input('uunn', array('div' => false, 'label' => false, 'class'=> 'txtUunn form-control','id' =>'txtUunn','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								<select name="data[Acta][uunn_id]"
 									class="cbo-uunn-select2 form-control">
@@ -116,16 +116,40 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan=2 style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								</td>
+								<td style="vertical-align: middle" colspan=2>
+								Empresa supervisada al servicio de:
+								<div class="radio">
+										<label> MyM <input name="rbtLugar" type="radio" value="M" id="rbMym" checked>
+										</label>
+								</div>
+								<div class="radio" style="display: -webkit-inline-box">
+									<label>Otro <input name="rbtLugar" type="radio" value="O" id="rbOtro">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<?php echo $this->Form->input('empresa_supervisora', array('div' => false, 'label' => false, 'class'=> 'txtEmpSup form-control','id' =>'txtEmpSup', 'type' =>'text', 'style' => 'display:none', 'value'=>'MyM')); ?>
+									</label>
+								</div>
 								</td>
 							</tr>
 							<tr>
-								<td style="vertical-align: middle">Planeada: <input
+								<td style="vertical-align: middle" width="10%">Planeada: <input
 									name="data[Acta][tipo]" type="radio" value="P" id="rbTipo1">
 									Inopinada: <input name="data[Acta][tipo]" type="radio"
 									value="I" id="rbTipo2">
 								</td>
-								<td>Fecha: <input type="text" name="data[Acta][fecha]" id="txtFechaActa" class="form-control" placeholder="dd-mm-aaaa" value="<?php echo date('d-m-Y'); ?>">
+								<td style="vertical-align: middle" width="40%">Tipo de Lugar:
+									<select name="data[Acta][tipo_lugar_id]"
+									class="form-control">
+										<?php 
+										if (isset($list_all_tipo_lugares)){
+											foreach ($list_all_tipo_lugares as $id => $des):
+												echo "<option value = ".$id.">".utf8_encode($des)."</option>";
+											endforeach;
+										}
+										?>
+									</select>
+								</td>
+								<td width="50%">Fecha: <input type="text" name="data[Acta][fecha]" id="txtFechaActa" class="form-control" placeholder="dd-mm-aaaa" value="<?php echo date('d-m-Y'); ?>">
 								</td>
 							</tr>
 						</table>

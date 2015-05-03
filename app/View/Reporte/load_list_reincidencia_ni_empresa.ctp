@@ -22,7 +22,7 @@ $(document).ready(function() {
 <div class="well" style="width: 80%;">
 	<?php	
 	if(empty($list_ni_emp1) && empty($list_ni_emp2)){
-		echo __('No hay datos estad&iacuter;sticos');
+		echo __('No hay datos estad&iacute;sticos');
 			}else{ ?>
 	<div id="conteiner_all_rows">
 		<table id="table-report5" class="display" cellspacing="0" width="100%">

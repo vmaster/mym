@@ -38,6 +38,7 @@
 	        },        
 		    series: [{
 		    	name: valores.name,
+		    	colorByPoint: true,
 			    data: valores.data
 		       }]
 		  });
@@ -91,6 +92,7 @@
 	        
 		    series: [{
 		    	name: valores.name,
+		    	colorByPoint: true,
 			    data: valores.data
 		       }]
 		  });
@@ -163,6 +165,7 @@
 	        },
 	        series: [{
 		    	name: valores.name,
+		    	colorByPoint: true,
 			    data: valores.data
 		       }]
 		  });
@@ -233,6 +236,7 @@
 	        },
 	        series: [{
 		    	name: valores.name,
+		    	colorByPoint: true,
 			    data: valores.data
 		       }]
 		  });

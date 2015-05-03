@@ -50,25 +50,9 @@ function visitorData (valores) {
         },
         series: [{
 	    	name: valores.name,
+	    	colorByPoint: true,
 		    data: valores.data
 	       }]
-	   /* series: [{
-	        name: 'Ordenes Pendientes',
-	        colorByPoint: true,
-	        data: [{
-	            name: 'Asignado',
-	            y: 10,
-	            drilldown: 'estado-0'
-	        },{
-	            name: 'Descargado',
-	            y: 124,
-	            drilldown: 'estado-1'
-	        },{
-	            name: 'Exportado',
-	            y: 8,
-	            drilldown: 'estado-2'
-	        }]
-	    }]*/
 	  });
 	}
 	

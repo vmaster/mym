@@ -257,6 +257,15 @@ $('#container_page .pagination li.active').live('click',function(){
 							<br>
 							<div class="row">
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
+									<label><?php echo utf8_encode(__('Asunto:')); ?> </label>
+								</div>
+								<div class="span3 col-md-5 col-sm-6 col-xs-6">
+									<?php echo $this->Form->input('asunto', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'txt-asunto')); ?>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<label><?php echo utf8_encode(__('Mensaje:')); ?> </label>
 								</div>
 								<div class="span3 col-md-5 col-sm-6 col-xs-6">

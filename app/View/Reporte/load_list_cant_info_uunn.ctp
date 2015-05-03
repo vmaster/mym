@@ -22,7 +22,7 @@ $(document).ready(function() {
 <div class="well" style="width: 65%;">
 	<?php	
 	if(empty($list_info_uunn)){
-		echo __('No hay datos estad&iacuter;sticos');
+		echo __('No hay datos estad&iacute;sticos');
 			}else{ ?>
 	<div id="conteiner_all_rows">
 		<table id="table-report2" class="display" cellspacing="0" width="100%">

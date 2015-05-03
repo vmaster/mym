@@ -22,13 +22,14 @@ $(document).ready(function(){
 				}
 			});	
 		},
-		sendReport: function(acta_id, email_destino, mensaje){
+		sendReport: function(acta_id, email_destino, asunto, mensaje){
 			$.ajax({
 				type: 'post',
 				url: env_webroot_script + 'actas/send_reporte_email',
 				data:{
 					'acta_id': acta_id,
 					'email_destino': email_destino,
+					'asunto': asunto,
 					'mensaje': mensaje
 				},
 				dataType: 'json'
@@ -125,8 +126,9 @@ $(document).ready(function(){
 	$body.on('click','div#myModalSendReport .send-report-email-trigger', function(){
 		acta_id = $('div#myModalSendReport').attr('acta_id');
 		email_destino = $('div#myModalSendReport #email-destino').val();
+		asunto = $('div#myModalSendReport #txt-asunto').val();
 		mensaje = $('div#myModalSendReport #txt-mensaje').val();
-		acta.sendReport(acta_id, email_destino, mensaje);
+		acta.sendReport(acta_id, email_destino, asunto, mensaje);
 	});
 	
 	/*SCRIPT PARA ELIMINAR FOTOS IPP -  EXISTENTES*/
@@ -570,5 +572,16 @@ $(document).ready(function(){
 				minDate: new Date(1924, 1 - 1, 1),
 				maxDate: new Date()
 			});
+	
+	//$('#rbTipo1').checked()
+	$( "#rbMym" ).click(function() {
+		  $('#txtEmpSup').attr('value','MyM');
+		  $('#txtEmpSup').css('display','none');
+	});
+	
+	$( "#rbOtro" ).click(function() {
+		  $('#txtEmpSup').attr('value','');
+		  $('#txtEmpSup').css('display','');
+	});
 	
 });

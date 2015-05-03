@@ -176,6 +176,7 @@ class ActasController extends AppController{
 		$this->loadModel('ActosSubestandaresTipo');
 		$this->loadModel('CondicionesSubestandaresTipo');
 		$this->loadModel('UnidadesNegocio');
+		$this->loadModel('TipoLugare');
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
 		$list_all_actas = $this->Acta->listActas();
@@ -186,6 +187,7 @@ class ActasController extends AppController{
 		$list_all_vehiculos = $this->Vehiculo->listVehiculos();
 		$list_all_tipos_actos_sub = $this->ActosSubestandaresTipo->listTipoActosSubEstandares();
 		$list_all_tipos_condiciones_sub = $this->CondicionesSubestandaresTipo->listTipoCondicionesSubEstandares();
+		$list_all_tipo_lugares = $this->TipoLugare->listTipoLugares();
 		
 		$total_registros = $this->Acta->find('count') + 1;
 		$codigo = str_pad($total_registros, 4, "0", STR_PAD_LEFT);
@@ -193,7 +195,7 @@ class ActasController extends AppController{
 		$codigo_completo = $codigo.$string_complement;
 		
 		
-		$this->set(compact('list_all_empresas','list_all_actas','list_all_trabajadores','list_all_actividades','list_all_codigos','list_all_vehiculos','codigo_completo','list_all_tipos_actos_sub','list_all_tipos_condiciones_sub','list_all_unidades_negocios'));
+		$this->set(compact('list_all_empresas','list_all_actas','list_all_trabajadores','list_all_actividades','list_all_codigos','list_all_vehiculos','codigo_completo','list_all_tipos_actos_sub','list_all_tipos_condiciones_sub','list_all_unidades_negocios','list_all_tipo_lugares'));
 		
 		
 		//debug($count_actas);
@@ -541,6 +543,7 @@ class ActasController extends AppController{
 		$this->loadModel('ActosSubestandaresTipo');
 		$this->loadModel('CondicionesSubestandaresTipo');
 		$this->loadModel('UnidadesNegocio');
+		$this->loadModel('TipoLugare');
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
 		$list_all_actas = $this->Acta->listActas();
@@ -551,7 +554,8 @@ class ActasController extends AppController{
 		$list_all_vehiculos = $this->Vehiculo->listVehiculos();
 		$list_all_tipos_actos_sub = $this->ActosSubestandaresTipo->listTipoActosSubEstandares();
 		$list_all_tipos_condiciones_sub = $this->CondicionesSubestandaresTipo->listTipoCondicionesSubEstandares();
-		$this->set(compact('list_all_empresas','list_all_actas','list_all_trabajadores','list_all_actividades','list_all_codigos','list_all_vehiculos','list_all_tipos_actos_sub','list_all_tipos_condiciones_sub','list_all_unidades_negocios'));
+		$list_all_tipo_lugares = $this->TipoLugare->listTipoLugares();
+		$this->set(compact('list_all_empresas','list_all_actas','list_all_trabajadores','list_all_actividades','list_all_codigos','list_all_vehiculos','list_all_tipos_actos_sub','list_all_tipos_condiciones_sub','list_all_unidades_negocios','list_all_tipo_lugares'));
 	
 	
 		if($this->request->is('post')  || $this->request->is('put')){
@@ -1426,13 +1430,13 @@ class ActasController extends AppController{
 			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
 			exit();
 		}
-		// Sobrescribimos para que no aparezcan los resultados de debuggin
-		// ya que sino daria un error al generar el pdf.
-		//Configure::write('debug',0);
-		//$resultado = $this->MiControlador->findById($id);
+
 		ini_set('memory_limit', '512M');
 		$obj_acta = $this->Acta->findById($acta_id);
-		$this->set(compact('obj_acta'));
+		$info_ni_t = $this->Acta->infoNiT($acta_id);
+		$info_ni_v = $this->Acta->infoNiV($acta_id);
+		//debug($info_ni); exit();
+		$this->set(compact('obj_acta','info_ni_t','info_ni_v'));
 	}
 	
 	public function send_reporte_email()
@@ -1444,11 +1448,12 @@ class ActasController extends AppController{
 			$obj_acta = $this->Acta->findById($acta_id);
 			$num_informe = $obj_acta->getAttr('num_informe'); //Obtengo el número de informe
 			$email_destino = $this->request->data['email_destino'];
+			$asunto = $this->request->data['asunto'];
 			$mensaje = $this->request->data['mensaje'];
 
 			$error_validation = '';
 			if(Validation::email($email_destino)){
-				$this->Acta->sendReporteEmail($acta_id, $email_destino, $num_informe, $mensaje);
+				$this->Acta->sendReporteEmail($acta_id, $email_destino, $num_informe, $asunto, $mensaje);
 				$obj_acta->saveField('fecha_envio', date('Y-m-d'));
 				echo json_encode(array('success'=>true,'msg'=>__('El Informe fue enviado')));
 				//exit();
