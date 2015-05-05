@@ -40,14 +40,12 @@ $codigo = "<style type='text/css'>
 img { border:1px solid green}
 </style>";
 $codigo.= "<div class='pie-pag'><hr>";
-$codigo.= "<div class='row'>
-		   <div class='col-sm-6 col-xs-6'>Av. Victor Ra&uacute;l Haya de la Torre 1512</div>";
-$codigo.= "<div class='col-sm-6 col-xs-6' style='float:left;text-align: right;'>Telf. 074-271154 / RPM *716060 /978007000</div>
-		  </div>";
-$codigo.= "<div class='row'>
-		   <div class='col-sm-6 col-xs-6'>La Victoria - Chiclayo - Lambayeque</div>";
-$codigo.= "<div class='col-sm-6 col-xs-6' style='text-align: right;'>Email: mym.ingenieria@mym-iceperu.com</div>
-		  </div>";
+$codigo.= "<table class='tg' width='100%' style='border:0px;'>";
+$codigo.= "<tr><td style='border:0px;font-size:11px; width:68%'><strong>Av. Victor Ra&uacute;l Haya de la Torre 1512</strong></td>
+				<td style='border:0px;font-size:11px'><strong>Telf. 074-271154 / RPM *716060 /978007000</strong></td></tr>";
+$codigo.= "<tr><td style='border:0px;font-size:11px'><strong>La Victoria - Chiclayo - Lambayeque</strong></td>
+				<td style='border:0px;font-size:11px;'><strong>Email: mym.ingenieria@mym-iceperu.com</strong></td></tr>";
+$codigo.= "</table>";
 $codigo.= "</div>";
 
 $codigo.= "<table class='tg' width='100%' style='margin-bottom:-15px'>
