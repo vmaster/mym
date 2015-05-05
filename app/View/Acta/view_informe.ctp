@@ -52,7 +52,7 @@ $codigo.= "<table class='tg' width='100%' style='margin-bottom:-15px'>
 			  <tr>
 			    <th style='width:10%' class='tg-031e back-green' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/logo-mini.png' style='width: 80px; border:0px;'/></th>
 			    <th style='width:62%' class='tg-031e back-blue' rowspan='2'><h2 style='margin:2px'>M&amp;M Ingenier&iacute;a Obras y Servicios E.I.R.L.</h2>
-			    <h5 style='margin:2px'>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, civiles, mineria e industrial.<br>Especialistas de gestión en Seguridad, salud en el trabajo, calidad y medio ambiente.</h5>		
+			    <h5 style='margin:2px'>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, civiles, miner&iacute;a e industrial.<br>Especialistas de gesti&oacute;n en Seguridad, salud en el trabajo, calidad y medio ambiente.</h5>		
 			    </th>
 			    <th style='width:28%' class='aling-left back-green'><strong>UUNN:</strong> ".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
 			  </tr>
