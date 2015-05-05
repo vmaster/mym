@@ -26,7 +26,7 @@
 	<p>&nbsp;</p>
 	<p>Atentamente,</p>
 	<p><?php echo utf8_encode('M&M Ingeniería Obras y Servicios E.I.R.L.'); ?> </p>
-	Calle Las Piletas 255 - Urb. Federico Villarreal<br>
-	Telf.074-271154/RPM: *716060/978007000 - Email: mym.ingenieria@hotmail.com
+	Av. Victor Ra&uacute;l Haya de la Torre 1512 - La Victoria<br>
+	Telf.074-271154/RPM: *716060/978007000 - Email: mym.ingenieria@mym-iceperu.com
 </body>
 </html>

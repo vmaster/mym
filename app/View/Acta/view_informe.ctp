@@ -41,12 +41,12 @@ img { border:1px solid green}
 </style>";
 $codigo.= "<div class='pie-pag'><hr>";
 $codigo.= "<div class='row'>
-		   <div class='col-md-3 col-sm-6 col-xs-6'>Calle Las Piletas 255 - Urb. Federico Villarreal</div>";
+		   <div class='col-md-3 col-sm-6 col-xs-6'>Av. Victor Ra&uacute;l Haya de la Torre 1512</div>";
 $codigo.= "<div class='col-md-3 col-sm-6 col-xs-6' style='text-align: right;'>Telf. 074-271154 / RPM *716060 /978007000</div>
 		  </div>";
 $codigo.= "<div class='row'>
-		   <div class='col-md-3 col-sm-6 col-xs-6'>Chiclayo - Chiclayo - Lambayeque</div>";
-$codigo.= "<div class='col-md-3 col-sm-6 col-xs-6' style='text-align: right;'>Email: mym.ingenieria@hotmail.com</div>
+		   <div class='col-md-3 col-sm-6 col-xs-6'>La Victoria - Chiclayo - Lambayeque</div>";
+$codigo.= "<div class='col-md-3 col-sm-6 col-xs-6' style='text-align: right;'>Email: mym.ingenieria@mym-iceperu.com</div>
 		  </div>";
 $codigo.= "</div>";
 
@@ -113,7 +113,7 @@ $codigo.= "
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv'>EQUIPOS DE PROTECCI&Oacute;N PERSONAL</th>
+		    <th class='tg-e3zv back-green'>EQUIPOS DE PROTECCI&Oacute;N PERSONAL</th>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_epp'))."</td>
@@ -145,7 +145,7 @@ $codigo.= "	</tr>
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
+		    <th class='tg-e3zv back-green'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_se_de'))."</td>
@@ -176,7 +176,7 @@ $codigo.= "	</tr>
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv'>UNIDADES M&Oacute;VILES</th>
+		    <th class='tg-e3zv back-green'>UNIDADES M&Oacute;VILES</th>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_um'))."</td>
@@ -206,14 +206,14 @@ $codigo.= "	</tr>
 $codigo.= "
 		<table class='tg' width='100%'>
 		<tr>
-		<th class='tg-e3zv'>
+		<th class='tg-e3zv back-green2'>
 		INCUMPLIMIENTOS AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO
 		</th>
 		</tr>
 		</table>
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv'>ACTOS Y CONDICIONES SUBESTANDARES</th>
+		    <th class='tg-e3zv back-green'>ACTOS Y CONDICIONES SUBESTANDARES</th>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_act_cond'))."</td>
@@ -247,8 +247,8 @@ $codigo.="
 		    <th class='tg-hgcj back-blue' colspan='2'><strong>CONCLUSIONES, RECOMENDACIONES Y ACCIONES CORRECTIVAS</strong></th>
 		  </tr>
 		  <tr>
-		    <td class='tg-e3zv'>CONCLUSIONES</td>
-		    <td class='tg-e3zv'>RECOMENDACIONES</td>
+		    <td class='tg-e3zv back-green'>CONCLUSIONES</td>
+		    <td class='tg-e3zv back-green'>RECOMENDACIONES</td>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_conclusion'))."</td>
@@ -260,7 +260,7 @@ $codigo.="
 $codigo.="
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-hgcj'><strong>MEDIDAS DE CONTROL</strong></th>
+		    <th class='tg-hgcj back-green'><strong>MEDIDAS DE CONTROL</strong></th>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_med'))."</td>
@@ -272,7 +272,7 @@ $codigo.="
 $codigo.= "<table class='tg' width='100%'>
 		<thead>
 		<tr>
-		<th class='tg-e3zv' colspan=10 style='text-align: center;'>".utf8_encode('TRABAJADORES SUPERVISADOS').
+		<th class='tg-e3zv back-green' colspan=10 style='text-align: center;'>".utf8_encode('TRABAJADORES SUPERVISADOS').
 		"</th>
 				</tr>
 				<tr>
@@ -322,7 +322,7 @@ $codigo.= "</table><br>";
 $codigo.= "<table class='tg' width='100%'>
 		<thead>
 		<tr>
-		<th class='tg-e3zv' colspan=11 style='text-align: center;'>".utf8_encode('UNIDADES MÓVILES SUPERVISADAS').
+		<th class='tg-e3zv back-green' colspan=11 style='text-align: center;'>".utf8_encode('UNIDADES MÓVILES SUPERVISADAS').
 									"</th>
 								</tr>
 								<tr>
@@ -376,7 +376,7 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 	$codigo.= "<table class='tg' width='100%'>";
 	$codigo.= "<thead>
 				<tr>
-					<th class='tg-e3zv' colspan=3 style='text-align: center;'>".utf8_encode('DETALLE DE NORMAS INCUMPLIDAS')."</th>
+					<th class='tg-e3zv back-green' colspan=3 style='text-align: center;'>".utf8_encode('DETALLE DE NORMAS INCUMPLIDAS')."</th>
 				</tr>
 				<tr>
 					<th>".utf8_encode('Código')."</th>
