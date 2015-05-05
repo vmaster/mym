@@ -8,10 +8,10 @@ if(isset($obj_acta)){
 }
 $codigo = "<style type='text/css'>
 .tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-e3zv{font-weight:bold; text-align:center;}
-.tg-uni {text-align:center;}
+.tg td{font-family:Times New Roman, Georgia, Serif;font-size:14px;padding:3px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Times New Roman, Georgia, Serif;font-size:14px;font-weight:normal;padding:3px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-e3zv{font-weight:bold;}
+.tg-uni {text-align:center !important;}
 .aling-left {text-align:left;}
 .aling-right {text-align:right;}
 		
@@ -41,29 +41,29 @@ img { border:1px solid green}
 </style>";
 $codigo.= "<div class='pie-pag'><hr>";
 $codigo.= "<div class='row'>
-		   <div class='col-md-3 col-sm-6 col-xs-6'>Av. Victor Ra&uacute;l Haya de la Torre 1512</div>";
-$codigo.= "<div class='col-md-3 col-sm-6 col-xs-6' style='text-align: right;'>Telf. 074-271154 / RPM *716060 /978007000</div>
+		   <div class='col-sm-6 col-xs-6'>Av. Victor Ra&uacute;l Haya de la Torre 1512</div>";
+$codigo.= "<div class='col-sm-6 col-xs-6' style='float:left;text-align: right;'>Telf. 074-271154 / RPM *716060 /978007000</div>
 		  </div>";
 $codigo.= "<div class='row'>
-		   <div class='col-md-3 col-sm-6 col-xs-6'>La Victoria - Chiclayo - Lambayeque</div>";
-$codigo.= "<div class='col-md-3 col-sm-6 col-xs-6' style='text-align: right;'>Email: mym.ingenieria@mym-iceperu.com</div>
+		   <div class='col-sm-6 col-xs-6'>La Victoria - Chiclayo - Lambayeque</div>";
+$codigo.= "<div class='col-sm-6 col-xs-6' style='text-align: right;'>Email: mym.ingenieria@mym-iceperu.com</div>
 		  </div>";
 $codigo.= "</div>";
 
 $codigo.= "<table class='tg' width='100%' style='margin-bottom:-15px'>
 			  <tr>
-			    <th class='tg-031e back-green' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/logo-mini.png' style='width: 80px; border:0px;'/></th>
-			    <th class='tg-031e back-blue' rowspan='2'>M&amp;M Ingeniera Obras y Serivcios E.I.R.L.
-			    <h6>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, civiles, mineria e industrial.<br>Especialistas de gestión en Seguridad, salud en el trabajo, calidad y medio ambiente.</h6>		
+			    <th style='width:10%' class='tg-031e back-green' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/logo-mini.png' style='width: 80px; border:0px;'/></th>
+			    <th style='width:62%' class='tg-031e back-blue' rowspan='2'><h2 style='margin:2px'>M&amp;M Ingenier&iacute;a Obras y Servicios E.I.R.L.</h2>
+			    <h5 style='margin:2px'>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, civiles, mineria e industrial.<br>Especialistas de gestión en Seguridad, salud en el trabajo, calidad y medio ambiente.</h5>		
 			    </th>
-			    <th class='aling-left back-green'><strong>UUNN:</strong> ".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
+			    <th style='width:28%' class='aling-left back-green'><strong>UUNN:</strong> ".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
 			  </tr>
 			  <tr>
-			    <td class='aling-left back-green'><strong>&Aacute;rea:</strong>".$obj_acta->getAttr('sector')."</td>
+			    <td class='aling-left back-green'><strong>&Aacute;REA:</strong>".$obj_acta->getAttr('sector')."</td>
 			  </tr>
 			  <tr>
 			    <td class='tg-uni back-blue'><strong>INFORME T&Eacute;CNICO DE SEGURIDAD</strong></td>
-			    <td class='tg-031e back-green'>N&deg; ".$obj_acta->getAttr('num_informe')."</td>
+			    <td class='tg-031e back-green'><strong>N&deg; ".$obj_acta->getAttr('num_informe')."</strong></td>
 			  </tr>
 			</table><br>";
 
@@ -71,7 +71,7 @@ $codigo.= "<table class='tg' width='100%' style='margin-bottom:-15px'>
 $codigo .="<table class='tg' width='100%' style='margin-bottom:-10px'>
 
   <tr>
-    <th class='tg-e3zv back-green'>Empresa:</th>
+    <th class='tg-e3zv aling-left back-green'>Empresa:</th>
     <th class='tg-031e aling-left' colspan='3'>".$obj_acta->Empresa->getAttr('nombre')."</th>
   </tr>
   <tr>
@@ -79,27 +79,27 @@ $codigo .="<table class='tg' width='100%' style='margin-bottom:-10px'>
     <td class='tg-031e' colspan='3'>".$obj_acta->getAttr('actividad')."</td>
   </tr>
   <tr>
-    <td class='tg-e3zv back-green'>Obra:</td>
-    <td class='tg-031e'>".$obj_acta->getAttr('obra')."</td>
-    <td class='aling-right back-green'><strong>Tipo de Lugar:</strong></td>
-    <td class='tg-031e'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
+    <td style='width:10%' class='tg-e3zv back-green'>Obra:</td>
+    <td style='width:36%' class='tg-031e'>".$obj_acta->getAttr('obra')."</td>
+    <td style='width:26%' class='aling-left back-green'><strong>Tipo de Lugar:</strong></td>
+    <td style='width:28%' class='tg-031e'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Lugar:</td>
     <td class='tg-031e'>".$obj_acta->getAttr('lugar')."</td>
-    <td class='aling-right back-green'><strong>Fecha:</strong></td>
+    <td class='aling-left back-green'><strong>Fecha:</strong></td>
     <td class='tg-031e'>".$obj_acta->getAttr('fecha')."</td>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Responsable:</td>
     <td class='tg-031e'>".$obj_acta->Trabajadore1->getAttr('apellido_nombre')."</td>
-    <td class='aling-right back-green'><strong>Supervisor M&amp;M:</strong></td>
+    <td class='aling-left back-green'><strong>Supervisor M&amp;M:</strong></td>
     <td class='tg-031e'>".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."</td>
   </tr>
   <tr>
-    <td class='tg-e3zv back-green'>Supervisi&oacute;n:</td>
+    <td style='width:10%' class='tg-e3zv back-green'>Supervisi&oacute;n:</td>
     <td class='tg-031e'>".$tipo_supervision."</td>
-    <td class='aling-right back-green'><strong>Empresa supervisada al servicio de:</strong></td>
+    <td class='aling-left back-green'><strong>Emp. Superv. al Servicio de:</strong></td>
     <td class='tg-031e'>".$obj_acta->getAttr('empresa_supervisora')."</td>
   </tr>
 </table><br>";
