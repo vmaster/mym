@@ -44,6 +44,7 @@ $(document).ready(function(){
 				if(data.success==true){
 					$('#add_edit_empresa').hide();
 					$('#conteiner_all_rows').load(env_webroot_script + escape('empresas/find_empresas/1/'+null+'/'+null+'/'+''+'/'+''),function(){
+						$('#table_content_empresas').DataTable();
 					});
 					alertify.success(data.msg);
 				}else{

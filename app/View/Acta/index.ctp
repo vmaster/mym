@@ -1,5 +1,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
+
+$('#table_content_actas').DataTable();
+	
 $body = $('body');
 var order_by_select;
 var order_by_or;
@@ -138,7 +141,7 @@ function loadData(page){
 	$('#conteiner_all_rows').load(env_webroot_script + escape('actas/find_actas/'+page+'/'+order_by_select+'/'+order_by_or+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
 		});
 }
-loadData(1);  /* For first time page load default results */
+//loadData(1);  /* For first time page load default results */
 $('#container_page .pagination li.active').live('click',function(){
     var page = $(this).attr('p');
     loadData(page);
@@ -163,7 +166,7 @@ $('#container_page .pagination li.active').live('click',function(){
 	  </div>
 	</div>
 	<p>
-	
+	<!-- 
 	<div class="row">
 		<div class="span3 col-md-2 col-sm-6 col-xs-6">
 			<label><?php echo __('Buscar por');?>:</label>
@@ -189,6 +192,7 @@ $('#container_page .pagination li.active').live('click',function(){
 			</label>
 		</div>
 	</div>
+	 -->
 	<div class="well">
 	    <?php 
 		if(empty($list_acta)){ 
@@ -201,17 +205,6 @@ $('#container_page .pagination li.active').live('click',function(){
 	      </div>
 	    <?php }?>
 	</div>
-	<!-- <div class="pagination">
-	    <ul>
-	        <li><a href="#">Prev</a></li>
-	        <li><a href="#">1</a></li>
-	        <li><a href="#">2</a></li>
-	        <li><a href="#">3</a></li>
-	        <li><a href="#">4</a></li>
-	        <li><a href="#">Next</a></li>
-	    </ul>
-	</div>
-	 -->
 
 	<div class="modal fade" id="myModalDeleteActa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" acta_id=''>
 		<div class="modal-dialog">

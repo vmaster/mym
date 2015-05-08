@@ -10,7 +10,7 @@ class TrabajadoresController extends AppController{
 		
 		$page = 0;
 		//$page -= 1;
-		$per_page = 10;
+		$per_page = 10000;
 		$start = $page * $per_page;
 		
 		if($order_by_or!=NULL && isset($order_by_or) && $order_by_or!='null'){

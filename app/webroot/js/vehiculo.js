@@ -99,6 +99,7 @@ $(document).ready(function(){
 			if(data.success==true){
 				$('#add_edit_vehiculo').hide();
 				$('#conteiner_all_rows').load(env_webroot_script + escape('vehiculos/find_vehiculos/1/'+null+'/'+null+'/'+''+'/'+''),function(){
+					$('#table_content_vehiculos').DataTable();
 				});
 				alertify.success(data.msg);
 			}else{

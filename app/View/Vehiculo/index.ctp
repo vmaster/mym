@@ -1,4 +1,8 @@
 <script type="text/javascript">
+$(document).ready(function(){
+
+$('#table_content_vehiculos').DataTable();
+
 $body = $('body');
 var order_by_select;
 var order_by_or;
@@ -65,12 +69,14 @@ function loadData(page){
 	$('#conteiner_all_rows').load(env_webroot_script + escape('vehiculos/find_vehiculos/'+page+'/'+order_by_select+'/'+order_by_or+'/'+search_nroplaca+'/'+search_nrosoat),function(){
 		});
 }
-loadData(1);  /* For first time page load default results */
+//loadData(1);  /* For first time page load default results */
 $('#container_page .pagination li.active').live('click',function(){
     var page = $(this).attr('p');
     loadData(page);
     
-}); 
+});
+
+});
 </script>
 <div class="row">
 	<div class="col-md-12">
@@ -88,6 +94,7 @@ $('#container_page .pagination li.active').live('click',function(){
 	  </div>
 	</div>
 	<p>
+	<!-- 
 	<div class="row">
 		<div class="span3 col-md-2 col-sm-6 col-xs-6" style="margin-top: 16px;"><label><?php echo __('Buscar por');?>:</label></div>
 		<div class="span3 col-md-3 col-sm-6 col-xs-6">
@@ -97,6 +104,7 @@ $('#container_page .pagination li.active').live('click',function(){
 			<label><?php echo __('Nro SOAT');?> <input type = "text" name ="txtBuscarNroSoat" id="txtBuscarNroSoat" class="form-control"></label>
 		</div>
 	</div>
+	 -->
 	<div class="well">
 	    <?php 
 		if(empty($list_vehiculo)){ 
@@ -109,17 +117,6 @@ $('#container_page .pagination li.active').live('click',function(){
 	      </div>
 	    <?php }?>
 	</div>
-	<!-- <div class="pagination">
-	    <ul>
-	        <li><a href="#">Prev</a></li>
-	        <li><a href="#">1</a></li>
-	        <li><a href="#">2</a></li>
-	        <li><a href="#">3</a></li>
-	        <li><a href="#">4</a></li>
-	        <li><a href="#">Next</a></li>
-	    </ul>
-	</div>
-	 -->
 
 	<div class="modal fade" id="myModalDeleteVehiculo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" vehiculo_id=''>
 		<div class="modal-dialog">

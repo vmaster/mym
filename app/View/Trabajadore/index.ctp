@@ -1,4 +1,8 @@
 <script type="text/javascript">
+$(document).ready(function(){
+
+$('#table_content_trabajadores').DataTable();
+
 $body = $('body');
 var order_by_select;
 var order_by_or;
@@ -63,12 +67,14 @@ function loadData(page){
 	$('#conteiner_all_rows').load(env_webroot_script + escape('trabajadores/find_trabajadores/'+page+'/'+order_by_select+'/'+order_by_or+'/'+search_nro_documento+'/'+search_nombre),function(){
 		});
 }
-loadData(1);  /* For first time page load default results */
+//loadData(1);  /* For first time page load default results */
 $('#container_page .pagination li.active').live('click',function(){
     var page = $(this).attr('p');
     loadData(page);
     
-}); 
+});
+
+});
 </script>
 <div class="row">
 	<div class="col-md-12">
@@ -86,6 +92,7 @@ $('#container_page .pagination li.active').live('click',function(){
 	  </div>
 	</div>
 	<p>
+	<!-- 
 	<div class="row">
 		<div class="span3 col-md-2 col-sm-6 col-xs-6" style="margin-top: 16px;"><label><?php echo __('Buscar por');?>:</label></div>
 		<div class="span3 col-md-3 col-sm-6 col-xs-6">
@@ -96,6 +103,7 @@ $('#container_page .pagination li.active').live('click',function(){
 			<label><?php echo __('Nro. Documento');?> <input type = "text" name="txtNroDocumento" id="txtNroDocumento" class="form-control"></label>
 		</div>
 	</div>
+	 -->
 	<div class="well">
 	    <?php 
 		if(empty($list_trabajador)){ 
