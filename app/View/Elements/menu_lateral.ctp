@@ -31,6 +31,12 @@
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_reincidencia_ni_empresa')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_reincidencia_ni_empresa" id="link-usuario"><i class="fa fa-user fa-3x"></i><?php echo ' '.__('Reincidencias por Empresa'); ?></a></li>
 				</ul>
 			</li>
+			
+			<li><a href="#"><i class="fa fa-cog fa-3x"></i> Configuraci&oacute;n <span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level <?php echo ($this->request->params['controller'] == 'configurations')?"collapse in":"collapse";  ?>">
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'configurations' && $this->request->params['action']=='backup_database')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>configurations/backup_database" id="link-actividad"><i class="fa fa-floppy-o fa-3x"></i> <?php echo ' '.__('Backup de Base de Datos'); ?></a></li>
+				</ul>
+			</li>
 			<!-- 
 			<li><a href="#"><i class="fa fa-sitemap fa-3x"></i> Multi-Level
 					Dropdown<span class="fa arrow"></span>
