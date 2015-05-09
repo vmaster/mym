@@ -69,6 +69,7 @@ $(document).ready(function(){
 	
 	$body.off('click','.btn_crear_acta_trigger');
 	$body.on('click','.btn_crear_acta_trigger',function(){
+		$('.btn_crear_acta_trigger').prop('disabled',true)
 		$form = $(this).parents('form').eq(0);
 		$.ajax({
 			url: $form.attr('action'),
@@ -129,6 +130,15 @@ $(document).ready(function(){
 		asunto = $('div#myModalSendReport #txt-asunto').val();
 		mensaje = $('div#myModalSendReport #txt-mensaje').val();
 		acta.sendReport(acta_id, email_destino, asunto, mensaje);
+	});
+	
+	$('#spinner-send-report').ajaxStart(function () {
+		$('#form_send_email').hide();
+	    $(this).fadeIn('fast');
+	 }).ajaxStop(function () {
+	     $(this).stop().fadeOut('fast');
+	     document.getElementById('form_send_email').reset();
+	     $('#form_send_email').show();
 	});
 	
 	/*SCRIPT PARA ELIMINAR FOTOS IPP -  EXISTENTES*/

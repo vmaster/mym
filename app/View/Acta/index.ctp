@@ -150,6 +150,22 @@ $('#container_page .pagination li.active').live('click',function(){
 
 });
 </script>
+<style>
+div#spinner-send-report
+{
+   	display: none;
+    width:168px;
+    height: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    text-align:center;
+    margin-left: -70px;
+    margin-top: -17px;
+    z-index:2;
+    overflow: auto;
+}    
+</style>
 <div class="row">
 	<div class="col-md-12">
 		<h2>Listado de Informes</h2>
@@ -236,9 +252,13 @@ $('#container_page .pagination li.active').live('click',function(){
 						aria-hidden="true"><i class="fa fa-times"></i></button>
 					<h3 id="myModalLabel"><?php echo utf8_encode(__('Enviar Informe por Email')); ?></h3>
 				</div>
-				<?php echo $this->Form->create('SendEmail',array('method'=>'post', 'id'=>'form_send_email','action'=> false));?>
+				<div id="spinner-send-report">
+				    	<img src="<?= ENV_WEBROOT_FULL_URL; ?>img/ajax-loader.gif" alt="Loading..."/>
+				    	<br>
+				    	<label>Espere un momento...</label>
+					</div>
 				<div class="modal-body">
-					
+					<?php echo $this->Form->create('SendEmail',array('method'=>'post', 'id'=>'form_send_email','action'=> false));?>
 							<div class="row">
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<label><?php echo utf8_encode(__('Correo de destino:')); ?> </label>
@@ -265,8 +285,8 @@ $('#container_page .pagination li.active').live('click',function(){
 									<?php echo $this->Form->input('mensaje', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes5 form-control','id' =>'txt-mensaje')); ?>
 								</div>
 							</div>
+					 <?php echo $this->Form->end(); ?>
 				</div>
-				<?php echo $this->Form->end(); ?>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancelar'); ?></button>
 					<button class="btn btn-danger send-report-email-trigger"><?php echo __('Enviar'); ?></button>
