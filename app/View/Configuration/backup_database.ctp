@@ -2,7 +2,7 @@
 div#spinner
 {
     display: none;
-    width:100px;
+    width:180px;
     height: 100px;
     position: fixed;
     top: 50%;
@@ -21,7 +21,8 @@ div#spinner
 </div>
 <hr />
 <div id="spinner">
-    <img src="<?= ENV_WEBROOT_FULL_URL; ?>img/ajax-loader.gif" alt="Loading..."/>
+    <img src="<?= ENV_WEBROOT_FULL_URL; ?>img/ajax-loader.gif" alt="Loading..."/><br>
+    <label>Espere un momento...</label>
 </div>
 <div id="div-backup-db">
 	<div class="col-md-12">

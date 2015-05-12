@@ -69,7 +69,6 @@ $(document).ready(function(){
 	
 	$body.off('click','.btn_crear_acta_trigger');
 	$body.on('click','.btn_crear_acta_trigger',function(){
-		$('.btn_crear_acta_trigger').prop('disabled',true)
 		$form = $(this).parents('form').eq(0);
 		$.ajax({
 			url: $form.attr('action'),
@@ -78,15 +77,14 @@ $(document).ready(function(){
 			type: 'post'
 		}).done(function(data){
 			if(data.success==true){
-				//$('#add_edit_acta').hide();
-				//$('#conteiner_all_rows').load(env_webroot_script + escape('actas/find_actas/1/'+null+'/'+null+'/'+''+'/'+''),function(){
-				//});
+				$('.btn_crear_acta_trigger').prop('disabled',true)
 				alertify.success(data.msg);
 				setTimeout(function(){
 					window.open(env_webroot_script + 'actas/','_self');
 				},1000)
 				
 			}else{
+				$('.btn_crear_acta_trigger').prop('disabled',false)
 				$.each(data.validation, function( key, value ) {
 					alertify.error(value[0]);
 					$('[name="data[Acta]['+key+']"]').parent().addClass('control-group has-error');
@@ -372,8 +370,8 @@ $(document).ready(function(){
 		
 	var new_row = 	"<tr>"+
 					"<td>"+(long_table+1)+"</td>"+
-					"<td><input name='data[MedidasAdoptadas"+(long_table+1)+"][descripcion]' id='txtMedidasAdopDes"+(long_table+1)+"' value='' class='form-control'/>"+
-				    "<input name='data[MedidasAdoptadas"+(long_table+1)+"][ca_id]' type='hidden' id='hiddenCierreActa"+(long_table+1)+"' value='' class='form-control'/></td>"+
+					"<td><input name='data[MedidasAdoptadas]["+(long_table+1)+"][descripcion]' id='txtMedidasAdopDes"+(long_table+1)+"' value='' class='form-control'/>"+
+				    "<input name='data[MedidasAdoptadas]["+(long_table+1)+"][ca_id]' type='hidden' id='hiddenCierreActa"+(long_table+1)+"' value='' class='form-control'/></td>"+
 					"</tr>";
 
 		$('#table-mc-inf tr:last').after(new_row);

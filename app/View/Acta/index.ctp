@@ -1,7 +1,22 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-$('#table_content_actas').DataTable();
+$('#table_content_actas').DataTable({
+ 	dom: 'T<"clear">lfrtip',
+	tableTools: {
+		"sSwfPath": env_webroot_script + "/lib/data.tables-1.10.6/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
+		"aButtons": [
+                "copy",
+                "csv",
+                "xls",
+                "pdf"
+                /*{
+                    "sExtends":    "collection",
+                    "aButtons":    [ "csv", "xls", "pdf" ]
+                }*/
+        ]
+	}
+});
 	
 $body = $('body');
 var order_by_select;
