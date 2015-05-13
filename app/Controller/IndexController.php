@@ -18,10 +18,18 @@
            $list_ultimos_informes = $this->Acta->listUltimosInformes();
 
            $empresa_mayor_numero_normas = $this->Acta->getEmpresaMayorNi();
-           $empresa_mayor_numero_normas = $empresa_mayor_numero_normas[0]['E']['nombre'];
+           if(count($empresa_mayor_numero_normas) > 0){
+           		$empresa_mayor_numero_normas = $empresa_mayor_numero_normas[0]['E']['nombre'];
+           }else{
+           	 	$empresa_mayor_numero_normas = '';
+           }
            
            $trabajador_mayor_numero_normas = $this->Acta->getTrabajadorMayorNi();
-           $trabajador_mayor_numero_normas = $trabajador_mayor_numero_normas[0]['T']['apellido_nombre'];
+           if(count($trabajador_mayor_numero_normas) > 0){
+           		$trabajador_mayor_numero_normas = $trabajador_mayor_numero_normas[0]['T']['apellido_nombre'];
+           }else{
+           		$trabajador_mayor_numero_normas = "";
+           }
            
            $this->set(compact('count_informe_enviados','count_informe_pendientes','count_trabajadores','count_empresas','count_unidades_moviles','empresa_mayor_numero_normas','trabajador_mayor_numero_normas','list_ultimos_informes'));
        }

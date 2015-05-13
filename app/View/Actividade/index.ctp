@@ -69,16 +69,17 @@ $('#container_page .pagination li.active').live('click',function(){
 		</div>
 	</div>
 	<div class="well">
+		<div id = "conteiner_all_rows">
 	    <?php 
 		if(empty($list_actividades)){ 
 			echo __('No hay datos de cargos');
 		}else{ ?>  
-	      <div id = "conteiner_all_rows">
+	      
 	      <?php 
 	      	echo $this->element('Actividade/actividad_row');
 	 	  ?>
-	      </div>
 	    <?php }?>
+	    </div>
 	</div>
 	
 	<div class="modal fade" id="myModalDeleteActividad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" actividad_id=''>

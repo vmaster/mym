@@ -73,16 +73,15 @@ $('#container_page .pagination li.active').live('click',function(){
 		</div>
 	</div>
 	<div class="well">
-	    <?php 
-		if(empty($list_unidades_negocio)){ 
-			echo __('No hay datos de Unidades de Negocios');
-		}else{ ?>  
-	      <div id = "conteiner_all_rows">
-	      <?php 
-	      	echo $this->element('UnidadesNegocio/uunn_row');
-	 	  ?>
-	      </div>
-	    <?php }?>
+		<div id = "conteiner_all_rows">
+		    <?php 
+			if(empty($list_unidades_negocio)){ 
+				echo __('No hay datos de Unidades de Negocios');
+			}else{ 
+		      	echo $this->element('UnidadesNegocio/uunn_row');
+			}
+			?>
+		</div>
 	</div>
 	<!-- <div class="pagination">
 	    <ul>

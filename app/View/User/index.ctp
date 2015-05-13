@@ -68,16 +68,16 @@ $('#container_page .pagination li.active').live('click',function(){
 		</div>
 	</div>
 	<div class="well">
-	    <?php 
-		if(empty($list_user)){ 
-			echo __('No hay datos de Usuarios');
-		}else{ ?>  
-	      <div id = "conteiner_all_rows">
-	      <?php 
-	      	echo $this->element('User/user_row');
-	 	  ?>
-	      </div>
-	    <?php }?>
+		<div id = "conteiner_all_rows">
+		    <?php 
+			if(empty($list_user)){ 
+				echo __('No hay datos de Usuarios');
+			}else{ ?>  
+		      <?php 
+		      	echo $this->element('User/user_row');
+		 	  ?>
+		    <?php }?>
+	    </div>
 	</div>
 	<!-- <div class="pagination">
 	    <ul>

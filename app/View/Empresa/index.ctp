@@ -91,16 +91,16 @@ $('#container_page .pagination li.active').live('click',function(){
 	</div>
 	 -->
 	<div class="well">
+		<div id = "conteiner_all_rows">
 	    <?php 
 		if(empty($list_empresa)){ 
 			echo __('No hay datos de Empresas');
 		}else{ ?>  
-	      <div id = "conteiner_all_rows">
 	      <?php 
 	      	echo $this->element('Empresa/empresa_row');
 	 	  ?>
-	      </div>
 	    <?php }?>
+	    </div>
 	</div>
 	<!-- <div class="pagination">
 	    <ul>

@@ -121,16 +121,14 @@ $('#container_page .pagination li.active').live('click',function(){
 	</div>
 	 -->
 	<div class="well">
-	    <?php 
-		if(empty($list_vehiculo)){ 
-			echo __('No hay datos de veh&iacute;culos');
-		}else{ ?>  
-	      <div id = "conteiner_all_rows">
-	      <?php 
-	      	echo $this->element('Vehiculo/vehiculo_row');
-	 	  ?>
-	      </div>
-	    <?php }?>
+		<div id = "conteiner_all_rows">
+		    <?php 
+			if(empty($list_vehiculo)){ 
+				echo __('No hay datos de veh&iacute;culos');
+			}else{
+		      	echo $this->element('Vehiculo/vehiculo_row');
+			}?>
+	    </div>
 	</div>
 
 	<div class="modal fade" id="myModalDeleteVehiculo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" vehiculo_id=''>

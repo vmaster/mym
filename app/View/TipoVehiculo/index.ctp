@@ -68,16 +68,15 @@ $('#container_page .pagination li.active').live('click',function(){
 		</div>
 	</div>
 	<div class="well">
+		<div id = "conteiner_all_rows">
 	    <?php 
-		if(empty($list_tipo_vehiculo)){ 
-			echo __('No hay datos de tipo veh&iacute;culos');
-		}else{ ?>  
-	      <div id = "conteiner_all_rows">
-	      <?php 
-	      	echo $this->element('TipoVehiculo/tipo_vehiculo_row');
-	 	  ?>
-	      </div>
-	    <?php }?>
+			if(empty($list_tipo_vehiculo)){ 
+				echo __('No hay datos de tipo veh&iacute;culos');
+			}else{
+		      	echo $this->element('TipoVehiculo/tipo_vehiculo_row');
+			}
+		?>
+	    </div>
 	</div>
 	<!-- <div class="pagination">
 	    <ul>

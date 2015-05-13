@@ -12,6 +12,9 @@
 		    chart: {
 		        type: 'column'
 		    },
+		    credits: {
+	            enabled: false
+	        },
 		    title: {
 		        text: 'N\u00FAmero de informes por empresa'
 		    },
@@ -65,6 +68,9 @@
 		    chart: {
 		        type: 'column'
 		    },
+		    credits: {
+	            enabled: false
+	        },
 		    title: {
 		        text: 'N\u00FAmero de informes por Unidad de Negocio'
 		    },
@@ -120,6 +126,9 @@
 		        type: 'column',
 		        marginTop: 80
 		    },
+		    credits: {
+	            enabled: false
+	        },
 		    lang: {
 		        drillUpText: '< Regresar a {series.name}'
 		    },
@@ -191,6 +200,9 @@
 		    chart: {
 		        type: 'column'
 		    },
+		    credits: {
+	            enabled: false
+	        },
 		    lang: {
 		        drillUpText: '< Regresar a {series.name}'
 		    },
