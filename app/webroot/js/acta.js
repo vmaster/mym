@@ -202,6 +202,27 @@ $(document).ready(function(){
 		});
 	});
 	
+	/*SCRIPT PARA ELIMINAR FOTOS UM -  EXISTENTES*/
+	$body.off('click','.delete-file-doc');
+	$body.on('click','.delete-file-doc', function(){
+		file_name = $(this).data('url');
+		foto_doc = $(this).data('foto_doc');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'actas/delete_foto_doc',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto_doc='+foto_doc+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
+	
 	/*SCRIPT PARA ELIMINAR FOTOS AC -  EXISTENTES*/
 	$body.off('click','.delete-file-ac');
 	$body.on('click','.delete-file-ac', function(){

@@ -121,6 +121,20 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		)
+    		,
+    		'FotoDoc' => array(
+    				'className' => 'FotoDoc',
+    				'foreignKey' => 'acta_id',
+    				'dependent' => false,
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => '',
+    				'limit' => '',
+    				'offset' => '',
+    				'exclusive' => '',
+    				'finderQuery' => '',
+    				'counterQuery' => ''
+    		)
     );
     
     public $belongsTo = array(

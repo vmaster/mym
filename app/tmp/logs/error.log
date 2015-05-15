@@ -50905,3 +50905,21 @@ Request URL: /GitHub/mym/[object%20Object]
 Stack Trace:
 #0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2015-05-15 03:10:18 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/files/fotos_ac/thumbnail/14316762880.jpg
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-05-15 03:10:21 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /GitHub/mym/files/fotos_ac/thumbnail/14316762880.jpg
+Stack Trace:
+#0 C:\wamp\www\GitHub\mym\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

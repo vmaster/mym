@@ -201,6 +201,38 @@ $codigo.= "	</tr>
 		 </td>
 		</tr>
 		</table><br>";
+
+$codigo.= "
+		<table class='tg' width='100%'>
+		  <tr>
+		    <th class='tg-e3zv back-green'>DOCUMENTACI&Oacute;N DE SEGURIDAD</th>
+		  </tr>
+		  <tr>
+		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_doc'))."</td>
+		  </tr>
+		  <tr>
+		  	<td>
+		   	<table class='tg' width='100%'>
+		    ";
+$cont= 0;
+$codigo.="<tr>";
+foreach($obj_acta->FotoDoc as $key => $obj_foto_doc) {
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+						  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_doc/thumbnail/".$obj_foto_doc->getAttr('file_name')."' width='200px' height='200px'>
+						  <br>".$obj_foto_doc->getAttr('observacion')."</td>";
+	if($cont == 2){
+		$codigo.="</tr>";
+		$cont = 0;
+		$codigo.="<tr>";
+	}
+	$cont++;
+}
+$codigo.= "	</tr>
+			</table>
+		 </td>
+		</tr>
+		</table><br>";
+
 $codigo.= "
 		<table class='tg' width='100%'>
 		<tr>
@@ -211,13 +243,15 @@ $codigo.= "
 		</table>
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv back-green'>ACTOS Y CONDICIONES SUBESTANDARES</th>
+		    <th class='tg-e3zv back-green'>ACTOS SUBESTANDARES</th>
+			<th class='tg-e3zv back-green'>CONDICIONES SUBESTANDARES</th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_act_cond'))."</td>
+		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_act'))."</td>
+		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_cond'))."</td>
 		  </tr>
 		  <tr>
-		   	<td>
+		   	<td colspan='2'>
 		   	<table class='tg' width='100%'>
 		    ";
 			$cont= 0;
