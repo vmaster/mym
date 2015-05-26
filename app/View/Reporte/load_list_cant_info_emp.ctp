@@ -46,7 +46,7 @@ $(document).ready(function() {
 				<tr class="report_row_container">
 					<td><?php echo $arr_emp->Empresa->getAttr('nombre'); ?></td>
 					<td><?php echo $arr_emp->getAttr('num_informe'); ?></td>
-					<td><?php echo $arr_emp->getAttr('fecha'); ?></td>
+					<td><?php echo date('Y-m-d H:i',strtotime($arr_emp->getAttr('fecha'))); ?></td>
 					<td><?php echo $arr_emp->UnidadesNegocio->getAttr('descripcion'); ?></td>
 				</tr>
 				<?php 

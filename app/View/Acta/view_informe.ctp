@@ -77,28 +77,26 @@ $codigo .="<table class='tg' width='100%' style='margin-bottom:-10px'>
     <td class='tg-031e' colspan='3'>".$obj_acta->getAttr('actividad')."</td>
   </tr>
   <tr>
-    <td style='width:10%' class='tg-e3zv back-green'>Obra:</td>
-    <td style='width:36%' class='tg-031e'>".$obj_acta->getAttr('obra')."</td>
+    <td class='tg-e3zv back-green'>Obra:</td>
+    <td class='tg-031e' colspan='3'>".$obj_acta->getAttr('obra')."</td>
+  </tr>
+  <tr>
+    <td style='width:10%' class='tg-e3zv back-green'>Lugar:</td>
+    <td style='width:36%' class='tg-031e'>".$obj_acta->getAttr('lugar')."</td>
     <td style='width:26%' class='aling-left back-green'><strong>Tipo de Lugar:</strong></td>
     <td style='width:28%' class='tg-031e'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
   </tr>
   <tr>
-    <td class='tg-e3zv back-green'>Lugar:</td>
-    <td class='tg-031e'>".$obj_acta->getAttr('lugar')."</td>
-    <td class='aling-left back-green'><strong>Fecha:</strong></td>
-    <td class='tg-031e'>".$obj_acta->getAttr('fecha')."</td>
-  </tr>
-  <tr>
-    <td class='tg-e3zv back-green'>Responsable:</td>
+    <td class='tg-e3zv back-green'>Fecha:</td>
+    <td class='tg-031e'>".date('Y-m-d H:i',strtotime($obj_acta->getAttr('fecha')))."</td>
+    <td class='aling-left back-green'><strong>Responsable:</strong></td>
     <td class='tg-031e'>".$obj_acta->Trabajadore1->getAttr('apellido_nombre')."</td>
-    <td class='aling-left back-green'><strong>Supervisor M&amp;M:</strong></td>
-    <td class='tg-031e'>".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."</td>
   </tr>
   <tr>
     <td style='width:10%' class='tg-e3zv back-green'>Supervisi&oacute;n:</td>
     <td class='tg-031e'>".$tipo_supervision."</td>
-    <td class='aling-left back-green'><strong>Emp. Superv. al Servicio de:</strong></td>
-    <td class='tg-031e'>".$obj_acta->getAttr('empresa_supervisora')."</td>
+    <td class='aling-left back-green'><strong>Emp. Superv. al Servicio de M&M / otros:</strong></td>
+    <td class='tg-031e'>".$obj_acta->Trabajadore2->getAttr('apellido_nombre').$obj_acta->getAttr('empresa_supervisora')."</td>
   </tr>
 </table><br>";
 $codigo.= "

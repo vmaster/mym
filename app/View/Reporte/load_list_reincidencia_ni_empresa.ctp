@@ -58,7 +58,7 @@ $(document).ready(function() {
 					<td><?php echo "VEH-".$arr_emp2['VehiculosJoin']['nro_placa']; ?></td>
 					<td><?php echo $arr_emp2['CodigosJoin']['codigo']; ?></td>
 					<td><?php echo $arr_emp2['Acta']['num_informe']; ?></td>
-					<td><?php echo $arr_emp2['Acta']['fecha']; ?></td>
+					<td><?php echo date('Y-m-d H:i',strtotime($arr_emp2['Acta']['fecha'])); ?></td>
 				</tr>
 				<?php 
 				endforeach;

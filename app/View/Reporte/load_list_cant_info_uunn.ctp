@@ -44,7 +44,7 @@ $(document).ready(function() {
 				<tr class="report_row_container">
 					<td><?php echo $arr_uunn->UnidadesNegocio->getAttr('descripcion'); ?></td>
 					<td><?php echo $arr_uunn->getAttr('num_informe'); ?></td>
-					<td><?php echo $arr_uunn->getAttr('fecha'); ?></td>
+					<td><?php echo date('Y-m-d H:i',strtotime($arr_uunn->getAttr('fecha'))); ?></td>
 				</tr>
 				<?php 
 				endforeach;

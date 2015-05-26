@@ -50,7 +50,7 @@ $(document).ready(function() {
 					<td><?php echo $arr_emp_trab['TrabajadorJoin']['apellido_nombre']; ?></td>
 					<td><?php echo $arr_emp_trab['CodigosJoin']['codigo']; ?></td>
 					<td><?php echo $arr_emp_trab['Acta']['num_informe']; ?></td>
-					<td><?php echo $arr_emp_trab['Acta']['fecha']; ?></td>
+					<td><?php echo date('Y-m-d H:i',strtotime($arr_emp_trab['Acta']['fecha'])); ?></td>
 				</tr>
 				<?php 
 				endforeach;

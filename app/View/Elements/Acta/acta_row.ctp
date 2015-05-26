@@ -20,7 +20,7 @@
 			<td><?php echo $acta->getAttr('obra'); ?></td>
 			<td><?php echo $acta->Trabajadore2->getAttr('apellido_nombre'); ?></td>
 			<td><a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/editar_informe/<?php echo $acta->getAttr('id')?>"><i class="fa fa-pencil fa-lg"></i> </a>| 
-				<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-file-text fa-lg"></i> </a> |
+				<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-search fa-lg"></i> </a> |
 				<a href="#myModalDeleteActa" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-acta fa-lg"></i> </a>|
 				<a href="#myModalSendReport" role="button" data-toggle="modal"><i class="fa fa-envelope open-model-send-informe fa-lg"></i> </a>
 			</td>
