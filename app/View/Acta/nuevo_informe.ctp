@@ -206,8 +206,8 @@
 										endforeach;
 									}
 									echo "</select></td>";
-								    for($j= 1; $j <=7; $j++){
-								   		echo "<td><select name='data[NiActa][ni-id".$i."-".$j."]' class='cbo-nincumplidas-select2 form-control' id='ni-".$i."-".$j."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+								    //for($j= 1; $j <=7; $j++){
+								   		echo "<td><select name='data[NiActa][".$i."][]' class='cbo-nincumplidas-select2 form-control' multiple='multiple'>";
 								   		echo "<option></option>";
 								   		if (isset($list_all_codigos)){
 								   			foreach ($list_all_codigos as $id => $cod):
@@ -215,7 +215,7 @@
 								   			endforeach;
 								   		}
 								   		echo "</select></td>";
-								    }
+								    //}
 								    echo "</tr>";
 								}
 								?>

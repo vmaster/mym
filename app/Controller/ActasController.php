@@ -213,7 +213,7 @@ class ActasController extends AppController{
 				/* IMPLEMENTOS DE PROTECCIÓN PERSONAL */	
 				$cont="0";	
 				if(!empty($this->request->data['TrabajadorActa'])){
-					foreach($this->request->data['TrabajadorActa'] as $i){
+					foreach($this->request->data['TrabajadorActa'] as $key => $i){
 						$cont = $cont + 1;
 						if($i['trabajador_id'] > 0 && $i['trabajador_id'] != ''){
 							//verificar actividad if no exist => se inserta a la tabla activ y no a la tabla trabaj ademas obtenemos su ID para PPT
@@ -230,19 +230,17 @@ class ActasController extends AppController{
 								$ipp_id = $this->ImpProtPersonale->id;
 								//echo json_encode(array('success'=>true,'msg'=>__('El IPP fue agregada con &eacute;xito.'),'ImpProtPersonale_id'=>$ipp_id));
 									
-								for($n =1 ; $n <=7 ; $n++){
-									$ni_acta['IppNormasIncumplida']['codigo_id'] = $this->request->data['NiActa']['ni-id'.$cont.'-'.$n];
-									if($ni_acta['IppNormasIncumplida']['codigo_id'] !=''){
-										$ni_acta['IppNormasIncumplida']['ipp_id'] = $ipp_id;
-										$this->IppNormasIncumplida->create();
-										if ($this->IppNormasIncumplida->save($ni_acta)) {
-											$ipp_normas_id = $this->IppNormasIncumplida->id;
-											//echo json_encode(array('success'=>true,'msg'=>__('El IPP fue agregada con &eacute;xito.'),'IppNormasIncumplida_id'=>$ipp_normas_id));
-										}else{
-											$ipp_normas_id = '';
-											//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->IppNormasIncumplida->validationErrors));
-											//exit();
-										}
+								foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
+									$ni_acta['IppNormasIncumplida']['codigo_id'] = $codigo_id;
+									$ni_acta['IppNormasIncumplida']['ipp_id'] = $ipp_id;
+									$this->IppNormasIncumplida->create();
+									if ($this->IppNormasIncumplida->save($ni_acta)) {
+										$ipp_normas_id = $this->IppNormasIncumplida->id;
+										//echo json_encode(array('success'=>true,'msg'=>__('El IPP fue agregada con &eacute;xito.'),'IppNormasIncumplida_id'=>$ipp_normas_id));
+									}else{
+										$ipp_normas_id = '';
+										//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->IppNormasIncumplida->validationErrors));
+										//exit();
 									}
 								}
 									
