@@ -108,7 +108,7 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		),
-    		'FotoAc' => array(
+    		'FotoAs' => array(
     				'className' => 'FotoAc',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
@@ -120,8 +120,20 @@ App::uses('AppModel','Model');
     				'exclusive' => '',
     				'finderQuery' => '',
     				'counterQuery' => ''
-    		)
-    		,
+    		),
+    		'FotoCs' => array(
+    				'className' => 'FotoCs',
+    				'foreignKey' => 'acta_id',
+    				'dependent' => false,
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => '',
+    				'limit' => '',
+    				'offset' => '',
+    				'exclusive' => '',
+    				'finderQuery' => '',
+    				'counterQuery' => ''
+    		),
     		'FotoDoc' => array(
     				'className' => 'FotoDoc',
     				'foreignKey' => 'acta_id',
