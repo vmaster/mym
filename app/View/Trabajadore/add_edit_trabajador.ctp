@@ -1,4 +1,14 @@
 <script>
+function validateForm(){
+	nom = $('#txtApellidoNombre').val();
+	
+	if(nom == ''){
+		alertify.error("Nombre debe ser obligatorio");
+		return false;
+	}
+	
+}	
+
 $(document).ready(function(){
 	/* Propiedades de algunos componentes */
 	/*$('#txtFechaNacimiento').datepicker(
@@ -35,7 +45,10 @@ $(document).ready(function(){
         } else {  
         	$(this).val(0);
         }  
-    });		
+    });
+
+
+		
 
 })
 </script>
@@ -46,7 +59,8 @@ $(document).ready(function(){
 </div>
 <hr />
 <div class="container div-crear-trabajador form" id="div-crear-trabajador">
-	<?php echo $this->Form->create('Trabajadore',array('method'=>'post', 'id'=>'add_edit_trabajador'));?>
+	<?php echo $this->Form->create('Trabajadore',array('action'=>'add_edit_trabajador','method'=>'post', 'id'=>'add_edit_trabajador', 'type' => 'file', 'onsubmit'=>'return validateForm()'));?>
+	<!-- <form method="post" id="add_edit_trabajador" enctype="multipart/form-data" accept-charset="utf-8" > -->
 	<section>
 		<div class="row">
 			<div class="span3 col-md-3 col-sm-6 col-xs-6">
@@ -338,15 +352,20 @@ $(document).ready(function(){
 				<?php echo $this->Form->input('telefono', array('id' =>'txtTelefono','class' =>'txtTelefono form-control','div' => false, 'label' => false,'placeholder' => utf8_encode(__("teléfono")))); ?>
 				<?php echo $this->Form->input('celular', array('id' =>'txtMovil','class' =>'txtMovil form-control','div' => false, 'label' => false,'placeholder' => utf8_encode(__("móvil")))); ?>
 			</div>
+			<div class="span3 col-md-3 col-sm-6 col-xs-6">
+			<img src="<?= ENV_WEBROOT_FULL_URL.'files/firmas/'.$obj_trabajador->getAttr('firma'); ?>" width="120px">
+			<?php echo $this->Form->input('firma', array('type' => 'file')); ?>
+			</div>
 		</div>
 		<br>
 		<div class="row" style="text-align:center;">
 			<div class="span9">
-				<button type="button" class="btn btn-large btn-success btn_crear_trabajador_trigger" style="margin-right:17px;"><?php echo __('Guardar'); ?></button>
+				<button type="submit" class="btn btn-large btn-success btn_crear_trabajador_trigger" style="margin-right:17px;"><?php echo __('Guardar'); ?></button>
 				<button type="button" class="btn btn-large btn-cancelar-crear-trabajador"><?php echo __('Cancelar');?></button>
 			</div>
 		</div>
 	</section>
 	<?php echo $this->Form->end(); ?>
+	<!--  </form>  -->
 </div>
 <hr>

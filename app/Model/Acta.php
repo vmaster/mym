@@ -108,8 +108,8 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		),
-    		'FotoAs' => array(
-    				'className' => 'FotoAc',
+    		'FotoAct' => array(
+    				'className' => 'FotoAct',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
     				'conditions' => '',
@@ -121,8 +121,8 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		),
-    		'FotoCs' => array(
-    				'className' => 'FotoCs',
+    		'FotoCond' => array(
+    				'className' => 'FotoCond',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
     				'conditions' => '',
@@ -222,7 +222,7 @@ App::uses('AppModel','Model');
     				)
     		),
     		'fecha' => array(
-    				'rule' => 'date',
+    				'rule' => array('datetime'),
     				'message' => 'Ingrese una fecha v&aacute;lida',
     				'allowEmpty' => true
     		)

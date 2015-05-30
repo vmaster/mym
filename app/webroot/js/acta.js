@@ -223,21 +223,42 @@ $(document).ready(function(){
 		});
 	});
 	
-	/*SCRIPT PARA ELIMINAR FOTOS AC -  EXISTENTES*/
-	$body.off('click','.delete-file-ac');
-	$body.on('click','.delete-file-ac', function(){
+	/*SCRIPT PARA ELIMINAR FOTOS ACTOS SUB -  EXISTENTES*/
+	$body.off('click','.delete-file-as');
+	$body.on('click','.delete-file-as', function(){
 		file_name = $(this).data('url');
-		foto_ac = $(this).data('foto_ac');
+		foto_as = $(this).data('foto-as');
 		$.ajax({
 			type: 'post',
-			url: env_webroot_script + 'actas/delete_foto_ac',
+			url: env_webroot_script + 'actas/delete_foto_as',
 			data:{
 				'file_name': file_name
 			},
 			dataType: 'json'
 		}).done(function(data){
 			if(data.success == true){
-				$('.template-download[foto_ac='+foto_ac+']').fadeOut(function(){$(this).remove()});
+				$('.template-download[foto_as='+foto_as+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
+	
+	/*SCRIPT PARA ELIMINAR FOTOS COND SUB -  EXISTENTES*/
+	$body.off('click','.delete-file-cs');
+	$body.on('click','.delete-file-cs', function(){
+		file_name = $(this).data('url');
+		foto_cs = $(this).data('foto-cs');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'actas/delete_foto_cs',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto-cs='+foto_cs+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}
@@ -598,6 +619,19 @@ $(document).ready(function(){
 			{
 				changeYear: true, 
 				dateFormat: 'dd-mm-yy',
+				 onSelect: function(datetext){
+				        var d = new Date(); // for now
+				        
+				        function addZero(i) {
+				            if (i < 10) {
+				                i = "0" + i;
+				            }
+				            return i;
+				        }
+				        
+				        datetext=datetext+" "+addZero(d.getHours())+":"+addZero(d.getMinutes())+":"+addZero(d.getSeconds());
+				        $('#txtFechaActa').val(datetext);
+				    },
 				minDate: new Date(1924, 1 - 1, 1),
 				maxDate: new Date()
 			});

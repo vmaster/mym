@@ -189,15 +189,16 @@
 									</select>
 								</td>
 								<?php 
-										$fecha = $obj_acta->getAttr('fecha');//1990-12-12
+										$fecha = $obj_acta->getAttr('fecha'); //1990-12-12
 											
 										if($fecha == '' || $fecha == NULL){
 											$fecha_format = '';
 										}else{
-											$dd = substr($fecha,-2);
+											$dd = substr($fecha,8,2);
 											$mm = substr($fecha, 5, 2);
 											$yy = substr($fecha, 0, 4);
-											$fecha_format = $dd.'-'.$mm.'-'.$yy;//12-12-1990
+											$time = substr($fecha, 11, 8);
+											$fecha_format = $dd.'-'.$mm.'-'.$yy.' '.$time;//12-12-1990
 										}
 								?>
 								<td>Fecha: <input type="text" name="data[Acta][fecha]" id="txtFechaActa" class="form-control" placeholder="dd-mm-aaaa" value="<?php echo $fecha_format; ?>">
@@ -1136,7 +1137,7 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<div class="table-responsive" id="div-ipp">
+					<div class="table-responsive" id="div-as">
 						<table class="table table-striped table-bordered table-hover"
 							id="table-ipp">
 							<thead>
@@ -1145,19 +1146,15 @@
 									<th
 										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('ACTOS SUBESTÁNDARES (PARA EL INFORME)') ?>
 									</th>
-									<th
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('CONDICIONES SUBESTÁNDARES (PARA EL INFORME)') ?>
-									</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td><?php echo $this->Form->input('info_des_act', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'4', 'class'=> 'txtInfDesAct4 form-control','id' =>'txtInfDesAct4')); ?></td>
-									<td><?php echo $this->Form->input('info_des_cond', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'4', 'class'=> 'txtInfDesCond4 form-control','id' =>'txtInfDesCond4')); ?></td>
 								</tr>
 								<tr>
 									<td colspan=2>
-									<div class="fileupload" data-type="FotoAc">
+									<div class="fileupload" data-type="FotoAct">
 								        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 								        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 								        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -1193,29 +1190,119 @@
 								        <!-- The table listing the files available for upload/download -->
 										<table role="presentation" class="table table-striped">
 											<tbody class="files">
-											<?php foreach($obj_acta->FotoAc as $key => $obj_foto_ac) {?> 
-											<?php $file_name =$obj_foto_ac->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
-												<tr class="template-download fade in" foto_ac="<?php echo $file_name_explode[0];?>">
+											<?php foreach($obj_acta->FotoAct as $key => $obj_foto_as) {?> 
+											<?php $file_name =$obj_foto_as->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
+												<tr class="template-download fade in" foto_as="<?php echo $file_name_explode[0];?>">
 													<td><span class="preview"> <a
-															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ac/<?php echo $obj_foto_ac->getAttr('file_name'); ?>"
-															title="<?php echo $obj_foto_ac->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ac/thumbnail/<?php echo $obj_foto_ac->getAttr('file_name'); ?>" width='80px'>
+															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_as/<?php echo $obj_foto_as->getAttr('file_name'); ?>"
+															title="<?php echo $obj_foto_as->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_as/thumbnail/<?php echo $obj_foto_as->getAttr('file_name'); ?>" width='80px'>
 														</a>
-														<textarea rows="3"  name="data[FotoAcUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_ac->getAttr('observacion'); ?></textarea>
-														<input type="hidden" value="<?php echo $obj_foto_ac->getAttr('id'); ?>" name="data[FotoAcUpdate][<?php echo $key; ?>][id][]">
+														<textarea rows="3"  name="data[FotoActUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_as->getAttr('observacion'); ?></textarea>
+														<input type="hidden" value="<?php echo $obj_foto_as->getAttr('id'); ?>" name="data[FotoActUpdate][<?php echo $key; ?>][id][]">
 													</span>
 													</td>
 													<td>
 														<p class="name">
-															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ac/<?php echo $obj_foto_ac->getAttr('file_name'); ?>"
-																title="<?php echo $obj_foto_ac->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-																data-gallery=""><?php echo $obj_foto_ac->getAttr('file_name'); ?></a> 
+															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_as/<?php echo $obj_foto_as->getAttr('file_name'); ?>"
+																title="<?php echo $obj_foto_as->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+																data-gallery=""><?php echo $obj_foto_as->getAttr('file_name'); ?></a> 
 														</p>
 													</td>
 													<td><span class="size">120.37 KB</span>
 													</td>
 													<td>
-														<a data-url="<?php echo $obj_foto_ac->getAttr('file_name');?>" data-foto_ac="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-ac">
+														<a data-url="<?php echo $obj_foto_as->getAttr('file_name');?>" data-foto-as="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-as">
+															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+														</a>
+													</td>
+												</tr>
+												<?php } ?>
+											</tbody>
+										</table>
+								    </div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="table-responsive" id="div-cs">
+						<table class="table table-striped table-bordered table-hover"
+							id="table-ipp">
+							<thead>
+								<tr>
+									<tr>
+									<th
+										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('CONDICIONES SUBESTÁNDARES (PARA EL INFORME)') ?>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><?php echo $this->Form->input('info_des_cond', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'4', 'class'=> 'txtInfDesCond4 form-control','id' =>'txtInfDesCond4')); ?></td>
+								</tr>
+								<tr>
+									<td colspan=2>
+									<div class="fileupload" data-type="FotoCond">
+								        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+								        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+								        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+								        <div class="row fileupload-buttonbar">
+								            <div class="col-lg-7">
+								                <!-- The fileinput-button span is used to style the file input field as button -->
+								                <span class="btn btn-success fileinput-button">
+								                    <i class="glyphicon glyphicon-plus"></i>
+								                    <span>Add files...</span>
+								                    <input type="file" name="files[]" multiple>
+								                </span>
+								                <button type="submit" class="btn btn-primary start">
+								                    <i class="glyphicon glyphicon-upload"></i>
+								                    <span>Start upload</span>
+								                </button>
+								                <button type="reset" class="btn btn-warning cancel">
+								                    <i class="glyphicon glyphicon-ban-circle"></i>
+								                    <span>Cancel upload</span>
+								                </button>
+								                <!-- The global file processing state -->
+								                <span class="fileupload-process"></span>
+								            </div>
+								            <!-- The global progress state -->
+								            <div class="col-lg-5 fileupload-progress fade">
+								                <!-- The global progress bar -->
+								                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+								                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+								                </div>
+								                <!-- The extended global progress state -->
+								                <div class="progress-extended">&nbsp;</div>
+								            </div>
+								        </div>
+								        <!-- The table listing the files available for upload/download -->
+										<table role="presentation" class="table table-striped">
+											<tbody class="files">
+											<?php foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {?> 
+											<?php $file_name =$obj_foto_cs->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
+												<tr class="template-download fade in" foto_cs="<?php echo $file_name_explode[0];?>">
+													<td><span class="preview"> <a
+															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_cs/<?php echo $obj_foto_cs->getAttr('file_name'); ?>"
+															title="<?php echo $obj_foto_cs->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_cs/thumbnail/<?php echo $obj_foto_cs->getAttr('file_name'); ?>" width='80px'>
+														</a>
+														<textarea rows="3"  name="data[FotoCondUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_cs->getAttr('observacion'); ?></textarea>
+														<input type="hidden" value="<?php echo $obj_foto_cs->getAttr('id'); ?>" name="data[FotoCondUpdate][<?php echo $key; ?>][id][]">
+													</span>
+													</td>
+													<td>
+														<p class="name">
+															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_cs/<?php echo $obj_foto_cs->getAttr('file_name'); ?>"
+																title="<?php echo $obj_foto_cs->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+																data-gallery=""><?php echo $obj_foto_cs->getAttr('file_name'); ?></a> 
+														</p>
+													</td>
+													<td><span class="size">120.37 KB</span>
+													</td>
+													<td>
+														<a data-url="<?php echo $obj_foto_cs->getAttr('file_name');?>" data-foto-cs="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-cs">
 															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
 														</a>
 													</td>

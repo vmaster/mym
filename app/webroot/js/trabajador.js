@@ -113,7 +113,7 @@ $(document).ready(function(){
 		//$('#add_edit_trabajador').hide();
 	});
 	
-	$body.off('click','.btn_crear_trabajador_trigger');
+	/*$body.off('click','.btn_crear_trabajador_trigger');
 	$body.on('click','.btn_crear_trabajador_trigger',function(){
 		cambio=false;
 		$form = $(this).parents('form').eq(0);
@@ -142,7 +142,7 @@ $(document).ready(function(){
 				});
 			}
 		});
-	});
+	});*/
 
 	$body.off('click','div#trabajador .edit-trabajador-trigger');
 	$body.on('click','div#trabajador .edit-trabajador-trigger', function(){

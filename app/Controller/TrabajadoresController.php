@@ -191,8 +191,17 @@ class TrabajadoresController extends AppController{
 				
 				$this->Trabajadore->id = $trabajador_id;
 	
-				//$this->Persona->set($this->request->data);
-				//$this->Persona->setFields();
+				if($this->request->data['Trabajadore']['firma']['name'] != ''){
+					$this->request->data['Trabajadore']['firma'] = $this->request->data['Trabajadore']['firma']['name'];
+						
+					//$image_tmp = $this->request->data['Trabajadore']['firma']['tmp_name'];
+					$uploaddir = APP.WEBROOT_DIR.'/files/firmas/';
+					$uploadfile = $uploaddir . basename($_FILES['data']['name']['Trabajadore']['firma']);
+				
+					move_uploaded_file($_FILES['data']['tmp_name']['Trabajadore']['firma'], $uploadfile);
+				
+				}
+				
 	
 				if ($this->Trabajadore->save($this->request->data)) {
 					echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'Trabajador_id'=>$trabajador_id));
@@ -204,7 +213,10 @@ class TrabajadoresController extends AppController{
 			}else{
 				//insert
 				$error_validation = '';
-			
+				//debug($this->request);
+				//debug($_FILES);
+				
+				//exit();
 				//$this->formatFecha($this->request->data['Trabajadore']['fec_nac']);
 				if(isset($this->request->data['Trabajadore']['poliza_vigente'])){
 					if($this->request->data['Trabajadore']['poliza_vigente'] == null){
@@ -238,6 +250,18 @@ class TrabajadoresController extends AppController{
 					echo json_encode(array('success' =>false, 'msg' => __('No se pudo guardar'), 'validation' => $arr_validation));
 					exit();
 				}
+				
+				if($this->request->data['Trabajadore']['firma']['name'] != ''){
+					$this->request->data['Trabajadore']['firma'] = $this->request->data['Trabajadore']['firma']['name'];
+					
+					//$image_tmp = $this->request->data['Trabajadore']['firma']['tmp_name'];
+					$uploaddir = APP.WEBROOT_DIR.'/files/firmas/';
+					$uploadfile = $uploaddir . basename($_FILES['data']['name']['Trabajadore']['firma']);
+				
+					move_uploaded_file($_FILES['data']['tmp_name']['Trabajadore']['firma'], $uploadfile);
+				
+				}
+				
 				
 				$this->Trabajadore->create();
 				if ($this->Trabajadore->save($this->request->data)) {
