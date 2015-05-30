@@ -158,7 +158,7 @@ class TrabajadoresController extends AppController{
 		
 		if($this->request->is('post')  || $this->request->is('put')){
 			if(isset($trabajador_id) && intval($trabajador_id) > 0){
-				
+				//debug($this->request->data);
 				//update
 				$error_validation = '';
 				//$this->formatFecha($this->request->data['Trabajadore']['fec_nac']);
@@ -190,7 +190,7 @@ class TrabajadoresController extends AppController{
 				}
 				
 				$this->Trabajadore->id = $trabajador_id;
-	
+				
 				if($this->request->data['Trabajadore']['firma']['name'] != ''){
 					$this->request->data['Trabajadore']['firma'] = $this->request->data['Trabajadore']['firma']['name'];
 						
@@ -200,6 +200,8 @@ class TrabajadoresController extends AppController{
 				
 					move_uploaded_file($_FILES['data']['tmp_name']['Trabajadore']['firma'], $uploadfile);
 				
+				}else{
+					unset($this->request->data['Trabajadore']['firma']);
 				}
 				
 	
@@ -213,10 +215,7 @@ class TrabajadoresController extends AppController{
 			}else{
 				//insert
 				$error_validation = '';
-				//debug($this->request);
-				//debug($_FILES);
-				
-				//exit();
+
 				//$this->formatFecha($this->request->data['Trabajadore']['fec_nac']);
 				if(isset($this->request->data['Trabajadore']['poliza_vigente'])){
 					if($this->request->data['Trabajadore']['poliza_vigente'] == null){
@@ -260,6 +259,8 @@ class TrabajadoresController extends AppController{
 				
 					move_uploaded_file($_FILES['data']['tmp_name']['Trabajadore']['firma'], $uploadfile);
 				
+				}else{
+					unset($this->request->data['Trabajadore']['firma']);
 				}
 				
 				

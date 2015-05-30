@@ -1,14 +1,4 @@
 <script>
-function validateForm(){
-	nom = $('#txtApellidoNombre').val();
-	
-	if(nom == ''){
-		alertify.error("Nombre debe ser obligatorio");
-		return false;
-	}
-	
-}	
-
 $(document).ready(function(){
 	/* Propiedades de algunos componentes */
 	/*$('#txtFechaNacimiento').datepicker(
@@ -46,10 +36,6 @@ $(document).ready(function(){
         	$(this).val(0);
         }  
     });
-
-
-		
-
 })
 </script>
 <div class="row">
@@ -59,7 +45,7 @@ $(document).ready(function(){
 </div>
 <hr />
 <div class="container div-crear-trabajador form" id="div-crear-trabajador">
-	<?php echo $this->Form->create('Trabajadore',array('action'=>'add_edit_trabajador','method'=>'post', 'id'=>'add_edit_trabajador', 'type' => 'file', 'onsubmit'=>'return validateForm()'));?>
+	<?php echo $this->Form->create('Trabajadore',array('action'=>'add_edit_trabajador','method'=>'post', 'id'=>'add_edit_trabajador', 'type' => 'file'));?>
 	<!-- <form method="post" id="add_edit_trabajador" enctype="multipart/form-data" accept-charset="utf-8" > -->
 	<section>
 		<div class="row">
@@ -353,14 +339,28 @@ $(document).ready(function(){
 				<?php echo $this->Form->input('celular', array('id' =>'txtMovil','class' =>'txtMovil form-control','div' => false, 'label' => false,'placeholder' => utf8_encode(__("móvil")))); ?>
 			</div>
 			<div class="span3 col-md-3 col-sm-6 col-xs-6">
-			<img src="<?= ENV_WEBROOT_FULL_URL.'files/firmas/'.$obj_trabajador->getAttr('firma'); ?>" width="120px">
-			<?php echo $this->Form->input('firma', array('type' => 'file')); ?>
+				<label for="TrabajadoreFirma">Firma</label>
+				<div class='fileupload fileupload-new' data-provides='fileupload'>
+					<div class='uneditable-input span2'><i class='icon-file fileupload-exists'></i>
+						<span class="btn btn-default btn-file" style="width:106px;height: 37px;margin-bottom: 4px;">
+							<input type="file" name="data[Trabajadore][firma]" style="opacity:0; position:absolute;height: 35px;left: 0px;top: 29px;" id="TrabajadoreFirma">
+							<span class="fileinput-new">Select image</span>
+						</span>
+					</div>
+					<div class='fileupload-preview thumbnail' style='width:40%;height:40%;'>
+					<?php if(isset($obj_trabajador)){?>
+						<img src="<?php echo ENV_WEBROOT_FULL_URL.'files/firmas/'.$obj_trabajador->getAttr('firma'); ?>">
+					<?php }else{?>
+						<img src="">
+					<?php }?>
+					</div>
+				</div>
 			</div>
 		</div>
 		<br>
 		<div class="row" style="text-align:center;">
 			<div class="span9">
-				<button type="submit" class="btn btn-large btn-success btn_crear_trabajador_trigger" style="margin-right:17px;"><?php echo __('Guardar'); ?></button>
+				<button type="button" class="btn btn-large btn-success btn_crear_trabajador_trigger" style="margin-right:17px;"><?php echo __('Guardar'); ?></button>
 				<button type="button" class="btn btn-large btn-cancelar-crear-trabajador"><?php echo __('Cancelar');?></button>
 			</div>
 		</div>

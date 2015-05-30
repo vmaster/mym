@@ -113,16 +113,19 @@ $(document).ready(function(){
 		//$('#add_edit_trabajador').hide();
 	});
 	
-	/*$body.off('click','.btn_crear_trabajador_trigger');
+	$body.off('click','.btn_crear_trabajador_trigger');
 	$body.on('click','.btn_crear_trabajador_trigger',function(){
 		cambio=false;
-		$form = $(this).parents('form').eq(0);
-		//alert($form);return false;
+		//$form = $(this).parents('form').eq(0);
+		var formData = new FormData($("#add_edit_trabajador")[0]);
 		$.ajax({
-			url: $form.attr('action'),
-			data: $form.serialize(),
+			url: $("#add_edit_trabajador").attr('action'),
+			data: formData,
 			dataType: 'json',
-			type: 'post'
+			type: 'post',
+			cache: false,
+            contentType: false,
+            processData: false,
 		}).done(function(data){
 			if(data.success==true){
 				//$('#add_edit_trabajador').hide();
@@ -142,7 +145,7 @@ $(document).ready(function(){
 				});
 			}
 		});
-	});*/
+	});
 
 	$body.off('click','div#trabajador .edit-trabajador-trigger');
 	$body.on('click','div#trabajador .edit-trabajador-trigger', function(){
