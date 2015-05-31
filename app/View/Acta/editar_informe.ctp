@@ -305,7 +305,7 @@
 									//}
 									echo "</select></td>";
 									
-									echo "<input name='data[IppNi][".($key+1)."][]' type='hidden' value='".implode(',', $arr_normas_incumplidas_id)."' id='hiddenIppNid".($key+1)."'>";
+									echo "<input name='data[IppNi][".($key+1)."]' type='hidden' value='".implode(',', $arr_normas_incumplidas_id)."' id='hiddenIppNid".($key+1)."'>";
 									
 									/*for($j= ($k+2); $j <=7; $j++){
 										echo "<td style='width:7%;'><select name='data[NiActa][ni-id".($key+1)."-".$j."]' class='cbo-nincumplidas-select2 form-control' id='Nid-".($key+1)."-".$j."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
@@ -372,7 +372,7 @@
 											endforeach;
 										}
 										echo "</select>";
-								   		echo "<input name='data[IppNi][".($i)."][]' type='hidden' value='' id='hiddenIppNid".$i."'></td>";
+								   		echo "<input name='data[IppNi][".($i)."]' type='hidden' value='' id='hiddenIppNid".$i."'></td>";
 								    //}
 								    echo "</tr>";
 								}
