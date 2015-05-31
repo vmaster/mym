@@ -553,6 +553,9 @@ class ActasController extends AppController{
 	}
 	
 	public function editar_informe($acta_id=null){
+		/*debug($this->request->data['NiActa']);
+		debug($this->request->data['IppNi']);
+		exit();*/
 		$this->layout = 'default';
 		if(!isset($acta_id)){
 			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));

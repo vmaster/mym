@@ -280,26 +280,34 @@
 								
 								$count_obj_ipp_ni = count($obj_imp_prot_personal->IppNormasIncumplida);
 								if($count_obj_ipp_ni > 0){
-									foreach($obj_imp_prot_personal->IppNormasIncumplida as $k =>$v){
-										//echo "<td style='width:7%;'><input name='data[NiActa][ni-".($key+1)."-".($k+1)."]' id='ni-".($key+1)."-".($k+1)."' class='form-control txt-ni".($key+1)."' value='".$v->Codigo->getAttr('codigo')."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-										//echo "<input name='data[NiActa][ni-id".($key+1)."-".($k+1)."]' type='hidden' value='".$v->getAttr('codigo_id')."' id='hiddenNid".($key+1)."-".($k+1)."'>";
-										echo "<td style='width:7%;'><select name='data[NiActa][ni-id".($key+1)."-".($k+1)."]' class='cbo-nincumplidas-select2 form-control' id='Nid-".($key+1)."-".($k+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+
+								$arr_normas_incumplidas = array();
+								$arr_normas_incumplidas_id = array();
+								foreach($obj_imp_prot_personal->IppNormasIncumplida as $k =>$v){
+									$arr_normas_incumplidas[] = $v->getAttr('codigo_id');
+									$arr_normas_incumplidas_id[] = $v->getAttr('id');
+								}
+									echo "<td style='width:40%;'><select name='data[NiActa][".($key+1)."][]' class='cbo-nincumplidas-select2 form-control' id='Nid' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();' multiple='multiple'>";
+									//foreach($obj_imp_prot_personal->IppNormasIncumplida as $k =>$v){
 										echo "<option></option>";
 										if (isset($list_all_codigos)){
-											foreach ($list_all_codigos as $id => $cod):
-											if($id == $v->getAttr('codigo_id')){
-												$selected = " selected = 'selected'";
-											}else{
-												$selected = "";
+											foreach ($list_all_codigos as $id => $cod){
+												if(in_array($id, $arr_normas_incumplidas)){
+												//if($id == $v->getAttr('codigo_id')){
+													$selected = " selected = 'selected'";
+												}else{
+													$selected = "";
+												}
+												echo "<option value = ".$id.$selected.">".$cod."</option>";
 											}
-											echo "<option value = ".$id.$selected.">".$cod."</option>";
-											endforeach;
 										}
-										echo "</select>";	
-										echo "<input name='data[IppNi][ippni-id".($key+1)."-".($k+1)."]' type='hidden' value='".$v->getAttr('id')."' id='hiddenIppNid".($key+1)."-".($k+1)."'></td>";
-									}
+											
+									//}
+									echo "</select></td>";
 									
-									for($j= ($k+2); $j <=7; $j++){
+									echo "<input name='data[IppNi][".($key+1)."][]' type='hidden' value='".implode(',', $arr_normas_incumplidas_id)."' id='hiddenIppNid".($key+1)."'>";
+									
+									/*for($j= ($k+2); $j <=7; $j++){
 										echo "<td style='width:7%;'><select name='data[NiActa][ni-id".($key+1)."-".$j."]' class='cbo-nincumplidas-select2 form-control' id='Nid-".($key+1)."-".$j."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 										echo "<option></option>";
 										if (isset($list_all_codigos)){
@@ -309,10 +317,10 @@
 										}
 										echo "</select>";
 										echo "<input name='data[IppNi][ippni-id".($key+1)."-".$j."]' type='hidden' value='' id='hiddenIppNid".($key+1)."-".$j."'></td>";
-									}
+									}*/
 									
 								}else{
-									for($x= 1; $x <=7; $x++){
+									/*for($x= 1; $x <=7; $x++){
 										echo "<td style='width:7%;'><select name='data[NiActa][ni-id".($key+1)."-".$x."]' class='cbo-nincumplidas-select2 form-control' id='Nid-".($key+1)."-".$x."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 										echo "<option></option>";
 										if (isset($list_all_codigos)){
@@ -322,7 +330,7 @@
 										}
 										echo "</select>";
 										echo "<input name='data[IppNi][ippni-id".($key+1)."-".$x."]' type='hidden' value='' id='hiddenIppNid".($key+1)."-".$x."'></td>";
-									}
+									}*/
 								}
 								
 							}
@@ -353,10 +361,10 @@
 								    }
 								    echo "</select></td>";
 								    
-								    for($j= 1; $j <=7; $j++){
+								   // for($j= 1; $j <=7; $j++){
 								    	//echo "<td style='width:7%;'><input name='data[NiActa][ni-".$i."-".$j."]' id='ni-".$i."-".$j."' class='form-control txt-ni".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
 								   		//echo "<input name='data[NiActa][ni-id".$i."-".$j."]' type='hidden' value='' id='hiddenNid".$i."-".$j."'>";
-								   		echo "<td style='width:7%;'><select name='data[NiActa][ni-id".$i."-".$j."]' class='cbo-nincumplidas-select2 form-control' id='Nid-".$id."-".$j."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+								   		echo "<td style='width:7%;'><select name='data[NiActa][".($i)."][]' class='cbo-nincumplidas-select2 form-control' id='Nid' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();' multiple='multiple'>";
 										echo "<option></option>";
 										if (isset($list_all_codigos)){
 											foreach ($list_all_codigos as $id => $cod):
@@ -364,8 +372,8 @@
 											endforeach;
 										}
 										echo "</select>";
-								   		echo "<input name='data[IppNi][ippni-id".$i."-".$j."]' type='hidden' value='' id='hiddenIppNid".$i."-".$j."'></td>";
-								    }
+								   		echo "<input name='data[IppNi][".($i)."][]' type='hidden' value='' id='hiddenIppNid".$i."'></td>";
+								    //}
 								    echo "</tr>";
 								}
 								?>
