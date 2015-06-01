@@ -206,8 +206,7 @@
 										endforeach;
 									}
 									echo "</select></td>";
-								    //for($j= 1; $j <=7; $j++){
-								   		echo "<td><select name='data[NiActa][".$i."][]' class='cbo-nincumplidas-select2 form-control' multiple='multiple'>";
+								   		echo "<td style='width:40%;'><select name='data[NiActa][".$i."][]' class='cbo-nincumplidas-select2 form-control' multiple='multiple'>";
 								   		echo "<option></option>";
 								   		if (isset($list_all_codigos)){
 								   			foreach ($list_all_codigos as $id => $cod):
@@ -215,7 +214,6 @@
 								   			endforeach;
 								   		}
 								   		echo "</select></td>";
-								    //}
 								    echo "</tr>";
 								}
 								?>

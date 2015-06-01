@@ -496,7 +496,6 @@ class ActasController extends AppController{
 							$this->FotoAct->create();
 							if ($this->FotoAct->save($new_foto_as)) {
 								$foto_as_id = $this->FotoAct->id;
-								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/'.$new_foto_as['FotoAct']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/thumbnail/'.$new_foto_as['FotoAct']['file_name']);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
@@ -610,10 +609,8 @@ class ActasController extends AppController{
 				$this->Acta->id = $acta_id;
 				
 			// INICIO UPDATE IMPLEMENTOS DE PROTECCION PERSONAL
-			$cont="0";	
 			if(!empty($this->request->data['TrabajadorActa'])){
-				foreach($this->request->data['TrabajadorActa'] as $i){
-				$cont = $cont + 1; 
+				foreach($this->request->data['TrabajadorActa'] as $key => $i){
 					if($i['ipp_id'] != 0 || $i['ipp_id'] != ''){
 						//ACTUALIZANDO REGISTRO DE IPP
 						
@@ -625,50 +622,56 @@ class ActasController extends AppController{
 							$update_ipp['ImpProtPersonale']['trabajador_id'] = $i['trabajador_id'];
 							$update_ipp['ImpProtPersonale']['actividad_id'] = $i['actividad_id'];
 							if ($this->ImpProtPersonale->save($update_ipp)) {
-								for($n =1 ; $n <=7 ; $n++){
-									//Verifico si el id del Ni ipp, no es vacia para poder actualizar
-									if($this->request->data['IppNi']['ippni-id'.$cont."-".$n] != '' || $this->request->data['IppNi']['ippni-id'.$cont."-".$n] != 0){
-										
-										$ipp_ni_id = $this->request->data['IppNi']['ippni-id'.$cont."-".$n];
-										//Verifico si los valores no son vacíos de lo contrarío que eliminen el registro de la BD
-										if($this->request->data['NiActa']['ni-id'.$cont.'-'.$n] > 0 && $this->request->data['NiActa']['ni-id'.$cont.'-'.$n] !=''){
-											$this->IppNormasIncumplida->id = $ipp_ni_id;
-											
-											$update_ipp_ni['IppNormasIncumplida']['codigo_id'] = $this->request->data['NiActa']['ni-id'.$cont.'-'.$n];
-											$this->IppNormasIncumplida->save($update_ipp_ni);
-										}else{
-											$this->IppNormasIncumplida->deleteAll(array('IppNormasIncumplida.id' => $ipp_ni_id), $cascada = true);
-										}
-									}else{
-										if($this->request->data['NiActa']['ni-id'.$cont.'-'.$n] > 0 && $this->request->data['NiActa']['ni-id'.$cont.'-'.$n] !=''){
-											$this->IppNormasIncumplida->create();
-											
-											$new_ipp_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
-											$new_ipp_ni['IppNormasIncumplida']['codigo_id'] = $this->request->data['NiActa']['ni-id'.$cont.'-'.$n];
 
+								if($this->request->data['IppNi'][$key] > 0 || $this->request->data['IppNi'][$key] != ''){
+									$array_ids = explode(',',$this->request->data['IppNi'][$key]);
+									foreach($array_ids as $ipp_ni_id){
+										$this->IppNormasIncumplida->deleteAll(array('IppNormasIncumplida.id' => $ipp_ni_id), $cascada = true);
+									}
+									
+									if($this->request->data['NiActa'][$key] != null || $this->request->data['NiActa'][$key] != ''){
+										foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
+											
+											$this->IppNormasIncumplida->create();
+												
+											$new_ipp_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
+											$new_ipp_ni['IppNormasIncumplida']['codigo_id'] = $codigo_id;
+											
+											if($this->IppNormasIncumplida->save($new_ipp_ni)){
+												$ipp_ni_id = $this->IppNormasIncumplida->id;
+											}
+										}
+									}
+								}else{
+									if(!empty($this->request->data['NiActa'][$key])){
+										foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
+												
+											$this->IppNormasIncumplida->create();
+									
+											$new_ipp_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
+											$new_ipp_ni['IppNormasIncumplida']['codigo_id'] = $codigo_id;
+												
 											if($this->IppNormasIncumplida->save($new_ipp_ni)){
 												$ipp_ni_id = $this->IppNormasIncumplida->id;
 											}
 										}
 									}
 								}
-							}else{
-								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->ImpProtPersonale->validationErrors));
-								//exit();
+
 							}
 						}else{
 							//En el caso los valores del trabajador esten vacios del ipp.
 							$this->ImpProtPersonale->deleteAll(array('ImpProtPersonale.id' => $ipp_id), $cascada = true);
-							for($n =1 ; $n <=7 ; $n++){
-								if($this->request->data['IppNi']['ippni-id'.$cont."-".$n] != ''){
-									$ipp_ni_id = $this->request->data['IppNi']['ippni-id'.$cont."-".$n];
+							if($this->request->data['IppNi'][$key] != ''){
+								$array_ids = explode(',',$this->request->data['IppNi'][$key]);
+								foreach($array_ids as $ipp_ni_id){
 									$this->IppNormasIncumplida->deleteAll(array('IppNormasIncumplida.id' => $ipp_ni_id), $cascada = true);
 								}
 							}
-							
+
 						}
 					}elseif($i['ipp_id'] == '' && $i['trabajador_id'] != ''){
-						//CREANDO NUEVO REGISTRO DE IPP
+						//CREANDO NUEVO REGISTRO DE TABLA IMPLE.PROT.PERS
 						
 						$new_ipp['ImpProtPersonale']['acta_id'] = $acta_id;
 						$new_ipp['ImpProtPersonale']['trabajador_id'] = $i['trabajador_id'];
@@ -678,23 +681,23 @@ class ActasController extends AppController{
 						if ($this->ImpProtPersonale->save($new_ipp)) {
 							$ipp_id = $this->ImpProtPersonale->id;
 							
-							for($n =1 ; $n <=7 ; $n++){
-								//Verifico si el id del Ni ipp
-									if($this->request->data['NiActa']['ni-id'.$cont.'-'.$n] > 0 && $this->request->data['NiActa']['ni-id'.$cont.'-'.$n] !=''){
-										$this->IppNormasIncumplida->create();
-											
-										$new_ipp_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
-										$new_ipp_ni['IppNormasIncumplida']['codigo_id'] = $this->request->data['NiActa']['ni-id'.$cont.'-'.$n];
-										if($this->IppNormasIncumplida->save($new_ipp_ni)){
-											$ipp_ni_id = $this->IppNormasIncumplida->id;
-										}
+							if($this->request->data['NiActa'][$key] != ''){
+								foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
+									//debug($v);
+										
+									$this->IppNormasIncumplida->create();
+							
+									$new_ipp_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
+									$new_ipp_ni['IppNormasIncumplida']['codigo_id'] = $codigo_id;
+										
+									if($this->IppNormasIncumplida->save($new_ipp_ni)){
+										$ipp_ni_id = $this->IppNormasIncumplida->id;
 									}
+								}
 							}
-							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
 							$ipp_id = '';
-							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
-							//exit();
+
 						}
 					}
 				}

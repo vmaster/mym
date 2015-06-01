@@ -27,16 +27,14 @@ if (isset($list_all_actividades)){
 }
 echo "</select></td>";
 
-for($j= 1; $j <=7; $j++){
-	echo "<td style='width:7%;'><select name='data[NiActa][ni-id".$i."-".$j."]' class='cbo-nincumplidas-select2 form-control' id='Nid-".$id."-".$j."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-	echo "<option></option>";
-	if (isset($list_all_codigos)){
-		foreach ($list_all_codigos as $id => $cod):
-		echo "<option value = ".$id.">".$cod."</option>";
-		endforeach;
-	}
-	echo "</select>";
-	echo "<input name='data[IppNi][ippni-id".$i."-".$j."]' type='hidden' value='' id='hiddenIppNid".$i."-".$j."'></td>";
+echo "<td style='width:40%;'><select name='data[NiActa][".$i."][]' class='cbo-nincumplidas-select2 form-control' id='Nid-".$i."' class='cbo-nincumplidas-select2 form-control' multiple='multiple' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+echo "<option></option>";
+if (isset($list_all_codigos)){
+	foreach ($list_all_codigos as $id => $cod):
+	echo "<option value = ".$id.">".$cod."</option>";
+	endforeach;
 }
+echo "</select>";
+echo "<input name='data[IppNi][".$i."]' type='hidden' value='' id='hiddenIppNid".$i."'></td>";
 echo "</tr>";
 ?>

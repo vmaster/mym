@@ -192,11 +192,19 @@ class TrabajadoresController extends AppController{
 				$this->Trabajadore->id = $trabajador_id;
 				
 				if($this->request->data['Trabajadore']['firma']['name'] != ''){
-					$this->request->data['Trabajadore']['firma'] = $this->request->data['Trabajadore']['firma']['name'];
+					
+					$imagen = $this->request->data['Trabajadore']['firma']['name'];
+					$arr = explode(".", $imagen);
+					$extension = strtolower(array_pop($arr));
+					$new_file_name = time().'.'.$extension;
+					
+					$this->request->data['Trabajadore']['firma'] = $new_file_name;
 						
 					//$image_tmp = $this->request->data['Trabajadore']['firma']['tmp_name'];
+					
+					
 					$uploaddir = APP.WEBROOT_DIR.'/files/firmas/';
-					$uploadfile = $uploaddir . basename($_FILES['data']['name']['Trabajadore']['firma']);
+					$uploadfile = $uploaddir . basename($new_file_name);
 				
 					move_uploaded_file($_FILES['data']['tmp_name']['Trabajadore']['firma'], $uploadfile);
 				

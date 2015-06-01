@@ -95,8 +95,8 @@ $codigo .="<table class='tg' width='100%' style='margin-bottom:-10px'>
   <tr>
     <td style='width:10%' class='tg-e3zv back-green'>Supervisi&oacute;n:</td>
     <td class='tg-031e'>".$tipo_supervision."</td>
-    <td class='aling-left back-green'><strong>Emp. Superv. al Servicio de M&M / otros:</strong></td>
-    <td class='tg-031e'>".$obj_acta->Trabajadore2->getAttr('apellido_nombre').$obj_acta->getAttr('empresa_supervisora')."</td>
+    <td class='aling-left back-green'><strong>Emp. Superv. al Servicio de:</strong></td>
+    <td class='tg-031e'>".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."-".$obj_acta->getAttr('empresa_supervisora')."</td>
   </tr>
 </table><br>";
 $codigo.= "
@@ -242,10 +242,38 @@ $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-green'>ACTOS SUBESTANDARES</th>
-			<th class='tg-e3zv back-green'>CONDICIONES SUBESTANDARES</th>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_act'))."</td>
+		  </tr>
+		  <tr>
+		   	<td colspan='2'>
+		   	<table class='tg' width='100%'>
+		    ";
+			$cont= 0;
+			$codigo.="<tr>";
+			foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
+				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ac/thumbnail/".$obj_foto_as->getAttr('file_name')."' width='200px' height='200px'>
+							<br>".$obj_foto_as->getAttr('observacion')."</td>";
+				if($cont == 2){
+					$codigo.="</tr>";
+					$cont = 0;
+					$codigo.="<tr>";
+				}
+				$cont++;
+			}
+$codigo.= "	</tr>
+			</table>
+		 </td>
+		  </tr>
+		</table><br>";
+
+$codigo.= "<table class='tg' width='100%'>
+		  <tr>
+			<th class='tg-e3zv back-green'>CONDICIONES SUBESTANDARES</th>
+		  </tr>
+		  <tr>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_cond'))."</td>
 		  </tr>
 		  <tr>
@@ -254,10 +282,10 @@ $codigo.= "
 		    ";
 			$cont= 0;
 			$codigo.="<tr>";
-			foreach($obj_acta->FotoAc as $key => $obj_foto_ac) {
+			foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ac/thumbnail/".$obj_foto_ac->getAttr('file_name')."' width='200px' height='200px'>
-							<br>".$obj_foto_ac->getAttr('observacion')."</td>";
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ac/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='200px' height='200px'>
+							<br>".$obj_foto_cs->getAttr('observacion')."</td>";
 				if($cont == 2){
 					$codigo.="</tr>";
 					$cont = 0;
@@ -414,7 +442,7 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 					<th>".utf8_encode('Observación')."</th>
 				</tr>
 			</thead>";
-	foreach ($info_ni_t as $k => $v){
+	foreach ($info_ni_t as $k => $v){ //normas incumplidas Trabajadores
 		$codigo.= "<tr>";
 		$codigo.= "<td>";
 		$codigo.= $v['CodigosJoin']['codigo'];
@@ -428,7 +456,7 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 		$codigo.= "</tr>";
 	}
 	
-	foreach ($info_ni_v as $k2 => $v2){
+	foreach ($info_ni_v as $k2 => $v2){ //normas incumplidas Vehiculos
 		$codigo.= "<tr>";
 		$codigo.= "<td>";
 		$codigo.= $v2['CodigosJoin']['codigo'];
@@ -442,8 +470,14 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 		$codigo.= "</tr>";
 	}
 	
-	$codigo.= "</table>";
+	$codigo.= "</table><p>&nbsp;</p>";
 }
+
+$codigo .= "<p align='right'><table width='100%'>
+			<tr><td style='text-align:right;'><img src='".ENV_WEBROOT_FULL_URL."files/firmas/".$obj_acta->Trabajadore2->getAttr('firma')."' style='border:0px;' width='180px' height='100px'> </td></tr>";
+$codigo .= "<tr><td style='text-align:right;'><hr width='30%' align='right'></td></tr>
+		   	<tr><td style='text-align:right; /*padding-left: 52px; padding-right: 52px;*/'>Ing. ".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."</td></tr>
+		   	<tr><td style='text-align:right; padding-left: 25px; padding-right: 25px;'>Supervisor de SST – M&M</td></tr></table></p>";
 
 
 //echo $codigo; exit();
