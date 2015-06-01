@@ -31,7 +31,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 2);
+	//Configure::write('debug', 2);
 
 /**
  * Configure the Error handler used to handle errors for your application. By default
@@ -262,6 +262,17 @@
  */
 	Configure::write('Acl.classname', 'DbAcl');
 	Configure::write('Acl.database', 'default');
+	
+	if(isset($_SERVER['SERVER_NAME']) && strpos($_SERVER['SERVER_NAME'], 'localhost') !==  false){
+		Configure::write('environment', 'localhost');
+		Configure::write('debug', 2);
+	}elseif(isset($_SERVER['SERVER_NAME']) && in_array($_SERVER['SERVER_NAME'], array('sistema.mym-iceperu.com')) !== false){
+		Configure::write('environment', 'production');
+		Configure::write('debug', 0);
+	}else{
+		Configure::write('environment', 'localhost');
+		Configure::write('debug', 2);
+	}
 
 /**
  * Uncomment this line and correct your server timezone to fix
