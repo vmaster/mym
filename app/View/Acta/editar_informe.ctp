@@ -241,11 +241,8 @@
 								$key= -1;
 							}
 							foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
-								//echo "<tr><td>".debug($obj_imp_prot_personal)."</td></tr>";
 								echo "<tr>";
 								echo "<td>".($key+1)."</td>";
-								//echo "<td style='width:28%;'><input name='data[TrabajadorActa".($key+1)."][nombre_trabajador]' id='Trabajador".($key+1)."' class='form-control txt-trabajador' value='". $obj_imp_prot_personal->Trabajadore->getAttr('apellido_nombre')."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-								//echo "<input name='data[TrabajadorActa][trabajador_id".($key+1)."]' type='hidden' value='".$obj_imp_prot_personal->Trabajadore->getID()."' id='txtTrabajadorid".($key+1)."'>";
 								echo "<td style='width:28%;'>";
 								echo "<span style='display: inline-flex; width: 100%;'>";
 								echo "<select name='data[TrabajadorActa][".($key+1)."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
@@ -306,6 +303,7 @@
 									echo "<input name='data[IppNi][".($key+1)."]' type='hidden' value='".implode(',', $arr_normas_incumplidas_id)."' id='hiddenIppNid".($key+1)."'>";
 									
 							echo "</tr>";
+							}
 							
 							for ($i = ($key+2); $i <= 10; $i++) {
 								    echo "<tr>";
