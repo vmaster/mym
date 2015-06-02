@@ -151,7 +151,9 @@
 	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/select2-4.0.0-rc.2/dist/js/select2.min.js"></script>
 	
 	<!-- SCRIPT FILEUPLOAD -->
+	<?php if($this->request->params['action']=='add_edit_trabajador'){?>
 	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/bootstrap-fileupload.js"></script>
+	<?php }?>
 	
 	<!-- HIGHCHART -->
 	<script src="<?= ENV_WEBROOT_FULL_URL;?>lib/highcharts-4.1.5/highcharts.js"></script>
