@@ -242,8 +242,8 @@
 							}
 							foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
 								echo "<tr>";
-								echo "<td>".($key+1)."</td>";
-								echo "<td style='width:28%;'>";
+								echo "<td style='width:5%;'>".($key+1)."</td>";
+								echo "<td style='width:25%;'>";
 								echo "<span style='display: inline-flex; width: 100%;'>";
 								echo "<select name='data[TrabajadorActa][".($key+1)."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								if (isset($list_all_trabajadores)){
@@ -262,7 +262,7 @@
 								echo "&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-trabajador' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-trabajador".($key+1)."'>...</a></span>";
 								echo "</td>";
 								
-								echo "<td><select name='data[TrabajadorActa][".($key+1)."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+								echo "<td style='width:30%;'><select name='data[TrabajadorActa][".($key+1)."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								if (isset($list_all_actividades)){
 									foreach ($list_all_actividades as $id => $des):
 									if($id == $obj_imp_prot_personal->getAttr('actividad_id')){
@@ -590,8 +590,8 @@
 							}
 							foreach ($obj_acta->UnidadesMovile as $key2 => $obj_uni_movil){
 								echo "<tr>";
-								echo "<td>".($key2 +1)."</td>";
-								echo "<td style='width:14%;'>";
+								echo "<td style='width:5%;'>".($key2 +1)."</td>";
+								echo "<td style='width:20%;'>";
 								echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
 								echo "<select name='data[UnidadMovil][".($key2 +1)."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".($key2 +1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								if (isset($list_all_vehiculos)){
@@ -609,7 +609,7 @@
 								echo "<input name='data[UnidadMovil][".($key2 +1)."][um_id]' type='hidden' value='".$obj_uni_movil->getID()."' id='hiddenUmId".($key2 +1)."'>";
 								echo "<a href='#myModalAddVehiculo' class='btn btn-primary btn-open-modal-vehiculo' style='height: 28px; padding-right: 3px; padding-left: 3px;' role='button' data-toggle='modal' id='btn-open-create-vehiculo".($key2 +1)."'>...</a></span>";
 								echo "</td>";
-								echo "<td style='width:15%;'><input name='data[UnidadMovil][".($key2 +1)."][vehiculo]' id='TipoVehiculoActa".($key2 +1)."' value='".$obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion')."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
+								echo "<td style='width:20%;'><input name='data[UnidadMovil][".($key2 +1)."][vehiculo]' id='TipoVehiculoActa".($key2 +1)."' value='".$obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion')."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
 								echo "<input name='data[UnidadMovil][".($key2 +1)."][vehiculo_id]' type='hidden' value='' id='hiddenVehiculoid".($key2 +1)."'></td>";
 								
 								$arr_normas_incumplidas = array();
@@ -640,8 +640,8 @@
 							
 							for ($i = ($key2+2); $i <= 4; $i++) {
 								    echo "<tr>";
-								    echo "<td>".$i."</td>";
-								    echo "<td style='width:14%;'>";
+								    echo "<td style='width:5%;'>".$i."</td>";
+								    echo "<td style='width:20%;'>";
 								    echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
 								    echo "<select name='data[UnidadMovil][".$i."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								    if (isset($list_all_vehiculos)){
@@ -654,7 +654,7 @@
 								    echo "<input name='data[UnidadMovil][".$i."][um_id]' type='hidden' value='' id='hiddenUmId".$i."'>";
 								    echo "<a href='#myModalAddVehiculo' class='btn btn-primary btn-open-modal-vehiculo' style='height: 28px; padding-right: 3px; padding-left: 3px;' role='button' data-toggle='modal' id='btn-open-create-vehiculo".$i."'>...</a></span>";
 								    echo "</td>";
-								    echo "<td style='width:15%;'><input name='data[UnidadMovil][".$i."][vehiculo]' id='TipoVehiculoActa".$i."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/></td>";
+								    echo "<td style='width:20%;'><input name='data[UnidadMovil][".$i."][vehiculo]' id='TipoVehiculoActa".$i."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/></td>";
 								    echo "<input name='data[UnidadMovil][".$i."][vehiculo_id]' type='hidden' value='' id='hiddenVehiculoid".$i."'></td>";
 										
 											echo "<td><select name='data[UnidadNorma][".($i)."][]' class='cbo-nincumplidas-select2 form-control' id='ni-".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();' multiple='multiple'>";
@@ -905,8 +905,8 @@
 							}
 							foreach ($obj_acta->ActosSubestandare as $key3 => $obj_act_sub){
 								echo "<tr>";
-								echo "<td>".($key3+1)."</td>";
-								echo "<td style='width:89%;'>";
+								echo "<td style='width:5%;'>".($key3+1)."</td>";
+								echo "<td style='width:75%;'>";
 								//echo"<input name='data[ActoSubestandar".($key3+1)."][descripcion]' id='txtActoSubDes".($key3+1)."' value='".$obj_act_sub->getAttr('descripcion')."' class='form-control'/>";
 								echo "<select name='data[ActoSubestandar][".($key3+1)."][act_sub_tipo_id]' class='cbo-tipo-act-sub-select2 form-control' id='cboActoSubDes".($key3+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								echo "<option></option>";
@@ -941,8 +941,8 @@
 							
 							for ($i = ($key3+2); $i <= 5; $i++) {
 								    echo "<tr>";
-								    echo "<td>".$i."</td>";
-								    echo "<td style='width:89%;'>";
+								    echo "<td style='width:5%;'>".$i."</td>";
+								    echo "<td style='width:75%;'>";
 								    //echo "<input name='data[ActoSubestandar][descripcion".$i."]' id='txtActoSubDes".$i."' class='form-control'/>";
 								    echo "<select name='data[ActoSubestandar][".$i."][act_sub_tipo_id]' class='cbo-tipo-act-sub-select2 form-control' id='cboActoSubDes".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								    echo "<option></option>";
@@ -1005,8 +1005,8 @@
 							
 							foreach ($obj_acta->CondicionesSubestandare as $key4 => $obj_cond_sub){
 								echo "<tr>";
-								echo "<td style='width:4%;'>".($key4+1)."</td>";
-								echo "<td style='width:89%;'>"; 
+								echo "<td style='width:5%;'>".($key4+1)."</td>";
+								echo "<td style='width:75%;'>"; 
 								//echo "<input name='data[CondiSubestandar".($key4+1)."][descripcion]' id='txtCondiSubDes".($key4+1)."' value='".$obj_cond_sub->getAttr('descripcion')."' class='form-control'/>";
 								echo "<select name='data[CondiSubestandar][".($key4+1)."][cond_sub_tipo_id]' class='cbo-tipo-cond-sub-select2 form-control' id='cboCondiSubDes".($key4+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								echo "<option></option>";
@@ -1040,8 +1040,8 @@
 							
 							for ($i = ($key4+2); $i <= 5; $i++) {
 								    echo "<tr>";
-								    echo "<td style='width:4%;'>".$i."</td>";
-								    echo "<td style='width:89%;'>"; 
+								    echo "<td style='width:5%;'>".$i."</td>";
+								    echo "<td style='width:75%;'>"; 
 								    //echo "<input name='data[CondiSubestandar".$i."][descripcion]' id='txtCondiSubDes".$i."' class='form-control'/>";
 								    echo "<select name='data[CondiSubestandar][".$i."][cond_sub_tipo_id]' class='cbo-tipo-cond-sub-select2 form-control' id='cboCondiSubDes".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								    echo "<option></option>";
@@ -1278,10 +1278,8 @@
 							<tr>
 								<td style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Responsable de la actividad'); ?>
 								</td>
-								<td rowspan="3" style="vertical-align: bottom;"><hr> Firma</td>
 								<td style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Responsable de la Supervisión de SST'); ?>
 								</td>
-								<td rowspan="3" style="vertical-align: bottom;"><hr> Firma</td>
 							</tr>
 							<tr>
 								<td style='width:35%;'>Nombre: 

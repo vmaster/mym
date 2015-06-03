@@ -185,8 +185,8 @@
 							<?php 
 							for ($i = 1; $i <= 10; $i++) {
 								    echo "<tr>";
-								    echo "<td>".$i."</td>";
-								    echo "<td style='width:28%;'>";
+								    echo "<td style='width:5%;'>".$i."</td>";
+								    echo "<td style='width:25%;'>";
 								    echo "<span style='display: inline-flex; width: 100%;'>";
 								    echo "<select name='data[TrabajadorActa][".$i."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 							 	    if (isset($list_all_trabajadores)){
@@ -198,7 +198,7 @@
 									echo "</select>";
 									echo "&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-trabajador' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-trabajador".$i."'>...</a></span>";
 									echo "</td>";
-									echo "<td><select name='data[TrabajadorActa][".$i."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+									echo "<td style='width:30%;'><select name='data[TrabajadorActa][".$i."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 									if (isset($list_all_actividades)){
 										echo "<option>--Cargo--</option>";
 										foreach ($list_all_actividades as $id => $des):
@@ -206,7 +206,7 @@
 										endforeach;
 									}
 									echo "</select></td>";
-								   		echo "<td style='width:40%;'><select name='data[NiActa][".$i."][]' class='cbo-nincumplidas-select2 form-control' multiple='multiple'>";
+								   		echo "<td><select name='data[NiActa][".$i."][]' class='cbo-nincumplidas-select2 form-control' multiple='multiple'>";
 								   		echo "<option></option>";
 								   		if (isset($list_all_codigos)){
 								   			foreach ($list_all_codigos as $id => $cod):
@@ -381,21 +381,19 @@
 									</th>
 								</tr>
 								<tr>
-									<th style="width: 6%;"
-										style="vertical-align:middle; text-align: center;"><?php echo utf8_encode('N° T'); ?>
+									<th style="vertical-align:middle; text-align: center;"><?php echo utf8_encode('N° T'); ?>
 									</th>
 									<th><?php echo utf8_encode('N° de Placa'); ?></th>
 									<th><?php echo utf8_encode('Tipo Vehículo'); ?></th>
-									<th colspan=9
-										style="vertical-align: middle; text-align: center;">Norma
+									<th style="vertical-align: middle; text-align: center;">Norma
 										Incumplica (Ver parte porterior de la hoja)</th>
 								</tr>
 							</thead>
 							<?php 
 							for ($i = 1; $i <= 4; $i++) {
 								    echo "<tr>";
-								    echo "<td>".$i."</td>";
-								    echo "<td style='width:14%;'>";
+								    echo "<td style='width:5%;'>".$i."</td>";
+								    echo "<td style='width:25%;'>";
 								    echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
 									echo "<select name='data[UnidadMovil][".$i."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								    if (isset($list_all_vehiculos)){
@@ -407,7 +405,7 @@
 								    echo "</select>";
 								    echo "<a href='#myModalAddVehiculo' class='btn btn-primary btn-open-modal-vehiculo' style='height: 28px; padding-right: 3px; padding-left: 3px;' role='button' data-toggle='modal' id='btn-open-create-vehiculo".$i."'>...</a></span>";
 								    echo "</td>";
-								    echo "<td style='width:15%;'><input name='data[UnidadMovil][".$i."][vehiculo]' id='TipoVehiculoActa".$i."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/></td>";
+								    echo "<td style='width:25%;'><input name='data[UnidadMovil][".$i."][vehiculo]' id='TipoVehiculoActa".$i."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/></td>";
 								    echo "<input name='data[UnidadMovil][".$i."][vehiculo_id]' type='hidden' value='' id='hiddenVehiculoid".$i."'></td>";
 										
 										//for($j= 1; $j <=9; $j++){
@@ -592,8 +590,8 @@
 							<?php 
 							for ($i = 1; $i <= 5; $i++) {
 								    echo "<tr>";
-								    echo "<td>".$i."</td>";
-								    echo "<td style='width:89%;'>";
+								    echo "<td style='width:5%;'>".$i."</td>";
+								    echo "<td style='width:75%;'>";
 									//echo "<input name='data[ActoSubestandar".$i."][descripcion]' id='txtActoSubDes".$i."' class='form-control'/>";
 								    echo "<select name='data[ActoSubestandar][".$i."][act_sub_tipo_id]' class='cbo-tipo-act-sub-select2 form-control' id='cboActoSubDes".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								    echo "<option></option>";
@@ -650,8 +648,8 @@
 							<?php 
 							for ($i = 1; $i <= 5; $i++) {
 								    echo "<tr>";
-								    echo "<td style='width:4%;'>".$i."</td>";
-								    echo "<td style='width:89%;'>"; 
+								    echo "<td style='width:5%;'>".$i."</td>";
+								    echo "<td style='width:75%;'>"; 
 								    //echo "<input name='data[CondiSubestandar".$i."][descripcion]' id='txtCondiSubDes".$i."' class='form-control'/></td>";
 								    echo "<select name='data[CondiSubestandar][".$i."][cond_sub_tipo_id]' class='cbo-tipo-cond-sub-select2 form-control' id='cboCondiSubDes".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								    echo "<option></option>";
@@ -824,10 +822,8 @@
 							<tr>
 								<td style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Responsable de la actividad'); ?>
 								</td>
-								<td rowspan="3" style="vertical-align: bottom;"><hr> Firma</td>
 								<td style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Responsable de la Supervisión de SST'); ?>
 								</td>
-								<td rowspan="3" style="vertical-align: bottom;"><hr> Firma</td>
 							</tr>
 							<tr>
 								<td style='width:35%;'>Nombre:
