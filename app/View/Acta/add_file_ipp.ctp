@@ -27,7 +27,7 @@ if (isset($list_all_actividades)){
 }
 echo "</select></td>";
 
-echo "<td style='width:40%;'><select name='data[NiActa][".$i."][]' class='cbo-nincumplidas-select2 form-control' id='Nid-".$i."' class='cbo-nincumplidas-select2 form-control' multiple='multiple' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+echo "<td style='width:40%;'><select name='data[NiActa][".$i."][]' class='cbo-nincumplidas-select2 form-control' id='Nid-".$i."' multiple='multiple' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 echo "<option></option>";
 if (isset($list_all_codigos)){
 	foreach ($list_all_codigos as $id => $cod):

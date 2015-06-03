@@ -612,63 +612,35 @@
 								echo "<td style='width:15%;'><input name='data[UnidadMovil][".($key2 +1)."][vehiculo]' id='TipoVehiculoActa".($key2 +1)."' value='".$obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion')."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
 								echo "<input name='data[UnidadMovil][".($key2 +1)."][vehiculo_id]' type='hidden' value='' id='hiddenVehiculoid".($key2 +1)."'></td>";
 								
-								$count_obj_um_ni = count($obj_uni_movil->UmNormasIncumplida);
-								if($count_obj_um_ni > 0){
-									foreach($obj_uni_movil->UmNormasIncumplida as $k =>$v){
-										echo "<td><select name='data[UnidadNorma][ni-id".($key2+1)."-".($k+1)."]' class='cbo-nincumplidas-select2 form-control' id='ni-".($key2+1)."-".($k+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-										echo "<option></option>";
-										if (isset($list_all_codigos)){
+								$arr_normas_incumplidas = array();
+								$arr_normas_incumplidas_id = array();
+								
+								foreach($obj_uni_movil->UmNormasIncumplida as $k =>$v){
+									$arr_normas_incumplidas[] = $v->getAttr('codigo_id');
+									$arr_normas_incumplidas_id[] = $v->getAttr('id');
+								}
+								
+								echo "<td><select name='data[UnidadNorma][".($key2+1)."][]' class='cbo-nincumplidas-select2 form-control' id='ni-".($key2+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();' multiple='multiple'>";
+								echo "<option></option>";
+								if (isset($list_all_codigos)){
 											foreach ($list_all_codigos as $id => $cod):
-											if($id == $v->getAttr('codigo_id')){
+											if(in_array($id, $arr_normas_incumplidas)){
 												$selected = " selected = 'selected'";
 											}else{
 												$selected = "";
 											}
 											echo "<option value = ".$id.$selected.">".$cod."</option>";
 											endforeach;
-										}
-										echo "</select>";
-										echo "<input name='data[UmNi][umni-id".($key2+1)."-".($k+1)."]' type='hidden' value='".$v->getAttr('id')."' id='hiddenUmNid".($key2+1)."-".($k+1)."'></td>";
-									}
-									
-									for($j= ($k+2); $j <=9; $j++){
-										//echo "<td><input name='data[UnidadNorma][ni-".($key2+1)."-".$j."]' id='ni-placa-".($key2+1)."-".$j."' class='form-control txt-ni-placa".($key2+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-										//echo "<input name='data[UnidadNorma][ni-id".($key2+1)."-".$j."]' type='hidden' value='' id='hiddenPlacaNid".($key2+1)."-".$j."'>";
-										echo "<td><select name='data[UnidadNorma][ni-id".($key2+1)."-".$j."]' class='cbo-nincumplidas-select2 form-control' id='ni-".($key2+1)."-".$j."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-										echo "<option></option>";
-										if (isset($list_all_codigos)){
-											foreach ($list_all_codigos as $id => $cod):
-											echo "<option value = ".$id.">".$cod."</option>";
-											endforeach;
-										}
-										echo "</select>";
-										echo "<input name='data[UmNi][umni-id".($key2+1)."-".$j."]' type='hidden' value='' id='hiddenUmNid".($key2+1)."-".$j."'></td>";
-									}
-									
-								}else{
-									for($x= 1; $x <=9; $x++){
-										//echo "<td><input name='data[UnidadNorma][ni-".($key2+1)."-".$x."]' id='ni-placa-".($key2+1)."-".$x."' class='form-control txt-ni-placa".($key2+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-										//echo "<input name='data[UnidadNorma][ni-id".($key2+1)."-".$x."]' type='hidden' value='' id='hiddenPlacaNid".($key2+1)."-".$x."'>";
-										echo "<td><select name='data[UnidadNorma][ni-id".($key2+1)."-".$x."]' class='cbo-nincumplidas-select2 form-control' id='ni-".($key2+1)."-".$x."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-										echo "<option></option>";
-										if (isset($list_all_codigos)){
-											foreach ($list_all_codigos as $id => $cod):
-											echo "<option value = ".$id.">".$cod."</option>";
-											endforeach;
-										}
-										echo "</select>";
-										echo "<input name='data[UmNi][umni-id".($key2+1)."-".$x."]' type='hidden' value='' id='hiddenUmNid".($key2+1)."-".$x."'></td>";
-									}
 								}
-								
+								echo "</select></td>";
+								echo "<input name='data[UmNi][".($key2+1)."]' type='hidden' value='".implode(',', $arr_normas_incumplidas_id)."' id='hiddenUmNid".($key2+1)."'>";
+
 							}
 							echo "</tr>";
 							
 							for ($i = ($key2+2); $i <= 4; $i++) {
 								    echo "<tr>";
 								    echo "<td>".$i."</td>";
-								    //echo "<td style='width:14%;'><input name='data[UnidadMovil".$i."][nro_placa]' id='PlacaActa".$i."' class='form-control txt-nro-placa' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-								    //echo "<input name='data[UnidadMovil][nro_placa_id".$i."]' type='hidden' value='' id='hiddenPlacaId".$i."'>";
 								    echo "<td style='width:14%;'>";
 								    echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
 								    echo "<select name='data[UnidadMovil][".$i."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
@@ -685,10 +657,7 @@
 								    echo "<td style='width:15%;'><input name='data[UnidadMovil][".$i."][vehiculo]' id='TipoVehiculoActa".$i."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/></td>";
 								    echo "<input name='data[UnidadMovil][".$i."][vehiculo_id]' type='hidden' value='' id='hiddenVehiculoid".$i."'></td>";
 										
-										for($j= 1; $j <=9; $j++){
-											//echo "<td><input name='data[UnidadNorma][ni-".$i."-".$j."]' id='ni-placa-".$i."-".$j."' class='form-control txt-ni-placa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-											//echo "<input name='data[UnidadNorma][ni-id".$i."-".$j."]' type='hidden' value='' id='hiddenPlacaNid".$i."-".$j."'>";
-											echo "<td><select name='data[UnidadNorma][ni-id".$i."-".$j."]' class='cbo-nincumplidas-select2 form-control' id='ni-".$i."-".$j."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+											echo "<td><select name='data[UnidadNorma][".($i)."][]' class='cbo-nincumplidas-select2 form-control' id='ni-".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();' multiple='multiple'>";
 											echo "<option></option>";
 											if (isset($list_all_codigos)){
 												foreach ($list_all_codigos as $id => $cod):
@@ -696,8 +665,7 @@
 												endforeach;
 											}
 											echo "</select>";
-											echo "<input name='data[UmNi][umni-id".$i."-".$j."]' type='hidden' value='' id='hiddenUmNid".$i."-".$j."'></td>";
-										}
+											echo "<input name='data[UmNi][".($i)."]' type='hidden' value='' id='hiddenUmNid".$i."'></td>";
 										echo "</tr>";
 								}
 								?>

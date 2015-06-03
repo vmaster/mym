@@ -255,11 +255,9 @@ class ActasController extends AppController{
 					}//FIN DEL FOR 
 				}
 					
-					/*UNIDAD MOVIL */
-				$cont2="0";	
+				/*UNIDAD MOVIL */
 				if(!empty($this->request->data['UnidadMovil'])){
-					foreach($this->request->data['UnidadMovil'] as $i){
-						$cont2 = $cont2 + 1;
+					foreach($this->request->data['UnidadMovil'] as $key => $i){
 						if($i['nro_placa_id'] != ''){
 							
 							$new_um_acta['UnidadesMovile']['acta_id'] = $this->Acta->id;
@@ -269,26 +267,21 @@ class ActasController extends AppController{
 							if ($this->UnidadesMovile->save($new_um_acta)) {
 								$um_id = $this->UnidadesMovile->id;
 									
-								for($n =1 ; $n <=9 ; $n++){
-									$um_ni['UmNormasIncumplida']['codigo_id'] = $this->request->data['UnidadNorma']['ni-id'.$cont2.'-'.$n];
+								foreach($this->request->data['UnidadNorma'][$key] as $k => $codigo_id){
+									$um_ni['UmNormasIncumplida']['codigo_id'] = $codigo_id;
 									if($um_ni['UmNormasIncumplida']['codigo_id'] !=''){
 										$um_ni['UmNormasIncumplida']['um_id'] = $um_id;
 										$this->UmNormasIncumplida->create();
 										if ($this->UmNormasIncumplida->save($um_ni)) {
 											$um_normas_id = $this->UmNormasIncumplida->id;
-											//echo json_encode(array('success'=>true,'msg'=>__('El Detalle de la UM fue agregada con &eacute;xito.'),'UmNormasIncumplida_id'=>$um_normas_id));
 										}else{
 											$um_normas_id = '';
-											//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->UmNormasIncumplida->validationErrors));
-											//exit();
 										}
 									}
 								}
 									
 							}else{
 								$um_id = '';
-								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->UnidadesMovile->validationErrors));
-								//exit();
 							}
 						}
 					}
@@ -623,41 +616,24 @@ class ActasController extends AppController{
 							$update_ipp['ImpProtPersonale']['actividad_id'] = $i['actividad_id'];
 							if ($this->ImpProtPersonale->save($update_ipp)) {
 
-								if($this->request->data['IppNi'][$key] > 0 || $this->request->data['IppNi'][$key] != ''){
-									$array_ids = explode(',',$this->request->data['IppNi'][$key]);
-									foreach($array_ids as $ipp_ni_id){
-										$this->IppNormasIncumplida->deleteAll(array('IppNormasIncumplida.id' => $ipp_ni_id), $cascada = true);
-									}
+								$array_ids = explode(',',$this->request->data['IppNi'][$key]);
+								foreach($array_ids as $ipp_ni_id){
+									$this->IppNormasIncumplida->deleteAll(array('IppNormasIncumplida.id' => $ipp_ni_id), $cascada = true);
+								}
 									
-									if($this->request->data['NiActa'][$key] != null || $this->request->data['NiActa'][$key] != ''){
-										foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
+								if(!empty($this->request->data['NiActa'][$key])){
+									foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
 											
-											$this->IppNormasIncumplida->create();
-												
-											$new_ipp_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
-											$new_ipp_ni['IppNormasIncumplida']['codigo_id'] = $codigo_id;
+										$this->IppNormasIncumplida->create();
+
+										$new_ipp_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
+										$new_ipp_ni['IppNormasIncumplida']['codigo_id'] = $codigo_id;
 											
-											if($this->IppNormasIncumplida->save($new_ipp_ni)){
-												$ipp_ni_id = $this->IppNormasIncumplida->id;
-											}
-										}
-									}
-								}else{
-									if(!empty($this->request->data['NiActa'][$key])){
-										foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
-												
-											$this->IppNormasIncumplida->create();
-									
-											$new_ipp_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
-											$new_ipp_ni['IppNormasIncumplida']['codigo_id'] = $codigo_id;
-												
-											if($this->IppNormasIncumplida->save($new_ipp_ni)){
-												$ipp_ni_id = $this->IppNormasIncumplida->id;
-											}
+										if($this->IppNormasIncumplida->save($new_ipp_ni)){
+											$ipp_ni_id = $this->IppNormasIncumplida->id;
 										}
 									}
 								}
-
 							}
 						}else{
 							//En el caso los valores del trabajador esten vacios del ipp.
@@ -704,11 +680,10 @@ class ActasController extends AppController{
 			}
 				// FIN UPDATE
 				
-			$cont2 = 0;
-				// INICIO UPDATE UNIDADES MÓVILES
+			// INICIO UPDATE UNIDADES MÓVILES
 			if(!empty($this->request->data['UnidadMovil'])){
-				foreach($this->request->data['UnidadMovil'] as $i){
-				$cont2 = $cont2 + 1;
+				foreach($this->request->data['UnidadMovil'] as $key => $i){
+					
 					if($i['um_id'] != 0 || $i['um_id'] != ''){
 						//ACTUALIZANDO REGISTRO DE UM
 				
@@ -719,48 +694,35 @@ class ActasController extends AppController{
 								
 							$update_um['UnidadesMovile']['vehiculo_id'] = $i['nro_placa_id'];
 							if ($this->UnidadesMovile->save($update_um)) {
-								//echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'ImpProtPersonale_id'=>$this->request->data['TrabajadorActa']['ipp_id'.$i]));
-								//exit();
-								for($n =1 ; $n <=9 ; $n++){//
 									//Verifico si el id del Ni UM, no es vacía para poder actualizar
-									if($this->request->data['UmNi']['umni-id'.$cont2."-".$n] != '' || $this->request->data['UmNi']['umni-id'.$cont2."-".$n] != 0){
-				
-										$um_ni_id = $this->request->data['UmNi']['umni-id'.$cont2."-".$n];
-										//Verifico si los valores no son vacíos de lo contrarío que eliminen el registro de la BD
-										if($this->request->data['UnidadNorma']['ni-id'.$cont2.'-'.$n] > 0 && $this->request->data['UnidadNorma']['ni-id'.$cont2.'-'.$n] !=''){
-											$this->UmNormasIncumplida->id = $um_ni_id;
-												
-											$update_um_ni['UmNormasIncumplida']['codigo_id'] = $this->request->data['UnidadNorma']['ni-id'.$cont2.'-'.$n];
-											$this->UmNormasIncumplida->save($update_um_ni);
-										}else{
+										$array_ids = explode(',',$this->request->data['UmNi'][$key]);
+										foreach($array_ids as $um_ni_id){
 											$this->UmNormasIncumplida->deleteAll(array('UmNormasIncumplida.id' => $um_ni_id), $cascada = true);
 										}
-									}else{
-										if($this->request->data['UnidadNorma']['ni-id'.$cont2.'-'.$n] > 0 && $this->request->data['UnidadNorma']['ni-id'.$cont2.'-'.$n] !=''){
-											$this->UmNormasIncumplida->create();
-												
-											$new_um_ni['UmNormasIncumplida']['um_id'] = $um_id;
-											$new_um_ni['UmNormasIncumplida']['codigo_id'] = $this->request->data['UnidadNorma']['ni-id'.$cont2.'-'.$n];
-				
-											if($this->UmNormasIncumplida->save($new_um_ni)){
-												$um_ni_id = $this->UmNormasIncumplida->id;
+										
+										if(!empty($this->request->data['UnidadNorma'][$key])){
+											foreach($this->request->data['UnidadNorma'][$key] as $k => $codigo_id){
+													
+												$this->UmNormasIncumplida->create();
+										
+												$new_um_ni['UmNormasIncumplida']['um_id'] = $um_id;
+												$new_um_ni['UmNormasIncumplida']['codigo_id'] = $codigo_id;
+													
+												if($this->UmNormasIncumplida->save($new_um_ni)){
+													$um_ni_id = $this->UmNormasIncumplida->id;
+												}
 											}
 										}
-									}
-								}
-							}else{
-								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->ImpProtPersonale->validationErrors));
-								//exit();
 							}
 						}else{
 							//En el caso los valores del vehiculo esten vacios .
 							$this->UnidadesMovile->deleteAll(array('UnidadesMovile.id' => $um_id), $cascada = true);
-							for($n =1 ; $n <=9 ; $n++){//
-								if($this->request->data['UmNi']['umni-id'.$cont2."-".$n] != ''){
-									$um_ni_id = $this->request->data['UmNi']['umni-id'.$i."-".$n];
-									$this->UmNormasIncumplida->deleteAll(array('UmNormasIncumplida.id' => $um_ni_id), $cascada = true);
+								if($this->request->data['UmNi'][$key] != ''){
+									$array_ids = explode(',',$this->request->data['UmNi'][$key]);
+									foreach($array_ids as $um_ni_id){
+										$this->UmNormasIncumplida->deleteAll(array('UmNormasIncumplida.id' => $um_ni_id), $cascada = true);
+									}
 								}
-							}
 								
 						}
 					}elseif($i['um_id'] == '' && $i['nro_placa_id'] != ''){
@@ -773,23 +735,22 @@ class ActasController extends AppController{
 						if ($this->UnidadesMovile->save($new_um)) {
 							$um_id = $this->UnidadesMovile->id;
 								
-							for($n =1 ; $n <=9 ; $n++){
 								//Verifico si el id del Ni UM
-								if($this->request->data['UnidadNorma']['ni-id'.$cont2.'-'.$n] > 0 && $this->request->data['UnidadNorma']['ni-id'.$cont2.'-'.$n] !=''){
-									$this->UmNormasIncumplida->create();
+								if($this->request->data['UnidadNorma'][$key] != null || $this->request->data['UnidadNorma'][$key] !=''){
+									
+									foreach($this->request->data['UnidadNorma'][$key] as $k => $codigo_id){
+										$this->UmNormasIncumplida->create();
 										
-									$new_um_ni['UmNormasIncumplida']['um_id'] = $um_id;
-									$new_um_ni['UmNormasIncumplida']['codigo_id'] = $this->request->data['UnidadNorma']['ni-id'.$cont2.'-'.$n];
-									if($this->UmNormasIncumplida->save($new_um_ni)){
-										$um_ni_id = $this->UmNormasIncumplida->id;
+										$new_um_ni['UmNormasIncumplida']['um_id'] = $um_id;
+										$new_um_ni['UmNormasIncumplida']['codigo_id'] = $codigo_id;
+										
+										if($this->UmNormasIncumplida->save($new_um_ni)){
+											$um_ni_id = $this->UmNormasIncumplida->id;
+										}
 									}
 								}
-							}
-							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
 							$um_id = '';
-							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
-							//exit();
 						}
 					}
 				}

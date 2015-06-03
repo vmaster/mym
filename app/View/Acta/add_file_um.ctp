@@ -19,8 +19,7 @@ echo "<a href='#myModalAddVehiculo' class='btn btn-primary btn-open-modal-vehicu
 echo "<td style='width:15%;'><input name='data[UnidadMovil][".$i."][vehiculo]' id='TipoVehiculoActa".$i."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/></td>";
 echo "<input name='data[UnidadMovil][".$i."][vehiculo_id]' type='hidden' value='' id='hiddenVehiculoid".$i."'></td>";
 
-for($j= 1; $j <=9; $j++){
-	echo "<td><select name='data[UnidadNorma][ni-id".$i."-".$j."]' class='cbo-nincumplidas-select2 form-control' id='ni-".$i."-".$j."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+	echo "<td><select name='data[UnidadNorma][".$i."][]' class='cbo-nincumplidas-select2 form-control' multiple='multiple' id='ni-".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 	echo "<option></option>";
 	if (isset($list_all_codigos)){
 		foreach ($list_all_codigos as $id => $cod):
@@ -28,7 +27,6 @@ for($j= 1; $j <=9; $j++){
 		endforeach;
 	}
 	echo "</select>";
-	echo "<input name='data[UmNi][umni-id".$i."-".$j."]' type='hidden' value='' id='hiddenUmNid".$i."-".$j."'></td>";
-}
+	echo "<input name='data[UmNi][".$i."]' type='hidden' value='' id='hiddenUmNid".$i."'></td>";
 echo "</tr>";
 ?>
