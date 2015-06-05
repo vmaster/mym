@@ -233,13 +233,11 @@ $codigo.= "	</tr>
 
 $codigo.= "
 		<table class='tg' width='100%'>
-		<tr>
-		<th class='tg-e3zv back-green2'>
-		INCUMPLIMIENTOS AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO
-		</th>
-		</tr>
-		</table>
-		<table class='tg' width='100%'>
+		  <tr>
+			<th class='tg-e3zv back-green2'>
+			INCUMPLIMIENTOS AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO
+			</th>
+	      </tr>
 		  <tr>
 		    <th class='tg-e3zv back-green'>ACTOS SUBESTANDARES</th>
 		  </tr>
@@ -247,14 +245,14 @@ $codigo.= "
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_act'))."</td>
 		  </tr>
 		  <tr>
-		   	<td colspan='2'>
+		   	<td>
 		   	<table class='tg' width='100%'>
 		    ";
 			$cont= 0;
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ac/thumbnail/".$obj_foto_as->getAttr('file_name')."' width='200px' height='200px'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_as/thumbnail/".$obj_foto_as->getAttr('file_name')."' width='200px' height='200px'>
 							<br>".$obj_foto_as->getAttr('observacion')."</td>";
 				if($cont == 2){
 					$codigo.="</tr>";
@@ -265,7 +263,7 @@ $codigo.= "
 			}
 $codigo.= "	</tr>
 			</table>
-		 </td>
+			</td>
 		  </tr>
 		</table><br>";
 
@@ -277,14 +275,14 @@ $codigo.= "<table class='tg' width='100%'>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_cond'))."</td>
 		  </tr>
 		  <tr>
-		   	<td colspan='2'>
+		   	<td>
 		   	<table class='tg' width='100%'>
 		    ";
 			$cont= 0;
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ac/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='200px' height='200px'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_cs/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='200px' height='200px'>
 							<br>".$obj_foto_cs->getAttr('observacion')."</td>";
 				if($cont == 2){
 					$codigo.="</tr>";
@@ -295,7 +293,7 @@ $codigo.= "<table class='tg' width='100%'>
 			}
 $codigo.= "	</tr>
 			</table>
-		 </td>
+			</td>
 		  </tr>
 		</table><br>";
 
@@ -487,7 +485,7 @@ $dompdf->load_html($codigo);
 ini_set('memory_limit', '512M');
 $dompdf->render();
 
-$dompdf->stream("ejemplo.pdf",array("Attachment"=>0));
+$dompdf->stream("Informe ".$obj_acta->getAttr('num_informe').".pdf",array("Attachment"=>0));
 
 exit();
 ?>
