@@ -96,7 +96,7 @@ $codigo .="<table class='tg' width='100%' style='margin-bottom:-10px'>
     <td style='width:10%' class='tg-e3zv back-green'>Supervisi&oacute;n:</td>
     <td class='tg-031e'>".$tipo_supervision."</td>
     <td class='aling-left back-green'><strong>Emp. Superv. al Servicio de:</strong></td>
-    <td class='tg-031e'>".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."-".$obj_acta->getAttr('empresa_supervisora')."</td>
+    <td class='tg-031e'>".$obj_acta->getAttr('empresa_supervisora')."</td>
   </tr>
 </table><br>";
 $codigo.= "
@@ -474,7 +474,7 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 $codigo .= "<p align='right'><table width='100%'>
 			<tr><td style='text-align:right;'><img src='".ENV_WEBROOT_FULL_URL."files/firmas/".$obj_acta->Trabajadore2->getAttr('firma')."' style='border:0px;' width='180px' height='100px'> </td></tr>";
 $codigo .= "<tr><td style='text-align:right;'><hr width='30%' align='right'></td></tr>
-		   	<tr><td style='text-align:right; /*padding-left: 52px; padding-right: 52px;*/'>Ing. ".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."</td></tr>
+		   	<tr><td style='text-align:right; /*padding-left: 52px; padding-right: 52px;*/'>ING. ".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."</td></tr>
 		   	<tr><td style='text-align:right; padding-left: 25px; padding-right: 25px;'>Supervisor de SST – M&M</td></tr></table></p>";
 
 
