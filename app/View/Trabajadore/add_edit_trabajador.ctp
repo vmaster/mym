@@ -348,7 +348,7 @@ $(document).ready(function(){
 						</span>
 					</div>
 					<div class='fileupload-preview thumbnail' style='width:40%;height:40%;'>
-					<?php if($obj_trabajador->getAttr('firma')!=''){?>
+					<?php if(isset($obj_trabajador) && $obj_trabajador->getAttr('firma')!=''){?>
 						<img src="<?php echo ENV_WEBROOT_FULL_URL.'files/firmas/'.$obj_trabajador->getAttr('firma'); ?>">
 					<?php }else{?>
 						<img src="">
