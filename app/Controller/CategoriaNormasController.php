@@ -2,6 +2,10 @@
 class CategoriaNormasController extends AppController{
 	public $name = 'CategoriaNorma';
 	
+	public function beforeFilter(){
+		$this->Auth->allow(array('lista_json'));
+		//parent::beforeFilter();
+	}
 	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_descripcion=null) {
 		$this->layout = "default";
@@ -202,6 +206,15 @@ class CategoriaNormasController extends AppController{
 		}
 	
 	
+	}
+	
+	public function lista_json(){
+		ini_set('memory_limit', '-1');
+		$this->layout = 'ajax';
+		
+		$arr_normas_categorias = $this->CategoriaNorma->find('all');
+		echo json_encode($arr_normas_categorias);
+		exit();
 	}
 	
 }
