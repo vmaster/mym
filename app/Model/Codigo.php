@@ -154,5 +154,28 @@ App::uses('AppModel','Model');
     	}
     }
     
+    public function NormasConCategorias() {
+    	$arr_obj_nor_cate = $this->find('all',array(
+    			//'fields' => array('Codigo.codigo, CategoriaNormaJoin.descripcion'),
+    			'joins' => array(
+    					array(
+    							'table' => 'categoria_normas',
+    							'alias' => 'CategoriaNormaJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'CategoriaNormaJoin.id = Codigo.categoria_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'Codigo.estado != '=> 0
+    				),
+    			'order' => array('Codigo.codigo ASC')
+    	)
+    	);
+    
+    	debug($arr_obj_nor_cate);
+    }
+    
   }
 ?>

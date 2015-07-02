@@ -3,7 +3,7 @@ class CategoriaNormasController extends AppController{
 	public $name = 'CategoriaNorma';
 	
 	public function beforeFilter(){
-		$this->Auth->allow(array('lista_json'));
+		$this->Auth->allow(array('lista_json','lista_normas_json'));
 		//parent::beforeFilter();
 	}
 	
@@ -214,6 +214,35 @@ class CategoriaNormasController extends AppController{
 		
 		$arr_normas_categorias = $this->CategoriaNorma->find('all');
 		echo json_encode($arr_normas_categorias);
+		exit();
+	}
+	
+	public function lista_normas_json(){
+		ini_set('memory_limit', '-1');
+		$this->layout = 'ajax';
+		$this->loadModel('Codigo');
+		$new_arr_categoria_normas = array();
+		//$arr_norma_categoria = $this->Codigo->NormasConCategorias();
+		//debug($arr_norma_categoria);
+		
+		$arr_normas_categorias = $this->CategoriaNorma->find('all', array('conditions'=>array('CategoriaNorma.id IN (select codigos.categoria_id from codigos)')));
+		
+		
+		
+		foreach($arr_normas_categorias as $key => $categoria){
+			$obj_normas = $this->Codigo->find('all', array('conditions'=>array('Codigo.categoria_id' => $categoria['CategoriaNorma']['id'])));
+			//if(!empty($obj_normas) || $obj_normas != '' || $obj_normas != null){
+				foreach($obj_normas as $key2 => $norma){
+					$new_arr_categoria_normas[$categoria['CategoriaNorma']['descripcion']][$key2]['codigo'] = $norma['Codigo']['codigo'];
+					$new_arr_categoria_normas[$categoria['CategoriaNorma']['descripcion']][$key2]['observacion'] = $norma['Codigo']['observacion'];
+					$new_arr_categoria_normas[$categoria['CategoriaNorma']['descripcion']][$key2]['norma_incumplida'] = $norma['Codigo']['norma_incumplida'];
+				}
+				
+			//}
+			debug($new_arr_categoria_normas);
+		}
+		//debug($obj_normas);
+		//echo json_encode($arr_normas_categorias);
 		exit();
 	}
 	
