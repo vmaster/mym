@@ -212,8 +212,28 @@ class CategoriaNormasController extends AppController{
 		ini_set('memory_limit', '-1');
 		$this->layout = 'ajax';
 		
-		$arr_normas_categorias = $this->CategoriaNorma->find('all');
-		echo json_encode($arr_normas_categorias);
+		$this->loadModel('Codigo');
+		$arr_normas = $this->Codigo->find('all',array(
+				'fields' => array('Codigo.*', 'CategoriaNormaJoin.*'),
+				'joins' => array(
+						array(
+								'table' => 'categoria_normas',
+								'alias' => 'CategoriaNormaJoin',
+								'type' => 'INNER',
+								'conditions' => array(
+										'Codigo.categoria_id = CategoriaNormaJoin.id'
+								)
+						)
+				)
+				));
+
+		$new_arr_categoria_normas = array();
+		foreach($arr_normas as $key => $normas)	{
+			$new_arr_categoria_normas[$normas['CategoriaNormaJoin']['descripcion']][$key]['codigo'] = $normas['Codigo']['codigo'];
+			$new_arr_categoria_normas[$normas['CategoriaNormaJoin']['descripcion']][$key]['observacion'] = $normas['Codigo']['observacion'];
+		}
+
+		echo json_encode($new_arr_categoria_normas);
 		exit();
 	}
 	
