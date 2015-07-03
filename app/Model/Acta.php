@@ -225,6 +225,30 @@ App::uses('AppModel','Model');
     				'rule' => array('datetime'),
     				'message' => 'Ingrese una fecha v&aacute;lida',
     				'allowEmpty' => true
+    		),
+    		'sector' => array(
+    				'notempty' => array(
+    						'rule' => array('notEmpty'),
+    						'message' => 'El Sector es requerido'
+    				)
+    		),
+    		'lugar' => array(
+    				'notempty' => array(
+    						'rule' => array('notEmpty'),
+    						'message' => 'El Lugar es requerido'
+    				)
+    		),
+    		'uunn_id' => array(
+    				'notempty' => array(
+    						'rule' => array('notEmpty'),
+    						'message' => 'La UUNN es requerida'
+    				)
+    		),
+    		'nro_trabajadores' => array(
+    				'notempty' => array(
+    						'rule' => array('notEmpty'),
+    						'message' => 'La Número de trabajadores es requerido'
+    				)
     		)
     );
     

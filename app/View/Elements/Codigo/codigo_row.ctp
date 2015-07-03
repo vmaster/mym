@@ -59,7 +59,7 @@
 		          <th><?php echo utf8_encode(__('N°')); ?></th>
 		          
 		          <th><?php echo utf8_encode(__('Código')); ?></th>
-		          <?php /*<th><?php echo utf8_encode(__('Categoría')); ?></th>*/?>
+		          <th><?php echo utf8_encode(__('Categoría')); ?></th>
 		          <th><?php echo utf8_encode(__('Observación')); ?></th>
 		          <th><?php echo utf8_encode(__('Norma Incumplida')); ?></th>
 		          <th><?php echo __('Operaciones'); ?></th>
@@ -75,7 +75,7 @@
 					<tr class="codigo_row_container" codigo_id="<?php echo $codigo->getAttr('id'); ?>">
 						<td><?php echo $n; ?></td>
 						<td><?php echo utf8_encode($codigo->getAttr('codigo')); ?></td>
-						<?php /*<td><?php echo $codigo->getAttr('categoria_id'); ?></td>*/?>
+						<td><?php echo utf8_encode($codigo->CategoriaNorma->getAttr('descripcion')); ?></td>
 						<td><?php echo utf8_encode($codigo->getAttr('observacion')); ?></td>
 						<td><?php echo utf8_encode($codigo->getAttr('norma_incumplida')); ?></td>
 						<td><a><i class="fa fa-pencil edit-codigo-trigger"></i> </a> 

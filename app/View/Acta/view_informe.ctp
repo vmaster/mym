@@ -57,7 +57,7 @@ $codigo.= "<table class='tg' width='100%' style='margin-bottom:-15px'>
 			    <th style='width:28%' class='aling-left back-green'><strong>UUNN:</strong> ".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
 			  </tr>
 			  <tr>
-			    <td class='aling-left back-green'><strong>&Aacute;REA:</strong>".$obj_acta->getAttr('sector')."</td>
+			    <td class='aling-left back-green'><strong>SECTOR:</strong>".$obj_acta->getAttr('sector')."</td>
 			  </tr>
 			  <tr>
 			    <td class='tg-uni back-blue'><strong>INFORME T&Eacute;CNICO DE SEGURIDAD</strong></td>
@@ -83,7 +83,7 @@ $codigo .="<table class='tg' width='100%' style='margin-bottom:-10px'>
   <tr>
     <td style='width:10%' class='tg-e3zv back-green'>Lugar:</td>
     <td style='width:36%' class='tg-031e'>".$obj_acta->getAttr('lugar')."</td>
-    <td style='width:26%' class='aling-left back-green'><strong>Tipo de Lugar:</strong></td>
+    <td style='width:26%' class='aling-left back-green'><strong>&Aacute;rea:</strong></td>
     <td style='width:28%' class='tg-031e'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
   </tr>
   <tr>

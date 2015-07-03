@@ -281,6 +281,8 @@ $(document).ready(function(){
 					  index_current = nombre_id_input_button.substring(longitud-2);
 				  }
 				  $('#txt-apellido-nombre').val('');
+				  $('#txt-nro-documento').val('');
+				  $('.cboTipoTrabajadores').val('');
 				  $('#txt-apellido-nombre').parent().removeClass('control-group has-error');
 				  $('#myModalAddTrabajador').attr('index-button',index_current);
 				  $('#myModalAddTrabajador').attr('data-type','t');

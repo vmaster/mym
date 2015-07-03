@@ -13,7 +13,7 @@
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<label><?php echo utf8_encode(__('Apellidos y Nombres:')); ?> </label>
 								</div>
-								<div class="span3 col-md-4 col-sm-6 col-xs-6">
+								<div class="span3 col-md-6 col-sm-6 col-xs-6">
 									<?php //echo $this->Form->input('apellido_nombre', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'txt-apellido-nombre')); ?>
 									<input name="data[Trabajadore][apellido_nombre]" class= 'form-control' id ='txt-apellido-nombre'/>
 								</div>
@@ -23,7 +23,7 @@
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<label><?php echo utf8_encode(__('DNI:')); ?> </label>
 								</div>
-								<div class="span3 col-md-4 col-sm-6 col-xs-6">
+								<div class="span3 col-md-6 col-sm-6 col-xs-6">
 									<?php //echo $this->Form->input('apellido_nombre', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'txt-apellido-nombre')); ?>
 									<input name="data[Trabajadore][nro_documento]" class= 'form-control' id ='txt-nro-documento' maxlength='8' />
 								</div>
@@ -31,9 +31,9 @@
 							<br>
 							<div class="row">
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
-									<label><?php echo __('Actividad:'); ?> </label>
+									<label><?php echo __('Cargo:'); ?> </label>
 								</div>
-								<div class="span3 col-md-3 col-sm-6 col-xs-6">
+								<div class="span3 col-md-6 col-sm-6 col-xs-6">
 									<select name="data[Trabajadore][actividade_id]" class="cboTipoTrabajadores form-control">
 										<?php 
 										App::import('Model', 'Actividade');

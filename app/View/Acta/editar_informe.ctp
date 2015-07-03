@@ -42,7 +42,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td><?php echo utf8_encode('Acta Referencia')?></td>
+								<td><?php echo utf8_encode('Informe Referencia')?></td>
 								<td><select name="data[Acta][acta_referencia]"
 									class="cbo-acta-refer-select2 form-control">
 									<option></option>
@@ -82,7 +82,7 @@
 							<tr>
 								<td style="vertical-align: middle; width: 55%;">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
-								<td style="vertical-align: middle" colspan=3><?php echo utf8_encode('Sector/Área'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle" colspan=3><?php echo utf8_encode('Sector'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 								</td>
 							</tr>
 							<tr>
@@ -166,7 +166,7 @@
 									Inopinada: <input name="data[Acta][tipo]" type="radio"
 									value="I" id="rbTipo2" <?php echo ($obj_acta->getAttr('tipo') == 'I')? 'checked':''; ?>>
 								</td>
-								<td style="vertical-align: middle" width="40%">Tipo de Lugar:
+								<td style="vertical-align: middle" width="40%">&Aacute;rea:
 									<select name="data[Acta][tipo_lugar_id]"
 									class="form-control">
 									<option>--Seleccione--</option>
@@ -350,10 +350,7 @@
 						</table>
 					</div>
 					<div class="row" id ="div-btn-add-ipp">
-						<div class="span3 col-md-9 col-sm-6 col-xs-6">
-							<?php echo utf8_encode('Si subsanó la no conformidad al momento de la supervisión marcar el recuadro con un aspa(X).'); ?>
-						</div>
-						<div class="span3 col-md-3 col-sm-6 col-xs-6" style="text-align: right;">
+						<div class="span3 col-md-12 col-sm-6 col-xs-6" style="text-align: right;">
 							<a class="btn btn-primary add-more-row-ipp">+</a>
 						</div>
 					</div>
@@ -372,7 +369,7 @@
 							<thead>
 								<tr>
 									<th colspan=10
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('EQUIPO DE PROTECCIÓN PERSONAL (PARA EL INFORME)') ?>
+										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('EQUIPO DE PROTECCIÓN PERSONAL') ?>
 									</th>
 								</tr>
 							</thead>
@@ -470,7 +467,7 @@
 							<thead>
 								<tr>
 									<th colspan=10
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('SEÑALIZACIÓN Y DELIMITACIÓN (PARA EL INFORME)') ?>
+										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('SEÑALIZACIÓN Y DELIMITACIÓN') ?>
 									</th>
 								</tr>
 							</thead>
@@ -672,10 +669,7 @@
 						</table>
 					</div>
 					<div class="row" id ="div-btn-add-um">
-						<div class="span3 col-md-9 col-sm-6 col-xs-6">
-							<?php echo utf8_encode('Si subsanó la no conformidad al momento de la supervisión marcar el recuadro con un aspa(X).'); ?>
-						</div>
-						<div class="span3 col-md-3 col-sm-6 col-xs-6" style="text-align: right;">
+						<div class="span3 col-md-12 col-sm-6 col-xs-6" style="text-align: right;">
 							<a class="btn btn-primary add-more-row-um">+</a>
 						</div>
 					</div>
@@ -693,7 +687,7 @@
 							<thead>
 								<tr>
 									<th colspan=10
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('UNIDADES MÓVILES (PARA EL INFORME)') ?>
+										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('UNIDADES MÓVILES') ?>
 									</th>
 								</tr>
 							</thead>
@@ -791,7 +785,7 @@
 							<thead>
 								<tr>
 									<th colspan=10
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('DOCUMENTACIÓN DE SEGURIDAD (PARA EL INFORME)') ?>
+										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('DOCUMENTACIÓN DE SEGURIDAD') ?>
 									</th>
 								</tr>
 							</thead>
@@ -967,10 +961,7 @@
 						</table>
 					</div>
 					<div class="row" id ="div-btn-add-as">
-						<div class="span3 col-md-9 col-sm-6 col-xs-6">
-							<?php echo utf8_encode('Si subsanó la no conformidad al momento de la supervisión marcar el recuadro con un aspa(X).'); ?>
-						</div>
-						<div class="span3 col-md-3 col-sm-6 col-xs-6" style="text-align: right;">
+						<div class="span3 col-md-12 col-sm-6 col-xs-6" style="text-align: right;">
 							<a class="btn btn-primary add-more-row-as">+</a>
 						</div>
 					</div>
@@ -1066,10 +1057,7 @@
 						</table>
 					</div>
 					<div class="row" id ="div-btn-add-cs">
-						<div class="span3 col-md-9 col-sm-6 col-xs-6">
-							<?php echo utf8_encode('(Ver parte posterior de la hoja) Si subsanó la no conformidad al momento de la supervisión marcar el recuadro con un aspa(X).'); ?>
-						</div>
-						<div class="span3 col-md-3 col-sm-6 col-xs-6" style="text-align: right;">
+						<div class="span3 col-md-12 col-sm-6 col-xs-6" style="text-align: right;">
 							<a class="btn btn-primary add-more-row-cs">+</a>
 						</div>
 					</div>
@@ -1089,7 +1077,7 @@
 								<tr>
 									<tr>
 									<th
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('ACTOS SUBESTÁNDARES (PARA EL INFORME)') ?>
+										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('ACTOS SUBESTÁNDARES') ?>
 									</th>
 								</tr>
 							</thead>
@@ -1179,7 +1167,7 @@
 								<tr>
 									<tr>
 									<th
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('CONDICIONES SUBESTÁNDARES (PARA EL INFORME)') ?>
+										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('CONDICIONES SUBESTÁNDARES') ?>
 									</th>
 								</tr>
 							</thead>
@@ -1330,7 +1318,6 @@
 							</tr>
 						</table>
 					</div>
-					<?php echo utf8_encode('(Ver parte posterior de la hoja) Si subsanó la no conformidad al momento de la supervisión marcar el recuadro con un aspa(X).'); ?>
 				</div>
 			</div>
 		</div>
@@ -1442,10 +1429,10 @@
 							<thead>
 								<tr>
 									<th 
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('CONCLUSIONES (PARA EL INFORME)') ?>
+										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('CONCLUSIONES') ?>
 									</th>
 									<th
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('RECOMENDACIONES (PARA EL INFORME)') ?>
+										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('RECOMENDACIONES') ?>
 									</th>
 								</tr>
 							</thead>
@@ -1455,7 +1442,7 @@
 									<td><?php echo $this->Form->input('info_des_rec', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes6 form-control','id' =>'txtInfDes6')); ?></td>
 								</tr>
 								<tr>
-									<td colspan="2" style="vertical-align: middle; text-align: center;"><strong>MEDIDAS DE CONTROL (PARA EL INFORME)</strong></td>
+									<td colspan="2" style="vertical-align: middle; text-align: center;"><strong>MEDIDAS DE CONTROL</strong></td>
 								</tr>
 								<tr>
 									<td colspan="2"><?php echo $this->Form->input('info_des_med', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes7 form-control','id' =>'txtInfDes7')); ?></td>
