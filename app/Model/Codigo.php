@@ -59,30 +59,15 @@ App::uses('AppModel','Model');
     		)
     );
     
-    /*public $belongsTo = array(
-    		'TipoPersona' => array(
-    				'className' => 'TipoPersona',
-    				'foreignKey' => 'tipo_persona_id',
-    				'conditions' => '',
-    				'fields' => '',
-    				'order' => ''
-    		),
-    		
-    		'TipoDocumento' => array(
-    				'className' => 'TipoDocumento',
-    				'foreignKey' => 'tipo_documento_id',
-    				'conditions' => '',
-    				'fields' => '',
-    				'order' => ''
-    		),
-    		'Distrito' => array(
-    				'className' => 'Distrito',
-    				'foreignKey' => 'distrito_id',
+    public $belongsTo = array(
+    		'CategoriaNorma' => array(
+    				'className' => 'CategoriaNorma',
+    				'foreignKey' => 'categoria_id',
     				'conditions' => '',
     				'fields' => '',
     				'order' => ''
     		)
-    );*/
+    );
     
     
     public $validate = array(
