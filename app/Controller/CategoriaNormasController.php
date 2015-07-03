@@ -3,7 +3,7 @@ class CategoriaNormasController extends AppController{
 	public $name = 'CategoriaNorma';
 	
 	public function beforeFilter(){
-		$this->Auth->allow(array('lista_json','lista_normas_json'));
+		$this->Auth->allow(array('lista_categoria_normas','lista_normas_json'));
 		//parent::beforeFilter();
 	}
 	
@@ -208,7 +208,7 @@ class CategoriaNormasController extends AppController{
 	
 	}
 	
-	public function lista_json(){
+	public function lista_categoria_normas(){
 		ini_set('memory_limit', '-1');
 		$this->layout = 'ajax';
 		
