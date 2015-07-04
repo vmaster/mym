@@ -1,3 +1,9 @@
+<script>
+$(function () {
+	  $('#ni').tooltip();
+	  $('#na').tooltip();
+})
+</script>
 <div class="row">
 	<div class="col-md-12">
 		<h2>Crear un Nuevo Informe</h2>
@@ -17,13 +23,13 @@
 							<tr>
 								<td rowspan=3 style="vertical-align: middle; width: 22%">
 									<div class="form-group input-group" style="margin-bottom: -13px;">
-										<span class="input-group-addon"><?php echo utf8_encode('N° I') ?>
+										<span class="input-group-addon"><label id="ni" data-toggle="tooltip" title="N&uacute;mero de informe"><?php echo utf8_encode('N° I') ?></label>
 										</span>
 										<?php echo $this->Form->input('num_informe', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'7','value'=>(isset($codigo_completo))? $codigo_completo: '', 'readonly'=>'readonly')); ?>
 									</div>
 									<br>									
 									<div class="form-group input-group">
-										<span class="input-group-addon"><?php echo utf8_encode('N° A') ?>
+										<span class="input-group-addon"><label id="na" data-toggle="tooltip" title="N&uacute;mero de Acta"><?php echo utf8_encode('N° A') ?></label>
 										</span>
 										<?php echo $this->Form->input('numero', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'7')); ?>
 									</div>
@@ -71,9 +77,9 @@
 						<table class="table table-striped table-bordered table-hover"
 							id="dataTables-example">
 							<tr>
-								<td style="vertical-align: middle; width: 55%;">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle; width: 55%;">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActa')); ?>
 								</td>
-								<td style="vertical-align: middle" colspan=3><?php echo utf8_encode('Sector'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle" colspan=3><?php echo utf8_encode('Sector'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme')); ?>
 								</td>
 							</tr>
 							<tr>
@@ -98,7 +104,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td style="vertical-align: middle">Lugar: <?php echo $this->Form->input('lugar', array('div' => false, 'label' => false, 'class'=> 'txtLugar form-control','id' =>'txtLugar','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle">Lugar: <?php echo $this->Form->input('lugar', array('div' => false, 'label' => false, 'class'=> 'txtLugar form-control','id' =>'txtLugar')); ?>
 								</td>
 								<td style="vertical-align: middle" colspan=3>UU.NN:<br>
 								<?php //echo $this->Form->input('uunn', array('div' => false, 'label' => false, 'class'=> 'txtUunn form-control','id' =>'txtUunn','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
@@ -116,7 +122,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActa')); ?>
 								</td>
 								<td style="vertical-align: middle" colspan=2>
 								Empresa supervisada al servicio de:

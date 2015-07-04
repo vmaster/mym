@@ -247,7 +247,7 @@ App::uses('AppModel','Model');
     		'nro_trabajadores' => array(
     				'notempty' => array(
     						'rule' => array('notEmpty'),
-    						'message' => 'La Número de trabajadores es requerido'
+    						'message' => 'La N&uacute;mero de trabajadores es requerido'
     				)
     		)
     );

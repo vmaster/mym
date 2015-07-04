@@ -102,7 +102,7 @@ $codigo .="<table class='tg' width='100%' style='margin-bottom:-10px'>
 $codigo.= "
 	<table class='tg' width='100%' style='margin-bottom:-10px'>
 	<tr><td class='tg-e3zv back-blue' style='text-align:center'>SUPERVISI&Oacute;N DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
-	<tr><td class='tg-e3zv back-green2' style='text-align:center'>CUMPLIMIENTO AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
+	<tr><td class='tg-e3zv back-green2' style='text-align:center'>CUMPLIMIENTO E INCUMPLIMIENTO AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
 	</table><br>
 		";
 
