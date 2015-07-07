@@ -265,6 +265,27 @@ $(document).ready(function(){
 		});
 	});
 	
+	/*SCRIPT PARA ELIMINAR FOTOS MEDIDAS DE CONTROL -  EXISTENTES*/
+	$body.off('click','.delete-file-med');
+	$body.on('click','.delete-file-med', function(){
+		file_name = $(this).data('url');
+		foto_med = $(this).data('foto-med');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'actas/delete_foto_med',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto-med='+foto_med+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
+	
 	
 /***** ENVIAR EL INDEX DEL BOTON CREAR TRABAJADOR AL MODAL ******/
 	function loadSendIndexButtonToModalTrabajador(){

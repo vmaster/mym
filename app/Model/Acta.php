@@ -146,6 +146,19 @@ App::uses('AppModel','Model');
     				'exclusive' => '',
     				'finderQuery' => '',
     				'counterQuery' => ''
+    		),
+    		'FotoMed' => array(
+    				'className' => 'FotoMed',
+    				'foreignKey' => 'acta_id',
+    				'dependent' => false,
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => '',
+    				'limit' => '',
+    				'offset' => '',
+    				'exclusive' => '',
+    				'finderQuery' => '',
+    				'counterQuery' => ''
     		)
     );
     
