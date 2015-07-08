@@ -321,6 +321,27 @@ $codigo.="
 		  <tr>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_med'))."</td>
 		  </tr>
+		  <tr>
+		   	<td>
+		   	<table class='tg' width='100%'>
+		    ";
+			$cont= 0;
+			$codigo.="<tr>";
+			foreach($obj_acta->FotoMed as $key => $obj_foto_med) {
+				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' width='200px' height='200px'>
+							<br>".$obj_foto_med->getAttr('observacion')."</td>";
+				if($cont == 2){
+					$codigo.="</tr>";
+					$cont = 0;
+					$codigo.="<tr>";
+				}
+				$cont++;
+			}
+$codigo.= "	</tr>
+			</table>
+			</td>
+		  </tr>  		
 		</table>
 		<br>
 		";
