@@ -38,6 +38,8 @@ $codigo = "<style type='text/css'>
 }
 		
 img { border:1px solid green}
+
+.salto-linea{ page-break-before:always; }
 </style>";
 $codigo.= "<div class='pie-pag'><hr>";
 $codigo.= "<table class='tg' width='100%' style='border:0px;'>";
@@ -298,7 +300,7 @@ $codigo.= "	</tr>
 		</table><br>";
 
 $codigo.="
-		<table class='tg' width='100%'>
+		<table class='tg salto-linea' width='100%'>
 		  <tr>
 		    <th class='tg-hgcj back-blue' colspan='2'><strong>CONCLUSIONES, RECOMENDACIONES Y ACCIONES CORRECTIVAS</strong></th>
 		  </tr>
@@ -312,7 +314,7 @@ $codigo.="
 		  </tr>
 		</table>
 		";
-
+$codigo.="<br>";
 $codigo.="
 		<table class='tg' width='100%'>
 		  <tr>
@@ -346,7 +348,7 @@ $codigo.= "	</tr>
 		<br>
 		";
 
-$codigo.= "<table class='tg' width='100%'>
+$codigo.= "<table class='tg salto-linea' width='100%'>
 		<thead>
 		<tr>
 		<th class='tg-e3zv back-green' colspan=10 style='text-align: center;'>".utf8_encode('TRABAJADORES SUPERVISADOS').
