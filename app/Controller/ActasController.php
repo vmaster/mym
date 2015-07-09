@@ -1266,10 +1266,15 @@ class ActasController extends AppController{
 				}
 				
 			}
-		}else{		
+		}else{
 			$obj_acta = $this->Acta->findById($acta_id);
-			$this->request->data = $obj_acta->data;
-			$this->set(compact('acta_id','obj_acta'));
+			if($obj_acta->getAttr('reponsable_sup_id') == $this->Session->read('Auth.User.id')){
+				$this->request->data = $obj_acta->data;
+				$this->set(compact('acta_id','obj_acta'));
+			}else{
+				throw new NotFoundException();
+			}
+			
 		}
 	}
 	

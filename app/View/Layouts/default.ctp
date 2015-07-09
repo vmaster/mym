@@ -65,6 +65,8 @@
 	<link rel="stylesheet" type="text/css" href="<?= ENV_WEBROOT_FULL_URL; ?>lib/data.tables-1.10.6/resources/syntax/shCore.css">
 
 	<!-- END STYLE DATA-TABLE -->
+	
+	
 </head>
 <body>
 	<div id="wrapper">
@@ -107,7 +109,23 @@
     <!-- CUSTOM SCRIPTS -->
     <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/custom.js"></script>
     
-    <!-- <script src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/js/dataTables/jquery.dataTables.js"></script> -->
+    <script type="text/javascript">
+    var myProccess;
+    myProccess = myProccess || (function () {
+
+		var pleaseWaitDiv = $('<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"><div class="modal-dialog modal-sm"><div class="modal-content" style="padding:10px;"><center>Procesando.. <img src="<?= ENV_WEBROOT_FULL_URL; ?>img/ajax-loader.gif" alt="Cargando..."/></center><div class="sk-spinner sk-spinner-three-bounce"><div class="sk-bounce1"></div><div class="sk-bounce2"></div><div class="sk-bounce3"></div></div></div></div></div>');
+	    
+		return {
+			showPleaseWait: function () {
+				pleaseWaitDiv.modal({backdrop: 'static',keyboard: false});
+			},
+			hidePleaseWait: function () {
+				pleaseWaitDiv.modal('hide');
+			},
+		};
+	})();
+    
+    </script>
 
     <!-- FILE:UPLOAD -->
     <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->

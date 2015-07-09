@@ -69,6 +69,7 @@ $(document).ready(function(){
 	
 	$body.off('click','.btn_crear_acta_trigger');
 	$body.on('click','.btn_crear_acta_trigger',function(){
+		myProccess.showPleaseWait();
 		$form = $(this).parents('form').eq(0);
 		$.ajax({
 			url: $form.attr('action'),
@@ -77,6 +78,7 @@ $(document).ready(function(){
 			type: 'post'
 		}).done(function(data){
 			if(data.success==true){
+				myProccess.hidePleaseWait();
 				$('.btn_crear_acta_trigger').prop('disabled',true)
 				alertify.success(data.msg);
 				setTimeout(function(){
