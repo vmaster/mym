@@ -1796,5 +1796,33 @@ class ActasController extends AppController{
 			}
 		}
 	}
+	
+	public function activar_revisado(){
+		$this->layout = 'ajax';
+	
+		$this->loadModel('Acta');
+	
+		if($this->request->is('post')){
+			$acta_id = $this->request->data['acta_id'];
+			$value_check = $this->request->data['value_check'];
+				
+			$obj_acta = $this->Acta->findById($acta_id);
+			if($obj_acta->saveField('revisado', $value_check)){
+				echo json_encode(array('success'=>true,'msg'=>__('El cambio se realiz&oacute; con &eacute;xito.')));
+				exit();
+			}else{
+				echo json_encode(array('success'=>false,'msg'=>__('Error inesperado.')));
+				exit();
+			}
+			/*if($this->Acta->deleteActa($acta_id)){
+			 echo json_encode(array('success'=>true,'msg'=>__('Eliminado con &eacute;xito.')));
+			//exit();
+			}else{
+			echo json_encode(array('success'=>false,'msg'=>__('Error inesperado.')));
+			//exit();
+			}
+			exit();*/
+		}
+	}
 		
 }

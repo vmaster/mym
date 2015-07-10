@@ -51,6 +51,30 @@ $(document).ready(function(){
 					});
 				}
 			});	
+		},
+		changeEstadoRevisado: function(acta_id, value_check){
+			$.ajax({
+				type: 'post',
+				url: env_webroot_script + 'actas/activar_revisado',
+				data:{
+					'acta_id': acta_id,
+					'value_check' : value_check
+				},
+				dataType: 'json'
+			}).done(function(data){
+				if(data.success == true){
+					alertify.success(data.msg);
+				}else{
+					$.each(data.validation, function( key, value ) {
+						alertify.error(value[0]);
+						//alert(key);
+						$('[name="data[SendEmail]['+key+']"]').parent().addClass('control-group has-error');
+						$('[name="data[SendEmail]['+key+']"]').change(function() {
+						$('[name="data[SendEmail]['+key+']"]').parent().removeClass('control-group has-error');
+						});
+					});
+				}
+			});	
 		}
 	}
 	
@@ -114,6 +138,23 @@ $(document).ready(function(){
 	$body.on('click','div#myModalDeleteActa .eliminar-acta-trigger', function(){
 		acta_id = $('div#myModalDeleteActa').attr('acta_id');
 		acta.deleteActa(acta_id);
+	});
+	
+	$( "#rbMym" ).click(function() {
+		  $('#txtEmpSup').attr('value','MyM');
+		  $('#txtEmpSup').css('display','none');
+	});
+	
+	$body.off('click','div#acta #chRevisado');
+	$body.on('click','div#acta #chRevisado', function(){
+		if($(this).prop('checked') == true){
+			$(this).val(1); 
+        } else {  
+        	$(this).val(0);  
+        }
+		acta_id = $(this).parents('.acta_row_container').attr('acta_id');
+		value_check = $(this).val();
+		acta.changeEstadoRevisado(acta_id, value_check);
 	});
 	
 	/*Send Report by Email*/
