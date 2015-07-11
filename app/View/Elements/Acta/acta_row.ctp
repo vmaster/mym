@@ -29,7 +29,9 @@
 			<td><a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/editar_informe/<?php echo $acta->getAttr('id')?>" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i class="fa fa-pencil fa-lg"></i> </a>| 
 				<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-search fa-lg"></i> </a> |
 				<a href="#myModalDeleteActa" role="button" data-toggle="modal" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i class="fa fa-times open-model-delete-acta fa-lg"></i> </a>|
-				<input name="chRevisado<?php echo $cont++; ?>" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>" type="checkbox" value="<?php echo ($acta->getAttr('revisado')==1)?1 : 0; ?>" id="chRevisado" <?php echo ($acta->getAttr('revisado')==1)?'checked':''; ?>>|
+				<?php if($this->Session->read('Auth.User.tipo_user_id') == 1){ ?>
+				<input name="chRevisado<?php echo $cont++; ?>" type="checkbox" value="<?php echo ($acta->getAttr('revisado')==1)?1 : 0; ?>" id="chRevisado" <?php echo ($acta->getAttr('revisado')==1)?'checked':''; ?>>|
+				<?php }?>
 				<a href="#myModalSendReport" role="button" data-toggle="modal" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i class="fa fa-envelope open-model-send-informe fa-lg"></i> </a>
 			</td>
 		</tr>
