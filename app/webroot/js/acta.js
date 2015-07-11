@@ -148,9 +148,11 @@ $(document).ready(function(){
 	$body.off('click','div#acta #chRevisado');
 	$body.on('click','div#acta #chRevisado', function(){
 		if($(this).prop('checked') == true){
-			$(this).val(1); 
+			$(this).val(1);
+			$(this).parents('.acta_row_container').attr('style','');
         } else {  
-        	$(this).val(0);  
+        	$(this).val(0);
+        	$(this).parents('.acta_row_container').attr('style','background-color:#BADEFB');
         }
 		acta_id = $(this).parents('.acta_row_container').attr('acta_id');
 		value_check = $(this).val();

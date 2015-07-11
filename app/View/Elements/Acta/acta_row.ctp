@@ -21,7 +21,7 @@
 		$cont = 1;
 		foreach ($list_acta as $acta):
 		?>
-		<tr class="acta_row_container" acta_id="<?php echo $acta->getAttr('id'); ?>">
+		<tr class="acta_row_container" acta_id="<?php echo $acta->getAttr('id'); ?>" style="<?php echo ($acta->getAttr('revisado')==0)?'background-color:#BADEFB' : ''; ?>">
 			<td><?php echo $acta->getAttr('numero'); ?></td>
 			<td><?php echo ($acta->getAttr('actividad')=='')?"":$acta->getAttr('actividad'); ?></td>
 			<td><?php echo $acta->getAttr('obra'); ?></td>
