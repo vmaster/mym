@@ -25,7 +25,7 @@ $(function () {
 									<div class="form-group input-group" style="margin-bottom: -13px;">
 										<span class="input-group-addon"><label id="ni" data-toggle="tooltip" title="N&uacute;mero de informe"><?php echo utf8_encode('N° I') ?></label>
 										</span>
-										<?php echo $this->Form->input('num_informe', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'7','value'=>(isset($codigo_completo))? $codigo_completo: '', 'readonly'=>'readonly')); ?>
+										<?php echo $this->Form->input('num_informe', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','value'=>(isset($codigo_completo))? $codigo_completo: '')); ?>
 									</div>
 									<br>									
 									<div class="form-group input-group">

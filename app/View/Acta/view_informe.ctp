@@ -90,7 +90,7 @@ $codigo .="<table class='tg' width='100%' style='margin-bottom:-10px'>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Fecha:</td>
-    <td class='tg-031e'>".date('Y-m-d H:i',strtotime($obj_acta->getAttr('fecha')))."</td>
+    <td class='tg-031e'>".date('d-m-Y   H:i',strtotime($obj_acta->getAttr('fecha')))."</td>
     <td class='aling-left back-green'><strong>Responsable:</strong></td>
     <td class='tg-031e'>".$obj_acta->Trabajadore1->getAttr('apellido_nombre')."</td>
   </tr>
