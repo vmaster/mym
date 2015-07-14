@@ -9,6 +9,7 @@
 	<thead>
         <tr>
           <th><?php echo utf8_encode(__('Nro Acta')); ?></th>
+		  <th><?php echo utf8_encode(__('Nro Informe')); ?></th>
           <th><?php echo utf8_encode(__('Actividad')); ?></th>
           <th><?php echo utf8_encode(__('Obra')); ?></th>
           <th><?php echo utf8_encode(__('Responsable Supervisión')); ?></th>
@@ -23,6 +24,7 @@
 		?>
 		<tr class="acta_row_container" acta_id="<?php echo $acta->getAttr('id'); ?>" style="<?php echo ($acta->getAttr('revisado')==0)?'background-color:#BADEFB' : ''; ?>">
 			<td><?php echo $acta->getAttr('numero'); ?></td>
+			<td><?php echo $acta->getAttr('num_informe'); ?></td>
 			<td><?php echo ($acta->getAttr('actividad')=='')?"":$acta->getAttr('actividad'); ?></td>
 			<td><?php echo $acta->getAttr('obra'); ?></td>
 			<td><?php echo $acta->Trabajadore2->getAttr('apellido_nombre'); ?></td>
