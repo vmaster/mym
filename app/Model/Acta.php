@@ -236,7 +236,7 @@ App::uses('AppModel','Model');
     		),
     		'fecha' => array(
     				'rule' => array('datetime'),
-    				'message' => 'Ingrese una fecha v&aacute;lida',
+    				'message' => 'Ingrese fecha y hora v&aacute;lida',
     				'allowEmpty' => true
     		),
     		'sector' => array(

@@ -110,6 +110,7 @@ $(document).ready(function(){
 				},1000)
 				
 			}else{
+				myProccess.hidePleaseWait();
 				$('.btn_crear_acta_trigger').prop('disabled',false)
 				$.each(data.validation, function( key, value ) {
 					alertify.error(value[0]);

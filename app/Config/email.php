@@ -46,8 +46,8 @@ class EmailConfig {
 	public $mym = array(
 			'host' => 'ssl://p3plcpnl0375.prod.phx3.secureserver.net',
 			'port' => 465,
-			'username' => 'informes@mym-iceperu.com',
-			'password' => 'secureinfomym2015',
+			'username' => 'mym.ingenieria@mym-iceperu.com',
+			'password' => 'mym.ingenieria2015',
 			'transport' => 'Smtp'
 			//'timeout' => 60,
 			//'tls' => true
