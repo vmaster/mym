@@ -285,6 +285,15 @@ div#spinner-send-report
 							<br>
 							<div class="row">
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
+									<label><?php echo utf8_encode(__('Enviar copia:')); ?> </label>
+								</div>
+								<div class="span3 col-md-5 col-sm-6 col-xs-6">
+									<?php echo $this->Form->input('email_copia', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'email-copia')); ?>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<label><?php echo utf8_encode(__('Asunto:')); ?> </label>
 								</div>
 								<div class="span3 col-md-5 col-sm-6 col-xs-6">

@@ -349,15 +349,15 @@ App::uses('AppModel','Model');
     	}
     }
     
-    public function sendReporteEmail($acta_id, $email_destino, $num_informe, $asunto, $mensaje){
+    public function sendReporteEmail($acta_id, $email_destino, $email_copia, $num_informe, $asunto, $mensaje){
     	App::uses('CakeEmail', 'Network/Email');
-    	
     	$Email = new CakeEmail('mym');
     	$Email->from(array('informes@mym-iceperu.com' => 'M&M'));
     	$Email->emailFormat('html');
     	$Email->template('informe','send_informe');
     	$Email->viewVars(array('acta_id' => $acta_id,'num_informe'=> $num_informe, 'mensaje'=> $mensaje));
     	$Email->to($email_destino);
+    	$Email->cc($email_copia);
     	$Email->subject($asunto);
     	$Email->send('Mi Mensaje');
     }

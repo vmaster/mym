@@ -32,7 +32,7 @@ div#spinner
 									<label><?php echo utf8_encode(__('Correo de destino:')); ?> </label>
 								</div>
 								<div class="span3 col-md-3 col-sm-6 col-xs-6">
-									<?php echo $this->Form->input('backup_e_destino', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'backup-e-destino')); ?>
+									<?php echo $this->Form->input('backup_e_destino', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'backup-e-destino', 'value'=>'jmaldonado.milian@gmail.com')); ?>
 								</div>
 							</div>
 							<br>

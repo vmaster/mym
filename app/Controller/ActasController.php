@@ -1617,12 +1617,12 @@ class ActasController extends AppController{
 			$obj_acta = $this->Acta->findById($acta_id);
 			$num_informe = $obj_acta->getAttr('num_informe'); //Obtengo el número de informe
 			$email_destino = $this->request->data['email_destino'];
+			$email_copia = $this->request->data['email_copia'];
 			$asunto = $this->request->data['asunto'];
 			$mensaje = $this->request->data['mensaje'];
-
 			$error_validation = '';
-			if(Validation::email($email_destino)){
-				$this->Acta->sendReporteEmail($acta_id, $email_destino, $num_informe, $asunto, $mensaje);
+			if(Validation::email($email_destino) || Validation::email($email_copia)){
+				$this->Acta->sendReporteEmail($acta_id, $email_destino, $email_copia, $num_informe, $asunto, $mensaje);
 				$obj_acta->saveField('fecha_envio', date('Y-m-d'));
 				echo json_encode(array('success'=>true,'msg'=>__('El Informe fue enviado')));
 				//exit();

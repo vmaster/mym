@@ -235,11 +235,11 @@ $codigo.= "	</tr>
 
 $codigo.= "
 		<table class='tg' width='100%'>
-		  <tr>
+		  <!-- <tr>
 			<th class='tg-e3zv back-green2'>
 			INCUMPLIMIENTOS AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO
 			</th>
-	      </tr>
+	      </tr>-->
 		  <tr>
 		    <th class='tg-e3zv back-green'>ACTOS SUBESTANDARES</th>
 		  </tr>

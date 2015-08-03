@@ -218,7 +218,7 @@ class ConfigurationsController extends AppController{
 				$Email->emailFormat('html');
 				$Email->template('content_send_backup','layout_email_backup');
 				$Email->viewVars(array('mensaje'=> 'Esta una copia de seguridad autom&aacute;tica de su Base de Datos'));
-				$Email->to('vladitorresmirez@gmail.com');
+				$Email->to('jmaldonado.milian@gmail.com');
 				$Email->subject(utf8_encode('Copia Automática - ').$fileName);
 				$Email->attachments(array(
 						$fileName => array(

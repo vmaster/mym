@@ -22,13 +22,14 @@ $(document).ready(function(){
 				}
 			});	
 		},
-		sendReport: function(acta_id, email_destino, asunto, mensaje){
+		sendReport: function(acta_id, email_destino, email_copia, asunto, mensaje){
 			$.ajax({
 				type: 'post',
 				url: env_webroot_script + 'actas/send_reporte_email',
 				data:{
 					'acta_id': acta_id,
 					'email_destino': email_destino,
+					'email_copia': email_copia,
 					'asunto': asunto,
 					'mensaje': mensaje
 				},
@@ -171,9 +172,10 @@ $(document).ready(function(){
 	$body.on('click','div#myModalSendReport .send-report-email-trigger', function(){
 		acta_id = $('div#myModalSendReport').attr('acta_id');
 		email_destino = $('div#myModalSendReport #email-destino').val();
+		email_copia = $('div#myModalSendReport #email-copia').val();
 		asunto = $('div#myModalSendReport #txt-asunto').val();
 		mensaje = $('div#myModalSendReport #txt-mensaje').val();
-		acta.sendReport(acta_id, email_destino, asunto, mensaje);
+		acta.sendReport(acta_id, email_destino, email_copia, asunto, mensaje);
 	});
 	
 	$('#spinner-send-report').ajaxStart(function () {
