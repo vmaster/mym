@@ -23,6 +23,8 @@ $(document).ready(function(){
 			});	
 		},
 		sendReport: function(acta_id, email_destino, email_copia, asunto, mensaje){
+			$('#spinner-send-report').show();
+			$('#myModalSendReport .modal-body').hide();
 			$.ajax({
 				type: 'post',
 				url: env_webroot_script + 'actas/send_reporte_email',
@@ -40,8 +42,8 @@ $(document).ready(function(){
 					$('#myModalSendReport').modal('hide');
 					$('.modal-backdrop').fadeOut(function(){$(this).hide()});
 				}else{
-					//alertify.error(value[0]);
-					//alert(data.validation);
+					$('#spinner-send-report').hide();
+					$('#myModalSendReport .modal-body').show();
 					$.each(data.validation, function( key, value ) {
 						alertify.error(value[0]);
 						//alert(key);
@@ -166,6 +168,11 @@ $(document).ready(function(){
 	$body.on('click','div#acta .open-model-send-informe', function(){
 		acta_id = $(this).parents('.acta_row_container').attr('acta_id');
 		$('div#myModalSendReport').attr('acta_id', acta_id);
+		$('#spinner-send-report').hide();
+		$('#myModalSendReport .modal-body').show();
+		$(":input").each(function(){	
+			$($(this)).val('');
+		});
 	});
 	
 	$body.off('click','div#myModalSendReport .send-report-email-trigger');
@@ -178,14 +185,14 @@ $(document).ready(function(){
 		acta.sendReport(acta_id, email_destino, email_copia, asunto, mensaje);
 	});
 	
-	$('#spinner-send-report').ajaxStart(function () {
+	/*$('#spinner-send-report').ajaxStart(function () {
 		$('#form_send_email').hide();
 	    $(this).fadeIn('fast');
 	 }).ajaxStop(function () {
 	     $(this).stop().fadeOut('fast');
 	     document.getElementById('form_send_email').reset();
 	     $('#form_send_email').show();
-	});
+	});*/
 	
 	/*SCRIPT PARA ELIMINAR FOTOS IPP -  EXISTENTES*/
 	$body.off('click','.delete-file-ipp');
@@ -490,6 +497,21 @@ $(document).ready(function(){
 		$('#table-mc-inf tr:last').after(new_row);
 	});
 	
+	
+	/* AGREGAR FILAS A LA TABLA ACTOS SUBESTÁNDARES PARA EL REPORTE*/	
+	$("#div-btn-add-as-rep .add-more-row-as-rep").bind("click", function(e){
+	long_table = $('#table-as-rep tbody tr').length + 1;
+		$.ajax({
+	        type: "POST",
+	        url: env_webroot_script + "actas/add_row_as_rep",
+	        data: { long_table: long_table },
+	        cache: false,
+	        success: function(html)
+	         {
+	       	 $('#table-as-rep tr:last').after(html);
+	         }
+		 });
+	});
 	
 	/*AUTOCOMPLETAR CON SELECT2*/
 	

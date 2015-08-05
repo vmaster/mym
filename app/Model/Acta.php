@@ -357,7 +357,9 @@ App::uses('AppModel','Model');
     	$Email->template('informe','send_informe');
     	$Email->viewVars(array('acta_id' => $acta_id,'num_informe'=> $num_informe, 'mensaje'=> $mensaje));
     	$Email->to($email_destino);
-    	$Email->cc($email_copia);
+    	if($email_copia != ''){
+    		$Email->cc($email_copia);
+    	}
     	$Email->subject($asunto);
     	$Email->send('Mi Mensaje');
     }
@@ -654,10 +656,6 @@ App::uses('AppModel','Model');
     	);
     	return $arr_obj_ni_emp;
     }
-    
-    
-    
-    
     
     
     public function listNiByEmpresaVehiculo($fec_inicio, $fec_fin) {
@@ -1057,6 +1055,59 @@ App::uses('AppModel','Model');
     			as promedio FROM actas A INNER JOIN imp_prot_personales IPP on IPP.acta_id = A.id INNER JOIN trabajadores T on T.id = IPP.trabajador_id  INNER JOIN ipp_normas_incumplidas INI on INI.ipp_id = IPP.id GROUP BY IPP.trabajador_id order by promedio desc limit 1');
     	 
     	return $tmp_array;
+    }
+    
+    
+    /*REPORTE DE CUMPLIMIENTOS*/
+    public function listCumplimientoByEmpresa($fec_inicio, $fec_fin) {
+    	$arr_obj_sup_emp = $this->find('all',array(
+    			'fields' => array('EmpresaJoin.nombre, AVG(cumplimiento) as Porcentaje'),
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresaJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresaJoin.id = Acta.empresa_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    			),
+    			/*'order'=> array($order_by.' '.$order),*/
+    			'group'=> array('EmpresaJoin.nombre')
+    	)
+    	);
+    
+    	//debug($arr_obj_sup_emp);exit();
+    	return $arr_obj_sup_emp;
+    }
+    
+    
+    public function listDetalleCumplimientoByEmpresa($fec_inicio, $fec_fin) {
+    	$arr_obj_det_sup_emp = $this->findObjects('all',array(
+    			/*'fields' => array('EmpresaJoin.nombre, Acta.fecha, Num'),*/
+    			'joins' => array(
+    					array(
+    							'table' => 'empresas',
+    							'alias' => 'EmpresaJoin',
+    							'type' => 'INNER',
+    							'conditions' => array(
+    									'EmpresaJoin.id = Acta.empresa_id'
+    							)
+    					)
+    			),
+    			'conditions'=>array(
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    			),
+    			'order'=> array('EmpresaJoin.nombre')
+    			/*'group'=> array('EmpresaJoin.nombre')*/
+    	)
+    	);
+    
+    	//debug($arr_obj_sup_emp);exit();
+    	return $arr_obj_det_sup_emp;
     }
     
     

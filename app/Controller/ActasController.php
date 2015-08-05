@@ -207,6 +207,74 @@ class ActasController extends AppController{
 				
 				$this->formatFecha($this->request->data['Acta']['fecha']);
 
+				$this->request->data['Acta']['info_des_act'] = json_encode($this->request->data['Acta']['cumplimiento']);
+				
+				
+				/* Guardar porcentaje de cumplimiento */
+				$normas_incumplidas = 0;
+				$normas_cumplidas = 0;
+				foreach($this->request->data['TrabajadorActa'] as $key => $value){
+					if($value['trabajador_id'] != ""){
+						$contador = 0;
+						if(isset($this->request->data['NiActa'][$key])){
+							foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
+								if($codigo_id!=''){
+									$contador++;
+								}
+							}
+						}
+				
+						if($contador > 0){
+							$normas_incumplidas ++;
+						}else{
+							$normas_cumplidas ++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['UnidadMovil'] as $key => $value){
+					//debug($value);exit();
+					if($value['nro_placa_id'] != ""){
+						$contador = 0;
+				
+						if(isset($this->request->data['UnidadNorma'][$key])){
+							foreach($this->request->data['UnidadNorma'][$key] as $k => $codigo_id){
+								if($codigo_id!=''){
+									$contador++;
+								}
+							}
+						}
+				
+						if($contador > 0){
+							$normas_incumplidas ++;
+						}else{
+							$normas_cumplidas ++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_act'] as $key => $value){
+					if($value['info_des_act'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_cond'] as $key => $value){
+					if($value['info_des_cond'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				$formula = ($normas_cumplidas * 100)/($normas_incumplidas + $normas_cumplidas);
+				$this->request->data['Acta']['cumplimiento'] = $formula;
 				
 				/* CREAMOS ACTA */
 				$this->Acta->create();
@@ -232,17 +300,19 @@ class ActasController extends AppController{
 								$ipp_id = $this->ImpProtPersonale->id;
 								//echo json_encode(array('success'=>true,'msg'=>__('El IPP fue agregada con &eacute;xito.'),'ImpProtPersonale_id'=>$ipp_id));
 									
-								foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
-									$ni_acta['IppNormasIncumplida']['codigo_id'] = $codigo_id;
-									$ni_acta['IppNormasIncumplida']['ipp_id'] = $ipp_id;
-									$this->IppNormasIncumplida->create();
-									if ($this->IppNormasIncumplida->save($ni_acta)) {
-										$ipp_normas_id = $this->IppNormasIncumplida->id;
-										//echo json_encode(array('success'=>true,'msg'=>__('El IPP fue agregada con &eacute;xito.'),'IppNormasIncumplida_id'=>$ipp_normas_id));
-									}else{
-										$ipp_normas_id = '';
-										//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->IppNormasIncumplida->validationErrors));
-										//exit();
+								if(isset($this->request->data['NiActa'][$key])){
+									foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
+										$ni_acta['IppNormasIncumplida']['codigo_id'] = $codigo_id;
+										$ni_acta['IppNormasIncumplida']['ipp_id'] = $ipp_id;
+										$this->IppNormasIncumplida->create();
+										if ($this->IppNormasIncumplida->save($ni_acta)) {
+											$ipp_normas_id = $this->IppNormasIncumplida->id;
+											//echo json_encode(array('success'=>true,'msg'=>__('El IPP fue agregada con &eacute;xito.'),'IppNormasIncumplida_id'=>$ipp_normas_id));
+										}else{
+											$ipp_normas_id = '';
+											//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->IppNormasIncumplida->validationErrors));
+											//exit();
+										}
 									}
 								}
 									
@@ -267,20 +337,20 @@ class ActasController extends AppController{
 							$this->UnidadesMovile->create();
 							if ($this->UnidadesMovile->save($new_um_acta)) {
 								$um_id = $this->UnidadesMovile->id;
-									
-								foreach($this->request->data['UnidadNorma'][$key] as $k => $codigo_id){
-									$um_ni['UmNormasIncumplida']['codigo_id'] = $codigo_id;
-									if($um_ni['UmNormasIncumplida']['codigo_id'] !=''){
-										$um_ni['UmNormasIncumplida']['um_id'] = $um_id;
-										$this->UmNormasIncumplida->create();
-										if ($this->UmNormasIncumplida->save($um_ni)) {
-											$um_normas_id = $this->UmNormasIncumplida->id;
-										}else{
-											$um_normas_id = '';
+								if(isset($this->request->data['UnidadNorma'][$key])){	
+									foreach($this->request->data['UnidadNorma'][$key] as $k => $codigo_id){
+										$um_ni['UmNormasIncumplida']['codigo_id'] = $codigo_id;
+										if($um_ni['UmNormasIncumplida']['codigo_id'] !=''){
+											$um_ni['UmNormasIncumplida']['um_id'] = $um_id;
+											$this->UmNormasIncumplida->create();
+											if ($this->UmNormasIncumplida->save($um_ni)) {
+												$um_normas_id = $this->UmNormasIncumplida->id;
+											}else{
+												$um_normas_id = '';
+											}
 										}
 									}
-								}
-									
+								}	
 							}else{
 								$um_id = '';
 							}
@@ -576,9 +646,6 @@ class ActasController extends AppController{
 	}
 	
 	public function editar_informe($acta_id=null){
-		/*debug($this->request->data['NiActa']);
-		debug($this->request->data['IppNi']);
-		exit();*/
 		$this->layout = 'default';
 		if(!isset($acta_id)){
 			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
@@ -632,6 +699,74 @@ class ActasController extends AppController{
 				$error_validation = '';
 	
 				$this->Acta->id = $acta_id;
+				
+				$this->request->data['Acta']['info_des_act'] = json_encode($this->request->data['Acta']['cumplimiento']);
+				
+				/* Guardar porcentaje de cumplimiento */
+				$normas_incumplidas = 0;
+				$normas_cumplidas = 0;
+				foreach($this->request->data['TrabajadorActa'] as $key => $value){
+					if($value['trabajador_id'] != ""){
+						$contador = 0;
+						if(isset($this->request->data['NiActa'][$key])){
+							foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
+								if($codigo_id!=''){
+									$contador++;
+								}
+							}
+						}
+				
+						if($contador > 0){
+							$normas_incumplidas ++;
+						}else{
+							$normas_cumplidas ++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['UnidadMovil'] as $key => $value){
+					//debug($value);exit();
+					if($value['nro_placa_id'] != ""){
+						$contador = 0;
+				
+						if(isset($this->request->data['UnidadNorma'][$key])){
+							foreach($this->request->data['UnidadNorma'][$key] as $k => $codigo_id){
+								if($codigo_id!=''){
+									$contador++;
+								}
+							}
+						}
+				
+						if($contador > 0){
+							$normas_incumplidas ++;
+						}else{
+							$normas_cumplidas ++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_act'] as $key => $value){
+					if($value['info_des_act'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_cond'] as $key => $value){
+					if($value['info_des_cond'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				$formula = ($normas_cumplidas * 100)/($normas_incumplidas + $normas_cumplidas);
+				$this->request->data['Acta']['cumplimiento'] = $formula;
 				
 			// INICIO UPDATE IMPLEMENTOS DE PROTECCION PERSONAL
 			if(!empty($this->request->data['TrabajadorActa'])){
@@ -1587,6 +1722,20 @@ class ActasController extends AppController{
 		$this->set(compact('list_all_tipos_condiciones_sub','list_all_codigos','long_table'));
 	}
 	
+	public function add_row_as_rep(){
+		$this->layout = 'ajax';
+		/*$this->loadModel('Codigo');
+		$this->loadModel('CondicionesSubestandaresTipo');
+		*/
+		if($this->request->is('post')){
+			$long_table = $this->request->data['long_table'];
+		}
+	
+		/*$list_all_codigos = $this->Codigo->listCodigos();
+		$list_all_tipos_condiciones_sub = $this->CondicionesSubestandaresTipo->listTipoCondicionesSubEstandares();*/
+		$this->set(compact('long_table'));
+	}
+	
 	public function view_informe($acta_id = null)
 	{
 		$this->layout = 'pdf'; //esto usara el layout pdf.ctp
@@ -1620,15 +1769,35 @@ class ActasController extends AppController{
 			$email_copia = $this->request->data['email_copia'];
 			$asunto = $this->request->data['asunto'];
 			$mensaje = $this->request->data['mensaje'];
-			$error_validation = '';
-			if(Validation::email($email_destino) || Validation::email($email_copia)){
+			$error_validation = false;
+			
+			if($asunto == ''){
+				$arr_validation['asunto'] = array(__('Debe ingresar el Asunto'));
+				$error_validation = true;
+			}
+			
+			if($email_copia != ''){
+				if(!Validation::email($email_copia)){
+					$arr_validation['asunto'] = array(__('Debe ingresar un email v&aacute;lido'));
+					$error_validation = true;
+				}
+			}
+			
+			if($email_destino != ''){
+				if(!Validation::email($email_destino)){
+					$arr_validation['email_destino'] = array(__('Debe ingresar un email v&aacute;lido'));
+					$error_validation = true;
+				}
+			}else{
+				$arr_validation['email_destino'] = array(__('Debe ingresar un email de destino'));
+				$error_validation = true;
+			}
+			
+			if($error_validation == false){
 				$this->Acta->sendReporteEmail($acta_id, $email_destino, $email_copia, $num_informe, $asunto, $mensaje);
 				$obj_acta->saveField('fecha_envio', date('Y-m-d'));
 				echo json_encode(array('success'=>true,'msg'=>__('El Informe fue enviado')));
-				//exit();
-			}else{
-				$arr_validation['email_destino'] = array(__('Debe ingresar un email v&aacute;lido'));
-				$error_validation = true;
+				exit();
 			}
 			
 			if($error_validation == true){

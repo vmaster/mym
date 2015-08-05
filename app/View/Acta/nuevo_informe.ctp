@@ -686,18 +686,40 @@ $(function () {
 				<div class="panel-body">
 					<div class="table-responsive" id="div-as">
 						<table class="table table-striped table-bordered table-hover"
-							id="table-ipp">
+							id="table-as-rep">
 							<thead>
 								<tr>
 									<th
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('ACTOS SUBESTÁNDARES') ?>
+										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('ACTOS SUBESTÁNDARES') ?>
+									</th>
+									<th>
+										Cumplimiento
 									</th>
 								</tr>
 							</thead>
 							<tbody>
+								<?php for ($i = 0; $i<=4; $i++){?>
 								<tr>
-									<td><?php echo $this->Form->input('info_des_act', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'4', 'class'=> 'txtInfDesAct4 form-control','id' =>'txtInfDesAct4')); ?></td>
+									<td><textarea name="data[Acta][cumplimiento_act][<?php echo $i; ?>][info_des_act]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
+									<td>
+										<select name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][alternativa]">
+											<option value= "1">SI</option>
+											<option value="0">NO</option>
+										</select>
+									</td>
 								</tr>
+								<?php }?>
+							</tbody>
+						</table>
+						<div class="row" id="div-btn-add-as-rep">
+							<div class="span3 col-md-12 col-sm-6 col-xs-6"
+								style="text-align: right;">
+								<a class="btn btn-primary add-more-row-as-rep">+</a>
+							</div>
+						</div>
+						<br>
+						<table class="table table-striped table-bordered table-hover">
+						<tbody>	
 								<tr>
 									<td colspan=2>
 									<div class="fileupload" data-type="FotoAct">
@@ -750,12 +772,23 @@ $(function () {
 									<th
 										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('CONDICIONES SUBESTÁNDARES') ?>
 									</th>
+									<th>
+										Cumplimiento
+									</th>
 								</tr>
 							</thead>
 							<tbody>
+								<?php for ($i = 0; $i<=4; $i++){?>
 								<tr>
-									<td><?php echo $this->Form->input('info_des_cond', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'4', 'class'=> 'txtInfDesCond4 form-control','id' =>'txtInfDesCond4')); ?></td>
+									<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"></textarea></td>
+									<td>
+										<select name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][alternativa]">
+											<option value= "1">SI</option>
+											<option value="0">NO</option>
+										</select>
+									</td>
 								</tr>
+								<?php }?>
 								<tr>
 									<td colspan=2>
 									<div class="fileupload" data-type="FotoCond">

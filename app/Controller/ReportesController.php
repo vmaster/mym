@@ -358,6 +358,67 @@ class ReportesController extends AppController{
 	}
 	
 	
+	/*NIVEL DE CUMPLIMIENTO*/
+	public function rpt_cumplimiento_empresas() {
+		$this->layout = "default";
+		$this->loadModel('Acta');
+	
+	}
+	
+	public function load_graf_cumplimiento_emp($fec_inicio, $fec_fin){
+		$this->loadModel('Acta');
+		$this->autoRender = false;
+	
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+	
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+	
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+		$x ="";
+		$y ="";
+		$list_sep_emp = $this->Acta->listCumplimientoByEmpresa($fec_inicio_format, $fec_fin_format);
+		foreach ($list_sep_emp as $key => $arr_emp):
+		$x[] = $arr_emp['EmpresaJoin']['nombre'];
+		$y[] = intval($arr_emp[0]['Porcentaje']);
+		endforeach;
+		return json_encode(array('success'=>true,'categoria'=>$x, 'name'=>'Empresa', 'data'=>$y));
+		//exit();
+	}
+	
+	public function load_list_cumplimiento_emp($fec_inicio, $fec_fin){
+		$this->layout = "ajax";
+		$this->loadModel('Acta');
+	
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+	
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+	
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+	
+		$list_sep_emp = $this->Acta->listDetalleCumplimientoByEmpresa($fec_inicio_format, $fec_fin_format);
+		$this->set(compact('list_sep_emp'));
+	}
+	/* FIN */
+	
+	
 	function formatFecha($fecha){
 		if(isset($fecha)){
 			$fec_nac = $fecha;//12-12-1990

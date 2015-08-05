@@ -244,8 +244,13 @@ $codigo.= "
 		    <th class='tg-e3zv back-green'>ACTOS SUBESTANDARES</th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_act'))."</td>
-		  </tr>
+		    <td class='tg-031e'>";
+		    $info_des_act = json_decode($obj_acta->info_des_act);
+		    foreach($info_des_act as $value){
+		    	$codigo.= $value->info_des_act."<br>";
+		    }
+		    $codigo.="</td>";	
+$codigo.= "</tr>
 		  <tr>
 		   	<td>
 		   	<table class='tg' width='100%'>
