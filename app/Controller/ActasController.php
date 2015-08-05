@@ -207,8 +207,8 @@ class ActasController extends AppController{
 				
 				$this->formatFecha($this->request->data['Acta']['fecha']);
 
-				$this->request->data['Acta']['info_des_act'] = json_encode($this->request->data['Acta']['cumplimiento']);
-				
+				$this->request->data['Acta']['info_des_act'] = json_encode($this->request->data['Acta']['cumplimiento_act']);
+				$this->request->data['Acta']['info_des_cond'] = json_encode($this->request->data['Acta']['cumplimiento_cond']);
 				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
@@ -700,7 +700,8 @@ class ActasController extends AppController{
 	
 				$this->Acta->id = $acta_id;
 				
-				$this->request->data['Acta']['info_des_act'] = json_encode($this->request->data['Acta']['cumplimiento']);
+				$this->request->data['Acta']['info_des_act'] = json_encode($this->request->data['Acta']['cumplimiento_act']);
+				$this->request->data['Acta']['info_des_cond'] = json_encode($this->request->data['Acta']['cumplimiento_cond']);
 				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
@@ -1392,6 +1393,7 @@ class ActasController extends AppController{
 				
 				
 				//INICIO UPDATE ACTA
+				//debug($this->request->data);
 				if ($this->Acta->save($this->request->data)) {
 					echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'Acta_id'=>$acta_id));
 					exit();

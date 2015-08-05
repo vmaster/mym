@@ -1093,11 +1093,11 @@ $(function () {
 								<?php $info_des_act = json_decode($obj_acta->info_des_act)?>
 								<?php for ($i = 0; $i<=4; $i++){?>
 								<tr>
-									<td><textarea name="data[Acta][cumplimiento_act][<?php echo $i; ?>][info_des_act]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo ($obj_acta->info_des_act != '')?$info_des_act[$i]->info_des_act:'';?></textarea></td>
+									<td><textarea name="data[Acta][cumplimiento_act][<?php echo $i; ?>][info_des_act]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_act) && $info_des_act[$i]->info_des_act != '')?$info_des_act[$i]->info_des_act:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][alternativa]">
-											<option value="1" <?php echo ($info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
-											<option value="0" <?php echo ($info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
+											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
 									</td>
 								</tr>
@@ -1192,17 +1192,14 @@ $(function () {
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td><?php echo $this->Form->input('info_des_cond', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'4', 'class'=> 'txtInfDesCond4 form-control','id' =>'txtInfDesCond4')); ?></td>
-								</tr>
 								<?php $info_des_cond = json_decode($obj_acta->info_des_cond)?>
 								<?php for ($i = 0; $i<=4; $i++){?>
 								<tr>
-									<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"><?php echo ($obj_acta->info_des_cond != '')?$info_des_cond[$i]->info_des_cond:'';?></textarea></td>
+									<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"><?php echo (isset($info_des_cond[$i]->info_des_cond) && $info_des_cond[$i]->info_des_cond != '')?$info_des_cond[$i]->info_des_cond:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][alternativa]">
-											<option value="1" <?php echo ($info_des_cond[$i]->alternativa == 1)?"selected":""?>>SI</option>
-											<option value="0" <?php echo ($info_des_cond[$i]->alternativa == 0)?"selected":""?>>NO</option>
+											<option value="1" <?php echo (isset($info_des_cond[$i]->alternativa) && $info_des_cond[$i]->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_cond[$i]->alternativa) && $info_des_cond[$i]->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
 									</td>
 								</tr>

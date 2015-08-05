@@ -279,8 +279,13 @@ $codigo.= "<table class='tg' width='100%'>
 			<th class='tg-e3zv back-green'>CONDICIONES SUBESTANDARES</th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_cond'))."</td>
-		  </tr>
+		    <td class='tg-031e'>";
+		    $info_des_cond = json_decode($obj_acta->info_des_cond);
+		    foreach($info_des_cond as $value){
+		    	$codigo.= $value->info_des_cond."<br>";
+		    }
+		    $codigo.="</td>";
+$codigo.=" 	  </tr>
 		  <tr>
 		   	<td>
 		   	<table class='tg' width='100%'>
