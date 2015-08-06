@@ -1726,15 +1726,21 @@ class ActasController extends AppController{
 	
 	public function add_row_as_rep(){
 		$this->layout = 'ajax';
-		/*$this->loadModel('Codigo');
-		$this->loadModel('CondicionesSubestandaresTipo');
-		*/
+
+		if($this->request->is('post')){
+			$long_table = $this->request->data['long_table'];
+		}
+
+		$this->set(compact('long_table'));
+	}
+	
+	public function add_row_cond_rep(){
+		$this->layout = 'ajax';
+	
 		if($this->request->is('post')){
 			$long_table = $this->request->data['long_table'];
 		}
 	
-		/*$list_all_codigos = $this->Codigo->listCodigos();
-		$list_all_tipos_condiciones_sub = $this->CondicionesSubestandaresTipo->listTipoCondicionesSubEstandares();*/
 		$this->set(compact('long_table'));
 	}
 	

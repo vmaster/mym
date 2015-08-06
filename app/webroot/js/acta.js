@@ -513,6 +513,21 @@ $(document).ready(function(){
 		 });
 	});
 	
+	/* AGREGAR FILAS A LA TABLA CONDICIONES SUBESTÁNDARES PARA EL REPORTE*/	
+	$("#div-btn-add-cond-rep .add-more-row-cond-rep").bind("click", function(e){
+	long_table = $('#table-cond-rep tbody tr').length + 1;
+		$.ajax({
+	        type: "POST",
+	        url: env_webroot_script + "actas/add_row_cond_rep",
+	        data: { long_table: long_table },
+	        cache: false,
+	        success: function(html)
+	         {
+	       	 $('#table-cond-rep tr:last').after(html);
+	         }
+		 });
+	});
+	
 	/*AUTOCOMPLETAR CON SELECT2*/
 	
 	$(".cbo-empresas-select2").select2({

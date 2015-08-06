@@ -766,7 +766,7 @@ $(function () {
 					
 					<div class="table-responsive" id="div-cs">
 						<table class="table table-striped table-bordered table-hover"
-							id="table-ipp">
+							id="table-cond-rep">
 							<thead>
 								<tr>
 									<th
@@ -789,6 +789,17 @@ $(function () {
 									</td>
 								</tr>
 								<?php }?>
+								</tbody>
+						</table>
+						<div class="row" id="div-btn-add-cond-rep">
+							<div class="span3 col-md-12 col-sm-6 col-xs-6"
+								style="text-align: right;">
+								<a class="btn btn-primary add-more-row-cond-rep">+</a>
+							</div>
+						</div>
+						<br>
+						<table class="table table-striped table-bordered table-hover">
+						<tbody>	
 								<tr>
 									<td colspan=2>
 									<div class="fileupload" data-type="FotoCond">
