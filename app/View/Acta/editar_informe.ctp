@@ -2,6 +2,11 @@
 $(function () {
 	  $('#ni').tooltip();
 	  $('#na').tooltip();
+
+	  bkLib.onDomLoaded(function() {
+			 new nicEditor({iconsPath : env_webroot_script+'img/nicEditorIcons.gif'}).panelInstance('txtConclusiones'); 
+			 new nicEditor({iconsPath : env_webroot_script+'img/nicEditorIcons.gif'}).panelInstance('txtRecomendaciones');
+	  });
 })
 </script>
 <div class="row">
@@ -11,7 +16,7 @@ $(function () {
 </div>
 <hr />
 <div class="div-crear-acta form" id="div-crear-acta">
-	<?php echo $this->Form->create('Acta',array('method'=>'post', 'id'=>'add_edit_acta','type'=>'file'));?>
+	<?php echo $this->Form->create('Acta',array('method'=>'post', 'id'=>'add_edit_acta','type'=>'file','acta_id'=>$obj_acta->getID()));?>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
@@ -1390,9 +1395,9 @@ $(function () {
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td><?php echo $this->Form->input('info_des_conclusion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes5 form-control','id' =>'txtInfDes5')); ?></td>
-									<td><?php echo $this->Form->input('info_des_rec', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes6 form-control','id' =>'txtInfDes6')); ?></td>
+								<tr id="father-container">
+									<td><?php echo $this->Form->input('info_des_conclusion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-conclusiones form-control','id' =>'txtConclusiones')); ?></td>
+									<td><?php echo $this->Form->input('info_des_rec', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-recomendaciones form-control','id' =>'txtRecomendaciones')); ?></td>
 								</tr>
 								<tr>
 									<td colspan="2" style="vertical-align: middle; text-align: center;"><strong>MEDIDAS DE CONTROL</strong></td>

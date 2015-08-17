@@ -98,9 +98,14 @@ $(document).ready(function(){
 	$body.on('click','.btn_crear_acta_trigger',function(){
 		myProccess.showPleaseWait();
 		$form = $(this).parents('form').eq(0);
+		
+		var html_conclusiones = $('#father-container .nicEdit-main:first').html();
+		var html_recomendaciones = $('#father-container .nicEdit-main:last').html();
+		
+		
 		$.ajax({
 			url: $form.attr('action'),
-			data: $form.serialize(),
+			data: $form.serialize() + '&html_conclusiones=' + html_conclusiones + '&html_recomendaciones=' + html_recomendaciones,
 			dataType: 'json',
 			type: 'post'
 		}).done(function(data){
@@ -129,7 +134,14 @@ $(document).ready(function(){
 	$body.off('click','div#acta .edit-acta-trigger');
 	$body.on('click','div#acta .edit-acta-trigger', function(){
 		acta_id = $(this).parents('.acta_row_container').attr('acta_id');
-		acta.openEditActa(acta_id);
+		//acta.openEditActa(acta_id);
+		
+		/*if($form.attr('acta_id') == undefined || !$form.attr('acta_id')) {
+			codigo_id ='';
+		}else{*/
+			alert($('txtConclusiones').val());
+			$('#father-container .nicEdit-main:first').html($('txtConclusiones').val());
+		//}
 	});
 	
 	$body.off('click','div#acta .open-model-delete-acta');
