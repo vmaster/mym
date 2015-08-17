@@ -234,11 +234,6 @@ App::uses('AppModel','Model');
     						'message' => 'La Empresa es requerida'
     				)
     		),
-    		'fecha' => array(
-    				'rule' => array('datetime'),
-    				'message' => 'Ingrese fecha y hora v&aacute;lida',
-    				'allowEmpty' => true
-    		),
     		'sector' => array(
     				'notempty' => array(
     						'rule' => array('notEmpty'),
@@ -352,7 +347,7 @@ App::uses('AppModel','Model');
     public function sendReporteEmail($acta_id, $email_destino, $email_copia, $num_informe, $asunto, $mensaje){
     	App::uses('CakeEmail', 'Network/Email');
     	$Email = new CakeEmail('mym');
-    	$Email->from(array('informes@mym-iceperu.com' => 'M&M'));
+    	$Email->from(array('mym.ingenieria@mym-iceperu.com' => 'M&M Ingenieria'));
     	$Email->emailFormat('html');
     	$Email->template('informe','send_informe');
     	$Email->viewVars(array('acta_id' => $acta_id,'num_informe'=> $num_informe, 'mensaje'=> $mensaje));
@@ -367,9 +362,9 @@ App::uses('AppModel','Model');
    
     /* Usado para el Combo de Acta en Registrar Acta*/
     public function listActas() {
-    	return $this->find('list',
+    	return $this->find('all',
     			array(
-    					'fields' => array('id','numero'),
+    					'fields' => array('id','numero','num_informe'),
     					'conditions'=>array(
     							'Acta.estado != '=> 0
     					),

@@ -11,9 +11,8 @@
           <th><?php echo utf8_encode(__('Nro Acta')); ?></th>
 		  <th><?php echo utf8_encode(__('Nro Informe')); ?></th>
           <th><?php echo utf8_encode(__('Actividad')); ?></th>
-          <th><?php echo utf8_encode(__('Obra')); ?></th>
           <th><?php echo utf8_encode(__('Responsable Supervisión')); ?></th>
-          
+          <th><?php echo utf8_encode(__('Fecha')); ?></th>
           <th><?php echo __('Operaciones'); ?></th>
         </tr>
     </thead>
@@ -26,15 +25,15 @@
 			<td><?php echo $acta->getAttr('numero'); ?></td>
 			<td><?php echo $acta->getAttr('num_informe'); ?></td>
 			<td><?php echo ($acta->getAttr('actividad')=='')?"":$acta->getAttr('actividad'); ?></td>
-			<td><?php echo $acta->getAttr('obra'); ?></td>
 			<td><?php echo $acta->Trabajadore2->getAttr('apellido_nombre'); ?></td>
+			<td><?php echo $acta->getAttr('created'); ?></td>
 			<td><a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/editar_informe/<?php echo $acta->getAttr('id')?>" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i class="fa fa-pencil fa-lg"></i> </a>| 
 				<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-search fa-lg"></i> </a> |
 				<a href="#myModalDeleteActa" role="button" data-toggle="modal" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i class="fa fa-times open-model-delete-acta fa-lg"></i> </a>|
 				<?php if($this->Session->read('Auth.User.tipo_user_id') == 1){ ?>
 				<input name="chRevisado<?php echo $cont++; ?>" type="checkbox" value="<?php echo ($acta->getAttr('revisado')==1)?1 : 0; ?>" id="chRevisado" <?php echo ($acta->getAttr('revisado')==1)?'checked':''; ?>>|
 				<?php }?>
-				<a href="#myModalSendReport" role="button" data-toggle="modal" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i class="fa fa-envelope open-model-send-informe fa-lg"></i> </a>
+				<a href="#myModalSendReport" role="button" data-toggle="modal" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i data-toggle="tooltip" data-placement="top" title="<?php echo ($acta->getAttr('fecha_envio')!='' && $acta->getAttr('fecha_envio')!=null)?'Se envio':'No se envio'?>" class="fa fa-envelope open-model-send-informe fa-lg" style="<?php echo ($acta->getAttr('fecha_envio')!='' && $acta->getAttr('fecha_envio')!=null)?'color:burlywood':''?>"></i> </a>
 			</td>
 		</tr>
 		<?php 

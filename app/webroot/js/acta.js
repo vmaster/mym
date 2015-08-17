@@ -528,6 +528,62 @@ $(document).ready(function(){
 		 });
 	});
 	
+	$("#div-btn-add-epp-rep .add-more-row-epp-rep").bind("click", function(e){
+		long_table = $('#table-epp-rep tbody tr').length + 1;
+			$.ajax({
+		        type: "POST",
+		        url: env_webroot_script + "actas/add_row_epp_rep",
+		        data: { long_table: long_table },
+		        cache: false,
+		        success: function(html)
+		         {
+		       	 $('#table-epp-rep tr:last').after(html);
+		         }
+			 });
+		});
+	
+	$("#div-btn-add-sd-rep .add-more-row-sd-rep").bind("click", function(e){
+		long_table = $('#table-sd-rep tbody tr').length + 1;
+			$.ajax({
+		        type: "POST",
+		        url: env_webroot_script + "actas/add_row_sd_rep",
+		        data: { long_table: long_table },
+		        cache: false,
+		        success: function(html)
+		         {
+		       	 $('#table-sd-rep tr:last').after(html);
+		         }
+			 });
+		});
+	
+	$("#div-btn-add-um-rep .add-more-row-um-rep").bind("click", function(e){
+		long_table = $('#table-um-rep tbody tr').length + 1;
+			$.ajax({
+		        type: "POST",
+		        url: env_webroot_script + "actas/add_row_um_rep",
+		        data: { long_table: long_table },
+		        cache: false,
+		        success: function(html)
+		         {
+		       	 $('#table-um-rep tr:last').after(html);
+		         }
+			 });
+		});
+	
+	$("#div-btn-add-ds-rep .add-more-row-ds-rep").bind("click", function(e){
+		long_table = $('#table-ds-rep tbody tr').length + 1;
+			$.ajax({
+		        type: "POST",
+		        url: env_webroot_script + "actas/add_row_ds_rep",
+		        data: { long_table: long_table },
+		        cache: false,
+		        success: function(html)
+		         {
+		       	 $('#table-ds-rep tr:last').after(html);
+		         }
+			 });
+		});
+	
 	/*AUTOCOMPLETAR CON SELECT2*/
 	
 	$(".cbo-empresas-select2").select2({
@@ -737,7 +793,7 @@ $(document).ready(function(){
 				            return i;
 				        }
 				        
-				        datetext=datetext+" "+addZero(d.getHours())+":"+addZero(d.getMinutes())+":"+addZero(d.getSeconds());
+				        //datetext=datetext+" "+addZero(d.getHours())+":"+addZero(d.getMinutes())+":"+addZero(d.getSeconds());
 				        $('#txtFechaActa').val(datetext);
 				    },
 				minDate: new Date(1924, 1 - 1, 1),
@@ -754,5 +810,7 @@ $(document).ready(function(){
 		  $('#txtEmpSup').attr('value','');
 		  $('#txtEmpSup').css('display','');
 	});
+	
+	$('[data-toggle="tooltip"]').tooltip();
 	
 });

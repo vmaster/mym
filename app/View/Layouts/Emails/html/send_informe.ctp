@@ -23,10 +23,8 @@
 </head>
 <body>
 	<?php echo $this->fetch('content'); ?>
-	<p>&nbsp;</p>
-	<p>Atentamente,</p>
-	<p><?php echo utf8_encode('M&M Ingeniería Obras y Servicios E.I.R.L.'); ?> </p>
-	Av. Victor Ra&uacute;l Haya de la Torre 1512 - La Victoria<br>
-	Telf.074-271154/RPM: *716060/978007000 - Email: mym.ingenieria@mym-iceperu.com
+	<p style="font-size:16px"><strong>M&M</strong></p>
+	<p><?php echo utf8_encode('Ingeniería Obras y Servicios'); ?> </p>
+	Tel. 074-271154 /Cel. 978007000
 </body>
 </html>

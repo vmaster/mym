@@ -114,8 +114,13 @@ $codigo.= "
 		    <th class='tg-e3zv back-green'>EQUIPOS DE PROTECCI&Oacute;N PERSONAL</th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_epp'))."</td>
-		  </tr>
+		    <td class='tg-031e'>";
+		    $info_des_act = json_decode($obj_acta->info_des_epp);
+		    foreach($info_des_act as $value){
+		    	$codigo.= $value->info_des_epp."<br>";
+		    }
+		    $codigo.="</td>";	
+$codigo.= "</tr>
 		  <tr>
 		   <td>
 		   	<table class='tg' width='100%'>
@@ -146,8 +151,13 @@ $codigo.= "
 		    <th class='tg-e3zv back-green'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_se_de'))."</td>
-		  </tr>
+		    <td class='tg-031e'>";
+		    $info_des_act = json_decode($obj_acta->info_des_se_de);
+		    foreach($info_des_act as $value){
+		    	$codigo.= $value->info_des_se_de."<br>";
+		    }
+		    $codigo.="</td>";	
+$codigo.= "</tr>
 		  <tr>
 		    <td>
 		   	<table class='tg' width='100%'>
@@ -177,8 +187,13 @@ $codigo.= "
 		    <th class='tg-e3zv back-green'>UNIDADES M&Oacute;VILES</th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_um'))."</td>
-		  </tr>
+		    <td class='tg-031e'>";
+		    $info_des_act = json_decode($obj_acta->info_des_um);
+		    foreach($info_des_act as $value){
+		    	$codigo.= $value->info_des_um."<br>";
+		    }
+		    $codigo.="</td>";	
+$codigo.= "</tr>
 		  <tr>
 		  	<td>
 		   	<table class='tg' width='100%'>
@@ -208,8 +223,13 @@ $codigo.= "
 		    <th class='tg-e3zv back-green'>DOCUMENTACI&Oacute;N DE SEGURIDAD</th>
 		  </tr>
 		  <tr>
-		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_doc'))."</td>
-		  </tr>
+		    <td class='tg-031e'>";
+		    $info_des_act = json_decode($obj_acta->info_des_doc);
+		    foreach($info_des_act as $value){
+		    	$codigo.= $value->info_des_doc."<br>";
+		    }
+		    $codigo.="</td>";	
+$codigo.= "</tr>
 		  <tr>
 		  	<td>
 		   	<table class='tg' width='100%'>

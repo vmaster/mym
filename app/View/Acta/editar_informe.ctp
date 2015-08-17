@@ -56,7 +56,7 @@ $(function () {
 										if (isset($list_all_actas)){
 											foreach ($list_all_actas as $id => $num):
 											if(isset($obj_acta) || isset($acta_id)){
-												if($id == $obj_acta->getAttr('acta_referencia')){
+												if($num['Acta']['id'] == $obj_acta->getAttr('acta_referencia')){
 													$selected = " selected = 'selected'";
 												}else{
 													$selected = "";
@@ -65,7 +65,7 @@ $(function () {
 											}else{
 												$selected = "";
 											}
-											echo "<option value = ".$id.$selected.">".$num."</option>";
+											echo "<option value = ".$num['Acta']['id'].$selected.">".$num['Acta']['num_informe']."</option>";
 											endforeach;
 										}
 										?>
@@ -371,18 +371,42 @@ $(function () {
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-striped table-bordered table-hover"
-							id="table-ipp">
+							id="table-epp-rep">
 							<thead>
 								<tr>
-									<th colspan=10
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('EQUIPO DE PROTECCIÓN PERSONAL') ?>
+									<th
+										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('EQUIPO DE PROTECCIÓN PERSONAL') ?>
+									</th>
+									<th>
+										Cumplimiento
 									</th>
 								</tr>
 							</thead>
 							<tbody>
+								<?php $info_des_act = json_decode($obj_acta->info_des_epp)?>
+								<?php for ($i = 0; $i<=2; $i++){?>
 								<tr>
-									<td><?php echo $this->Form->input('info_des_epp', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'3', 'class'=> 'txtInfDes1 form-control','id' =>'txtInfDes1')); ?></td>
+									<td><textarea name="data[Acta][cumplimiento_epp][<?php echo $i; ?>][info_des_epp]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_epp) && $info_des_act[$i]->info_des_epp != '')?$info_des_act[$i]->info_des_epp:'';?></textarea></td>
+									<td>
+										<select name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][alternativa]">
+											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
+										</select>
+									</td>
 								</tr>
+								<?php }?>
+								</tbody>
+						</table>
+						<div class="row" id="div-btn-add-epp-rep">
+							<div class="span3 col-md-12 col-sm-6 col-xs-6"
+								style="text-align: right;">
+								<a class="btn btn-primary add-more-row-epp-rep">+</a>
+							</div>
+						</div>
+						<br>
+						<table class="table table-striped table-bordered table-hover"
+							id="table-ipp">
+							<tbody>
 								<tr>
 									<td>
 									<?php //echo $this->Form->input('foto',array('type' => 'file')); ?>
@@ -469,18 +493,42 @@ $(function () {
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-striped table-bordered table-hover"
-							id="table-ipp">
+							id="table-sd-rep">
 							<thead>
 								<tr>
-									<th colspan=10
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('SEÑALIZACIÓN Y DELIMITACIÓN') ?>
+									<th
+										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('SEÑALIZACIÓN Y DELIMITACIÓN') ?>
+									</th>
+									<th>
+										Cumplimiento
 									</th>
 								</tr>
 							</thead>
 							<tbody>
+								<?php $info_des_act = json_decode($obj_acta->info_des_se_de)?>
+								<?php for ($i = 0; $i<=2; $i++){?>
 								<tr>
-									<td><?php echo $this->Form->input('info_des_se_de', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'2', 'class'=> 'txtInfDes2 form-control','id' =>'txtInfDes2')); ?></td>
+									<td><textarea name="data[Acta][cumplimiento_sd][<?php echo $i; ?>][info_des_se_de]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_se_de) && $info_des_act[$i]->info_des_se_de != '')?$info_des_act[$i]->info_des_se_de:'';?></textarea></td>
+									<td>
+										<select name= "data[Acta][cumplimiento_sd][<?php echo $i; ?>][alternativa]">
+											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
+										</select>
+									</td>
 								</tr>
+								<?php }?>
+							</tbody>
+						</table>
+						<div class="row" id="div-btn-add-sd-rep">
+							<div class="span3 col-md-12 col-sm-6 col-xs-6"
+								style="text-align: right;">
+								<a class="btn btn-primary add-more-row-sd-rep">+</a>
+							</div>
+						</div>
+						<br>
+						<table class="table table-striped table-bordered table-hover"
+							id="table-ipp">
+							<tbody>
 								<tr>
 									<td>
 									<div class="fileupload" data-type="FotoSd">
@@ -689,18 +737,42 @@ $(function () {
 				<div class="panel-body">
 					<div class="table-responsive" id="div-ipp">
 						<table class="table table-striped table-bordered table-hover"
-							id="table-ipp">
+							id="table-um-rep">
 							<thead>
 								<tr>
-									<th colspan=10
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('UNIDADES MÓVILES') ?>
+									<th
+										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('UNIDADES MÓVILES') ?>
+									</th>
+									<th>
+										Cumplimiento
 									</th>
 								</tr>
 							</thead>
 							<tbody>
+								<?php $info_des_act = json_decode($obj_acta->info_des_um)?>
+								<?php for ($i = 0; $i<=2; $i++){?>
 								<tr>
-									<td><?php echo $this->Form->input('info_des_um', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'2', 'class'=> 'txtInfDes3 form-control','id' =>'txtInfDes3')); ?></td>
+									<td><textarea name="data[Acta][cumplimiento_um][<?php echo $i; ?>][info_des_um]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_um) && $info_des_act[$i]->info_des_um != '')?$info_des_act[$i]->info_des_um:'';?></textarea></td>
+									<td>
+										<select name= "data[Acta][cumplimiento_um][<?php echo $i; ?>][alternativa]">
+											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
+										</select>
+									</td>
 								</tr>
+								<?php }?>
+							</tbody>
+						</table>
+						<div class="row" id="div-btn-add-um-rep">
+							<div class="span3 col-md-12 col-sm-6 col-xs-6"
+								style="text-align: right;">
+								<a class="btn btn-primary add-more-row-um-rep">+</a>
+							</div>
+						</div>
+						<br>
+						<table class="table table-striped table-bordered table-hover"
+							id="table-ipp">
+							<tbody>
 								<tr>
 									<td>
 									<div class="fileupload" data-type="FotoUm">
@@ -787,18 +859,42 @@ $(function () {
 				<div class="panel-body">
 					<div class="table-responsive" id="div-doc">
 						<table class="table table-striped table-bordered table-hover"
-							id="table-ipp">
+							id="table-ds-rep">
 							<thead>
 								<tr>
-									<th colspan=10
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('DOCUMENTACIÓN DE SEGURIDAD') ?>
+									<th
+										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('DOCUMENTACIÓN DE SEGURIDAD') ?>
+									</th>
+									<th>
+										Cumplimiento
 									</th>
 								</tr>
 							</thead>
 							<tbody>
+								<?php $info_des_act = json_decode($obj_acta->info_des_doc)?>
+								<?php for ($i = 0; $i<=2; $i++){?>
 								<tr>
-									<td><?php echo $this->Form->input('info_des_doc', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'2', 'class'=> 'txtInfDes3 form-control','id' =>'txtInfDes3')); ?></td>
+									<td><textarea name="data[Acta][cumplimiento_ds][<?php echo $i; ?>][info_des_doc]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_doc) && $info_des_act[$i]->info_des_doc != '')?$info_des_act[$i]->info_des_doc:'';?></textarea></td>
+									<td>
+										<select name= "data[Acta][cumplimiento_ds][<?php echo $i; ?>][alternativa]">
+											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
+										</select>
+									</td>
 								</tr>
+								<?php }?>
+							</tbody>
+						</table>
+						<div class="row" id="div-btn-add-ds-rep">
+							<div class="span3 col-md-12 col-sm-6 col-xs-6"
+								style="text-align: right;">
+								<a class="btn btn-primary add-more-row-ds-rep">+</a>
+							</div>
+						</div>
+						<br>
+						<table class="table table-striped table-bordered table-hover"
+							id="table-ipp">
+							<tbody>
 								<tr>
 									<td>
 									<div class="fileupload" data-type="FotoDoc">
@@ -878,200 +974,6 @@ $(function () {
 		</div>
 	</div>
 	
-	
-	
-	<!-- Actos subestandares -->
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<div class="table-responsive">
-						<table class="table table-striped table-bordered table-hover"
-							id="table-as-inf">
-							<thead>
-								<tr>
-									<th style="width: 4%;"><?php echo utf8_encode('N°'); ?></th>
-									<th style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Actos Subestándares (No incluye el no uso de implementos de protección personal)'); ?>
-									</th>
-									<th style="text-align: center;"><?php echo utf8_encode('NI'); ?>
-									</th>
-								</tr>
-							</thead>
-							<?php
-							if(count($obj_acta->ActosSubestandare)>0){
-								$key3 = 0;
-							}else{
-								$key3 = -1;
-							}
-							foreach ($obj_acta->ActosSubestandare as $key3 => $obj_act_sub){
-								echo "<tr>";
-								echo "<td style='width:5%;'>".($key3+1)."</td>";
-								echo "<td style='width:75%;'>";
-								//echo"<input name='data[ActoSubestandar".($key3+1)."][descripcion]' id='txtActoSubDes".($key3+1)."' value='".$obj_act_sub->getAttr('descripcion')."' class='form-control'/>";
-								echo "<select name='data[ActoSubestandar][".($key3+1)."][act_sub_tipo_id]' class='cbo-tipo-act-sub-select2 form-control' id='cboActoSubDes".($key3+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								echo "<option></option>";
-								if (isset($list_all_tipos_actos_sub)){
-									foreach ($list_all_tipos_actos_sub as $id => $des):
-										if($id == $obj_act_sub->getAttr('act_sub_tipo_id')){
-											$selected = " selected = 'selected'";
-										}else{
-											$selected = "";
-										}
-										echo "<option value = ".$id.$selected.">".utf8_encode($des)."</option>";
-									endforeach;
-								}
-								echo "</select>";
-								echo "<input name='data[ActoSubestandar][".($key3+1)."][as-id]' id='hiddenActoSubId".($key3+1)."' type='hidden' class='form-control' value='".$obj_act_sub->getID()."'></td>";
-								echo "<td><select name='data[ActoSubestandar][".($key3+1)."][ni-id]' class='cbo-nincumplidas-select2 form-control' id='ActoSubNid-".($key3+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								echo "<option></option>";
-								if (isset($list_all_codigos)){
-									foreach ($list_all_codigos as $id => $cod):
-									if($id == $obj_act_sub->getAttr('codigo_id')){
-										$selected = " selected = 'selected'";
-									}else{
-										$selected = "";
-									}
-									echo "<option value = ".$id.$selected.">".$cod."</option>";
-									endforeach;
-								}
-								echo "</select></td>";
-								echo "</tr>";
-							}
-							
-							
-							for ($i = ($key3+2); $i <= 5; $i++) {
-								    echo "<tr>";
-								    echo "<td style='width:5%;'>".$i."</td>";
-								    echo "<td style='width:75%;'>";
-								    //echo "<input name='data[ActoSubestandar][descripcion".$i."]' id='txtActoSubDes".$i."' class='form-control'/>";
-								    echo "<select name='data[ActoSubestandar][".$i."][act_sub_tipo_id]' class='cbo-tipo-act-sub-select2 form-control' id='cboActoSubDes".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								    echo "<option></option>";
-								    if (isset($list_all_tipos_actos_sub)){
-								    	foreach ($list_all_tipos_actos_sub as $id => $des):
-								    	echo "<option value = ".$id.">".utf8_encode($des)."</option>";
-								    	endforeach;
-								    }
-								    echo "</select>";
-								    echo "<input name='data[ActoSubestandar][".$i."][as-id]' id='hiddenActoSubId".$i."' type='hidden' class='form-control' value=''></td>";
-								    echo "<td><select name='data[ActoSubestandar][".$i."][ni-id]' class='cbo-nincumplidas-select2 form-control' id='ActoSubNid-".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								    echo "<option></option>";
-								    if (isset($list_all_codigos)){
-								    	foreach ($list_all_codigos as $id => $cod):
-								    	echo "<option value = ".$id.">".$cod."</option>";
-								    	endforeach;
-								    }
-								    echo "</select></td>";
-								    echo "</tr>";
-								}
-							?>
-						</table>
-					</div>
-					<div class="row" id ="div-btn-add-as">
-						<div class="span3 col-md-12 col-sm-6 col-xs-6" style="text-align: right;">
-							<a class="btn btn-primary add-more-row-as">+</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Condiciones subestandares -->
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<div class="table-responsive">
-						<table class="table table-striped table-bordered table-hover"
-							id="table-cs-inf">
-							<thead>
-								<tr>
-									<th style="width: 35px;"><?php echo utf8_encode('N°'); ?></th>
-									<th style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Condiciones Subestándares (No incluye implementos de Protección Personal y Unidades Móviles)'); ?>
-									</th>
-									<th style="text-align: center;"><?php echo utf8_encode('NI'); ?>
-									</th>
-								</tr>
-							</thead>
-							<?php
-							if(count($obj_acta->CondicionesSubestandare)>0){
-								$key4 = 0;
-							}else{
-								$key4 = -1;
-							}
-							
-							foreach ($obj_acta->CondicionesSubestandare as $key4 => $obj_cond_sub){
-								echo "<tr>";
-								echo "<td style='width:5%;'>".($key4+1)."</td>";
-								echo "<td style='width:75%;'>"; 
-								//echo "<input name='data[CondiSubestandar".($key4+1)."][descripcion]' id='txtCondiSubDes".($key4+1)."' value='".$obj_cond_sub->getAttr('descripcion')."' class='form-control'/>";
-								echo "<select name='data[CondiSubestandar][".($key4+1)."][cond_sub_tipo_id]' class='cbo-tipo-cond-sub-select2 form-control' id='cboCondiSubDes".($key4+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								echo "<option></option>";
-								if (isset($list_all_tipos_condiciones_sub)){
-									foreach ($list_all_tipos_condiciones_sub as $id => $des):
-									if($id == $obj_cond_sub->getAttr('cond_sub_tipo_id')){
-										$selected = " selected = 'selected'";
-									}else{
-										$selected = "";
-									}
-									echo "<option value = ".$id.$selected.">".utf8_encode($des)."</option>";
-									endforeach;
-								}
-								echo "</select>";
-								echo "<input name='data[CondiSubestandar][".($key4+1)."][cs-id]' id='hiddenCondiSubId".($key4+1)."' type='hidden' class='form-control' value='".$obj_cond_sub->getID()."'></td>";
-								echo "<td><select name='data[CondiSubestandar][".($key4+1)."][ni-id]' class='cbo-nincumplidas-select2 form-control' id='CondiSubNid-".($key4+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								echo "<option></option>";
-								if (isset($list_all_codigos)){
-									foreach ($list_all_codigos as $id => $cod):
-									if($id == $obj_cond_sub->getAttr('codigo_id')){
-										$selected = " selected = 'selected'";
-									}else{
-										$selected = "";
-									}
-									echo "<option value = ".$id.$selected.">".$cod."</option>";
-									endforeach;
-								}
-								echo "</select></td>";
-								echo "</tr>";
-							}
-							
-							for ($i = ($key4+2); $i <= 5; $i++) {
-								    echo "<tr>";
-								    echo "<td style='width:5%;'>".$i."</td>";
-								    echo "<td style='width:75%;'>"; 
-								    //echo "<input name='data[CondiSubestandar".$i."][descripcion]' id='txtCondiSubDes".$i."' class='form-control'/>";
-								    echo "<select name='data[CondiSubestandar][".$i."][cond_sub_tipo_id]' class='cbo-tipo-cond-sub-select2 form-control' id='cboCondiSubDes".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								    echo "<option></option>";
-								    if (isset($list_all_tipos_condiciones_sub)){
-								    	foreach ($list_all_tipos_condiciones_sub as $id => $des):
-								    	echo "<option value = ".$id.">".utf8_encode($des)."</option>";
-								    	endforeach;
-								    }
-								    echo "</select>";
-								    echo "<input name='data[CondiSubestandar][".$i."][cs-id]' id='hiddenCondiSubId".$i."' type='hidden' class='form-control' value=''></td>";
-								    echo "<td><select name='data[CondiSubestandar][".$i."][ni-id]' class='cbo-nincumplidas-select2 form-control' id='CondiSubNid-".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								    echo "<option></option>";
-								    if (isset($list_all_codigos)){
-								    	foreach ($list_all_codigos as $id => $cod):
-								    	echo "<option value = ".$id.">".$cod."</option>";
-								    	endforeach;
-								    }
-								    echo "</select></td>";
-								    echo "</tr>";
-								}
-								?>
-						</table>
-					</div>
-					<div class="row" id ="div-btn-add-cs">
-						<div class="span3 col-md-12 col-sm-6 col-xs-6" style="text-align: right;">
-							<a class="btn btn-primary add-more-row-cs">+</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
@@ -1081,7 +983,7 @@ $(function () {
 							id="table-as-rep">
 							<thead>
 								<tr>
-									<th	style="vertical-align: middle; text-align: center;">
+									<th	style="vertical-align: middle; text-align: center;width:85%">
 										<?php echo utf8_encode('ACTOS SUBESTÁNDARES') ?>
 									</th>
 									<th>
@@ -1091,7 +993,7 @@ $(function () {
 							</thead>
 							<tbody>
 								<?php $info_des_act = json_decode($obj_acta->info_des_act)?>
-								<?php for ($i = 0; $i<=4; $i++){?>
+								<?php for ($i = 0; $i<=2; $i++){?>
 								<tr>
 									<td><textarea name="data[Acta][cumplimiento_act][<?php echo $i; ?>][info_des_act]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_act) && $info_des_act[$i]->info_des_act != '')?$info_des_act[$i]->info_des_act:'';?></textarea></td>
 									<td>
@@ -1195,7 +1097,7 @@ $(function () {
 								<tr>
 									<tr>
 									<th
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('CONDICIONES SUBESTÁNDARES') ?>
+										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('CONDICIONES SUBESTÁNDARES') ?>
 									</th>
 									<th>
 										Cumplimiento
@@ -1204,7 +1106,7 @@ $(function () {
 							</thead>
 							<tbody>
 								<?php $info_des_cond = json_decode($obj_acta->info_des_cond)?>
-								<?php for ($i = 0; $i<=4; $i++){?>
+								<?php for ($i = 0; $i<=2; $i++){?>
 								<tr>
 									<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"><?php echo (isset($info_des_cond[$i]->info_des_cond) && $info_des_cond[$i]->info_des_cond != '')?$info_des_cond[$i]->info_des_cond:'';?></textarea></td>
 									<td>

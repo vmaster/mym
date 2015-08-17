@@ -210,48 +210,15 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_act'] = json_encode($this->request->data['Acta']['cumplimiento_act']);
 				$this->request->data['Acta']['info_des_cond'] = json_encode($this->request->data['Acta']['cumplimiento_cond']);
 				
+				$this->request->data['Acta']['info_des_epp'] = json_encode($this->request->data['Acta']['cumplimiento_epp']);
+				$this->request->data['Acta']['info_des_se_de'] = json_encode($this->request->data['Acta']['cumplimiento_sd']);
+				$this->request->data['Acta']['info_des_um'] = json_encode($this->request->data['Acta']['cumplimiento_um']);
+				$this->request->data['Acta']['info_des_doc'] = json_encode($this->request->data['Acta']['cumplimiento_ds']);
+				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
 				$normas_cumplidas = 0;
-				foreach($this->request->data['TrabajadorActa'] as $key => $value){
-					if($value['trabajador_id'] != ""){
-						$contador = 0;
-						if(isset($this->request->data['NiActa'][$key])){
-							foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
-								if($codigo_id!=''){
-									$contador++;
-								}
-							}
-						}
 				
-						if($contador > 0){
-							$normas_incumplidas ++;
-						}else{
-							$normas_cumplidas ++;
-						}
-					}
-				}
-				
-				foreach($this->request->data['UnidadMovil'] as $key => $value){
-					//debug($value);exit();
-					if($value['nro_placa_id'] != ""){
-						$contador = 0;
-				
-						if(isset($this->request->data['UnidadNorma'][$key])){
-							foreach($this->request->data['UnidadNorma'][$key] as $k => $codigo_id){
-								if($codigo_id!=''){
-									$contador++;
-								}
-							}
-						}
-				
-						if($contador > 0){
-							$normas_incumplidas ++;
-						}else{
-							$normas_cumplidas ++;
-						}
-					}
-				}
 				
 				foreach($this->request->data['Acta']['cumplimiento_act'] as $key => $value){
 					if($value['info_des_act'] != ''){
@@ -265,6 +232,46 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_cond'] as $key => $value){
 					if($value['info_des_cond'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_epp'] as $key => $value){
+					if($value['info_des_epp'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_sd'] as $key => $value){
+					if($value['info_des_se_de'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_um'] as $key => $value){
+					if($value['info_des_um'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_ds'] as $key => $value){
+					if($value['info_des_doc'] != ''){
 						if($value['alternativa'] == 1){
 							$normas_cumplidas++;
 						}else{
@@ -703,48 +710,15 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_act'] = json_encode($this->request->data['Acta']['cumplimiento_act']);
 				$this->request->data['Acta']['info_des_cond'] = json_encode($this->request->data['Acta']['cumplimiento_cond']);
 				
+				$this->request->data['Acta']['info_des_epp'] = json_encode($this->request->data['Acta']['cumplimiento_epp']);
+				$this->request->data['Acta']['info_des_se_de'] = json_encode($this->request->data['Acta']['cumplimiento_sd']);
+				$this->request->data['Acta']['info_des_um'] = json_encode($this->request->data['Acta']['cumplimiento_um']);
+				$this->request->data['Acta']['info_des_doc'] = json_encode($this->request->data['Acta']['cumplimiento_ds']);
+				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
 				$normas_cumplidas = 0;
-				foreach($this->request->data['TrabajadorActa'] as $key => $value){
-					if($value['trabajador_id'] != ""){
-						$contador = 0;
-						if(isset($this->request->data['NiActa'][$key])){
-							foreach($this->request->data['NiActa'][$key] as $k => $codigo_id){
-								if($codigo_id!=''){
-									$contador++;
-								}
-							}
-						}
 				
-						if($contador > 0){
-							$normas_incumplidas ++;
-						}else{
-							$normas_cumplidas ++;
-						}
-					}
-				}
-				
-				foreach($this->request->data['UnidadMovil'] as $key => $value){
-					//debug($value);exit();
-					if($value['nro_placa_id'] != ""){
-						$contador = 0;
-				
-						if(isset($this->request->data['UnidadNorma'][$key])){
-							foreach($this->request->data['UnidadNorma'][$key] as $k => $codigo_id){
-								if($codigo_id!=''){
-									$contador++;
-								}
-							}
-						}
-				
-						if($contador > 0){
-							$normas_incumplidas ++;
-						}else{
-							$normas_cumplidas ++;
-						}
-					}
-				}
 				
 				foreach($this->request->data['Acta']['cumplimiento_act'] as $key => $value){
 					if($value['info_des_act'] != ''){
@@ -758,6 +732,46 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_cond'] as $key => $value){
 					if($value['info_des_cond'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_epp'] as $key => $value){
+					if($value['info_des_epp'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_sd'] as $key => $value){
+					if($value['info_des_se_de'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_um'] as $key => $value){
+					if($value['info_des_um'] != ''){
+						if($value['alternativa'] == 1){
+							$normas_cumplidas++;
+						}else{
+							$normas_incumplidas++;
+						}
+					}
+				}
+				
+				foreach($this->request->data['Acta']['cumplimiento_ds'] as $key => $value){
+					if($value['info_des_doc'] != ''){
 						if($value['alternativa'] == 1){
 							$normas_cumplidas++;
 						}else{
@@ -1735,6 +1749,46 @@ class ActasController extends AppController{
 	}
 	
 	public function add_row_cond_rep(){
+		$this->layout = 'ajax';
+	
+		if($this->request->is('post')){
+			$long_table = $this->request->data['long_table'];
+		}
+	
+		$this->set(compact('long_table'));
+	}
+	
+	public function add_row_epp_rep(){
+		$this->layout = 'ajax';
+	
+		if($this->request->is('post')){
+			$long_table = $this->request->data['long_table'];
+		}
+	
+		$this->set(compact('long_table'));
+	}
+	
+	public function add_row_sd_rep(){
+		$this->layout = 'ajax';
+	
+		if($this->request->is('post')){
+			$long_table = $this->request->data['long_table'];
+		}
+	
+		$this->set(compact('long_table'));
+	}
+	
+	public function add_row_um_rep(){
+		$this->layout = 'ajax';
+	
+		if($this->request->is('post')){
+			$long_table = $this->request->data['long_table'];
+		}
+	
+		$this->set(compact('long_table'));
+	}
+	
+	public function add_row_ds_rep(){
 		$this->layout = 'ajax';
 	
 		if($this->request->is('post')){
