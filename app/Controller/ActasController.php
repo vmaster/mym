@@ -218,6 +218,7 @@ class ActasController extends AppController{
 				
 				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['html_conclusiones'];
 				$this->request->data['Acta']['info_des_rec'] = $this->request->data['html_recomendaciones'];
+				$this->request->data['Acta']['info_des_med'] = $this->request->data['html_med_control'];
 				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
@@ -721,6 +722,7 @@ class ActasController extends AppController{
 				
 				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['html_conclusiones'];
 				$this->request->data['Acta']['info_des_rec'] = $this->request->data['html_recomendaciones'];
+				$this->request->data['Acta']['info_des_med'] = $this->request->data['html_med_control'];
 				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;

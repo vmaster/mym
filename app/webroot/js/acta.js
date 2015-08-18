@@ -99,13 +99,14 @@ $(document).ready(function(){
 		myProccess.showPleaseWait();
 		$form = $(this).parents('form').eq(0);
 		
-		var html_conclusiones = $('#father-container .nicEdit-main:first').html();
-		var html_recomendaciones = $('#father-container .nicEdit-main:last').html();
+		var html_conclusiones = $('#father-container1 .nicEdit-main:first').html();
+		var html_recomendaciones = $('#father-container1 .nicEdit-main:last').html();
+		var html_med_control = $('#father-container2 .nicEdit-main:first').html();
 		
 		
 		$.ajax({
 			url: $form.attr('action'),
-			data: $form.serialize() + '&html_conclusiones=' + html_conclusiones + '&html_recomendaciones=' + html_recomendaciones,
+			data: $form.serialize() + '&html_conclusiones=' + html_conclusiones + '&html_recomendaciones=' + html_recomendaciones + '&html_med_control=' + html_med_control,
 			dataType: 'json',
 			type: 'post'
 		}).done(function(data){

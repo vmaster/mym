@@ -6,6 +6,7 @@ $(document).ready(function(){
 	  bkLib.onDomLoaded(function() {
 			 new nicEditor().panelInstance('txtConclusiones'); 
 			 new nicEditor().panelInstance('txtRecomendaciones');
+			 new nicEditor().panelInstance('txtMedControl');
 	  });
 		
 })
@@ -990,15 +991,15 @@ $(document).ready(function(){
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="father-container">
+								<tr id="father-container1">
 									<td><?php echo $this->Form->input('info_des_conclusion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-conclusiones form-control','id' =>'txtConclusiones')); ?></td>
 									<td><?php echo $this->Form->input('info_des_rec', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-recomendaciones form-control','id' =>'txtRecomendaciones')); ?></td>
 								</tr>
 								<tr>
 									<td colspan="2" style="vertical-align: middle; text-align: center;"><strong>MEDIDAS DE CONTROL</strong></td>
 								</tr>
-								<tr>
-									<td colspan="2"><?php echo $this->Form->input('info_des_med', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes7 form-control','id' =>'txtInfDes7')); ?></td>
+								<tr id="father-container2">
+									<td colspan="2"><?php echo $this->Form->input('info_des_med', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txt-med-control form-control','id' =>'txtMedControl')); ?></td>
 								</tr>
 								<tr>
 									<td colspan="2">
