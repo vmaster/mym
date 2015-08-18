@@ -92,9 +92,9 @@ $(function () {
 						<table class="table table-striped table-bordered table-hover"
 							id="dataTables-example">
 							<tr>
-								<td style="vertical-align: middle; width: 55%;">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActa')); ?>
+								<td style="vertical-align: middle; width: 55%;">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActa','maxlength'=>'200')); ?>
 								</td>
-								<td style="vertical-align: middle" colspan=3><?php echo utf8_encode('Sector'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme')); ?>
+								<td style="vertical-align: middle" colspan=3><?php echo utf8_encode('Sector'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme','maxlength'=>'200')); ?>
 								</td>
 							</tr>
 							<tr>
@@ -128,7 +128,7 @@ $(function () {
 								</td>
 							</tr>
 							<tr>
-								<td style="vertical-align: middle">Lugar: <?php echo $this->Form->input('lugar', array('div' => false, 'label' => false, 'class'=> 'txtLugar form-control','id' =>'txtLugar')); ?>
+								<td style="vertical-align: middle">Lugar: <?php echo $this->Form->input('lugar', array('div' => false, 'label' => false, 'class'=> 'txtLugar form-control','id' =>'txtLugar','maxlength'=>'200')); ?>
 								</td>
 								<td style="vertical-align: middle" colspan=3>UU.NN:<br>
 								<?php //echo $this->Form->input('uunn', array('div' => false, 'label' => false, 'class'=> 'txtUunn form-control','id' =>'txtUunn','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
@@ -155,7 +155,7 @@ $(function () {
 								</td>
 							</tr>
 							<tr>
-								<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
+								<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();','maxlength'=>'200')); ?>
 								</td>
 								<td style="vertical-align: middle" colspan=2>
 								Empresa supervisada al servicio de:
@@ -395,6 +395,7 @@ $(function () {
 									<td><textarea name="data[Acta][cumplimiento_epp][<?php echo $i; ?>][info_des_epp]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_epp) && $info_des_act[$i]->info_des_epp != '')?$info_des_act[$i]->info_des_epp:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][alternativa]">
+											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
 											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
 											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
@@ -517,6 +518,7 @@ $(function () {
 									<td><textarea name="data[Acta][cumplimiento_sd][<?php echo $i; ?>][info_des_se_de]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_se_de) && $info_des_act[$i]->info_des_se_de != '')?$info_des_act[$i]->info_des_se_de:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_sd][<?php echo $i; ?>][alternativa]">
+											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
 											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
 											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
@@ -761,6 +763,7 @@ $(function () {
 									<td><textarea name="data[Acta][cumplimiento_um][<?php echo $i; ?>][info_des_um]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_um) && $info_des_act[$i]->info_des_um != '')?$info_des_act[$i]->info_des_um:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_um][<?php echo $i; ?>][alternativa]">
+											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
 											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
 											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
@@ -883,6 +886,7 @@ $(function () {
 									<td><textarea name="data[Acta][cumplimiento_ds][<?php echo $i; ?>][info_des_doc]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_doc) && $info_des_act[$i]->info_des_doc != '')?$info_des_act[$i]->info_des_doc:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_ds][<?php echo $i; ?>][alternativa]">
+											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
 											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
 											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
@@ -1004,6 +1008,7 @@ $(function () {
 									<td><textarea name="data[Acta][cumplimiento_act][<?php echo $i; ?>][info_des_act]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_act) && $info_des_act[$i]->info_des_act != '')?$info_des_act[$i]->info_des_act:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][alternativa]">
+											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
 											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
 											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
@@ -1117,6 +1122,7 @@ $(function () {
 									<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"><?php echo (isset($info_des_cond[$i]->info_des_cond) && $info_des_cond[$i]->info_des_cond != '')?$info_des_cond[$i]->info_des_cond:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][alternativa]">
+											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
 											<option value="1" <?php echo (isset($info_des_cond[$i]->alternativa) && $info_des_cond[$i]->alternativa == 1)?"selected":""?>>SI</option>
 											<option value="0" <?php echo (isset($info_des_cond[$i]->alternativa) && $info_des_cond[$i]->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
@@ -1277,102 +1283,6 @@ $(function () {
 							</tr>
 						</table>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<!-- CIERRE DEL ACTA && Responsables - Posterior Corrección -->
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<table class="table table-striped table-bordered table-hover"
-						id="table-mc-inf">
-						<thead>
-							<tr>
-								<th colspan=2
-									style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('CIERRE DEL ACTA DE SUPERVISIÓN') ?>
-								</th>
-							</tr>
-							<tr>
-								<th style="width: 4%;"
-									style="vertical-align:middle; text-align: center;"><?php echo utf8_encode('N°'); ?>
-								</th>
-								<th style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Medidas de Control Adoptadas'); ?>
-								</th>
-							</tr>
-						</thead>
-						<?php
-						if(count($obj_acta->CierreActa)>0){
-							$key5 = 0;
-						}else{
-							$key5 = -1;
-						}
-							
-						foreach ($obj_acta->CierreActa as $key5 => $obj_cierre_acta){
-							echo "<tr>";
-							echo "<td>".($key5+1)."</td>";
-							echo "<td><input name='data[MedidasAdoptadas][".($key5+1)."][descripcion]' id='txtMedidasAdopDes".($key5+1)."' value='".$obj_cierre_acta->getAttr('descripcion')."' class='form-control'/>";
-							echo "<input name='data[MedidasAdoptadas][".($key5+1)."][ca_id]' type='hidden' id='hiddenCierreActa".($key5+1)."' value='".$obj_cierre_acta->getID()."' class='form-control'/></td>";
-							echo "</tr>";
-						}
-						 
-						for ($i = ($key5+2); $i <= 7; $i++) {
-								    echo "<tr>";
-								    echo "<td>".$i."</td>";
-								    echo "<td><input name='data[MedidasAdoptadas][".$i."][descripcion]' id='txtMedidasAdopDes".$i."' value='' class='form-control'/>";
-								    echo "<input name='data[MedidasAdoptadas][".$i."][ca_id]' type='hidden' id='hiddenCierreActa".$i."' value='' class='form-control'/></td>";
-								    echo "</tr>";
-								}
-								?>
-					</table>
-					<div class="row" id ="div-btn-add-mc">
-						<div class="span3 col-md-12 col-sm-6 col-xs-6" style="text-align: right; margin-top: -15px;">
-							<a class="btn btn-primary add-more-row-mc">+</a>
-						</div>
-					</div>
-					<br>
-					<?php /*
-					<div class="table-responsive">
-						<table class="table table-striped table-bordered table-hover"
-							id="dataTables-example">
-							<tr>
-								<td style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Responsable de la Acción Correctiva'); ?>
-								</td>
-								<td rowspan="3" style="vertical-align: bottom;"><hr> Firma</td>
-								<td style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Responsable de la Supervisión de SST'); ?>
-								</td>
-								<td rowspan="3" style="vertical-align: bottom;"><hr> Firma</td>
-							</tr>
-							<tr>
-								<td style='width:35%;'>Nombre: <input name='data[ResponsableAct2][nom_res_act]'
-									id='txtResAct2' class='form-control'
-									style='text-transform: uppercase;'
-									onkeyup='javascript:this.value=this.value.toUpperCase();' value="<?php //echo $obj_acta->Trabajadore3->getAttr('apellido_nombre'); ?>"/>
-								</td>
-								<input name='data[Acta][reponsable_corr_id]' type='hidden'
-									value='<?php //echo $obj_acta->Trabajadore3->getAttr('id'); ?>' id='hiddenResActId2'>
-								<td style='width:35%;'>Nombre:<input name='data[ResponsableSup2][nom_res_sup]'
-									id='txtResSup2' class='form-control'
-									style='text-transform: uppercase;'
-									onkeyup='javascript:this.value=this.value.toUpperCase();' value="<?php //echo $obj_acta->Trabajadore4->getAttr('apellido_nombre'); ?>"/>
-								</td>
-								<input name='data[Acta][reponsable_sup_corr_id]' type='hidden'
-									value='<?php //echo $obj_acta->Trabajadore4->getAttr('id'); ?>' id='hiddenResSupId2'>
-							</tr>
-							<tr>
-								<td>DNI:<input name='data[ResponsableAct2][dni_res_act]'
-									id='txtDniResAct2' class='form-control' maxlength=8 value="<?php //echo $obj_acta->Trabajadore3->getAttr('nro_documento'); ?>"/>
-								</td>
-								<td>DNI:<input name='data[ResponsableSup2][dni_res_sup]'
-									id='txtDniRespSup2' class='form-control' maxlength=8 value="<?php //echo $obj_acta->Trabajadore4->getAttr('nro_documento'); ?>"/>
-								</td>
-							</tr>
-						</table>
-					</div>
-					*/ ?>
 				</div>
 			</div>
 		</div>
