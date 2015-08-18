@@ -338,7 +338,7 @@ $codigo.="
 		    <td class='tg-e3zv back-green'>CONCLUSIONES</td>
 		    <td class='tg-e3zv back-green'>RECOMENDACIONES</td>
 		  </tr>
-		  <tr>
+		  <tr style='vertical-align:top;'>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_conclusion'))."</td>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_rec'))."</td>
 		  </tr>
@@ -350,7 +350,7 @@ $codigo.="
 		  <tr>
 		    <th class='tg-hgcj back-green'><strong>MEDIDAS DE CONTROL</strong></th>
 		  </tr>
-		  <tr>
+		  <tr style='vertical-align:top;'>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_med'))."</td>
 		  </tr>
 		  <tr>
