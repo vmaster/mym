@@ -4,9 +4,9 @@ $(document).ready(function(){
 	  $('#na').tooltip();
 
 	  bkLib.onDomLoaded(function() {
-			 new nicEditor().panelInstance('txtConclusiones'); 
-			 new nicEditor().panelInstance('txtRecomendaciones');
-			 new nicEditor().panelInstance('txtMedControl');
+			 new nicEditor({buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul']}).panelInstance('txtConclusiones'); 
+			 new nicEditor({buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul']}).panelInstance('txtRecomendaciones');
+			 new nicEditor({buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul']}).panelInstance('txtMedControl');
 	  });
 		
 })
