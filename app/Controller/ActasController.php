@@ -288,6 +288,15 @@ class ActasController extends AppController{
 				//$formula = ($normas_cumplidas * 100)/($normas_incumplidas + $normas_cumplidas);
 				//$this->request->data['Acta']['cumplimiento'] = $formula;
 				
+				$suma_normas = $normas_incumplidas + $normas_cumplidas;
+				if($suma_normas > 0){
+					$formula = ($normas_cumplidas * 100)/$suma_normas;
+				}else{
+					$formula = 0;
+				}
+				
+				$this->request->data['Acta']['cumplimiento'] = $formula;
+				
 				/* CREAMOS ACTA */
 				$this->Acta->create();
 				if ($this->Acta->save($this->request->data)) {
@@ -789,8 +798,13 @@ class ActasController extends AppController{
 					}
 				}
 				
-				//$formula = ($normas_cumplidas * 100)/($normas_incumplidas + $normas_cumplidas);
-				//$this->request->data['Acta']['cumplimiento'] = $formula;
+				$suma_normas = $normas_incumplidas + $normas_cumplidas;
+				if($suma_normas > 0){
+					$formula = ($normas_cumplidas * 100)/$suma_normas;
+				}else{
+					$formula = 0;
+				}
+					$this->request->data['Acta']['cumplimiento'] = $formula;
 				
 			// INICIO UPDATE IMPLEMENTOS DE PROTECCION PERSONAL
 			if(!empty($this->request->data['TrabajadorActa'])){
