@@ -605,7 +605,7 @@ $(document).ready(function(){
 		});
 	
 	$(".cbo-acta-refer-select2").select2({
-		  placeholder: "Seleccione acta",
+		  placeholder: "Seleccione informe",
 		  allowClear: true
 		});
 	
