@@ -155,7 +155,7 @@ $(function () {
 								</td>
 							</tr>
 							<tr>
-								<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActa','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();','maxlength'=>'200')); ?>
+								<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActa','maxlength'=>'200')); ?>
 								</td>
 								<td style="vertical-align: middle" colspan=2>
 								Empresa supervisada al servicio de:
@@ -389,15 +389,15 @@ $(function () {
 								</tr>
 							</thead>
 							<tbody>
-								<?php $info_des_act = json_decode($obj_acta->info_des_epp)?>
-								<?php for ($i = 0; $i<=2; $i++){?>
+								<?php $arr_info_des_act = json_decode($obj_acta->info_des_epp)?>
+								<?php foreach($arr_info_des_act as $i => $info_des_act){?>
 								<tr>
-									<td><textarea name="data[Acta][cumplimiento_epp][<?php echo $i; ?>][info_des_epp]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_epp) && $info_des_act[$i]->info_des_epp != '')?$info_des_act[$i]->info_des_epp:'';?></textarea></td>
+									<td><textarea name="data[Acta][cumplimiento_epp][<?php echo $i; ?>][info_des_epp]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act->info_des_epp) && $info_des_act->info_des_epp != '')?$info_des_act->info_des_epp:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][alternativa]">
-											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
-											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
-											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
+											<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
+											<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
 									</td>
 								</tr>
@@ -512,15 +512,15 @@ $(function () {
 								</tr>
 							</thead>
 							<tbody>
-								<?php $info_des_act = json_decode($obj_acta->info_des_se_de)?>
-								<?php for ($i = 0; $i<=2; $i++){?>
+								<?php $arr_info_des_act = json_decode($obj_acta->info_des_se_de)?>
+								<?php foreach($arr_info_des_act as $i => $info_des_act){?>
 								<tr>
-									<td><textarea name="data[Acta][cumplimiento_sd][<?php echo $i; ?>][info_des_se_de]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_se_de) && $info_des_act[$i]->info_des_se_de != '')?$info_des_act[$i]->info_des_se_de:'';?></textarea></td>
+									<td><textarea name="data[Acta][cumplimiento_sd][<?php echo $i; ?>][info_des_se_de]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act->info_des_se_de) && $info_des_act->info_des_se_de != '')?$info_des_act->info_des_se_de:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_sd][<?php echo $i; ?>][alternativa]">
-											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
-											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
-											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
+											<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
+											<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
 									</td>
 								</tr>
@@ -757,15 +757,15 @@ $(function () {
 								</tr>
 							</thead>
 							<tbody>
-								<?php $info_des_act = json_decode($obj_acta->info_des_um)?>
-								<?php for ($i = 0; $i<=2; $i++){?>
+								<?php $arr_info_des_act = json_decode($obj_acta->info_des_um)?>
+								<?php foreach($arr_info_des_act as $i => $info_des_act){?>
 								<tr>
-									<td><textarea name="data[Acta][cumplimiento_um][<?php echo $i; ?>][info_des_um]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_um) && $info_des_act[$i]->info_des_um != '')?$info_des_act[$i]->info_des_um:'';?></textarea></td>
+									<td><textarea name="data[Acta][cumplimiento_um][<?php echo $i; ?>][info_des_um]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act->info_des_um) && $info_des_act->info_des_um != '')?$info_des_act->info_des_um:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_um][<?php echo $i; ?>][alternativa]">
-											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
-											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
-											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
+											<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
+											<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
 									</td>
 								</tr>
@@ -880,15 +880,15 @@ $(function () {
 								</tr>
 							</thead>
 							<tbody>
-								<?php $info_des_act = json_decode($obj_acta->info_des_doc)?>
-								<?php for ($i = 0; $i<=2; $i++){?>
+								<?php $arr_info_des_act = json_decode($obj_acta->info_des_doc)?>
+								<?php foreach($arr_info_des_act as $i => $info_des_act){?>
 								<tr>
-									<td><textarea name="data[Acta][cumplimiento_ds][<?php echo $i; ?>][info_des_doc]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_doc) && $info_des_act[$i]->info_des_doc != '')?$info_des_act[$i]->info_des_doc:'';?></textarea></td>
+									<td><textarea name="data[Acta][cumplimiento_ds][<?php echo $i; ?>][info_des_doc]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act->info_des_doc) && $info_des_act->info_des_doc != '')?$info_des_act->info_des_doc:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_ds][<?php echo $i; ?>][alternativa]">
-											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
-											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
-											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
+											<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
+											<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
 									</td>
 								</tr>
@@ -1002,15 +1002,15 @@ $(function () {
 								</tr>
 							</thead>
 							<tbody>
-								<?php $info_des_act = json_decode($obj_acta->info_des_act)?>
-								<?php for ($i = 0; $i<=2; $i++){?>
+								<?php $arr_info_des_act = json_decode($obj_acta->info_des_act)?>
+								<?php foreach($arr_info_des_act as $i => $info_des_act){?>
 								<tr>
-									<td><textarea name="data[Acta][cumplimiento_act][<?php echo $i; ?>][info_des_act]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_act) && $info_des_act[$i]->info_des_act != '')?$info_des_act[$i]->info_des_act:'';?></textarea></td>
+									<td><textarea name="data[Acta][cumplimiento_act][<?php echo $i; ?>][info_des_act]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act->info_des_act) && $info_des_act->info_des_act != '')?$info_des_act->info_des_act:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][alternativa]">
-											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
-											<option value="1" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 1)?"selected":""?>>SI</option>
-											<option value="0" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 0)?"selected":""?>>NO</option>
+											<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
+											<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
 									</td>
 								</tr>
@@ -1116,15 +1116,15 @@ $(function () {
 								</tr>
 							</thead>
 							<tbody>
-								<?php $info_des_cond = json_decode($obj_acta->info_des_cond)?>
-								<?php for ($i = 0; $i<=2; $i++){?>
+								<?php $arr_info_des_act = json_decode($obj_acta->info_des_cond)?>
+								<?php foreach($arr_info_des_act as $i => $info_des_act){?>
 								<tr>
-									<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"><?php echo (isset($info_des_cond[$i]->info_des_cond) && $info_des_cond[$i]->info_des_cond != '')?$info_des_cond[$i]->info_des_cond:'';?></textarea></td>
+									<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_cond) && $info_des_act[$i]->info_des_cond != '')?$info_des_act[$i]->info_des_cond:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][alternativa]">
-											<option value="2" <?php echo (isset($info_des_act[$i]->alternativa) && $info_des_act[$i]->alternativa == 2)?"selected":""?>>--</option>
-											<option value="1" <?php echo (isset($info_des_cond[$i]->alternativa) && $info_des_cond[$i]->alternativa == 1)?"selected":""?>>SI</option>
-											<option value="0" <?php echo (isset($info_des_cond[$i]->alternativa) && $info_des_cond[$i]->alternativa == 0)?"selected":""?>>NO</option>
+											<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
+											<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
+											<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
 										</select>
 									</td>
 								</tr>
@@ -1307,8 +1307,8 @@ $(function () {
 							</thead>
 							<tbody>
 								<tr id="father-container1">
-									<td><?php echo $this->Form->input('info_des_conclusion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-conclusiones form-control','id' =>'txtConclusiones')); ?></td>
-									<td><?php echo $this->Form->input('info_des_rec', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-recomendaciones form-control','id' =>'txtRecomendaciones')); ?></td>
+									<td><?php echo $this->Form->input('info_des_conclusion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-conclusiones form-control','id' =>'txtConclusiones','width' =>'50%')); ?></td>
+									<td><?php echo $this->Form->input('info_des_rec', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-recomendaciones form-control','id' =>'txtRecomendaciones','width' =>'50%')); ?></td>
 								</tr>
 								<tr>
 									<td colspan="2" style="vertical-align: middle; text-align: center;"><strong>MEDIDAS DE CONTROL</strong></td>
