@@ -1298,17 +1298,17 @@ $(function () {
 							<thead>
 								<tr>
 									<th 
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('CONCLUSIONES') ?>
+										style="vertical-align: middle; text-align: center; width:50%"><?php echo utf8_encode('CONCLUSIONES') ?>
 									</th>
 									<th
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('RECOMENDACIONES') ?>
+										style="vertical-align: middle; text-align: center; width:50%"><?php echo utf8_encode('RECOMENDACIONES') ?>
 									</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr id="father-container1">
-									<td><?php echo $this->Form->input('info_des_conclusion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-conclusiones form-control','id' =>'txtConclusiones','width' =>'50%')); ?></td>
-									<td><?php echo $this->Form->input('info_des_rec', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-recomendaciones form-control','id' =>'txtRecomendaciones','width' =>'50%')); ?></td>
+									<td><?php echo $this->Form->input('info_des_conclusion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-conclusiones form-control','id' =>'txtConclusiones')); ?></td>
+									<td><?php echo $this->Form->input('info_des_rec', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-recomendaciones form-control','id' =>'txtRecomendaciones')); ?></td>
 								</tr>
 								<tr>
 									<td colspan="2" style="vertical-align: middle; text-align: center;"><strong>MEDIDAS DE CONTROL</strong></td>
