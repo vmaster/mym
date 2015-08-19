@@ -1119,7 +1119,7 @@ $(function () {
 								<?php $arr_info_des_act = json_decode($obj_acta->info_des_cond)?>
 								<?php foreach($arr_info_des_act as $i => $info_des_act){?>
 								<tr>
-									<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"><?php echo (isset($info_des_act[$i]->info_des_cond) && $info_des_act[$i]->info_des_cond != '')?$info_des_act[$i]->info_des_cond:'';?></textarea></td>
+									<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"><?php echo (isset($info_des_act->info_des_cond) && $info_des_act->info_des_cond != '')?$info_des_act->info_des_cond:'';?></textarea></td>
 									<td>
 										<select name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][alternativa]">
 											<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
