@@ -852,9 +852,9 @@ $(document).ready(function(){
 						<table class="table table-striped table-bordered table-hover"
 							id="dataTables-example">
 							<tr>
-								<td style="vertical-align: middle; text-align: center; width:50%"><?"><?php echo utf8_encode('Responsable de la actividad'); ?>
+								<td style="vertical-align: middle; text-align: center; width:50%"><?php echo utf8_encode('Responsable de la actividad'); ?>
 								</td>
-								<td style="vertical-align: middle; text-align: center; width:50%"><?"><?php echo utf8_encode('Responsable de la Supervisión de SST'); ?>
+								<td style="vertical-align: middle; text-align: center; width:50%"><?php echo utf8_encode('Responsable de la Supervisión de SST'); ?>
 								</td>
 							</tr>
 							<tr>
@@ -908,10 +908,10 @@ $(document).ready(function(){
 							<thead>
 								<tr>
 									<th 
-										style="vertical-align: middle; text-align: center; width:50%"><?"><?php echo utf8_encode('CONCLUSIONES') ?>
+										style="vertical-align: middle; text-align: center; width:50%"><?php echo utf8_encode('CONCLUSIONES') ?>
 									</th>
 									<th
-										style="vertical-align: middle; text-align: center; width:50%"><?"><?php echo utf8_encode('RECOMENDACIONES') ?>
+										style="vertical-align: middle; text-align: center; width:50%"><?php echo utf8_encode('RECOMENDACIONES') ?>
 									</th>
 								</tr>
 							</thead>
