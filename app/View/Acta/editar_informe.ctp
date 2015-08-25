@@ -233,7 +233,7 @@ $(function () {
 							<thead>
 								<tr>
 									<th colspan=10
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('IMPLEMENTOS DE PROTECCIÓN (PERSONAL Y/O COLECTIVO)') ?>
+										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('IMPLEMENTOS DE PROTECCIÓN PERSONAL') ?>
 									</th>
 								</tr>
 								<tr>
@@ -381,7 +381,7 @@ $(function () {
 							<thead>
 								<tr>
 									<th
-										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('EQUIPO DE PROTECCIÓN PERSONAL') ?>
+										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('EQUIPO DE PROTECCIÓN (PERSONAL Y/O COLECTIVO)') ?>
 									</th>
 									<th>
 										Cumplimiento
