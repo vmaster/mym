@@ -233,7 +233,7 @@ $(function () {
 							<thead>
 								<tr>
 									<th colspan=10
-										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('IMPLEMENTOS DE PROTECCIÓN PERSONAL') ?>
+										style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('IMPLEMENTOS DE PROTECCIÓN (PERSONAL Y/O COLECTIVO)') ?>
 									</th>
 								</tr>
 								<tr>
@@ -994,7 +994,7 @@ $(function () {
 							<thead>
 								<tr>
 									<th	style="vertical-align: middle; text-align: center;width:85%">
-										<?php echo utf8_encode('ACTOS SUBESTÁNDARES') ?>
+										<?php echo utf8_encode('CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO') ?>
 									</th>
 									<th>
 										Cumplimiento
@@ -1108,7 +1108,7 @@ $(function () {
 								<tr>
 									<tr>
 									<th
-										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('CONDICIONES SUBESTÁNDARES') ?>
+										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('ACTOS Y CONDICIONES SUBESTÁNDARES') ?>
 									</th>
 									<th>
 										Cumplimiento

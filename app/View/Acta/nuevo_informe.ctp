@@ -253,7 +253,7 @@ $(document).ready(function(){
 							<thead>
 								<tr>
 									<th
-										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('EQUIPO DE PROTECCIÓN PERSONAL') ?>
+										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('EQUIPO DE PROTECCIÓN (PERSONAL Y/O COLECTIVO)') ?>
 									</th>
 									<th>
 										Cumplimiento
@@ -682,7 +682,7 @@ $(document).ready(function(){
 							<thead>
 								<tr>
 									<th
-										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('ACTOS SUBESTÁNDARES') ?>
+										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO') ?>
 									</th>
 									<th>
 										Cumplimiento
@@ -763,7 +763,7 @@ $(document).ready(function(){
 							<thead>
 								<tr>
 									<th
-										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('CONDICIONES SUBESTÁNDARES') ?>
+										style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('ACTOS Y CONDICIONES SUBESTÁNDARES') ?>
 									</th>
 									<th>
 										Cumplimiento

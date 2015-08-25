@@ -111,7 +111,7 @@ $codigo.= "
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv back-green'>EQUIPOS DE PROTECCI&Oacute;N PERSONAL</th>
+		    <th class='tg-e3zv back-green'>EQUIPOS DE PROTECCI&Oacute;N (PERSONAL Y/O COLECTIVO)</th>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>";
@@ -261,7 +261,7 @@ $codigo.= "
 			</th>
 	      </tr>-->
 		  <tr>
-		    <th class='tg-e3zv back-green'>ACTOS SUBESTANDARES</th>
+		    <th class='tg-e3zv back-green'>CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO</th>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>";
@@ -296,7 +296,7 @@ $codigo.= "	</tr>
 
 $codigo.= "<table class='tg' width='100%'>
 		  <tr>
-			<th class='tg-e3zv back-green'>CONDICIONES SUBESTANDARES</th>
+			<th class='tg-e3zv back-green'>ACTOS Y CONDICIONES SUBESTANDARES</th>
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>";
