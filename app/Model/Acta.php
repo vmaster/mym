@@ -305,6 +305,7 @@ App::uses('AppModel','Model');
     								'Acta.actividad LIKE'=> '%'.$search_actividad.'%',
     								'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
     								'Acta.obra LIKE'=> '%'.$search_obra.'%',
+    								'Acta.estado '=> 1
     						)
     				),
     				//'page'=> $start,
