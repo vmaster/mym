@@ -278,7 +278,7 @@ div#spinner-send-report
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<label><?php echo utf8_encode(__('Correo de destino:')); ?> </label>
 								</div>
-								<div class="span3 col-md-5 col-sm-6 col-xs-6">
+								<div class="span3 col-md-7 col-sm-7 col-xs-7">
 									<?php echo $this->Form->input('email_destino', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'email-destino')); ?>
 								</div>
 							</div>
@@ -287,7 +287,7 @@ div#spinner-send-report
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<label><?php echo utf8_encode(__('Enviar copia:')); ?> </label>
 								</div>
-								<div class="span3 col-md-5 col-sm-6 col-xs-6">
+								<div class="span3 col-md-7 col-sm-7 col-xs-7">
 									<?php echo $this->Form->input('email_copia', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'email-copia')); ?>
 								</div>
 							</div>
@@ -296,7 +296,7 @@ div#spinner-send-report
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<label><?php echo utf8_encode(__('Asunto:')); ?> </label>
 								</div>
-								<div class="span3 col-md-5 col-sm-6 col-xs-6">
+								<div class="span3 col-md-7 col-sm-7 col-xs-7">
 									<?php echo $this->Form->input('asunto', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'txt-asunto')); ?>
 								</div>
 							</div>
@@ -305,7 +305,7 @@ div#spinner-send-report
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<label><?php echo utf8_encode(__('Mensaje:')); ?> </label>
 								</div>
-								<div class="span3 col-md-5 col-sm-6 col-xs-6">
+								<div class="span3 col-md-7 col-sm-7 col-xs-7">
 									<?php echo $this->Form->input('mensaje', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes5 form-control','id' =>'txt-mensaje')); ?>
 								</div>
 							</div>
@@ -320,3 +320,46 @@ div#spinner-send-report
 		</div>
 	</div>
 </div>
+<script>
+  $(function() {
+    var availableTags = [
+      "jmorenod@distriluz.com.pe",
+      "lvallejosm@distriluz.com.pe",
+      "mperezt@distriluz.com.pe",
+      "csandovalg@distriluz.com.pe",
+      "dojedam@distriluz.com.pe",
+      "apejerreyg@distriluz.com.pe",
+      "jpaicom@distriluz.com.pe",
+      "jsanchezm@distriluz.com.pe",
+      "jaguilarc@distriluz.com.pe",
+      "omontenegror@distriluz.com.pe",
+      "jsalazart@distriluz.com.pe",
+      "jvaldiviac@distriluz.com.pe",
+      "larnaov@distriluz.com.pe",
+      "rcamposd@distriluz.com.pe",
+      "jperaltag@distriluz.com.pe",
+      "jnavarror@distriluz.com.pe",
+      "mym.ingenieria@hotmail.com",
+      "mym.ingenieria@mym-iceperu.com",
+      "tdemeddu@gmail.com",
+      "jmaldonado.milian@hotmail.com",
+      "jmaldonado@mym-iceperu.com",
+      "j_contrerast@yahoo.es",
+      "jeverli.riosleon@yahoo.es",
+      "gersonset85@gmail.com",
+      "jzamoraramirez@hotmail.com",
+      "alan_hugo@outlook.com"
+    ];
+    $("#email-destino").autocomplete({
+      source: availableTags
+    });
+    $("#email-copia").autocomplete({
+      source: availableTags
+    });
+  });
+</script>
+<style>
+.ui-autocomplete{
+width: 250px;
+}
+</style>
