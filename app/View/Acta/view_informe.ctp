@@ -131,12 +131,12 @@ $codigo.= "</tr>
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
 						<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' width='200px' height='200px'>
 								<br>".$obj_foto_ipp->getAttr('observacion')."</td>";
-				if($cont == 2){
-					$codigo.="</tr>";
-					$cont = 0;
-					$codigo.="<tr>";
-				}
 				$cont++;
+				if($cont == 3){
+					$codigo.="</tr>";
+					$codigo.="<tr>";
+					$cont = 0;
+				}
 			}
 			
 			
@@ -168,12 +168,12 @@ $codigo.= "</tr>
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
 							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='200px' height='200px'>
 							<br>".$obj_foto_sd->getAttr('observacion')."</td>";
-			if($cont == 2){
-					$codigo.="</tr>";
-					$cont = 0;
-					$codigo.="<tr>";
-				}
 				$cont++;
+				if($cont == 3){
+					$codigo.="</tr>";
+					$codigo.="<tr>";
+					$cont = 0;
+				}
 			}
 $codigo.= "	</tr>
 			</table>
@@ -204,12 +204,12 @@ $codigo.= "</tr>
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
 						  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' width='200px' height='200px'>
 						  <br>".$obj_foto_um->getAttr('observacion')."</td>";
-				if($cont == 2){
-					$codigo.="</tr>";
-					$cont = 0;
-					$codigo.="<tr>";
-				}
 				$cont++;
+				if($cont == 3){
+					$codigo.="</tr>";
+					$codigo.="<tr>";
+					$cont = 0;
+				}
 			}
 $codigo.= "	</tr>
 			</table>
@@ -240,12 +240,12 @@ foreach($obj_acta->FotoDoc as $key => $obj_foto_doc) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
 						  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_doc/thumbnail/".$obj_foto_doc->getAttr('file_name')."' width='200px' height='200px'>
 						  <br>".$obj_foto_doc->getAttr('observacion')."</td>";
-	if($cont == 2){
-		$codigo.="</tr>";
-		$cont = 0;
-		$codigo.="<tr>";
-	}
-	$cont++;
+				$cont++;
+				if($cont == 3){
+					$codigo.="</tr>";
+					$codigo.="<tr>";
+					$cont = 0;
+				}
 }
 $codigo.= "	</tr>
 			</table>
@@ -281,12 +281,12 @@ $codigo.= "</tr>
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
 							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_as/thumbnail/".$obj_foto_as->getAttr('file_name')."' width='200px' height='200px'>
 							<br>".$obj_foto_as->getAttr('observacion')."</td>";
-				if($cont == 2){
-					$codigo.="</tr>";
-					$cont = 0;
-					$codigo.="<tr>";
-				}
 				$cont++;
+				if($cont == 3){
+					$codigo.="</tr>";
+					$codigo.="<tr>";
+					$cont = 0;
+				}
 			}
 $codigo.= "	</tr>
 			</table>
@@ -316,12 +316,12 @@ $codigo.=" 	  </tr>
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
 							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_cs/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='200px' height='200px'>
 							<br>".$obj_foto_cs->getAttr('observacion')."</td>";
-				if($cont == 2){
-					$codigo.="</tr>";
-					$cont = 0;
-					$codigo.="<tr>";
-				}
 				$cont++;
+				if($cont == 3){
+					$codigo.="</tr>";
+					$codigo.="<tr>";
+					$cont = 0;
+				}
 			}
 $codigo.= "	</tr>
 			</table>
@@ -363,12 +363,12 @@ $codigo.="
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
 							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' width='200px' height='200px'>
 							<br>".$obj_foto_med->getAttr('observacion')."</td>";
-				if($cont == 2){
-					$codigo.="</tr>";
-					$cont = 0;
-					$codigo.="<tr>";
-				}
 				$cont++;
+				if($cont == 3){
+					$codigo.="</tr>";
+					$codigo.="<tr>";
+					$cont = 0;
+				}
 			}
 $codigo.= "	</tr>
 			</table>
