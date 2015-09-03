@@ -8,12 +8,12 @@
 <table class="table" id="table_content_actas">
 	<thead>
         <tr>
-          <th><?php echo utf8_encode(__('Nro Acta')); ?></th>
-		  <th><?php echo utf8_encode(__('Nro Informe')); ?></th>
-          <th><?php echo utf8_encode(__('Actividad')); ?></th>
-          <th><?php echo utf8_encode(__('Responsable Supervisión')); ?></th>
-          <th><?php echo utf8_encode(__('Fecha')); ?></th>
-          <th><?php echo __('Operaciones'); ?></th>
+	  <th width="15"><?php echo utf8_encode(__('Nro Informe')); ?></th>
+	  <th width="20"><?php echo utf8_encode(__('Empresa')); ?></th>
+          <th width="30"><?php echo utf8_encode(__('Actividad')); ?></th>
+          <th width="20"><?php echo utf8_encode(__('Responsable Supervisión')); ?></th>
+          <th width="7"><?php echo utf8_encode(__('Fecha')); ?></th>
+          <th width="8"><?php echo __('Operaciones'); ?></th>
         </tr>
     </thead>
 	<tbody>
@@ -22,11 +22,11 @@
 		foreach ($list_acta as $acta):
 		?>
 		<tr class="acta_row_container" acta_id="<?php echo $acta->getAttr('id'); ?>" style="<?php echo ($acta->getAttr('revisado')==0)?'background-color:#BADEFB' : ''; ?>">
-			<td><?php echo $acta->getAttr('numero'); ?></td>
 			<td><?php echo $acta->getAttr('num_informe'); ?></td>
+			<td><?php echo $acta->Empresa->getAttr('nombre'); ?></td>
 			<td><?php echo ($acta->getAttr('actividad')=='')?"":$acta->getAttr('actividad'); ?></td>
 			<td><?php echo $acta->Trabajadore2->getAttr('apellido_nombre'); ?></td>
-			<td><?php echo $acta->getAttr('created'); ?></td>
+			<td><?php echo date('d-m-Y',strtotime($acta->getAttr('fecha'))); ?></td>
 			<td><a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/editar_informe/<?php echo $acta->getAttr('id')?>" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i class="fa fa-pencil fa-lg"></i> </a>| 
 				<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-search fa-lg"></i> </a> |
 				<a href="#myModalDeleteActa" role="button" data-toggle="modal" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i class="fa fa-times open-model-delete-acta fa-lg"></i> </a>

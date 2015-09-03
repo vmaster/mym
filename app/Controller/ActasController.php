@@ -1143,7 +1143,7 @@ class ActasController extends AppController{
 				if(!empty($this->request->data['FotoIppUpdate'])){
 					
 					foreach ($this->request->data['FotoIppUpdate'] as $key=> $array):
-					if($array['Observacion'][0] != ''){
+					if($array['id'][0] != ''){
 						
 						$this->FotoIpp->id = $array['id'][0];
 						
@@ -1188,7 +1188,7 @@ class ActasController extends AppController{
 				if(!empty($this->request->data['FotoSdUpdate'])){
 						
 					foreach ($this->request->data['FotoSdUpdate'] as $key=> $array):
-					if($array['Observacion'][0] != ''){
+					if($array['id'][0] != ''){
 				
 						$this->FotoSd->id = $array['id'][0];
 				
@@ -1233,7 +1233,7 @@ class ActasController extends AppController{
 				if(!empty($this->request->data['FotoUmUpdate'])){
 				
 					foreach ($this->request->data['FotoUmUpdate'] as $key=> $array):
-					if($array['Observacion'][0] != ''){
+					if($array['id'][0] != ''){
 				
 						$this->FotoUm->id = $array['id'][0];
 				
@@ -1279,7 +1279,7 @@ class ActasController extends AppController{
 				if(!empty($this->request->data['FotoDocUpdate'])){
 				
 					foreach ($this->request->data['FotoDocUpdate'] as $key=> $array):
-					if($array['Observacion'][0] != ''){
+					if($array['id'][0] != ''){
 				
 						$this->FotoDoc->id = $array['id'][0];
 				
@@ -1291,7 +1291,7 @@ class ActasController extends AppController{
 					endforeach;
 				}
 				
-				//INICIO UPDATE FOTOS ACTOS SUB
+				//INICIO UPDATE FOTOS ACTOS SUB (CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO)
 				if(!empty($this->request->data['FotoAct'])){
 						$cont = 0;
 						foreach ($this->request->data['FotoAct'] as $key => $array){
@@ -1321,23 +1321,23 @@ class ActasController extends AppController{
 						}
 				}
 				
-				if(!empty($this->request->data['FotoAsUpdate'])){
+				if(!empty($this->request->data['FotoActUpdate'])){
 				
-					foreach ($this->request->data['FotoAsUpdate'] as $key=> $array):
-					if($array['Observacion'][0] != ''){
+					foreach ($this->request->data['FotoActUpdate'] as $key=> $array):
+					if($array['id'][0] != ''){
 				
 						$this->FotoAs->id = $array['id'][0];
 				
-						$update_foto_as['FotoAs']['observacion'] = $array['Observacion'][0];
+						$update_foto_as['FotoAct']['observacion'] = $array['Observacion'][0];
 				
-						$this->FotoAc->save($update_foto_as);
+						$this->FotoAct->save($update_foto_as);
 							
 					}
 					endforeach;
 				}
 				
 				
-				//INICIO UPDATE FOTOS CONDICIONES SUB
+				//INICIO UPDATE FOTOS CONDICIONES SUB (ACTOS Y CONDICIONES SUBESTÁNDARES)
 				if(!empty($this->request->data['FotoCond'])){
 					$cont = 0;
 					foreach ($this->request->data['FotoCond'] as $key => $array){
@@ -1367,10 +1367,10 @@ class ActasController extends AppController{
 					}
 				}
 				
-				if(!empty($this->request->data['FotoCsUpdate'])){
+				if(!empty($this->request->data['FotoCondUpdate'])){
 				
-					foreach ($this->request->data['FotoCsUpdate'] as $key=> $array):
-					if($array['Observacion'][0] != ''){
+					foreach ($this->request->data['FotoCondUpdate'] as $key=> $array):
+					if($array['id'][0] != ''){
 				
 						$this->FotoCond->id = $array['id'][0];
 				
@@ -1416,7 +1416,7 @@ class ActasController extends AppController{
 				if(!empty($this->request->data['FotoMedUpdate'])){
 				
 					foreach ($this->request->data['FotoMedUpdate'] as $key=> $array):
-					if($array['Observacion'][0] != ''){
+					if($array['id'][0] != ''){
 				
 						$this->FotoMed->id = $array['id'][0];
 				
