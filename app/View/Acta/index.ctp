@@ -163,6 +163,14 @@ $('#container_page .pagination li.active').live('click',function(){
     
 }); 
 
+bkLib.onDomLoaded(function() {
+	new nicEditor({iconsPath : env_webroot_script+'img/nicEditorIcons.gif', buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul']}).panelInstance('txt-mensaje'); 
+$('#txt-mensaje').width('96%');
+$('.nicEdit-main').width('96%');
+$('.nicEdit-panelContain').parent().width('100%');
+$('.nicEdit-panelContain').parent().next().width('100%');
+});
+
 });
 </script>
 <style>
@@ -306,7 +314,7 @@ div#spinner-send-report
 									<label><?php echo utf8_encode(__('Mensaje:')); ?> </label>
 								</div>
 								<div class="span3 col-md-7 col-sm-7 col-xs-7">
-									<?php echo $this->Form->input('mensaje', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txtInfDes5 form-control','id' =>'txt-mensaje')); ?>
+									<?php echo $this->Form->input('mensaje', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'cols'=>'40','class'=> 'txtInfDes5 form-control','id' =>'txt-mensaje')); ?>
 								</div>
 							</div>
 					 <?php echo $this->Form->end(); ?>

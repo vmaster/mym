@@ -140,7 +140,7 @@ $(document).ready(function(){
 		/*if($form.attr('acta_id') == undefined || !$form.attr('acta_id')) {
 			codigo_id ='';
 		}else{*/
-			alert($('txtConclusiones').val());
+			//alert($('txtConclusiones').val());
 			$('#father-container .nicEdit-main:first').html($('txtConclusiones').val());
 		//}
 	});
@@ -183,6 +183,7 @@ $(document).ready(function(){
 		$('div#myModalSendReport').attr('acta_id', acta_id);
 		$('#spinner-send-report').hide();
 		$('#myModalSendReport .modal-body').show();
+		$('.nicEdit-main').html('');
 		$(":input").each(function(){	
 			$($(this)).val('');
 		});
@@ -194,7 +195,7 @@ $(document).ready(function(){
 		email_destino = $('div#myModalSendReport #email-destino').val();
 		email_copia = $('div#myModalSendReport #email-copia').val();
 		asunto = $('div#myModalSendReport #txt-asunto').val();
-		mensaje = $('div#myModalSendReport #txt-mensaje').val();
+		mensaje = $('div#myModalSendReport .nicEdit-main').html();
 		acta.sendReport(acta_id, email_destino, email_copia, asunto, mensaje);
 	});
 	
