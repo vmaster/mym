@@ -1862,17 +1862,17 @@ class ActasController extends AppController{
 			}
 			
 			if($email_copia != ''){
-				if(!Validation::email($email_copia)){
+				/*if(!Validation::email($email_copia)){
 					$arr_validation['asunto'] = array(__('Debe ingresar un email v&aacute;lido'));
 					$error_validation = true;
-				}
+				}*/
 			}
 			
 			if($email_destino != ''){
-				if(!Validation::email($email_destino)){
+				/*if(!Validation::email($email_destino)){
 					$arr_validation['email_destino'] = array(__('Debe ingresar un email v&aacute;lido'));
 					$error_validation = true;
-				}
+				}*/
 			}else{
 				$arr_validation['email_destino'] = array(__('Debe ingresar un email de destino'));
 				$error_validation = true;

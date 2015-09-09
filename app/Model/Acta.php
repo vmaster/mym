@@ -352,11 +352,26 @@ App::uses('AppModel','Model');
     	$Email->emailFormat('html');
     	$Email->template('informe','send_informe');
     	$Email->viewVars(array('acta_id' => $acta_id,'num_informe'=> $num_informe, 'mensaje'=> $mensaje));
-    	$Email->to($email_destino);
+		
+		// Email de Destino
+		$email_destino_arr = array();
+		$email_destinos = explode(',',$email_destino);
+		foreach($email_destinos as $email_des){
+			$email_destino_arr[] = trim($email_des);
+		}
+		$Email->to($email_destino_arr);
+		
+		// Email de Copia
+		$email_copia_arr = array();
+		$email_copias = explode(',',$email_copia);
+		foreach($email_copias as $email_cop){
+			$email_copia_arr[] = trim($email_cop);
+		}
     	if($email_copia != ''){
-    		$Email->cc($email_copia);
+    		$Email->cc($email_copia_arr);
     	}
-    	$Email->subject($asunto);
+    	
+		$Email->subject($asunto);
     	$Email->send('Mi Mensaje');
     }
     
