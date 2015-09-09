@@ -287,7 +287,34 @@ div#spinner-send-report
 									<label><?php echo utf8_encode(__('Correo de destino:')); ?> </label>
 								</div>
 								<div class="span3 col-md-7 col-sm-7 col-xs-7">
-									<?php echo $this->Form->input('email_destino', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'email-destino')); ?>
+									<?php echo $this->Form->hidden('email_destino', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'email-destino')); ?>
+									<select class="js-example-tokenizer" multiple="multiple">
+									  <option value="jmorenod@distriluz.com.pe">jmorenod@distriluz.com.pe</option>
+									  <option value="lvallejosm@distriluz.com.pe">lvallejosm@distriluz.com.pe</option>
+									  <option value="mperezt@distriluz.com.pe">mperezt@distriluz.com.pe</option>
+									  <option value="csandovalg@distriluz.com.pe">csandovalg@distriluz.com.pe</option>
+									  <option value="dojedam@distriluz.com.pe">dojedam@distriluz.com.pe</option>
+									  <option value="apejerreyg@distriluz.com.pe">apejerreyg@distriluz.com.pe</option>
+									  <option value="jpaicom@distriluz.com.pe">jpaicom@distriluz.com.pe</option>
+									  <option value="jsanchezm@distriluz.com.pe">jsanchezm@distriluz.com.pe</option>
+									  <option value="jaguilarc@distriluz.com.pe">jaguilarc@distriluz.com.pe</option>
+									  <option value="omontenegror@distriluz.com.pe">omontenegror@distriluz.com.pe</option>
+									  <option value="jsalazart@distriluz.com.pe">jsalazart@distriluz.com.pe</option>
+									  <option value="jvaldiviac@distriluz.com.pe">jvaldiviac@distriluz.com.pe</option>
+									  <option value="larnaov@distriluz.com.pe">larnaov@distriluz.com.pe</option>
+									  <option value="rcamposd@distriluz.com.pe">rcamposd@distriluz.com.pe</option>
+									  <option value="jperaltag@distriluz.com.pe">jperaltag@distriluz.com.pe</option>
+									  <option value="jnavarror@distriluz.com.pe">jnavarror@distriluz.com.pe</option>
+									  <option value="mym.ingenieria@hotmail.com">mym.ingenieria@hotmail.com</option>
+									  <option value="mym.ingenieria@mym-iceperu.com">mym.ingenieria@mym-iceperu.com</option>
+									  <option value="tdemeddu@gmail.com">tdemeddu@gmail.com</option>
+									  <option value="jmaldonado.milian@hotmail.com">jmaldonado.milian@hotmail.com</option>
+									  <option value="jmaldonado@mym-iceperu.com">jmaldonado@mym-iceperu.com</option>
+									  <option value="j_contrerast@yahoo.es">j_contrerast@yahoo.es</option>
+									  <option value="jeverli.riosleon@yahoo.es">jeverli.riosleon@yahoo.es</option>
+									  <option value="gersonset85@gmail.com">gersonset85@gmail.com</option>
+									  <option value="alan_hugo@outlook.com">alan_hugo@outlook.com</option>
+									</select>
 								</div>
 							</div>
 							<br>
@@ -296,7 +323,34 @@ div#spinner-send-report
 									<label><?php echo utf8_encode(__('Enviar copia:')); ?> </label>
 								</div>
 								<div class="span3 col-md-7 col-sm-7 col-xs-7">
-									<?php echo $this->Form->input('email_copia', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'email-copia')); ?>
+									<?php echo $this->Form->hidden('email_copia', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'email-copia')); ?>
+									<select class="js-example-tokenizer2" multiple="multiple">
+									  <option value="jmorenod@distriluz.com.pe">jmorenod@distriluz.com.pe</option>
+									  <option value="lvallejosm@distriluz.com.pe">lvallejosm@distriluz.com.pe</option>
+									  <option value="mperezt@distriluz.com.pe">mperezt@distriluz.com.pe</option>
+									  <option value="csandovalg@distriluz.com.pe">csandovalg@distriluz.com.pe</option>
+									  <option value="dojedam@distriluz.com.pe">dojedam@distriluz.com.pe</option>
+									  <option value="apejerreyg@distriluz.com.pe">apejerreyg@distriluz.com.pe</option>
+									  <option value="jpaicom@distriluz.com.pe">jpaicom@distriluz.com.pe</option>
+									  <option value="jsanchezm@distriluz.com.pe">jsanchezm@distriluz.com.pe</option>
+									  <option value="jaguilarc@distriluz.com.pe">jaguilarc@distriluz.com.pe</option>
+									  <option value="omontenegror@distriluz.com.pe">omontenegror@distriluz.com.pe</option>
+									  <option value="jsalazart@distriluz.com.pe">jsalazart@distriluz.com.pe</option>
+									  <option value="jvaldiviac@distriluz.com.pe">jvaldiviac@distriluz.com.pe</option>
+									  <option value="larnaov@distriluz.com.pe">larnaov@distriluz.com.pe</option>
+									  <option value="rcamposd@distriluz.com.pe">rcamposd@distriluz.com.pe</option>
+									  <option value="jperaltag@distriluz.com.pe">jperaltag@distriluz.com.pe</option>
+									  <option value="jnavarror@distriluz.com.pe">jnavarror@distriluz.com.pe</option>
+									  <option value="mym.ingenieria@hotmail.com">mym.ingenieria@hotmail.com</option>
+									  <option value="mym.ingenieria@mym-iceperu.com">mym.ingenieria@mym-iceperu.com</option>
+									  <option value="tdemeddu@gmail.com">tdemeddu@gmail.com</option>
+									  <option value="jmaldonado.milian@hotmail.com">jmaldonado.milian@hotmail.com</option>
+									  <option value="jmaldonado@mym-iceperu.com">jmaldonado@mym-iceperu.com</option>
+									  <option value="j_contrerast@yahoo.es">j_contrerast@yahoo.es</option>
+									  <option value="jeverli.riosleon@yahoo.es">jeverli.riosleon@yahoo.es</option>
+									  <option value="gersonset85@gmail.com">gersonset85@gmail.com</option>
+									  <option value="alan_hugo@outlook.com">alan_hugo@outlook.com</option>
+									</select>
 								</div>
 							</div>
 							<br>
@@ -328,43 +382,25 @@ div#spinner-send-report
 		</div>
 	</div>
 </div>
+
 <script>
-  $(function() {
-    var availableTags = [
-      "jmorenod@distriluz.com.pe",
-      "lvallejosm@distriluz.com.pe",
-      "mperezt@distriluz.com.pe",
-      "csandovalg@distriluz.com.pe",
-      "dojedam@distriluz.com.pe",
-      "apejerreyg@distriluz.com.pe",
-      "jpaicom@distriluz.com.pe",
-      "jsanchezm@distriluz.com.pe",
-      "jaguilarc@distriluz.com.pe",
-      "omontenegror@distriluz.com.pe",
-      "jsalazart@distriluz.com.pe",
-      "jvaldiviac@distriluz.com.pe",
-      "larnaov@distriluz.com.pe",
-      "rcamposd@distriluz.com.pe",
-      "jperaltag@distriluz.com.pe",
-      "jnavarror@distriluz.com.pe",
-      "mym.ingenieria@hotmail.com",
-      "mym.ingenieria@mym-iceperu.com",
-      "tdemeddu@gmail.com",
-      "jmaldonado.milian@hotmail.com",
-      "jmaldonado@mym-iceperu.com",
-      "j_contrerast@yahoo.es",
-      "jeverli.riosleon@yahoo.es",
-      "gersonset85@gmail.com",
-      "jzamoraramirez@hotmail.com",
-      "alan_hugo@outlook.com"
-    ];
-    $("#email-destino").autocomplete({
-      source: availableTags
-    });
-    $("#email-copia").autocomplete({
-      source: availableTags
-    });
-  });
+$(document).ready(function() {
+	$(".js-example-tokenizer").select2({
+		tags: true,
+		width: '100%'
+	});
+	$(".js-example-tokenizer").on("change", function(e) { 
+ 		$('#email-destino').val($(this).val());
+ 	});
+	
+	$(".js-example-tokenizer2").select2({
+		tags: true,
+		width: '100%'
+	});
+	$(".js-example-tokenizer2").on("change", function(e) { 
+ 		$('#email-copia').val($(this).val());
+ 	});
+})
 </script>
 <style>
 .ui-autocomplete{
