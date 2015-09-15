@@ -1325,8 +1325,8 @@ class ActasController extends AppController{
 				
 					foreach ($this->request->data['FotoActUpdate'] as $key=> $array):
 					if($array['id'][0] != ''){
-				
-						$this->FotoAs->id = $array['id'][0];
+
+						$this->FotoAct->id = $array['id'][0];
 				
 						$update_foto_as['FotoAct']['observacion'] = $array['Observacion'][0];
 				
