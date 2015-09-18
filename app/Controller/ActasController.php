@@ -216,9 +216,9 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_um'] = json_encode($this->request->data['Acta']['cumplimiento_um']);
 				$this->request->data['Acta']['info_des_doc'] = json_encode($this->request->data['Acta']['cumplimiento_ds']);
 				
-				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['html_conclusiones'];
-				$this->request->data['Acta']['info_des_rec'] = $this->request->data['html_recomendaciones'];
-				$this->request->data['Acta']['info_des_med'] = $this->request->data['html_med_control'];
+				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['Acta']['info_des_conclusion'];
+				$this->request->data['Acta']['info_des_rec'] = $this->request->data['Acta']['info_des_rec'];
+				$this->request->data['Acta']['info_des_med'] = $this->request->data['Acta']['info_des_med'];
 				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
@@ -729,9 +729,9 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_um'] = json_encode($this->request->data['Acta']['cumplimiento_um']);
 				$this->request->data['Acta']['info_des_doc'] = json_encode($this->request->data['Acta']['cumplimiento_ds']);
 				
-				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['html_conclusiones'];
-				$this->request->data['Acta']['info_des_rec'] = $this->request->data['html_recomendaciones'];
-				$this->request->data['Acta']['info_des_med'] = $this->request->data['html_med_control'];
+				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['Acta']['info_des_conclusion'];
+				$this->request->data['Acta']['info_des_rec'] = $this->request->data['Acta']['info_des_rec'];
+				$this->request->data['Acta']['info_des_med'] = $this->request->data['Acta']['info_des_med'];
 				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;

@@ -45,7 +45,8 @@
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_datepicker/jquery.ui.datepicker-es.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/alertify-0.3.11/alertify.min.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/nice-edit/nicEdit.js" type="text/javascript"></script>
-    
+    <script src="<?= ENV_WEBROOT_FULL_URL;?>/lib/tinymce/js/tinymce/tinymce.min.js" type="text/javascript"></script>
+	
     <!-- FILE UPLOAD -->
     <!-- Force latest IE rendering engine or ChromeFrame if installed -->
 	<!--[if IE]>

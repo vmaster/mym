@@ -1,4 +1,5 @@
 <script>
+/*
 $(function () {
 	  $('#ni').tooltip();
 	  $('#na').tooltip();
@@ -9,6 +10,21 @@ $(function () {
 			 new nicEditor({iconsPath : env_webroot_script+'img/nicEditorIcons.gif', buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul']}).panelInstance('txtMedControl');
 	  });
 })
+*/
+</script>
+
+<script type="text/javascript">
+tinymce.init({
+	save_enablewhendirty: true,
+    save_onsavecallback: function() {console.log("Save");},
+    selector: "textarea.editor",
+    plugins: [
+        "advlist autolink lists link image charmap print preview anchor",
+        "searchreplace visualblocks code fullscreen",
+        "insertdatetime media table contextmenu paste"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+});
 </script>
 <div class="row">
 	<div class="col-md-12">
@@ -1307,14 +1323,14 @@ $(function () {
 							</thead>
 							<tbody>
 								<tr id="father-container1">
-									<td><?php echo $this->Form->input('info_des_conclusion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-conclusiones form-control','id' =>'txtConclusiones')); ?></td>
-									<td><?php echo $this->Form->input('info_des_rec', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-recomendaciones form-control','id' =>'txtRecomendaciones')); ?></td>
+									<td><?php echo $this->Form->input('info_des_conclusion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-conclusiones editor form-control','id' =>'txtConclusiones')); ?></td>
+									<td><?php echo $this->Form->input('info_des_rec', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-recomendaciones editor form-control','id' =>'txtRecomendaciones')); ?></td>
 								</tr>
 								<tr>
 									<td colspan="2" style="vertical-align: middle; text-align: center;"><strong>MEDIDAS DE CONTROL</strong></td>
 								</tr>
 								<tr id="father-container2">
-									<td colspan="2"><?php echo $this->Form->input('info_des_med', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txt-med-control form-control','id' =>'txtMedControl')); ?></td>
+									<td colspan="2"><?php echo $this->Form->input('info_des_med', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'class'=> 'txt-med-control editor form-control','id' =>'txtMedControl')); ?></td>
 								</tr>
 								<tr>
 									<td colspan=2>
