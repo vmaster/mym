@@ -378,6 +378,13 @@ $codigo.= "	</tr>
 		<br>
 		";
 
+$codigo .= "<div style='text-align:left; padding-left: 25px; padding-right: 25px;'><strong>NIVEL DE CUMPLIMIENTO:</strong> ".$obj_acta->getAttr('cumplimiento')."%</div>";
+$codigo .= "<p align='right'><table width='100%'>
+			<tr><td><div style='text-align:right;'><img src='".ENV_WEBROOT_FULL_URL."files/firmas/".$obj_acta->Trabajadore2->getAttr('firma')."' style='border:0px;' width='144px' height='80px'> </div>";
+$codigo .= "<div style='text-align:right;'><hr width='30%' align='right'></div>
+		   	<div style='text-align:right; /*padding-left: 52px; padding-right: 52px;*/'>ING. ".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."</div>
+		   	<div style='text-align:right; padding-left: 25px; padding-right: 25px;'>SUPERVISOR DE SST - M&M</div></td></tr></table></p>";
+
 $codigo.= "<table class='tg salto-linea' width='100%'>
 		<thead>
 		<tr>
@@ -523,14 +530,6 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 	
 	$codigo.= "</table><p>&nbsp;</p>";
 }
-
-$codigo .= "<div style='text-align:left; padding-left: 25px; padding-right: 25px;'><strong>NIVEL DE CUMPLIMIENTO:</strong> ".$obj_acta->getAttr('cumplimiento')."%</div>";
-$codigo .= "<p align='right'><table width='100%'>
-			<tr><td><div style='text-align:right;'><img src='".ENV_WEBROOT_FULL_URL."files/firmas/".$obj_acta->Trabajadore2->getAttr('firma')."' style='border:0px;' width='144px' height='80px'> </div>";
-$codigo .= "<div style='text-align:right;'><hr width='30%' align='right'></div>
-		   	<div style='text-align:right; /*padding-left: 52px; padding-right: 52px;*/'>ING. ".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."</div>
-		   	<div style='text-align:right; padding-left: 25px; padding-right: 25px;'>SUPERVISOR DE SST - M&M</div></td></tr></table></p>";
-
 
 //echo $codigo; exit();
 $dompdf = new DOMPDF();
