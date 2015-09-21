@@ -109,6 +109,9 @@ $codigo.= "
 		";
 
 $codigo.= "
+<table width='100%'>
+ <tr>
+	<td>
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-green'>EQUIPOS DE PROTECCI&Oacute;N (PERSONAL Y/O COLECTIVO)</th>
@@ -144,44 +147,58 @@ $codigo.= "	</tr>
 			</table>
 		</td>
 		</tr>
-		</table><br>";
+		</table>
+	</td>
+ </tr>
+</table>
+		<br>";
 $codigo.= "
-		<table class='tg' width='100%'>
-		  <tr>
-		    <th class='tg-e3zv back-green'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
-		  </tr>
-		  <tr>
-		    <td class='tg-031e'>";
-		    $info_des_act = json_decode($obj_acta->info_des_se_de);
-		    foreach($info_des_act as $value){
-		    	$codigo.= $value->info_des_se_de."<br>";
-		    }
-		    $codigo.="</td>";	
-$codigo.= "</tr>
-		  <tr>
-		    <td>
-		   	<table class='tg' width='100%'>
-		    ";
-			$cont= 0;
-			$codigo.="<tr>";
-			foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
-				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='200px' height='200px'>
-							<br>".$obj_foto_sd->getAttr('observacion')."</td>";
-				$cont++;
-				if($cont == 3){
-					$codigo.="</tr>";
-					$codigo.="<tr>";
-					$cont = 0;
-				}
-			}
-$codigo.= "	</tr>
+		<table width='100%'>
+		<tr>
+		<td>
+			<table class='tg' width='100%'>
+		  		<tr>
+		    		<th class='tg-e3zv back-green'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
+		 		</tr>
+		  		<tr>
+			    <td class='tg-031e'>";
+			    $info_des_act = json_decode($obj_acta->info_des_se_de);
+			    foreach($info_des_act as $value){
+			    	$codigo.= $value->info_des_se_de."<br>";
+			    }
+			    $codigo.="</td>";	
+$codigo.= "		</tr>
+		  		<tr>
+		    		<td>
+						<table class='tg' width='100%'>
+						    ";
+							$cont= 0;
+							$codigo.="<tr>";
+							foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
+								$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+											<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='200px' height='200px'>
+											<br>".$obj_foto_sd->getAttr('observacion')."</td>";
+								$cont++;
+								if($cont == 3){
+									$codigo.="</tr>";
+									$codigo.="<tr>";
+									$cont = 0;
+								}
+							}
+		$codigo.= "			</tr>
+						</table>
+					</td>
+				</tr>
 			</table>
 		</td>
 		</tr>
-		</table><br>";
+		</table>
+		<br>";
 
 $codigo.= "
+<table width='100%'>
+ <tr>
+	<td>
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-green'>UNIDADES M&Oacute;VILES</th>
@@ -215,9 +232,16 @@ $codigo.= "	</tr>
 			</table>
 		 </td>
 		</tr>
-		</table><br>";
+		</table>
+	</td>
+ </tr>
+</table>
+<br>";
 
 $codigo.= "
+<table width='100%'>
+ <tr>
+	<td>
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-green'>DOCUMENTACI&Oacute;N DE SEGURIDAD</th>
@@ -251,9 +275,16 @@ $codigo.= "	</tr>
 			</table>
 		 </td>
 		</tr>
-		</table><br>";
+		</table>
+	</td>
+ </tr>
+</table>
+		<br>";
 
 $codigo.= "
+<table width='100%'>
+ <tr>
+	<td>
 		<table class='tg' width='100%'>
 		  <!-- <tr>
 			<th class='tg-e3zv back-green2'>
@@ -292,9 +323,17 @@ $codigo.= "	</tr>
 			</table>
 			</td>
 		  </tr>
-		</table><br>";
+		</table>
+	</td>
+ </tr>
+</table>		
+<br>";
 
-$codigo.= "<table class='tg' width='100%'>
+$codigo.= "
+<table width='100%'>
+<tr>
+	<td>		
+		<table class='tg' width='100%'>
 		  <tr>
 			<th class='tg-e3zv back-green'>ACTOS Y CONDICIONES SUBESTANDARES</th>
 		  </tr>
@@ -327,9 +366,16 @@ $codigo.= "	</tr>
 			</table>
 			</td>
 		  </tr>
-		</table><br>";
+		</table>
+	</td>
+ </tr>
+</table>
+<br>";
 
 $codigo.="
+<table width='100%'>
+ <tr>
+	<td>
 		<table class='tg salto-linea' width='100%'>
 		  <tr>
 		    <th class='tg-hgcj back-blue' colspan='2'><strong>CONCLUSIONES, RECOMENDACIONES Y ACCIONES CORRECTIVAS</strong></th>
@@ -343,9 +389,15 @@ $codigo.="
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_rec'))."</td>
 		  </tr>
 		</table>
+	</td>
+ </tr>
+</table>
 		";
 $codigo.="<br>";
 $codigo.="
+<table width='100%'>
+ <tr>
+	<td>
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-hgcj back-green'><strong>MEDIDAS DE CONTROL</strong></th>
@@ -375,6 +427,9 @@ $codigo.= "	</tr>
 			</td>
 		  </tr>  		
 		</table>
+	</td>
+ </tr>
+</table>
 		<br>
 		";
 
