@@ -163,7 +163,7 @@ $('#container_page .pagination li.active').live('click',function(){
     
 }); 
 
-bkLib.onDomLoaded(function() {
+/*bkLib.onDomLoaded(function() {
 	new nicEditor({iconsPath : env_webroot_script+'img/nicEditorIcons.gif', buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul']}).panelInstance('txt-mensaje'); 
 $('#txt-mensaje').width('96%');
 $('.nicEdit-main').width('96%');
@@ -171,6 +171,19 @@ $('.nicEdit-panelContain').parent().width('100%');
 $('.nicEdit-panelContain').parent().next().width('100%');
 });
 
+});*/
+</script>
+<script>
+tinymce.init({
+	save_enablewhendirty: true,
+    save_onsavecallback: function() {console.log("Save");},
+    selector: "textarea.editor",
+    plugins: [
+        //"advlist autolink lists link image charmap print preview anchor",
+        //"searchreplace visualblocks code fullscreen",
+        //"insertdatetime media table contextmenu paste"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
 });
 </script>
 <style>
@@ -187,7 +200,7 @@ div#spinner-send-report
     margin-top: -17px;
     z-index:2;
     overflow: auto;
-}    
+}
 </style>
 <div class="row">
 	<div class="col-md-12">
@@ -368,7 +381,7 @@ div#spinner-send-report
 									<label><?php echo utf8_encode(__('Mensaje:')); ?> </label>
 								</div>
 								<div class="span3 col-md-7 col-sm-7 col-xs-7">
-									<?php echo $this->Form->input('mensaje', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'cols'=>'40','class'=> 'txtInfDes5 form-control','id' =>'txt-mensaje')); ?>
+									<?php echo $this->Form->input('mensaje', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'cols'=>'40','class'=> 'txtInfDes5 editor form-control','id' =>'txt-mensaje')); ?>
 								</div>
 							</div>
 					 <?php echo $this->Form->end(); ?>
