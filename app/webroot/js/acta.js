@@ -97,8 +97,8 @@ $(document).ready(function(){
 	$body.off('click','.btn_crear_acta_trigger');
 	$body.on('click','.btn_crear_acta_trigger',function(){
 		myProccess.showPleaseWait();
+		tinyMCE.triggerSave();
 		$form = $(this).parents('form').eq(0);
-		
 		var html_conclusiones = $('#father-container1 .nicEdit-main:first').html();
 		var html_recomendaciones = $('#father-container1 .nicEdit-main:last').html();
 		var html_med_control = $('#father-container2 .nicEdit-main:first').html();
