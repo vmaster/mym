@@ -22,39 +22,7 @@ $(document).ready(function(){
 				}
 			});	
 		},
-		sendReport: function(acta_id, email_destino, email_copia, asunto, mensaje){
-			$('#spinner-send-report').show();
-			$('#myModalSendReport .modal-body').hide();
-			$.ajax({
-				type: 'post',
-				url: env_webroot_script + 'actas/send_reporte_email',
-				data:{
-					'acta_id': acta_id,
-					'email_destino': email_destino,
-					'email_copia': email_copia,
-					'asunto': asunto,
-					'mensaje': mensaje
-				},
-				dataType: 'json'
-			}).done(function(data){
-				if(data.success == true){
-					alertify.success(data.msg);
-					$('#myModalSendReport').modal('hide');
-					$('.modal-backdrop').fadeOut(function(){$(this).hide()});
-				}else{
-					$('#spinner-send-report').hide();
-					$('#myModalSendReport .modal-body').show();
-					$.each(data.validation, function( key, value ) {
-						alertify.error(value[0]);
-						//alert(key);
-						$('[name="data[SendEmail]['+key+']"]').parent().addClass('control-group has-error');
-						$('[name="data[SendEmail]['+key+']"]').change(function() {
-						$('[name="data[SendEmail]['+key+']"]').parent().removeClass('control-group has-error');
-						});
-					});
-				}
-			});	
-		},
+		
 		changeEstadoRevisado: function(acta_id, value_check){
 			$.ajax({
 				type: 'post',
@@ -179,6 +147,7 @@ $(document).ready(function(){
 	/*Send Report by Email*/
 	$body.off('click','div#acta .open-model-send-informe');
 	$body.on('click','div#acta .open-model-send-informe', function(){
+		document.getElementById("form_send_email").reset();
 		acta_id = $(this).parents('.acta_row_container').attr('acta_id');
 		$('div#myModalSendReport').attr('acta_id', acta_id);
 		$('#spinner-send-report').hide();
@@ -189,24 +158,37 @@ $(document).ready(function(){
 		});
 	});
 	
-	$body.off('click','div#myModalSendReport .send-report-email-trigger');
-	$body.on('click','div#myModalSendReport .send-report-email-trigger', function(){
-		acta_id = $('div#myModalSendReport').attr('acta_id');
-		email_destino = $('div#myModalSendReport #email-destino').val();
-		email_copia = $('div#myModalSendReport #email-copia').val();
-		asunto = $('div#myModalSendReport #txt-asunto').val();
-		mensaje = $('div#myModalSendReport .nicEdit-main').html();
-		acta.sendReport(acta_id, email_destino, email_copia, asunto, mensaje);
+	$body.off('click','.send-report-email-trigger');
+	$body.on('click','.send-report-email-trigger', function(){
+
+		$('#spinner-send-report').show();
+		$('#myModalSendReport .modal-body').hide();
+		tinyMCE.triggerSave();
+		$form = $(this).parents('form').eq(0);
+		$.ajax({
+			url: env_webroot_script + 'actas/send_reporte_email',
+			data: $form.serialize() + '&acta_id=' + acta_id,
+			dataType: 'json',
+			type: 'post'
+		}).done(function(data){
+			if(data.success == true){
+				alertify.success(data.msg);
+				$('#myModalSendReport').modal('hide');
+				$('.modal-backdrop').fadeOut(function(){$(this).hide()});
+			}else{
+				$('#spinner-send-report').hide();
+				$('#myModalSendReport .modal-body').show();
+				$.each(data.validation, function( key, value ) {
+					alertify.error(value[0]);
+					//alert(key);
+					$('[name="data[SendEmail]['+key+']"]').parent().addClass('control-group has-error');
+					$('[name="data[SendEmail]['+key+']"]').change(function() {
+					$('[name="data[SendEmail]['+key+']"]').parent().removeClass('control-group has-error');
+					});
+				});
+			}
+		});	
 	});
-	
-	/*$('#spinner-send-report').ajaxStart(function () {
-		$('#form_send_email').hide();
-	    $(this).fadeIn('fast');
-	 }).ajaxStop(function () {
-	     $(this).stop().fadeOut('fast');
-	     document.getElementById('form_send_email').reset();
-	     $('#form_send_email').show();
-	});*/
 	
 	/*SCRIPT PARA ELIMINAR FOTOS IPP -  EXISTENTES*/
 	$body.off('click','.delete-file-ipp');

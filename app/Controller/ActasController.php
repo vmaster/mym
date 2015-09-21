@@ -1846,50 +1846,53 @@ class ActasController extends AppController{
 	{
 		$this->autoRender = false;
 		$this->loadModel('Acta');
-		if($this->request->is('post')){
-			$acta_id = $this->request->data['acta_id'];
-			$obj_acta = $this->Acta->findById($acta_id);
-			$num_informe = $obj_acta->getAttr('num_informe'); //Obtengo el número de informe
-			$email_destino = $this->request->data['email_destino'];
-			$email_copia = $this->request->data['email_copia'];
-			$asunto = $this->request->data['asunto'];
-			$mensaje = $this->request->data['mensaje'];
-			$error_validation = false;
-			
-			if($asunto == ''){
-				$arr_validation['asunto'] = array(__('Debe ingresar el Asunto'));
-				$error_validation = true;
-			}
-			
-			if($email_copia != ''){
-				/*if(!Validation::email($email_copia)){
-					$arr_validation['asunto'] = array(__('Debe ingresar un email v&aacute;lido'));
+		
+			if(isset($this->request->data) || $this->request->is('post')){
+				//debug($this->request->data);exit();
+				$acta_id = $this->request->data['acta_id'];
+				$obj_acta = $this->Acta->findById($acta_id);
+				$num_informe = $obj_acta->getAttr('num_informe'); //Obtengo el número de informe
+				$email_destino = $this->request->data['SendEmail']['email_destino'];
+				$email_copia = $this->request->data['SendEmail']['email_copia'];
+				$asunto = $this->request->data['SendEmail']['asunto'];
+				$mensaje = $this->request->data['SendEmail']['mensaje'];
+				$error_validation = false;
+					
+				if($asunto == ''){
+					$arr_validation['asunto'] = array(__('Debe ingresar el Asunto'));
 					$error_validation = true;
-				}*/
-			}
-			
-			if($email_destino != ''){
-				/*if(!Validation::email($email_destino)){
-					$arr_validation['email_destino'] = array(__('Debe ingresar un email v&aacute;lido'));
+				}
+					
+				if($email_copia != ''){
+					/*if(!Validation::email($email_copia)){
+					 $arr_validation['asunto'] = array(__('Debe ingresar un email v&aacute;lido'));
 					$error_validation = true;
-				}*/
-			}else{
-				$arr_validation['email_destino'] = array(__('Debe ingresar un email de destino'));
-				$error_validation = true;
+					}*/
+				}
+					
+				if($email_destino != ''){
+					/*if(!Validation::email($email_destino)){
+					 $arr_validation['email_destino'] = array(__('Debe ingresar un email v&aacute;lido'));
+					$error_validation = true;
+					}*/
+				}else{
+					$arr_validation['email_destino'] = array(__('Debe ingresar un email de destino'));
+					$error_validation = true;
+				}
+					
+				if($error_validation == false){
+					$this->Acta->sendReporteEmail($acta_id, $email_destino, $email_copia, $num_informe, $asunto, $mensaje);
+					$obj_acta->saveField('fecha_envio', date('Y-m-d'));
+					echo json_encode(array('success'=>true,'msg'=>__('El Informe fue enviado')));
+					exit();
+				}
+					
+				if($error_validation == true){
+					echo json_encode(array('success' =>false, 'msg' => __('No se pudo guardar'), 'validation' => $arr_validation));
+					exit();
+				}
 			}
-			
-			if($error_validation == false){
-				$this->Acta->sendReporteEmail($acta_id, $email_destino, $email_copia, $num_informe, $asunto, $mensaje);
-				$obj_acta->saveField('fecha_envio', date('Y-m-d'));
-				echo json_encode(array('success'=>true,'msg'=>__('El Informe fue enviado')));
-				exit();
-			}
-			
-			if($error_validation == true){
-				echo json_encode(array('success' =>false, 'msg' => __('No se pudo guardar'), 'validation' => $arr_validation));
-				exit();
-			}
-		}
+		
 	}
 	
 	

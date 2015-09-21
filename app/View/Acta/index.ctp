@@ -122,58 +122,42 @@ $body.on('keyup','#txtObra',function(e){
 	});
 });
 
-function loadData(page){
-    //loading_show();  
-    search_nro = $('#txtNro').val();
-	search_actividad = $('#txtActividad').val();
-	search_empresa = $('#txtEmpresa').val();
-	search_obra = $('#txtObra').val();
+	function loadData(page){
+	    //loading_show();  
+	    search_nro = $('#txtNro').val();
+		search_actividad = $('#txtActividad').val();
+		search_empresa = $('#txtEmpresa').val();
+		search_obra = $('#txtObra').val();
+		
+		if (typeof(order_by_select) === "undefined"){
+			order_by_select = null;
+		}else{
+			order_by_select = order_by_select;
+		}
+		if (typeof(order_by_or) === "undefined"){
+			order_by_or = null;
+		}else{
+			order_by_or = order_by_or;
+		}
 	
-	if (typeof(order_by_select) === "undefined"){
-		order_by_select = null;
-	}else{
-		order_by_select = order_by_select;
+		if(search_nro==''){
+			search_nro = null;
+		}
+		if(search_actividad==''){
+			search_actividad = null;
+		}
+		if(search_empresa==''){
+			search_empresa = null;
+		}
+		if(search_obra==''){
+			search_obra = null;
+		}
+	
+		$('#conteiner_all_rows').load(env_webroot_script + escape('actas/find_actas/'+page+'/'+order_by_select+'/'+order_by_or+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
+			});
 	}
-	if (typeof(order_by_or) === "undefined"){
-		order_by_or = null;
-	}else{
-		order_by_or = order_by_or;
-	}
-
-	if(search_nro==''){
-		search_nro = null;
-	}
-	if(search_actividad==''){
-		search_actividad = null;
-	}
-	if(search_empresa==''){
-		search_empresa = null;
-	}
-	if(search_obra==''){
-		search_obra = null;
-	}
-
-	$('#conteiner_all_rows').load(env_webroot_script + escape('actas/find_actas/'+page+'/'+order_by_select+'/'+order_by_or+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
-		});
-}
-//loadData(1);  /* For first time page load default results */
-$('#container_page .pagination li.active').live('click',function(){
-    var page = $(this).attr('p');
-    loadData(page);
-    
-}); 
-
-/*bkLib.onDomLoaded(function() {
-	new nicEditor({iconsPath : env_webroot_script+'img/nicEditorIcons.gif', buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul']}).panelInstance('txt-mensaje'); 
-$('#txt-mensaje').width('96%');
-$('.nicEdit-main').width('96%');
-$('.nicEdit-panelContain').parent().width('100%');
-$('.nicEdit-panelContain').parent().next().width('100%');
 });
 
-});*/
-</script>
-<script>
 tinymce.init({
 	save_enablewhendirty: true,
     save_onsavecallback: function() {console.log("Save");},
@@ -293,8 +277,9 @@ div#spinner-send-report
 				    	<br>
 				    	<label>Espere un momento...</label>
 					</div>
+				<?php echo $this->Form->create('SendEmail',array('method'=>'post', 'id'=>'form_send_email','action'=> false));?>
 				<div class="modal-body">
-					<?php echo $this->Form->create('SendEmail',array('method'=>'post', 'id'=>'form_send_email','action'=> false));?>
+					
 							<div class="row">
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">
 									<label><?php echo utf8_encode(__('Correo de destino:')); ?> </label>
@@ -384,13 +369,13 @@ div#spinner-send-report
 									<?php echo $this->Form->input('mensaje', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5', 'cols'=>'40','class'=> 'txtInfDes5 editor form-control','id' =>'txt-mensaje')); ?>
 								</div>
 							</div>
-					 <?php echo $this->Form->end(); ?>
+					 
 				</div>
 				<div class="modal-footer">
-					<button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancelar'); ?></button>
-					<button class="btn btn-danger send-report-email-trigger"><?php echo __('Enviar'); ?></button>
+					<a class="btn btn-info" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancelar'); ?></a>
+					<a class="btn btn-danger send-report-email-trigger"><?php echo __('Enviar'); ?></a>
 				</div>
-				
+				<?php echo $this->Form->end(); ?>
 			</div>
 		</div>
 	</div>
