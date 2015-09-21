@@ -132,7 +132,7 @@ $codigo.= "</tr>
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-						<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' width='200px' height='200px'>
+						<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' width='190px' height='190px'>
 								<br>".$obj_foto_ipp->getAttr('observacion')."</td>";
 				$cont++;
 				if($cont == 3){
@@ -176,7 +176,7 @@ $codigo.= "		</tr>
 							$codigo.="<tr>";
 							foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
 								$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-											<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='200px' height='200px'>
+											<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='190px' height='190px'>
 											<br>".$obj_foto_sd->getAttr('observacion')."</td>";
 								$cont++;
 								if($cont == 3){
@@ -219,7 +219,7 @@ $codigo.= "</tr>
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-						  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' width='200px' height='200px'>
+						  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' width='190px' height='190px'>
 						  <br>".$obj_foto_um->getAttr('observacion')."</td>";
 				$cont++;
 				if($cont == 3){
@@ -262,7 +262,7 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoDoc as $key => $obj_foto_doc) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-						  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_doc/thumbnail/".$obj_foto_doc->getAttr('file_name')."' width='200px' height='200px'>
+						  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_doc/thumbnail/".$obj_foto_doc->getAttr('file_name')."' width='190px' height='190px'>
 						  <br>".$obj_foto_doc->getAttr('observacion')."</td>";
 				$cont++;
 				if($cont == 3){
@@ -310,7 +310,7 @@ $codigo.= "</tr>
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_as/thumbnail/".$obj_foto_as->getAttr('file_name')."' width='200px' height='200px'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_as/thumbnail/".$obj_foto_as->getAttr('file_name')."' width='190px' height='190px'>
 							<br>".$obj_foto_as->getAttr('observacion')."</td>";
 				$cont++;
 				if($cont == 3){
@@ -353,7 +353,7 @@ $codigo.=" 	  </tr>
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_cs/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='200px' height='200px'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_cs/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='190px' height='190px'>
 							<br>".$obj_foto_cs->getAttr('observacion')."</td>";
 				$cont++;
 				if($cont == 3){
@@ -413,7 +413,7 @@ $codigo.="
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoMed as $key => $obj_foto_med) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' width='200px' height='200px'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' width='190px' height='190px'>
 							<br>".$obj_foto_med->getAttr('observacion')."</td>";
 				$cont++;
 				if($cont == 3){
