@@ -115,9 +115,24 @@ $codigo.= "
 		  </tr>
 		  <tr>
 		    <td class='tg-031e'>";
+			$normas_cumplidas = 0;
+			$normas_incumplidas = 0;
+			
 		    $info_des_act = json_decode($obj_acta->info_des_epp);
 		    foreach($info_des_act as $value){
-		    	$codigo.= $value->info_des_epp."<br>";
+		    	if($value->info_des_epp != ''){
+			    	if($value->alternativa == 1){
+			    		$codigo.= "(NC) ";
+			    		$normas_cumplidas++;
+			    	}elseif($value->alternativa == 0){
+			    		$codigo.= "(NI) ";
+			    		$normas_incumplidas++;
+			    	}else{
+			    		$codigo.= "( - ) ";
+			    	}
+			    	
+			    	$codigo.= $value->info_des_epp."<br>";
+		    	}
 		    }
 		    $codigo.="</td>";	
 $codigo.= "</tr>
@@ -155,9 +170,23 @@ $codigo.= "
 		  		<tr>
 			    <td class='tg-031e'>";
 			    $info_des_act = json_decode($obj_acta->info_des_se_de);
+			    
 			    foreach($info_des_act as $value){
-			    	$codigo.= $value->info_des_se_de."<br>";
+			    	if($value->info_des_se_de != ''){
+				    	if($value->alternativa == 1){
+				    		$codigo.= "(NC) ";
+				    		$normas_cumplidas++;
+				    	}elseif($value->alternativa == 0){
+				    		$codigo.= "(NI) ";
+				    		$normas_incumplidas++;
+				    	}else{
+				    		$codigo.= "( - ) ";
+				    	}
+				    	
+				    	$codigo.= $value->info_des_se_de."<br>";
+			    	}	
 			    }
+			    
 			    $codigo.="</td>";	
 $codigo.= "		</tr>
 		  		<tr>
@@ -193,7 +222,19 @@ $codigo.= "
 		    <td class='tg-031e'>";
 		    $info_des_act = json_decode($obj_acta->info_des_um);
 		    foreach($info_des_act as $value){
-		    	$codigo.= $value->info_des_um."<br>";
+		    	if($value->info_des_um != ''){
+		    		if($value->alternativa == 1){
+		    			$codigo.= "(NC) ";
+		    			$normas_cumplidas++;
+		    		}elseif($value->alternativa == 0){
+		    			$codigo.= "(NI) ";
+		    			$normas_incumplidas++;
+		    		}else{
+		    			$codigo.= "( - ) ";
+		    		}
+		    		 
+		    		$codigo.= $value->info_des_um."<br>";
+		    	}
 		    }
 		    $codigo.="</td>";	
 $codigo.= "</tr>
@@ -230,7 +271,19 @@ $codigo.= "
 		    <td class='tg-031e'>";
 		    $info_des_act = json_decode($obj_acta->info_des_doc);
 		    foreach($info_des_act as $value){
-		    	$codigo.= $value->info_des_doc."<br>";
+		    	if($value->info_des_doc != ''){
+		    		if($value->alternativa == 1){
+		    			$codigo.= "(NC) ";
+		    			$normas_cumplidas++;
+		    		}elseif($value->alternativa == 0){
+		    			$codigo.= "(NI) ";
+		    			$normas_incumplidas++;
+		    		}else{
+		    			$codigo.= "( - ) ";
+		    		}
+		    		 
+		    		$codigo.= $value->info_des_doc."<br>";
+		    	}
 		    }
 		    $codigo.="</td>";	
 $codigo.= "</tr>
@@ -272,7 +325,19 @@ $codigo.= "
 		    <td class='tg-031e'>";
 		    $info_des_act = json_decode($obj_acta->info_des_act);
 		    foreach($info_des_act as $value){
-		    	$codigo.= $value->info_des_act."<br>";
+		    	if($value->info_des_act != ''){
+		    		if($value->alternativa == 1){
+		    			$codigo.= "(NC) ";
+		    			$normas_cumplidas++;
+		    		}elseif($value->alternativa == 0){
+		    			$codigo.= "(NI) ";
+		    			$normas_incumplidas++;
+		    		}else{
+		    			$codigo.= "( - ) ";
+		    		}
+		    		 
+		    		$codigo.= $value->info_des_act."<br>";
+		    	}
 		    }
 		    $codigo.="</td>";	
 $codigo.= "</tr>
@@ -309,7 +374,19 @@ $codigo.= "
 		    <td class='tg-031e'>";
 		    $info_des_cond = json_decode($obj_acta->info_des_cond);
 		    foreach($info_des_cond as $value){
-		    	$codigo.= $value->info_des_cond."<br>";
+		    	if($value->info_des_cond != ''){
+		    		if($value->alternativa == 1){
+		    			$codigo.= "(NC) ";
+		    			$normas_cumplidas++;
+		    		}elseif($value->alternativa == 0){
+		    			$codigo.= "(NI) ";
+		    			$normas_incumplidas++;
+		    		}else{
+		    			$codigo.= "( - ) ";
+		    		}
+		    		 
+		    		$codigo.= $value->info_des_cond."<br>";
+		    	}
 		    }
 		    $codigo.="</td>";
 $codigo.=" 	  </tr>
@@ -385,8 +462,12 @@ $codigo.= "	</tr>
 		</table>
 		<br>
 		";
-
-$codigo .= "<div style='text-align:left; padding-left: 25px; padding-right: 25px;'><strong>NIVEL DE CUMPLIMIENTO:</strong> ".$obj_acta->getAttr('cumplimiento')."%</div>";
+$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.9em;'>";
+$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$normas_cumplidas."</td></tr>";
+$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$normas_incumplidas."</td></tr>";
+//$codigo .= "<tr><td><strong>TOTAL (NC + NI):</strong> </td><td>".($normas_incumplidas + $normas_cumplidas)."</td></tr>";
+$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>".$obj_acta->getAttr('cumplimiento')."%</td></tr>";
+$codigo .= "</table>";
 $codigo .= "<p align='right'><table width='100%'>
 			<tr><td><div style='text-align:right;'><img src='".ENV_WEBROOT_FULL_URL."files/firmas/".$obj_acta->Trabajadore2->getAttr('firma')."' style='border:0px;' width='144px' height='80px'> </div>";
 $codigo .= "<div style='text-align:right;'><hr width='30%' align='right'></div>
