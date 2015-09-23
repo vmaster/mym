@@ -287,31 +287,32 @@ div#spinner-send-report
 								<div class="span3 col-md-7 col-sm-7 col-xs-7">
 									<?php echo $this->Form->hidden('email_destino', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'email-destino')); ?>
 									<select class="js-example-tokenizer" multiple="multiple">
-									  <option value="jmorenod@distriluz.com.pe">jmorenod@distriluz.com.pe</option>
-									  <option value="lvallejosm@distriluz.com.pe">lvallejosm@distriluz.com.pe</option>
-									  <option value="mperezt@distriluz.com.pe">mperezt@distriluz.com.pe</option>
-									  <option value="csandovalg@distriluz.com.pe">csandovalg@distriluz.com.pe</option>
-									  <option value="dojedam@distriluz.com.pe">dojedam@distriluz.com.pe</option>
-									  <option value="apejerreyg@distriluz.com.pe">apejerreyg@distriluz.com.pe</option>
-									  <option value="jpaicom@distriluz.com.pe">jpaicom@distriluz.com.pe</option>
-									  <option value="jsanchezm@distriluz.com.pe">jsanchezm@distriluz.com.pe</option>
-									  <option value="jaguilarc@distriluz.com.pe">jaguilarc@distriluz.com.pe</option>
-									  <option value="omontenegror@distriluz.com.pe">omontenegror@distriluz.com.pe</option>
-									  <option value="jsalazart@distriluz.com.pe">jsalazart@distriluz.com.pe</option>
-									  <option value="jvaldiviac@distriluz.com.pe">jvaldiviac@distriluz.com.pe</option>
-									  <option value="larnaov@distriluz.com.pe">larnaov@distriluz.com.pe</option>
-									  <option value="rcamposd@distriluz.com.pe">rcamposd@distriluz.com.pe</option>
-									  <option value="jperaltag@distriluz.com.pe">jperaltag@distriluz.com.pe</option>
-									  <option value="jnavarror@distriluz.com.pe">jnavarror@distriluz.com.pe</option>
-									  <option value="mym.ingenieria@hotmail.com">mym.ingenieria@hotmail.com</option>
-									  <option value="mym.ingenieria@mym-iceperu.com">mym.ingenieria@mym-iceperu.com</option>
-									  <option value="tdemeddu@gmail.com">tdemeddu@gmail.com</option>
-									  <option value="jmaldonado.milian@hotmail.com">jmaldonado.milian@hotmail.com</option>
-									  <option value="jmaldonado@mym-iceperu.com">jmaldonado@mym-iceperu.com</option>
-									  <option value="j_contrerast@yahoo.es">j_contrerast@yahoo.es</option>
-									  <option value="jeverli.riosleon@yahoo.es">jeverli.riosleon@yahoo.es</option>
-									  <option value="gersonset85@gmail.com">gersonset85@gmail.com</option>
-									  <option value="alan_hugo@outlook.com">alan_hugo@outlook.com</option>
+									  <option value="jmorenod@distriluz.com.pe">Moreno Descalzi, Juan Salvador</option>
+									  <option value="lvallejosm@distriluz.com.pe">Vallejos M&aacute;squez, Luis Alberto</option>
+									  <option value="mperezt@distriluz.com.pe">P&eacute;rez Torres, Marisella Cristina</option>
+									  <option value="csandovalg@distriluz.com.pe">Sandoval Guevara, C&eacute;sar</option>
+									  <option value="dojedam@distriluz.com.pe">Ojeda Mendoza, Dante Ivan</option>
+									  <option value="apejerreyg@distriluz.com.pe">Pejerrey Gonzales, Angel Antonio</option>
+									  <option value="jpaicom@distriluz.com.pe">Paico Mata, Javier Nestor</option>
+									  <option value="jsanchezm@distriluz.com.pe">Sanchez Montejo, Jos&eacute; Luis</option>
+									  <option value="jaguilarc@distriluz.com.pe">Aguilar Calvanapon, Jos&eacute; Ytalo</option>
+									  <option value="omontenegror@distriluz.com.pe">Montenegro Ramirez, Orlando</option>
+									  <option value="jsalazart@distriluz.com.pe">Salazar Torres, Jaime</option>
+									  <option value="jvaldiviac@distriluz.com.pe">Valdivia Cubas, Jorge Alberto</option>
+									  <option value="larnaov@distriluz.com.pe">Arnao V&aacute;squez, Luis Alberto</option>
+									  <option value="rcamposd@distriluz.com.pe">Campos D&iacute;az, Ra&uacute;l</option>
+									  <option value="jperaltag@distriluz.com.pe">Peralta Guerrero, Jorge Luis</option>
+									  <option value="jnavarror@distriluz.com.pe">Navarro Rubi&ntilde;os, Jos&eacute; Miguel</option>
+									  <option value="mym.ingenieria@hotmail.com">MyM ingenier&iacute;a Obras y Servicios</option>
+									  <option value="mym.ingenieria@mym-iceperu.com">M&M ingenier&iacute;a Obras y Servicios</option>
+									  <option value="tdemeddu@gmail.com">Eddu Martin Tenorio Delgado</option>
+									  <option value="jmaldonado.milian@hotmail.com">Jorge Maldonado Milian</option>
+									  <option value="jmaldonado@mym-iceperu.com">Jorge Maldonado Milian</option>
+									  <option value="j_contrerast@yahoo.es">Jorge Luis Contreras Tapia</option>
+									  <option value="jeverli.riosleon@yahoo.es">Jeverli Rios le&oacute;n</option>
+									  <option value="gersonset85@gmail.com">Gerson Paz Suclupe</option>
+									  <option value="jzamoraramirez@hotmail.com">Joel Zamora Ramirez</option>
+									  <option value="alan_hugo@outlook.com">Alan Flores Torres</option>
 									</select>
 								</div>
 							</div>
@@ -323,31 +324,32 @@ div#spinner-send-report
 								<div class="span3 col-md-7 col-sm-7 col-xs-7">
 									<?php echo $this->Form->hidden('email_copia', array('div' => false, 'label' => false, 'class'=>'form-control','id'=>'email-copia')); ?>
 									<select class="js-example-tokenizer2" multiple="multiple">
-									  <option value="jmorenod@distriluz.com.pe">jmorenod@distriluz.com.pe</option>
-									  <option value="lvallejosm@distriluz.com.pe">lvallejosm@distriluz.com.pe</option>
-									  <option value="mperezt@distriluz.com.pe">mperezt@distriluz.com.pe</option>
-									  <option value="csandovalg@distriluz.com.pe">csandovalg@distriluz.com.pe</option>
-									  <option value="dojedam@distriluz.com.pe">dojedam@distriluz.com.pe</option>
-									  <option value="apejerreyg@distriluz.com.pe">apejerreyg@distriluz.com.pe</option>
-									  <option value="jpaicom@distriluz.com.pe">jpaicom@distriluz.com.pe</option>
-									  <option value="jsanchezm@distriluz.com.pe">jsanchezm@distriluz.com.pe</option>
-									  <option value="jaguilarc@distriluz.com.pe">jaguilarc@distriluz.com.pe</option>
-									  <option value="omontenegror@distriluz.com.pe">omontenegror@distriluz.com.pe</option>
-									  <option value="jsalazart@distriluz.com.pe">jsalazart@distriluz.com.pe</option>
-									  <option value="jvaldiviac@distriluz.com.pe">jvaldiviac@distriluz.com.pe</option>
-									  <option value="larnaov@distriluz.com.pe">larnaov@distriluz.com.pe</option>
-									  <option value="rcamposd@distriluz.com.pe">rcamposd@distriluz.com.pe</option>
-									  <option value="jperaltag@distriluz.com.pe">jperaltag@distriluz.com.pe</option>
-									  <option value="jnavarror@distriluz.com.pe">jnavarror@distriluz.com.pe</option>
-									  <option value="mym.ingenieria@hotmail.com">mym.ingenieria@hotmail.com</option>
-									  <option value="mym.ingenieria@mym-iceperu.com">mym.ingenieria@mym-iceperu.com</option>
-									  <option value="tdemeddu@gmail.com">tdemeddu@gmail.com</option>
-									  <option value="jmaldonado.milian@hotmail.com">jmaldonado.milian@hotmail.com</option>
-									  <option value="jmaldonado@mym-iceperu.com">jmaldonado@mym-iceperu.com</option>
-									  <option value="j_contrerast@yahoo.es">j_contrerast@yahoo.es</option>
-									  <option value="jeverli.riosleon@yahoo.es">jeverli.riosleon@yahoo.es</option>
-									  <option value="gersonset85@gmail.com">gersonset85@gmail.com</option>
-									  <option value="alan_hugo@outlook.com">alan_hugo@outlook.com</option>
+									  <option value="jmorenod@distriluz.com.pe">Moreno Descalzi, Juan Salvador</option>
+									  <option value="lvallejosm@distriluz.com.pe">Vallejos M&aacute;squez, Luis Alberto</option>
+									  <option value="mperezt@distriluz.com.pe">P&eacute;rez Torres, Marisella Cristina</option>
+									  <option value="csandovalg@distriluz.com.pe">Sandoval Guevara, C&eacute;sar</option>
+									  <option value="dojedam@distriluz.com.pe">Ojeda Mendoza, Dante Ivan</option>
+									  <option value="apejerreyg@distriluz.com.pe">Pejerrey Gonzales, Angel Antonio</option>
+									  <option value="jpaicom@distriluz.com.pe">Paico Mata, Javier Nestor</option>
+									  <option value="jsanchezm@distriluz.com.pe">Sanchez Montejo, Jos&eacute; Luis</option>
+									  <option value="jaguilarc@distriluz.com.pe">Aguilar Calvanapon, Jos&eacute; Ytalo</option>
+									  <option value="omontenegror@distriluz.com.pe">Montenegro Ramirez, Orlando</option>
+									  <option value="jsalazart@distriluz.com.pe">Salazar Torres, Jaime</option>
+									  <option value="jvaldiviac@distriluz.com.pe">Valdivia Cubas, Jorge Alberto</option>
+									  <option value="larnaov@distriluz.com.pe">Arnao V&aacute;squez, Luis Alberto</option>
+									  <option value="rcamposd@distriluz.com.pe">Campos D&iacute;az, Ra&uacute;l</option>
+									  <option value="jperaltag@distriluz.com.pe">Peralta Guerrero, Jorge Luis</option>
+									  <option value="jnavarror@distriluz.com.pe">Navarro Rubi&ntilde;os, Jos&eacute; Miguel</option>
+									  <option value="mym.ingenieria@hotmail.com">MyM ingenier&iacute;a Obras y Servicios</option>
+									  <option value="mym.ingenieria@mym-iceperu.com">M&M ingenier&iacute;a Obras y Servicios</option>
+									  <option value="tdemeddu@gmail.com">Eddu Martin Tenorio Delgado</option>
+									  <option value="jmaldonado.milian@hotmail.com">Jorge Maldonado Milian</option>
+									  <option value="jmaldonado@mym-iceperu.com">Jorge Maldonado Milian</option>
+									  <option value="j_contrerast@yahoo.es">Jorge Luis Contreras Tapia</option>
+									  <option value="jeverli.riosleon@yahoo.es">Jeverli Rios le&oacute;n</option>
+									  <option value="gersonset85@gmail.com">Gerson Paz Suclupe</option>
+									  <option value="jzamoraramirez@hotmail.com">Joel Zamora Ramirez</option>
+									  <option value="alan_hugo@outlook.com">Alan Flores Torres</option>
 									</select>
 								</div>
 							</div>

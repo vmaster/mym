@@ -109,9 +109,6 @@ $codigo.= "
 		";
 
 $codigo.= "
-<table width='100%'>
- <tr>
-	<td>
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-green'>EQUIPOS DE PROTECCI&Oacute;N (PERSONAL Y/O COLECTIVO)</th>
@@ -149,13 +146,8 @@ $codigo.= "	</tr>
 		</tr>
 		</table>
 	</td>
- </tr>
-</table>
 		<br>";
 $codigo.= "
-		<table width='100%'>
-		<tr>
-		<td>
 			<table class='tg' width='100%'>
 		  		<tr>
 		    		<th class='tg-e3zv back-green'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
@@ -190,15 +182,9 @@ $codigo.= "		</tr>
 					</td>
 				</tr>
 			</table>
-		</td>
-		</tr>
-		</table>
 		<br>";
 
 $codigo.= "
-<table width='100%'>
- <tr>
-	<td>
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-green'>UNIDADES M&Oacute;VILES</th>
@@ -233,15 +219,9 @@ $codigo.= "	</tr>
 		 </td>
 		</tr>
 		</table>
-	</td>
- </tr>
-</table>
 <br>";
 
 $codigo.= "
-<table width='100%'>
- <tr>
-	<td>
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-green'>DOCUMENTACI&Oacute;N DE SEGURIDAD</th>
@@ -276,15 +256,9 @@ $codigo.= "	</tr>
 		 </td>
 		</tr>
 		</table>
-	</td>
- </tr>
-</table>
 		<br>";
 
 $codigo.= "
-<table width='100%'>
- <tr>
-	<td>
 		<table class='tg' width='100%'>
 		  <!-- <tr>
 			<th class='tg-e3zv back-green2'>
@@ -323,16 +297,10 @@ $codigo.= "	</tr>
 			</table>
 			</td>
 		  </tr>
-		</table>
-	</td>
- </tr>
-</table>		
+		</table>		
 <br>";
 
 $codigo.= "
-<table width='100%'>
-<tr>
-	<td>		
 		<table class='tg' width='100%'>
 		  <tr>
 			<th class='tg-e3zv back-green'>ACTOS Y CONDICIONES SUBESTANDARES</th>
@@ -367,15 +335,9 @@ $codigo.= "	</tr>
 			</td>
 		  </tr>
 		</table>
-	</td>
- </tr>
-</table>
 <br>";
 
 $codigo.="
-<table width='100%'>
- <tr>
-	<td>
 		<table class='tg salto-linea' width='100%'>
 		  <tr>
 		    <th class='tg-hgcj back-blue' colspan='2'><strong>CONCLUSIONES, RECOMENDACIONES Y ACCIONES CORRECTIVAS</strong></th>
@@ -389,15 +351,9 @@ $codigo.="
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_rec'))."</td>
 		  </tr>
 		</table>
-	</td>
- </tr>
-</table>
 		";
 $codigo.="<br>";
 $codigo.="
-<table width='100%'>
- <tr>
-	<td>
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-hgcj back-green'><strong>MEDIDAS DE CONTROL</strong></th>
@@ -427,9 +383,6 @@ $codigo.= "	</tr>
 			</td>
 		  </tr>  		
 		</table>
-	</td>
- </tr>
-</table>
 		<br>
 		";
 
