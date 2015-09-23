@@ -466,7 +466,13 @@ $codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 
 $codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$normas_cumplidas."</td></tr>";
 $codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$normas_incumplidas."</td></tr>";
 //$codigo .= "<tr><td><strong>TOTAL (NC + NI):</strong> </td><td>".($normas_incumplidas + $normas_cumplidas)."</td></tr>";
-$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>".$obj_acta->getAttr('cumplimiento')."%</td></tr>";
+$suma_normas = $normas_cumplidas + $normas_incumplidas;
+if($suma_normas > 0){
+	$formula = ($normas_cumplidas * 100)/$suma_normas;
+}else{
+	$formula = 0;
+}
+$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>".round($formula,2)."%</td></tr>";
 $codigo .= "</table>";
 $codigo .= "<p align='right'><table width='100%'>
 			<tr><td><div style='text-align:right;'><img src='".ENV_WEBROOT_FULL_URL."files/firmas/".$obj_acta->Trabajadore2->getAttr('firma')."' style='border:0px;' width='144px' height='80px'> </div>";
