@@ -420,8 +420,8 @@ $codigo.="
 		    <th class='tg-hgcj back-blue' colspan='2'><strong>CONCLUSIONES, RECOMENDACIONES Y ACCIONES CORRECTIVAS</strong></th>
 		  </tr>
 		  <tr>
-		    <td class='tg-e3zv back-green'>CONCLUSIONES</td>
-		    <td class='tg-e3zv back-green'>RECOMENDACIONES</td>
+		    <td width='50%' class='tg-e3zv back-green'>CONCLUSIONES</td>
+		    <td width='50%' class='tg-e3zv back-green'>RECOMENDACIONES</td>
 		  </tr>
 		  <tr style='vertical-align:top;'>
 		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_conclusion'))."</td>
