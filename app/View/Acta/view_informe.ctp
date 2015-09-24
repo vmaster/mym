@@ -462,7 +462,7 @@ $codigo.= "	</tr>
 		</table>
 		<br>
 		";
-$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.9em;'>";
+$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.85em;'>";
 $codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$normas_cumplidas."</td></tr>";
 $codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$normas_incumplidas."</td></tr>";
 //$codigo .= "<tr><td><strong>TOTAL (NC + NI):</strong> </td><td>".($normas_incumplidas + $normas_cumplidas)."</td></tr>";
@@ -477,8 +477,8 @@ $codigo .= "</table>";
 $codigo .= "<p align='right'><table width='100%'>
 			<tr><td><div style='text-align:right;'><img src='".ENV_WEBROOT_FULL_URL."files/firmas/".$obj_acta->Trabajadore2->getAttr('firma')."' style='border:0px;' width='144px' height='80px'> </div>";
 $codigo .= "<div style='text-align:right;'><hr width='30%' align='right'></div>
-		   	<div style='text-align:right; /*padding-left: 52px; padding-right: 52px;*/'>ING. ".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."</div>
-		   	<div style='text-align:right; padding-left: 25px; padding-right: 25px;'>SUPERVISOR DE SST - M&M</div></td></tr></table></p>";
+		   	<div style='text-align:right;font-size:13px; /*padding-left: 52px; padding-right: 52px;*/'>ING. ".$obj_acta->Trabajadore2->getAttr('apellido_nombre')."</div>
+		   	<div style='text-align:right;font-size:13px; padding-left: 25px; padding-right: 25px;'>SUPERVISOR DE SST - M&M</div></td></tr></table></p>";
 
 $codigo.= "<table class='tg salto-linea' width='100%'>
 		<thead>
