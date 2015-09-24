@@ -58,7 +58,7 @@ tinymce.init({
 								<td style="vertical-align: middle; text-align: center;"><strong>FORMATO</strong>
 								</td>
 								<td><?php echo utf8_encode('Código:');?></td>
-								<td><?php echo $this->Form->input('codigo', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>'F23-08')); ?>
+								<td><?php echo $this->Form->input('codigo', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>'M001-SST')); ?>
 								</td>
 							</tr>
 							<tr>
@@ -66,7 +66,7 @@ tinymce.init({
 									style="vertical-align: middle; text-align: center;"><strong><?php echo utf8_encode('ACTA DE SUPERVISIÓN SEGURIDAD Y SALUD EN EL TRABAJO'); ?>
 								</strong></td>
 								<td><?php echo utf8_encode('Versión:'); ?></td>
-								<td><?php echo $this->Form->input('version', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>'01/13-05-14')); ?>
+								<td><?php echo $this->Form->input('version', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>'00/2015-M001')); ?>
 								</td>
 							</tr>
 							<tr>
