@@ -424,8 +424,8 @@ $codigo.="
 		    <td width='50%' class='tg-e3zv back-green'>RECOMENDACIONES</td>
 		  </tr>
 		  <tr style='vertical-align:top;'>
-		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_conclusion'))."</td>
-		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_rec'))."</td>
+		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_conclusion')."</td>
+		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_rec')."</td>
 		  </tr>
 		</table>
 		";
@@ -436,7 +436,7 @@ $codigo.="
 		    <th class='tg-hgcj back-green'><strong>MEDIDAS DE CONTROL</strong></th>
 		  </tr>
 		  <tr style='vertical-align:top;'>
-		    <td class='tg-031e'>".nl2br($obj_acta->getAttr('info_des_med'))."</td>
+		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_med')."</td>
 		  </tr>
 		  <tr>
 		   	<td>
