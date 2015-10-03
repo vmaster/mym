@@ -1,23 +1,10 @@
-<script>
-/*
-$(function () {
-	  $('#ni').tooltip();
-	  $('#na').tooltip();
-
-	  bkLib.onDomLoaded(function() {
-			 new nicEditor({iconsPath : env_webroot_script+'img/nicEditorIcons.gif', buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul']}).panelInstance('txtConclusiones'); 
-			 new nicEditor({iconsPath : env_webroot_script+'img/nicEditorIcons.gif', buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul']}).panelInstance('txtRecomendaciones');
-			 new nicEditor({iconsPath : env_webroot_script+'img/nicEditorIcons.gif', buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul']}).panelInstance('txtMedControl');
-	  });
-})
-*/
-</script>
-
 <script type="text/javascript">
 tinymce.init({
 	save_enablewhendirty: true,
     save_onsavecallback: function() {console.log("Save");},
     selector: "textarea.editor",
+    language: "es",
+    browser_spellcheck : true,
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
