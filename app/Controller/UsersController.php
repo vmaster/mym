@@ -283,14 +283,23 @@ class UsersController extends AppController{
 	
 		if($this->request->is('post')){
 			$user_id = $this->request->data['user_id'];
-			if($this->User->deleteUser($user_id)){
+			
+			$obj_user = $this->User->findById($user_id);
+			if($obj_user->saveField('estado', 0)){
+				echo json_encode(array('success'=>true,'msg'=>__('Eliminado con &eacute;xito.')));
+				exit();
+			}else{
+				echo json_encode(array('success'=>false,'msg'=>__('Error inesperado.')));
+				exit();
+			}
+			/*if($this->User->deleteUser($user_id)){
 				echo json_encode(array('success'=>true,'msg'=>__('Eliminado con &eacute;xito.')));
 				//exit();
 			}else{
 				echo json_encode(array('success'=>false,'msg'=>__('Error inesperado.')));
 				//exit();
 			}
-			exit();
+			exit();*/
 		}
 	}
 
