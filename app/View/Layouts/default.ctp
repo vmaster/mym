@@ -81,7 +81,10 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<?= ENV_WEBROOT_FULL_URL; ?>">M & M</a>
+				<a class="navbar-brand" href="<?= ENV_WEBROOT_FULL_URL; ?>" style="padding:5px 5px">
+					<div style="font-size:17px">SEGESEM</div>
+					<div style="font-size: 11px;line-height: 17px;font-weight: 100;">Sostenibilidad Empresarial en Gestion de la Seguridad y Salud en el trabajo En M&M</div>
+				</a>
 			</div>
 			<div
 				style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
