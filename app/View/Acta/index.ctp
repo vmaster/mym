@@ -197,7 +197,9 @@ div#spinner-send-report
 	</div>
 	
 	<div class="btn-toolbar">
+		<?php if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>
 	    <a class="btn btn-primary btn-nuevo-acta" href="<?= ENV_WEBROOT_FULL_URL; ?>actas/nuevo_informe"><i class="icon-plus"></i> <?php echo __('Nuevo Informe'); ?></a>
+	    <?php } ?>
 	  <div class="btn-group">
 	  </div>
 	</div>
