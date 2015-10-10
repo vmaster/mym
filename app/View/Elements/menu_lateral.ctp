@@ -2,7 +2,7 @@
 	<div class="sidebar-collapse">
 		<ul class="nav" id="main-menu">
 			<li class="text-center"><img
-				src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/img/find_user.png"
+				src="<?= ENV_WEBROOT_FULL_URL; ?>lib/theme/img/MYM.png"
 				class="user-image img-responsive" /></li>
 
 
