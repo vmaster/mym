@@ -154,11 +154,7 @@ class ActasController extends AppController{
 	 * @author Vladimir
 	 */
 	public function nuevo_informe($acta_id=null){
-		if($this->Session->read('Auth.User.tipo_user_id') == 3) {
-			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
-			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
-			exit();
-        }
+		$this->verificarAccessoInvitado();
 
 		$this->layout = 'default';
 		

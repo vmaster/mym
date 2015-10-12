@@ -4,6 +4,9 @@ class ActividadesController extends AppController{
 	
 	
 	public function index($order_by=null,$order_by_or=null,$search_descripcion=null) {
+		
+		$this->verificarAccessoInvitado(); //AppController
+
 		$this->layout = "default";
 		$this->loadModel('Actividade');
 		

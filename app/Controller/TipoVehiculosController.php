@@ -4,11 +4,7 @@ class TipoVehiculosController extends AppController{
 	
 	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_descripcion=null) {
-		if($this->Session->read('Auth.User.tipo_user_id') == 3) {
-			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
-			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
-			exit();
-        }
+		$this->verificarAccessoInvitado(); //AppController
         
 		$this->layout = "default";
 		$this->loadModel('TipoVehiculo');
@@ -23,20 +19,6 @@ class TipoVehiculosController extends AppController{
 		}else{
 			$order_by_or = 'DESC';
 		}
-		
-		/*if($order_by=='title'){
-			$order_by = 'Bit.title';
-		}elseif($order_by=='username'){
-			$order_by = 'UserJoin.username';
-		}elseif($order_by=='home'){
-			$order_by = 'Bit.view_home';
-		}elseif($order_by=='status'){
-			$order_by = 'Bit.status';
-		}else{
-			$order_by = 'Bit.created';
-		}*/
-		
-	
 	
 	$order_by = 'TipoVehiculo.created';
 		

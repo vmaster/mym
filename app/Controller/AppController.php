@@ -54,4 +54,21 @@ class AppController extends Controller {
 	/*public function beforeFilter(){
 		$this->Auth->allow('index','view');
 	}*/
+
+	/**
+	 * Verificamos desde AppController que el Perfil Invitado no tenga acceso.
+	 * @param $
+	 * @return redirect
+	 * @author Vladimir
+	 * @version 12 Octubre 2015
+	 */
+	public function verificarAccessoInvitado(){
+		if($this->request->params['controller'] == 'actividades' || $this->request->params['controller'] == 'users' || $this->request->params['controller'] == 'trabajadores' || $this->request->params['controller'] == 'empresas' || $this->request->params['controller'] == 'vehiculos' || $this->request->params['controller'] == 'tipo_vehiculos' || $this->request->params['controller'] == 'codigos' || $this->request->params['controller'] == 'unidades_negocios' || $this->request->params['controller'] == 'categoria_normas' || $this->request->params['action'] == 'nuevo_informe'){
+			if($this->Session->read('Auth.User.tipo_user_id') == 3) {
+				echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
+				$this->redirect(array('controller' => 'actas', 'action' => 'index'));
+				exit();
+       		 }
+		}
+	}
 }

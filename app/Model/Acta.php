@@ -432,7 +432,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresaJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresaJoin.id = Acta.empresa_id'
+    									'EmpresaJoin.id = Acta.empresa_id',
+                                        'EmpresaJoin.estado' => 1
     							)
     					)
     			),
@@ -458,7 +459,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresaJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresaJoin.id = Acta.empresa_id'
+    									'EmpresaJoin.id = Acta.empresa_id',
+                                        'EmpresaJoin.estado' => 1
     							)
     					)
     			),
@@ -484,7 +486,8 @@ App::uses('AppModel','Model');
     							'alias' => 'UnidadesNegocioJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'UnidadesNegocioJoin.id = Acta.uunn_id'
+    									'UnidadesNegocioJoin.id = Acta.uunn_id',
+                                        'UnidadesNegocioJoin.estado' => 1
     							)
     					)
     			),
@@ -508,7 +511,8 @@ App::uses('AppModel','Model');
     							'alias' => 'UnidadesNegocioJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'UnidadesNegocioJoin.id = Acta.uunn_id'
+    									'UnidadesNegocioJoin.id = Acta.uunn_id',
+                                        'UnidadesNegocioJoin.estado' => 1
     							)
     					)
     			),
@@ -533,7 +537,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = Acta.empresa_id'
+    									'EmpresasJoin.id = Acta.empresa_id',
+                                        'EmpresasJoin.estado' => 1
     							)
     					),
     					array(
@@ -572,7 +577,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = Acta.empresa_id'
+    									'EmpresasJoin.id = Acta.empresa_id',
+                                        'EmpresasJoin.estado' => 1
     							)
     					),
     					array(
@@ -622,7 +628,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = Acta.empresa_id'
+    									'EmpresasJoin.id = Acta.empresa_id',
+                                        'EmpresasJoin.estado' => 1
     							)
     					),
     					array(
@@ -678,7 +685,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = Acta.empresa_id'
+    									'EmpresasJoin.id = Acta.empresa_id',
+                                        'EmpresasJoin.estado' => 1
     							)
     					),
     					array(
@@ -717,7 +725,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = Acta.empresa_id'
+    									'EmpresasJoin.id = Acta.empresa_id',
+                                        'EmpresasJoin.estado' => 1
     							)
     					),
     					array(
@@ -767,7 +776,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = Acta.empresa_id'
+    									'EmpresasJoin.id = Acta.empresa_id',
+                                        'EmpresasJoin.estado' => 1
     							)
     					),
     					array(
@@ -823,7 +833,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = Acta.empresa_id'
+    									'EmpresasJoin.id = Acta.empresa_id',
+                                        'EmpresasJoin.estado' => 1
     							)
     					),
     					array(
@@ -883,7 +894,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = Acta.empresa_id'
+    									'EmpresasJoin.id = Acta.empresa_id',
+                                        'EmpresasJoin.estado' => 1
     							)
     					),
     					array(
@@ -942,7 +954,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = Acta.empresa_id'
+    									'EmpresasJoin.id = Acta.empresa_id',
+                                        'EmpresasJoin.estado' => 1
     							)
     					),
     					array(
@@ -1000,7 +1013,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = Acta.empresa_id'
+    									'EmpresasJoin.id = Acta.empresa_id',
+                                        'EmpresasJoin.estado' => 1
     							)
     					),
     					array(
@@ -1079,7 +1093,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresaJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresaJoin.id = Acta.empresa_id'
+    									'EmpresaJoin.id = Acta.empresa_id',
+                                        'EmpresaJoin.estado' => 1
     							)
     					)
     			),
@@ -1105,7 +1120,8 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresaJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresaJoin.id = Acta.empresa_id'
+    									'EmpresaJoin.id = Acta.empresa_id',
+                                        'EmpresaJoin.estado' => 1
     							)
     					)
     			),

@@ -4,11 +4,8 @@ class TrabajadoresController extends AppController{
 	
 	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_nro_documento=null,$search_nombre=null) {
-		if($this->Session->read('Auth.User.tipo_user_id') == 3) {
-			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
-			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
-			exit();
-        }
+		
+		$this->verificarAccessoInvitado(); //AppController
 		
 		$this->layout = "default";
 		$this->loadModel('Trabajadore');

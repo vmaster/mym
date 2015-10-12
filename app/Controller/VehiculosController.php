@@ -4,11 +4,7 @@ class VehiculosController extends AppController{
 	
 	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_nroplaca=null,$search_nrosoat=null) {
-		if($this->Session->read('Auth.User.tipo_user_id') == 3) {
-			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
-			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
-			exit();
-        }
+		$this->verificarAccessoInvitado(); //AppController
 		
 		$this->layout = "default";
 		$this->loadModel('Vehiculo');
