@@ -438,7 +438,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'Acta.estado' => 1
     			),
     	/*'order'=> array($order_by.' '.$order),*/
     			'group'=> array('EmpresaJoin.nombre')
@@ -465,7 +466,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'Acta.estado' => 1
     			),
     			'order'=> array('EmpresaJoin.nombre')
     			/*'group'=> array('EmpresaJoin.nombre')*/
@@ -492,7 +494,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'Acta.estado' => 1
     			),
     			/*'order'=> array($order_by.' '.$order),*/
     			'group'=> array('UnidadesNegocioJoin.descripcion')
@@ -517,7 +520,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'Acta.estado' => 1
     			),
     			'order'=> array('UnidadesNegocioJoin.descripcion'),
     			//'group'=> array('UnidadesNegocioJoin.descripcion')
@@ -559,7 +563,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'Acta.estado' => 1
     			),
     			/*'order'=> array($order_by.' '.$order),*/
     			'group'=> array('EmpresasJoin.nombre')
@@ -609,7 +614,8 @@ App::uses('AppModel','Model');
     			'conditions'=>array(
     					'AND' => array(
     							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'Acta.empresa_id'=> $empresa_id
+    							'Acta.empresa_id'=> $empresa_id,
+                                'Acta.estado' => 1
     							)
     			),
     			/*'order'=> array($order_by.' '.$order),*/
@@ -666,7 +672,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'Acta.estado' => 1
     			)
     			/*'order'=> array($order_by.' '.$order),*/
     			//'group'=> array('EmpresasJoin.nombre')
@@ -707,7 +714,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'Acta.estado' => 1
     			),
     			/*'order'=> array($order_by.' '.$order),*/
     			'group'=> array('EmpresasJoin.nombre')
@@ -757,7 +765,8 @@ App::uses('AppModel','Model');
     			'conditions'=>array(
     					'AND' => array(
     							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'Acta.empresa_id'=> $empresa_id
+    							'Acta.empresa_id'=> $empresa_id,
+                                'Acta.estado' => 1
     					)
     			),
     			/*'order'=> array($order_by.' '.$order),*/
@@ -814,7 +823,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'Acta.estado' => 1
     			)
     			/*'order'=> array($order_by.' '.$order),*/
     			//'group'=> array('EmpresasJoin.nombre')
@@ -873,7 +883,8 @@ App::uses('AppModel','Model');
     			'conditions'=>array(
     					'AND' => array(
     							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'Acta.empresa_id' => $empresa_id
+    							'Acta.empresa_id' => $empresa_id,
+                                'Acta.estado' => 1
     					)
     			),
     			'order'=> array('Cantidad DESC'),
@@ -934,7 +945,8 @@ App::uses('AppModel','Model');
     			'conditions'=>array(
     					'AND' => array(
     							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'Acta.empresa_id' => $empresa_id
+    							'Acta.empresa_id' => $empresa_id,
+                                'Acta.estado' => 1
     					)
     			),
     			'order'=> array('Cantidad DESC'),
@@ -994,7 +1006,8 @@ App::uses('AppModel','Model');
     			'conditions'=>array(
     					'AND' => array(
     							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'Acta.empresa_id' => $empresa_id
+    							'Acta.empresa_id' => $empresa_id,
+                                'Acta.estado' => 1
     					)
     			),
     			'order by'=> array('CodigosJoin.codigo ASC')
@@ -1053,7 +1066,8 @@ App::uses('AppModel','Model');
     			'conditions'=>array(
     					'AND' => array(
     							'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'Acta.empresa_id' => $empresa_id
+    							'Acta.empresa_id' => $empresa_id,
+                                'Acta.estado' => 1
     					)
     			),
     			'order by'=> array('CodigosJoin.codigo ASC')
@@ -1099,7 +1113,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'Acta.estado' => 1
     			),
     			/*'order'=> array($order_by.' '.$order),*/
     			'group'=> array('EmpresaJoin.nombre')
@@ -1126,7 +1141,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'Acta.estado' => 1
     			),
     			'order'=> array('EmpresaJoin.nombre')
     			/*'group'=> array('EmpresaJoin.nombre')*/
@@ -1184,7 +1200,7 @@ App::uses('AppModel','Model');
     							)
     					)    				
     			),
-    			'conditions'=>array('Acta.id' => $acta_id),
+    			'conditions'=>array('Acta.id' => $acta_id, 'Acta.estado' => 1),
     			'group' => array('CodigosJoin.codigo', 'CodigosJoin.observacion', 'CategoriaNormasJoin.descripcion')
     	)
     	);
@@ -1230,7 +1246,7 @@ App::uses('AppModel','Model');
     							)
     					)
     			),
-    			'conditions'=>array('Acta.id' => $acta_id),
+    			'conditions'=>array('Acta.id' => $acta_id, 'Acta.estado' => 1),
     			'group' => array('CodigosJoin.codigo', 'CodigosJoin.observacion', 'CategoriaNormasJoin.descripcion')
     	)
     	);
