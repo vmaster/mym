@@ -52,14 +52,14 @@ $codigo.= "</div>";
 
 $codigo.= "<table class='tg' width='100%' style='margin-bottom:-15px'>
 			  <tr>
-			    <th style='width:10%' class='tg-031e back-green' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/logo-mini.png' style='width: 80px; border:0px;'/></th>
+				<th style='width:10%;background-color:white' class='tg-031e' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/mym-informe.png' style='width: 76px; border:0px;'/></th>
 			    <th style='width:62%' class='tg-031e back-blue' rowspan='2'><h2 style='margin:2px'>M&amp;M Ingenier&iacute;a Obras y Servicios E.I.R.L.</h2>
 			    <h5 style='margin:2px'>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, civiles, miner&iacute;a e industrial.<br>Especialistas de gesti&oacute;n en Seguridad, salud en el trabajo, calidad y medio ambiente.</h5>		
 			    </th>
 			    <th style='width:28%' class='aling-left back-green'><strong>UUNN:</strong> ".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
 			  </tr>
 			  <tr>
-			    <td class='aling-left back-green'><strong>SECTOR:</strong>".$obj_acta->getAttr('sector')."</td>
+			    <td class='aling-left back-green'><strong>C&Oacute;DIGO:</strong> M001-SST</td>
 			  </tr>
 			  <tr>
 			    <td class='tg-uni back-blue'><strong>INFORME T&Eacute;CNICO DE SEGURIDAD</strong></td>
@@ -72,31 +72,33 @@ $codigo .="<table class='tg' width='100%' style='margin-bottom:-10px'>
 
   <tr>
     <th class='tg-e3zv aling-left back-green'>Empresa:</th>
-    <th class='tg-031e aling-left' colspan='3'>".$obj_acta->Empresa->getAttr('nombre')."</th>
+    <th class='tg-031e aling-left' colspan='5'>".$obj_acta->Empresa->getAttr('nombre')."</th>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Actividad:</td>
-    <td class='tg-031e' colspan='3'>".$obj_acta->getAttr('actividad')."</td>
+    <td class='tg-031e' colspan='5'>".$obj_acta->getAttr('actividad')."</td>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Obra:</td>
-    <td class='tg-031e' colspan='3'>".$obj_acta->getAttr('obra')."</td>
+    <td class='tg-031e' colspan='5'>".$obj_acta->getAttr('obra')."</td>
   </tr>
   <tr>
     <td style='width:10%' class='tg-e3zv back-green'>Lugar:</td>
-    <td style='width:36%' class='tg-031e'>".$obj_acta->getAttr('lugar')."</td>
+    <td style='width:36%' class='tg-031e' colspan='3'>".$obj_acta->getAttr('lugar')."</td>
     <td style='width:26%' class='aling-left back-green'><strong>&Aacute;rea:</strong></td>
     <td style='width:28%' class='tg-031e'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Fecha:</td>
-    <td class='tg-031e'>".date('d-m-Y',strtotime($obj_acta->getAttr('fecha')))."</td>
+    <td class='tg-031e' colspan='3'>".date('d-m-Y',strtotime($obj_acta->getAttr('fecha')))."</td>
     <td class='aling-left back-green'><strong>Responsable:</strong></td>
     <td class='tg-031e'>".$obj_acta->Trabajadore1->getAttr('apellido_nombre')."</td>
   </tr>
   <tr>
     <td style='width:10%' class='tg-e3zv back-green'>Supervisi&oacute;n:</td>
     <td class='tg-031e'>".$tipo_supervision."</td>
+	<td class='tg-e3zv back-green'>N&deg; Acta:</td>
+	<td class='tg-031e'>".$obj_acta->getAttr('numero')."</td>
     <td class='aling-left back-green'><strong>Emp. Superv. al Servicio de:</strong></td>
     <td class='tg-031e'>".$obj_acta->getAttr('empresa_supervisora')."</td>
   </tr>
