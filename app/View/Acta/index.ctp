@@ -314,7 +314,8 @@ div#spinner-send-report
 									  <option value="jeverli.riosleon@yahoo.es">Jeverli Rios le&oacute;n</option>
 									  <option value="gersonset85@gmail.com">Gerson Paz Suclupe</option>
 									  <option value="jzamoraramirez@hotmail.com">Joel Zamora Ramirez</option>
-									  <option value="alan_hugo@outlook.com">Alan Flores Torres</option>
+									  <option value="ing.victorjacinto@hotmail.com">Victor Hugo Jacinto Segura</option>
+									  <option value="alan_hugo@outlook.com">Alan Florez Torres</option>
 									</select>
 								</div>
 							</div>
@@ -351,7 +352,8 @@ div#spinner-send-report
 									  <option value="jeverli.riosleon@yahoo.es">Jeverli Rios le&oacute;n</option>
 									  <option value="gersonset85@gmail.com">Gerson Paz Suclupe</option>
 									  <option value="jzamoraramirez@hotmail.com">Joel Zamora Ramirez</option>
-									  <option value="alan_hugo@outlook.com">Alan Flores Torres</option>
+									  <option value="ing.victorjacinto@hotmail.com">Victor Hugo Jacinto Segura</option>
+									  <option value="alan_hugo@outlook.com">Alan Florez Torres</option>
 									</select>
 								</div>
 							</div>

@@ -19,8 +19,8 @@
 			<td><?php echo $vehiculo->getAttr('nro_placa'); ?></td>
 			<td><?php echo $vehiculo->getAttr('nro_soat'); ?></td>
 			<td><?php echo $vehiculo->getAttr('nro_rev_tec'); ?></td>
-			<td><a><i class="fa fa-pencil edit-vehiculo-trigger"></i> </a> 
-				<a href="#myModalDeleteVehiculo" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-vehiculo"></i> </a>
+			<td><a><i class="fa fa-pencil edit-vehiculo-trigger"></i> </a> <?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+			<a href="#myModalDeleteVehiculo" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-vehiculo"></i> </a><?php } ?>
 			</td>
 		</tr>
 		<?php 
