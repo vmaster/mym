@@ -35,7 +35,7 @@
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_cumplimiento_empresas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_cumplimiento_empresas" id="link-usuario"><i class="fa fa-user fa-3x"></i><?php echo ' '.__('Cumplimiento por Empresa (%)'); ?></a></li>
 				</ul>
 			</li>
-			<?php if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>
+			<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
 				<li><a href="#"><i class="fa fa-cog fa-3x"></i> Configuraci&oacute;n <span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level <?php echo ($this->request->params['controller'] == 'configurations')?"collapse in":"collapse";  ?>">
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'configurations' && $this->request->params['action']=='backup_database')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>configurations/backup_database" id="link-actividad"><i class="fa fa-floppy-o fa-3x"></i> <?php echo ' '.__('Backup de Base de Datos'); ?></a></li>

@@ -78,8 +78,8 @@
 						<td><?php echo utf8_encode($codigo->CategoriaNorma->getAttr('descripcion')); ?></td>
 						<td><?php echo utf8_encode($codigo->getAttr('observacion')); ?></td>
 						<td><?php echo utf8_encode($codigo->getAttr('norma_incumplida')); ?></td>
-						<td><a><i class="fa fa-pencil edit-codigo-trigger"></i> </a> 
-							<a href="#myModalDeleteCodigo" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-codigo"></i> </a>
+						<td><a><i class="fa fa-pencil edit-codigo-trigger"></i> </a> <?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+							<a href="#myModalDeleteCodigo" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-codigo"></i> </a><?php } ?>
 						</td>
 					</tr>
 					<?php 

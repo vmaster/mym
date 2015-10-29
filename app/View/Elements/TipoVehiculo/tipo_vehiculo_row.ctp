@@ -73,8 +73,8 @@
 					<tr class="tipo_vehiculo_row_container" tipo_vehiculo_id="<?php echo $tipo_vehiculo->getAttr('id'); ?>">
 						<td><?php echo $n; ?></td>
 						<td><?php echo $tipo_vehiculo->getAttr('descripcion'); ?></td>
-						<td><a><i class="fa fa-pencil edit-tipo-vehiculo-trigger"></i> </a> 
-							<a href="#myModalDeleteTipoVehiculo" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-tipo-vehiculo"></i> </a>
+						<td><a><i class="fa fa-pencil edit-tipo-vehiculo-trigger"></i> </a> <?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+							<a href="#myModalDeleteTipoVehiculo" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-tipo-vehiculo"></i> </a><?php } ?>
 						</td>
 					</tr>
 					<?php 

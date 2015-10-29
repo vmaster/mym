@@ -73,8 +73,8 @@
 					<tr class="categoria_norma_row_container" categoria_norma_id="<?php echo $categoria_norma->getAttr('id'); ?>">
 						<td><?php echo $n; ?></td>
 						<td><?php echo utf8_encode($categoria_norma->getAttr('descripcion')); ?></td>
-						<td><a><i class="fa fa-pencil edit-categoria-norma-trigger"></i> </a> 
-							<a href="#myModalDeleteCategoriaNorma" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-categoria-norma"></i> </a>
+						<td><a><i class="fa fa-pencil edit-categoria-norma-trigger"></i> </a> <?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+							<a href="#myModalDeleteCategoriaNorma" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-categoria-norma"></i> </a><?php } ?>
 						</td>
 					</tr>
 					<?php 

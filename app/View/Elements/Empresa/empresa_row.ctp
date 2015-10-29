@@ -15,8 +15,8 @@
 		<tr class="empresa_row_container" empresa_id="<?php echo $empresa->getAttr('id'); ?>">
 			<td><?php echo $n; ?></td>
 			<td><?php echo $empresa->getAttr('nombre'); ?></td>
-			<td><a><i class="fa fa-pencil edit-empresa-trigger"></i> </a> 
-				<a href="#myModalDeleteEmpresa" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-empresa"></i> </a>
+			<td><a><i class="fa fa-pencil edit-empresa-trigger"></i> </a> <?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+				<a href="#myModalDeleteEmpresa" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-empresa"></i> </a><?php } ?>
 			</td>
 		</tr>
 		<?php 

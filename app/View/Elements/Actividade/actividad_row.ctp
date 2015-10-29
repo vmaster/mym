@@ -72,8 +72,8 @@
 					<tr class="actividad_row_container" actividad_id="<?php echo $actividad->getAttr('id'); ?>">
 						<td><?php echo $n; ?></td>
 						<td><?php echo $actividad->getAttr('descripcion'); ?></td>
-						<td><a><i class="fa fa-pencil edit-actividad-trigger"></i> </a> 
-							<a href="#myModalDeleteActividad" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-actividad"></i> </a>
+						<td><a><i class="fa fa-pencil edit-actividad-trigger"></i> </a> <?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+							<a href="#myModalDeleteActividad" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-actividad"></i> </a><?php } ?>
 						</td>
 					</tr>
 					<?php 

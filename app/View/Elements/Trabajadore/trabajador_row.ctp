@@ -23,8 +23,8 @@
 			<td><?php echo ($trabajador->getAttr('actividade_id')==0)? "":$trabajador->Actividade->getAttr('descripcion'); ?></td>
 			<td><?php echo $trabajador->getAttr('sexo'); ?></td>
 			<td><?php echo ($trabajador->getAttr('tipo_trabajador')=='I')?'<strong>I</strong>NTERNO':'<strong>E</strong>XTERNO'; ?></td>
-			<td><a><i class="fa fa-pencil edit-trabajador-trigger"></i> </a> 
-				<a href="#myModalDeleteTrabajador" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-trabajador"></i> </a>
+			<td><a><i class="fa fa-pencil edit-trabajador-trigger"></i> </a> <?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+				<a href="#myModalDeleteTrabajador" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-trabajador"></i> </a><?php } ?>
 			</td>
 		</tr>
 		<?php 
