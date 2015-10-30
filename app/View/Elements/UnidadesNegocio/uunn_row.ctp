@@ -72,7 +72,7 @@
 					<tr class="unidades_negocio_row_container" unidades_negocio_id="<?php echo $unidades_negocio->getAttr('id'); ?>">
 						<td><?php echo $n; ?></td>
 						<td><?php echo $unidades_negocio->getAttr('descripcion'); ?></td>
-						<td><a><i class="fa fa-pencil edit-unidades-negocio-trigger"></i> </a> <?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+						<td><?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?><a><i class="fa fa-pencil edit-unidades-negocio-trigger"></i> </a> 
 							<a href="#myModalDeleteUnidadesNegocio" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-unidades-negocio"></i> </a><?php } ?>
 						</td>
 					</tr>
