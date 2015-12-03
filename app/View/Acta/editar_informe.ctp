@@ -462,7 +462,7 @@ tinymce.init({
 													<td><span class="preview"> <a
 															href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/<?php echo $obj_foto_ipp->getAttr('file_name'); ?>"
 															title="<?php echo $obj_foto_ipp->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-															data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/thumbnail/<?php echo $obj_foto_ipp->getAttr('file_name'); ?>" width='80px'>
+															><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/thumbnail/<?php echo $obj_foto_ipp->getAttr('file_name'); ?>" width='80px'>
 														</a>
 														<textarea rows="2"  name="data[FotoIppUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_ipp->getAttr('observacion'); ?></textarea>
 														<input type="hidden" value="<?php echo $obj_foto_ipp->getAttr('id'); ?>" name="data[FotoIppUpdate][<?php echo $key; ?>][id][]">
@@ -472,7 +472,7 @@ tinymce.init({
 														<p class="name">
 															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/<?php echo $obj_foto_ipp->getAttr('file_name'); ?>"
 																title="<?php echo $obj_foto_ipp->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-																data-gallery=""><?php echo $obj_foto_ipp->getAttr('file_name'); ?></a> 
+																><?php echo $obj_foto_ipp->getAttr('file_name'); ?></a> 
 														</p>
 													</td>
 													<td><span class="size">120.37 KB</span>

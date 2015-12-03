@@ -10,6 +10,8 @@ $codigo = "<style type='text/css'>
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{font-family:Times New Roman, Georgia, Serif;font-size:14px;padding:3px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 .tg th{font-family:Times New Roman, Georgia, Serif;font-size:14px;font-weight:normal;padding:3px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.font-head{font-family:Arial, Verdana, Sans-serif !important;font-size:14px;font-weight:normal;}
+.tg-031eF{color:#17365D;}
 .tg .tg-e3zv{font-weight:bold;}
 .tg-uni {text-align:center !important;}
 .aling-left {text-align:left;}
@@ -34,7 +36,7 @@ $codigo = "<style type='text/css'>
 }
 
 .back-blue{
- background-color: #C6D9F1;
+ background-color: #DBE5F1;
 }
 		
 img { border:1px solid green}
@@ -50,57 +52,61 @@ $codigo.= "<tr><td style='border:0px;font-size:11px;padding: 0px 5px;'><strong>L
 $codigo.= "</table>";
 $codigo.= "</div>";
 
-$codigo.= "<table class='tg' width='100%' style='margin-bottom:-15px'>
+$codigo.= "<table class='tg tg-031eF back-blue' width='100%' style='margin-bottom:-15px'>
 			  <tr>
-				<th style='width:10%;background-color:white' class='tg-031e' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/mym-informe.png' style='width: 76px; border:0px;'/></th>
-			    <th style='width:62%' class='tg-031e back-blue' rowspan='2'><h2 style='margin:2px'>M&amp;M Ingenier&iacute;a Obras y Servicios E.I.R.L.</h2>
-			    <h5 style='margin:2px'>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, civiles, miner&iacute;a e industrial.<br>Especialistas de gesti&oacute;n en Seguridad, salud en el trabajo, calidad y medio ambiente.</h5>		
+				<th style='width:10%;' class='tg-031e' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/mym-informe.png' style='width: 76px; border:0px;'/></th>
+			    <th style='width:62%' class='tg-031e' rowspan='3'><h2 style='margin:2px'>M&amp;M Ingenier&iacute;a Obras y Servicios E.I.R.L.</h2>
+			    <h5 style='margin:2px'>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, electromec&aacute;nicas, civiles, miner&iacute;a e industrial.<br>Especialistas de gesti&oacute;n en Seguridad, salud en el trabajo, calidad y medio ambiente.</h5>		
 			    </th>
-			    <th style='width:28%' class='aling-left back-green'><strong>UUNN:</strong> ".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
+			    <th style='width:28%' class='aling-left'><strong>Programa: SEGESEM </strong></th>
 			  </tr>
 			  <tr>
-			    <td class='aling-left back-green'><strong>C&Oacute;DIGO:</strong> M001-SST</td>
+			    <td class='aling-left'><strong>C&oacute;digo: M001-SST</strong></td>
 			  </tr>
 			  <tr>
-			    <td class='tg-uni back-blue'><strong>INFORME T&Eacute;CNICO DE SEGURIDAD</strong></td>
-			    <td class='tg-031e back-green'><strong>N&deg; ".$obj_acta->getAttr('num_informe')."</strong></td>
+			    <td class='tg-031e'><strong>Versi&oacute;n:</strong> 00/2015-M001</strong></td>
+			  </tr>
+			  <tr>
+			    <td class='tg-uni back-green' colspan='3'><strong>INFORME T&Eacute;CNICO ".$obj_acta->getAttr('num_informe')."</strong></td>
 			  </tr>
 			</table><br>";
 
 
-$codigo .="<table class='tg' width='100%' style='margin-bottom:-10px'>
+$codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
 
   <tr>
     <th class='tg-e3zv aling-left back-green'>Empresa:</th>
-    <th class='tg-031e aling-left' colspan='5'>".$obj_acta->Empresa->getAttr('nombre')."</th>
+    <th class='tg-031eF aling-left' colspan='3'>".$obj_acta->Empresa->getAttr('nombre')."</th>
+    <th style='width:28%' class='aling-left back-green' colspan='1'><strong>UUNN:</strong></th>
+    <th class='tg-031eF aling-left' colspan='1'>".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Actividad:</td>
-    <td class='tg-031e' colspan='5'>".$obj_acta->getAttr('actividad')."</td>
+    <td class='tg-031eF' colspan='5'>".$obj_acta->getAttr('actividad')."</td>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Obra:</td>
-    <td class='tg-031e' colspan='5'>".$obj_acta->getAttr('obra')."</td>
+    <td class='tg-031eF' colspan='5'>".$obj_acta->getAttr('obra')."</td>
   </tr>
   <tr>
     <td style='width:10%' class='tg-e3zv back-green'>Lugar:</td>
-    <td style='width:36%' class='tg-031e' colspan='3'>".$obj_acta->getAttr('lugar')."</td>
+    <td style='width:36%' class='tg-031eF' colspan='3'>".$obj_acta->getAttr('lugar')."</td>
     <td style='width:26%' class='aling-left back-green'><strong>&Aacute;rea:</strong></td>
-    <td style='width:28%' class='tg-031e'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
+    <td style='width:28%' class='tg-031eF'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
   </tr>
   <tr>
-    <td class='tg-e3zv back-green'>Fecha:</td>
-    <td class='tg-031e' colspan='3'>".date('d-m-Y',strtotime($obj_acta->getAttr('fecha')))."</td>
-    <td class='aling-left back-green'><strong>Responsable:</strong></td>
-    <td class='tg-031e'>".$obj_acta->Trabajadore1->getAttr('apellido_nombre')."</td>
+    <td class='tg-e3zv back-green'>Responsable:</td>
+    <td class='tg-031eF' colspan='3'>".$obj_acta->Trabajadore1->getAttr('apellido_nombre')."</td>
+    <td class='aling-left back-green'><strong>Fecha:</strong></td>
+    <td class='tg-031eF'>".date('d-m-Y',strtotime($obj_acta->getAttr('fecha')))."</td>
   </tr>
   <tr>
     <td style='width:10%' class='tg-e3zv back-green'>Supervisi&oacute;n:</td>
-    <td class='tg-031e'>".$tipo_supervision."</td>
+    <td class='tg-031eF'>".$tipo_supervision."</td>
 	<td class='tg-e3zv back-green'>N&deg; Acta:</td>
-	<td class='tg-031e'>".$obj_acta->getAttr('numero')."</td>
+	<td class='tg-031eF'>".$obj_acta->getAttr('numero')."</td>
     <td class='aling-left back-green'><strong>Emp. Superv. al Servicio de:</strong></td>
-    <td class='tg-031e'>".$obj_acta->getAttr('empresa_supervisora')."</td>
+    <td class='tg-031eF'>".$obj_acta->getAttr('empresa_supervisora')."</td>
   </tr>
 </table><br>";
 $codigo.= "
