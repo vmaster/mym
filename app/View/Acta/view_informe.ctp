@@ -58,7 +58,7 @@ $codigo.= "<table class='tg tg-031eF back-blue' width='100%' style='margin-botto
 			    <th style='width:62%' class='tg-031e' rowspan='3'><h2 style='margin:2px'>M&amp;M Ingenier&iacute;a Obras y Servicios E.I.R.L.</h2>
 			    <h5 style='margin:2px'>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, electromec&aacute;nicas, civiles, miner&iacute;a e industrial.<br>Especialistas de gesti&oacute;n en Seguridad, salud en el trabajo, calidad y medio ambiente.</h5>		
 			    </th>
-			    <th style='width:28%' class='aling-left'><strong>Programa: SEGESEM </strong></th>
+			    <th style='width:22%' class='aling-left'><strong>Programa: SEGESEM </strong></th>
 			  </tr>
 			  <tr>
 			    <td class='aling-left'><strong>C&oacute;digo: M001-SST</strong></td>
@@ -67,7 +67,7 @@ $codigo.= "<table class='tg tg-031eF back-blue' width='100%' style='margin-botto
 			    <td class='tg-031e'><strong>Versi&oacute;n:</strong> 00/2015-M001</strong></td>
 			  </tr>
 			  <tr>
-			    <td class='tg-uni back-green' colspan='3'><strong>INFORME T&Eacute;CNICO ".$obj_acta->getAttr('num_informe')."</strong></td>
+			    <td class='tg-uni back-green' colspan='3' style='font-size:1em;'><strong>INFORME T&Eacute;CNICO ".$obj_acta->getAttr('num_informe')."</strong></td>
 			  </tr>
 			</table><br>";
 
@@ -76,9 +76,9 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
 
   <tr>
     <th class='tg-e3zv aling-left back-green'>Empresa:</th>
-    <th class='tg-031eF aling-left' colspan='3'>".$obj_acta->Empresa->getAttr('nombre')."</th>
-    <th style='width:28%' class='aling-left back-green' colspan='1'><strong>UUNN:</strong></th>
-    <th class='tg-031eF aling-left' colspan='1'>".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
+    <th class='tg-031eF aling-left' colspan='3' style='width:43%'>".$obj_acta->Empresa->getAttr('nombre')."</th>
+    <th class='aling-left back-green' colspan='1'><strong>UUNN:</strong></th>
+    <th class='tg-031eF aling-left' style='width:29%' colspan='1'>".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Actividad:</td>
