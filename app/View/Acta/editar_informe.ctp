@@ -479,7 +479,10 @@ tinymce.init({
 													</td>
 													<td>
 														<a data-url="<?php echo $obj_foto_ipp->getAttr('file_name');?>" data-foto_ipp="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-ipp">
-															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+															<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
+														</a>
+														<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_ipp/<?php echo $obj_foto_ipp->getAttr('file_name'); ?>" title="<?php echo $obj_foto_ipp->getAttr('file_name'); ?>" download="<?php echo $obj_foto_ipp->getAttr('file_name'); ?>" class="btn btn-default">
+															<i class="fa fa-download"></i> <span>Descargar</span>
 														</a>
 													</td>
 												</tr>
@@ -601,7 +604,10 @@ tinymce.init({
 													</td>
 													<td>
 														<a data-url="<?php echo $obj_foto_sd->getAttr('file_name');?>" data-foto_sd="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-sd">
-															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+															<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
+														</a>
+														<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_sd/<?php echo $obj_foto_sd->getAttr('file_name'); ?>" title="<?php echo $obj_foto_sd->getAttr('file_name'); ?>" download="<?php echo $obj_foto_sd->getAttr('file_name'); ?>" class="btn btn-default">
+																<i class="fa fa-download"></i> <span>Descargar</span>
 														</a>
 													</td>
 												</tr>
@@ -846,7 +852,10 @@ tinymce.init({
 													</td>
 													<td>
 														<a data-url="<?php echo $obj_foto_um->getAttr('file_name');?>" data-foto_um="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-um">
-															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+															<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
+														</a>
+														<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_um/<?php echo $obj_foto_um->getAttr('file_name'); ?>" title="<?php echo $obj_foto_um->getAttr('file_name'); ?>" download="<?php echo $obj_foto_um->getAttr('file_name'); ?>" class="btn btn-default">
+																<i class="fa fa-download"></i> <span>Descargar</span>
 														</a>
 													</td>
 												</tr>
@@ -969,7 +978,10 @@ tinymce.init({
 													</td>
 													<td>
 														<a data-url="<?php echo $obj_foto_doc->getAttr('file_name');?>" data-foto_doc="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-doc">
-															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+															<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
+														</a>
+														<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_doc/<?php echo $obj_foto_doc->getAttr('file_name'); ?>" title="<?php echo $obj_foto_doc->getAttr('file_name'); ?>" download="<?php echo $obj_foto_doc->getAttr('file_name'); ?>" class="btn btn-default">
+																<i class="fa fa-download"></i> <span>Descargar</span>
 														</a>
 													</td>
 												</tr>
@@ -1090,7 +1102,10 @@ tinymce.init({
 													</td>
 													<td>
 														<a data-url="<?php echo $obj_foto_as->getAttr('file_name');?>" data-foto-as="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-as">
-															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+															<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
+														</a>
+														<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_as/<?php echo $obj_foto_as->getAttr('file_name'); ?>" title="<?php echo $obj_foto_as->getAttr('file_name'); ?>" download="<?php echo $obj_foto_as->getAttr('file_name'); ?>" class="btn btn-default">
+																<i class="fa fa-download"></i> <span>Descargar</span>
 														</a>
 													</td>
 												</tr>
@@ -1204,7 +1219,10 @@ tinymce.init({
 													</td>
 													<td>
 														<a data-url="<?php echo $obj_foto_cs->getAttr('file_name');?>" data-foto-cs="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-cs">
-															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+															<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
+														</a>
+														<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_cs/<?php echo $obj_foto_cs->getAttr('file_name'); ?>" title="<?php echo $obj_foto_cs->getAttr('file_name'); ?>" download="<?php echo $obj_foto_cs->getAttr('file_name'); ?>" class="btn btn-default">
+																<i class="fa fa-download"></i> <span>Descargar</span>
 														</a>
 													</td>
 												</tr>
@@ -1380,7 +1398,10 @@ tinymce.init({
 													</td>
 													<td>
 														<a data-url="<?php echo $obj_foto_med->getAttr('file_name');?>" data-foto-med="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-med">
-															<i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+															<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
+														</a>
+														<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med/<?php echo $obj_foto_med->getAttr('file_name'); ?>" title="<?php echo $obj_foto_med->getAttr('file_name'); ?>" download="<?php echo $obj_foto_med->getAttr('file_name'); ?>" class="btn btn-default">
+																<i class="fa fa-download"></i> <span>Descargar</span>
 														</a>
 													</td>
 												</tr>
