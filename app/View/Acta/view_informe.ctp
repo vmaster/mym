@@ -67,7 +67,7 @@ $codigo.= "<table class='tg tg-031eF back-blue' width='100%' style='margin-botto
 			    <td class='tg-031e'><strong>Versi&oacute;n:</strong> 00/2015-M001</strong></td>
 			  </tr>
 			  <tr>
-			    <td class='tg-uni back-green' colspan='3' style='font-size:1em;'><strong>INFORME T&Eacute;CNICO ".$obj_acta->getAttr('num_informe')."</strong></td>
+			    <td class='tg-uni back-green' colspan='3' style='font-size:1em;'><strong>INFORME T&Eacute;CNICO N&#176; ".$obj_acta->getAttr('num_informe')."</strong></td>
 			  </tr>
 			</table><br>";
 
