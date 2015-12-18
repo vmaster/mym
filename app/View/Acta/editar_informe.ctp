@@ -19,7 +19,7 @@ tinymce.init({
 	</div>
 </div>
 <hr />
-<div class="div-crear-acta form" id="div-crear-acta">
+<div class="div-crear-acta form" id="div-editar-acta">
 	<?php echo $this->Form->create('Acta',array('method'=>'post', 'id'=>'add_edit_acta','type'=>'file','acta_id'=>$obj_acta->getID()));?>
 	<div class="row">
 		<div class="col-md-12">

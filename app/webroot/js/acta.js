@@ -46,7 +46,40 @@ $(document).ready(function(){
 					});
 				}
 			});	
+		},
+
+		saveTimeToTimeEdit: function(){
+			tinyMCE.triggerSave();
+			$form = $('#add_edit_acta'). eq(0);
+			var html_conclusiones = $('#father-container1 .nicEdit-main:first').html();
+			var html_recomendaciones = $('#father-container1 .nicEdit-main:last').html();
+			var html_med_control = $('#father-container2 .nicEdit-main:first').html();
+			
+			$.ajax({
+				url: $form.attr('action'),
+				data: $form.serialize() + '&html_conclusiones=' + html_conclusiones + '&html_recomendaciones=' + html_recomendaciones + '&html_med_control=' + html_med_control,
+				dataType: 'json',
+				type: 'post'
+			}).done(function(data){
+				if(data.success==true){
+					alertify.success('Guardado Atomatico Exitoso!');
+				}else{
+					$.each(data.validation, function( key, value ) {
+						alertify.error(value[0]);
+						$('[name="data[Acta]['+key+']"]').parent().addClass('control-group has-error');
+						$('[name="data[Acta]['+key+']"]').change(function() {
+							$('[name="data[Acta]['+key+']"]').parent().removeClass('control-group has-error');
+						});
+					});
+				}
+			});
 		}
+	}
+
+	if ($('#div-editar-acta').length) {
+		setInterval(function(){
+			acta.saveTimeToTimeEdit();
+		},30000)
 	}
 	
 	/* Mostrar formulario: Crear vehículo */
@@ -58,10 +91,13 @@ $(document).ready(function(){
 	
 	/* Ocultar formulario Crear Acta*/
 	$body.on('click','div#div-crear-acta .btn-cancelar-crear-acta', function(){
-		//$('#add_edit_acta').hide();
 		window.open(env_webroot_script + 'actas/','_self');
 	});
 	
+	$body.on('click','div#div-editar-acta .btn-cancelar-crear-acta', function(){
+		window.open(env_webroot_script + 'actas/','_self');
+	});
+
 	$body.off('click','.btn_crear_acta_trigger');
 	$body.on('click','.btn_crear_acta_trigger',function(){
 		myProccess.showPleaseWait();
