@@ -39,7 +39,7 @@ tinymce.init({
 									<div class="form-group input-group">
 										<span class="input-group-addon"><label id="na" data-toggle="tooltip" title="N&uacute;mero de Acta"><?php echo utf8_encode('N° A') ?></label>
 										</span>
-										<?php echo $this->Form->input('numero', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'7')); ?>
+										<?php echo $this->Form->input('numero', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'15')); ?>
 									</div>
 								</td>
 								<td style="vertical-align: middle; text-align: center;"><strong>FORMATO</strong>
