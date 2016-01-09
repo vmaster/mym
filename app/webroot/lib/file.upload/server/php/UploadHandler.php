@@ -1040,7 +1040,7 @@ class UploadHandler
                     .' ('.implode($failed_versions,', ').')';
         }
         // Free memory:
-        $this->destroy_image_object($file_path);
+        //$this->destroy_image_object($file_path);
     }
 
     protected function handle_file_upload($uploaded_file, $name, $size, $type, $error,
