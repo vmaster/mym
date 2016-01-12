@@ -287,7 +287,21 @@ App::uses('AppModel','Model');
     	return $arr_obj_acta;
     }
     
-    public function listFindActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$order='DESC', $start=0, $per_page=10) {
+	public function listSearchActas($search_ano='') {
+    		$arr_obj_acta = $this->findObjects('all',array(
+    				'conditions'=>array(
+    						'AND' => array(
+    								'YEAR(`created`)'=> $search_ano,
+    								'Acta.estado '=> 1
+    						)
+    				),
+    				'order'=> array('Acta.created desc'),
+    		)
+    		);
+    	return $arr_obj_acta;
+    }
+	
+    public function listFindActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$search_ano='',$order='DESC', $start=0, $per_page=10) {
     		$arr_obj_acta = $this->findObjects('all',array(
     				'joins' => array(
     						array(
@@ -305,6 +319,7 @@ App::uses('AppModel','Model');
     								'Acta.actividad LIKE'=> '%'.$search_actividad.'%',
     								'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
     								'Acta.obra LIKE'=> '%'.$search_obra.'%',
+									'YEAR(Acta.`created`)'=> $search_ano,
     								'Acta.estado '=> 1
     						)
     				),

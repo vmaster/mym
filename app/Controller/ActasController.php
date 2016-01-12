@@ -67,12 +67,20 @@ class ActasController extends AppController{
 		}
 		
 		$list_acta_all = $this->Acta->listAllActas($order_by,$search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra),$order_by_or);
-		$list_acta = $this->Acta->listFindActas($order_by, $search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra),$order_by_or, $start, $per_page);
+		$list_acta = $this->Acta->listFindActas($order_by, $search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra), date('Y'),$order_by_or, $start, $per_page);
 		$count = count($list_acta_all);
 		$no_of_paginations = ceil($count / $per_page);
 		$page = $page + 1;
 		
 		$this->set(compact('list_acta','page','no_of_paginations'));
+	}
+	
+	public function search_actas($search_ano=null) {
+		$this->layout = 'ajax';
+		$this->loadModel('Acta');
+		$list_acta = $this->Acta->listSearchActas($search_ano);
+
+		$this->set(compact('list_acta'));
 	}
 	
 	public function find_actas($page=null,$order_by=null,$order_by_or=null,$search_nro=null,$search_actividad=null,$search_empresa=null,$search_obra=null) {

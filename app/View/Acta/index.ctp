@@ -22,6 +22,30 @@ $body = $('body');
 var order_by_select;
 var order_by_or;
 
+/* Cambiar de año*/
+$body.off('click','div#acta .btn-consultar-acta');
+$body.on('click', 'div#acta .btn-consultar-acta' , function(){
+$('#conteiner_all_rows').html('Cargando...');
+$('#conteiner_all_rows').load(env_webroot_script+'actas/search_actas/'+$('#cbo-ano-search').val(),function(){
+	$('#table_content_actas').DataTable({
+		dom: 'T<"clear">lfrtip',
+		tableTools: {
+			"sSwfPath": env_webroot_script + "/lib/data.tables-1.10.6/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
+			"aButtons": [
+					"copy",
+					"csv",
+					"xls",
+					"pdf"
+					/*{
+						"sExtends":    "collection",
+						"aButtons":    [ "csv", "xls", "pdf" ]
+					}*/
+			]
+		}
+	});
+});
+});
+	
 $body.on('keyup','#txtNro',function(e){
 	e.stopPropagation();
 	//$('#check_all').prop('checked', false);
@@ -158,6 +182,8 @@ $body.on('keyup','#txtObra',function(e){
 	}
 });
 
+
+	
 tinymce.init({
 	save_enablewhendirty: true,
     save_onsavecallback: function() {console.log("Save");},
@@ -204,46 +230,34 @@ div#spinner-send-report
 	  </div>
 	</div>
 	<p>
-	<!-- 
 	<div class="row">
-		<div class="span3 col-md-2 col-sm-6 col-xs-6">
-			<label><?php echo __('Buscar por');?>:</label>
+		<div class="col-md-3 col-sm-6 col-xs-6">
+			<label><?php echo __('Periodo:');?></label>
+			<select class="select2 form-control" id="cbo-ano-search">
+				<?php 
+				for ($ano = 2015; $ano <= date('Y');$ano++){
+					echo "<option value = ".$ano." ".((date('Y') == $ano)?'selected':'').">".$ano."</option>";
+				}
+				?>						
+			</select>
 		</div>
-		<div class="span3 col-md-2 col-sm-6 col-xs-6">
-			<label><?php echo __('Nro de Acta');?> <input type="text"
-				name="txtNro" id="txtNro" class="form-control">
-			</label>
-		</div>
-		<div class="span3 col-md-2 col-sm-6 col-xs-6">
-			<label><?php echo __('Actividad');?> <input type="text"
-				name="txtActividad" id="txtActividad" class="form-control">
-			</label>
-		</div>
-		<div class="span3 col-md-2 col-sm-6 col-xs-6">
-			<label><?php echo __('Empresa');?> <input type="text"
-				name="txtEmpresa" id="txtEmpresa" class="form-control">
-			</label>
-		</div>
-		<div class="span3 col-md-2 col-sm-6 col-xs-6">
-			<label><?php echo __('Obra');?> <input type="text" name="txtObra"
-				id="txtObra" class="form-control">
-			</label>
+		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;">
+			<button type="button" class="btn btn-large btn-consultar-acta"><?php echo __('Consultar');?></button>
 		</div>
 	</div>
-	 -->
-	<div class="well">
-	    <?php 
-		if(empty($list_acta)){ 
-			echo __('No hay datos de Actas');
-		}else{ ?>  
+	<br>
+	<div class="well"> 
 	      <div id = "conteiner_all_rows">
 	      <?php 
-	      	echo $this->element('Acta/acta_row');
+			if(empty($list_acta)){ 
+				echo __('No hay datos de Actas');
+			}else{ 
+				echo $this->element('Acta/acta_row');
+			}
 	 	  ?>
 	      </div>
-	    <?php }?>
 	</div>
-
+	
 	<div class="modal fade" id="myModalDeleteActa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" acta_id=''>
 		<div class="modal-dialog">
 			<div class="modal-content">
