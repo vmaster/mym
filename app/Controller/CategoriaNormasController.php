@@ -4,7 +4,7 @@ class CategoriaNormasController extends AppController{
 	
 	public function beforeFilter(){
 		$this->Auth->allow(array('lista_categoria_normas','lista_normas_json'));
-		//parent::beforeFilter();
+		parent::beforeFilter();
 	}
 	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_descripcion=null) {

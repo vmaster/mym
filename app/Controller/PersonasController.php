@@ -2,6 +2,9 @@
 class PersonasController extends AppController{
 	public $name = 'Persona';
 	
+	public function beforeFilter(){
+		parent::beforeFilter();
+	}
 	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_tipo_persona=0,$search_nro_documento=null,$search_nombre=null) {
 		$this->layout = "default";

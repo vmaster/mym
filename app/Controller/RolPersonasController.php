@@ -2,7 +2,10 @@
 class RolPersonasController extends AppController{
 	public $name = 'RolPersonas';
 	
-
+	public function beforeFilter(){
+		parent::beforeFilter();
+	}
+	
 	public function list_roles_personas($persona_id= 0,$persona_nombre='', $page=null,$order_by=null,$order_by_or=null) {
 		$this->layout = "ajax";
 		$this->loadModel('RolPersona');

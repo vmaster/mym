@@ -2,6 +2,9 @@
 class ReportesController extends AppController{
 	public $name = 'Reporte';
 	
+	public function beforeFilter(){
+		parent::beforeFilter();
+	}
 	
 	public function rpt_cant_info_empresas() {
 		$this->layout = "default";

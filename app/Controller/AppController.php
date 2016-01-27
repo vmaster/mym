@@ -51,9 +51,10 @@ class AppController extends Controller {
 		return true;
 	}
 	
-	/*public function beforeFilter(){
-		$this->Auth->allow('index','view');
-	}*/
+	public function beforeFilter(){
+		//$this->Auth->allow('index','view');
+		$this->verificarAccessoInvitado();
+	}
 
 	/**
 	 * Verificamos desde AppController que el Perfil Invitado no tenga acceso.
@@ -63,8 +64,13 @@ class AppController extends Controller {
 	 * @version 12 Octubre 2015
 	 */
 	public function verificarAccessoInvitado(){
-		if($this->request->params['controller'] == 'actividades' || $this->request->params['controller'] == 'users' || $this->request->params['controller'] == 'trabajadores' || $this->request->params['controller'] == 'empresas' || $this->request->params['controller'] == 'vehiculos' || $this->request->params['controller'] == 'tipo_vehiculos' || $this->request->params['controller'] == 'codigos' || $this->request->params['controller'] == 'unidades_negocios' || $this->request->params['controller'] == 'categoria_normas' || $this->request->params['action'] == 'nuevo_informe'){
-			if($this->Session->read('Auth.User.tipo_user_id') == 3) {
+
+		$arr_accesos = array('actividades', 'users', 'trabajadores', 'empresas', 'vehiculos', 'tipo_vehiculos', 'codigos','unidades_negocios','categoria_normas','nuevo_informe'); 
+		$arr_accesos_public = array('login', 'logout', 'register'); 
+
+		if (!in_array($this->request->params['action'], $arr_accesos_public)) {
+
+			if (in_array($this->request->params['controller'], $arr_accesos) && $this->Session->read('Auth.User.tipo_user_id') == 3) {
 				echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
 				$this->redirect(array('controller' => 'actas', 'action' => 'index'));
 				exit();

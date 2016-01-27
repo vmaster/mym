@@ -2,10 +2,12 @@
 class VehiculosController extends AppController{
 	public $name = 'Vehiculo';
 	
+	public function beforeFilter(){
+		parent::beforeFilter();
+	}
 	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_nroplaca=null,$search_nrosoat=null) {
-		$this->verificarAccessoInvitado(); //AppController
-		
+			
 		$this->layout = "default";
 		$this->loadModel('Vehiculo');
 		

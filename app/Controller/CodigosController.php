@@ -3,8 +3,11 @@ class CodigosController extends AppController{
 	public $name = 'Codigo';
 	
 	
+	public function beforeFilter(){
+		parent::beforeFilter();
+	}
+	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_codigo=null) {
-		$this->verificarAccessoInvitado(); //AppController
 		
 		$this->layout = "default";
 		$this->loadModel('Codigo');

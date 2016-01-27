@@ -2,11 +2,12 @@
 class ActividadesController extends AppController{
 	public $name = 'Actividade';
 	
+	public function beforeFilter(){
+		parent::beforeFilter();
+	}
 	
 	public function index($order_by=null,$order_by_or=null,$search_descripcion=null) {
 		
-		$this->verificarAccessoInvitado(); //AppController
-
 		$this->layout = "default";
 		$this->loadModel('Actividade');
 		

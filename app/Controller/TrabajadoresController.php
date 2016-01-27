@@ -2,10 +2,11 @@
 class TrabajadoresController extends AppController{
 	public $name = 'Trabajadore';
 	
+	public function beforeFilter(){
+		parent::beforeFilter();
+	}
 	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_nro_documento=null,$search_nombre=null) {
-		
-		$this->verificarAccessoInvitado(); //AppController
 		
 		$this->layout = "default";
 		$this->loadModel('Trabajadore');

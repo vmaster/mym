@@ -2,6 +2,9 @@
 class TipoVehiculosController extends AppController{
 	public $name = 'TipoVehiculo';
 	
+	public function beforeFilter(){
+		parent::beforeFilter();
+	}
 	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_descripcion=null) {
 		$this->verificarAccessoInvitado(); //AppController

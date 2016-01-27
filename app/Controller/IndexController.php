@@ -2,6 +2,10 @@
   class IndexController extends AppController{
        var $name = 'Index';
        
+       public function beforeFilter(){
+          parent::beforeFilter();
+      }
+
        public function index(){
            $this->layout = "default";
            
