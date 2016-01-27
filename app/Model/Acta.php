@@ -456,8 +456,8 @@ App::uses('AppModel','Model');
     					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
                         'Acta.estado' => 1
     			),
-    	/*'order'=> array($order_by.' '.$order),*/
-    			'group'=> array('EmpresaJoin.nombre')
+    			'group'=> array('EmpresaJoin.nombre'),
+                'order' => array('Cantidad'=>'desc')
     	)
     	);
     	 
@@ -512,8 +512,8 @@ App::uses('AppModel','Model');
     					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
                         'Acta.estado' => 1
     			),
-    			/*'order'=> array($order_by.' '.$order),*/
-    			'group'=> array('UnidadesNegocioJoin.descripcion')
+    			'group'=> array('UnidadesNegocioJoin.descripcion'),
+                'order' => array('Cantidad'=>'desc')
     	)
     	);
     
@@ -582,7 +582,8 @@ App::uses('AppModel','Model');
                         'Acta.estado' => 1
     			),
     			/*'order'=> array($order_by.' '.$order),*/
-    			'group'=> array('EmpresasJoin.nombre')
+    			'group'=> array('EmpresasJoin.nombre'),
+                'order' => array('Cantidad'=>'desc')
     	)
     	);
     	return $arr_obj_ni_emp;
@@ -732,8 +733,8 @@ App::uses('AppModel','Model');
     					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
                         'Acta.estado' => 1
     			),
-    			/*'order'=> array($order_by.' '.$order),*/
-    			'group'=> array('EmpresasJoin.nombre')
+    			'group'=> array('EmpresasJoin.nombre'),
+                'order' => array('Cantidad'=>'desc')
     	)
     	);
     	return $arr_obj_ni_emp;
@@ -1131,8 +1132,9 @@ App::uses('AppModel','Model');
     					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
                         'Acta.estado' => 1
     			),
-    			/*'order'=> array($order_by.' '.$order),*/
-    			'group'=> array('EmpresaJoin.nombre')
+    			'group'=> array('EmpresaJoin.nombre'),
+                'order'=> array('Porcentaje DESC')
+
     	)
     	);
     

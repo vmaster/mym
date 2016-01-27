@@ -326,6 +326,7 @@ class ReportesController extends AppController{
 		$x[] = $arr_emp2['CodigosJoin']['codigo'];
 		$y[] = intval($arr_emp2[0]['Cantidad']);
 		endforeach;
+
 		return json_encode(array('success'=>true,'categoria'=>$x, 'name'=>'Empresa', 'data'=>$y));
 		//exit();
 	}
