@@ -312,21 +312,27 @@ class ReportesController extends AppController{
 	
 		$fec_inicio_format = $this->formatFecha($fec_inicio);
 		$fec_fin_format = $this->formatFecha($fec_fin);
-		$x = "";
-		$y = "";
+		$xy = array();
+		$x = array();
+		$y = array();
 	
 		$list_ni_emp1 = $this->Acta->listNiByEmpresa1($fec_inicio_format, $fec_fin_format, $empresa_id);
 		foreach ($list_ni_emp1 as $key1 => $arr_emp1):
-		$x[] = $arr_emp1['CodigosJoin']['codigo'];
-		$y[] = intval($arr_emp1[0]['Cantidad']);
+			$xy[$arr_emp1['CodigosJoin']['codigo']] = intval($arr_emp1[0]['Cantidad']);
 		endforeach;
 		
 		$list_ni_emp2 = $this->Acta->listNiByEmpresa2($fec_inicio_format, $fec_fin_format, $empresa_id);
 		foreach ($list_ni_emp2 as $key2 => $arr_emp2):
-		$x[] = $arr_emp2['CodigosJoin']['codigo'];
-		$y[] = intval($arr_emp2[0]['Cantidad']);
+			$xy[$arr_emp2['CodigosJoin']['codigo']] = intval($arr_emp2[0]['Cantidad']);
 		endforeach;
-
+		
+		arsort($xy);
+		
+		foreach ($xy as $x_valor => $y_valor):
+			$x[] = $x_valor;
+			$y[] = $y_valor;
+		endforeach;
+			
 		return json_encode(array('success'=>true,'categoria'=>$x, 'name'=>'Empresa', 'data'=>$y));
 		//exit();
 	}
