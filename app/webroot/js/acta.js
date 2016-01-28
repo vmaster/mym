@@ -76,11 +76,11 @@ $(document).ready(function(){
 		}
 	}
 
-	if ($('#div-editar-acta').length) {
+	/*if ($('#div-editar-acta').length) {
 		setInterval(function(){
 			acta.saveTimeToTimeEdit();
 		},30000)
-	}
+	}*/
 	
 	/* Mostrar formulario: Crear vehículo */
 	$body.off('click','div#acta .btn-nuevo-acta');

@@ -2091,5 +2091,21 @@ class ActasController extends AppController{
 			exit();*/
 		}
 	}
+
+	public function save_pdf($num_informe){
+		$source = ENV_WEBROOT_FULL_URL."/actas/view_informe/".$num_informe;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $source);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_SSLVERSION,3);
+		$data = curl_exec ($ch);
+		$error = curl_error($ch); 
+		curl_close ($ch);
+
+		$destination = APP.WEBROOT_DIR."/files/pdf/000".$num_informe.".pdf";
+		$file = fopen($destination, "w+");
+		fputs($file, $data);
+		fclose($file);
+	}
 		
 }
