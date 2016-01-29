@@ -15,7 +15,10 @@ class UsersController extends AppController{
 
 		if($this->request->is('post')) {
 			if($this->Auth->login()) {
-				//$this->User->saveField('ultimo_acceso', date('Y-m-d H:i:s') );
+				if($this->Auth->user('estado')==0){
+					$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
+					$this->redirect($this->Auth->logout());
+				}
 				$this->redirect($this->Auth->redirectUrl());
 			} else {
 				$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
