@@ -385,8 +385,17 @@ App::uses('AppModel','Model');
     	if($email_copia != ''){
     		$Email->cc($email_copia_arr);
     	}
+
+        $fileName = str_replace('/','-',$num_informe).".pdf";
     	
 		$Email->subject($asunto);
+        $Email->attachments(array(
+                        $fileName => array(
+                                'file' => APP.WEBROOT_DIR."/files/pdf/".$fileName,
+                                'mimetype' => 'text/x-sql',
+                                'contentId' => 'my-unique-id'
+                        )
+                ));
     	$Email->send('Mi Mensaje');
     }
     

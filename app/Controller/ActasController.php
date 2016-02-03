@@ -1891,6 +1891,7 @@ class ActasController extends AppController{
 				}
 					
 				if($error_validation == false){
+					$this->save_pdf($acta_id);
 					$this->Acta->sendReporteEmail($acta_id, $email_destino, $email_copia, $num_informe, $asunto, $mensaje);
 					$obj_acta->saveField('fecha_envio', date('Y-m-d'));
 					echo json_encode(array('success'=>true,'msg'=>__('El Informe fue enviado')));
