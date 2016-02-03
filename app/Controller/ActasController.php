@@ -4,7 +4,7 @@ class ActasController extends AppController{
 	public $components = array('RequestHandler');
 	
 	public function beforeFilter(){
-		$this->Auth->allow(array('view_informe'));
+		$this->Auth->allow(array('view_informe','save_pdf'));
 		parent::beforeFilter();
 		//$this->layout = 'default';
 	}
@@ -2092,8 +2092,8 @@ class ActasController extends AppController{
 		}
 	}
 
-	public function save_pdf($num_informe){
-		$source = ENV_WEBROOT_FULL_URL."/actas/view_informe/".$num_informe;
+	public function save_pdf($acta_id){
+		$source = ENV_WEBROOT_FULL_URL."/actas/view_informe/".$acta_id;
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $source);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -2101,8 +2101,11 @@ class ActasController extends AppController{
 		$data = curl_exec ($ch);
 		$error = curl_error($ch); 
 		curl_close ($ch);
-
-		$destination = APP.WEBROOT_DIR."/files/pdf/000".$num_informe.".pdf";
+		
+		$this->loadModel('Acta');
+		$obj_acta = $this->Acta->findById($acta_id);
+		
+		$destination = APP.WEBROOT_DIR."/files/pdf/".str_replace('/','-',$obj_acta->getAttr('num_informe')).".pdf";
 		$file = fopen($destination, "w+");
 		fputs($file, $data);
 		fclose($file);
