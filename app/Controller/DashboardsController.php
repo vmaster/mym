@@ -1,5 +1,5 @@
 <?php
-  class IndexController extends AppController{
+  class DashboardsController extends AppController{
        var $name = 'Index';
        
        public function beforeFilter(){

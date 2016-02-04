@@ -6,7 +6,7 @@
 				class="user-image img-responsive" /></li>
 
 
-			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'index')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>index" id="link-dashboard"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a></li>
+			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'dashboards')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>dashboards" id="link-dashboard"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a></li>
 			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'actas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>actas" id="link-acta"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Informes'); ?></a></li>
 			<?php if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>		
 				<li><a href="#"><i class="fa fa-sitemap fa-3x"></i> Mantenimiento <span class="fa arrow"></span></a>

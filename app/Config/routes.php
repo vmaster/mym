@@ -42,5 +42,4 @@
  */
 	require CAKE . 'Config' . DS . 'routes.php';
 	
-	Router::connect('/dashboard', array('controller' => 'users', 'action' => 'index'));
-	Router::connect('/',array('controller' => 'index', 'action' => 'index'));
+	Router::connect('/',array('controller' => 'dashboards', 'action' => 'index'));
