@@ -65,7 +65,7 @@ class AppController extends Controller {
 	 */
 	public function verificarAccessoInvitado(){
 
-		$arr_accesos = array('actividades', 'users', 'trabajadores', 'empresas', 'vehiculos', 'tipo_vehiculos', 'codigos','unidades_negocios','categoria_normas','nuevo_informe'); 
+		$arr_accesos = array('actividades', 'users', 'trabajadores', 'empresas', 'vehiculos', 'tipo_vehiculos', 'codigos','unidades_negocios','categoria_normas','nuevo_informe','emails_enviados'); 
 		$arr_accesos_public = array('login', 'logout', 'register'); 
 
 		if (!in_array($this->request->params['action'], $arr_accesos_public)) {

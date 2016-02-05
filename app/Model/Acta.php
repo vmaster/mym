@@ -159,7 +159,20 @@ App::uses('AppModel','Model');
     				'exclusive' => '',
     				'finderQuery' => '',
     				'counterQuery' => ''
-    		)
+    		),
+            'EmailsEnviado' => array(
+                    'className' => 'EmailsEnviado',
+                    'foreignKey' => 'acta_id',
+                    'dependent' => false,
+                    'conditions' => '',
+                    'fields' => '',
+                    'order' => '',
+                    'limit' => '',
+                    'offset' => '',
+                    'exclusive' => '',
+                    'finderQuery' => '',
+                    'counterQuery' => ''
+            )
     );
     
     public $belongsTo = array(

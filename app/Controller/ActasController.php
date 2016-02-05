@@ -311,7 +311,7 @@ class ActasController extends AppController{
 				$this->Acta->create();
 				if ($this->Acta->save($this->request->data)) {
 
-				/* IMPLEMENTOS DE PROTECCIÓN PERSONAL */	
+				/* IMPLEMENTOS DE PROTECCIÃ“N PERSONAL */	
 				$cont="0";	
 				if(!empty($this->request->data['TrabajadorActa'])){
 					foreach($this->request->data['TrabajadorActa'] as $key => $i){
@@ -323,7 +323,7 @@ class ActasController extends AppController{
 								$imp_pp_acta['ImpProtPersonale']['actividad_id'] = $i['actividad_id'];
 							}
 							
-							/* Inserción en la tabla "imp_prot_personales" y su tabla detalle "ipp_normas_incumplidas" */
+							/* InserciÃ³n en la tabla "imp_prot_personales" y su tabla detalle "ipp_normas_incumplidas" */
 							$imp_pp_acta['ImpProtPersonale']['trabajador_id'] = $i['trabajador_id'];
 							$imp_pp_acta['ImpProtPersonale']['acta_id'] = $this->Acta->id;
 							$this->ImpProtPersonale->create();
@@ -390,7 +390,7 @@ class ActasController extends AppController{
 				}
 					
 					
-					/* Actos Subestándares*/
+					/* Actos SubestÃ¡ndares*/
 				if(!empty($this->request->data['ActoSubestandar'])){
 					foreach($this->request->data['ActoSubestandar'] as $i){
 							
@@ -403,7 +403,7 @@ class ActasController extends AppController{
 							$this->ActosSubestandare->create();
 							if ($this->ActosSubestandare->save($new_as_acta)) {
 								$as_id = $this->ActosSubestandare->id;
-								// echo json_encode(array('success'=>true,'msg'=>__('El acto Subestándar fue agregado con &eacute;xito.'),'ActoSubestandar_id'=>$as_id));	
+								// echo json_encode(array('success'=>true,'msg'=>__('El acto SubestÃ¡ndar fue agregado con &eacute;xito.'),'ActoSubestandar_id'=>$as_id));	
 							}else{
 								$as_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->ActosSubestandare->validationErrors));
@@ -413,7 +413,7 @@ class ActasController extends AppController{
 					}
 				}
 					
-					/* Condiciones Subestándares*/
+					/* Condiciones SubestÃ¡ndares*/
 					if(!empty($this->request->data['CondiSubestandar'])){
 						foreach($this->request->data['CondiSubestandar'] as $i){
 							if($i['cond_sub_tipo_id'] != ''){
@@ -425,7 +425,7 @@ class ActasController extends AppController{
 								$this->CondicionesSubestandare->create();
 								if ($this->CondicionesSubestandare->save($new_cs_acta)) {
 									$cs_id = $this->CondicionesSubestandare->id;
-									// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+									// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 								}else{
 									$cs_id = '';
 									//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -435,7 +435,7 @@ class ActasController extends AppController{
 						}
 					}
 					
-					/* Cierre del acta de supervisión */
+					/* Cierre del acta de supervisiÃ³n */
 					if(!empty($this->request->data['MedidasAdoptadas'])){
 						foreach($this->request->data['MedidasAdoptadas'] as $i){
 							
@@ -447,7 +447,7 @@ class ActasController extends AppController{
 								$this->CierreActa->create();
 								if ($this->CierreActa->save($new_cierre_acta)) {
 									$ca_id = $this->CierreActa->id;
-									// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+									// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 								}else{
 									$ca_id = '';
 									//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -476,7 +476,7 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ipp/thumbnail/'.$new_foto_ipp['FotoIpp']['file_name']);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
 								$foto_ipp_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -486,7 +486,7 @@ class ActasController extends AppController{
 						endforeach;
 					}
 					
-					/* INSERTANDO IMAGENES SEÑALIZACIÓN Y DELIMITACIÓN */
+					/* INSERTANDO IMAGENES SEÃ‘ALIZACIÃ“N Y DELIMITACIÃ“N */
 					if(!empty($this->request->data['FotoSd'])){
 						$cont = 0;
 						foreach ($this->request->data['FotoSd'] as $key => $array){
@@ -506,7 +506,7 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
 								$foto_sd_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -536,7 +536,7 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
 								$foto_um_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -546,7 +546,7 @@ class ActasController extends AppController{
 						}
 					}
 					
-					/* INSERTANDO IMAGENES DOCUMENTACIÓN DE SEGURIDAD */
+					/* INSERTANDO IMAGENES DOCUMENTACIÃ“N DE SEGURIDAD */
 					if(!empty($this->request->data['FotoDoc'])){
 						$cont = 0;
 						foreach ($this->request->data['FotoDoc'] as $key => $array){
@@ -566,7 +566,7 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_doc/thumbnail/'.$new_foto_doc['FotoDoc']['file_name']);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
 								$foto_doc_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -595,7 +595,7 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/thumbnail/'.$new_foto_as['FotoAct']['file_name']);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
 								$foto_as_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -625,7 +625,7 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
 								$foto_cs_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -655,7 +655,7 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
 								$foto_med_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -679,7 +679,7 @@ class ActasController extends AppController{
 	public function editar_informe($acta_id=null){
 		$this->layout = 'default';
 		if(!isset($acta_id)){
-			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
+			echo json_encode(array('success'=>true,'msg'=>__('Esta acciÃ³n no esta permitida')));
 			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
 			exit();
 		}
@@ -895,7 +895,7 @@ class ActasController extends AppController{
 			}
 				// FIN UPDATE
 				
-			// INICIO UPDATE UNIDADES MÓVILES
+			// INICIO UPDATE UNIDADES MÃ“VILES
 			if(!empty($this->request->data['UnidadMovil'])){
 				foreach($this->request->data['UnidadMovil'] as $key => $i){
 					
@@ -909,7 +909,7 @@ class ActasController extends AppController{
 								
 							$update_um['UnidadesMovile']['vehiculo_id'] = $i['nro_placa_id'];
 							if ($this->UnidadesMovile->save($update_um)) {
-									//Verifico si el id del Ni UM, no es vacía para poder actualizar
+									//Verifico si el id del Ni UM, no es vacÃ­a para poder actualizar
 										$array_ids = explode(',',$this->request->data['UmNi'][$key]);
 										foreach($array_ids as $um_ni_id){
 											$this->UmNormasIncumplida->deleteAll(array('UmNormasIncumplida.id' => $um_ni_id), $cascada = true);
@@ -1013,7 +1013,7 @@ class ActasController extends AppController{
 							$as_id = $this->ActosSubestandare->id;
 				
 							
-							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
 							$as_id = '';
 							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -1062,7 +1062,7 @@ class ActasController extends AppController{
 							$cs_id = $this->CondicionesSubestandare->id;
 				
 								
-							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
 							$cs_id = '';
 							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -1109,7 +1109,7 @@ class ActasController extends AppController{
 							$ca_id = $this->CierreActa->id;
 				
 				
-							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
 							$ca_id = '';
 							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -1140,7 +1140,7 @@ class ActasController extends AppController{
 						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ipp/thumbnail/'.$new_foto_ipp['FotoIpp']['file_name']);
 						unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 						unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-						// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+						// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 					}else{
 						$foto_ipp_id = '';
 						//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -1165,7 +1165,7 @@ class ActasController extends AppController{
 					endforeach;
 				}
 				
-				//INICIO UPDATE FOTOS SEÑALIZACIÓN Y DELIMITACIÓN
+				//INICIO UPDATE FOTOS SEÃ‘ALIZACIÃ“N Y DELIMITACIÃ“N
 				if(!empty($this->request->data['FotoSd'])){
 						$cont = 0;
 						foreach ($this->request->data['FotoSd'] as $key => $array){
@@ -1185,7 +1185,7 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
 								$foto_sd_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -1230,7 +1230,7 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
 								$foto_um_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -1276,7 +1276,7 @@ class ActasController extends AppController{
 							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_doc/thumbnail/'.$new_foto_doc['FotoDoc']['file_name']);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
 							$foto_doc_id = '';
 							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -1321,7 +1321,7 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/thumbnail/'.$new_foto_as['FotoAct']['file_name']);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
 								$foto_as_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -1347,7 +1347,7 @@ class ActasController extends AppController{
 				}
 				
 				
-				//INICIO UPDATE FOTOS CONDICIONES SUB (ACTOS Y CONDICIONES SUBESTÁNDARES)
+				//INICIO UPDATE FOTOS CONDICIONES SUB (ACTOS Y CONDICIONES SUBESTÃNDARES)
 				if(!empty($this->request->data['FotoCond'])){
 					$cont = 0;
 					foreach ($this->request->data['FotoCond'] as $key => $array){
@@ -1367,7 +1367,7 @@ class ActasController extends AppController{
 							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
 							$foto_cs_id = '';
 							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -1413,7 +1413,7 @@ class ActasController extends AppController{
 							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion SubestÃ¡ndar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
 							$foto_med_id = '';
 							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
@@ -1839,7 +1839,7 @@ class ActasController extends AppController{
 		
 		$this->loadModel('Acta');
 		if(!isset($acta_id)){
-			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
+			echo json_encode(array('success'=>true,'msg'=>__('Esta acciÃ³n no esta permitida')));
 			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
 			exit();
 		}
@@ -1861,7 +1861,7 @@ class ActasController extends AppController{
 				//debug($this->request->data);exit();
 				$acta_id = $this->request->data['acta_id'];
 				$obj_acta = $this->Acta->findById($acta_id);
-				$num_informe = $obj_acta->getAttr('num_informe'); //Obtengo el número de informe
+				$num_informe = $obj_acta->getAttr('num_informe'); //Obtengo el nÃºmero de informe
 				$email_destino = $this->request->data['SendEmail']['email_destino'];
 				$email_copia = $this->request->data['SendEmail']['email_copia'];
 				$asunto = $this->request->data['SendEmail']['asunto'];
@@ -1889,10 +1889,19 @@ class ActasController extends AppController{
 					$arr_validation['email_destino'] = array(__('Debe ingresar un email de destino'));
 					$error_validation = true;
 				}
-					
+				
 				if($error_validation == false){
 					$this->save_pdf($acta_id);
 					$this->Acta->sendReporteEmail($acta_id, $email_destino, $email_copia, $num_informe, $asunto, $mensaje);
+					/* Save Emails enviados */
+					$this->loadModel('EmailsEnviado');
+					$arr_email_send['EmailsEnviado']['acta_id'] = $acta_id;
+					$arr_email_send['EmailsEnviado']['emails_destino'] = $email_destino;
+					$arr_email_send['EmailsEnviado']['emails_copy'] = $email_copia;
+					$arr_email_send['EmailsEnviado']['asunto'] = $asunto;
+					$this->EmailsEnviado->create();
+					$this->EmailsEnviado->save($arr_email_send);
+					/* End */
 					$obj_acta->saveField('fecha_envio', date('Y-m-d'));
 					echo json_encode(array('success'=>true,'msg'=>__('El Informe fue enviado')));
 					exit();
