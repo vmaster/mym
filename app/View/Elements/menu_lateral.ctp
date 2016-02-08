@@ -33,7 +33,9 @@
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_cant_ni_vehiculo')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_cant_ni_vehiculo" id="link-usuario"><i class="fa fa-user fa-3x"></i><?php echo ' '.__('NI. por Unidad M&oacute;vil'); ?></a></li>
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_reincidencia_ni_empresa')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_reincidencia_ni_empresa" id="link-usuario"><i class="fa fa-user fa-3x"></i><?php echo ' '.__('Reincidencias por Empresa'); ?></a></li>
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_cumplimiento_empresas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_cumplimiento_empresas" id="link-usuario"><i class="fa fa-user fa-3x"></i><?php echo ' '.__('Cumplimiento por Empresa (%)'); ?></a></li>
+					<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'emails_enviado' && $this->request->params['action']=='index')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>emails_enviados/index" id="link-usuario"><i class="fa fa-user fa-3x"></i><?php echo ' '.__('Emails enviados'); ?></a></li>
+					<?php } ?>
 				</ul>
 			</li>
 			<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
