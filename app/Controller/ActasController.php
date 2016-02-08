@@ -1848,7 +1848,8 @@ class ActasController extends AppController{
 		$obj_acta = $this->Acta->findById($acta_id);
 		$info_ni_t = $this->Acta->infoNiT($acta_id);
 		$info_ni_v = $this->Acta->infoNiV($acta_id);
-		//debug($info_ni); exit();
+		//debug($info_ni_t); 
+		//debug($info_ni_v);exit();
 		$this->set(compact('obj_acta','info_ni_t','info_ni_v'));
 	}
 	

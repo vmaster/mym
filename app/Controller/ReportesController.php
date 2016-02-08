@@ -445,4 +445,140 @@ class ReportesController extends AppController{
 	
 		return $fecha;
 	}
+
+	function calculo_ni_cu($obj_acta){
+		$normas_cumplidas = 0;
+		$normas_incumplidas = 0;
+
+		$info_des_act = json_decode($obj_acta->info_des_epp);
+	    foreach($info_des_act as $value){
+	    	if($value->info_des_epp != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas++;
+		    	}elseif($value->alternativa == 0){
+		    		$normas_incumplidas++;
+		    	}
+	    	}
+	    }
+	    $info_des_act1 = json_decode($obj_acta->info_des_se_de);
+	    foreach($info_des_act1 as $value){
+	    	if(isset($value->info_des_se_de) && $value->info_des_se_de != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas++;
+		    	}elseif($value->alternativa == 0){
+		    		$normas_incumplidas++;
+		    	}
+	    	}
+	    }
+		$info_des_act2 = json_decode($obj_acta->info_des_um);
+	    foreach($info_des_act2 as $value){
+	    	if(isset($value->info_des_um) && $value->info_des_um != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas++;
+		    	}elseif($value->alternativa == 0){
+		    		$normas_incumplidas++;
+		    	}
+	    	}
+	    }
+	    $info_des_act3 = json_decode($obj_acta->info_des_doc);
+	    foreach($info_des_act3 as $value){
+	    	if(isset($value->info_des_doc) && $value->info_des_doc != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas++;
+		    	}elseif($value->alternativa == 0){
+		    		$normas_incumplidas++;
+		    	}
+	    	}
+	    }
+	    $info_des_act4 = json_decode($obj_acta->info_des_act);
+	    foreach($info_des_act4 as $value){
+	    	if(isset($value->info_des_act) && $value->info_des_act != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas++;
+		    	}elseif($value->alternativa == 0){
+		    		$normas_incumplidas++;
+		    	}
+	    	}
+	    }
+	    $info_des_act5 = json_decode($obj_acta->info_des_cond);
+	    foreach($info_des_act5 as $value){
+	    	if(isset($value->info_des_cond) && $value->info_des_cond != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas++;
+		    	}elseif($value->alternativa == 0){
+		    		$normas_incumplidas++;
+		    	}
+	    	}
+	    }
+	    return $normas_cumplidas.'-/'.($normas_cumplidas+$normas_incumplidas);
+	}
+
+	function excel(){
+		$this->autoRender = false;
+		ini_set('memory_limit', '-1');
+		ini_set('max_execution_time', 300000);
+		set_time_limit(0);
+
+		$this->loadModel('Acta');
+		$this->loadModel('Empresa');
+		$this->loadModel('UnidadesNegocio');
+		
+		$list_acta_all = $this->Acta->listAllActas('Acta.created','', '','','','DESC');
+
+		$tabla='<table border=1>
+				<tr>
+					<th rowspan="2">Item</th>
+					<th rowspan="2">N. Informe T&eacute;cnico</th>
+					<th rowspan="2">Fecha</th>
+					<th rowspan="2">UUNN</th>
+					<th rowspan="2">Area</th>
+					<th rowspan="2">Empresa</th>
+					<th rowspan="2">Obra/Servicio</th>
+					<th rowspan="2">Actividad(es)</th>
+					<th colspan="2">NIVEL CUMPLIMIENTO</th>
+					<th rowspan="2">Acci&oacute;n Correctiva</th>
+					<th colspan="6">DEFICIENCIAS - NO CONFORMIDADES</th>
+				</tr>
+				<tr>
+					<th>Cumplimiento</th>
+					<th>Cumplimiento %</th>
+					<th>EPP</th>
+					<th>Se&ntilde;alizaci&oacute;n</th>
+					<th>U. Movil</th>
+					<th>Documentaci&oacute;n de Seguridad</th>
+					<th>Cumplimiento de Procedimiento</th>
+					<th>Actos y Condiciones Sub-estandares</th>
+				</tr>';
+		foreach ($list_acta_all as $key => $obj_acta){
+			$tabla.='<tr>';
+			$tabla.= '<td>'.($key+1).'</td>';
+			$tabla.= '<td>'.$obj_acta->getAttr('num_informe').'</td>';
+			$tabla.= '<td>'.$obj_acta->getAttr('created').'</td>';
+			$tabla.= '<td>'.$obj_acta->UnidadesNegocio->getAttr('descripcion').'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('sector')).'</td>';
+			$tabla.= '<td>'.$obj_acta->Empresa->getAttr('nombre').'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('obra')).'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('actividad')).'</td>';
+			$tabla.= '<td>'.$this->calculo_ni_cu($obj_acta).'</td>';
+			$tabla.= '<td>'.$obj_acta->getAttr('cumplimiento').'%'.'</td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.='</tr>';
+		}
+		$tabla = $tabla.'</table>';
+		header('Content-type: application/vnd.ms-excel');
+		header("Content-Disposition: attachment; filename=reporte-".date('Y-m-d-h-i-s').".xls");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		echo $tabla;
+	}
+
+	function descargo_excel(){
+		$this->layout = "default";
+	}
 }
