@@ -578,7 +578,7 @@ class ReportesController extends AppController{
 		echo $tabla;
 	}
 
-	function descargo_excel(){
+	function rpt_descargo_excel(){
 		$this->layout = "default";
 	}
 }
