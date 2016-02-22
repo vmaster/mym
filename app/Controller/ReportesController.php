@@ -510,7 +510,7 @@ class ReportesController extends AppController{
 		    	}
 	    	}
 	    }
-	    return explode('-', $normas_cumplidas.'-'.($normas_cumplidas+$normas_incumplidas));
+	    return explode('-', $normas_cumplidas.'-'.$normas_incumplidas.'-'.($normas_cumplidas+$normas_incumplidas));
 	}
 
 	function excel(){
@@ -568,8 +568,8 @@ class ReportesController extends AppController{
 			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('actividad')).'</td>';
 
 			$tabla.= '<td>'.$obj_acta->getAttr('cumplimiento').'%'.'</td>';
-			$tabla.= '<td>'.$this->calculo_ni_cu($obj_acta)[0].'</td>';
-			$tabla.= '<td>'.$this->calculo_ni_cu($obj_acta)[1].'</td>';
+			$tabla.= '<td>'.$this->calculo_ni_cu($obj_acta)[0].'</td>'; // normas cumplidas
+			$tabla.= '<td>'.$this->calculo_ni_cu($obj_acta)[2].'</td>'; // normas cumplidas + normas incumplidas
 
 			$tabla.= '<td></td>';
 
@@ -588,7 +588,87 @@ class ReportesController extends AppController{
 		echo $tabla;
 	}
 
+	function excel_areas(){ //agrupar las actas por Tipo de Lugar
+		$this->autoRender = false;
+		ini_set('memory_limit', '-1');
+		ini_set('max_execution_time', 300000);
+		set_time_limit(0);
+
+		$this->loadModel('Acta');
+		$this->loadModel('Empresa');
+		$this->loadModel('UnidadesNegocio');
+		
+		$list_x_area_all = $this->Acta->listarCantidadInformexArea();
+		$suma_cantidad = 0;
+		$total_cumplimiento = 0;
+		$suma_cu_in = 0;
+		$suma_porc_cumplimiento = 0;
+
+		$tabla='<table border=1>
+				<tr>
+					<th style ="background:#C0CAD1;">&Aacute;reas</th>
+					<th style ="background:#C0CAD1;">Total N&deg; de informes</th>
+					<th style ="background:#C0CAD1;">Suma de Cumplimientos</th>
+					<th style ="background:#C0CAD1;">Suma de Verificaci&oacute;nes</th>
+					<th style ="background:#C0CAD1;"></th>
+				</tr>';
+		foreach ($list_x_area_all as $key => $value){
+			$tabla.='<tr>';
+			$tabla.= '<td>'.$value['TipoLugaresJoin']['descripcion'].'</td>';
+			$tabla.= '<td>'.$value[0]['cantidad'].'</td>';
+			$tabla.= '<td>'.$value[0]['total_cumplimiento'].'</td>';
+			$tabla.= '<td>'.$value[0]['suma_cu_in'].'</td>';
+			$porc_cumplimiento_x_area = round(($value[0]['total_cumplimiento']/$value[0]['suma_cu_in'])*100);
+			$tabla.= '<td>'.$porc_cumplimiento_x_area.'%</td>';
+			$tabla.='</tr>';
+
+			$suma_cantidad+= $value[0]['cantidad'];
+			$total_cumplimiento+= $value[0]['total_cumplimiento'];
+			$suma_cu_in+= $value[0]['suma_cu_in'];
+			$suma_porc_cumplimiento+= $porc_cumplimiento_x_area;
+		}
+		 $tabla.= '<tr>';
+		 $tabla.= '<td style ="background:#C0CAD1;"><b>Total general</b></td>';
+		 $tabla.= '<td style ="background:#C0CAD1;"><b>'.$suma_cantidad.'</b></td>';
+		 $tabla.= '<td style ="background:#C0CAD1;"><b>'.$total_cumplimiento.'</b></td>';
+		 $tabla.= '<td style ="background:#C0CAD1;"><b>'.$suma_cu_in.'</b></td>';
+		 $tabla.= '<td style ="background:#C0CAD1;"><b>'.round(($total_cumplimiento/$suma_cu_in)*100).'%</b></td>';
+		 $tabla.= "</tr>";
+
+
+		$tabla = $tabla.'</table>';
+		header('Content-type: application/vnd.ms-excel');
+		header("Content-Disposition: attachment; filename=reporte-".date('Y-m-d-h-i-s').".xls");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		echo $tabla;
+	}
+
 	function rpt_descargo_excel(){
 		$this->layout = "default";
 	}
+
+	function insert_cu_ic(){ //Función para insertar total cumplimientos e incumplimientos
+		$this->autoRender = false;
+		ini_set('memory_limit', '-1');
+		ini_set('max_execution_time', 300000);
+		set_time_limit(0);
+
+		$this->loadModel('Acta');
+		
+		$list_acta_all = $this->Acta->listAllActas('Acta.created','', '','','','DESC');
+
+
+		foreach ($list_acta_all as $key => $obj_acta){
+			$normas_cumplidas = $this->calculo_ni_cu($obj_acta)[0];
+			$normas_incumplidas = $this->calculo_ni_cu($obj_acta)[1];
+			$suma_cumplidas_incumplidas = $this->calculo_ni_cu($obj_acta)[2];
+
+			$obj_acta->saveField('total_cumplimiento', $normas_cumplidas);
+			$obj_acta->saveField('total_incumplimiento', $normas_incumplidas);
+			$obj_acta->saveField('suma_cu_in', $suma_cumplidas_incumplidas);
+		}
+
+	}
+
 }

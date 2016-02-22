@@ -1299,7 +1299,7 @@ App::uses('AppModel','Model');
     /* AGRUPADO POR AREAS (TIPO DE LUGAR) */
     public function listarCantidadInformexArea(){
         $arr_obj_det_ni_veh = $this->find('all',array(
-                'fields' => array('Acta.tipo_lugar_id', 'count(Acta.id) as cantidad'),
+                'fields' => array('Acta.tipo_lugar_id','TipoLugaresJoin.descripcion', 'count(Acta.id) as cantidad', 'sum(Acta.total_cumplimiento) as total_cumplimiento', 'sum(Acta.suma_cu_in) as suma_cu_in', 'sum(Acta.cumplimiento) as cumplimiento'),
                 'joins' => array(
                         array(
                                 'table' => 'tipo_lugares',
