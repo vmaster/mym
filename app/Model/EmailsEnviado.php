@@ -26,7 +26,7 @@ App::uses('AppModel','Model');
     	return $arr_obj_emails_enviado;
     }
     
-    public function listFindEmailsEnviados($order_by='EmailsEnviado.created', $order='DESC', $start=0, $per_page=10) {
+    public function listFindEmailsEnviados($order_by='EmailsEnviado.created', $order='DESC') {
     		$arr_obj_emails_enviado = $this->findObjects('all',array(
     				'conditions'=>array(
     						'EmailsEnviado.estado != ' => 0

@@ -12,4 +12,10 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<div class="col-md-3 col-sm-6 col-xs-6">
+			<a href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/excel_areas"><i class="fa fa-file"></i> descargar excel de areas</a>
+		</div>
+	</div>
+
 </div>

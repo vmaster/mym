@@ -1292,6 +1292,31 @@ App::uses('AppModel','Model');
     	 
     	return $arr_obj_det_ni_veh;
     }
+
+
+    /*CONSULTAS EXCEL*/
+
+    /* AGRUPADO POR AREAS (TIPO DE LUGAR) */
+    public function listarCantidadInformexArea(){
+        $arr_obj_det_ni_veh = $this->find('all',array(
+                'fields' => array('Acta.tipo_lugar_id', 'count(Acta.id) as cantidad'),
+                'joins' => array(
+                        array(
+                                'table' => 'tipo_lugares',
+                                'alias' => 'TipoLugaresJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'TipoLugaresJoin.id = Acta.tipo_lugar_id'
+                                )
+                        )
+                ),
+                'conditions'=>array('Acta.estado' => 1),
+                'group' => array('Acta.tipo_lugar_id')
+        )
+        );
+         
+        return $arr_obj_det_ni_veh;
+    }
     
   }
 ?>
