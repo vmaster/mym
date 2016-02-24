@@ -88,6 +88,35 @@ App::uses('AppModel','Model');
     		return false;
     	}
     }
+
+    public function listarCantidadInformexAreaxEmpresa($area_id){
+        $arr_obj_det_ni_veh = $this->find('all',array(
+                'fields' => array('Empresa.nombre', 'ActaJoin.empresa_id', 'count(ActaJoin.id) as cantidad', 'sum(ActaJoin.total_cumplimiento) as total_cumplimiento', 'sum(ActaJoin.suma_cu_in) as suma_cu_in', 'sum(ActaJoin.cumplimiento) as cumplimiento'),
+                'joins' => array(
+                        array(
+                                'table' => 'actas',
+                                'alias' => 'ActaJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'Empresa.id = ActaJoin.empresa_id'
+                                )
+                        ),
+                        array(
+                                'table' => 'tipo_lugares',
+                                'alias' => 'TipoLugaresJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'TipoLugaresJoin.id = ActaJoin.tipo_lugar_id'
+                                )
+                        )
+                ),
+                'conditions'=>array('ActaJoin.estado' => 1, 'ActaJoin.tipo_lugar_id'=> $area_id),
+                'group' => array('ActaJoin.empresa_id')
+        )
+        );
+         
+        return $arr_obj_det_ni_veh;
+    }
     
   }
 ?>
