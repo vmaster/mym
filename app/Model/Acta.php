@@ -488,30 +488,56 @@ App::uses('AppModel','Model');
     }
     
     
-    public function listDetalleSupervisionByEmpresa($fec_inicio, $fec_fin) {
-    	$arr_obj_det_sup_emp = $this->findObjects('all',array(
-    			/*'fields' => array('EmpresaJoin.nombre, Acta.fecha, Num'),*/
-    			'joins' => array(
-    					array(
-    							'table' => 'empresas',
-    							'alias' => 'EmpresaJoin',
-    							'type' => 'INNER',
-    							'conditions' => array(
-    									'EmpresaJoin.id = Acta.empresa_id',
-                                        'EmpresaJoin.estado' => 1
-    							)
-    					)
-    			),
-    			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                        'Acta.estado' => 1
-    			),
-    			'order'=> array('EmpresaJoin.nombre')
-    			/*'group'=> array('EmpresaJoin.nombre')*/
-    	)
-    	);
+    public function listDetalleSupervisionByEmpresa($fec_inicio, $fec_fin, $area_id, $empresa_id) {
+        if(isset($area_id) || isset($empresa_id)){
+            //debug("++++".$area_id);
+            //exit();
+            $arr_obj_det_sup_emp = $this->findObjects('all',array(
+                    /*'fields' => array('EmpresaJoin.nombre, Acta.fecha, Num'),*/
+                    'joins' => array(
+                            array(
+                                    'table' => 'empresas',
+                                    'alias' => 'EmpresaJoin',
+                                    'type' => 'INNER',
+                                    'conditions' => array(
+                                            'EmpresaJoin.id = Acta.empresa_id',
+                                            'EmpresaJoin.estado' => 1
+                                    )
+                            )
+                    ),
+                    'conditions'=>array(
+                            'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                            'Acta.tipo_lugar_id' => $area_id,    
+                            'Acta.empresa_id' => $empresa_id,
+                            'Acta.estado' => 1
+                    ),
+                    'order'=> array('EmpresaJoin.nombre')
+            )
+            );
+
+        }else{
+        	$arr_obj_det_sup_emp = $this->findObjects('all',array(
+        			/*'fields' => array('EmpresaJoin.nombre, Acta.fecha, Num'),*/
+        			'joins' => array(
+        					array(
+        							'table' => 'empresas',
+        							'alias' => 'EmpresaJoin',
+        							'type' => 'INNER',
+        							'conditions' => array(
+        									'EmpresaJoin.id = Acta.empresa_id',
+                                            'EmpresaJoin.estado' => 1
+        							)
+        					)
+        			),
+        			'conditions'=>array(
+        					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                            'Acta.estado' => 1
+        			),
+        			'order'=> array('EmpresaJoin.nombre')
+        	)
+        	);
+        }
     
-    	//debug($arr_obj_sup_emp);exit();
     	return $arr_obj_det_sup_emp;
     }
     
@@ -1298,7 +1324,7 @@ App::uses('AppModel','Model');
 
     /* AGRUPADO POR AREAS (TIPO DE LUGAR) */
     public function listarCantidadInformexArea(){
-        $arr_obj_det_ni_veh = $this->find('all',array(
+        $arr_cant_info_x_emp = $this->find('all',array(
                 'fields' => array('Acta.tipo_lugar_id','TipoLugaresJoin.descripcion', 'count(Acta.id) as cantidad', 'sum(Acta.total_cumplimiento) as total_cumplimiento', 'sum(Acta.suma_cu_in) as suma_cu_in', 'sum(Acta.cumplimiento) as cumplimiento'),
                 'joins' => array(
                         array(
@@ -1315,7 +1341,7 @@ App::uses('AppModel','Model');
         )
         );
          
-        return $arr_obj_det_ni_veh;
+        return $arr_cant_info_x_emp;
     }
     
   }
