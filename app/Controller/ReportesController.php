@@ -568,12 +568,23 @@ class ReportesController extends AppController{
 			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('actividad')).'</td>';
 
 			$tabla.= '<td>'.$obj_acta->getAttr('cumplimiento').'%'.'</td>';
-			$tabla.= '<td>'.$this->calculo_ni_cu($obj_acta)[0].'</td>'; // normas cumplidas
-			$tabla.= '<td>'.$this->calculo_ni_cu($obj_acta)[2].'</td>'; // normas cumplidas + normas incumplidas
+			$tabla.= '<td>'.$obj_acta->getAttr('total_cumplimiento').'</td>'; // normas cumplidas
+			$tabla.= '<td>'.$obj_acta->getAttr('suma_cu_in').'</td>'; // normas cumplidas + normas incumplidas
 
-			$tabla.= '<td></td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('info_des_med')).'</td>';
+			
+			//señalizacion
+			$tabla.= '<td>';
+			$senalizacion = json_decode($obj_acta->getAttr('info_des_se_de'));
+			foreach($senalizacion as $key => $value){
+				if($value->info_des_se_de != ''){
+					if($value->alternativa != 1){
+						$tabla.= $value->info_des_se_de.'<br>';
+					}
+				}
+			}
 
-			$tabla.= '<td></td>';
+			$tabla.= '</td>';
 			$tabla.= '<td></td>';
 			$tabla.= '<td></td>';
 			$tabla.= '<td></td>';
