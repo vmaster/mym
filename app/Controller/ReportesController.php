@@ -560,7 +560,7 @@ class ReportesController extends AppController{
 			$tabla.='<tr>';
 			$tabla.= '<td>'.($key+1).'</td>';
 			$tabla.= '<td>'.$obj_acta->getAttr('num_informe').'</td>';
-			$tabla.= '<td>'.$obj_acta->getAttr('created').'</td>';
+			$tabla.= '<td>'.CakeTime::format($obj_acta->getAttr('created'), '%d/%m/%Y').'</td>';
 			$tabla.= '<td>'.$obj_acta->UnidadesNegocio->getAttr('descripcion').'</td>';
 			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('sector')).'</td>';
 			$tabla.= '<td>'.$obj_acta->Empresa->getAttr('nombre').'</td>';
@@ -579,17 +579,61 @@ class ReportesController extends AppController{
 			foreach($senalizacion as $key => $value){
 				if($value->info_des_se_de != ''){
 					if($value->alternativa != 1){
-						$tabla.= $value->info_des_se_de.'<br>';
+						$tabla.= utf8_decode($value->info_des_se_de).'<br>';
 					}
 				}
 			}
-
 			$tabla.= '</td>';
-			$tabla.= '<td></td>';
-			$tabla.= '<td></td>';
-			$tabla.= '<td></td>';
-			$tabla.= '<td></td>';
-			$tabla.='</tr>';
+
+			//unidad movil
+			$tabla.= '<td>';
+			$undmovil = json_decode($obj_acta->getAttr('info_des_um'));
+			foreach($undmovil as $key => $value){
+				if($value->info_des_um != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->info_des_um).'<br>';
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//documento de seguridad
+			$tabla.= '<td>';
+			$documento = json_decode($obj_acta->getAttr('info_des_doc'));
+			foreach($documento as $key => $value){
+				if($value->info_des_doc != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->info_des_doc).'<br>';
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//cumplimiento de procedimiento
+			$tabla.= '<td>';
+			$cumplimiento_procedimiento = json_decode($obj_acta->getAttr('info_des_act'));
+			foreach($cumplimiento_procedimiento as $key => $value){
+				if($value->info_des_act != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->info_des_act).'<br>';
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//acto y condiciones subestandares
+			$tabla.= '<td>';
+			$act_cond = json_decode($obj_acta->getAttr('info_des_cond'));
+			foreach($act_cond as $key => $value){
+				if($value->info_des_cond != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->info_des_cond).'<br>';
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			$tabla.= '</tr>';
 		}
 		$tabla = $tabla.'</table>';
 		header('Content-type: application/vnd.ms-excel');
