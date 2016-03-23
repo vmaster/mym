@@ -26,7 +26,7 @@ class EmailsEnviadosController extends AppController{
 		$order_by = 'EmailsEnviado.created';
 
 		$list_emails_enviado_all = $this->EmailsEnviado->listAllEmailsEnviados($order_by, $order_by_or);
-		$list_emails_enviado = $this->EmailsEnviado->listFindEmailsEnviados($order_by,$order_by_or);
+		$list_emails_enviado = $this->EmailsEnviado->listFindEmailsEnviados($order_by, $order_by_or, $start, $per_page);
 
 		
 		$this->set(compact('list_emails_enviado'));
