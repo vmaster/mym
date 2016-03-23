@@ -29,27 +29,39 @@ $(document).ready(function() {
 		<table id="table-report001" class="display" cellspacing="0" width="100%">
 			<thead>
 				<tr>
-					<th><?php echo utf8_encode(__('Nombre de Empresa')); ?>
-					</th>
-					<th><?php echo utf8_encode(__('N° Informe')); ?>
-					</th>
 					<th><?php echo utf8_encode(__('Fecha')); ?>
 					</th>
-					<th><?php echo utf8_encode(__('Cumplimiento (%)')); ?>
-					</th>
+					<?php
+					foreach ($list_sep_emp as $arr_acta){
+					?>
+						<th><?php echo $arr_acta->getAttr('num_informe'); ?></th>
+
+					<?php
+					}
+					?>
 				</tr>
 			</thead>
 
 			<tbody>
 				<?php 
-				foreach ($list_sep_emp as $arr_emp):
+				foreach ($list_sep_emp as $arr_fecha1):
 				?>
 				<tr class="report_row_container">
-					<td><?php echo $arr_emp->Empresa->getAttr('nombre'); ?></td>
-					<td><?php echo $arr_emp->getAttr('num_informe'); ?></td>
-					<td><?php echo date('Y-m-d H:i',strtotime($arr_emp->getAttr('fecha'))); ?></td>
-					<td><?php echo $arr_emp->getAttr('cumplimiento'); ?></td>
-				</tr>
+					<td><?php echo $arr_fecha1->getAttr('fecha'); ?></td>
+					<?php 
+					foreach ($list_sep_emp as $arr_fecha2):
+						if($arr_fecha1->getAttr('fecha') == $arr_fecha2->getAttr('fecha')){
+					?>
+							<td><?= $arr_fecha1->getAttr('cumplimiento'); ?>%</td>
+					<?php
+						}else{
+					?>
+							<td></td>
+					<?php
+						}
+					endforeach;
+					?>
+					</tr>
 				<?php 
 				endforeach;
 				?>
