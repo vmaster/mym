@@ -532,7 +532,7 @@ class ReportesController extends AppController{
 					<th colspan="8" style="'.$color.'">DESCRIPCI&Oacute;N DEL INFORME</th>
 					<th colspan="3" style="'.$color.'">NIVEL DE CUMPLIMIENTO</th>
 					<th style="'.$color.'">Acci&oacute;n Correctiva</th>
-					<th colspan="5" style="'.$color.'">DEFICIENCIAS - NO CONFORMIDADES</th>
+					<th colspan="6" style="'.$color.'">DEFICIENCIAS - NO CONFORMIDADES</th>
 				</tr>
 				<tr>
 					<th style="'.$color.'">Item</th>
@@ -550,6 +550,7 @@ class ReportesController extends AppController{
 
 					<th style="'.$color.' width:250px;">Acci&oacute;n Correctiva</th>
 
+					<th style="'.$color.' width:200px;">EPP</th>
 					<th style="'.$color.' width:200px;">Se&ntilde;alizaci&oacute;n</th>
 					<th style="'.$color.' width:200px;">U. Movil</th>
 					<th style="'.$color.' width:200px;">Documentaci&oacute;n de seguridad</th>
@@ -573,6 +574,18 @@ class ReportesController extends AppController{
 
 			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('info_des_med')).'</td>';
 			
+			//epp
+			$tabla.= '<td>';
+			$epp = json_decode($obj_acta->getAttr('info_des_epp'));
+			foreach($epp as $key => $value){
+				if($value->info_des_epp != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->info_des_epp).'<br>';
+					}
+				}
+			}
+			$tabla.= '</td>';
+
 			//señalizacion
 			$tabla.= '<td>';
 			$senalizacion = json_decode($obj_acta->getAttr('info_des_se_de'));
