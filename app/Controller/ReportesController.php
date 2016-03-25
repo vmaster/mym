@@ -527,7 +527,7 @@ class ReportesController extends AppController{
 
 		$color = 'background: #81EFF1;';
 		$tabla='<table border=1>
-				<th colspan="17" style="'.$color.' height:60px">SEGUIMIENTO A NO CONFORMIDADES SEG&Uacute;N INFORMES DE SEGURIDAD DE CAMPO - SEG&Uacute;N PROGRAMA SEGESEM (Sostenibilidad empresarial  en gestion de la Seguridad y Salud en el trabajo en M&M)</th>
+				<th colspan="18" style="'.$color.' height:60px">SEGUIMIENTO A NO CONFORMIDADES SEG&Uacute;N INFORMES DE SEGURIDAD DE CAMPO - SEG&Uacute;N PROGRAMA SEGESEM (Sostenibilidad empresarial  en gestion de la Seguridad y Salud en el trabajo en M&M)</th>
 				<tr>
 					<th colspan="8" style="'.$color.'">DESCRIPCI&Oacute;N DEL INFORME</th>
 					<th colspan="3" style="'.$color.'">NIVEL DE CUMPLIMIENTO</th>
@@ -561,9 +561,9 @@ class ReportesController extends AppController{
 			$tabla.='<tr>';
 			$tabla.= '<td>'.($key+1).'</td>';
 			$tabla.= '<td>'.$obj_acta->getAttr('num_informe').'</td>';
-			$tabla.= '<td>'.CakeTime::format($obj_acta->getAttr('created'), '%d/%m/%Y').'</td>';
+			$tabla.= '<td>'.date('d/m/Y',strtotime($obj_acta->getAttr('fecha'))).'</td>';
 			$tabla.= '<td>'.$obj_acta->UnidadesNegocio->getAttr('descripcion').'</td>';
-			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('sector')).'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->TipoLugare->getAttr('descripcion')).'</td>';
 			$tabla.= '<td>'.$obj_acta->Empresa->getAttr('nombre').'</td>';
 			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('obra')).'</td>';
 			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('actividad')).'</td>';
@@ -572,7 +572,7 @@ class ReportesController extends AppController{
 			$tabla.= '<td>'.$obj_acta->getAttr('total_cumplimiento').'</td>'; // normas cumplidas
 			$tabla.= '<td>'.$obj_acta->getAttr('suma_cu_in').'</td>'; // normas cumplidas + normas incumplidas
 
-			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('info_des_med')).'</td>';
+			$tabla.= '<td>'.strip_tags(utf8_decode($obj_acta->getAttr('info_des_med'))).'</td>';
 			
 			//epp
 			$tabla.= '<td>';
@@ -580,7 +580,7 @@ class ReportesController extends AppController{
 			foreach($epp as $key => $value){
 				if($value->info_des_epp != ''){
 					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_epp).'<br>';
+						$tabla.= utf8_decode($value->info_des_epp);
 					}
 				}
 			}
@@ -592,7 +592,7 @@ class ReportesController extends AppController{
 			foreach($senalizacion as $key => $value){
 				if($value->info_des_se_de != ''){
 					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_se_de).'<br>';
+						$tabla.= utf8_decode($value->info_des_se_de);
 					}
 				}
 			}
@@ -604,7 +604,7 @@ class ReportesController extends AppController{
 			foreach($undmovil as $key => $value){
 				if($value->info_des_um != ''){
 					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_um).'<br>';
+						$tabla.= utf8_decode($value->info_des_um);
 					}
 				}
 			}
@@ -616,7 +616,7 @@ class ReportesController extends AppController{
 			foreach($documento as $key => $value){
 				if($value->info_des_doc != ''){
 					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_doc).'<br>';
+						$tabla.= utf8_decode($value->info_des_doc);
 					}
 				}
 			}
@@ -628,7 +628,7 @@ class ReportesController extends AppController{
 			foreach($cumplimiento_procedimiento as $key => $value){
 				if($value->info_des_act != ''){
 					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_act).'<br>';
+						$tabla.= utf8_decode($value->info_des_act);
 					}
 				}
 			}
@@ -640,7 +640,7 @@ class ReportesController extends AppController{
 			foreach($act_cond as $key => $value){
 				if($value->info_des_cond != ''){
 					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_cond).'<br>';
+						$tabla.= utf8_decode($value->info_des_cond);
 					}
 				}
 			}
