@@ -306,6 +306,8 @@ class ActasController extends AppController{
 				}
 				
 				$this->request->data['Acta']['cumplimiento'] = $formula;
+				$this->request->data['Acta']['total_cumplimiento'] = $normas_cumplidas;
+				$this->request->data['Acta']['total_incumplimiento'] = $normas_incumplidas;
 				
 				/* CREAMOS ACTA */
 				$this->Acta->create();
@@ -814,7 +816,10 @@ class ActasController extends AppController{
 				}else{
 					$formula = 0;
 				}
-					$this->request->data['Acta']['cumplimiento'] = $formula;
+					
+				$this->request->data['Acta']['cumplimiento'] = $formula;
+				$this->request->data['Acta']['total_cumplimiento'] = $normas_cumplidas;
+				$this->request->data['Acta']['total_incumplimiento'] = $normas_incumplidas;
 				
 			// INICIO UPDATE IMPLEMENTOS DE PROTECCION PERSONAL
 			if(!empty($this->request->data['TrabajadorActa'])){
