@@ -41,7 +41,7 @@ class ReportesController extends AppController{
 		//exit();
 	}
 	
-	public function load_list_cant_info_emp($fec_inicio, $fec_fin, $area_id=0, $empresa_id=0){
+	public function load_list_cant_info_emp($fec_inicio, $fec_fin){
 		$this->layout = "ajax";
 		$this->loadModel('Acta');
 		
@@ -57,22 +57,10 @@ class ReportesController extends AppController{
 			$fec_fin = '';
 		}
 
-		if(isset($area_id)){
-			$area_id = $area_id;
-		}else{
-			$area_id = '';
-		}
-		
-		if(isset($empresa_id)){
-			$empresa_id = $empresa_id;
-		}else{
-			$empresa_id = '';
-		}
-		
 		$fec_inicio_format = $this->formatFecha($fec_inicio);
 		$fec_fin_format = $this->formatFecha($fec_fin);
 		
-		$list_sep_emp = $this->Acta->listDetalleSupervisionByEmpresa($fec_inicio_format, $fec_fin_format, $area_id, $empresa_id);
+		$list_sep_emp = $this->Acta->listDetalleSupervisionByEmpresa($fec_inicio_format, $fec_fin_format);
 		$this->set(compact('list_sep_emp'));
 	}
 	

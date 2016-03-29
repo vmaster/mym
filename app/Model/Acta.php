@@ -489,34 +489,7 @@ App::uses('AppModel','Model');
     }
     
     
-    public function listDetalleSupervisionByEmpresa($fec_inicio, $fec_fin, $area_id, $empresa_id) {
-        if(isset($area_id) || isset($empresa_id)){
-            //debug("++++".$area_id);
-            //exit();
-            $arr_obj_det_sup_emp = $this->findObjects('all',array(
-                    /*'fields' => array('EmpresaJoin.nombre, Acta.fecha, Num'),*/
-                    'joins' => array(
-                            array(
-                                    'table' => 'empresas',
-                                    'alias' => 'EmpresaJoin',
-                                    'type' => 'INNER',
-                                    'conditions' => array(
-                                            'EmpresaJoin.id = Acta.empresa_id',
-                                            'EmpresaJoin.estado' => 1
-                                    )
-                            )
-                    ),
-                    'conditions'=>array(
-                            'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                            'Acta.tipo_lugar_id' => $area_id,    
-                            'Acta.empresa_id' => $empresa_id,
-                            'Acta.estado' => 1
-                    ),
-                    'order'=> array('EmpresaJoin.nombre')
-            )
-            );
-
-        }else{
+    public function listDetalleSupervisionByEmpresa($fec_inicio, $fec_fin) {
         	$arr_obj_det_sup_emp = $this->findObjects('all',array(
         			/*'fields' => array('EmpresaJoin.nombre, Acta.fecha, Num'),*/
         			'joins' => array(
@@ -537,7 +510,6 @@ App::uses('AppModel','Model');
         			'order'=> array('EmpresaJoin.nombre')
         	)
         	);
-        }
     
     	return $arr_obj_det_sup_emp;
     }
