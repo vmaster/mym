@@ -96,7 +96,7 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Responsable:</td>
-    <td class='tg-031eF' colspan='3'>(".$obj_acta->Actividade1->getAttr('descripcion').') '.$obj_acta->Trabajadore1->getAttr('apellido_nombre')."</td>
+    <td class='tg-031eF' colspan='3'>".$obj_acta->Trabajadore1->getAttr('apellido_nombre')." (".$obj_acta->Actividade1->getAttr('descripcion').') '."</td>
     <td class='aling-left back-green'><strong>Fecha:</strong></td>
     <td class='tg-031eF'>".date('d-m-Y',strtotime($obj_acta->getAttr('fecha')))."</td>
   </tr>
