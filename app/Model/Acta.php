@@ -224,7 +224,21 @@ App::uses('AppModel','Model');
     				'conditions' => '',
     				'fields' => '',
     				'order' => ''
-    		)
+    		),
+            'Actividade1' => array(
+                    'className' => 'Actividade',
+                    'foreignKey' => 'reponsable_act_cargo_id',
+                    'conditions' => '',
+                    'fields' => '',
+                    'order' => ''
+            ),
+            'Actividade2' => array(
+                    'className' => 'Actividade',
+                    'foreignKey' => 'reponsable_sup_cargo_id',
+                    'conditions' => '',
+                    'fields' => '',
+                    'order' => ''
+            )
     );
     
     

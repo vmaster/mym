@@ -860,6 +860,34 @@ tinymce.init({
 								</td>
 							</tr>
 							<tr>
+								<td style="vertical-align: middle; width:50%">Cargo:
+								<?php
+									echo "<span style='display: inline-flex; width: 100%;'>";
+									echo "<select name='data[Acta][reponsable_act_cargo_id]' class='cbo-responsable-select2 form-control' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+							 	    if (isset($list_all_actividades)){
+										echo "<option>---</option>";
+										foreach ($list_all_actividades as $id => $des):
+										echo "<option value = ".$id.">".$des."</option>";
+										endforeach;
+									}
+								    echo "</select>";
+								?>
+								</td>
+								<td style="vertical-align: middle; width:50%">Cargo:
+								<?php
+									echo "<span style='display: inline-flex; width: 100%;'>";
+									echo "<select name='data[Acta][reponsable_sup_cargo_id]' class='cbo-responsable-select2 form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+							 	    if (isset($list_all_actividades)){
+										echo "<option>---</option>";
+										foreach ($list_all_actividades as $id => $des):
+										echo "<option value = ".$id.">".$des."</option>";
+										endforeach;
+									}
+								    echo "</select>";
+								?>
+								</td>
+							</tr>
+							<tr>
 								<td style='width:35%;'>Nombre:
 								<?php
 									echo "<span style='display: inline-flex; width: 100%;'>";
