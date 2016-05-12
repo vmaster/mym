@@ -136,6 +136,7 @@ class ConfigurationsController extends AppController{
 	}
 	
 	function cron_send_database($tables = '*') {
+		ini_set('memory_limit', '512M');
 		
 		$return = '';
 			
