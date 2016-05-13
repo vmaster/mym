@@ -519,11 +519,29 @@ class ReportesController extends AppController{
 		ini_set('max_execution_time', 300000);
 		set_time_limit(0);
 
+		$fec_inicio = $this->params['url']['fec_inicio'];
+		$fec_fin = $this->params['url']['fec_fin'];
+
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+	
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+
 		$this->loadModel('Acta');
 		$this->loadModel('Empresa');
 		$this->loadModel('UnidadesNegocio');
 		
-		$list_acta_all = $this->Acta->listAllActas('Acta.created','', '','','','DESC');
+		$list_acta_all = $this->Acta->listAllActas('Acta.created','', '','','',$fec_inicio_format,$fec_fin_format,'DESC');
 
 		$color = 'background: #81EFF1;';
 		$tabla='<table border=1>
@@ -570,7 +588,8 @@ class ReportesController extends AppController{
 
 			$tabla.= '<td>'.$obj_acta->getAttr('cumplimiento').'%'.'</td>';
 			$tabla.= '<td>'.$obj_acta->getAttr('total_cumplimiento').'</td>'; // normas cumplidas
-			$tabla.= '<td>'.$obj_acta->getAttr('suma_cu_in').'</td>'; // normas cumplidas + normas incumplidas
+			$suma_cu_in = $obj_acta->getAttr('total_cumplimiento') + $obj_acta->getAttr('total_incumplimiento');
+			$tabla.= '<td>'.$suma_cu_in.'</td>'; // normas cumplidas + normas incumplidas
 
 			$tabla.= '<td>'.strip_tags(utf8_decode($obj_acta->getAttr('info_des_med'))).'</td>';
 			

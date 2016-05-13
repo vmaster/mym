@@ -288,7 +288,7 @@ App::uses('AppModel','Model');
     );
     
     
-    public function listAllActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$order='DESC') {
+    public function listAllActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$fec_inicio='', $fec_fin='',$order='DESC') {
     		$arr_obj_acta = $this->findObjects('all',array(
     				'joins' => array(
     						array(
@@ -306,6 +306,7 @@ App::uses('AppModel','Model');
     								'Acta.actividad LIKE'=> '%'.$search_actividad.'%',
     								'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
     								'Acta.obra LIKE'=> '%'.$search_obra.'%',
+                                    'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
                                     'Acta.estado '=> 1
     						)
     				),

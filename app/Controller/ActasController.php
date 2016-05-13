@@ -23,17 +23,7 @@ class ActasController extends AppController{
 			$order_by_or = 'DESC';
 		}
 		
-		/*if($order_by=='title'){
-			$order_by = 'Bit.title';
-		}elseif($order_by=='username'){
-			$order_by = 'UserJoin.username';
-		}elseif($order_by=='home'){
-			$order_by = 'Bit.view_home';
-		}elseif($order_by=='status'){
-			$order_by = 'Bit.status';
-		}else{
-			$order_by = 'Bit.created';
-		}*/
+
 		$order_by = 'Acta.created';
 		
 		if($this->request->is('get')){
