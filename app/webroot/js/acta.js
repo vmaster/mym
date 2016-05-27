@@ -625,7 +625,8 @@ $(document).ready(function(){
 	
 	$(".cbo-acta-refer-select2").select2({
 		  placeholder: "Seleccione informe",
-		  allowClear: true
+		  allowClear: true,
+		  width: '100%'
 		});
 	
 	$(".cbo-uunn-select2").select2({
