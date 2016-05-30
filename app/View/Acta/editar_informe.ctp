@@ -100,7 +100,7 @@ tinymce.init({
 										</tr>
 										<tr>
 											<td>Empresa:<br>
-											<span style="display: inline-flex;">
+											<span style="display: inline-flex;" class="span-cbo-empresa">
 											<select name="data[Acta][empresa_id]"
 												class="cbo-empresas-select2 form-control">
 													<?php 
@@ -131,7 +131,7 @@ tinymce.init({
 										<tr>
 											<td style="vertical-align: middle">Lugar: <?php echo $this->Form->input('lugar', array('div' => false, 'label' => false, 'class'=> 'txtLugar form-control','id' =>'txtLugar','maxlength'=>'200')); ?>
 											</td>
-											<td style="vertical-align: middle" colspan=3>UU.NN:<br>
+											<td style="vertical-align: middle" colspan=3 class="td-cbo-uunn">UU.NN:<br>
 											<?php //echo $this->Form->input('uunn', array('div' => false, 'label' => false, 'class'=> 'txtUunn form-control','id' =>'txtUunn','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 											<select name="data[Acta][uunn_id]"
 												class="cbo-uunn-select2 form-control">
