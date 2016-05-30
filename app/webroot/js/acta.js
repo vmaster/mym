@@ -146,6 +146,13 @@ $(document).ready(function(){
 						$('.td-cbo-uunn').find(span_combo).css("border-color","");
 					});
 
+					if($('.span-cbo-empresa').find($('.select2-selection__clear')).length > 0){
+						$('.span-cbo-empresa').find(span_combo).css("border-color","");
+					}
+					if($('.td-cbo-uunn').find($('.select2-selection__clear')).length > 0){
+						$('.td-cbo-uunn').find(span_combo).css("border-color","");
+					}
+
 				});
 			}
 		});
