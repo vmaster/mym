@@ -128,9 +128,24 @@ $(document).ready(function(){
 				$.each(data.validation, function( key, value ) {
 					alertify.error(value[0]);
 					$('[name="data[Acta]['+key+']"]').parent().addClass('control-group has-error');
+					
 					$('[name="data[Acta]['+key+']"]').change(function() {
 						$('[name="data[Acta]['+key+']"]').parent().removeClass('control-group has-error');
 					});
+
+
+					var span_combo = $("span.select2-selection");
+					$('.span-cbo-empresa').find(span_combo).css("border-color","#a94442");
+					$('.td-cbo-uunn').find(span_combo).css("border-color","#a94442");
+
+					$('.span-cbo-empresa').change(function() {
+						$('.span-cbo-empresa').find(span_combo).css("border-color","");
+					});
+
+					$('.td-cbo-uunn').change(function() {
+						$('.td-cbo-uunn').find(span_combo).css("border-color","");
+					});
+
 				});
 			}
 		});
@@ -625,7 +640,8 @@ $(document).ready(function(){
 	
 	$(".cbo-acta-refer-select2").select2({
 		  placeholder: "Seleccione informe",
-		  allowClear: true
+		  allowClear: true,
+		  width: '100%'
 		});
 	
 	$(".cbo-uunn-select2").select2({
