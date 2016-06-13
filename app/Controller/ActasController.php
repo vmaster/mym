@@ -466,8 +466,15 @@ class ActasController extends AppController{
 								$foto_ipp_id = $this->FotoIpp->id;
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ipp/'.$new_foto_ipp['FotoIpp']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ipp/thumbnail/'.$new_foto_ipp['FotoIpp']['file_name']);
+
+								//Backup Images
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_ipp/'.$new_foto_ipp['FotoIpp']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_ipp/thumbnail/'.$new_foto_ipp['FotoIpp']['file_name']);
+
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
+							
+								
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
 								$foto_ipp_id = '';
@@ -496,6 +503,11 @@ class ActasController extends AppController{
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/'.$new_foto_sd['FotoSd']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
+
+								//Backup Images	
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/'.$new_foto_sd['FotoSd']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
+
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -526,6 +538,11 @@ class ActasController extends AppController{
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/'.$new_foto_um['FotoUm']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);
+
+								//Backup Images	
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_um/'.$new_foto_um['FotoUm']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);	
+
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -556,6 +573,11 @@ class ActasController extends AppController{
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_doc/'.$new_foto_doc['FotoDoc']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_doc/thumbnail/'.$new_foto_doc['FotoDoc']['file_name']);
+
+								//Backup Images	
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/'.$new_foto_doc['FotoDoc']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/thumbnail/'.$new_foto_doc['FotoDoc']['file_name']);
+
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -585,6 +607,11 @@ class ActasController extends AppController{
 								$foto_as_id = $this->FotoAct->id;
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/'.$new_foto_as['FotoAct']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/thumbnail/'.$new_foto_as['FotoAct']['file_name']);
+
+								//Backup Images	
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_as/'.$new_foto_as['FotoAct']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_as/thumbnail/'.$new_foto_as['FotoAct']['file_name']);
+
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -615,6 +642,11 @@ class ActasController extends AppController{
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+
+								//Backup Images	
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -645,6 +677,11 @@ class ActasController extends AppController{
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/'.$new_foto_med['FotoMed']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
+
+								//Backup Images	
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -1133,6 +1170,12 @@ class ActasController extends AppController{
 						$foto_ipp_id = $this->FotoIpp->id;
 						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ipp/'.$new_foto_ipp['FotoIpp']['file_name']);
 						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_ipp/thumbnail/'.$new_foto_ipp['FotoIpp']['file_name']);
+
+						//Backup Images
+						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_ipp/'.$new_foto_ipp['FotoIpp']['file_name']);
+						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_ipp/thumbnail/'.$new_foto_ipp['FotoIpp']['file_name']);
+
+
 						unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 						unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 						// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -1178,6 +1221,11 @@ class ActasController extends AppController{
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/'.$new_foto_sd['FotoSd']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
+
+								//Backup Images
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/'.$new_foto_sd['FotoSd']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
+
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -1223,6 +1271,11 @@ class ActasController extends AppController{
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/'.$new_foto_um['FotoUm']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);
+
+								//Backup Images
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_um/'.$new_foto_um['FotoUm']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);
+
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -1269,6 +1322,11 @@ class ActasController extends AppController{
 							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_doc/'.$new_foto_doc['FotoDoc']['file_name']);
 							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_doc/thumbnail/'.$new_foto_doc['FotoDoc']['file_name']);
+
+							//Backup Images
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/'.$new_foto_doc['FotoDoc']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/thumbnail/'.$new_foto_doc['FotoDoc']['file_name']);
+
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -1314,6 +1372,11 @@ class ActasController extends AppController{
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/'.$new_foto_as['FotoAct']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/thumbnail/'.$new_foto_as['FotoAct']['file_name']);
+
+								//Backup Images
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_as/'.$new_foto_as['FotoAct']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_as/thumbnail/'.$new_foto_as['FotoAct']['file_name']);
+
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -1360,6 +1423,11 @@ class ActasController extends AppController{
 							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
 							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+
+							//Backup Images
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -1406,6 +1474,11 @@ class ActasController extends AppController{
 							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/'.$new_foto_med['FotoMed']['file_name']);
 							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
+
+							//Backup Images
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_med/'.$new_foto_med['FotoMed']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
+
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
@@ -1926,6 +1999,13 @@ class ActasController extends AppController{
 				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_ipp/thumbnail/'.$file_name)){
 					unlink(APP.WEBROOT_DIR.'/files/fotos_ipp/thumbnail/'.$file_name);
 				}
+
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_ipp/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_ipp/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_ipp/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_ipp/thumbnail/'.$file_name);
+				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
 			}else{
@@ -1949,6 +2029,14 @@ class ActasController extends AppController{
 				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$file_name)){
 					unlink(APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$file_name);
 				}
+
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/thumbnail/'.$file_name);
+				}
+
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
 			}else{
@@ -1971,6 +2059,13 @@ class ActasController extends AppController{
 				}
 				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$file_name)){
 					unlink(APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$file_name);
+				}
+
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_um/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_um/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_um/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_um/thumbnail/'.$file_name);
 				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
@@ -1995,6 +2090,13 @@ class ActasController extends AppController{
 				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_doc/thumbnail/'.$file_name)){
 					unlink(APP.WEBROOT_DIR.'/files/fotos_doc/thumbnail/'.$file_name);
 				}
+
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/thumbnail/'.$file_name);
+				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
 			}else{
@@ -2017,6 +2119,13 @@ class ActasController extends AppController{
 				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_as/thumbnail/'.$file_name)){
 					unlink(APP.WEBROOT_DIR.'/files/fotos_as/thumbnail/'.$file_name);
 				}
+
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_as/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_as/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_as/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_as/thumbnail/'.$file_name);
+				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
 			}else{
@@ -2038,6 +2147,13 @@ class ActasController extends AppController{
 				}
 				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_cs/thumbnail/'.$file_name)){
 					unlink(APP.WEBROOT_DIR.'/files/fotos_cs/thumbnail/'.$file_name);
+				}
+
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$file_name);
 				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
