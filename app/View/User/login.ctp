@@ -1,3 +1,4 @@
+<?php echo $this->Html->css(captcha_layout_stylesheet_url(), array('inline' => false)); ?>
 <div class="row text-center ">
 	<div class="col-md-12">
 		<br> <br>
@@ -26,6 +27,23 @@
 						<span class="input-group-addon"><i class="fa fa-lock"></i> </span>
 							<?php echo $this->Form->input('password',array('label' =>false, 'type' => 'password', 'class' => 'form-control', 'placeholder'=>__(utf8_encode('Constraseña ')))); ?>
 					</div>
+					<?php if($show_captcha == 1){ ?>
+						<div class="form-group input-group">
+							<center>
+								<p>
+						    <?php 
+						    // display Captcha markup, wrapped in an extra div for layout purposes
+							echo $this->Html->div('captcha', captcha_image_html(), false);
+							?> 
+							</p>
+							<?php
+							// Captcha code user input textbox
+							echo $this->Form->input('CaptchaCode');
+							?>
+						</center>
+						</div>
+					<?php } ?>
+
 					<!--  <div class="form-group">
 						<label class="checkbox-inline"> <input type="checkbox"> Remember
 							me

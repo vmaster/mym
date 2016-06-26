@@ -108,7 +108,7 @@ CakeLog::config('error', array(
 
 switch (Configure::read('environment')){
 	case 'localhost':
-		Configure::write('mym.url','http://localhost/GitHub/mym/');
+		Configure::write('mym.url','http://localhost/gitHub/mym/');
 		//Configure::write('SCRIPT_MIN','');
 		break;
 	case 'production':
@@ -116,7 +116,7 @@ switch (Configure::read('environment')){
 		//Configure::write('SCRIPT_MIN','.min');
 		break;
 	default:
-		Configure::write('mym.url','http://localhost/GitHub/mym/');
+		Configure::write('mym.url','http://localhost/gitHub/mym/');
 		//Configure::write('SCRIPT_MIN','');
 }
 
@@ -138,3 +138,10 @@ define('ENV_WEBROOT_FULL_URL',Configure::read('ENV_WEBROOT_FULL_URL'));
 Configure::write('NUM_DIGITOS_DNI',8);
 Configure::write('NUM_DIGITOS_RUC',11);
 Configure::write('NUM_DIGITOS_CEXT',12);
+
+/**
+ * Load the BotDetect Captcha CakePHP plugin
+ */
+CakePlugin::load(array(
+  'BotDetect' => array('routes' => true)
+));

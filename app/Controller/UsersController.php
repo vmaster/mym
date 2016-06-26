@@ -3,6 +3,12 @@
 class UsersController extends AppController{
 
 	//var $components = array('Auth', 'Session');
+	public $components = array(
+    'BotDetect.Captcha' => array(
+      'captchaConfig' => 'ExampleCaptcha'
+    )
+  	);
+
 	public $name = 'User';
 
 	public function beforeFilter(){
@@ -12,17 +18,62 @@ class UsersController extends AppController{
 
 	public function login() {
 		$this->layout = "default_external";
+		$this->set('show_captcha', 0);
 
 		if($this->request->is('post')) {
-			if($this->Auth->login()) {
-				if($this->Auth->user('estado')==0){
+
+			// validate the user-entered Captcha code
+
+  			if(isset($this->request->data['User']['CaptchaCode'])){
+  				$isHuman = captcha_validate($this->request->data['User']['CaptchaCode']);
+  			}else{
+  				$isHuman = "";
+  			}
+
+  			if($this->Session->check('contar')){
+  				$intento = $this->Session->read('contar');
+  			}else{
+  				$this->Session->write('contar',1);
+  				$intento = 1;
+  			}
+
+  			if($intento < 3){
+				if($this->Auth->login()) {
+					if($this->Auth->user('estado')==0){
+						$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
+						$this->redirect($this->Auth->logout());
+					}
+					$this->Session->delete('contar');
+					$this->redirect($this->Auth->redirectUrl());
+				} else {
 					$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
-					$this->redirect($this->Auth->logout());
+					
+					$intento++;
+					$this->Session->write('contar',$intento);
 				}
-				$this->redirect($this->Auth->redirectUrl());
-			} else {
-				$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
-			}
+			}else{
+				$this->set('show_captcha', 1);
+				if($this->Auth->login() && $isHuman) {
+					if($this->Auth->user('estado')==0){
+						$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
+						$this->redirect($this->Auth->logout());
+					}
+					
+					$this->Session->delete('contar');
+					$this->redirect($this->Auth->redirectUrl());	
+					//$this->Session->destroy('contar');
+					$this->set('show_captcha', 0);
+					
+				} else {
+					$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
+					$intento++;
+					$this->Session->write('contar',$intento);
+				}				
+			}	
+
+
+
+
 		}else{
 			if($this->Auth->user('id')){
 				$this->redirect($this->Auth->redirect());

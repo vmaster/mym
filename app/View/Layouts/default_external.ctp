@@ -25,6 +25,8 @@
     
     <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/jquery_ui/jquery-1.8.3.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/jquery_ui/jquery-ui.min.js" type="text/javascript"></script>
+
+    <?php echo $this->Html->css(captcha_layout_stylesheet_url(), array('inline' => false)); ?>
     
 </head>
 <body>
