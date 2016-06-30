@@ -97,7 +97,7 @@ class UsersController extends AppController{
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_username=null) {
 		
 		if($this->Session->read('Auth.User.tipo_user_id') == 2) {
-			$this->redirect(array('controller' => 'index'));
+			$this->redirect(array('controller' => 'dashboards'));
 		}
 		
 		$this->layout = "default";

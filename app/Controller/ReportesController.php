@@ -859,6 +859,9 @@ class ReportesController extends AppController{
 
 	function rpt_descargo_excel(){
 		$this->layout = "default";
+		if($this->Session->read('Auth.User.tipo_user_id') == 3) {
+			$this->redirect(array('controller' => 'dashboards'));
+		}
 	}
 
 	/* Excel llevado a web (gráfico)*/	
