@@ -9,7 +9,6 @@
 	</div>
 </div>
 <div class="row ">
-
 	<div
 		class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
 		<div class="panel panel-default">
@@ -28,43 +27,28 @@
 							<?php echo $this->Form->input('password',array('label' =>false, 'type' => 'password', 'class' => 'form-control', 'placeholder'=>__(utf8_encode('Constraseña ')))); ?>
 					</div>
 					<?php if($show_captcha == 1){ ?>
-						<div class="form-group input-group">
-							<center>
-								<p>
-						    <?php 
-						    // display Captcha markup, wrapped in an extra div for layout purposes
-							echo $this->Html->div('captcha', captcha_image_html(), false);
-							?> 
-							</p>
-							<?php
-							// Captcha code user input textbox
-							echo $this->Form->input('CaptchaCode');
-							?>
-						</center>
-						</div>
-					<?php } ?>
-
-					<!--  <div class="form-group">
-						<label class="checkbox-inline"> <input type="checkbox"> Remember
-							me
-						</label> <span class="pull-right"> <a href="#">Forget password ? </a>
-						</span>
-					</div>
-					-->
+					<center style="padding-bottom: 10px;">
 						<?php 
-							echo "<font color='red'>".$this->Session->flash()."</font>";
-							
-							if ($this->Session->check('Message.flash')) {
-								$this->Session->flash();
-							}
-							if ($this->Session->check('Message.auth')) {
-									
-								$this->Session->flash('auth');
-							}
-						?>
-						<?php
+						echo "<div style='padding-bottom: 15px;'>";
+						// display Captcha markup, wrapped in an extra div for layout purposes
+						echo $this->Html->div('captcha', captcha_image_html(), false);
+
+						// Captcha code user input textbox
+						echo $this->Form->input('CaptchaCode');
+						echo "</div>";
 						
+						echo "<font color='red'>".$this->Session->flash()."</font>";
+						
+						if ($this->Session->check('Message.flash')) {
+							$this->Session->flash();
+						}
+						if ($this->Session->check('Message.auth')) {
+								
+							$this->Session->flash('auth');
+						}
 						?>
+					</center>
+					<?php } ?>
 					<hr>
 					<!-- Not register ? <a href="registeration.html">click here </a> -->
 					<center>
@@ -74,9 +58,11 @@
 					</center>
 				</form>
 			</div>
-
 		</div>
 	</div>
-
-
 </div>
+<style>
+.captcha{padding-bottom: 10px;}
+#ExampleCaptcha_CaptchaIconsDiv{width: 28px !important;height: 50px !important;float: left; padding-left: 3px;}
+#ExampleCaptcha_CaptchaImageDiv{width: 250px !important;height: 50px !important;float: left;}
+</style>
