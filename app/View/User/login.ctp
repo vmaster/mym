@@ -36,19 +36,22 @@
 						// Captcha code user input textbox
 						echo $this->Form->input('CaptchaCode');
 						echo "</div>";
-						
-						echo "<font color='red'>".$this->Session->flash()."</font>";
-						
-						if ($this->Session->check('Message.flash')) {
-							$this->Session->flash();
-						}
-						if ($this->Session->check('Message.auth')) {
-								
-							$this->Session->flash('auth');
-						}
 						?>
 					</center>
 					<?php } ?>
+					<?php
+					echo "<div style='text-align: center;'>";
+					echo "<font color='red'>".$this->Session->flash()."</font>";
+					
+					if ($this->Session->check('Message.flash')) {
+						$this->Session->flash();
+					}
+					if ($this->Session->check('Message.auth')) {
+							
+						$this->Session->flash('auth');
+					}
+					echo "</div>";
+					?>
 					<hr>
 					<!-- Not register ? <a href="registeration.html">click here </a> -->
 					<center>
