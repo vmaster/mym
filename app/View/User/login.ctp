@@ -26,17 +26,12 @@
 						<span class="input-group-addon"><i class="fa fa-lock"></i> </span>
 							<?php echo $this->Form->input('password',array('label' =>false, 'type' => 'password', 'class' => 'form-control', 'placeholder'=>__(utf8_encode('Constraseña ')))); ?>
 					</div>
-					<center style="margin-bottom: -15px;">
-						<?php
-							if ($this->Session->check('Message.authe')) {
-								$this->Session->flash();
-							}
-							echo "<font color='red'>".$this->Session->flash('authe')."</font><p>";
-						?>
+					<center>
+						<?php echo "<font color='red'>".$this->Session->flash('authe')."</font>";?>
 					</center>
 
 					<?php if($show_captcha == 1){ ?>
-					<center style="padding-bottom: 10px;">
+					<center style="padding-top: 15px;">
 						<?php 
 						echo "<div style='padding-bottom: 15px;'>";
 						// display Captcha markup, wrapped in an extra div for layout purposes
