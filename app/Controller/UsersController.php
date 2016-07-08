@@ -40,32 +40,42 @@ class UsersController extends AppController{
   			if($intento < 3){
 				if($this->Auth->login()) {
 					if($this->Auth->user('estado')==0){
-						$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
+						//$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
+						$this->Session->setFlash('El Usuario o Contrase&ntilde;a es Incorrecto', 'default', array(), 'authe');
 						$this->redirect($this->Auth->logout());
 					}
 					$this->Session->delete('contar');
 					$this->redirect($this->Auth->redirectUrl());
 				} else {
-					$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
-					
+
+					$this->Session->setFlash('El Usuario o Contrase&ntilde;a es Incorrecto', 'default', array(), 'authe');
 					$intento++;
 					$this->Session->write('contar',$intento);
+					//debug($intento);
 				}
 			}else{
 				$this->set('show_captcha', 1);
 				if($this->Auth->login() && $isHuman) {
 					if($this->Auth->user('estado')==0){
-						$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
+						$this->Session->setFlash('El Usuario o Contrase&ntilde;a es Incorrecto', 'default', array(), 'authe');
 						$this->redirect($this->Auth->logout());
 					}
 					
 					$this->Session->delete('contar');
 					$this->redirect($this->Auth->redirectUrl());	
-					//$this->Session->destroy('contar');
 					$this->set('show_captcha', 0);
 					
-				} else {
-					$this->Session->setFlash(__('El Usuario o Contrase&ntilde;a es Incorrecto'),array(),'auth');
+				} 
+
+				if(!$isHuman) {
+					$this->Session->setFlash('Ingrese el texto correcto', 'default', array(), 'captcha');
+
+					$intento++;
+					$this->Session->write('contar',$intento);
+				}	
+
+				if(!$this->Auth->login()) {
+					$this->Session->setFlash('El Usuario o Contrase&ntilde;a es Incorrecto', 'default', array(), 'authe');
 					$intento++;
 					$this->Session->write('contar',$intento);
 				}				

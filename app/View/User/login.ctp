@@ -26,6 +26,14 @@
 						<span class="input-group-addon"><i class="fa fa-lock"></i> </span>
 							<?php echo $this->Form->input('password',array('label' =>false, 'type' => 'password', 'class' => 'form-control', 'placeholder'=>__(utf8_encode('Constraseña ')))); ?>
 					</div>
+					<center style="margin-bottom: -15px;">
+						<?php
+							if ($this->Session->check('Message.authe')) {
+								$this->Session->flash();
+							}
+							echo "<font color='red'>".$this->Session->flash('authe')."</font><p>";
+						?>
+					</center>
 					<?php if($show_captcha == 1){ ?>
 					<center style="padding-bottom: 10px;">
 						<?php 
@@ -36,20 +44,16 @@
 						// Captcha code user input textbox
 						echo $this->Form->input('CaptchaCode');
 						echo "</div>";
-						
-						echo "<font color='red'>".$this->Session->flash()."</font>";
-						
-						if ($this->Session->check('Message.flash')) {
-							$this->Session->flash();
+
+						echo "<font color='gray'>".$this->Session->flash('captcha')."</font>";
+						if ($this->Session->check('Message.captcha')) {
+							$this->Session->flash('captcha');
 						}
-						if ($this->Session->check('Message.auth')) {
-								
-							$this->Session->flash('auth');
-						}
-						?>
+					?>
 					</center>
 					<?php } ?>
 					<hr>
+					
 					<!-- Not register ? <a href="registeration.html">click here </a> -->
 					<center>
 					<button type="submit" class="btn btn-primary">
