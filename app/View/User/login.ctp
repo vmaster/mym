@@ -34,6 +34,7 @@
 							echo "<font color='red'>".$this->Session->flash('authe')."</font><p>";
 						?>
 					</center>
+
 					<?php if($show_captcha == 1){ ?>
 					<center style="padding-bottom: 10px;">
 						<?php 
@@ -45,15 +46,16 @@
 						echo $this->Form->input('CaptchaCode');
 						echo "</div>";
 
+
 						echo "<font color='gray'>".$this->Session->flash('captcha')."</font>";
 						if ($this->Session->check('Message.captcha')) {
 							$this->Session->flash('captcha');
 						}
 					?>
+
 					</center>
 					<?php } ?>
 					<hr>
-					
 					<!-- Not register ? <a href="registeration.html">click here </a> -->
 					<center>
 					<button type="submit" class="btn btn-primary">
