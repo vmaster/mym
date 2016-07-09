@@ -153,6 +153,8 @@ $(document).ready(function(){
 						$('.td-cbo-uunn').find(span_combo).css("border-color","");
 					}
 
+					$('html,body').animate({scrollTop:'400px'}, 700);return false;
+
 				});
 			}
 		});
