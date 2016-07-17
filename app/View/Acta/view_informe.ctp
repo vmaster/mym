@@ -125,6 +125,38 @@ $codigo.= "
 		    <td class='tg-031e'>";
 			$normas_cumplidas = 0;
 			$normas_incumplidas = 0;
+			$cont_nc_sd = 0;
+			$cont_ni_sd = 0;
+
+			$cont_nc_um = 0;
+			$cont_ni_um = 0;
+
+			$cont_nc_ds = 0;
+			$cont_ni_ds = 0;
+			 
+			$cont_nc_cu = 0;
+			$cont_ni_cu = 0;
+
+			$cont_nc_cs = 0;
+			$cont_ni_cs = 0;
+
+			$total_nc_epp = 0;
+			$total_ni_epp = 0;
+
+			$total_nc_sd = 0;
+			$total_ni_sd = 0;
+
+			$total_nc_um = 0;
+			$total_ni_um = 0;
+
+			$total_nc_ds = 0;
+			$total_ni_ds = 0;
+			 
+			$total_nc_cu = 0;
+			$total_ni_cu = 0;
+
+			$total_nc_cs = 0;
+			$total_ni_cs = 0;
 			
 		    $info_des_act = json_decode($obj_acta->info_des_epp);
 		    foreach($info_des_act as $value){
@@ -132,9 +164,11 @@ $codigo.= "
 			    	if($value->alternativa == 1){
 			    		$codigo.= "(NC) ";
 			    		$normas_cumplidas++;
+			    		$total_nc_epp = $normas_cumplidas;
 			    	}elseif($value->alternativa == 0){
 			    		$codigo.= "(NI) ";
 			    		$normas_incumplidas++;
+			    		$total_ni_epp = $normas_incumplidas;
 			    	}else{
 			    		$codigo.= "( - ) ";
 			    	}
@@ -184,9 +218,13 @@ $codigo.= "
 				    	if($value->alternativa == 1){
 				    		$codigo.= "(NC) ";
 				    		$normas_cumplidas++;
+				    		$cont_nc_sd++;
+				    		$total_nc_sd = $cont_nc_sd;
 				    	}elseif($value->alternativa == 0){
 				    		$codigo.= "(NI) ";
 				    		$normas_incumplidas++;
+				    		$cont_ni_sd++;
+				    		$total_ni_sd = $cont_ni_sd;
 				    	}else{
 				    		$codigo.= "( - ) ";
 				    	}
@@ -234,9 +272,13 @@ $codigo.= "
 		    		if($value->alternativa == 1){
 		    			$codigo.= "(NC) ";
 		    			$normas_cumplidas++;
+		    			$cont_nc_um++;
+				    	$total_nc_um = $cont_nc_um;
 		    		}elseif($value->alternativa == 0){
 		    			$codigo.= "(NI) ";
 		    			$normas_incumplidas++;
+		    			$cont_ni_um++;
+				    	$total_ni_um = $cont_ni_um;
 		    		}else{
 		    			$codigo.= "( - ) ";
 		    		}
@@ -283,9 +325,13 @@ $codigo.= "
 		    		if($value->alternativa == 1){
 		    			$codigo.= "(NC) ";
 		    			$normas_cumplidas++;
+		    			$cont_nc_ds++;
+				    	$total_nc_ds = $cont_nc_ds;
 		    		}elseif($value->alternativa == 0){
 		    			$codigo.= "(NI) ";
 		    			$normas_incumplidas++;
+		    			$cont_ni_ds++;
+				    	$total_ni_ds = $cont_ni_ds;
 		    		}else{
 		    			$codigo.= "( - ) ";
 		    		}
@@ -337,9 +383,13 @@ $codigo.= "
 		    		if($value->alternativa == 1){
 		    			$codigo.= "(NC) ";
 		    			$normas_cumplidas++;
+		    			$cont_nc_cu++;
+				    	$total_nc_cu = $cont_nc_cu;
 		    		}elseif($value->alternativa == 0){
 		    			$codigo.= "(NI) ";
 		    			$normas_incumplidas++;
+		    			$cont_ni_cu++;
+				    	$total_ni_cu = $cont_ni_cu;
 		    		}else{
 		    			$codigo.= "( - ) ";
 		    		}
@@ -386,9 +436,13 @@ $codigo.= "
 		    		if($value->alternativa == 1){
 		    			$codigo.= "(NC) ";
 		    			$normas_cumplidas++;
+		    			$cont_nc_cs++;
+				    	$total_nc_cs = $cont_nc_cs;
 		    		}elseif($value->alternativa == 0){
 		    			$codigo.= "(NI) ";
 		    			$normas_incumplidas++;
+		    			$cont_ni_cs++;
+				    	$total_ni_cs = $cont_ni_cs;
 		    		}else{
 		    			$codigo.= "( - ) ";
 		    		}
@@ -471,8 +525,11 @@ $codigo.= "	</tr>
 		<br>
 		";
 $codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.85em;'>";
-$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$normas_cumplidas."</td></tr>";
-$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$normas_incumplidas."</td></tr>";
+$codigo .= "<tr>";
+$codigo .= "<td></td><td>EPP</td><td>SEÑALIZACIÓN</td><td>UUMM</td><td>DOCUMENTACIÓN</td><td>cumplimiento</td><td>CONDICIÓN</td><td>TOTAL</td>";
+$codigo .= "</tr>";
+$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp."</td><td>".$total_nc_sd."</td><td>".$total_nc_um."</td><td>".$total_nc_ds."</td><td>".$total_nc_cu."</td><td>".$total_nc_cs."</td><td>".$normas_cumplidas."</td></tr>";
+$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp."</td><td>".$total_ni_sd."</td><td>".$total_ni_um."</td><td>".$total_ni_ds."</td><td>".$total_ni_cu."</td><td>".$total_ni_cs."</td><td>".$normas_incumplidas."</td></tr>";
 //$codigo .= "<tr><td><strong>TOTAL (NC + NI):</strong> </td><td>".($normas_incumplidas + $normas_cumplidas)."</td></tr>";
 $suma_normas = $normas_cumplidas + $normas_incumplidas;
 if($suma_normas > 0){
@@ -480,7 +537,8 @@ if($suma_normas > 0){
 }else{
 	$formula = 0;
 }
-$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>".round($formula,2)."%</td></tr>";
+
+$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td></td><td></td><td></td><td></td><td></td><td></td><td>".round($formula,2)."%</td></tr>";
 $codigo .= "</table>";
 $codigo .= "<p align='right'><table width='100%'>
 			<tr><td><div style='text-align:right;'><img src='".ENV_WEBROOT_FULL_URL."files/firmas/".$obj_acta->Trabajadore2->getAttr('firma')."' style='border:0px;' width='144px' height='80px'> </div>";
