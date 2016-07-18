@@ -524,9 +524,10 @@ $codigo.= "	</tr>
 		</table>
 		<br>
 		";
-$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.85em;'>";
+//$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.85em;'>";
+$codigo.= "<table class='tg' width='100%' style='border:0px;font-size:8px;'>";
 $codigo .= "<tr>";
-$codigo .= "<td></td><td>EPP</td><td>SEÑALIZACIÓN</td><td>UUMM</td><td>DOCUMENTACIÓN</td><td>cumplimiento</td><td>CONDICIÓN</td><td>TOTAL</td>";
+$codigo .= "<td></td><td>EPP</td><td>SE&Ntilde;ALIZACI&Oacute;N</td><td>U.M</td><td>DOCUMENTO</td><td>CUMPLIMIENTO</td><td>CONDICI&Oacute;N</td><td>TOTAL</td>";
 $codigo .= "</tr>";
 $codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp."</td><td>".$total_nc_sd."</td><td>".$total_nc_um."</td><td>".$total_nc_ds."</td><td>".$total_nc_cu."</td><td>".$total_nc_cs."</td><td>".$normas_cumplidas."</td></tr>";
 $codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp."</td><td>".$total_ni_sd."</td><td>".$total_ni_um."</td><td>".$total_ni_ds."</td><td>".$total_ni_cu."</td><td>".$total_ni_cs."</td><td>".$normas_incumplidas."</td></tr>";
@@ -692,7 +693,7 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 	$codigo.= "</table><p>&nbsp;</p>";
 }
 
-//echo $codigo; exit();
+echo $codigo; exit();
 $dompdf = new DOMPDF();
 $dompdf->set_paper("A4");
 $dompdf->load_html($codigo);
