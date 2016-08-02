@@ -693,7 +693,7 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 	$codigo.= "</table><p>&nbsp;</p>";
 }
 
-echo $codigo; exit();
+//echo $codigo; exit();
 $dompdf = new DOMPDF();
 $dompdf->set_paper("A4");
 $dompdf->load_html($codigo);
