@@ -7,7 +7,7 @@ class TrabajadoresController extends AppController{
 	}
 	
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_nro_documento=null,$search_nombre=null) {
-		
+		ini_set('memory_limit', '1024M');
 		$this->layout = "default";
 		$this->loadModel('Trabajadore');
 		$this->loadModel('Actividade');
@@ -65,6 +65,7 @@ class TrabajadoresController extends AppController{
 	}
 	
 	public function find_trabajadores($page=null,$order_by=null,$order_by_or=null,$search_nro_documento=null,$search_nombre=null) {
+		ini_set('memory_limit', '1024M');
 		$this->layout = 'ajax';
 		$this->loadModel('Trabajadore');
 		$this->loadModel('Actividade');
