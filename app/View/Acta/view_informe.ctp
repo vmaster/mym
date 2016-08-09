@@ -54,8 +54,7 @@ $codigo.= "</div>";
 
 $codigo.= "<table class='tg tg-031eF back-blue' width='100%' style='margin-bottom:-15px'>
 			  <tr>
-				<th style='width:10%;' class='tg-031e' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/logo_mym_new.jpg' style='width: 76px; border:0px;'/></th>
-			    <th style='width:62%' class='tg-031e' rowspan='3'><h2 style='margin:2px'>M&amp;M Ingenier&iacute;a Obras y Servicios E.I.R.L.</h2>
+				<th style='width:10%;' class='tg-031e' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/logo_mym2016.png' style='width: 76px; border:0px;'/></th>
 			    <h5 style='margin:2px'>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, electromec&aacute;nicas, civiles, miner&iacute;a e industrial.<br>Especialistas de gesti&oacute;n en Seguridad, salud en el trabajo, calidad y medio ambiente.</h5>		
 			    </th>
 			    <th style='width:22%' class='aling-left'><strong>Programa: SEGESEM </strong></th>
