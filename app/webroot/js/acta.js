@@ -465,6 +465,31 @@ $(document).ready(function(){
 	}
 	loadSendIndexButtonToModalVehiculo();
 
+	/*SCRIPT PARA CREAR GRAFICO EN NUEVO INFORME*/
+	function loadGraficoNuevaActa(){
+		$('.select-NI-NC').change(function(){
+		
+			//select_cu_epp
+			var n_cu_epp = 0;
+			var n_in_epp = 0;
+			$(".select_cu_epp").each(function(){
+				val_estado_epp = $(this).val();
+			
+				if(val_estado_epp == 1){
+					n_cu_epp++;
+				}
+
+				if(val_estado_epp == 0){
+					n_in_epp++;
+				}
+			});
+			alert('NC_EPP= '+n_cu_epp);
+			alert('NI_EPP= '+n_in_epp);
+		
+		});
+	}
+	loadGraficoNuevaActa();
+
 /*SCRIPTS PARA EL CREAR Y EDITAR INFORME  */
 	
 	/* AGREGAR FILAS A LA TABLA DE IMPLEMENTOS DE PROT PERSO. */
@@ -594,6 +619,7 @@ $(document).ready(function(){
 		        success: function(html)
 		         {
 		       	 $('#table-epp-rep tr:last').after(html);
+		       	 loadGraficoNuevaActa();
 		         }
 			 });
 		});

@@ -372,7 +372,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_epp][<?php echo $i; ?>][info_des_epp]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
-															<select class="form-control select_cu_epp" name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_epp" name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][alternativa]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
