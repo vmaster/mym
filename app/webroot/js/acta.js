@@ -574,7 +574,7 @@ $(document).ready(function(){
 			            type: 'pie'
 			        },
 			        title: {
-			            text: 'Browser market share, January, 2015 to May, 2015'
+			            text: 'Gr\u00E1fico de Normas Cumplidas e Incumplidas'
 			        },
 			        subtitle: {
 			            text: 'Source: <a href="http://netmarketshare.com/">netmarketshare.com</a>'
@@ -717,30 +717,30 @@ function sumaAcumularNormas(){
 		 		}
 		   })
 
-		  normas_cumplidas = n_cu_epp + n_cu_sd + n_cu_um + n_cu_ds + n_cu_cp + n_cu_as;
-			normas_incumplidas = n_in_epp + n_in_sd + n_in_um + n_in_ds + n_in_cp + n_in_as;
+		  	normas_cumplidas = Math.round(n_cu_epp + n_cu_sd + n_cu_um + n_cu_ds + n_cu_cp + n_cu_as);
+			normas_incumplidas = Math.round(n_in_epp + n_in_sd + n_in_um + n_in_ds + n_in_cp + n_in_as);
 			suma_normas = normas_cumplidas + normas_incumplidas;
 
-			porc_nc = (normas_cumplidas * 100) / suma_normas;
-			porc_ni = (normas_incumplidas * 100) / suma_normas;
+			porc_nc = Math.round((normas_cumplidas * 100) / suma_normas);
+			porc_ni = Math.round((normas_incumplidas * 100) / suma_normas);
 
-			porc_cu_epp = (n_cu_epp*100)/suma_normas;
-			porc_in_epp = (n_in_epp*100)/suma_normas;
+			porc_cu_epp = Math.round((n_cu_epp*100)/suma_normas);
+			porc_in_epp = Math.round((n_in_epp*100)/suma_normas);
 
-			porc_cu_sd = (n_cu_sd*100)/suma_normas;
-			porc_in_sd = (n_in_sd*100)/suma_normas;
+			porc_cu_sd = Math.round((n_cu_sd*100)/suma_normas);
+			porc_in_sd = Math.round((n_in_sd*100)/suma_normas);
 
-			porc_cu_um = (n_cu_um*100)/suma_normas;
-			porc_in_um = (n_in_um*100)/suma_normas;
+			porc_cu_um = Math.round((n_cu_um*100)/suma_normas);
+			porc_in_um = Math.round((n_in_um*100)/suma_normas);
 
-			porc_cu_ds = (n_cu_ds*100)/suma_normas;
-			porc_in_ds = (n_in_ds*100)/suma_normas;
+			porc_cu_ds = Math.round((n_cu_ds*100)/suma_normas);
+			porc_in_ds = Math.round((n_in_ds*100)/suma_normas);
 
-			porc_cu_cp = (n_cu_cp*100)/suma_normas;
-			porc_in_cp = (n_in_cp*100)/suma_normas;
+			porc_cu_cp = Math.round((n_cu_cp*100)/suma_normas);
+			porc_in_cp = Math.round((n_in_cp*100)/suma_normas);
 
-			porc_cu_as = (n_cu_as*100)/suma_normas;
-			porc_in_as = (n_in_as*100)/suma_normas;
+			porc_cu_as = Math.round((n_cu_as*100)/suma_normas);
+			porc_in_as = Math.round((n_in_as*100)/suma_normas);
 
 			var porc_cu_categorias = [porc_cu_epp, porc_cu_sd, porc_cu_um, porc_cu_ds, porc_cu_cp, porc_cu_as];
 			var porc_in_categorias = [porc_in_epp, porc_in_sd, porc_in_um, porc_in_ds, porc_in_cp, porc_in_as];
@@ -854,7 +854,7 @@ function sumaAcumularNormas(){
 		$('#table-mc-inf tr:last').after(new_row);
 	});
 	
-	
+	/* CUMPLIMIENTO E INCUMPLIMIENTOS */
 	/* AGREGAR FILAS A LA TABLA ACTOS SUBESTÁNDARES PARA EL REPORTE*/	
 	$("#div-btn-add-as-rep .add-more-row-as-rep").bind("click", function(e){
 	long_table = $('#table-as-rep tbody tr').length + 1;
@@ -866,6 +866,7 @@ function sumaAcumularNormas(){
 	        success: function(html)
 	         {
 	       	 $('#table-as-rep tr:last').after(html);
+	       	 loadGraficoNuevaActa();
 	         }
 		 });
 	});
@@ -881,6 +882,7 @@ function sumaAcumularNormas(){
 	        success: function(html)
 	         {
 	       	 $('#table-cond-rep tr:last').after(html);
+	       	 loadGraficoNuevaActa();
 	         }
 		 });
 	});
@@ -910,6 +912,7 @@ function sumaAcumularNormas(){
 		        success: function(html)
 		         {
 		       	 $('#table-sd-rep tr:last').after(html);
+		       	 loadGraficoNuevaActa();
 		         }
 			 });
 		});
@@ -924,6 +927,7 @@ function sumaAcumularNormas(){
 		        success: function(html)
 		         {
 		       	 $('#table-um-rep tr:last').after(html);
+		       	 loadGraficoNuevaActa();
 		         }
 			 });
 		});
@@ -938,6 +942,7 @@ function sumaAcumularNormas(){
 		        success: function(html)
 		         {
 		       	 $('#table-ds-rep tr:last').after(html);
+		       	 loadGraficoNuevaActa();
 		         }
 			 });
 		});

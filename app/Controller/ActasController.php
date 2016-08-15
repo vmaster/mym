@@ -788,7 +788,34 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['Acta']['info_des_conclusion'];
 				$this->request->data['Acta']['info_des_rec'] = $this->request->data['Acta']['info_des_rec'];
 				$this->request->data['Acta']['info_des_med'] = $this->request->data['Acta']['info_des_med'];
-				
+
+
+				if($this->request->data['Acta']['grafico'] != ''){
+
+					unlink(APP.WEBROOT_DIR.'/files/graficos/'.$this->request->data['Acta']['grafico']);
+
+					$data = str_replace(' ', '+', $this->request->data['graf']);
+					$data_64= base64_decode($data);
+					$filename = date('ymdhis').'.png';
+					$im = imagecreatefromstring($data_64);
+	
+					// Save image in the specified location
+					imagepng($im, APP.WEBROOT_DIR.'/files/graficos/'.$filename);
+					$this->request->data['Acta']['grafico'] = $filename;
+					
+					
+				}else{
+					$data = str_replace(' ', '+', $this->request->data['graf']);
+					$data_64= base64_decode($data);
+					$filename = date('ymdhis').'.png';
+					$im = imagecreatefromstring($data_64);
+	
+					// Save image in the specified location
+					imagepng($im, APP.WEBROOT_DIR.'/files/graficos/'.$filename);
+					$this->request->data['Acta']['grafico'] = $filename;
+				}
+
+								
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
 				$normas_cumplidas = 0;

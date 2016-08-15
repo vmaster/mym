@@ -216,6 +216,7 @@ tinymce.init({
 											?>
 											<td>Fecha: <input type="text" name="data[Acta][fecha]" id="txtFechaActa" class="form-control" placeholder="dd-mm-aaaa" value="<?php echo $fecha_format; ?>">
 											</td>
+											<?php echo $this->Form->input('grafico', array('type'=>'hidden','div' => false, 'label' => false, 'maxlength' =>'15')); ?>
 										</tr>
 									</table>
 								</div>
