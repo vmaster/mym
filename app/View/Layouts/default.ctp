@@ -46,6 +46,10 @@
     <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/alertify-0.3.11/alertify.min.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/nice-edit/nicEdit.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>/lib/tinymce/js/tinymce/tinymce.min.js" type="text/javascript"></script>
+
+    <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/canvg/rgbcolor.js" type="text/javascript"></script>
+    <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/canvg/StackBlur.js" type="text/javascript"></script>
+    <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/canvg/canvg.js" type="text/javascript"></script>
 	
     <!-- FILE UPLOAD -->
     <!-- Force latest IE rendering engine or ChromeFrame if installed -->

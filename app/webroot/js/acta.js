@@ -82,7 +82,7 @@ $(document).ready(function(){
 		},30000)
 	}*/
 	
-	/* Mostrar formulario: Crear vehÌculo */
+	/* Mostrar formulario: Crear veh√≠culo */
 	$body.off('click','div#acta .btn-nuevo-acta');
 	$body.on('click', 'div#acta .btn-nuevo-acta' , function(){
 		acta_id = $(this).attr('acta_id');
@@ -107,10 +107,16 @@ $(document).ready(function(){
 		var html_recomendaciones = $('#father-container1 .nicEdit-main:last').html();
 		var html_med_control = $('#father-container2 .nicEdit-main:first').html();
 		
-		
+		var svg = document.getElementById('container_graf_cu').children[0].innerHTML;
+		canvg(document.getElementById('canvas'),svg);
+
+		//var canvas = new Canvas();
+		var img = canvas.toDataURL("image/png"); //img is data:image/png;base64
+		img = img.replace('data:image/png;base64,', '');
+
 		$.ajax({
 			url: $form.attr('action'),
-			data: $form.serialize() + '&html_conclusiones=' + html_conclusiones + '&html_recomendaciones=' + html_recomendaciones + '&html_med_control=' + html_med_control,
+			data: $form.serialize() + '&html_conclusiones=' + html_conclusiones + '&html_recomendaciones=' + html_recomendaciones + '&html_med_control=' + html_med_control + '&graf=' +  img,
 			dataType: 'json',
 			type: 'post'
 		}).done(function(data){
@@ -465,11 +471,159 @@ $(document).ready(function(){
 	}
 	loadSendIndexButtonToModalVehiculo();
 
-	/*SCRIPT PARA CREAR GRAFICO EN NUEVO INFORME*/
-	function loadGraficoNuevaActa(){
-		$('.select-NI-NC').change(function(){
-		
-			//select_cu_epp
+
+
+	function showHighchart (porc_in_categorias, porc_cu_categorias){
+
+		//$(function () {
+				//alert(categorias);
+			    var colors = Highcharts.getOptions().colors,
+			        categories = ['NI', 'NC'],
+			        data = [{
+			            y: porc_ni,
+			            color: colors[0],
+			            drilldown: {
+			                name: 'NI Items',
+			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'AC'],
+			                data: porc_in_categorias,
+			                color: colors[0]
+			            }
+			        }, {
+			            y: porc_nc,
+			            color: colors[1],
+			            drilldown: {
+			                name: 'NC Items',
+			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'AC'],
+			                data: porc_cu_categorias,
+			                color: colors[1]
+			            }
+			        /*}, {
+			            y: 24.03,
+			            color: colors[2],
+			            drilldown: {
+			                name: 'Chrome versions',
+			                categories: ['Chrome v30.0', 'Chrome v31.0', 'Chrome v32.0', 'Chrome v33.0', 'Chrome v34.0',
+			                    'Chrome v35.0', 'Chrome v36.0', 'Chrome v37.0', 'Chrome v38.0', 'Chrome v39.0', 'Chrome v40.0', 'Chrome v41.0', 'Chrome v42.0', 'Chrome v43.0'
+			                    ],
+			                data: [0.14, 1.24, 0.55, 0.19, 0.14, 0.85, 2.53, 0.38, 0.6, 2.96, 5, 4.32, 3.68, 1.45],
+			                color: colors[2]
+			            }
+			        }, {
+			            y: 4.77,
+			            color: colors[3],
+			            drilldown: {
+			                name: 'Safari versions',
+			                categories: ['Safari v5.0', 'Safari v5.1', 'Safari v6.1', 'Safari v6.2', 'Safari v7.0', 'Safari v7.1', 'Safari v8.0'],
+			                data: [0.3, 0.42, 0.29, 0.17, 0.26, 0.77, 2.56],
+			                color: colors[3]
+			            }
+			        }, {
+			            y: 0.91,
+			            color: colors[4],
+			            drilldown: {
+			                name: 'Opera versions',
+			                categories: ['Opera v12.x', 'Opera v27', 'Opera v28', 'Opera v29'],
+			                data: [0.34, 0.17, 0.24, 0.16],
+			                color: colors[4]
+			            }
+			        }, {
+			            y: 0.2,
+			            color: colors[5],
+			            drilldown: {
+			                name: 'Proprietary or Undetectable',
+			                categories: [],
+			                data: [],
+			                color: colors[5]
+			            }*/
+			        }],
+			        browserData = [],
+			        versionsData = [],
+			        i,
+			        j,
+			        dataLen = data.length,
+			        drillDataLen,
+			        brightness;
+
+
+			    // Build the data arrays
+			    for (i = 0; i < dataLen; i += 1) {
+
+			        // add browser data
+			        browserData.push({
+			            name: categories[i],
+			            y: data[i].y,
+			            color: data[i].color
+			        });
+
+			        // add version data
+			        drillDataLen = data[i].drilldown.data.length;
+			        for (j = 0; j < drillDataLen; j += 1) {
+			            brightness = 0.2 - (j / drillDataLen) / 5;
+			            versionsData.push({
+			                name: data[i].drilldown.categories[j],
+			                y: data[i].drilldown.data[j],
+			                color: Highcharts.Color(data[i].color).brighten(brightness).get()
+			            });
+			        }
+			    }
+
+
+			    // Create the chart
+			    $('#container_graf_cu').highcharts({
+			        chart: {
+			            type: 'pie'
+			        },
+			        title: {
+			            text: 'Browser market share, January, 2015 to May, 2015'
+			        },
+			        subtitle: {
+			            text: 'Source: <a href="http://netmarketshare.com/">netmarketshare.com</a>'
+			        },
+			        yAxis: {
+			            title: {
+			                text: 'Total percent market share'
+			            }
+			        },
+			        plotOptions: {
+			            pie: {
+			                shadow: false,
+			                center: ['50%', '50%']
+			            }
+			        },
+			        tooltip: {
+			            valueSuffix: '%'
+			        },
+			        series: [{
+			            name: 'Browsers',
+			            data: browserData,
+			            size: '60%',
+			            dataLabels: {
+			                formatter: function () {
+			                    return this.y > 5 ? this.point.name : null;
+			                },
+			                color: '#ffffff',
+			                distance: -30
+			            }
+			        }, {
+			            name: 'Versions',
+			            data: versionsData,
+			            size: '80%',
+			            innerSize: '60%',
+			            dataLabels: {
+			                formatter: function () {
+			                    // display only if larger than 1
+			                    return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y + '%' : null;
+			                }
+			            }
+			        }]
+			    });
+			//});
+
+	}
+
+
+function sumaAcumularNormas(){
+		//select_cu_epp
 			var n_cu_epp = 0;
 			var n_in_epp = 0;
 			$(".select_cu_epp").each(function(){
@@ -483,12 +637,134 @@ $(document).ready(function(){
 					n_in_epp++;
 				}
 			});
-			alert('NC_EPP= '+n_cu_epp);
-			alert('NI_EPP= '+n_in_epp);
+
+
+			var n_cu_sd = 0;
+		 	var n_in_sd = 0;
+
+		 	$('.select_cu_sd').each(function(){
+		 		val_estado_sd = $(this).val();
+
+		 		if(val_estado_sd == 1){
+		 			n_cu_sd++;
+		 		}
+
+		 		if(val_estado_sd == 0){
+		 			n_in_sd++;
+		 		}
+		  	})
+		  
+		 	
+		 	var n_cu_um = 0;
+		 	var n_in_um = 0;
+
+		 	$('.select_cu_um').each(function(){
+		 		val_estado_um = $(this).val();
+
+		 		if(val_estado_um == 1){
+		 			n_cu_um++;
+		 		}
+
+		 		if(val_estado_um == 0){
+		 			n_in_um++;
+		 		}
+		  	})
+
+		 	
+		 	var n_cu_ds = 0;
+		 	var n_in_ds = 0;
+
+		 	$('.select_cu_ds').each(function(){
+		 		val_estado_ds = $(this).val();
+
+		 		if(val_estado_ds == 1){
+		 			n_cu_ds++;
+		 		}
+
+		 		if(val_estado_ds == 0){
+		 			n_in_ds++;
+		 		}
+		  	})
+		  
+		 	
+		 	var n_cu_cp = 0;
+		 	var n_in_cp = 0;
+
+		 	$('.select_cu_cp').each(function(){
+		 		val_estado_cp = $(this).val();
+
+		 		if(val_estado_cp == 1){
+		 			n_cu_cp++;
+		 		}
+
+		 		if(val_estado_cp == 0){
+		 			n_in_cp++;
+		 		}
+		  	})
+		  
+
+		  var n_cu_as = 0;
+		  var n_in_as = 0;
+		  $('.select_cu_as').each(function(){
+		 		val_estado_as = $(this).val();
+
+		 		if(val_estado_as == 1){
+		 			n_cu_as++;
+		 		}
+
+		 		if(val_estado_as == 0){
+		 			n_in_as++;
+		 		}
+		   })
+
+		  normas_cumplidas = n_cu_epp + n_cu_sd + n_cu_um + n_cu_ds + n_cu_cp + n_cu_as;
+			normas_incumplidas = n_in_epp + n_in_sd + n_in_um + n_in_ds + n_in_cp + n_in_as;
+			suma_normas = normas_cumplidas + normas_incumplidas;
+
+			porc_nc = (normas_cumplidas * 100) / suma_normas;
+			porc_ni = (normas_incumplidas * 100) / suma_normas;
+
+			porc_cu_epp = (n_cu_epp*100)/suma_normas;
+			porc_in_epp = (n_in_epp*100)/suma_normas;
+
+			porc_cu_sd = (n_cu_sd*100)/suma_normas;
+			porc_in_sd = (n_in_sd*100)/suma_normas;
+
+			porc_cu_um = (n_cu_um*100)/suma_normas;
+			porc_in_um = (n_in_um*100)/suma_normas;
+
+			porc_cu_ds = (n_cu_ds*100)/suma_normas;
+			porc_in_ds = (n_in_ds*100)/suma_normas;
+
+			porc_cu_cp = (n_cu_cp*100)/suma_normas;
+			porc_in_cp = (n_in_cp*100)/suma_normas;
+
+			porc_cu_as = (n_cu_as*100)/suma_normas;
+			porc_in_as = (n_in_as*100)/suma_normas;
+
+			var porc_cu_categorias = [porc_cu_epp, porc_cu_sd, porc_cu_um, porc_cu_ds, porc_cu_cp, porc_cu_as];
+			var porc_in_categorias = [porc_in_epp, porc_in_sd, porc_in_um, porc_in_ds, porc_in_cp, porc_in_as];
+
+			showHighchart(porc_in_categorias, porc_cu_categorias);
+
+	}
+
+	sumaAcumularNormas();
+
+
+	/*SCRIPT PARA CREAR GRAFICO EN NUEVO INFORME*/
+	function loadGraficoNuevaActa(){
+		$('.select-NI-NC').change(function(){
 		
+			/*FUNCTION */
+			sumaAcumularNormas();
+
 		});
 	}
+	
 	loadGraficoNuevaActa();
+	
+
 
 /*SCRIPTS PARA EL CREAR Y EDITAR INFORME  */
 	
@@ -531,7 +807,7 @@ $(document).ready(function(){
 		 });
 	});
 	
-	/* AGREGAR FILAS A LA TABLA ACTOS SUBEST¡NDARES */	
+	/* AGREGAR FILAS A LA TABLA ACTOS SUBEST√ÅNDARES */	
 	$("#div-btn-add-as .add-more-row-as").bind("click", function(e){
 	long_table = $('#table-as-inf tbody tr').length + 1;
 		$.ajax({
@@ -548,7 +824,7 @@ $(document).ready(function(){
 		 });
 	});
 	
-	/* AGREGAR FILAS A LA TABLA CONDICIONES SUBEST¡NDARES */	
+	/* AGREGAR FILAS A LA TABLA CONDICIONES SUBEST√ÅNDARES */	
 	$("#div-btn-add-cs .add-more-row-cs").bind("click", function(e){
 	long_table = $('#table-cs-inf tbody tr').length + 1;
 		$.ajax({
@@ -579,7 +855,7 @@ $(document).ready(function(){
 	});
 	
 	
-	/* AGREGAR FILAS A LA TABLA ACTOS SUBEST¡NDARES PARA EL REPORTE*/	
+	/* AGREGAR FILAS A LA TABLA ACTOS SUBEST√ÅNDARES PARA EL REPORTE*/	
 	$("#div-btn-add-as-rep .add-more-row-as-rep").bind("click", function(e){
 	long_table = $('#table-as-rep tbody tr').length + 1;
 		$.ajax({
@@ -594,7 +870,7 @@ $(document).ready(function(){
 		 });
 	});
 	
-	/* AGREGAR FILAS A LA TABLA CONDICIONES SUBEST¡NDARES PARA EL REPORTE*/	
+	/* AGREGAR FILAS A LA TABLA CONDICIONES SUBEST√ÅNDARES PARA EL REPORTE*/	
 	$("#div-btn-add-cond-rep .add-more-row-cond-rep").bind("click", function(e){
 	long_table = $('#table-cond-rep tbody tr').length + 1;
 		$.ajax({
@@ -895,5 +1171,8 @@ $(document).ready(function(){
 	});
 	
 	$('[data-toggle="tooltip"]').tooltip();
+
+
+	
 	
 });

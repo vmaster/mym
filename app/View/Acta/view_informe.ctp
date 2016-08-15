@@ -541,6 +541,10 @@ if($suma_normas > 0){
 
 $codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td></td><td></td><td></td><td></td><td></td><td></td><td>".round($formula,2)."%</td></tr>";
 $codigo .= "</table>";
+
+//SHOW GRAPHIC
+$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos/".$obj_acta->getAttr('grafico')."'></center>";
+
 $codigo .= "<p align='right'><table width='100%'>
 			<tr><td><div style='text-align:right;'><img src='".ENV_WEBROOT_FULL_URL."files/firmas/".$obj_acta->Trabajadore2->getAttr('firma')."' style='border:0px;' width='144px' height='80px'> </div>";
 $codigo .= "<div style='text-align:right;'><hr width='30%' align='right'></div>

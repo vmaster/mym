@@ -562,7 +562,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_epp][<?php echo $i; ?>][info_des_epp]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act->info_des_epp) && $info_des_act->info_des_epp != '')?$info_des_act->info_des_epp:'';?></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_epp" name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][alternativa]">
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
@@ -686,7 +686,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_sd][<?php echo $i; ?>][info_des_se_de]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act->info_des_se_de) && $info_des_act->info_des_se_de != '')?$info_des_act->info_des_se_de:'';?></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_sd][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_sd" name= "data[Acta][cumplimiento_sd][<?php echo $i; ?>][alternativa]">
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
@@ -809,7 +809,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_um][<?php echo $i; ?>][info_des_um]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act->info_des_um) && $info_des_act->info_des_um != '')?$info_des_act->info_des_um:'';?></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_um][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_um" name= "data[Acta][cumplimiento_um][<?php echo $i; ?>][alternativa]">
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
@@ -932,7 +932,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_ds][<?php echo $i; ?>][info_des_doc]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act->info_des_doc) && $info_des_act->info_des_doc != '')?$info_des_act->info_des_doc:'';?></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_ds][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_ds" name= "data[Acta][cumplimiento_ds][<?php echo $i; ?>][alternativa]">
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
@@ -1056,7 +1056,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_act][<?php echo $i; ?>][info_des_act]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($info_des_act->info_des_act) && $info_des_act->info_des_act != '')?$info_des_act->info_des_act:'';?></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_cp" name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][alternativa]">
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
@@ -1179,7 +1179,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"><?php echo (isset($info_des_act->info_des_cond) && $info_des_act->info_des_cond != '')?$info_des_act->info_des_cond:'';?></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_as" name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][alternativa]">
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
@@ -1285,6 +1285,9 @@ tinymce.init({
 		</div>
 	</div>
 	
+	<div id="container_graf_cu" style="width: 600px; height: 400px; margin: 0 auto; display:none"></div>
+	<canvas id="canvas" style="display:none;"></canvas>
+
 	<!-- Responsables Previos Corrección -->
 	<div class="row">
 		<div class="col-md-12">
