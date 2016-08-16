@@ -478,7 +478,7 @@ $(document).ready(function(){
 		//$(function () {
 				//alert(categorias);
 			    var colors = Highcharts.getOptions().colors,
-			        categories = ['NI', 'NC'],
+			        categories = ['NI: '+ porc_ni+'%', 'NC: ' + porc_nc+'%'],
 			        data = [{
 			            y: porc_ni,
 			            color: colors[0],
@@ -497,44 +497,6 @@ $(document).ready(function(){
 			                data: porc_cu_categorias,
 			                color: colors[1]
 			            }
-			        /*}, {
-			            y: 24.03,
-			            color: colors[2],
-			            drilldown: {
-			                name: 'Chrome versions',
-			                categories: ['Chrome v30.0', 'Chrome v31.0', 'Chrome v32.0', 'Chrome v33.0', 'Chrome v34.0',
-			                    'Chrome v35.0', 'Chrome v36.0', 'Chrome v37.0', 'Chrome v38.0', 'Chrome v39.0', 'Chrome v40.0', 'Chrome v41.0', 'Chrome v42.0', 'Chrome v43.0'
-			                    ],
-			                data: [0.14, 1.24, 0.55, 0.19, 0.14, 0.85, 2.53, 0.38, 0.6, 2.96, 5, 4.32, 3.68, 1.45],
-			                color: colors[2]
-			            }
-			        }, {
-			            y: 4.77,
-			            color: colors[3],
-			            drilldown: {
-			                name: 'Safari versions',
-			                categories: ['Safari v5.0', 'Safari v5.1', 'Safari v6.1', 'Safari v6.2', 'Safari v7.0', 'Safari v7.1', 'Safari v8.0'],
-			                data: [0.3, 0.42, 0.29, 0.17, 0.26, 0.77, 2.56],
-			                color: colors[3]
-			            }
-			        }, {
-			            y: 0.91,
-			            color: colors[4],
-			            drilldown: {
-			                name: 'Opera versions',
-			                categories: ['Opera v12.x', 'Opera v27', 'Opera v28', 'Opera v29'],
-			                data: [0.34, 0.17, 0.24, 0.16],
-			                color: colors[4]
-			            }
-			        }, {
-			            y: 0.2,
-			            color: colors[5],
-			            drilldown: {
-			                name: 'Proprietary or Undetectable',
-			                categories: [],
-			                data: [],
-			                color: colors[5]
-			            }*/
 			        }],
 			        browserData = [],
 			        versionsData = [],
@@ -577,7 +539,7 @@ $(document).ready(function(){
 			            text: 'Gr\u00E1fico de Normas Cumplidas e Incumplidas'
 			        },
 			        subtitle: {
-			            text: 'Source: <a href="http://netmarketshare.com/">netmarketshare.com</a>'
+			            text: 'Source: <a href="http://mym-iceperu.com/">mym-iceperu.com</a>'
 			        },
 			        yAxis: {
 			            title: {

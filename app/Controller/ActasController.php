@@ -154,7 +154,7 @@ class ActasController extends AppController{
 	public function nuevo_informe($acta_id=null){
 		$this->verificarAccessoInvitado();
 
-		$this->layout = 'default';
+		$this->layout = 'acta';
 		
 		$this->loadModel('Acta');
 		$this->loadModel('Empresa');
@@ -723,7 +723,7 @@ class ActasController extends AppController{
 	}
 	
 	public function editar_informe($acta_id=null){
-		$this->layout = 'default';
+		$this->layout = 'acta';
 		if(!isset($acta_id)){
 			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
 			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
