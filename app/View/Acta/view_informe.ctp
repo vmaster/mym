@@ -539,7 +539,7 @@ if($suma_normas > 0){
 	$formula = 0;
 }
 
-$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td></td><td></td><td></td><td></td><td></td><td></td><td>".round($formula,2)."%</td></tr>";
+$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>".round(($total_nc_epp*100)/($total_nc_epp+$total_ni_epp),2)."%</td><td>".round(($total_nc_sd*100)/($total_nc_sd+$total_ni_sd),2)."%</td><td>".round(($total_nc_um*100)/($total_nc_um+$total_ni_um),2)."%<</td><td>".round(($total_nc_ds*100)/($total_nc_ds+$total_ni_ds),2)."%<</td><td>".round(($total_nc_cu*100)/($total_nc_cu+$total_ni_cu),2)."%</td><td>".round(($total_nc_cs*100)/($total_nc_cs+$total_ni_cs),2)."%<</td><td>".round($formula,2)."%</td></tr>";
 $codigo .= "</table>";
 
 //SHOW GRAPHIC
