@@ -473,29 +473,29 @@ $(document).ready(function(){
 
 
 
-	function showHighchart (porc_in_categorias, porc_cu_categorias){
+	function showHighchart (porc_in_categorias, porc_cu_categorias, porc_cu){
 
 		//$(function () {
 				//alert(categorias);
 			    var colors = Highcharts.getOptions().colors,
-			        categories = ['NI: '+ porc_ni+'%', 'NC: ' + porc_nc+'%'],
+			        categories = ['NI', 'NC'],
 			        data = [{
 			            y: porc_ni,
-			            color: colors[0],
+			            color: '#E03737',
 			            drilldown: {
 			                name: 'NI Items',
 			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'AC'],
 			                data: porc_in_categorias,
-			                color: colors[0]
+			                color: '#E03737'
 			            }
 			        }, {
 			            y: porc_nc,
-			            color: colors[1],
+			            color: colors[0],
 			            drilldown: {
 			                name: 'NC Items',
 			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'AC'],
 			                data: porc_cu_categorias,
-			                color: colors[1]
+			                color: colors[0]
 			            }
 			        }],
 			        browserData = [],
@@ -513,6 +513,7 @@ $(document).ready(function(){
 			        // add browser data
 			        browserData.push({
 			            name: categories[i],
+						category_porc: categories[i]+': '+data[i].y +'%',
 			            y: data[i].y,
 			            color: data[i].color
 			        });
@@ -524,6 +525,8 @@ $(document).ready(function(){
 			            versionsData.push({
 			                name: data[i].drilldown.categories[j],
 			                y: data[i].drilldown.data[j],
+							category: categories[i],
+							valor: porc_cu[j],
 			                color: Highcharts.Color(data[i].color).brighten(brightness).get()
 			            });
 			        }
@@ -537,9 +540,6 @@ $(document).ready(function(){
 			        },
 			        title: {
 			            text: 'Gr\u00E1fico de Normas Cumplidas e Incumplidas'
-			        },
-			        subtitle: {
-			            text: 'Source: <a href="http://mym-iceperu.com/">mym-iceperu.com</a>'
 			        },
 			        yAxis: {
 			            title: {
@@ -561,9 +561,9 @@ $(document).ready(function(){
 			            size: '60%',
 			            dataLabels: {
 			                formatter: function () {
-			                    return this.y > 5 ? this.point.name : null;
+			                    return this.y > 5 ? this.point.category_porc : null;
 			                },
-			                color: '#ffffff',
+			                color: '#000000',
 			                distance: -30
 			            }
 			        }, {
@@ -574,7 +574,9 @@ $(document).ready(function(){
 			            dataLabels: {
 			                formatter: function () {
 			                    // display only if larger than 1
-			                    return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y + '%' : null;
+								if(this.point.category=='NC'){
+									return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.point.valor + '%' : null;
+								}
 			                }
 			            }
 			        }]
@@ -688,26 +690,33 @@ function sumaAcumularNormas(){
 
 			porc_cu_epp = Math.round((n_cu_epp*100)/suma_normas);
 			porc_in_epp = Math.round((n_in_epp*100)/suma_normas);
+			porc_epp = Math.round((n_cu_epp*100)/(n_cu_epp + n_in_epp));
 
 			porc_cu_sd = Math.round((n_cu_sd*100)/suma_normas);
 			porc_in_sd = Math.round((n_in_sd*100)/suma_normas);
+			porc_sd = Math.round((n_cu_sd*100)/(n_cu_sd + n_in_sd));
 
 			porc_cu_um = Math.round((n_cu_um*100)/suma_normas);
 			porc_in_um = Math.round((n_in_um*100)/suma_normas);
+			porc_um = Math.round((n_cu_um*100)/(n_cu_um + n_in_um));
 
 			porc_cu_ds = Math.round((n_cu_ds*100)/suma_normas);
 			porc_in_ds = Math.round((n_in_ds*100)/suma_normas);
+			porc_ds = Math.round((n_cu_ds*100)/(n_cu_ds + n_in_ds));
 
 			porc_cu_cp = Math.round((n_cu_cp*100)/suma_normas);
 			porc_in_cp = Math.round((n_in_cp*100)/suma_normas);
+			porc_cp = Math.round((n_cu_cp*100)/(n_cu_cp + n_in_cp));
 
 			porc_cu_as = Math.round((n_cu_as*100)/suma_normas);
 			porc_in_as = Math.round((n_in_as*100)/suma_normas);
+			porc_as = Math.round((n_cu_as*100)/(n_cu_as + n_in_as));
 
 			var porc_cu_categorias = [porc_cu_epp, porc_cu_sd, porc_cu_um, porc_cu_ds, porc_cu_cp, porc_cu_as];
 			var porc_in_categorias = [porc_in_epp, porc_in_sd, porc_in_um, porc_in_ds, porc_in_cp, porc_in_as];
+			var porc_cu = [porc_epp, porc_sd, porc_um, porc_ds, porc_cp, porc_as];
 
-			showHighchart(porc_in_categorias, porc_cu_categorias);
+			showHighchart(porc_in_categorias, porc_cu_categorias, porc_cu);
 
 	}
 
