@@ -539,8 +539,11 @@ $(document).ready(function(){
 			            type: 'pie'
 			        },
 			        title: {
-			            text: 'Gr\u00E1fico de Normas Cumplidas e Incumplidas'
+			            text: ''
 			        },
+			        credits: {
+						enabled: false
+					},
 			        yAxis: {
 			            title: {
 			                text: 'Total percent market share'
