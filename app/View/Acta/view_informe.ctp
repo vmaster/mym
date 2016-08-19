@@ -543,7 +543,7 @@ $codigo .= "</table>";
 
 //SHOW GRAPHIC
 if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
-	$codigo .= "<br><center>GR&Aacute;FICO DE NORMAS CUMPLIDAS E IMCUMPLIDAS</center>";
+	$codigo .= "<br><center><strong>GR&Aacute;FICO DE NORMAS CUMPLIDAS E IMCUMPLIDAS</strong></center>";
 	$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos/".$obj_acta->getAttr('grafico')."'></center>";
 }
 
