@@ -1943,8 +1943,7 @@ class ActasController extends AppController{
 		$this->set(compact('long_table'));
 	}
 	
-	public function view_informe($acta_id = null)
-	{
+	public function view_informe($acta_id = null){
 		$this->layout = 'pdf'; //esto usara el layout pdf.ctp
 		//$this->render();
 		//$this->autoRender = false;
@@ -1960,9 +1959,14 @@ class ActasController extends AppController{
 		$obj_acta = $this->Acta->findById($acta_id);
 		$info_ni_t = $this->Acta->infoNiT($acta_id);
 		$info_ni_v = $this->Acta->infoNiV($acta_id);
-		//debug($info_ni_t); 
-		//debug($info_ni_v);exit();
-		$this->set(compact('obj_acta','info_ni_t','info_ni_v'));
+		
+		$obj_acta_ref = array();
+		if($obj_acta->getAttr('acta_referencia')!=''){
+			$informe_ref_id = $obj_acta->getAttr('acta_referencia');
+			$obj_acta_ref = $this->Acta->findById($informe_ref_id);
+		}
+
+		$this->set(compact('obj_acta','obj_acta_ref','info_ni_t','info_ni_v'));
 	}
 	
 	public function send_reporte_email()
