@@ -678,7 +678,7 @@ if($obj_acta->getAttr('acta_referencia')!=''){
 	}
 
 	$codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-size:8px;'>";
-	$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>TABLA DE NORMAS CUMPLIDAS E IMCUMPLIDAS DEL INFORME DE REFERENCIA ".$obj_acta_ref->getAttr('num_informe')."</strong></th></tr>";
+	$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>NORMAS CUMPLIDAS E IMCUMPLIDAS DEL INF. DE REFERENCIA N&#176; ".$obj_acta_ref->getAttr('num_informe')."</strong></th></tr>";
 	$codigo .= "<tr><td></td><td>EPP</td><td>SE&Ntilde;ALIZACI&Oacute;N</td><td>U.M</td><td>DOCUMENTO</td><td>CUMPLIMIENTO</td><td>CONDICI&Oacute;N</td><td>TOTAL</td></tr>";
 	$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp2."</td><td>".$total_nc_sd2."</td><td>".$total_nc_um2."</td><td>".$total_nc_ds2."</td><td>".$total_nc_cu2."</td><td>".$total_nc_cs2."</td><td>".$normas_cumplidas2."</td></tr>";
 	$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp2."</td><td>".$total_ni_sd2."</td><td>".$total_ni_um2."</td><td>".$total_ni_ds2."</td><td>".$total_ni_cu2."</td><td>".$total_ni_cs2."</td><td>".$normas_incumplidas2."</td></tr>";
@@ -695,7 +695,7 @@ if($obj_acta->getAttr('acta_referencia')!=''){
 
 	//SHOW GRAPHIC
 	if($obj_acta_ref->getAttr('grafico')!='' && $obj_acta_ref->getAttr('grafico') !=null){
-		$codigo .= "<br><center><strong>GR&Aacute;FICO DE NORMAS CUMPLIDAS E IMCUMPLIDAS DEL INFORME DE REFERENCIA ".$obj_acta_ref->getAttr('num_informe')."</strong></center>";
+		$codigo .= "<br><center><strong>GR&Aacute;FICO DE NORMAS CUMPLIDAS E IMCUMPLIDAS DEL INFORME DE REFERENCIA N&#176; ".$obj_acta_ref->getAttr('num_informe')."</strong></center>";
 		$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos/".$obj_acta_ref->getAttr('grafico')."'></center>";
 	}
 }
