@@ -2276,5 +2276,33 @@ class ActasController extends AppController{
 		fputs($file, $data);
 		fclose($file);
 	}
+
+	public function ajax_normas_info_ref(){
+		$this->autoRender = false;
+		$this->loadModel('Acta');
+	
+		if($this->request->is('post')){
+			$informe_ref_id = $this->request->data['id_informe_ref'];
+			$obj_acta = $this->Acta->findObjects('first',
+					array(
+							'conditions'=>array(
+									'Acta.id'=> $informe_ref_id
+							),
+							//'fields' => array('id','apellido_nombre'),
+					));
+			
+			//foreach ($arr_obj_trabajadore as $trabajadore):
+			$normas_ipp = $obj_acta->getAttr('info_des_epp');
+			$normas_sd = $obj_acta->getAttr('info_des_se_de');
+			$normas_um = $obj_acta->getAttr('info_des_um');
+			$normas_ds = $obj_acta->getAttr('info_des_doc');
+			$normas_cp = $obj_acta->getAttr('info_des_act');
+			$normas_ac = $obj_acta->getAttr('info_des_cond');
+
+		
+			//endforeach;
+		}
+		return json_encode(array('success'=>true,'normas'=> array('normas_ipp' => $normas_ipp, 'normas_sd'=>$normas_sd, 'normas_um'=>$normas_um, 'normas_ds'=>$normas_ds, 'normas_cp'=>$normas_cp, 'normas_ac'=>$normas_ac)));
+	}
 		
 }

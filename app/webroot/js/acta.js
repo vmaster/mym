@@ -1152,6 +1152,33 @@ function sumaAcumularNormas(){
 	$('[data-toggle="tooltip"]').tooltip();
 
 
+	//Gráfico de Informe de referencia
+
+	$('.cbo-acta-refer-select2').change(function(){
+		id_informe_ref = $("option:selected",this).val();
+
+		$.ajax({
+			type: 'POST',
+			url: env_webroot_script + 'actas/ajax_normas_info_ref', 
+			data: {id_informe_ref : id_informe_ref},
+			//async: true,
+			dataType: 'json'
+		}).done(function(data){
+				if(data.success == true){
+					$.each(data.normas.normas_ipp,function(i,item){
+						alert();
+					})
+				}
+			}
+		)
+
+			
+
+
+	
+	})
+
+
 	
 	
 });
