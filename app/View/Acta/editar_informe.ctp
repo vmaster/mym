@@ -1286,7 +1286,7 @@ tinymce.init({
 		</div>
 	</div>
 	
-	<div id="container_graf_cu" style="width: 900px; height: 600px; margin: 0 auto; display:none"></div>
+	<div id="container_graf_cu" style="width: 650px; height: 500px; margin: 0 auto; display:none"></div>
 	<canvas id="canvas" style="display:none;"></canvas>
 
 	<!-- Responsables Previos Corrección -->

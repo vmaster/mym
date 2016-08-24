@@ -526,7 +526,8 @@ $(document).ready(function(){
 			            versionsData.push({
 			                name: data[i].drilldown.categories[j],
 			                y: data[i].drilldown.data[j],
-							leyendtitle: leyendtitle[i],
+							leyendtitle: leyendtitle[j],
+							category: categories[i],
 							valor: porc_cu[j],
 			                color: Highcharts.Color(data[i].color).brighten(brightness).get()
 			            });
@@ -561,19 +562,17 @@ $(document).ready(function(){
 			            valueSuffix: '%'
 			        },
 			        legend: {
-			            layout: 'vertical',
-			            backgroundColor: '#FFFFFF',
-			            floating: false,
-			            align: 'right',
-			            verticalAlign: 'top',
-			            x: 0,
-			            y: 100,
-			            labelFormatter: function () {
-			                if(this.category == 'NC'){
-			                	return this.name + ': '+this.leyendtitle;
-			                }
-			            }
-			        },
+						layout: 'vertical',
+						backgroundColor: '#FFFFFF',
+						floating: false,
+						align: 'center',
+						verticalAlign: 'bottom',
+						labelFormatter: function () {
+							if(this.category == 'NC'){
+								return '<span style="font-size:5px"><strong>'+this.name + '</strong>: <span style="font-weight:100">'+this.leyendtitle+'</span></span>';
+							}
+						}
+					},
 			        series: [{
 			            name: 'Browsers',
 			            data: browserData,
