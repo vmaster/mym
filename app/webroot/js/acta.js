@@ -526,7 +526,6 @@ $(document).ready(function(){
 			            versionsData.push({
 			                name: data[i].drilldown.categories[j],
 			                y: data[i].drilldown.data[j],
-			                fruit: fruits[j],
 							leyendtitle: leyendtitle[i],
 							valor: porc_cu[j],
 			                color: Highcharts.Color(data[i].color).brighten(brightness).get()
