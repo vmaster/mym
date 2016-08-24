@@ -485,7 +485,7 @@ $(document).ready(function(){
 			            drilldown: {
 			                name: 'NI Items',
 			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'AC'],
-			                data: porc_in_categorias,
+			                data: [porc_ni, 0, 0, 0, 0, 0],
 			                color: '#E03737'
 			            }
 			        }, {
@@ -507,6 +507,7 @@ $(document).ready(function(){
 			        brightness;
 
 
+				var leyendtitle = ["EQUIPOS DE PROTECCIÓN (PERSONAL Y/O COLECTIVO)", "SEÑALIZACIÓN Y DELIMITACIÓN", "UNIDADES MÓVILES", "DOCUMENTACIÓN DE SEGURIDAD", "CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO", "ACTOS Y CONDICIONES ESTANDARES Y/O SUB-ESTANDARES"];
 			    // Build the data arrays
 			    for (i = 0; i < dataLen; i += 1) {
 
@@ -525,7 +526,8 @@ $(document).ready(function(){
 			            versionsData.push({
 			                name: data[i].drilldown.categories[j],
 			                y: data[i].drilldown.data[j],
-							category: categories[i],
+			                fruit: fruits[j],
+							leyendtitle: leyendtitle[i],
 							valor: porc_cu[j],
 			                color: Highcharts.Color(data[i].color).brighten(brightness).get()
 			            });
@@ -552,11 +554,26 @@ $(document).ready(function(){
 			        plotOptions: {
 			            pie: {
 			                shadow: false,
-			                center: ['50%', '50%']
+			                center: ['50%', '50%'],
+			                showInLegend: true
 			            }
 			        },
 			        tooltip: {
 			            valueSuffix: '%'
+			        },
+			        legend: {
+			            layout: 'vertical',
+			            backgroundColor: '#FFFFFF',
+			            floating: false,
+			            align: 'right',
+			            verticalAlign: 'top',
+			            x: 0,
+			            y: 100,
+			            labelFormatter: function () {
+			                if(this.category == 'NC'){
+			                	return this.name + ': '+this.leyendtitle;
+			                }
+			            }
 			        },
 			        series: [{
 			            name: 'Browsers',
