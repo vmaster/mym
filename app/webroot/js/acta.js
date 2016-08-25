@@ -568,7 +568,7 @@ $(document).ready(function(){
 						align: 'center',
 						verticalAlign: 'bottom',
 						labelFormatter: function () {
-							if(this.category == 'NC'){
+							if(this.category == 'NC' && this.y != 0){
 								return '<span style="font-size:5px"><strong>'+this.name + '</strong>: <span style="font-weight:100">'+this.leyendtitle+'</span></span>';
 							}
 						}

@@ -528,13 +528,13 @@ $codigo.= "	</tr>
 $codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-size:8px;'>";
 $codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>TABLA DE NORMAS CUMPLIDAS E IMCUMPLIDAS</strong></th></tr>";
 $codigo .= "<tr><td></td>
-				<td><div style='font-size:10px;'>EQUIPOS DE PROTECCI&Oacute;N (PERSONAL Y/O COLECTIVO)</div></td>
-				<td><div style='font-size:10px;'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</div></td>
-				<td><div style='font-size:10px;'>UNIDADES M&Oacute;VILES</div></td>
-				<td><div style='font-size:10px;'>DOCUMENTACI&Oacute;N DE SEGURIDAD</div></td>
-				<td><div style='font-size:10px;'>CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO</div></td>
-				<td><div style='font-size:10px;'>ACTOS Y CONDICIONES ESTANDARES Y/O SUB-ESTANDARES</div></td>
-				<td><div style='font-size:10px;'>TOTAL</div></td></tr>";
+				<td>EPP</td>
+				<td>SE</td>
+				<td>UM</td>
+				<td>DOC</td>
+				<td>CP</td>
+				<td>AC</td>
+				<td>TOTAL</td></tr>";
 $codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp."</td><td>".$total_nc_sd."</td><td>".$total_nc_um."</td><td>".$total_nc_ds."</td><td>".$total_nc_cu."</td><td>".$total_nc_cs."</td><td>".$normas_cumplidas."</td></tr>";
 $codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp."</td><td>".$total_ni_sd."</td><td>".$total_ni_um."</td><td>".$total_ni_ds."</td><td>".$total_ni_cu."</td><td>".$total_ni_cs."</td><td>".$normas_incumplidas."</td></tr>";
 //$codigo .= "<tr><td><strong>TOTAL (NC + NI):</strong> </td><td>".($normas_incumplidas + $normas_cumplidas)."</td></tr>";
@@ -689,13 +689,13 @@ if($obj_acta->getAttr('acta_referencia')!=''){
 	$codigo.= "<table class='tg' width='100%' style='border:0px;font-size:8px;'>";
 	$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>NORMAS CUMPLIDAS E IMCUMPLIDAS</strong></th></tr>";
 	$codigo .= "<tr><td></td>
-				<td><div style='font-size:10px;'>EQUIPOS DE PROTECCI&Oacute;N (PERSONAL Y/O COLECTIVO)</div></td>
-				<td><div style='font-size:10px;'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</div></td>
-				<td><div style='font-size:10px;'>UNIDADES M&Oacute;VILES</div></td>
-				<td><div style='font-size:10px;'>DOCUMENTACI&Oacute;N DE SEGURIDAD</div></td>
-				<td><div style='font-size:10px;'>CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO</div></td>
-				<td><div style='font-size:10px;'>ACTOS Y CONDICIONES ESTANDARES Y/O SUB-ESTANDARES</div></td>
-				<td><div style='font-size:10px;'>TOTAL</div></td></tr>";
+				<td>EPP</td>
+				<td>SE</td>
+				<td>UM</td>
+				<td>DOC</td>
+				<td>CP</td>
+				<td>AC</td>
+				<td>TOTAL</td></tr>";
 	$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp2."</td><td>".$total_nc_sd2."</td><td>".$total_nc_um2."</td><td>".$total_nc_ds2."</td><td>".$total_nc_cu2."</td><td>".$total_nc_cs2."</td><td>".$normas_cumplidas2."</td></tr>";
 	$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp2."</td><td>".$total_ni_sd2."</td><td>".$total_ni_um2."</td><td>".$total_ni_ds2."</td><td>".$total_ni_cu2."</td><td>".$total_ni_cs2."</td><td>".$normas_incumplidas2."</td></tr>";
 
