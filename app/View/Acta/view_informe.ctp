@@ -525,197 +525,216 @@ $codigo.= "	</tr>
 		<br>
 		";
 //$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.85em;'>";
-$codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-size:8px;'>";
-$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>TABLA DE NORMAS CUMPLIDAS E IMCUMPLIDAS</strong></th></tr>";
-$codigo .= "<tr><td></td>
-				<td>EPP</td>
-				<td>SE</td>
-				<td>UM</td>
-				<td>DOC</td>
-				<td>CP</td>
-				<td>AC</td>
-				<td>TOTAL</td></tr>";
-$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp."</td><td>".$total_nc_sd."</td><td>".$total_nc_um."</td><td>".$total_nc_ds."</td><td>".$total_nc_cu."</td><td>".$total_nc_cs."</td><td>".$normas_cumplidas."</td></tr>";
-$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp."</td><td>".$total_ni_sd."</td><td>".$total_ni_um."</td><td>".$total_ni_ds."</td><td>".$total_ni_cu."</td><td>".$total_ni_cs."</td><td>".$normas_incumplidas."</td></tr>";
-//$codigo .= "<tr><td><strong>TOTAL (NC + NI):</strong> </td><td>".($normas_incumplidas + $normas_cumplidas)."</td></tr>";
-$suma_normas = $normas_cumplidas + $normas_incumplidas;
-if($suma_normas > 0){
-	$formula = ($normas_cumplidas * 100)/$suma_normas;
-}else{
-	$formula = 0;
-}
-
-$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>";
-if(($total_nc_epp+$total_ni_epp)>0){$codigo .= round(($total_nc_epp*100)/($total_nc_epp+$total_ni_epp),2)."%</td><td>";}else{$codigo .= round(($total_nc_epp*100),2)."%</td><td>";}
-if(($total_nc_sd+$total_ni_sd)>0){$codigo .= round(($total_nc_sd*100)/($total_nc_sd+$total_ni_sd),2)."%</td><td>";}else{$codigo .= round(($total_nc_sd*100),2)."%</td><td>";}
-if(($total_nc_um+$total_ni_um)>0){$codigo .= round(($total_nc_um*100)/($total_nc_um+$total_ni_um),2)."%</td><td>";}else{$codigo .= round(($total_nc_um*100),2)."%</td><td>";}
-if(($total_nc_ds+$total_ni_ds)>0){$codigo .= round(($total_nc_ds*100)/($total_nc_ds+$total_ni_ds),2)."%</td><td>";}else{$codigo .= round(($total_nc_ds*100),2)."%</td><td>";}
-if(($total_nc_cu+$total_ni_cu)>0){$codigo .= round(($total_nc_cu*100)/($total_nc_cu+$total_ni_cu),2)."%</td><td>";}else{$codigo .= round(($total_nc_cu*100),2)."%</td><td>";}
-if(($total_nc_cs+$total_ni_cs)>0){$codigo .= round(($total_nc_cs*100)/($total_nc_cs+$total_ni_cs),2)."%</td><td>";}else{$codigo .= round(($total_nc_cs*100),2)."%</td><td>";}
-$codigo .= round($formula,2)."%</td></tr>";
-$codigo .= "</table>";
-
-//SHOW GRAPHIC
-if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
-	$codigo .= "<br><center><strong>GR&Aacute;FICO</strong></center>";
-	$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos/".$obj_acta->getAttr('grafico')."'></center>";
-}
-
-
-
-//Show Tabla de acta de referencia y grafico de referencia 
-if($obj_acta->getAttr('acta_referencia')!=''){
-
-	$normas_epp2 = $obj_acta_ref->getAttr('info_des_epp');
-	$normas_sd2 = $obj_acta_ref->getAttr('info_des_se_de');
-	$normas_um2 = $obj_acta_ref->getAttr('info_des_um');
-	$normas_ds2 = $obj_acta_ref->getAttr('info_des_doc');
-	$normas_cp2 = $obj_acta_ref->getAttr('info_des_act');
-	$normas_ac2 = $obj_acta_ref->getAttr('info_des_cond');
-
-	//Contador inicializado en cero
-	$total_nc_epp2 = 0;
-	$total_ni_epp2 = 0;
-
-	$total_nc_sd2 = 0;
-	$total_ni_sd2 = 0;
-
-	$total_nc_um2 = 0;
-	$total_ni_um2 = 0;
-
-	$total_nc_ds2 = 0;
-	$total_ni_ds2 = 0;
-	 
-	$total_nc_cu2 = 0;
-	$total_ni_cu2 = 0;
-
-	$total_nc_cs2 = 0;
-	$total_ni_cs2 = 0;
-
-	$normas_cumplidas2 = 0;
-	$normas_incumplidas2 = 0;
-
-	//recorremos
-	$info_des_epp2 = json_decode($normas_epp2);
-	foreach($info_des_epp2 as $value){
-		if($value->info_des_epp != ''){
-	    	if($value->alternativa == 1){
-	    		$normas_cumplidas2++;
-	    		$total_nc_epp2++;
-	    	}elseif($value->alternativa == 0){
-				$normas_incumplidas2++;
-	    		$total_ni_epp2++;
-	    	}
-
-		}
-	}
-
-	$info_des_se_de2 = json_decode($normas_sd2);
-	foreach($info_des_se_de2 as $value){
-		if($value->info_des_se_de != ''){
-	    	if($value->alternativa == 1){
-	    		$normas_cumplidas2++;
-	    		$total_nc_sd2++;
-	    	}elseif($value->alternativa == 0){
-				$normas_incumplidas2++;
-	    		$total_ni_sd2++;
-	    	}
-		}	
-	}
-
-
-	$info_des_um2 = json_decode($normas_um2);
-	foreach($info_des_um2 as $value){
-		if($value->info_des_um != ''){
-			if($value->alternativa == 1){
-				$normas_cumplidas2++;
-		    	$total_nc_um2++;
-			}elseif($value->alternativa == 0){
-				$normas_incumplidas2++;
-		    	$total_ni_um2++;
-			}
-		}
-	}
-
-	$info_des_doc2 = json_decode($normas_ds2);
-	foreach($info_des_doc2 as $value){
-		if($value->info_des_doc != ''){
-			if($value->alternativa == 1){
-				$normas_cumplidas2++;
-		    	$total_nc_ds2++;
-			}elseif($value->alternativa == 0){
-				$normas_incumplidas2++;
-		    	$total_ni_ds2++;
-			}
-		}
-	}
-
-	$info_des_act2 = json_decode($normas_cp2);
-	foreach($info_des_act2 as $value){
-		if($value->info_des_act != ''){
-			if($value->alternativa == 1){
-				$normas_cumplidas2++;
-		    	$total_nc_cu2++;
-			}elseif($value->alternativa == 0){
-				$normas_incumplidas2++;
-		    	$total_ni_cu2++;
-			}
-		}
-	}
-
-
-	$info_des_cond2 = json_decode($normas_ac2);
-	foreach($info_des_cond2 as $value){
-		if($value->info_des_cond != ''){
-			if($value->alternativa == 1){
-				$normas_cumplidas2++;
-		    	$total_nc_cs2++;
-			}elseif($value->alternativa == 0){
-				$normas_incumplidas2++;
-		    	$total_ni_cs2++;
-			}
-		}
-	}
-
-	$suma_normas2 = $normas_cumplidas2 + $normas_incumplidas2;
-	if($suma_normas > 0){
-		$formula2 = ($normas_cumplidas2 * 100)/$suma_normas2;
-	}else{
-		$formula2 = 0;
-	}
-
-	$codigo.= "<div class='tg salto-linea'></div>";
-	$codigo.= "<div><strong>INF. DE REFERENCIA N&#176; ".$obj_acta_ref->getAttr('num_informe')."</strong></div><br>";
-	$codigo.= "<table class='tg' width='100%' style='border:0px;font-size:8px;'>";
-	$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>NORMAS CUMPLIDAS E IMCUMPLIDAS</strong></th></tr>";
+if($obj_acta->getAttr('vers_cambios') == 2){	
+	$codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-size:8px;'>";
+	$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>TABLA DE NORMAS CUMPLIDAS E IMCUMPLIDAS</strong></th></tr>";
 	$codigo .= "<tr><td></td>
-				<td>EPP</td>
-				<td>SE</td>
-				<td>UM</td>
-				<td>DOC</td>
-				<td>CP</td>
-				<td>AC</td>
-				<td>TOTAL</td></tr>";
-	$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp2."</td><td>".$total_nc_sd2."</td><td>".$total_nc_um2."</td><td>".$total_nc_ds2."</td><td>".$total_nc_cu2."</td><td>".$total_nc_cs2."</td><td>".$normas_cumplidas2."</td></tr>";
-	$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp2."</td><td>".$total_ni_sd2."</td><td>".$total_ni_um2."</td><td>".$total_ni_ds2."</td><td>".$total_ni_cu2."</td><td>".$total_ni_cs2."</td><td>".$normas_incumplidas2."</td></tr>";
+					<td>EPP</td>
+					<td>SE</td>
+					<td>UM</td>
+					<td>DOC</td>
+					<td>CP</td>
+					<td>AC</td>
+					<td>TOTAL</td></tr>";
+	$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp."</td><td>".$total_nc_sd."</td><td>".$total_nc_um."</td><td>".$total_nc_ds."</td><td>".$total_nc_cu."</td><td>".$total_nc_cs."</td><td>".$normas_cumplidas."</td></tr>";
+	$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp."</td><td>".$total_ni_sd."</td><td>".$total_ni_um."</td><td>".$total_ni_ds."</td><td>".$total_ni_cu."</td><td>".$total_ni_cs."</td><td>".$normas_incumplidas."</td></tr>";
+	//$codigo .= "<tr><td><strong>TOTAL (NC + NI):</strong> </td><td>".($normas_incumplidas + $normas_cumplidas)."</td></tr>";
+	$suma_normas = $normas_cumplidas + $normas_incumplidas;
+	if($suma_normas > 0){
+		$formula = ($normas_cumplidas * 100)/$suma_normas;
+	}else{
+		$formula = 0;
+	}
 
 	$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>";
-	if(($total_nc_epp2+$total_ni_epp2)>0){$codigo .= round(($total_nc_epp2*100)/($total_nc_epp2+$total_ni_epp2),2)."%</td><td>";}else{$codigo .= round(($total_nc_epp2*100),2)."%</td><td>";}
-	if(($total_nc_sd2+$total_ni_sd2)>0){$codigo .= round(($total_nc_sd2*100)/($total_nc_sd2+$total_ni_sd2),2)."%</td><td>";}else{$codigo .= round(($total_nc_sd2*100),2)."%</td><td>";}
-	if(($total_nc_um2+$total_ni_um2)>0){$codigo .= round(($total_nc_um2*100)/($total_nc_um2+$total_ni_um2),2)."%</td><td>";}else{$codigo .= round(($total_nc_um2*100),2)."%</td><td>";}
-	if(($total_nc_ds2+$total_ni_ds2)>0){$codigo .= round(($total_nc_ds2*100)/($total_nc_ds2+$total_ni_ds2),2)."%</td><td>";}else{$codigo .= round(($total_nc_ds2*100),2)."%</td><td>";}
-	if(($total_nc_cu2+$total_ni_cu2)>0){$codigo .= round(($total_nc_cu2*100)/($total_nc_cu2+$total_ni_cu2),2)."%</td><td>";}else{$codigo .= round(($total_nc_cu2*100),2)."%</td><td>";}
-	if(($total_nc_cs2+$total_ni_cs2)>0){$codigo .= round(($total_nc_cs2*100)/($total_nc_cs2+$total_ni_cs2),2)."%</td><td>";}else{$codigo .= round(($total_nc_cs2*100),2)."%</td><td>";}
-	$codigo .= round($formula2,2)."%</td></tr>";
+	if(($total_nc_epp+$total_ni_epp)>0){$codigo .= round(($total_nc_epp*100)/($total_nc_epp+$total_ni_epp),2)."%</td><td>";}else{$codigo .= round(($total_nc_epp*100),2)."%</td><td>";}
+	if(($total_nc_sd+$total_ni_sd)>0){$codigo .= round(($total_nc_sd*100)/($total_nc_sd+$total_ni_sd),2)."%</td><td>";}else{$codigo .= round(($total_nc_sd*100),2)."%</td><td>";}
+	if(($total_nc_um+$total_ni_um)>0){$codigo .= round(($total_nc_um*100)/($total_nc_um+$total_ni_um),2)."%</td><td>";}else{$codigo .= round(($total_nc_um*100),2)."%</td><td>";}
+	if(($total_nc_ds+$total_ni_ds)>0){$codigo .= round(($total_nc_ds*100)/($total_nc_ds+$total_ni_ds),2)."%</td><td>";}else{$codigo .= round(($total_nc_ds*100),2)."%</td><td>";}
+	if(($total_nc_cu+$total_ni_cu)>0){$codigo .= round(($total_nc_cu*100)/($total_nc_cu+$total_ni_cu),2)."%</td><td>";}else{$codigo .= round(($total_nc_cu*100),2)."%</td><td>";}
+	if(($total_nc_cs+$total_ni_cs)>0){$codigo .= round(($total_nc_cs*100)/($total_nc_cs+$total_ni_cs),2)."%</td><td>";}else{$codigo .= round(($total_nc_cs*100),2)."%</td><td>";}
+	$codigo .= round($formula,2)."%</td></tr>";
 	$codigo .= "</table>";
 
 	//SHOW GRAPHIC
-	if($obj_acta_ref->getAttr('grafico')!='' && $obj_acta_ref->getAttr('grafico') !=null){
+	if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
 		$codigo .= "<br><center><strong>GR&Aacute;FICO</strong></center>";
-		$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos/".$obj_acta_ref->getAttr('grafico')."'></center>";
+		$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos/".$obj_acta->getAttr('grafico')."'></center>";
 	}
+
+
+
+	//Show Tabla de acta de referencia y grafico de referencia 
+	if($obj_acta->getAttr('acta_referencia')!=''){
+
+		$normas_epp2 = $obj_acta_ref->getAttr('info_des_epp');
+		$normas_sd2 = $obj_acta_ref->getAttr('info_des_se_de');
+		$normas_um2 = $obj_acta_ref->getAttr('info_des_um');
+		$normas_ds2 = $obj_acta_ref->getAttr('info_des_doc');
+		$normas_cp2 = $obj_acta_ref->getAttr('info_des_act');
+		$normas_ac2 = $obj_acta_ref->getAttr('info_des_cond');
+
+		//Contador inicializado en cero
+		$total_nc_epp2 = 0;
+		$total_ni_epp2 = 0;
+
+		$total_nc_sd2 = 0;
+		$total_ni_sd2 = 0;
+
+		$total_nc_um2 = 0;
+		$total_ni_um2 = 0;
+
+		$total_nc_ds2 = 0;
+		$total_ni_ds2 = 0;
+		 
+		$total_nc_cu2 = 0;
+		$total_ni_cu2 = 0;
+
+		$total_nc_cs2 = 0;
+		$total_ni_cs2 = 0;
+
+		$normas_cumplidas2 = 0;
+		$normas_incumplidas2 = 0;
+
+		//recorremos
+		$info_des_epp2 = json_decode($normas_epp2);
+		foreach($info_des_epp2 as $value){
+			if($value->info_des_epp != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas2++;
+		    		$total_nc_epp2++;
+		    	}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+		    		$total_ni_epp2++;
+		    	}
+
+			}
+		}
+
+		$info_des_se_de2 = json_decode($normas_sd2);
+		foreach($info_des_se_de2 as $value){
+			if($value->info_des_se_de != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas2++;
+		    		$total_nc_sd2++;
+		    	}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+		    		$total_ni_sd2++;
+		    	}
+			}	
+		}
+
+
+		$info_des_um2 = json_decode($normas_um2);
+		foreach($info_des_um2 as $value){
+			if($value->info_des_um != ''){
+				if($value->alternativa == 1){
+					$normas_cumplidas2++;
+			    	$total_nc_um2++;
+				}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+			    	$total_ni_um2++;
+				}
+			}
+		}
+
+		$info_des_doc2 = json_decode($normas_ds2);
+		foreach($info_des_doc2 as $value){
+			if($value->info_des_doc != ''){
+				if($value->alternativa == 1){
+					$normas_cumplidas2++;
+			    	$total_nc_ds2++;
+				}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+			    	$total_ni_ds2++;
+				}
+			}
+		}
+
+		$info_des_act2 = json_decode($normas_cp2);
+		foreach($info_des_act2 as $value){
+			if($value->info_des_act != ''){
+				if($value->alternativa == 1){
+					$normas_cumplidas2++;
+			    	$total_nc_cu2++;
+				}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+			    	$total_ni_cu2++;
+				}
+			}
+		}
+
+
+		$info_des_cond2 = json_decode($normas_ac2);
+		foreach($info_des_cond2 as $value){
+			if($value->info_des_cond != ''){
+				if($value->alternativa == 1){
+					$normas_cumplidas2++;
+			    	$total_nc_cs2++;
+				}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+			    	$total_ni_cs2++;
+				}
+			}
+		}
+
+		$suma_normas2 = $normas_cumplidas2 + $normas_incumplidas2;
+		if($suma_normas > 0){
+			$formula2 = ($normas_cumplidas2 * 100)/$suma_normas2;
+		}else{
+			$formula2 = 0;
+		}
+
+		$codigo.= "<div class='tg salto-linea'></div>";
+		$codigo.= "<div><strong>INF. DE REFERENCIA N&#176; ".$obj_acta_ref->getAttr('num_informe')."</strong></div><br>";
+		$codigo.= "<table class='tg' width='100%' style='border:0px;font-size:8px;'>";
+		$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>NORMAS CUMPLIDAS E IMCUMPLIDAS</strong></th></tr>";
+		$codigo .= "<tr><td></td>
+					<td>EPP</td>
+					<td>SE</td>
+					<td>UM</td>
+					<td>DOC</td>
+					<td>CP</td>
+					<td>AC</td>
+					<td>TOTAL</td></tr>";
+		$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp2."</td><td>".$total_nc_sd2."</td><td>".$total_nc_um2."</td><td>".$total_nc_ds2."</td><td>".$total_nc_cu2."</td><td>".$total_nc_cs2."</td><td>".$normas_cumplidas2."</td></tr>";
+		$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp2."</td><td>".$total_ni_sd2."</td><td>".$total_ni_um2."</td><td>".$total_ni_ds2."</td><td>".$total_ni_cu2."</td><td>".$total_ni_cs2."</td><td>".$normas_incumplidas2."</td></tr>";
+
+		$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>";
+		if(($total_nc_epp2+$total_ni_epp2)>0){$codigo .= round(($total_nc_epp2*100)/($total_nc_epp2+$total_ni_epp2),2)."%</td><td>";}else{$codigo .= round(($total_nc_epp2*100),2)."%</td><td>";}
+		if(($total_nc_sd2+$total_ni_sd2)>0){$codigo .= round(($total_nc_sd2*100)/($total_nc_sd2+$total_ni_sd2),2)."%</td><td>";}else{$codigo .= round(($total_nc_sd2*100),2)."%</td><td>";}
+		if(($total_nc_um2+$total_ni_um2)>0){$codigo .= round(($total_nc_um2*100)/($total_nc_um2+$total_ni_um2),2)."%</td><td>";}else{$codigo .= round(($total_nc_um2*100),2)."%</td><td>";}
+		if(($total_nc_ds2+$total_ni_ds2)>0){$codigo .= round(($total_nc_ds2*100)/($total_nc_ds2+$total_ni_ds2),2)."%</td><td>";}else{$codigo .= round(($total_nc_ds2*100),2)."%</td><td>";}
+		if(($total_nc_cu2+$total_ni_cu2)>0){$codigo .= round(($total_nc_cu2*100)/($total_nc_cu2+$total_ni_cu2),2)."%</td><td>";}else{$codigo .= round(($total_nc_cu2*100),2)."%</td><td>";}
+		if(($total_nc_cs2+$total_ni_cs2)>0){$codigo .= round(($total_nc_cs2*100)/($total_nc_cs2+$total_ni_cs2),2)."%</td><td>";}else{$codigo .= round(($total_nc_cs2*100),2)."%</td><td>";}
+		$codigo .= round($formula2,2)."%</td></tr>";
+		$codigo .= "</table>";
+
+		//SHOW GRAPHIC
+		if($obj_acta_ref->getAttr('grafico')!='' && $obj_acta_ref->getAttr('grafico') !=null){
+			$codigo .= "<br><center><strong>GR&Aacute;FICO</strong></center>";
+			$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos/".$obj_acta_ref->getAttr('grafico')."'></center>";
+		}
+	}
+	//END Informe de referencia
+}// END Condición para mostrar solo para la versión 2
+else{
+	$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.85em;'>";
+	$codigo .= "<tr>";
+	$codigo .= "<td></td><td>EPP</td><td>SEÑALIZACIÓN</td><td>UUMM</td><td>DOCUMENTACIÓN</td><td>cumplimiento</td><td>CONDICIÓN</td><td>TOTAL</td>";
+	$codigo .= "</tr>";
+	$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp."</td><td>".$total_nc_sd."</td><td>".$total_nc_um."</td><td>".$total_nc_ds."</td><td>".$total_nc_cu."</td><td>".$total_nc_cs."</td><td>".$normas_cumplidas."</td></tr>";
+	$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp."</td><td>".$total_ni_sd."</td><td>".$total_ni_um."</td><td>".$total_ni_ds."</td><td>".$total_ni_cu."</td><td>".$total_ni_cs."</td><td>".$normas_incumplidas."</td></tr>";
+	//$codigo .= "<tr><td><strong>TOTAL (NC + NI):</strong> </td><td>".($normas_incumplidas + $normas_cumplidas)."</td></tr>";
+	$suma_normas = $normas_cumplidas + $normas_incumplidas;
+	if($suma_normas > 0){
+		$formula = ($normas_cumplidas * 100)/$suma_normas;
+	}else{
+		$formula = 0;
+	}
+	$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td></td><td></td><td></td><td></td><td></td><td></td><td>".round($formula,2)."%</td></tr>";
+	$codigo .= "</table>";
 }
-//END Informe de referencia
 
 
 

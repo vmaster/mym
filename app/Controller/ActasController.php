@@ -219,23 +219,18 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['Acta']['info_des_conclusion'];
 				$this->request->data['Acta']['info_des_rec'] = $this->request->data['Acta']['info_des_rec'];
 				$this->request->data['Acta']['info_des_med'] = $this->request->data['Acta']['info_des_med'];
+				$this->request->data['Acta']['vers_cambios'] = 2;
 
 				$data = str_replace(' ', '+', $this->request->data['graf']);
 				$data_64= base64_decode($data);
 				$filename = date('ymdhis').'.png';
 				$im = imagecreatefromstring($data_64);
-				//debug($filename);
-				//exit();
-				if ($im !== false) {
+
 				// Save image in the specified location
-					imagepng($im, APP.WEBROOT_DIR.'/files/graficos/'.$filename);
-					//imagedestroy($im);
-					$this->request->data['Acta']['grafico'] = $filename;
-					echo "Saved successfully";
-				}else{
-					$this->request->data['Acta']['grafico'] = "";
-					echo 'An error occurred.';
-				}
+				imagepng($im, APP.WEBROOT_DIR.'/files/graficos/'.$filename);
+				//imagedestroy($im);
+				$this->request->data['Acta']['grafico'] = $filename;
+					
 				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
@@ -788,6 +783,7 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['Acta']['info_des_conclusion'];
 				$this->request->data['Acta']['info_des_rec'] = $this->request->data['Acta']['info_des_rec'];
 				$this->request->data['Acta']['info_des_med'] = $this->request->data['Acta']['info_des_med'];
+				$this->request->data['Acta']['vers_cambios'] = 2;
 
 
 				if($this->request->data['Acta']['grafico'] != ''){
