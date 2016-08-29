@@ -82,7 +82,7 @@ $(document).ready(function(){
 		},30000)
 	}*/
 	
-	/* Mostrar formulario: Crear veh�culo */
+	/* Mostrar formulario: Crear vehículo */
 	$body.off('click','div#acta .btn-nuevo-acta');
 	$body.on('click', 'div#acta .btn-nuevo-acta' , function(){
 		acta_id = $(this).attr('acta_id');
@@ -107,10 +107,16 @@ $(document).ready(function(){
 		var html_recomendaciones = $('#father-container1 .nicEdit-main:last').html();
 		var html_med_control = $('#father-container2 .nicEdit-main:first').html();
 		
-		
+		var svg = document.getElementById('container_graf_cu').children[0].innerHTML;
+		canvg(document.getElementById('canvas'),svg);
+
+		//var canvas = new Canvas();
+		var img = canvas.toDataURL("image/png"); //img is data:image/png;base64
+		img = img.replace('data:image/png;base64,', '');
+
 		$.ajax({
 			url: $form.attr('action'),
-			data: $form.serialize() + '&html_conclusiones=' + html_conclusiones + '&html_recomendaciones=' + html_recomendaciones + '&html_med_control=' + html_med_control,
+			data: $form.serialize() + '&html_conclusiones=' + html_conclusiones + '&html_recomendaciones=' + html_recomendaciones + '&html_med_control=' + html_med_control + '&graf=' +  img,
 			dataType: 'json',
 			type: 'post'
 		}).done(function(data){
@@ -465,6 +471,290 @@ $(document).ready(function(){
 	}
 	loadSendIndexButtonToModalVehiculo();
 
+
+
+	function showHighchart (porc_in_categorias, porc_cu_categorias, porc_cu){
+
+		//$(function () {
+				//alert(categorias);
+			    var colors = Highcharts.getOptions().colors,
+			        categories = ['NI', 'NC'],
+			        data = [{
+			            y: porc_ni,
+			            color: '#E03737',
+			            drilldown: {
+			                name: 'NI Items',
+			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'AC'],
+			                data: [porc_ni, 0, 0, 0, 0, 0],
+			                color: '#E03737'
+			            }
+			        }, {
+			            y: porc_nc,
+			            color: colors[0],
+			            drilldown: {
+			                name: 'NC Items',
+			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'AC'],
+			                data: porc_cu_categorias,
+			                color: colors[0]
+			            }
+			        }],
+			        browserData = [],
+			        versionsData = [],
+			        i,
+			        j,
+			        dataLen = data.length,
+			        drillDataLen,
+			        brightness;
+
+
+				var leyendtitle = ["EQUIPOS DE PROTECCIÓN (PERSONAL Y/O COLECTIVO)", "SEÑALIZACIÓN Y DELIMITACIÓN", "UNIDADES MÓVILES", "DOCUMENTACIÓN DE SEGURIDAD", "CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO", "ACTOS Y CONDICIONES ESTANDARES Y/O SUB-ESTANDARES"];
+			    // Build the data arrays
+			    for (i = 0; i < dataLen; i += 1) {
+
+			        // add browser data
+			        browserData.push({
+			            name: categories[i],
+						category_porc: categories[i]+': '+data[i].y +'%',
+			            y: data[i].y,
+			            color: data[i].color
+			        });
+
+			        // add version data
+			        drillDataLen = data[i].drilldown.data.length;
+			        for (j = 0; j < drillDataLen; j += 1) {
+			            brightness = 0.2 - (j / drillDataLen) / 5;
+			            versionsData.push({
+			                name: data[i].drilldown.categories[j],
+			                y: data[i].drilldown.data[j],
+							leyendtitle: leyendtitle[j],
+							category: categories[i],
+							valor: porc_cu[j],
+			                color: Highcharts.Color(data[i].color).brighten(brightness).get()
+			            });
+			        }
+			    }
+
+
+			    // Create the chart
+			    $('#container_graf_cu').highcharts({
+			        chart: {
+			            type: 'pie'
+			        },
+			        title: {
+			            text: ''
+			        },
+			        credits: {
+						enabled: false
+					},
+			        yAxis: {
+			            title: {
+			                text: 'Total percent market share'
+			            }
+			        },
+			        plotOptions: {
+			            pie: {
+			                shadow: false,
+			                center: ['50%', '50%'],
+			                showInLegend: true
+			            }
+			        },
+			        tooltip: {
+			            valueSuffix: '%'
+			        },
+			        legend: {
+						layout: 'vertical',
+						backgroundColor: '#FFFFFF',
+						floating: false,
+						align: 'center',
+						verticalAlign: 'bottom',
+						labelFormatter: function () {
+							if(this.category == 'NC' && this.y != 0){
+								return '<span style="font-size:5px"><strong>'+this.name + '</strong>: <span style="font-weight:100">'+this.leyendtitle+'</span></span>';
+							}
+						}
+					},
+			        series: [{
+			            name: 'Browsers',
+			            data: browserData,
+			            size: '60%',
+			            dataLabels: {
+			                formatter: function () {
+			                    return this.y > 5 ? this.point.category_porc : null;
+			                },
+			                color: '#000000',
+			                distance: -30
+			            }
+			        }, {
+			            name: 'Versions',
+			            data: versionsData,
+			            size: '80%',
+			            innerSize: '60%',
+			            dataLabels: {
+			                formatter: function () {
+			                    // display only if larger than 1
+								if(this.point.category=='NC'){
+									return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.point.valor + '%' : null;
+								}
+			                }
+			            }
+			        }]
+			    });
+			//});
+
+	}
+
+
+function sumaAcumularNormas(){
+		//select_cu_epp
+			var n_cu_epp = 0;
+			var n_in_epp = 0;
+			$(".select_cu_epp").each(function(){
+				val_estado_epp = $(this).val();
+			
+				if(val_estado_epp == 1){
+					n_cu_epp++;
+				}
+
+				if(val_estado_epp == 0){
+					n_in_epp++;
+				}
+			});
+
+
+			var n_cu_sd = 0;
+		 	var n_in_sd = 0;
+
+		 	$('.select_cu_sd').each(function(){
+		 		val_estado_sd = $(this).val();
+
+		 		if(val_estado_sd == 1){
+		 			n_cu_sd++;
+		 		}
+
+		 		if(val_estado_sd == 0){
+		 			n_in_sd++;
+		 		}
+		  	})
+		  
+		 	
+		 	var n_cu_um = 0;
+		 	var n_in_um = 0;
+
+		 	$('.select_cu_um').each(function(){
+		 		val_estado_um = $(this).val();
+
+		 		if(val_estado_um == 1){
+		 			n_cu_um++;
+		 		}
+
+		 		if(val_estado_um == 0){
+		 			n_in_um++;
+		 		}
+		  	})
+
+		 	
+		 	var n_cu_ds = 0;
+		 	var n_in_ds = 0;
+
+		 	$('.select_cu_ds').each(function(){
+		 		val_estado_ds = $(this).val();
+
+		 		if(val_estado_ds == 1){
+		 			n_cu_ds++;
+		 		}
+
+		 		if(val_estado_ds == 0){
+		 			n_in_ds++;
+		 		}
+		  	})
+		  
+		 	
+		 	var n_cu_cp = 0;
+		 	var n_in_cp = 0;
+
+		 	$('.select_cu_cp').each(function(){
+		 		val_estado_cp = $(this).val();
+
+		 		if(val_estado_cp == 1){
+		 			n_cu_cp++;
+		 		}
+
+		 		if(val_estado_cp == 0){
+		 			n_in_cp++;
+		 		}
+		  	})
+		  
+
+		  var n_cu_as = 0;
+		  var n_in_as = 0;
+		  $('.select_cu_as').each(function(){
+		 		val_estado_as = $(this).val();
+
+		 		if(val_estado_as == 1){
+		 			n_cu_as++;
+		 		}
+
+		 		if(val_estado_as == 0){
+		 			n_in_as++;
+		 		}
+		   })
+
+		  	normas_cumplidas = Math.round(n_cu_epp + n_cu_sd + n_cu_um + n_cu_ds + n_cu_cp + n_cu_as);
+			normas_incumplidas = Math.round(n_in_epp + n_in_sd + n_in_um + n_in_ds + n_in_cp + n_in_as);
+			suma_normas = normas_cumplidas + normas_incumplidas;
+
+			porc_nc = Math.round((normas_cumplidas * 100) / suma_normas);
+			porc_ni = Math.round((normas_incumplidas * 100) / suma_normas);
+
+			porc_cu_epp = Math.round((n_cu_epp*100)/suma_normas);
+			porc_in_epp = Math.round((n_in_epp*100)/suma_normas);
+			porc_epp = Math.round((n_cu_epp*100)/(n_cu_epp + n_in_epp));
+
+			porc_cu_sd = Math.round((n_cu_sd*100)/suma_normas);
+			porc_in_sd = Math.round((n_in_sd*100)/suma_normas);
+			porc_sd = Math.round((n_cu_sd*100)/(n_cu_sd + n_in_sd));
+
+			porc_cu_um = Math.round((n_cu_um*100)/suma_normas);
+			porc_in_um = Math.round((n_in_um*100)/suma_normas);
+			porc_um = Math.round((n_cu_um*100)/(n_cu_um + n_in_um));
+
+			porc_cu_ds = Math.round((n_cu_ds*100)/suma_normas);
+			porc_in_ds = Math.round((n_in_ds*100)/suma_normas);
+			porc_ds = Math.round((n_cu_ds*100)/(n_cu_ds + n_in_ds));
+
+			porc_cu_cp = Math.round((n_cu_cp*100)/suma_normas);
+			porc_in_cp = Math.round((n_in_cp*100)/suma_normas);
+			porc_cp = Math.round((n_cu_cp*100)/(n_cu_cp + n_in_cp));
+
+			porc_cu_as = Math.round((n_cu_as*100)/suma_normas);
+			porc_in_as = Math.round((n_in_as*100)/suma_normas);
+			porc_as = Math.round((n_cu_as*100)/(n_cu_as + n_in_as));
+
+			var porc_cu_categorias = [porc_cu_epp, porc_cu_sd, porc_cu_um, porc_cu_ds, porc_cu_cp, porc_cu_as];
+			var porc_in_categorias = [porc_in_epp, porc_in_sd, porc_in_um, porc_in_ds, porc_in_cp, porc_in_as];
+			var porc_cu = [porc_epp, porc_sd, porc_um, porc_ds, porc_cp, porc_as];
+
+			showHighchart(porc_in_categorias, porc_cu_categorias, porc_cu);
+
+	}
+
+	sumaAcumularNormas();
+
+
+	/*SCRIPT PARA CREAR GRAFICO EN NUEVO INFORME*/
+	function loadGraficoNuevaActa(){
+		$('.select-NI-NC').change(function(){
+		
+			/*FUNCTION */
+			sumaAcumularNormas();
+
+		});
+	}
+	
+	loadGraficoNuevaActa();
+	
+
+
 /*SCRIPTS PARA EL CREAR Y EDITAR INFORME  */
 	
 	/* AGREGAR FILAS A LA TABLA DE IMPLEMENTOS DE PROT PERSO. */
@@ -506,7 +796,7 @@ $(document).ready(function(){
 		 });
 	});
 	
-	/* AGREGAR FILAS A LA TABLA ACTOS SUBEST�NDARES */	
+	/* AGREGAR FILAS A LA TABLA ACTOS SUBESTÁNDARES */	
 	$("#div-btn-add-as .add-more-row-as").bind("click", function(e){
 	long_table = $('#table-as-inf tbody tr').length + 1;
 		$.ajax({
@@ -523,7 +813,7 @@ $(document).ready(function(){
 		 });
 	});
 	
-	/* AGREGAR FILAS A LA TABLA CONDICIONES SUBEST�NDARES */	
+	/* AGREGAR FILAS A LA TABLA CONDICIONES SUBESTÁNDARES */	
 	$("#div-btn-add-cs .add-more-row-cs").bind("click", function(e){
 	long_table = $('#table-cs-inf tbody tr').length + 1;
 		$.ajax({
@@ -553,8 +843,8 @@ $(document).ready(function(){
 		$('#table-mc-inf tr:last').after(new_row);
 	});
 	
-	
-	/* AGREGAR FILAS A LA TABLA ACTOS SUBEST�NDARES PARA EL REPORTE*/	
+	/* CUMPLIMIENTO E INCUMPLIMIENTOS */
+	/* AGREGAR FILAS A LA TABLA ACTOS SUBESTÁNDARES PARA EL REPORTE*/	
 	$("#div-btn-add-as-rep .add-more-row-as-rep").bind("click", function(e){
 	long_table = $('#table-as-rep tbody tr').length + 1;
 		$.ajax({
@@ -565,11 +855,12 @@ $(document).ready(function(){
 	        success: function(html)
 	         {
 	       	 $('#table-as-rep tr:last').after(html);
+	       	 loadGraficoNuevaActa();
 	         }
 		 });
 	});
 	
-	/* AGREGAR FILAS A LA TABLA CONDICIONES SUBEST�NDARES PARA EL REPORTE*/	
+	/* AGREGAR FILAS A LA TABLA CONDICIONES SUBESTÁNDARES PARA EL REPORTE*/	
 	$("#div-btn-add-cond-rep .add-more-row-cond-rep").bind("click", function(e){
 	long_table = $('#table-cond-rep tbody tr').length + 1;
 		$.ajax({
@@ -580,6 +871,7 @@ $(document).ready(function(){
 	        success: function(html)
 	         {
 	       	 $('#table-cond-rep tr:last').after(html);
+	       	 loadGraficoNuevaActa();
 	         }
 		 });
 	});
@@ -594,6 +886,7 @@ $(document).ready(function(){
 		        success: function(html)
 		         {
 		       	 $('#table-epp-rep tr:last').after(html);
+		       	 loadGraficoNuevaActa();
 		         }
 			 });
 		});
@@ -608,6 +901,7 @@ $(document).ready(function(){
 		        success: function(html)
 		         {
 		       	 $('#table-sd-rep tr:last').after(html);
+		       	 loadGraficoNuevaActa();
 		         }
 			 });
 		});
@@ -622,6 +916,7 @@ $(document).ready(function(){
 		        success: function(html)
 		         {
 		       	 $('#table-um-rep tr:last').after(html);
+		       	 loadGraficoNuevaActa();
 		         }
 			 });
 		});
@@ -636,6 +931,7 @@ $(document).ready(function(){
 		        success: function(html)
 		         {
 		       	 $('#table-ds-rep tr:last').after(html);
+		       	 loadGraficoNuevaActa();
 		         }
 			 });
 		});
@@ -869,5 +1165,5 @@ $(document).ready(function(){
 	});
 	
 	$('[data-toggle="tooltip"]').tooltip();
-	
+
 });

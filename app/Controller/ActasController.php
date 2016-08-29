@@ -154,7 +154,7 @@ class ActasController extends AppController{
 	public function nuevo_informe($acta_id=null){
 		$this->verificarAccessoInvitado();
 
-		$this->layout = 'default';
+		$this->layout = 'acta';
 		
 		$this->loadModel('Acta');
 		$this->loadModel('Empresa');
@@ -219,6 +219,18 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['Acta']['info_des_conclusion'];
 				$this->request->data['Acta']['info_des_rec'] = $this->request->data['Acta']['info_des_rec'];
 				$this->request->data['Acta']['info_des_med'] = $this->request->data['Acta']['info_des_med'];
+				$this->request->data['Acta']['vers_cambios'] = 2;
+
+				$data = str_replace(' ', '+', $this->request->data['graf']);
+				$data_64= base64_decode($data);
+				$filename = date('ymdhis').'.png';
+				$im = imagecreatefromstring($data_64);
+
+				// Save image in the specified location
+				imagepng($im, APP.WEBROOT_DIR.'/files/graficos/'.$filename);
+				//imagedestroy($im);
+				$this->request->data['Acta']['grafico'] = $filename;
+					
 				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
@@ -706,7 +718,7 @@ class ActasController extends AppController{
 	}
 	
 	public function editar_informe($acta_id=null){
-		$this->layout = 'default';
+		$this->layout = 'acta';
 		if(!isset($acta_id)){
 			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
 			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
@@ -771,7 +783,35 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['Acta']['info_des_conclusion'];
 				$this->request->data['Acta']['info_des_rec'] = $this->request->data['Acta']['info_des_rec'];
 				$this->request->data['Acta']['info_des_med'] = $this->request->data['Acta']['info_des_med'];
-				
+				$this->request->data['Acta']['vers_cambios'] = 2;
+
+
+				if($this->request->data['Acta']['grafico'] != ''){
+
+					unlink(APP.WEBROOT_DIR.'/files/graficos/'.$this->request->data['Acta']['grafico']);
+
+					$data = str_replace(' ', '+', $this->request->data['graf']);
+					$data_64= base64_decode($data);
+					$filename = date('ymdhis').'.png';
+					$im = imagecreatefromstring($data_64);
+	
+					// Save image in the specified location
+					imagepng($im, APP.WEBROOT_DIR.'/files/graficos/'.$filename);
+					$this->request->data['Acta']['grafico'] = $filename;
+					
+					
+				}else{
+					$data = str_replace(' ', '+', $this->request->data['graf']);
+					$data_64= base64_decode($data);
+					$filename = date('ymdhis').'.png';
+					$im = imagecreatefromstring($data_64);
+	
+					// Save image in the specified location
+					imagepng($im, APP.WEBROOT_DIR.'/files/graficos/'.$filename);
+					$this->request->data['Acta']['grafico'] = $filename;
+				}
+
+								
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
 				$normas_cumplidas = 0;
@@ -1899,8 +1939,7 @@ class ActasController extends AppController{
 		$this->set(compact('long_table'));
 	}
 	
-	public function view_informe($acta_id = null)
-	{
+	public function view_informe($acta_id = null){
 		$this->layout = 'pdf'; //esto usara el layout pdf.ctp
 		//$this->render();
 		//$this->autoRender = false;
@@ -1916,9 +1955,14 @@ class ActasController extends AppController{
 		$obj_acta = $this->Acta->findById($acta_id);
 		$info_ni_t = $this->Acta->infoNiT($acta_id);
 		$info_ni_v = $this->Acta->infoNiV($acta_id);
-		//debug($info_ni_t); 
-		//debug($info_ni_v);exit();
-		$this->set(compact('obj_acta','info_ni_t','info_ni_v'));
+		
+		$obj_acta_ref = array();
+		if($obj_acta->getAttr('acta_referencia')!=''){
+			$informe_ref_id = $obj_acta->getAttr('acta_referencia');
+			$obj_acta_ref = $this->Acta->findById($informe_ref_id);
+		}
+
+		$this->set(compact('obj_acta','obj_acta_ref','info_ni_t','info_ni_v'));
 	}
 	
 	public function send_reporte_email()
@@ -2231,6 +2275,34 @@ class ActasController extends AppController{
 		$file = fopen($destination, "w+");
 		fputs($file, $data);
 		fclose($file);
+	}
+
+	public function ajax_normas_info_ref(){
+		$this->autoRender = false;
+		$this->loadModel('Acta');
+	
+		if($this->request->is('post')){
+			$informe_ref_id = $this->request->data['id_informe_ref'];
+			$obj_acta = $this->Acta->findObjects('first',
+					array(
+							'conditions'=>array(
+									'Acta.id'=> $informe_ref_id
+							),
+							//'fields' => array('id','apellido_nombre'),
+					));
+			
+			//foreach ($arr_obj_trabajadore as $trabajadore):
+			$normas_ipp = $obj_acta->getAttr('info_des_epp');
+			$normas_sd = $obj_acta->getAttr('info_des_se_de');
+			$normas_um = $obj_acta->getAttr('info_des_um');
+			$normas_ds = $obj_acta->getAttr('info_des_doc');
+			$normas_cp = $obj_acta->getAttr('info_des_act');
+			$normas_ac = $obj_acta->getAttr('info_des_cond');
+
+		
+			//endforeach;
+		}
+		return json_encode(array('success'=>true,'normas'=> array('normas_ipp' => $normas_ipp, 'normas_sd'=>$normas_sd, 'normas_um'=>$normas_um, 'normas_ds'=>$normas_ds, 'normas_cp'=>$normas_cp, 'normas_ac'=>$normas_ac)));
 	}
 		
 }

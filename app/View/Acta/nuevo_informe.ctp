@@ -38,23 +38,23 @@ tinymce.init({
 										<tr>
 											<td rowspan=3 style="vertical-align: middle; width: 40%">
 												<div class="form-group input-group" style="margin-bottom: -13px;">
-													<span class="input-group-addon"><label id="ni" data-toggle="tooltip" title="N&uacute;mero de informe" style="width: 30px;"><?php echo utf8_encode('N° I') ?></label>
+													<span class="input-group-addon"><label id="ni" data-toggle="tooltip" title="N&uacute;mero de informe" style="width: 30px;"><?php echo utf8_encode('NÂ° I') ?></label>
 													</span>
 													<?php echo $this->Form->input('num_informe', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','value'=>(isset($codigo_completo))? $codigo_completo: '')); ?>
 												</div>
 												<br>									
 												<div class="form-group input-group">
-													<span class="input-group-addon"><label id="na" data-toggle="tooltip" title="N&uacute;mero de Acta" style="width: 30px;"><?php echo utf8_encode('N° A') ?></label>
+													<span class="input-group-addon"><label id="na" data-toggle="tooltip" title="N&uacute;mero de Acta" style="width: 30px;"><?php echo utf8_encode('NÂ° A') ?></label>
 													</span>
 													<?php echo $this->Form->input('numero', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'15')); ?>
 												</div>
 											</td>
-											<td><?php echo utf8_encode('Código:');?></td>
+											<td><?php echo utf8_encode('CÃ³digo:');?></td>
 											<td><?php echo $this->Form->input('codigo', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>'M001-SST')); ?>
 											</td>
 										</tr>
 										<tr>
-											<td><?php echo utf8_encode('Versión:'); ?></td>
+											<td><?php echo utf8_encode('VersiÃ³n:'); ?></td>
 											<td><?php echo $this->Form->input('version', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>'00/2015-M001')); ?>
 											</td>
 										</tr>
@@ -198,11 +198,11 @@ tinymce.init({
 										<thead>
 											<tr>
 												<th colspan=10
-													style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('IMPLEMENTOS DE PROTECCIÓN PERSONAL') ?>
+													style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('IMPLEMENTOS DE PROTECCIÃ“N PERSONAL') ?>
 												</th>
 											</tr>
 											<tr>
-												<th><?php echo utf8_encode('N°'); ?></th>
+												<th><?php echo utf8_encode('NÂ°'); ?></th>
 												<th>Nombre del trabajador</th>
 												<th>Cargo</th>
 												<th colspan=7
@@ -267,14 +267,14 @@ tinymce.init({
 										<thead>
 											<tr>
 												<th colspan=12
-													style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('UNIDADES MÓVILES') ?>
+													style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('UNIDADES MÃ“VILES') ?>
 												</th>
 											</tr>
 											<tr>
-												<th style="vertical-align:middle; text-align: center;"><?php echo utf8_encode('N° T'); ?>
+												<th style="vertical-align:middle; text-align: center;"><?php echo utf8_encode('NÂ° T'); ?>
 												</th>
-												<th><?php echo utf8_encode('N° de Placa'); ?></th>
-												<th><?php echo utf8_encode('Tipo Vehículo'); ?></th>
+												<th><?php echo utf8_encode('NÂ° de Placa'); ?></th>
+												<th><?php echo utf8_encode('Tipo VehÃ­culo'); ?></th>
 												<th style="vertical-align: middle; text-align: center;">Norma
 													Incumplica (Ver parte porterior de la hoja)</th>
 											</tr>
@@ -360,7 +360,7 @@ tinymce.init({
 												<thead>
 													<tr>
 														<th
-															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('EQUIPO DE PROTECCIÓN (PERSONAL Y/O COLECTIVO)') ?>
+															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('EQUIPO DE PROTECCIÃ“N (PERSONAL Y/O COLECTIVO)') ?>
 														</th>
 														<th>
 															Cumplimiento
@@ -372,7 +372,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_epp][<?php echo $i; ?>][info_des_epp]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_epp" name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][alternativa]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
@@ -450,7 +450,7 @@ tinymce.init({
 												<thead>
 													<tr>
 														<th
-															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('SEÑALIZACIÓN Y DELIMITACIÓN') ?>
+															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('SEÃ‘ALIZACIÃ“N Y DELIMITACIÃ“N') ?>
 														</th>
 														<th>
 															Cumplimiento
@@ -462,7 +462,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_sd][<?php echo $i; ?>][info_des_se_de]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_sd][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_sd" name= "data[Acta][cumplimiento_sd][<?php echo $i; ?>][alternativa]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
@@ -539,7 +539,7 @@ tinymce.init({
 												<thead>
 													<tr>
 														<th
-															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('UNIDADES MÓVILES') ?>
+															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('UNIDADES MÃ“VILES') ?>
 														</th>
 														<th>
 															Cumplimiento
@@ -551,7 +551,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_um][<?php echo $i; ?>][info_des_um]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_um][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_um" name= "data[Acta][cumplimiento_um][<?php echo $i; ?>][alternativa]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
@@ -628,7 +628,7 @@ tinymce.init({
 												<thead>
 													<tr>
 														<th
-															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('DOCUMENTACIÓN DE SEGURIDAD') ?>
+															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('DOCUMENTACIÃ“N DE SEGURIDAD') ?>
 														</th>
 														<th>
 															Cumplimiento
@@ -640,7 +640,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_ds][<?php echo $i; ?>][info_des_doc]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_ds][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_ds" name= "data[Acta][cumplimiento_ds][<?php echo $i; ?>][alternativa]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
@@ -729,7 +729,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_act][<?php echo $i; ?>][info_des_act]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_cp" name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][alternativa]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
@@ -805,7 +805,7 @@ tinymce.init({
 												<thead>
 													<tr>
 														<th
-															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('ACTOS Y CONDICIONES SUBESTÁNDARES') ?>
+															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('ACTOS Y CONDICIONES SUBESTÃNDARES') ?>
 														</th>
 														<th>
 															Cumplimiento
@@ -817,7 +817,7 @@ tinymce.init({
 													<tr>
 														<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"></textarea></td>
 														<td>
-															<select class="form-control" name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_as" name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][alternativa]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
@@ -889,7 +889,11 @@ tinymce.init({
 		</div>
 	</div>
 
-	<!-- Responsables Previos Corrección -->
+	<div id="container_graf_cu" style="width: 650px; height: 500px; margin: 0 auto; display:none"></div>
+	<canvas id="canvas" style="display:none;"></canvas>
+	
+
+	<!-- Responsables Previos CorrecciÃ³n -->
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
@@ -904,7 +908,7 @@ tinymce.init({
 								<tr>
 									<td style="vertical-align: middle; text-align: center; width:50%"><?php echo utf8_encode('Responsable de la actividad'); ?>
 									</td>
-									<td style="vertical-align: middle; text-align: center; width:50%"><?php echo utf8_encode('Responsable de la Supervisión de SST'); ?>
+									<td style="vertical-align: middle; text-align: center; width:50%"><?php echo utf8_encode('Responsable de la SupervisiÃ³n de SST'); ?>
 									</td>
 								</tr>
 								<tr>
@@ -1152,7 +1156,10 @@ tinymce.init({
         </tr>
     {% } %}
  </script>
+
  
+ 
+
  <?php echo $this->Element('Empresa/modal_add_empresa'); ?>
  <?php echo $this->Element('Trabajadore/modal_add_trabajador'); ?>
  <?php echo $this->Element('Vehiculo/modal_add_vehiculo'); ?>
