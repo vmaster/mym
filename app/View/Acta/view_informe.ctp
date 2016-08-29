@@ -719,12 +719,9 @@ if($obj_acta->getAttr('vers_cambios') == 2){
 	//END Informe de referencia
 }// END Condición para mostrar solo para la versión 2
 else{
-	$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.85em;'>";
-	$codigo .= "<tr>";
-	$codigo .= "<td></td><td>EPP</td><td>SEÑALIZACIÓN</td><td>UUMM</td><td>DOCUMENTACIÓN</td><td>cumplimiento</td><td>CONDICIÓN</td><td>TOTAL</td>";
-	$codigo .= "</tr>";
-	$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp."</td><td>".$total_nc_sd."</td><td>".$total_nc_um."</td><td>".$total_nc_ds."</td><td>".$total_nc_cu."</td><td>".$total_nc_cs."</td><td>".$normas_cumplidas."</td></tr>";
-	$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp."</td><td>".$total_ni_sd."</td><td>".$total_ni_um."</td><td>".$total_ni_ds."</td><td>".$total_ni_cu."</td><td>".$total_ni_cs."</td><td>".$normas_incumplidas."</td></tr>";
+	$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-right: 25px; font-size:0.85em;'>";
+	$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$normas_cumplidas."</td></tr>";
+	$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$normas_incumplidas."</td></tr>";
 	//$codigo .= "<tr><td><strong>TOTAL (NC + NI):</strong> </td><td>".($normas_incumplidas + $normas_cumplidas)."</td></tr>";
 	$suma_normas = $normas_cumplidas + $normas_incumplidas;
 	if($suma_normas > 0){
@@ -732,7 +729,7 @@ else{
 	}else{
 		$formula = 0;
 	}
-	$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td></td><td></td><td></td><td></td><td></td><td></td><td>".round($formula,2)."%</td></tr>";
+	$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>".round($formula,2)."%</td></tr>";
 	$codigo .= "</table>";
 }
 
