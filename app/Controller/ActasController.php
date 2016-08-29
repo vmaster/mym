@@ -783,7 +783,6 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['Acta']['info_des_conclusion'];
 				$this->request->data['Acta']['info_des_rec'] = $this->request->data['Acta']['info_des_rec'];
 				$this->request->data['Acta']['info_des_med'] = $this->request->data['Acta']['info_des_med'];
-				$this->request->data['Acta']['vers_cambios'] = 2;
 
 
 				if($this->request->data['Acta']['grafico'] != ''){
