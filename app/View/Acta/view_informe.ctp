@@ -527,7 +527,7 @@ $codigo.= "	</tr>
 //$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.85em;'>";
 if($obj_acta->getAttr('vers_cambios') == 2){	
 	$codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-size:8px;'>";
-	$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>TABLA DE NORMAS CUMPLIDAS E IMCUMPLIDAS</strong></th></tr>";
+	$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
 	$codigo .= "<tr><td></td>
 					<td>EPP</td>
 					<td>SE</td>
@@ -688,7 +688,7 @@ if($obj_acta->getAttr('vers_cambios') == 2){
 		$codigo.= "<div class='tg salto-linea'></div>";
 		$codigo.= "<div><strong>INF. DE REFERENCIA N&#176; ".$obj_acta_ref->getAttr('num_informe')."</strong></div><br>";
 		$codigo.= "<table class='tg' width='100%' style='border:0px;font-size:8px;'>";
-		$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>NORMAS CUMPLIDAS E IMCUMPLIDAS</strong></th></tr>";
+		$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
 		$codigo .= "<tr><td></td>
 					<td>EPP</td>
 					<td>SE</td>
