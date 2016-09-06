@@ -1939,19 +1939,24 @@ class ActasController extends AppController{
 	}
 	
 	public function view_informe($acta_id = null){
-		$this->layout = 'pdf'; //esto usara el layout pdf.ctp
-		//$this->render();
-		//$this->autoRender = false;
-		
+			
+		ini_set('memory_limit', '512M');
 		$this->loadModel('Acta');
+		$obj_acta = $this->Acta->findById($acta_id);
+
+		if($obj_acta->getAttr('vers_cambios')==1){
+			$this->layout = 'layout_view_pdf1';
+		}else{
+			$this->layout = 'layout_view_pdf2';
+		}
+				
 		if(!isset($acta_id)){
 			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
 			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
 			exit();
 		}
 
-		ini_set('memory_limit', '512M');
-		$obj_acta = $this->Acta->findById($acta_id);
+		
 		$info_ni_t = $this->Acta->infoNiT($acta_id);
 		$info_ni_v = $this->Acta->infoNiV($acta_id);
 		
