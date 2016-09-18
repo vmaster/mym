@@ -1205,6 +1205,22 @@ App::uses('AppModel','Model');
     	//debug($arr_obj_sup_emp);exit();
     	return $arr_obj_det_sup_emp;
     }
+
+    /*  
+        16/09/2016
+        Vladimir TM
+    */
+    public function listTotalNiNc($fec_inicio, $fec_fin) {
+        $arr_obj_total_ni_nc = $this->findObjects('all',array(
+                'conditions'=>array(
+                        'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'Acta.estado' => 1
+                )
+        )
+        );
+    
+        return $arr_obj_total_ni_nc;
+    }
     
     
     /* Detalle de las Ni para el View Informe*/

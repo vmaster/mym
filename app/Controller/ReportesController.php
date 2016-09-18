@@ -426,6 +426,137 @@ class ReportesController extends AppController{
 		$list_sep_emp = $this->Acta->listDetalleCumplimientoByEmpresa($fec_inicio_format, $fec_fin_format);
 		$this->set(compact('list_sep_emp'));
 	}
+
+
+	public function rpt_total_ni_nc() {
+		$this->layout = "default";
+		$this->loadModel('Acta');
+	}
+
+	public function load_graf_total_ni_nc($fec_inicio, $fec_fin){
+		$this->loadModel('Acta');
+		$this->autoRender = false;
+	
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+	
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+	
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+		$y ="";
+		$sum_nc_epp = 0 ; $sum_ni_epp= 0; $sum_nc_sd= 0; $sum_ni_sd= 0; $sum_nc_um= 0; $sum_ni_um=0; $sum_nc_doc=0; $sum_ni_doc=0; $sum_nc_cp= 0;
+		$sum_ni_cp = 0; $sum_nc_ac= 0; $sum_ni_ac= 0;
+
+		$list_total_ni_nc = $this->Acta->listTotalNiNc($fec_inicio_format, $fec_fin_format);
+		// 'Acta.info_des_epp, Acta.info_des_se_de, Acta.info_des_um, Acta.info_des_doc, Acta.info_des_act, Acta.info_des_cond'
+		foreach ($list_total_ni_nc as $row_acta):
+			if($row_acta->getAttr('info_des_epp') != ""){
+				$info_des_epp = json_decode($row_acta->getAttr('info_des_epp'));
+				foreach($info_des_epp as $value){
+					if($value->info_des_epp != ""){
+						if($value->alternativa == 1){
+							$sum_nc_epp++;
+						}elseif($value->alternativa == 0){
+							$sum_ni_epp++;
+						}else{
+
+						}
+					}
+				}
+			}
+
+			if($row_acta->getAttr('info_des_se_de') != ""){
+				$info_des_se_de = json_decode($row_acta->getAttr('info_des_se_de'));
+				foreach($info_des_se_de as $value):
+					if($value->info_des_se_de != ""){
+						if($value->alternativa == 1){
+							$sum_nc_sd++;
+						}elseif($value->alternativa == 0){
+							$sum_ni_sd++;
+						}else{
+							
+						}
+					}
+				endforeach;
+			}
+				
+
+			if($row_acta->getAttr('info_des_um') != ""){
+				$info_des_um = json_decode($row_acta->getAttr('info_des_um'));
+				foreach($info_des_um as $value):
+					if($value->info_des_um != ""){
+						if($value->alternativa == 1){
+							$sum_nc_um++;
+						}elseif($value->alternativa == 0){
+							$sum_ni_um++;
+						}else{
+							
+						}
+					}
+				endforeach;
+			}
+
+			if($row_acta->getAttr('info_des_doc') != ""){
+				$info_des_doc = json_decode($row_acta->getAttr('info_des_doc'));
+				foreach($info_des_doc as $value):
+					if($value->info_des_doc != ""){
+						if($value->alternativa == 1){
+							$sum_nc_doc++;
+						}elseif($value->alternativa == 0){
+							$sum_ni_doc++;
+						}else{
+							
+						}
+					}
+				endforeach;
+			}
+
+			if($row_acta->getAttr('info_des_act') != ""){ //cambiar abreviatura "ac" x cp
+				$info_des_act = json_decode($row_acta->getAttr('info_des_act'));
+				foreach($info_des_act as $value):
+					if($value->info_des_act != ""){
+						if($value->alternativa == 1){
+							$sum_nc_cp++; 
+						}elseif($value->alternativa == 0){
+							$sum_ni_cp++;
+						}else{
+							
+						}
+					}
+				endforeach;
+			}
+
+			if($row_acta->getAttr('info_des_cond') != ""){ 
+				$info_des_cond = json_decode($row_acta->getAttr('info_des_cond'));
+				foreach($info_des_cond as $value):
+					if($value->info_des_cond != ""){
+						if($value->alternativa == 1){
+							$sum_nc_ac++; 
+						}elseif($value->alternativa == 0){
+							$sum_ni_ac++;
+						}else{
+							
+						}
+					}
+				endforeach;
+			}
+
+		endforeach;
+
+		$nc = array($sum_nc_epp, $sum_nc_sd, $sum_nc_um, $sum_nc_doc, $sum_nc_cp, $sum_nc_ac);
+		$ni = array($sum_ni_epp, $sum_ni_sd, $sum_ni_um, $sum_ni_doc, $sum_ni_cp, $sum_ni_ac);
+
+		return json_encode(array('success'=>true, 'name'=>'Empresa', 'nc'=> $nc, 'ni'=> $ni));
+	}
+
 	/* FIN */
 	
 	
