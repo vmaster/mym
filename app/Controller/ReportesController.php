@@ -431,9 +431,14 @@ class ReportesController extends AppController{
 	public function rpt_total_ni_nc() {
 		$this->layout = "default";
 		$this->loadModel('Acta');
+		$this->loadModel('Empresa');
+		$this->loadModel('UnidadNegocio');
+		$list_all_empresas = $this->Empresa->listEmpresas();
+		$list_all_uunn = $this->UnidadNegocio->listUnidadesNegocios();
+		$this->set(compact('list_all_empresas'));
 	}
 
-	public function load_graf_total_ni_nc($fec_inicio, $fec_fin){
+	public function load_graf_total_ni_nc($fec_inicio, $fec_fin, $empresa, $uunn){
 		$this->loadModel('Acta');
 		$this->autoRender = false;
 	
@@ -448,6 +453,18 @@ class ReportesController extends AppController{
 		}else{
 			$fec_fin = '';
 		}
+		
+		if(isset($empresa)){
+			$empresa = $empresa;
+		}else{
+			$empresa = '';
+		}
+		
+		if(isset($uunn)){
+			$uunn = $uunn;
+		}else{
+			$uunn = '';
+		}
 	
 		$fec_inicio_format = $this->formatFecha($fec_inicio);
 		$fec_fin_format = $this->formatFecha($fec_fin);
@@ -455,7 +472,7 @@ class ReportesController extends AppController{
 		$sum_nc_epp = 0 ; $sum_ni_epp= 0; $sum_nc_sd= 0; $sum_ni_sd= 0; $sum_nc_um= 0; $sum_ni_um=0; $sum_nc_doc=0; $sum_ni_doc=0; $sum_nc_cp= 0;
 		$sum_ni_cp = 0; $sum_nc_ac= 0; $sum_ni_ac= 0;
 
-		$list_total_ni_nc = $this->Acta->listTotalNiNc($fec_inicio_format, $fec_fin_format);
+		$list_total_ni_nc = $this->Acta->listTotalNiNc($fec_inicio_format, $fec_fin_format, $empresa, $uunn);
 		// 'Acta.info_des_epp, Acta.info_des_se_de, Acta.info_des_um, Acta.info_des_doc, Acta.info_des_act, Acta.info_des_cond'
 		foreach ($list_total_ni_nc as $row_acta):
 			if($row_acta->getAttr('info_des_epp') != ""){

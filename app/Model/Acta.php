@@ -1210,14 +1210,21 @@ App::uses('AppModel','Model');
         16/09/2016
         Vladimir TM
     */
-    public function listTotalNiNc($fec_inicio, $fec_fin) {
-        $arr_obj_total_ni_nc = $this->findObjects('all',array(
-                'conditions'=>array(
-                        'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                        'Acta.estado' => 1
-                )
-        )
-        );
+    public function listTotalNiNc($fec_inicio, $fec_fin, $empresa, $uunn) {
+		
+		$conditions = array();
+		
+		if(isset($empresa)){
+			$conditions_filter[0]['Acta.empresa_id'] = $empresa;
+		}
+		
+		if(isset($uunn)){
+			$conditions_filter[1]['Acta.uunn_id'] = $uunn;
+		}
+		
+		$conditions = array('Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin), 'Acta.estado' => 1, $conditions_filter);
+		
+        $arr_obj_total_ni_nc = $this->findObjects('all',array($conditions));
     
         return $arr_obj_total_ni_nc;
     }

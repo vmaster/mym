@@ -139,8 +139,10 @@
 		function ExecuteReport(){
 			fec_incio = $('#txtBuscarFecIncioRep2').val();
 			fec_fin = $('#txtBuscarFecFinRep2').val();
+			empresa = $('#cbo-empresa-search').val();
+			uunn = $('#cbo-uunn-search').val();
 			 $.ajax({
-			    url: env_webroot_script + 'reportes/load_graf_total_ni_nc/'+fec_incio+'/'+fec_fin,
+			    url: env_webroot_script + 'reportes/load_graf_total_ni_nc/'+fec_incio+'/'+fec_fin+'/'+empresa+'/'+uunn,
 			    type: 'GET',
 			    async: true,
 			    dataType: "json",
@@ -220,6 +222,16 @@
 					}
 
 			});
+			
+			$(".cbo-rpte-empresas-select2").select2({
+			  placeholder: "Seleccione una empresa",
+			  allowClear: true
+			});
+			
+			$(".cbo-rpte-uunn-select2").select2({
+			  placeholder: "Seleccione una UUNN",
+			  allowClear: true
+			});
 		}
 
 		//ExecuteReport();
@@ -261,14 +273,40 @@
 	?>
 	<div class="row">
 		<div class="col-md-3 col-sm-6 col-xs-6">
-				<label><?php echo __('Fecha Inicio');?></label> <input type="text"
+				<label><?php echo __('Fecha Inicio:');?></label> <input type="text"
 				name="txtBuscarFecIncioRep2" id="txtBuscarFecIncioRep2"
 				class="form-control" value="<?php echo '01-'.$mes; ?>" placeholder="dd-mm-aaaa">
 		</div>
 		<div class="col-md-3 col-sm-6 col-xs-6">
-				<label><?php echo __('Fecha Fin');?></label> <input type="text"
+				<label><?php echo __('Fecha Fin:');?></label> <input type="text"
 				name="txtBuscarFecFinRep2" id="txtBuscarFecFinRep2"
 				class="form-control" value="<?php echo date('d-m-Y'); ?>" placeholder="dd-mm-aaaa">
+		</div>
+		<div class="col-md-3 col-sm-6 col-xs-6">
+			<label><?php echo __('Empresa:');?></label>
+			<select class="cbo-rpte-empresas-select2 form-control" id="cbo-empresa-search">
+				<?php 
+				if (isset($list_all_empresas)){
+					echo "<option></option>";
+					foreach ($list_all_empresas as $id => $des):
+					echo "<option value = ".$id.">".$des."</option>";
+					endforeach;
+					}
+				?>						
+			</select>
+		</div>
+		<div class="col-md-3 col-sm-6 col-xs-6">
+			<label><?php echo __('UUNN:');?></label>
+			<select class="cbo-rpte-uunn-select2 form-control" id="cbo-uunn-search">
+				<?php 
+				if (isset($list_all_uunn)){
+					echo "<option></option>";
+					foreach ($list_all_uunn as $id => $des):
+					echo "<option value = ".$id.">".$des."</option>";
+					endforeach;
+					}
+				?>						
+			</select>
 		</div>
 		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-report"><?php echo __('Consultar');?></button>
