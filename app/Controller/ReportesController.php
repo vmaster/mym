@@ -574,6 +574,41 @@ class ReportesController extends AppController{
 		return json_encode(array('success'=>true, 'name'=>'Empresa', 'nc'=> $nc, 'ni'=> $ni));
 	}
 
+	public function load_list_total_ni_nc($fec_inicio, $fec_fin, $empresa = null, $uunn = null){
+		$this->layout = "ajax";
+		$this->loadModel('Acta');
+	
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+	
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+		
+		if(isset($empresa)){
+			$empresa = $empresa;
+		}else{
+			$empresa = '';
+		}
+		
+		if(isset($uunn)){
+			$uunn = $uunn;
+		}else{
+			$uunn = '';
+		}
+	
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+	
+		$list_total_ni_nc = $this->Acta->listTotalNiNc($fec_inicio_format, $fec_fin_format, $empresa, $uunn);
+		$this->set(compact('list_total_ni_nc'));
+	}
+
 	/* FIN */
 	
 	

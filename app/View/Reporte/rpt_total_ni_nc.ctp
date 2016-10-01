@@ -137,12 +137,12 @@
 	$(document).ready(function() {
 
 		function ExecuteReport(){
-			fec_incio = $('#txtBuscarFecIncioRep2').val();
+			fec_inicio = $('#txtBuscarFecIncioRep2').val();
 			fec_fin = $('#txtBuscarFecFinRep2').val();
 			empresa = $('#cbo-empresa-search').val();
 			uunn = $('#cbo-uunn-search').val();
 			 $.ajax({
-			    url: env_webroot_script + 'reportes/load_graf_total_ni_nc/'+fec_incio+'/'+fec_fin+'/'+empresa+'/'+uunn,
+			    url: env_webroot_script + 'reportes/load_graf_total_ni_nc/'+fec_inicio+'/'+fec_fin+'/'+empresa+'/'+uunn,
 			    type: 'GET',
 			    async: true,
 			    dataType: "json",
@@ -155,6 +155,11 @@
 							$('#container-grafico').html("No hay resultados");
 							return false;
 						}
+
+						$('#list-data-total-ni-nc').unbind();
+						$('#list-data-total-ni-nc').load(env_webroot_script + 'reportes/load_list_total_ni_nc/'+fec_inicio+'/'+fec_fin+'/'+empresa+'/'+uunn,function(){
+							
+						});
 
 						n_cu_epp = data.nc[0];
 						n_cu_sd = data.nc[1];
@@ -327,6 +332,10 @@
 	<div id="container-grafico" style="min-width: 400px; height: 500px; margin: 0 auto"></div>
 	<center>
 		<div id="list-data-cant-info-uunn">
+		</div>
+	</center>
+	<center>
+		<div id="list-data-total-ni-nc">
 		</div>
 	</center>
 </div>
