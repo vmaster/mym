@@ -277,7 +277,7 @@
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<h2><?php echo utf8_encode(__('Total de normas Cumplidas e incumplidas por fecha')); ?></h2>
+		<h2><?php echo utf8_encode(__('Total de Normas Cumplidas e Incumplidas')); ?></h2>
 	</div>
 </div>
 <hr />
