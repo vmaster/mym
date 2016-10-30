@@ -65,6 +65,7 @@ tinymce.init({
 												<option></option>
 													<?php 
 													if (isset($list_all_actas)){
+														echo "<option>---</option>";
 														foreach ($list_all_actas as $id => $num):
 														if(isset($obj_acta) || isset($acta_id)){
 															if($num['Acta']['id'] == $obj_acta->getAttr('acta_referencia')){
@@ -137,6 +138,7 @@ tinymce.init({
 												class="cbo-uunn-select2 form-control">
 											<?php 
 												if (isset($list_all_unidades_negocios)){
+													echo "<option>---</option>";
 													foreach ($list_all_unidades_negocios as $id => $des):
 													if(isset($obj_acta) || isset($acta_id)){
 														if($id == $obj_acta->getAttr('uunn_id')){
@@ -182,7 +184,7 @@ tinymce.init({
 											<td style="vertical-align: middle" width="40%">&Aacute;rea:
 												<select name="data[Acta][tipo_lugar_id]"
 												class="form-control">
-												<option>--Seleccione--</option>
+												<option>---</option>
 													<?php 
 													if (isset($list_all_tipo_lugares)){
 														foreach ($list_all_tipo_lugares as $id => $des):
@@ -279,6 +281,7 @@ tinymce.init({
 													echo "<td style='width:25%;'>";
 													echo "<span style='display: inline-flex; width: 100%;'>";
 													echo "<select name='data[TrabajadorActa][".($key+1)."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+													echo "<option>---</option>";
 													if (isset($list_all_trabajadores)){
 														foreach ($list_all_trabajadores as $id => $nom):
 															if($id == $obj_imp_prot_personal->Trabajadore->getID()){
@@ -296,6 +299,7 @@ tinymce.init({
 													echo "</td>";
 													
 													echo "<td style='width:30%;'><select name='data[TrabajadorActa][".($key+1)."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+													echo "<option>--CARGO--</option>";
 													if (isset($list_all_actividades)){
 														foreach ($list_all_actividades as $id => $des):
 														if($id == $obj_imp_prot_personal->getAttr('actividad_id')){
@@ -344,7 +348,7 @@ tinymce.init({
 													    echo "<td style='width:28%;'>";
 													    echo "<span style='display: inline-flex; width: 100%;'>";
 													    echo "<select name='data[TrabajadorActa][".$i."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-													    echo "<option></option>";
+													    echo "<option>---</option>";
 													    if (isset($list_all_trabajadores)){
 													    	foreach ($list_all_trabajadores as $id => $nom):
 													    	echo "<option value = ".$id.">".$nom."</option>";
@@ -355,7 +359,7 @@ tinymce.init({
 													    echo "&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-trabajador' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-trabajador".$i."'>...</a></span>";
 													    echo "</td>";
 													    echo "<td><select name='data[TrabajadorActa][".$i."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-													    echo "<option>--Cargo--</option>";
+													    echo "<option>--CARGO--</option>";
 													    if (isset($list_all_actividades)){
 													    	foreach ($list_all_actividades as $id => $des):
 													    	echo "<option value = ".$id.">".$des."</option>";
@@ -427,7 +431,7 @@ tinymce.init({
 													echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
 													echo "<select name='data[UnidadMovil][".($key2 +1)."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".($key2 +1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 													if (isset($list_all_vehiculos)){
-														echo "<option></option>";
+														echo "<option>---</option>";
 														foreach ($list_all_vehiculos as $id => $pla):
 														if($id == $obj_uni_movil->Vehiculo->getAttr('id')){
 															$selected = " selected = 'selected'";
@@ -477,7 +481,7 @@ tinymce.init({
 													    echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
 													    echo "<select name='data[UnidadMovil][".$i."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 													    if (isset($list_all_vehiculos)){
-													    	echo "<option></option>";
+													    	echo "<option>---</option>";
 													    	foreach ($list_all_vehiculos as $id => $pla):
 													    	echo "<option value = ".$id.">".$pla."</option>";
 													    	endforeach;
@@ -1313,7 +1317,7 @@ tinymce.init({
 										echo "<span style='display: inline-flex; width: 100%;'>";
 										echo "<select name='data[Acta][reponsable_act_cargo_id]' class='cbo-responsable-select2 form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_actividades)){
-											echo "<option></option>";
+											echo "<option>---</option>";
 									    	foreach ($list_all_actividades as $id => $des):
 									    	if($id == $obj_acta->Actividade1->getAttr('id')){
 									    		$selected = " selected = 'selected'";
@@ -1331,7 +1335,7 @@ tinymce.init({
 										echo "<span style='display: inline-flex; width: 100%;'>";
 										echo "<select name='data[Acta][reponsable_sup_cargo_id]' class='cbo-responsable-select2 form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_actividades)){
-											echo "<option></option>";
+											echo "<option>---</option>";
 									    	foreach ($list_all_actividades as $id => $des):
 									    	if($id == $obj_acta->Actividade2->getAttr('id')){
 									    		$selected = " selected = 'selected'";
@@ -1351,7 +1355,7 @@ tinymce.init({
 										echo "<span style='display: inline-flex; width: 100%;'>";
 										echo "<select name='data[Acta][reponsable_act_id]' class='cbo-responsable-select2 form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
-											echo "<option></option>";
+											echo "<option>---</option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	if($id == $obj_acta->Trabajadore1->getAttr('id')){
 									    		$selected = " selected = 'selected'";
@@ -1369,7 +1373,7 @@ tinymce.init({
 										echo "<span style='display: inline-flex; width: 100%;'>";
 										echo "<select name='data[Acta][reponsable_sup_id]' class='cbo-responsable-select2 form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
-											echo "<option></option>";
+											echo "<option>---</option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	if($id == $obj_acta->Trabajadore2->getAttr('id')){
 									    		$selected = " selected = 'selected'";

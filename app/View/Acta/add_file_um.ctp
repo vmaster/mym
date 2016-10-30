@@ -8,7 +8,7 @@ echo "<td style='width:14%;'>";
 echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
 echo "<select name='data[UnidadMovil][".$i."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 if (isset($list_all_vehiculos)){
-	echo "<option></option>";
+	echo "<option>---</option>";
 	foreach ($list_all_vehiculos as $id => $pla):
 	echo "<option value = ".$id.">".$pla."</option>";
 	endforeach;
