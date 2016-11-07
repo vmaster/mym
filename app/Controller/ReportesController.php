@@ -432,13 +432,13 @@ class ReportesController extends AppController{
 		$this->layout = "default";
 		$this->loadModel('Acta');
 		$this->loadModel('Empresa');
-		$this->loadModel('UnidadNegocio');
+		$this->loadModel('UnidadesNegocio');
 		$list_all_empresas = $this->Empresa->listEmpresas();
-		$list_all_uunn = $this->UnidadNegocio->listUnidadesNegocios();
-		$this->set(compact('list_all_empresas'));
+		$list_all_uunn = $this->UnidadesNegocio->listUnidadesNegocios();
+		$this->set(compact('list_all_empresas','list_all_uunn'));
 	}
 
-	public function load_graf_total_ni_nc($fec_inicio, $fec_fin, $empresa, $uunn){
+	public function load_graf_total_ni_nc($fec_inicio, $fec_fin, $empresa = null, $uunn = null){
 		$this->loadModel('Acta');
 		$this->autoRender = false;
 	
@@ -473,7 +473,7 @@ class ReportesController extends AppController{
 		$sum_ni_cp = 0; $sum_nc_ac= 0; $sum_ni_ac= 0;
 
 		$list_total_ni_nc = $this->Acta->listTotalNiNc($fec_inicio_format, $fec_fin_format, $empresa, $uunn);
-		// 'Acta.info_des_epp, Acta.info_des_se_de, Acta.info_des_um, Acta.info_des_doc, Acta.info_des_act, Acta.info_des_cond'
+
 		foreach ($list_total_ni_nc as $row_acta):
 			if($row_acta->getAttr('info_des_epp') != ""){
 				$info_des_epp = json_decode($row_acta->getAttr('info_des_epp'));
@@ -572,6 +572,41 @@ class ReportesController extends AppController{
 		$ni = array($sum_ni_epp, $sum_ni_sd, $sum_ni_um, $sum_ni_doc, $sum_ni_cp, $sum_ni_ac);
 
 		return json_encode(array('success'=>true, 'name'=>'Empresa', 'nc'=> $nc, 'ni'=> $ni));
+	}
+
+	public function load_list_total_ni_nc($fec_inicio, $fec_fin, $empresa = null, $uunn = null){
+		$this->layout = "ajax";
+		$this->loadModel('Acta');
+	
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+	
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+		
+		if(isset($empresa)){
+			$empresa = $empresa;
+		}else{
+			$empresa = '';
+		}
+		
+		if(isset($uunn)){
+			$uunn = $uunn;
+		}else{
+			$uunn = '';
+		}
+	
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+	
+		$list_total_ni_nc = $this->Acta->listTotalNiNc($fec_inicio_format, $fec_fin_format, $empresa, $uunn);
+		$this->set(compact('list_total_ni_nc'));
 	}
 
 	/* FIN */

@@ -64,7 +64,7 @@ tinymce.init({
 												class="cbo-acta-refer-select2 form-control">
 													<?php 
 													if (isset($list_all_actas)){
-														echo "<option></option>";
+														echo "<option>---</option>";
 														foreach ($list_all_actas as $id => $acta):
 														echo "<option value = ".$acta['Acta']['id'].">".$acta['Acta']['num_informe']."</option>";
 													endforeach;
@@ -118,7 +118,7 @@ tinymce.init({
 												class="cbo-uunn-select2 form-control">
 													<?php 
 													if (isset($list_all_unidades_negocios)){
-														echo "<option></option>";
+														echo "<option>---</option>";
 														foreach ($list_all_unidades_negocios as $id => $des):
 															echo "<option value = ".$id.">".$des."</option>";
 														endforeach;
@@ -152,8 +152,10 @@ tinymce.init({
 											<td style="vertical-align: middle" width="40%">&Aacute;rea:
 												<select name="data[Acta][tipo_lugar_id]"
 												class="form-control">
+												<option>---</option>
 													<?php 
 													if (isset($list_all_tipo_lugares)){
+
 														foreach ($list_all_tipo_lugares as $id => $des):
 															echo "<option value = ".$id.">".utf8_encode($des)."</option>";
 														endforeach;
@@ -219,7 +221,7 @@ tinymce.init({
 											    echo "<span style='display: inline-flex; width: 100%;'>";
 											    echo "<select name='data[TrabajadorActa][".$i."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 										 	    if (isset($list_all_trabajadores)){
-													echo "<option></option>";
+													echo "<option>---</option>";
 											    	foreach ($list_all_trabajadores as $id => $nom):
 											    	echo "<option value = ".$id.">".$nom."</option>";
 											    	endforeach;
@@ -229,7 +231,7 @@ tinymce.init({
 												echo "</td>";
 												echo "<td style='width:30%;'><select name='data[TrabajadorActa][".$i."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 												if (isset($list_all_actividades)){
-													echo "<option>--Cargo--</option>";
+													echo "<option>--CARGO--</option>";
 													foreach ($list_all_actividades as $id => $des):
 													echo "<option value = ".$id.">".$des."</option>";
 													endforeach;
@@ -287,7 +289,7 @@ tinymce.init({
 											    echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
 												echo "<select name='data[UnidadMovil][".$i."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 											    if (isset($list_all_vehiculos)){
-											    	echo "<option></option>";
+											    	echo "<option>---</option>";
 											    	foreach ($list_all_vehiculos as $id => $pla):
 											    	echo "<option value = ".$id.">".$pla."</option>";
 											    	endforeach;
@@ -945,7 +947,7 @@ tinymce.init({
 										echo "<span style='display: inline-flex; width: 100%;'>";
 										echo "<select name='data[Acta][reponsable_act_id]' class='cbo-responsable-select2 form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
-											echo "<option></option>";
+											echo "<option>---</option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	echo "<option value = ".$id.">".$nom."</option>";
 									    	endforeach;
@@ -957,7 +959,7 @@ tinymce.init({
 										echo "<span style='display: inline-flex; width: 100%;'>";
 										echo "<select name='data[Acta][reponsable_sup_id]' class='cbo-responsable-select2 form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
-											echo "<option></option>";
+											echo "<option>---</option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	echo "<option value = ".$id.">".$nom."</option>";
 									    	endforeach;

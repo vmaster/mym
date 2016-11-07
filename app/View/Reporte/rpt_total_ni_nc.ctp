@@ -86,7 +86,7 @@
 			            }
 			        },
 			        tooltip: {
-			            valueSuffix: '%'
+			            enabled: false
 			        },
 			        legend: {
 						layout: 'vertical',
@@ -137,12 +137,12 @@
 	$(document).ready(function() {
 
 		function ExecuteReport(){
-			fec_incio = $('#txtBuscarFecIncioRep2').val();
+			fec_inicio = $('#txtBuscarFecIncioRep2').val();
 			fec_fin = $('#txtBuscarFecFinRep2').val();
 			empresa = $('#cbo-empresa-search').val();
 			uunn = $('#cbo-uunn-search').val();
 			 $.ajax({
-			    url: env_webroot_script + 'reportes/load_graf_total_ni_nc/'+fec_incio+'/'+fec_fin+'/'+empresa+'/'+uunn,
+			    url: env_webroot_script + 'reportes/load_graf_total_ni_nc/'+fec_inicio+'/'+fec_fin+'/'+empresa+'/'+uunn,
 			    type: 'GET',
 			    async: true,
 			    dataType: "json",
@@ -150,6 +150,16 @@
 					if(data.success == true){
 						console.log(data.nc); //VALORES DE LA SUMA RESPECTIVA DE LA "N.CUMPLI" DE: epp, sd, um, doc, cp, ac 
 						console.log(data.ni); //VALORES DE LA SUMA RESPECTIVA DE LA "N.INCUMPLI" DE: epp, sd, um, doc, cp, ac
+
+						if(data.nc[0] == 0){
+							$('#container-grafico').html("No hay resultados");
+							return false;
+						}
+
+						$('#list-data-total-ni-nc').unbind();
+						$('#list-data-total-ni-nc').load(env_webroot_script + 'reportes/load_list_total_ni_nc/'+fec_inicio+'/'+fec_fin+'/'+empresa+'/'+uunn,function(){
+							
+						});
 
 						n_cu_epp = data.nc[0];
 						n_cu_sd = data.nc[1];
@@ -164,7 +174,7 @@
 						n_in_ds = data.ni[3];
 						n_in_cp = data.ni[4];
 						n_in_as = data.ni[5];
-						
+
 						normas_cumplidas = Math.round(n_cu_epp + n_cu_sd + n_cu_um + n_cu_ds + n_cu_cp + n_cu_as);
 						normas_incumplidas = Math.round(n_in_epp + n_in_sd + n_in_um + n_in_ds + n_in_cp + n_in_as);
 						suma_normas = normas_cumplidas + normas_incumplidas;
@@ -219,6 +229,11 @@
 
 						showHighchart(porc_in_categorias, porc_cu_categoriastest, porc_cu);
 						
+						var content = ""
+						content += '<table width="100%" border=1 ><tbody><tr><th colspan="8" style="    background-color: #D6E3BC;text-align: center;"><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr><tr><td></td>';
+						content += '<td>EPP</td><td>SE</td><td>UM</td><td>DOC</td><td>CP</td><td>AC</td><td>TOTAL</td></tr><tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>'+n_cu_epp+'</td><td>'+n_cu_sd+'</td><td>'+n_cu_um+'</td><td>'+n_cu_ds+'</td><td>'+n_cu_cp+'</td><td>'+n_cu_as+'</td><td>'+normas_cumplidas+'</td></tr><tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>'+n_in_epp+'</td><td>'+n_in_sd+'</td><td>'+n_in_um+'</td><td>'+n_in_ds+'</td><td>'+n_in_cp+'</td><td>'+n_in_as+'</td><td>'+normas_incumplidas+'</td></tr><tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>'+porc_epp+'%</td><td>'+porc_sd+'%</td><td>'+porc_um+'%</td><td>'+porc_ds+'%</td><td>'+porc_cp+'%</td><td>'+porc_as+'%</td><td>'+Math.round((normas_cumplidas * 100)/suma_normas)+'%</td></tr></tbody></table>';
+						$('#container-table').empty();
+						$('#container-table').append(content);
 					}
 
 			});
@@ -262,7 +277,7 @@
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<h2><?php echo utf8_encode(__('Total de normas Cumplidas e incumplidas por fecha')); ?></h2>
+		<h2><?php echo utf8_encode(__('Total de Normas Cumplidas e Incumplidas')); ?></h2>
 	</div>
 </div>
 <hr />
@@ -272,17 +287,17 @@
 	$mes= date('m')."-".date('Y');
 	?>
 	<div class="row">
-		<div class="col-md-3 col-sm-6 col-xs-6">
+		<div class="col-md-2 col-sm-6 col-xs-6">
 				<label><?php echo __('Fecha Inicio:');?></label> <input type="text"
 				name="txtBuscarFecIncioRep2" id="txtBuscarFecIncioRep2"
 				class="form-control" value="<?php echo '01-'.$mes; ?>" placeholder="dd-mm-aaaa">
 		</div>
-		<div class="col-md-3 col-sm-6 col-xs-6">
+		<div class="col-md-2 col-sm-6 col-xs-6">
 				<label><?php echo __('Fecha Fin:');?></label> <input type="text"
 				name="txtBuscarFecFinRep2" id="txtBuscarFecFinRep2"
 				class="form-control" value="<?php echo date('d-m-Y'); ?>" placeholder="dd-mm-aaaa">
 		</div>
-		<div class="col-md-3 col-sm-6 col-xs-6">
+		<div class="col-md-2 col-sm-6 col-xs-6">
 			<label><?php echo __('Empresa:');?></label>
 			<select class="cbo-rpte-empresas-select2 form-control" id="cbo-empresa-search">
 				<?php 
@@ -295,7 +310,7 @@
 				?>						
 			</select>
 		</div>
-		<div class="col-md-3 col-sm-6 col-xs-6">
+		<div class="col-md-2 col-sm-6 col-xs-6">
 			<label><?php echo __('UUNN:');?></label>
 			<select class="cbo-rpte-uunn-select2 form-control" id="cbo-uunn-search">
 				<?php 
@@ -308,16 +323,20 @@
 				?>						
 			</select>
 		</div>
-		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;">
+		<div class="col-md-4 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-report"><?php echo __('Consultar');?></button>
 		</div>
 	</div>
 	<p>
 	
-	
+	<div id="container-table"></div>
 	<div id="container-grafico" style="min-width: 400px; height: 500px; margin: 0 auto"></div>
 	<center>
 		<div id="list-data-cant-info-uunn">
+		</div>
+	</center>
+	<center>
+		<div id="list-data-total-ni-nc">
 		</div>
 	</center>
 </div>

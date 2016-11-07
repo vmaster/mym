@@ -1212,19 +1212,27 @@ App::uses('AppModel','Model');
     */
     public function listTotalNiNc($fec_inicio, $fec_fin, $empresa, $uunn) {
 		
-		$conditions = array();
+		$conditions_filter = array();
 		
-		if(isset($empresa)){
-			$conditions_filter[0]['Acta.empresa_id'] = $empresa;
+        $conditions_filter['Acta.estado'] = 1;
+
+		if(isset($fec_inicio)){
+            $conditions_filter['Acta.fecha BETWEEN ? and ?'] = array($fec_inicio, $fec_fin);
+        }
+
+        if(isset($empresa) && $empresa != ''){
+			$conditions_filter['Acta.empresa_id'] = $empresa;
 		}
 		
-		if(isset($uunn)){
-			$conditions_filter[1]['Acta.uunn_id'] = $uunn;
+		if(isset($uunn) && $uunn != ''){
+			$conditions_filter['Acta.uunn_id'] = $uunn;
 		}
 		
-		$conditions = array('Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin), 'Acta.estado' => 1, $conditions_filter);
-		
-        $arr_obj_total_ni_nc = $this->findObjects('all',array($conditions));
+        $arr_obj_total_ni_nc = $this->findObjects('all',array(
+                'conditions'=>array($conditions_filter)
+            )
+        );
+
     
         return $arr_obj_total_ni_nc;
     }

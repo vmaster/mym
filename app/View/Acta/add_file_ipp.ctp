@@ -7,7 +7,7 @@ echo "<td>".$i."</td>";
 echo "<td style='width:28%;'>";
 echo "<span style='display: inline-flex; width: 100%;'>";
 echo "<select name='data[TrabajadorActa][".$i."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-echo "<option></option>";
+echo "<option>---</option>";
 if (isset($list_all_trabajadores)){
 	foreach ($list_all_trabajadores as $id => $nom):
 	echo "<option value = ".$id.">".$nom."</option>";
@@ -19,7 +19,7 @@ echo "&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-moda
 echo "</td>";
 
 echo "<td><select name='data[TrabajadorActa][".$i."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-echo "<option>--Actividad--</option>";
+echo "<option>--CARGO--</option>";
 if (isset($list_all_actividades)){
 	foreach ($list_all_actividades as $id => $des):
 	echo "<option value = ".$id.">".$des."</option>";
