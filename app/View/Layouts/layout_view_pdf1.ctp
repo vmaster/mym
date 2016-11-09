@@ -547,11 +547,10 @@ $codigo .= "<div style='text-align:right;'><hr width='30%' align='right'></div>
 $codigo.= "<table class='tg' width='100%'>
 		<thead>
 		<tr>
-		<th class='tg-e3zv back-green' colspan=10 style='text-align: center;'>".utf8_encode('TRABAJADORES SUPERVISADOS').
-		"</th>
+		<th class='tg-e3zv back-green' colspan=10 style='text-align: center;'>TRABAJADORES SUPERVISADOS</th>
 				</tr>
 				<tr>
-				<th>".utf8_encode('N°')."</th>
+				<th>N&deg;</th>
 				<th>Nombre del trabajador</th>
 				<th>Cargo</th>
 				<th colspan=7 style='vertical-align: middle; text-align: center;'>Normas Incumplidas</th>
@@ -597,15 +596,13 @@ $codigo.= "</table><br>";
 $codigo.= "<table class='tg' width='100%'>
 		<thead>
 		<tr>
-		<th class='tg-e3zv back-green' colspan=11 style='text-align: center;'>".utf8_encode('UNIDADES MÓVILES SUPERVISADAS').
-									"</th>
+		<th class='tg-e3zv back-green' colspan=11 style='text-align: center;'>UNIDADES M&Oacute;VILES SUPERVISADAS</th>
 								</tr>
 								<tr>
 									<th style='width: 6%;'
-										style='vertical-align:middle; text-align: center;'>".utf8_encode('N° T').
-									"</th>
-									<th>".utf8_encode('N° de Placa')."</th>
-									<th>".utf8_encode('Tipo Vehículo')."</th>
+										style='vertical-align:middle; text-align: center;'>N&deg; T</th>
+									<th>N&deg; de Placa</th>
+									<th>Tipo Veh&iacute;culo</th>
 									<th colspan=8
 										style='vertical-align: middle; text-align: center;'>Normas
 										Incumplidas</th>
@@ -651,12 +648,12 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 	$codigo.= "<table class='tg' width='100%'>";
 	$codigo.= "<thead>
 				<tr>
-					<th class='tg-e3zv back-green' colspan=3 style='text-align: center;'>".utf8_encode('DETALLE DE NORMAS INCUMPLIDAS')."</th>
+					<th class='tg-e3zv back-green' colspan=3 style='text-align: center;'>DETALLE DE NORMAS INCUMPLIDAS</th>
 				</tr>
 				<tr>
-					<th>".utf8_encode('Código')."</th>
-					<th>".utf8_encode('Categoria')."</th>
-					<th>".utf8_encode('Observación')."</th>
+					<th>C&oacute;digo</th>
+					<th>Categoria</th>
+					<th>Observaci&oacute;n</th>
 				</tr>
 			</thead>";
 	foreach ($info_ni_t as $k => $v){ //normas incumplidas Trabajadores
