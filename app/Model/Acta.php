@@ -441,7 +441,7 @@ App::uses('AppModel','Model');
     			));
     }
     
-    /* Usado para Contar los informes del día */
+    /* Usado para Contar los informes del dÃ­a */
     public function listUltimosInformes() {
     	return $this->findObjects('all',
     			array(
@@ -476,7 +476,7 @@ App::uses('AppModel','Model');
     
     /* CONSULTAS PARA LOS REPORTES */
     
-    public function listSupervisionByEmpresa($fec_inicio, $fec_fin) {
+    public function listSupervisionByEmpresa($fec_inicio, $fec_fin, $area_id=null, $empresa_id=null) {
     	$arr_obj_sup_emp = $this->find('all',array(
     			'fields' => array('EmpresaJoin.nombre, count(*) as Cantidad'),
     			'joins' => array(
@@ -486,12 +486,24 @@ App::uses('AppModel','Model');
     							'type' => 'INNER',
     							'conditions' => array(
     									'EmpresaJoin.id = Acta.empresa_id',
-                                        'EmpresaJoin.estado' => 1
     							)
-    					)
+    					),
+                        array(
+                                'table' => 'tipo_lugares',
+                                'alias' => 'TipoLugarJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'TipoLugarJoin.id = Acta.tipo_lugar_id',
+                                )
+
+                        )
     			),
     			'conditions'=>array(
-    					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    					'OR' => array(
+                            'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                            'EmpresaJoin.id' => $empresa_id,
+                            'TipoLugarJoin.id' => $area_id,
+                            ),
                         'Acta.estado' => 1
     			),
     			'group'=> array('EmpresaJoin.nombre'),
@@ -504,7 +516,7 @@ App::uses('AppModel','Model');
     }
     
     
-    public function listDetalleSupervisionByEmpresa($fec_inicio, $fec_fin) {
+    public function listDetalleSupervisionByEmpresa($fec_inicio, $fec_fin, $area_id=null, $empresa_id=null) {
         	$arr_obj_det_sup_emp = $this->findObjects('all',array(
         			/*'fields' => array('EmpresaJoin.nombre, Acta.fecha, Num'),*/
         			'joins' => array(
@@ -513,14 +525,28 @@ App::uses('AppModel','Model');
         							'alias' => 'EmpresaJoin',
         							'type' => 'INNER',
         							'conditions' => array(
-        									'EmpresaJoin.id = Acta.empresa_id',
-                                            'EmpresaJoin.estado' => 1
+        									'EmpresaJoin.id = Acta.empresa_id'
         							)
-        					)
+        					),
+                            array(
+                                    'table' => 'tipo_lugares',
+                                    'alias' => 'TipoLugarJoin',
+                                    'type' => 'INNER',
+                                    'conditions' => array(
+                                            'TipoLugarJoin.id = Acta.tipo_lugar_id'
+                                    )
+
+                            )
+
         			),
         			'conditions'=>array(
-        					'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                            'Acta.estado' => 1
+                            'OR' => array(
+                            'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                            'EmpresaJoin.id' => $empresa_id,
+                            'TipoLugarJoin.id' => $area_id,
+                            ),
+        			     
+                        'Acta.estado' => 1
         			),
         			'order'=> array('EmpresaJoin.nombre')
         	)

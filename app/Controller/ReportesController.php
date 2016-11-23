@@ -1059,7 +1059,7 @@ class ReportesController extends AppController{
 		$this->set(compact('list_all_empresas','list_all_tipo_lugares'));
 	}
 
-	public function load_graf_cump_area_emp($fec_inicio, $fec_fin){
+	public function load_graf_cump_area_emp($fec_inicio, $fec_fin, $area_id=null, $empresa_id=null){
 		$this->loadModel('Acta');
 		$this->autoRender = false;
 		
@@ -1079,7 +1079,7 @@ class ReportesController extends AppController{
 		$fec_fin_format = $this->formatFecha($fec_fin);
 		$x ="";
 		$y ="";
-		$list_sep_emp = $this->Acta->listSupervisionByEmpresa($fec_inicio_format, $fec_fin_format);
+		$list_sep_emp = $this->Acta->listSupervisionByEmpresa($fec_inicio_format, $fec_fin_format, $area_id, $empresa_id);
 		foreach ($list_sep_emp as $key => $arr_emp):
 			$x[] = $arr_emp['EmpresaJoin']['nombre'];
 			$y[] = intval($arr_emp[0]['Cantidad']);
@@ -1088,7 +1088,7 @@ class ReportesController extends AppController{
 		//exit();
 	}
 	
-	public function load_list_cump_area_emp($fec_inicio, $fec_fin, $area_id=0, $empresa_id=0){
+	public function load_list_cump_area_emp($fec_inicio, $fec_fin, $area_id=null, $empresa_id=null){
 		$this->layout = "ajax";
 		$this->loadModel('Acta');
 		
