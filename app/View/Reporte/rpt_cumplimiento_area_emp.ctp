@@ -118,7 +118,7 @@ function visitorData (valores) {
 				<select class="cbo-tipo-lugares-select2 form-control" id ="txtTipoLugar">
 										<?php 
 										if (isset($list_all_tipo_lugares)){
-										echo "<option></option>";
+										echo "<option>---</option>";
 										foreach ($list_all_tipo_lugares as $id => $des):
 										echo "<option value = ".$id.">".$des."</option>";
 										endforeach;
@@ -131,7 +131,7 @@ function visitorData (valores) {
 				<select class="cbo-empresas-select2 form-control" id ="txtEmpresa">
 										<?php 
 										if (isset($list_all_empresas)){
-										echo "<option></option>";
+										echo "<option>---</option>";
 										foreach ($list_all_empresas as $id => $des):
 										echo "<option value = ".$id.">".$des."</option>";
 										endforeach;
