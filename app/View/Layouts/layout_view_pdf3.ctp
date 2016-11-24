@@ -737,33 +737,35 @@ $codigo.= "<table class='tg' width='100%'>
 		<tbody>";
 
 foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
-	$codigo.= "<tr>";
-	$codigo.= "<td>".($key+1)."</td>";
-	$codigo.= "<td style='width:28%;'>";
-	$codigo.= $obj_imp_prot_personal->Trabajadore->getAttr('apellido_nombre');
-	$codigo.= "</td>";
+	if($obj_imp_prot_personal->getAttr('trabajador_id')!=0){
+		$codigo.= "<tr>";
+		$codigo.= "<td>".($key+1)."</td>";
+		$codigo.= "<td style='width:28%;'>";
+		$codigo.= $obj_imp_prot_personal->Trabajadore->getAttr('apellido_nombre');
+		$codigo.= "</td>";
 
-	$codigo.= "<td>";
-	$codigo.= $obj_imp_prot_personal->Actividade->getAttr('descripcion');
-	$codigo.= "</td>";
+		$codigo.= "<td>";
+		$codigo.= $obj_imp_prot_personal->Actividade->getAttr('descripcion');
+		$codigo.= "</td>";
 
-	$count_obj_ipp_ni = count($obj_imp_prot_personal->IppNormasIncumplida);
-	if($count_obj_ipp_ni > 0){
-		foreach($obj_imp_prot_personal->IppNormasIncumplida as $k =>$v){
-			$codigo.= "<td style='width:7%;'>";
-			$codigo.= $v->Codigo->getAttr('codigo');
-			$codigo.= "</td>";
-		}
-			
-		for($j= ($k+2); $j <=7; $j++){
-			$codigo.= "<td style='width:7%; text-align: center;'>-";
-			$codigo.= "</td>";
-		}
-			
-	}else{
-		for($i= 1; $i <=7; $i++){
-			$codigo.= "<td style='width:7%; text-align: center;'>-";
-			$codigo.= "</td>";
+		$count_obj_ipp_ni = count($obj_imp_prot_personal->IppNormasIncumplida);
+		if($count_obj_ipp_ni > 0){
+			foreach($obj_imp_prot_personal->IppNormasIncumplida as $k =>$v){
+				$codigo.= "<td style='width:7%;'>";
+				$codigo.= $v->Codigo->getAttr('codigo');
+				$codigo.= "</td>";
+			}
+				
+			for($j= ($k+2); $j <=7; $j++){
+				$codigo.= "<td style='width:7%; text-align: center;'>-";
+				$codigo.= "</td>";
+			}
+				
+		}else{
+			for($i= 1; $i <=7; $i++){
+				$codigo.= "<td style='width:7%; text-align: center;'>-";
+				$codigo.= "</td>";
+			}
 		}
 	}
 }
@@ -789,33 +791,35 @@ $codigo.= "<table class='tg' width='100%'>
 							<tbody>";
 							
 							foreach ($obj_acta->UnidadesMovile as $key2 => $obj_uni_movil){
-								$codigo.= "<tr>";
-								$codigo.= "<td>".($key2+1)."</td>";
-								$codigo.= "<td style='width:14%;'>";
-								$codigo.= $obj_uni_movil->Vehiculo->getAttr('nro_placa');
-								$codigo.= "</td>";
-							
-								$codigo.= "<td>";
-								$codigo.= $obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion');
-								$codigo.= "</td>";
-							
-								$count_obj_um_ni = count($obj_uni_movil->UmNormasIncumplida);
-								if($count_obj_um_ni > 0){
-									foreach($obj_uni_movil->UmNormasIncumplida as $k =>$v){
-										$codigo.= "<td style='width:7%;'>";
-										$codigo.= $v->Codigo->getAttr('codigo');
-										$codigo.= "</td>";
-									}
-										
-									for($j= ($k+2); $j <=8; $j++){
-										$codigo.= "<td style='width:7%; text-align: center;'>-";
-										$codigo.= "</td>";
-									}
-										
-								}else{
-									for($i= 1; $i <=8; $i++){
-										$codigo.= "<td style='width:7%; text-align: center;'>-";
-										$codigo.= "</td>";
+								if($obj_uni_movil->getAttr('vehiculo_id')!=0){
+									$codigo.= "<tr>";
+									$codigo.= "<td>".($key2+1)."</td>";
+									$codigo.= "<td style='width:14%;'>";
+									$codigo.= $obj_uni_movil->Vehiculo->getAttr('nro_placa');
+									$codigo.= "</td>";
+								
+									$codigo.= "<td>";
+									$codigo.= $obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion');
+									$codigo.= "</td>";
+								
+									$count_obj_um_ni = count($obj_uni_movil->UmNormasIncumplida);
+									if($count_obj_um_ni > 0){
+										foreach($obj_uni_movil->UmNormasIncumplida as $k =>$v){
+											$codigo.= "<td style='width:7%;'>";
+											$codigo.= $v->Codigo->getAttr('codigo');
+											$codigo.= "</td>";
+										}
+											
+										for($j= ($k+2); $j <=8; $j++){
+											$codigo.= "<td style='width:7%; text-align: center;'>-";
+											$codigo.= "</td>";
+										}
+											
+									}else{
+										for($i= 1; $i <=8; $i++){
+											$codigo.= "<td style='width:7%; text-align: center;'>-";
+											$codigo.= "</td>";
+										}
 									}
 								}
 							}
