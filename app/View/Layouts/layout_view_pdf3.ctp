@@ -737,7 +737,7 @@ $codigo.= "<table class='tg' width='100%'>
 		<tbody>";
 
 foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
-	if($obj_imp_prot_personal->getAttr('trabajador_id')!=0){
+	//if($obj_imp_prot_personal->getAttr('trabajador_id')!=0){
 		$codigo.= "<tr>";
 		$codigo.= "<td>".($key+1)."</td>";
 		$codigo.= "<td style='width:28%;'>";
@@ -767,7 +767,7 @@ foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
 				$codigo.= "</td>";
 			}
 		}
-	}
+	//}
 }
 $codigo.= "</tr>";
 $codigo.= "</tbody>";
@@ -791,7 +791,7 @@ $codigo.= "<table class='tg' width='100%'>
 							<tbody>";
 							
 							foreach ($obj_acta->UnidadesMovile as $key2 => $obj_uni_movil){
-								if($obj_uni_movil->getAttr('vehiculo_id')!=0){
+								//if($obj_uni_movil->getAttr('vehiculo_id')!=0){
 									$codigo.= "<tr>";
 									$codigo.= "<td>".($key2+1)."</td>";
 									$codigo.= "<td style='width:14%;'>";
@@ -821,7 +821,7 @@ $codigo.= "<table class='tg' width='100%'>
 											$codigo.= "</td>";
 										}
 									}
-								}
+								//}
 							}
 							$codigo.= "</tr>";
 							$codigo.= "</tbody>";

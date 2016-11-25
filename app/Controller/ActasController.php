@@ -890,12 +890,14 @@ class ActasController extends AppController{
 			// INICIO UPDATE IMPLEMENTOS DE PROTECCION PERSONAL
 			if(!empty($this->request->data['TrabajadorActa'])){
 				foreach($this->request->data['TrabajadorActa'] as $key => $i){
-					if($i['ipp_id'] != 0 || $i['ipp_id'] != ''){
+					if($i['ipp_id'] != 0){
 						//ACTUALIZANDO REGISTRO DE IPP
 						
 						$ipp_id = $i['ipp_id'];
-						if($i['trabajador_id'] !='' && $i['trabajador_id'] > 0){
-							
+						
+
+						if($i['trabajador_id'] != 0){
+
 							$this->ImpProtPersonale->id = $ipp_id;
 							
 							$update_ipp['ImpProtPersonale']['trabajador_id'] = $i['trabajador_id'];
@@ -932,7 +934,9 @@ class ActasController extends AppController{
 							}
 
 						}
-					}elseif($i['ipp_id'] == '' && $i['trabajador_id'] != ''){
+					}
+
+					if($i['ipp_id'] == '' && $i['trabajador_id'] != 0){
 						//CREANDO NUEVO REGISTRO DE TABLA IMPLE.PROT.PERS
 						
 						$new_ipp['ImpProtPersonale']['acta_id'] = $acta_id;
@@ -970,11 +974,11 @@ class ActasController extends AppController{
 			if(!empty($this->request->data['UnidadMovil'])){
 				foreach($this->request->data['UnidadMovil'] as $key => $i){
 					
-					if($i['um_id'] != 0 || $i['um_id'] != ''){
+					if($i['um_id'] != 0){
 						//ACTUALIZANDO REGISTRO DE UM
 				
 						$um_id = $i['um_id']; 
-						if($i['nro_placa_id'] > 0 && $i['nro_placa_id'] !=''){
+						if($i['nro_placa_id'] != 0){
 								
 							$this->UnidadesMovile->id = $um_id;
 								
@@ -1011,7 +1015,9 @@ class ActasController extends AppController{
 								}
 								
 						}
-					}elseif($i['um_id'] == '' && $i['nro_placa_id'] != ''){
+					}
+
+					if($i['um_id'] == '' && $i['nro_placa_id'] != 0){
 						//CREANDO NUEVO REGISTRO DE UM
 				
 						$new_um['UnidadesMovile']['acta_id'] = $acta_id;
