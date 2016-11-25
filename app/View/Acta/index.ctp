@@ -319,7 +319,7 @@ div#spinner-send-report
 									  <option value="rcamposd@distriluz.com.pe">Campos D&iacute;az, Ra&uacute;l</option>
 									  <option value="jperaltag@distriluz.com.pe">Peralta Guerrero, Jorge Luis</option>
 									  <option value="jnavarror@distriluz.com.pe">Navarro Rubi&ntilde;os, Jos&eacute; Miguel</option>
-									  <option value="mym.ingenieria@hotmail.com">MyM ingenier&iacute;a Obras y Servicios</option>
+									  <option value="mym.iceperu@outlook.com">MyM ingenier&iacute;a Obras y Servicios</option>
 									  <option value="mym.ingenieria@mym-iceperu.com">M&M ingenier&iacute;a Obras y Servicios</option>
 									  <option value="tdemeddu@gmail.com">Eddu Martin Tenorio Delgado</option>
 									  <option value="jmaldonado.milian@hotmail.com">Jorge Maldonado Milian</option>
@@ -357,7 +357,7 @@ div#spinner-send-report
 									  <option value="rcamposd@distriluz.com.pe">Campos D&iacute;az, Ra&uacute;l</option>
 									  <option value="jperaltag@distriluz.com.pe">Peralta Guerrero, Jorge Luis</option>
 									  <option value="jnavarror@distriluz.com.pe">Navarro Rubi&ntilde;os, Jos&eacute; Miguel</option>
-									  <option value="mym.ingenieria@hotmail.com">MyM ingenier&iacute;a Obras y Servicios</option>
+									  <option value="mym.iceperu@outlook.com">MyM ingenier&iacute;a Obras y Servicios</option>
 									  <option value="mym.ingenieria@mym-iceperu.com">M&M ingenier&iacute;a Obras y Servicios</option>
 									  <option value="tdemeddu@gmail.com">Eddu Martin Tenorio Delgado</option>
 									  <option value="jmaldonado.milian@hotmail.com">Jorge Maldonado Milian</option>
