@@ -192,7 +192,14 @@ class ActasController extends AppController{
 		$list_all_tipos_condiciones_sub = $this->CondicionesSubestandaresTipo->listTipoCondicionesSubEstandares();
 		$list_all_tipo_lugares = $this->TipoLugare->listTipoLugares();
 		
-		$total_registros = $this->Acta->find('count') + 1;
+		$total_registros = $this->Acta->find('count', 
+							array(
+							'conditions' => array(
+									'YEAR(Acta.created) = YEAR(NOW())'							
+									)
+								)
+							) + 1;
+
 		$codigo = str_pad($total_registros, 4, "0", STR_PAD_LEFT);
 		$string_complement = " - M&M/SST-".date('Y');
 		$codigo_completo = $codigo.$string_complement;
