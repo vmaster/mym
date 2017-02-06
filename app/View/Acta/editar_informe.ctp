@@ -264,8 +264,7 @@ tinymce.init({
 														<th>Nombre del trabajador</th>
 														<th>Cargo</th>
 														<th colspan=7
-															style="vertical-align: middle; text-align: center;">Normas
-															Incumplidas (Ver parte posterior de la hoja)</th>
+															style="vertical-align: middle; text-align: center;">C&oacute;digos de Normas Incumplidas</th>
 													</tr>
 												</thead>
 												<tbody>
