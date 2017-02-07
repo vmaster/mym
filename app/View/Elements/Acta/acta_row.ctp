@@ -25,7 +25,13 @@
 			<td><?php echo $acta->getAttr('num_informe'); ?></td>
 			<td><?php echo $acta->Empresa->getAttr('nombre'); ?></td>
 			<td><?php echo ($acta->getAttr('actividad')=='')?"":$acta->getAttr('actividad'); ?></td>
-			<td><?php echo $acta->Trabajadore2->getAttr('apellido_nombre'); ?></td>
+			<td><?php if($acta->getAttr('responsable_sup_id') != 0 || $acta->getAttr('responsable_sup_id') != ''){
+						echo $acta->Trabajadore2->getAttr('apellido_nombre');
+						}else{
+						echo "--";
+						}
+				?>
+			</td>
 			<td><?php echo date('Y-m-d',strtotime($acta->getAttr('fecha'))); ?></td>
 			<td>
 			<center>
