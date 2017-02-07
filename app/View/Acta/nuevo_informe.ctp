@@ -366,6 +366,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -377,6 +380,13 @@ tinymce.init({
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_epp" name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][incidencia]">
+																<option value="2">--</option>
+																<option value="1">SI</option>
+																<option value="0">NO</option>													
 															</select>
 														</td>
 													</tr>
@@ -456,6 +466,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -464,6 +477,13 @@ tinymce.init({
 														<td><textarea name="data[Acta][cumplimiento_sd][<?php echo $i; ?>][info_des_se_de]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
 															<select class="form-control select-NI-NC select_cu_sd" name= "data[Acta][cumplimiento_sd][<?php echo $i; ?>][alternativa]">
+																<option value="2">--</option>
+																<option value="1">SI</option>
+																<option value="0">NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_sd" name= "data[Acta][cumplimiento_sd][<?php echo $i; ?>][incidencia]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
@@ -545,6 +565,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -553,6 +576,13 @@ tinymce.init({
 														<td><textarea name="data[Acta][cumplimiento_um][<?php echo $i; ?>][info_des_um]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
 															<select class="form-control select-NI-NC select_cu_um" name= "data[Acta][cumplimiento_um][<?php echo $i; ?>][alternativa]">
+																<option value="2">--</option>
+																<option value="1">SI</option>
+																<option value="0">NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_um" name= "data[Acta][cumplimiento_um][<?php echo $i; ?>][incidencia]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
@@ -634,6 +664,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -642,6 +675,13 @@ tinymce.init({
 														<td><textarea name="data[Acta][cumplimiento_ds][<?php echo $i; ?>][info_des_doc]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
 															<select class="form-control select-NI-NC select_cu_ds" name= "data[Acta][cumplimiento_ds][<?php echo $i; ?>][alternativa]">
+																<option value="2">--</option>
+																<option value="1">SI</option>
+																<option value="0">NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_ds" name= "data[Acta][cumplimiento_ds][<?php echo $i; ?>][incidencia]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
@@ -723,6 +763,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -731,6 +774,13 @@ tinymce.init({
 														<td><textarea name="data[Acta][cumplimiento_act][<?php echo $i; ?>][info_des_act]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
 															<select class="form-control select-NI-NC select_cu_cp" name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][alternativa]">
+																<option value="2">--</option>
+																<option value="1">SI</option>
+																<option value="0">NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_cp" name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][incidencia]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
@@ -811,6 +861,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -819,6 +872,13 @@ tinymce.init({
 														<td><textarea name="data[Acta][cumplimiento_cond][<?php echo $i; ?>][info_des_cond]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"></textarea></td>
 														<td>
 															<select class="form-control select-NI-NC select_cu_as" name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][alternativa]">
+																<option value="2">--</option>
+																<option value="1">SI</option>
+																<option value="0">NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_as" name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][incidencia]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>

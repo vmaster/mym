@@ -558,6 +558,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -570,6 +573,13 @@ tinymce.init({
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_epp" name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][incidencia]">
+																<option value="2" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 2)?"selected":""?>>--</option>
+																<option value="1" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 1)?"selected":""?>>SI</option>
+																<option value="0" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 0)?"selected":""?>>NO</option>
 															</select>
 														</td>
 													</tr>
@@ -682,6 +692,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -694,6 +707,13 @@ tinymce.init({
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_sd" name= "data[Acta][cumplimiento_sd][<?php echo $i; ?>][incidencia]">
+																<option value="2" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 2)?"selected":""?>>--</option>
+																<option value="1" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 1)?"selected":""?>>SI</option>
+																<option value="0" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 0)?"selected":""?>>NO</option>
 															</select>
 														</td>
 													</tr>
@@ -805,6 +825,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -817,6 +840,13 @@ tinymce.init({
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_um" name= "data[Acta][cumplimiento_um][<?php echo $i; ?>][incidencia]">
+																<option value="2" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 2)?"selected":""?>>--</option>
+																<option value="1" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 1)?"selected":""?>>SI</option>
+																<option value="0" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 0)?"selected":""?>>NO</option>
 															</select>
 														</td>
 													</tr>
@@ -928,6 +958,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -940,6 +973,13 @@ tinymce.init({
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_ds" name= "data[Acta][cumplimiento_ds][<?php echo $i; ?>][incidencia]">
+																<option value="2" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 2)?"selected":""?>>--</option>
+																<option value="1" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 1)?"selected":""?>>SI</option>
+																<option value="0" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 0)?"selected":""?>>NO</option>
 															</select>
 														</td>
 													</tr>
@@ -1052,6 +1092,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -1064,6 +1107,13 @@ tinymce.init({
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_cp" name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][incidencia]">
+																<option value="2" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 2)?"selected":""?>>--</option>
+																<option value="1" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 1)?"selected":""?>>SI</option>
+																<option value="0" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 0)?"selected":""?>>NO</option>
 															</select>
 														</td>
 													</tr>
@@ -1175,6 +1225,9 @@ tinymce.init({
 														<th>
 															Cumplimiento
 														</th>
+														<th>
+															Incidencia
+														</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -1187,6 +1240,13 @@ tinymce.init({
 																<option value="2" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($info_des_act->alternativa) && $info_des_act->alternativa == 0)?"selected":""?>>NO</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select_re_as" name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][incidencia]">
+																<option value="2" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 2)?"selected":""?>>--</option>
+																<option value="1" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 1)?"selected":""?>>SI</option>
+																<option value="0" <?php echo (isset($info_des_act->incidencia) && $info_des_act->incidencia == 0)?"selected":""?>>NO</option>
 															</select>
 														</td>
 													</tr>
