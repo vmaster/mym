@@ -86,7 +86,7 @@ $codigo.= "<div class='head-pag'>
 			<tr>
 			    <td style='text-align:center' class='tg-031e'><strong>Versión Anterior: 00/2015-M001</strong></td>
 			    <td style='text-align:center' class='aling-left'><strong>Mod. Versión: JAMM</strong></td>
-			    <td style='text-align:center' class='tg-031e'><strong>Fecha Mod: xxxxxxxxx</strong></td>
+			    <td style='text-align:center' class='tg-031e'><strong>Fecha Mod: ".date('d-m-Y',strtotime($obj_acta->getAttr('modified')))."</strong></td>
 			  </tr>
 			</table>
 			<br>
