@@ -56,6 +56,10 @@ $codigo = "<style type='text/css'>
 img { border:1px solid green}
 
 .salto-linea{ page-break-before:always; }
+
+.celd-align {
+	text-align: center;
+}
 </style>";
 $codigo.= "<div class='pie-pag'><hr>";
 $codigo.= "<table class='tg' width='100%' style='border:0px;'>";
@@ -79,14 +83,14 @@ $codigo.= "<div class='head-pag'>
 			    <td class='aling-left'><strong>C&oacute;digo: M001-SST/MA</strong></td>
 			  </tr>
 			  <tr>
-			    <td class='tg-031e'><strong>Versi&oacute;n:</strong> 00/2017-M001</strong></td>
+			    <td class='tg-031e'><strong>Versi&oacute;n: 00/2017-M001</strong></td>
 			  </tr>
 			</table>
 			<table class='tg tg-031eF back-gray' width='100%' style='margin-bottom:-10px'>
 			<tr>
 			    <td style='text-align:center' class='tg-031e'><strong>Versión Anterior: 00/2015-M001</strong></td>
 			    <td style='text-align:center' class='aling-left'><strong>Mod. Versión: JAMM</strong></td>
-			    <td style='text-align:center' class='tg-031e'><strong>Fecha Mod: ".date('d-m-Y',strtotime($obj_acta->getAttr('modified')))."</strong></td>
+			    <td style='text-align:center' class='tg-031e'><strong>Fecha Mod: ".date('d/m/Y',strtotime($obj_acta->getAttr('modified')))."</strong></td>
 			  </tr>
 			</table>
 			<br>
@@ -155,7 +159,7 @@ $codigo.= "
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv back-green'>EQUIPOS DE PROTECCI&Oacute;N (PERSONAL Y/O COLECTIVO)</th>
+		    <th class='tg-e3zv back-green' width='65%'>EQUIPOS DE PROTECCI&Oacute;N (PERSONAL Y/O COLECTIVO)</th>
 		    <th class='tg-e3zv back-green'>Cumplimiento</th>
 		    <th class='tg-e3zv back-green'>Incidencia</th>
 		  </tr>
@@ -199,7 +203,7 @@ $codigo.= "
 
 		    foreach($info_des_act as $value){
 		    	if($value->info_des_epp != ''){
-		    	$codigo.= "<tr><td class='tg-031e'>".$value->info_des_epp."</td><td class='tg-031e'>";
+		    	$codigo.= "<tr><td class='tg-031e'>".$value->info_des_epp."</td><td class='tg-031e celd-align'>";
 		    	
 			    	if($value->alternativa == 1){
 			    		$codigo.= "NC";
@@ -213,7 +217,7 @@ $codigo.= "
 			    		$codigo.= "( - ) ";
 			    	}
 			    	$codigo.="</td>";
-			    	$codigo.="<td class='tg-031e'>";
+			    	$codigo.="<td class='tg-031e celd-align'>";
 		    		
 			    	if($value->incidencia == 1){
 				    	$codigo.= "R";
@@ -256,7 +260,7 @@ $codigo.= "	</tr>
 $codigo.= "
 			<table class='tg' width='100%'>
 		  		<tr>
-		    		<th class='tg-e3zv back-green'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
+		    		<th class='tg-e3zv back-green' width='65%'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
 		    		<th class='tg-e3zv back-green'>Cumplimiento</th>
 		    		<th class='tg-e3zv back-green'>Incidencia</th>
 		 		</tr>";
@@ -267,7 +271,7 @@ $codigo.= "
 			    foreach($info_des_act as $value){
 
 			    	if($value->info_des_se_de != ''){
-			    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_se_de."</td><td class='tg-031e'>";
+			    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_se_de."</td><td class='tg-031e celd-align'>";
 				    	if($value->alternativa == 1){
 				    		$codigo.= "NC";
 				    		$normas_cumplidas++;
@@ -283,7 +287,7 @@ $codigo.= "
 				    	}
 				    	
 					    $codigo.="</td>";
-				    	$codigo.="<td class='tg-031e'>";
+				    	$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				    	if($value->incidencia == 1){
 					    	$codigo.= "R";
@@ -324,7 +328,7 @@ $codigo.= "
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv back-green'>UNIDADES M&Oacute;VILES</th>
+		    <th class='tg-e3zv back-green' width='65%'>UNIDADES M&Oacute;VILES</th>
 		    <th class='tg-e3zv back-green'>Cumplimiento</th>
 		    <th class='tg-e3zv back-green'>Incidencia</th>
 		  </tr>";
@@ -333,7 +337,7 @@ $codigo.= "
 		    foreach($info_des_act as $value){
 		    	
 		    	if($value->info_des_um != ''){
-		    		$codigo.="<tr><td class='tg-031e'>".$value->info_des_um."</td><td class='tg-031e'>";
+		    		$codigo.="<tr><td class='tg-031e'>".$value->info_des_um."</td><td class='tg-031e celd-align'>";
 		    		if($value->alternativa == 1){
 		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
@@ -345,11 +349,11 @@ $codigo.= "
 		    			$cont_ni_um++;
 				    	$total_ni_um = $cont_ni_um;
 		    		}else{
-		    			$codigo.= "( - ) ";
+		    			$codigo.= "( - )";
 		    		}
 		    		 
 		    	$codigo.="</td>";
-				$codigo.="<td class='tg-031e'>";
+				$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if($value->incidencia == 1){
 					   	$codigo.= "R";
@@ -387,16 +391,16 @@ $codigo.= "	</tr>
 <br>";
 
 $codigo.= "
-		<table class='tg' width='100%'>
+		 <table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv back-green'>DOCUMENTACI&Oacute;N DE SEGURIDAD</th>
+		    <th class='tg-e3zv back-green' width='65%'>DOCUMENTACI&Oacute;N DE SEGURIDAD</th>
 		    <th class='tg-e3zv back-green'>Cumplimiento</th>
 		    <th class='tg-e3zv back-green'>Incidencia</th>
 		  </tr>";
 		    $info_des_act = json_decode($obj_acta->info_des_doc);
 		    foreach($info_des_act as $value){
 		    	if($value->info_des_doc != ''){
-		    		$codigo.="<tr><td class='tg-031e'>".$value->info_des_doc."</td><td class='tg-031e'>";
+		    		$codigo.="<tr><td class='tg-031e'>".$value->info_des_doc."</td><td class='tg-031e celd-align'>";
 		    		if($value->alternativa == 1){
 		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
@@ -408,10 +412,10 @@ $codigo.= "
 		    			$cont_ni_ds++;
 				    	$total_ni_ds = $cont_ni_ds;
 		    		}else{
-		    			$codigo.= "( - ) ";
+		    			$codigo.= "( - )";
 		    		}
 
-		    		$codigo.="<td class='tg-031e'>";
+		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if($value->incidencia == 1){
 					   	$codigo.= "R";
@@ -423,8 +427,9 @@ $codigo.= "
 
 		    		$codigo.="</td>";
 		    	}
+		    	$codigo.="</tr>";
 		    }
-		    $codigo.="</tr>";	
+		    	
 $codigo.= "
 		  <tr>
 		  	<td colspan='3'>
@@ -453,14 +458,14 @@ $codigo.= "	</tr>
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv back-green'>CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO</th>
+		    <th class='tg-e3zv back-green' width='65%'>CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO</th>
 		    <th class='tg-e3zv back-green'>Cumplimiento</th>
 		    <th class='tg-e3zv back-green'>Incidencia</th>
 		  </tr>";
 		    $info_des_act = json_decode($obj_acta->info_des_act);
 		    foreach($info_des_act as $value){
 		    	if($value->info_des_act != ''){
-		    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_act."</td><td class='tg-031e'>";
+		    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_act."</td><td class='tg-031e celd-align'>";
 		    		if($value->alternativa == 1){
 		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
@@ -475,7 +480,7 @@ $codigo.= "
 		    			$codigo.= "( - )";
 		    		}
 
-		    		$codigo.="<td class='tg-031e'>";
+		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if($value->incidencia == 1){
 					   	$codigo.= "R";
@@ -516,14 +521,14 @@ $codigo.= "	</tr>
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-			<th class='tg-e3zv back-green'>ACTOS Y CONDICIONES ESTANDARES Y/O SUB-ESTANDARES</th>
+			<th class='tg-e3zv back-green' width='65%'>ACTOS Y CONDICIONES ESTANDARES Y/O SUB-ESTANDARES</th>
 			<th class='tg-e3zv back-green'>Cumplimiento</th>
 		    <th class='tg-e3zv back-green'>Incidencia</th>
 		  </tr>";
 		    $info_des_cond = json_decode($obj_acta->info_des_cond);
 		    foreach($info_des_cond as $value){
 		    	if($value->info_des_cond != ''){
-		    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_cond."</td><td class='tg-031e'>";
+		    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_cond."</td><td class='tg-031e celd-align'>";
 		    		if($value->alternativa == 1){
 		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
@@ -538,7 +543,7 @@ $codigo.= "
 		    			$codigo.= "( - ) ";
 		    		}
 		    		 
-		    		$codigo.="<td class='tg-031e'>";
+		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if($value->incidencia == 1){
 					   	$codigo.= "R";
@@ -559,7 +564,7 @@ $codigo.="<tr>
 			$cont= 0;
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
-				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;' width='100%'>
 							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_cs/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='190px' height='190px'>
 							<br>".$obj_foto_cs->getAttr('observacion')."</td>";
 				$cont++;
