@@ -151,17 +151,15 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
 </table><br>";
 $codigo.= "
 	<table class='tg' width='100%' style='margin-bottom:-10px'>
-	<tr><td class='tg-e3zv back-blue' style='text-align:center'>SUPERVISI&Oacute;N DE SEGURIDAD Y SALUD EN EL TRABAJO</td></tr>
-	<tr><td class='tg-e3zv back-green2' style='text-align:center'>CUMPLIMIENTO E INCUMPLIMIENTO A NORMAS DE SEGURIDAD Y  SALUD EN EL TRABAJO</td></tr>
-	</table><br>
-		";
+	<tr><td class='tg-e3zv back-green' style='text-align:center;background-color:#AAC95B'><strong>SUPERVISI&Oacute;N (INSPECCI&Oacute;N / OBSERVACI&Oacute;N) EN SEGURIDAD Y SALUD EN EL TRABAJO</strong></td></tr>
+	</table><br>";
 
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv back-green' width='65%'>EQUIPOS DE PROTECCI&Oacute;N (PERSONAL Y/O COLECTIVO)</th>
-		    <th class='tg-e3zv back-green'>Cumplimiento</th>
-		    <th class='tg-e3zv back-green'>Incidencia</th>
+		    <th class='tg-e3zv back-blue' width='65%'>EQUIPOS DE PROTECCI&Oacute;N (PERSONAL Y/O COLECTIVO)</th>
+		    <th class='tg-e3zv back-blue'>Cumplimiento</th>
+		    <th class='tg-e3zv back-blue'>Incidencia</th>
 		  </tr>
 		  ";
 			$normas_cumplidas = 0;
@@ -219,9 +217,9 @@ $codigo.= "
 			    	$codigo.="</td>";
 			    	$codigo.="<td class='tg-031e celd-align'>";
 		    		
-			    	if($value->incidencia == 1){
+			    	if(isset($value->incidencia) && $value->incidencia == 1){
 				    	$codigo.= "R";
-				    }elseif($value->incidencia == 0){
+				    }elseif(isset($value->incidencia) && $value->incidencia == 0){
 				    	$codigo.= "NO";
 				    }else{
 				    	$codigo.= "( - )";
@@ -260,9 +258,9 @@ $codigo.= "	</tr>
 $codigo.= "
 			<table class='tg' width='100%'>
 		  		<tr>
-		    		<th class='tg-e3zv back-green' width='65%'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
-		    		<th class='tg-e3zv back-green'>Cumplimiento</th>
-		    		<th class='tg-e3zv back-green'>Incidencia</th>
+		    		<th class='tg-e3zv back-blue' width='65%'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
+		    		<th class='tg-e3zv back-blue'>Cumplimiento</th>
+		    		<th class='tg-e3zv back-blue'>Incidencia</th>
 		 		</tr>";
 
 
@@ -289,9 +287,9 @@ $codigo.= "
 					    $codigo.="</td>";
 				    	$codigo.="<td class='tg-031e celd-align'>";
 			    		
-				    	if($value->incidencia == 1){
+				    	if(isset($value->incidencia) && $value->incidencia == 1){
 					    	$codigo.= "R";
-					    }elseif($value->incidencia == 0){
+					    }elseif(isset($value->incidencia) && $value->incidencia == 0){
 					    	$codigo.= "NO";
 					    }else{
 					    	$codigo.= "( - )";
@@ -328,9 +326,9 @@ $codigo.= "
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv back-green' width='65%'>UNIDADES M&Oacute;VILES</th>
-		    <th class='tg-e3zv back-green'>Cumplimiento</th>
-		    <th class='tg-e3zv back-green'>Incidencia</th>
+		    <th class='tg-e3zv back-blue' width='65%'>UNIDADES M&Oacute;VILES</th>
+		    <th class='tg-e3zv back-blue'>Cumplimiento</th>
+		    <th class='tg-e3zv back-blue'>Incidencia</th>
 		  </tr>";
 		  
 		    $info_des_act = json_decode($obj_acta->info_des_um);
@@ -355,9 +353,9 @@ $codigo.= "
 		    	$codigo.="</td>";
 				$codigo.="<td class='tg-031e celd-align'>";
 			    		
-				   	if($value->incidencia == 1){
+				   	if(isset($value->incidencia) && $value->incidencia == 1){
 					   	$codigo.= "R";
-					}elseif($value->incidencia == 0){
+					}elseif(isset($value->incidencia) && $value->incidencia == 0){
 					  	$codigo.= "NO";
 					}else{
 					   	$codigo.= "( - )";
@@ -393,9 +391,9 @@ $codigo.= "	</tr>
 $codigo.= "
 		 <table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv back-green' width='65%'>DOCUMENTACI&Oacute;N DE SEGURIDAD</th>
-		    <th class='tg-e3zv back-green'>Cumplimiento</th>
-		    <th class='tg-e3zv back-green'>Incidencia</th>
+		    <th class='tg-e3zv back-blue' width='65%'>DOCUMENTACI&Oacute;N DE SEGURIDAD</th>
+		    <th class='tg-e3zv back-blue'>Cumplimiento</th>
+		    <th class='tg-e3zv back-blue'>Incidencia</th>
 		  </tr>";
 		    $info_des_act = json_decode($obj_acta->info_des_doc);
 		    foreach($info_des_act as $value){
@@ -417,9 +415,9 @@ $codigo.= "
 
 		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
-				   	if($value->incidencia == 1){
+				   	if(isset($value->incidencia) && $value->incidencia == 1){
 					   	$codigo.= "R";
-					}elseif($value->incidencia == 0){
+					}elseif(isset($value->incidencia) && $value->incidencia == 0){
 					  	$codigo.= "NO";
 					}else{
 					   	$codigo.= "( - )";
@@ -458,9 +456,9 @@ $codigo.= "	</tr>
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-e3zv back-green' width='65%'>CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO</th>
-		    <th class='tg-e3zv back-green'>Cumplimiento</th>
-		    <th class='tg-e3zv back-green'>Incidencia</th>
+		    <th class='tg-e3zv back-blue' width='65%'>CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO</th>
+		    <th class='tg-e3zv back-blue'>Cumplimiento</th>
+		    <th class='tg-e3zv back-blue'>Incidencia</th>
 		  </tr>";
 		    $info_des_act = json_decode($obj_acta->info_des_act);
 		    foreach($info_des_act as $value){
@@ -482,9 +480,9 @@ $codigo.= "
 
 		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
-				   	if($value->incidencia == 1){
+				   	if(isset($value->incidencia) && $value->incidencia == 1){
 					   	$codigo.= "R";
-					}elseif($value->incidencia == 0){
+					}elseif(isset($value->incidencia) && $value->incidencia == 0){
 					  	$codigo.= "NO";
 					}else{
 					   	$codigo.= "( - )";
@@ -521,9 +519,9 @@ $codigo.= "	</tr>
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-			<th class='tg-e3zv back-green' width='65%'>ACTOS Y CONDICIONES ESTANDARES Y/O SUB-ESTANDARES</th>
-			<th class='tg-e3zv back-green'>Cumplimiento</th>
-		    <th class='tg-e3zv back-green'>Incidencia</th>
+			<th class='tg-e3zv back-blue' width='65%'>ACTOS Y CONDICIONES ESTANDARES Y/O SUB-ESTANDARES</th>
+			<th class='tg-e3zv back-blue'>Cumplimiento</th>
+		    <th class='tg-e3zv back-blue'>Incidencia</th>
 		  </tr>";
 		    $info_des_cond = json_decode($obj_acta->info_des_cond);
 		    foreach($info_des_cond as $value){
@@ -545,9 +543,9 @@ $codigo.= "
 		    		 
 		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
-				   	if($value->incidencia == 1){
+				   	if(isset($value->incidencia) && $value->incidencia == 1){
 					   	$codigo.= "R";
-					}elseif($value->incidencia == 0){
+					}elseif(isset($value->incidencia) && $value->incidencia == 0){
 					  	$codigo.= "NO";
 					}else{
 					   	$codigo.= "( - )";
@@ -587,8 +585,8 @@ $codigo.="
 		    <th class='tg-hgcj back-blue' colspan='2'><strong>CONCLUSIONES, RECOMENDACIONES Y ACCIONES CORRECTIVAS</strong></th>
 		  </tr>
 		  <tr>
-		    <td width='50%' class='tg-e3zv back-green'>CONCLUSIONES</td>
-		    <td width='50%' class='tg-e3zv back-green'>RECOMENDACIONES</td>
+		    <td width='50%' class='tg-e3zv back-blue'>CONCLUSIONES</td>
+		    <td width='50%' class='tg-e3zv back-blue'>RECOMENDACIONES</td>
 		  </tr>
 		  <tr style='vertical-align:top;'>
 		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_conclusion')."</td>
@@ -600,7 +598,7 @@ $codigo.="<br>";
 $codigo.="
 		<table class='tg' width='100%'>
 		  <tr>
-		    <th class='tg-hgcj back-green'><strong>MEDIDAS DE CONTROL</strong></th>
+		    <th class='tg-hgcj back-blue'><strong>MEDIDAS DE CONTROL</strong></th>
 		  </tr>
 		  <tr style='vertical-align:top;'>
 		    <td class='tg-031e'>".$obj_acta->getAttr('info_des_med')."</td>
@@ -631,7 +629,7 @@ $codigo.= "	</tr>
 		";
 	
 	$codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-size:8px;'>";
-	$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
+	$codigo.= "<tr><th colspan=8 class='tg-e3zv back-blue'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
 	$codigo .= "<tr><td></td>
 					<td>EPP</td>
 					<td>SE</td>
@@ -791,7 +789,7 @@ $codigo.= "	</tr>
 		$codigo.= "<div class='tg salto-linea'></div>";
 		$codigo.= "<div><strong>INF. DE REFERENCIA N&#176; ".$obj_acta_ref->getAttr('num_informe')."</strong></div><br>";
 		$codigo.= "<table class='tg' width='100%' style='border:0px;font-size:8px;'>";
-		$codigo.= "<tr><th colspan=8 class='tg-e3zv back-green'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
+		$codigo.= "<tr><th colspan=8 class='tg-e3zv back-blue'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
 		$codigo .= "<tr><td></td>
 					<td>EPP</td>
 					<td>SE</td>
@@ -842,7 +840,7 @@ $codigo.="</div>
 $codigo.= "<table class='tg' width='100%'>
 		<thead>
 		<tr>
-		<th class='tg-e3zv back-green' colspan=10 style='text-align: center;'>TRABAJADORES SUPERVISADOS</th>
+		<th class='tg-e3zv back-blue' colspan=10 style='text-align: center;'>TRABAJADORES SUPERVISADOS</th>
 				</tr>
 				<tr>
 				<th>N&deg;</th>
@@ -891,7 +889,7 @@ $codigo.= "</table><br>";
 $codigo.= "<table class='tg' width='100%'>
 		<thead>
 		<tr>
-		<th class='tg-e3zv back-green' colspan=11 style='text-align: center;'>UNIDADES M&Oacute;VILES SUPERVISADAS</th>
+		<th class='tg-e3zv back-blue' colspan=11 style='text-align: center;'>UNIDADES M&Oacute;VILES SUPERVISADAS</th>
 								</tr>
 								<tr>
 									<th style='width: 6%;'
@@ -943,7 +941,7 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 	$codigo.= "<table class='tg' width='100%'>";
 	$codigo.= "<thead>
 				<tr>
-					<th class='tg-e3zv back-green' colspan=3 style='text-align: center;'>DETALLE DE NORMAS INCUMPLIDAS</th>
+					<th class='tg-e3zv back-blue' colspan=3 style='text-align: center;'>DETALLE DE NORMAS INCUMPLIDAS</th>
 				</tr>
 				<tr>
 					<th>C&oacute;digo</th>
