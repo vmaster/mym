@@ -1961,8 +1961,10 @@ class ActasController extends AppController{
 			$this->layout = 'layout_view_pdf1';
 		}else{
 			// Cambio de direccion que solo afecte a las actas creadas a partir de la nueva fecha
-			if($obj_acta->getAttr('created')>='2016-11-07'){
+			if($obj_acta->getAttr('created')>='2016-11-07' && $obj_acta->getAttr('created')<'2017-02-08'){
 				$this->layout = 'layout_view_pdf3';
+			}elseif($obj_acta->getAttr('created')>='2017-02-08'){
+				$this->layout = 'layout_view_pdf4';
 			}else{
 				$this->layout = 'layout_view_pdf2';
 			}

@@ -127,8 +127,13 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Responsable:</td>
-    <td class='tg-031eF' colspan='3'>".$obj_acta->Trabajadore1->getAttr('apellido_nombre')." (".$obj_acta->Actividade1->getAttr('descripcion').') '."</td>
-    <td class='aling-left back-green'><strong>Fecha:</strong></td>
+    <td class='tg-031eF' colspan='3'>";
+    if($obj_acta->getAttr('reponsable_act_id')!=0){
+    	$codigo.= $obj_acta->Trabajadore1->getAttr('apellido_nombre')." (".$obj_acta->Actividade1->getAttr('descripcion').') ';
+    }else{
+    	$codigo.="--";
+    }
+    $codigo.= "</td><td class='aling-left back-green'><strong>Fecha:</strong></td>
     <td class='tg-031eF'>".date('d-m-Y',strtotime($obj_acta->getAttr('fecha')))."</td>
   </tr>
   <tr>
@@ -151,9 +156,10 @@ $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-green'>EQUIPOS DE PROTECCI&Oacute;N (PERSONAL Y/O COLECTIVO)</th>
+		    <th class='tg-e3zv back-green'>Cumplimiento</th>
+		    <th class='tg-e3zv back-green'>Incidencia</th>
 		  </tr>
-		  <tr>
-		    <td class='tg-031e'>";
+		  ";
 			$normas_cumplidas = 0;
 			$normas_incumplidas = 0;
 			$cont_nc_sd = 0;
@@ -190,27 +196,39 @@ $codigo.= "
 			$total_ni_cs = 0;
 			
 		    $info_des_act = json_decode($obj_acta->info_des_epp);
+
 		    foreach($info_des_act as $value){
 		    	if($value->info_des_epp != ''){
+		    	$codigo.= "<tr><td class='tg-031e'>".$value->info_des_epp."</td><td class='tg-031e'>";
+		    	
 			    	if($value->alternativa == 1){
-			    		$codigo.= "(NC) ";
+			    		$codigo.= "NC";
 			    		$normas_cumplidas++;
 			    		$total_nc_epp = $normas_cumplidas;
 			    	}elseif($value->alternativa == 0){
-			    		$codigo.= "(NI) ";
+			    		$codigo.= "NI";
 			    		$normas_incumplidas++;
 			    		$total_ni_epp = $normas_incumplidas;
 			    	}else{
 			    		$codigo.= "( - ) ";
 			    	}
-			    	
-			    	$codigo.= $value->info_des_epp."<br>";
+			    	$codigo.="</td>";
+			    	$codigo.="<td class='tg-031e'>";
+		    		
+			    	if($value->incidencia == 1){
+				    	$codigo.= "R";
+				    }elseif($value->incidencia == 0){
+				    	$codigo.= "NO";
+				    }else{
+				    	$codigo.= "( - )";
+				    }
+			    $codigo .="</td>";
 		    	}
+		    	$codigo.= "</tr>";
 		    }
-		    $codigo.="</td>";	
-$codigo.= "</tr>
-		  <tr>
-		   <td>
+		    
+$codigo.= "<tr>
+		   <td colspan='3'>
 		   	<table class='tg' width='100%'>
 		    ";
 			$cont= 0;
@@ -239,20 +257,24 @@ $codigo.= "
 			<table class='tg' width='100%'>
 		  		<tr>
 		    		<th class='tg-e3zv back-green'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
-		 		</tr>
-		  		<tr>
-			    <td class='tg-031e'>";
+		    		<th class='tg-e3zv back-green'>Cumplimiento</th>
+		    		<th class='tg-e3zv back-green'>Incidencia</th>
+		 		</tr>";
+
+
 			    $info_des_act = json_decode($obj_acta->info_des_se_de);
 			    
 			    foreach($info_des_act as $value){
+
 			    	if($value->info_des_se_de != ''){
+			    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_se_de."</td><td class='tg-031e'>";
 				    	if($value->alternativa == 1){
-				    		$codigo.= "(NC) ";
+				    		$codigo.= "NC";
 				    		$normas_cumplidas++;
 				    		$cont_nc_sd++;
 				    		$total_nc_sd = $cont_nc_sd;
 				    	}elseif($value->alternativa == 0){
-				    		$codigo.= "(NI) ";
+				    		$codigo.= "NI";
 				    		$normas_incumplidas++;
 				    		$cont_ni_sd++;
 				    		$total_ni_sd = $cont_ni_sd;
@@ -260,14 +282,23 @@ $codigo.= "
 				    		$codigo.= "( - ) ";
 				    	}
 				    	
-				    	$codigo.= $value->info_des_se_de."<br>";
-			    	}	
+					    $codigo.="</td>";
+				    	$codigo.="<td class='tg-031e'>";
+			    		
+				    	if($value->incidencia == 1){
+					    	$codigo.= "R";
+					    }elseif($value->incidencia == 0){
+					    	$codigo.= "NO";
+					    }else{
+					    	$codigo.= "( - )";
+					    }
+				    	$codigo .="</td>";
+			    	}
+			    	$codigo.= "</tr>";
 			    }
-			    
-			    $codigo.="</td>";	
-$codigo.= "		</tr>
+$codigo.= "		
 		  		<tr>
-		    		<td>
+		    		<td colspan='3'>
 						<table class='tg' width='100%'>
 						    ";
 							$cont= 0;
@@ -294,19 +325,22 @@ $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-green'>UNIDADES M&Oacute;VILES</th>
-		  </tr>
-		  <tr>
-		    <td class='tg-031e'>";
+		    <th class='tg-e3zv back-green'>Cumplimiento</th>
+		    <th class='tg-e3zv back-green'>Incidencia</th>
+		  </tr>";
+		  
 		    $info_des_act = json_decode($obj_acta->info_des_um);
 		    foreach($info_des_act as $value){
+		    	
 		    	if($value->info_des_um != ''){
+		    		$codigo.="<tr><td class='tg-031e'>".$value->info_des_um."</td><td class='tg-031e'>";
 		    		if($value->alternativa == 1){
-		    			$codigo.= "(NC) ";
+		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
 		    			$cont_nc_um++;
 				    	$total_nc_um = $cont_nc_um;
 		    		}elseif($value->alternativa == 0){
-		    			$codigo.= "(NI) ";
+		    			$codigo.= "NI";
 		    			$normas_incumplidas++;
 		    			$cont_ni_um++;
 				    	$total_ni_um = $cont_ni_um;
@@ -314,13 +348,22 @@ $codigo.= "
 		    			$codigo.= "( - ) ";
 		    		}
 		    		 
-		    		$codigo.= $value->info_des_um."<br>";
-		    	}
+		    	$codigo.="</td>";
+				$codigo.="<td class='tg-031e'>";
+			    		
+				   	if($value->incidencia == 1){
+					   	$codigo.= "R";
+					}elseif($value->incidencia == 0){
+					  	$codigo.= "NO";
+					}else{
+					   	$codigo.= "( - )";
+					}
+				$codigo .="</td>";
+			    }
+			    $codigo.= "</tr>";	
 		    }
-		    $codigo.="</td>";	
-$codigo.= "</tr>
-		  <tr>
-		  	<td>
+$codigo.= "<tr>
+		  	<td colspan='3'>
 		   	<table class='tg' width='100%'>
 		    ";
 			$cont= 0;
@@ -347,33 +390,44 @@ $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-green'>DOCUMENTACI&Oacute;N DE SEGURIDAD</th>
-		  </tr>
-		  <tr>
-		    <td class='tg-031e'>";
+		    <th class='tg-e3zv back-green'>Cumplimiento</th>
+		    <th class='tg-e3zv back-green'>Incidencia</th>
+		  </tr>";
 		    $info_des_act = json_decode($obj_acta->info_des_doc);
 		    foreach($info_des_act as $value){
 		    	if($value->info_des_doc != ''){
+		    		$codigo.="<tr><td class='tg-031e'>".$value->info_des_doc."</td><td class='tg-031e'>";
 		    		if($value->alternativa == 1){
-		    			$codigo.= "(NC) ";
+		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
 		    			$cont_nc_ds++;
 				    	$total_nc_ds = $cont_nc_ds;
 		    		}elseif($value->alternativa == 0){
-		    			$codigo.= "(NI) ";
+		    			$codigo.= "NI";
 		    			$normas_incumplidas++;
 		    			$cont_ni_ds++;
 				    	$total_ni_ds = $cont_ni_ds;
 		    		}else{
 		    			$codigo.= "( - ) ";
 		    		}
-		    		 
-		    		$codigo.= $value->info_des_doc."<br>";
+
+		    		$codigo.="<td class='tg-031e'>";
+			    		
+				   	if($value->incidencia == 1){
+					   	$codigo.= "R";
+					}elseif($value->incidencia == 0){
+					  	$codigo.= "NO";
+					}else{
+					   	$codigo.= "( - )";
+					}
+
+		    		$codigo.="</td>";
 		    	}
 		    }
-		    $codigo.="</td>";	
-$codigo.= "</tr>
+		    $codigo.="</tr>";	
+$codigo.= "
 		  <tr>
-		  	<td>
+		  	<td colspan='3'>
 		   	<table class='tg' width='100%'>
 		    ";
 $cont= 0;
@@ -398,40 +452,45 @@ $codigo.= "	</tr>
 
 $codigo.= "
 		<table class='tg' width='100%'>
-		  <!-- <tr>
-			<th class='tg-e3zv back-green2'>
-			INCUMPLIMIENTOS AL RESESATE Y NORMAS DE SEGURIDAD Y SALUD EN EL TRABAJO
-			</th>
-	      </tr>-->
 		  <tr>
 		    <th class='tg-e3zv back-green'>CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO</th>
-		  </tr>
-		  <tr>
-		    <td class='tg-031e'>";
+		    <th class='tg-e3zv back-green'>Cumplimiento</th>
+		    <th class='tg-e3zv back-green'>Incidencia</th>
+		  </tr>";
 		    $info_des_act = json_decode($obj_acta->info_des_act);
 		    foreach($info_des_act as $value){
 		    	if($value->info_des_act != ''){
+		    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_act."</td><td class='tg-031e'>";
 		    		if($value->alternativa == 1){
-		    			$codigo.= "(NC) ";
+		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
 		    			$cont_nc_cu++;
 				    	$total_nc_cu = $cont_nc_cu;
 		    		}elseif($value->alternativa == 0){
-		    			$codigo.= "(NI) ";
+		    			$codigo.= "NI";
 		    			$normas_incumplidas++;
 		    			$cont_ni_cu++;
 				    	$total_ni_cu = $cont_ni_cu;
 		    		}else{
-		    			$codigo.= "( - ) ";
+		    			$codigo.= "( - )";
 		    		}
-		    		 
-		    		$codigo.= $value->info_des_act."<br>";
+
+		    		$codigo.="<td class='tg-031e'>";
+			    		
+				   	if($value->incidencia == 1){
+					   	$codigo.= "R";
+					}elseif($value->incidencia == 0){
+					  	$codigo.= "NO";
+					}else{
+					   	$codigo.= "( - )";
+					}
+		    		$codigo.="</td>";
 		    	}
+		    	$codigo.="</tr>";
 		    }
-		    $codigo.="</td>";	
-$codigo.= "</tr>
-		  <tr>
-		   	<td>
+		    	
+$codigo.= "<tr>
+		   	<td colspan='3'>
 		   	<table class='tg' width='100%'>
 		    ";
 			$cont= 0;
@@ -458,19 +517,20 @@ $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
 			<th class='tg-e3zv back-green'>ACTOS Y CONDICIONES ESTANDARES Y/O SUB-ESTANDARES</th>
-		  </tr>
-		  <tr>
-		    <td class='tg-031e'>";
+			<th class='tg-e3zv back-green'>Cumplimiento</th>
+		    <th class='tg-e3zv back-green'>Incidencia</th>
+		  </tr>";
 		    $info_des_cond = json_decode($obj_acta->info_des_cond);
 		    foreach($info_des_cond as $value){
 		    	if($value->info_des_cond != ''){
+		    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_cond."</td><td class='tg-031e'>";
 		    		if($value->alternativa == 1){
-		    			$codigo.= "(NC) ";
+		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
 		    			$cont_nc_cs++;
 				    	$total_nc_cs = $cont_nc_cs;
 		    		}elseif($value->alternativa == 0){
-		    			$codigo.= "(NI) ";
+		    			$codigo.= "NI";
 		    			$normas_incumplidas++;
 		    			$cont_ni_cs++;
 				    	$total_ni_cs = $cont_ni_cs;
@@ -478,13 +538,22 @@ $codigo.= "
 		    			$codigo.= "( - ) ";
 		    		}
 		    		 
-		    		$codigo.= $value->info_des_cond."<br>";
+		    		$codigo.="<td class='tg-031e'>";
+			    		
+				   	if($value->incidencia == 1){
+					   	$codigo.= "R";
+					}elseif($value->incidencia == 0){
+					  	$codigo.= "NO";
+					}else{
+					   	$codigo.= "( - )";
+					}
+		    		$codigo.="</td>";
 		    	}
+		    	$codigo.="</tr>";
 		    }
-		    $codigo.="</td>";
-$codigo.=" 	  </tr>
-		  <tr>
-		   	<td>
+		    
+$codigo.="<tr>
+		   	<td colspan='3'>
 		   	<table class='tg' width='100%'>
 		    ";
 			$cont= 0;
