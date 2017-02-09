@@ -218,11 +218,11 @@ $codigo.= "
 			    	$codigo.="<td class='tg-031e celd-align'>";
 		    		
 			    	if(isset($value->incidencia) && $value->incidencia == 1){
-				    	$codigo.= "R";
+				    	$codigo.= "Reiterativo";
 				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
-				    	$codigo.= "S";
+				    	$codigo.= "Subsanado";
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
-				    	$codigo.= "N";
+				    	$codigo.= "Nueva Insp./Obs.";
 				    }else{
 				    	$codigo.= "( - )";
 				    }
@@ -290,11 +290,11 @@ $codigo.= "
 				    	$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				    	if(isset($value->incidencia) && $value->incidencia == 1){
-							$codigo.= "R";
+							$codigo.= "Reiterativo";
 						}elseif(isset($value->incidencia) && $value->incidencia == 2){
-							$codigo.= "S";
+							$codigo.= "Subsanado";
 						}elseif(isset($value->incidencia) && $value->incidencia == 3){
-							$codigo.= "N";
+							$codigo.= "Nueva Insp./Obs.";
 						}else{
 							$codigo.= "( - )";
 						}
@@ -358,14 +358,14 @@ $codigo.= "
 				$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-						$codigo.= "R";
-					}elseif(isset($value->incidencia) && $value->incidencia == 2){
-						$codigo.= "S";
+				    	$codigo.= "Reiterativo";
+				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
+				    	$codigo.= "Subsanado";
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
-						$codigo.= "N";
-					}else{
-						$codigo.= "( - )";
-					}
+				    	$codigo.= "Nueva Insp./Obs.";
+				    }else{
+				    	$codigo.= "( - )";
+				    }
 				$codigo .="</td>";
 			    }
 			    $codigo.= "</tr>";	
@@ -422,14 +422,14 @@ $codigo.= "
 		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-						$codigo.= "R";
-					}elseif(isset($value->incidencia) && $value->incidencia == 2){
-						$codigo.= "S";
+				    	$codigo.= "Reiterativo";
+				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
+				    	$codigo.= "Subsanado";
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
-						$codigo.= "N";
-					}else{
-						$codigo.= "( - )";
-					}
+				    	$codigo.= "Nueva Insp./Obs.";
+				    }else{
+				    	$codigo.= "( - )";
+				    }
 
 		    		$codigo.="</td>";
 		    	}
@@ -489,14 +489,14 @@ $codigo.= "
 		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-						$codigo.= "R";
-					}elseif(isset($value->incidencia) && $value->incidencia == 2){
-						$codigo.= "S";
+				    	$codigo.= "Reiterativo";
+				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
+				    	$codigo.= "Subsanado";
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
-						$codigo.= "N";
-					}else{
-						$codigo.= "( - )";
-					}
+				    	$codigo.= "Nueva Insp./Obs.";
+				    }else{
+				    	$codigo.= "( - )";
+				    }
 		    		$codigo.="</td>";
 		    	}
 		    	$codigo.="</tr>";
@@ -554,14 +554,14 @@ $codigo.= "
 		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-						$codigo.= "R";
-					}elseif(isset($value->incidencia) && $value->incidencia == 2){
-						$codigo.= "S";
+				    	$codigo.= "Reiterativo";
+				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
+				    	$codigo.= "Subsanado";
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
-						$codigo.= "N";
-					}else{
-						$codigo.= "( - )";
-					}
+				    	$codigo.= "Nueva Insp./Obs.";
+				    }else{
+				    	$codigo.= "( - )";
+				    }
 		    		$codigo.="</td>";
 		    	}
 		    	$codigo.="</tr>";
