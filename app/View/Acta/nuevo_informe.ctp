@@ -384,8 +384,10 @@ tinymce.init({
 														</td>
 														<td>
 															<select class="form-control select_re_epp" name= "data[Acta][cumplimiento_epp][<?php echo $i; ?>][incidencia]">
-																<option value="2">--</option>
-																<option value="1">SI</option>
+																<option value="4">--</option>
+																<option value="3">N - Nueva Insp./Obs.</option>
+																<option value="2">S - Subsanado</option>
+																<option value="1">R - Reiterativo</option>
 																<option value="0">NO</option>													
 															</select>
 														</td>
@@ -484,8 +486,10 @@ tinymce.init({
 														</td>
 														<td>
 															<select class="form-control select_re_sd" name= "data[Acta][cumplimiento_sd][<?php echo $i; ?>][incidencia]">
-																<option value="2">--</option>
-																<option value="1">SI</option>
+																<option value="4">--</option>
+																<option value="3">N - Nueva Insp./Obs.</option>
+																<option value="2">S - Subsanado</option>
+																<option value="1">R - Reiterativo</option>
 																<option value="0">NO</option>
 															</select>
 														</td>
@@ -583,8 +587,10 @@ tinymce.init({
 														</td>
 														<td>
 															<select class="form-control select_re_um" name= "data[Acta][cumplimiento_um][<?php echo $i; ?>][incidencia]">
-																<option value="2">--</option>
-																<option value="1">SI</option>
+																<option value="4">--</option>
+																<option value="3">N - Nueva Insp./Obs.</option>
+																<option value="2">S - Subsanado</option>
+																<option value="1">R - Reiterativo</option>
 																<option value="0">NO</option>
 															</select>
 														</td>
@@ -682,8 +688,10 @@ tinymce.init({
 														</td>
 														<td>
 															<select class="form-control select_re_ds" name= "data[Acta][cumplimiento_ds][<?php echo $i; ?>][incidencia]">
-																<option value="2">--</option>
-																<option value="1">SI</option>
+																<option value="4">--</option>
+																<option value="3">N - Nueva Insp./Obs.</option>
+																<option value="2">S - Subsanado</option>
+																<option value="1">R - Reiterativo</option>
 																<option value="0">NO</option>
 															</select>
 														</td>
@@ -781,8 +789,10 @@ tinymce.init({
 														</td>
 														<td>
 															<select class="form-control select_re_cp" name= "data[Acta][cumplimiento_act][<?php echo $i; ?>][incidencia]">
-																<option value="2">--</option>
-																<option value="1">SI</option>
+																<option value="4">--</option>
+																<option value="3">N - Nueva Insp./Obs.</option>
+																<option value="2">S - Subsanado</option>
+																<option value="1">R - Reiterativo</option>
 																<option value="0">NO</option>
 															</select>
 														</td>
@@ -879,8 +889,10 @@ tinymce.init({
 														</td>
 														<td>
 															<select class="form-control select_re_as" name= "data[Acta][cumplimiento_cond][<?php echo $i; ?>][incidencia]">
-																<option value="2">--</option>
-																<option value="1">SI</option>
+																<option value="4">--</option>
+																<option value="3">N - Nueva Insp./Obs.</option>
+																<option value="2">S - Subsanado</option>
+																<option value="1">R - Reiterativo</option>
 																<option value="0">NO</option>
 															</select>
 														</td>

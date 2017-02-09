@@ -64,8 +64,8 @@ img { border:1px solid green}
 $codigo.= "<div class='pie-pag'><hr>";
 $codigo.= "<table class='tg' width='100%' style='border:0px;'>";
 $codigo.= "<tr><td style='border:0px;font-size:11px;padding: 0px 5px; width:68%'><strong>Copyright © Todos los Derechos Reservados</strong></td>
-				<td style='border:0px;font-size:11px;padding: 0px 5px;text-align:right;'><strong>M&M Ingeniería Obras y Servicios EIRL</strong></td></tr>";
-$codigo.= "<tr><td style='border:0px;font-size:11px;padding: 0px 5px;'><strong>Email: mym.ingenieria@mym-iceperu.com</strong></td>
+				<td style='border:0px;font-size:11px;padding: 0px 5px;text-align:right;'><strong>Email: mym.ingenieria@mym-iceperu.com</strong></td></tr>";
+$codigo.= "<tr><td style='border:0px;font-size:11px;padding: 0px 5px;'><strong>M&M Ingeniería Obras y Servicios EIRL</strong></td>
 				<td style='border:0px;font-size:11px;padding: 0px 5px;text-align:right;'><strong>Web: www.mym-iceperu.com</strong></td></tr>";
 $codigo.= "</table>";
 $codigo.= "</div>";
@@ -89,8 +89,8 @@ $codigo.= "<div class='head-pag'>
 			<table class='tg tg-031eF back-gray' width='100%' style='margin-bottom:-10px'>
 			<tr>
 			    <td style='text-align:center' class='tg-031e'><strong>Versión Anterior: 00/2015-M001</strong></td>
-			    <td style='text-align:center' class='aling-left'><strong>Mod. Versión: JAMM</strong></td>
-			    <td style='text-align:center' class='tg-031e'><strong>Fecha Mod: ".date('d/m/Y',strtotime($obj_acta->getAttr('modified')))."</strong></td>
+			    <td style='text-align:center' class='aling-left'><strong>Modificaci&oacute;n Versión: JAMM</strong></td>
+			    <td style='text-align:center' class='tg-031e'><strong>Fecha Modificaci&oacute;n: ".date('d/m/Y',strtotime(($obj_acta->getAttr('modified')==''?$obj_acta->getAttr('fecha'):$obj_acta->getAttr('modified'))))."</strong></td>
 			  </tr>
 			</table>
 			<br>
@@ -201,7 +201,7 @@ $codigo.= "
 
 		    foreach($info_des_act as $value){
 		    	if($value->info_des_epp != ''){
-		    	$codigo.= "<tr><td class='tg-031e'>".$value->info_des_epp."</td><td class='tg-031e celd-align'>";
+		    	$codigo.= "<tr><td class='tg-031e' style='text-align: justify;'>".$value->info_des_epp."</td><td class='tg-031e celd-align'>";
 		    	
 			    	if($value->alternativa == 1){
 			    		$codigo.= "NC";
@@ -219,8 +219,10 @@ $codigo.= "
 		    		
 			    	if(isset($value->incidencia) && $value->incidencia == 1){
 				    	$codigo.= "R";
-				    }elseif(isset($value->incidencia) && $value->incidencia == 0){
-				    	$codigo.= "NO";
+				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
+				    	$codigo.= "S";
+					}elseif(isset($value->incidencia) && $value->incidencia == 3){
+				    	$codigo.= "N";
 				    }else{
 				    	$codigo.= "( - )";
 				    }
@@ -269,7 +271,7 @@ $codigo.= "
 			    foreach($info_des_act as $value){
 
 			    	if($value->info_des_se_de != ''){
-			    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_se_de."</td><td class='tg-031e celd-align'>";
+			    		$codigo.= "<tr><td class='tg-031e' style='text-align: justify;'>".$value->info_des_se_de."</td><td class='tg-031e celd-align'>";
 				    	if($value->alternativa == 1){
 				    		$codigo.= "NC";
 				    		$normas_cumplidas++;
@@ -288,12 +290,14 @@ $codigo.= "
 				    	$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				    	if(isset($value->incidencia) && $value->incidencia == 1){
-					    	$codigo.= "R";
-					    }elseif(isset($value->incidencia) && $value->incidencia == 0){
-					    	$codigo.= "NO";
-					    }else{
-					    	$codigo.= "( - )";
-					    }
+							$codigo.= "R";
+						}elseif(isset($value->incidencia) && $value->incidencia == 2){
+							$codigo.= "S";
+						}elseif(isset($value->incidencia) && $value->incidencia == 3){
+							$codigo.= "N";
+						}else{
+							$codigo.= "( - )";
+						}
 				    	$codigo .="</td>";
 			    	}
 			    	$codigo.= "</tr>";
@@ -335,7 +339,7 @@ $codigo.= "
 		    foreach($info_des_act as $value){
 		    	
 		    	if($value->info_des_um != ''){
-		    		$codigo.="<tr><td class='tg-031e'>".$value->info_des_um."</td><td class='tg-031e celd-align'>";
+		    		$codigo.="<tr><td class='tg-031e' style='text-align: justify;'>".$value->info_des_um."</td><td class='tg-031e celd-align'>";
 		    		if($value->alternativa == 1){
 		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
@@ -354,11 +358,13 @@ $codigo.= "
 				$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-					   	$codigo.= "R";
-					}elseif(isset($value->incidencia) && $value->incidencia == 0){
-					  	$codigo.= "NO";
+						$codigo.= "R";
+					}elseif(isset($value->incidencia) && $value->incidencia == 2){
+						$codigo.= "S";
+					}elseif(isset($value->incidencia) && $value->incidencia == 3){
+						$codigo.= "N";
 					}else{
-					   	$codigo.= "( - )";
+						$codigo.= "( - )";
 					}
 				$codigo .="</td>";
 			    }
@@ -398,7 +404,7 @@ $codigo.= "
 		    $info_des_act = json_decode($obj_acta->info_des_doc);
 		    foreach($info_des_act as $value){
 		    	if($value->info_des_doc != ''){
-		    		$codigo.="<tr><td class='tg-031e'>".$value->info_des_doc."</td><td class='tg-031e celd-align'>";
+		    		$codigo.="<tr><td class='tg-031e' style='text-align: justify;'>".$value->info_des_doc."</td><td class='tg-031e celd-align'>";
 		    		if($value->alternativa == 1){
 		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
@@ -416,11 +422,13 @@ $codigo.= "
 		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-					   	$codigo.= "R";
-					}elseif(isset($value->incidencia) && $value->incidencia == 0){
-					  	$codigo.= "NO";
+						$codigo.= "R";
+					}elseif(isset($value->incidencia) && $value->incidencia == 2){
+						$codigo.= "S";
+					}elseif(isset($value->incidencia) && $value->incidencia == 3){
+						$codigo.= "N";
 					}else{
-					   	$codigo.= "( - )";
+						$codigo.= "( - )";
 					}
 
 		    		$codigo.="</td>";
@@ -463,7 +471,7 @@ $codigo.= "
 		    $info_des_act = json_decode($obj_acta->info_des_act);
 		    foreach($info_des_act as $value){
 		    	if($value->info_des_act != ''){
-		    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_act."</td><td class='tg-031e celd-align'>";
+		    		$codigo.= "<tr><td class='tg-031e' style='text-align: justify;'>".$value->info_des_act."</td><td class='tg-031e celd-align'>";
 		    		if($value->alternativa == 1){
 		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
@@ -481,11 +489,13 @@ $codigo.= "
 		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-					   	$codigo.= "R";
-					}elseif(isset($value->incidencia) && $value->incidencia == 0){
-					  	$codigo.= "NO";
+						$codigo.= "R";
+					}elseif(isset($value->incidencia) && $value->incidencia == 2){
+						$codigo.= "S";
+					}elseif(isset($value->incidencia) && $value->incidencia == 3){
+						$codigo.= "N";
 					}else{
-					   	$codigo.= "( - )";
+						$codigo.= "( - )";
 					}
 		    		$codigo.="</td>";
 		    	}
@@ -519,14 +529,14 @@ $codigo.= "	</tr>
 $codigo.= "
 		<table class='tg' width='100%'>
 		  <tr>
-			<th class='tg-e3zv back-blue' width='65%'>ACTOS Y CONDICIONES ESTANDARES Y/O SUB-ESTANDARES</th>
+			<th class='tg-e3zv back-blue' width='65%'>CONDICIONES DE SEGURIDAD</th>
 			<th class='tg-e3zv back-blue'>Cumplimiento</th>
 		    <th class='tg-e3zv back-blue'>Incidencia</th>
 		  </tr>";
 		    $info_des_cond = json_decode($obj_acta->info_des_cond);
 		    foreach($info_des_cond as $value){
 		    	if($value->info_des_cond != ''){
-		    		$codigo.= "<tr><td class='tg-031e'>".$value->info_des_cond."</td><td class='tg-031e celd-align'>";
+		    		$codigo.= "<tr><td class='tg-031e' style='text-align: justify;'>".$value->info_des_cond."</td><td class='tg-031e celd-align'>";
 		    		if($value->alternativa == 1){
 		    			$codigo.= "NC";
 		    			$normas_cumplidas++;
@@ -544,11 +554,13 @@ $codigo.= "
 		    		$codigo.="<td class='tg-031e celd-align'>";
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-					   	$codigo.= "R";
-					}elseif(isset($value->incidencia) && $value->incidencia == 0){
-					  	$codigo.= "NO";
+						$codigo.= "R";
+					}elseif(isset($value->incidencia) && $value->incidencia == 2){
+						$codigo.= "S";
+					}elseif(isset($value->incidencia) && $value->incidencia == 3){
+						$codigo.= "N";
 					}else{
-					   	$codigo.= "( - )";
+						$codigo.= "( - )";
 					}
 		    		$codigo.="</td>";
 		    	}
