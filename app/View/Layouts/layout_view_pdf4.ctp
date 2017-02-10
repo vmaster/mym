@@ -290,7 +290,7 @@ $codigo.= "
 						}elseif(isset($value->incidencia) && $value->incidencia == 3){
 							$codigo.= "<b>(Nueva Insp./Obs.)</b>";
 						}else{
-							$codigo.= "( - )";
+							$codigo.= "";// change ( - )
 						}
 						$codigo.="<br>";
 			    	}
@@ -357,7 +357,7 @@ $codigo.= "
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
 				    	$codigo.= "<b>(Nueva Insp./Obs.)</b>";
 				    }else{
-				    	$codigo.= "( - )";
+				    	$codigo.= "";// change ( - )
 				    }
 				$codigo .="<br>";
 			    }
@@ -421,7 +421,7 @@ $codigo.= "
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
 				    	$codigo.= "<b>(Nueva Insp./Obs.)</b>";
 				    }else{
-				    	$codigo.= "<b>( - )</b>";
+				    	$codigo.= "";// change ( - )
 				    }
 
 		    		$codigo.="<br>";
@@ -488,7 +488,7 @@ $codigo.= "
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
 				    	$codigo.= "<b>(Nueva Insp./Obs.)</b>";
 				    }else{
-				    	$codigo.= "( - )";
+				    	$codigo.= "";// change ( - )
 				    }
 		    		$codigo.="<br>";
 		    	}
@@ -554,7 +554,7 @@ $codigo.= "
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
 				    	$codigo.= " <b>(Nueva Insp./Obs.)</b>";
 				    }else{
-				    	$codigo.= "( - )";
+				    	$codigo.= "";// change ( - )
 				    }
 		    		$codigo.="<br>";
 		    	}
