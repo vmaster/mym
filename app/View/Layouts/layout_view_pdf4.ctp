@@ -545,10 +545,14 @@ $codigo.= "
 		    			$codigo.= "( - ) ";
 		    		}
 		    		
+		    		$codigo.= $value->info_des_cond." ...... ";
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
+				    	$codigo.= " <b>(Reiterativo)</b>";
 				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
+				    	$codigo.= " <b>(Subsanado)</b>";
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
+				    	$codigo.= " <b>(Nueva Insp./Obs.)</b>";
 				    }else{
 				    	$codigo.= "( - )";
 				    }
