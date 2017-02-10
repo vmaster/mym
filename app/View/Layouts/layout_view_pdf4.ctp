@@ -212,16 +212,16 @@ $codigo.= "
 			    	}else{
 			    		$codigo.= "( - ) ";
 			    	}
-			    	$codigo.= $value->info_des_epp." ...... ";
+			    	$codigo.= $value->info_des_epp;
 		    		
 			    	if(isset($value->incidencia) && $value->incidencia == 1){
-				    	$codigo.= "<b>(Reiterativo)</b>";
+				    	$codigo.= " ...... <b>(Reiterativo)</b>";
 				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
-				    	$codigo.= "<b>(Subsanado)</b>";
+				    	$codigo.= " ...... <b>(Subsanado)</b>";
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
-				    	$codigo.= "<b>(Nueva Insp./Obs.)</b>";
+				    	$codigo.= " ...... <b>(Nueva Insp./Obs.)</b>";
 				    }else{
-				    	$codigo.= "( - )";
+				    	$codigo.= ""; // change ( - )
 				    }
 				    $codigo.="<br>";
 		    	}
@@ -281,14 +281,14 @@ $codigo.= "
 				    		$codigo.= "( - ) ";
 				    	}
 				    	
-					    $codigo.= $value->info_des_se_de." ...... ";
+					    $codigo.= $value->info_des_se_de;
 			    		
 				    	if(isset($value->incidencia) && $value->incidencia == 1){
-							$codigo.= "<b>(Reiterativo)</b>";
+							$codigo.= " ...... <b>(Reiterativo)</b>";
 						}elseif(isset($value->incidencia) && $value->incidencia == 2){
-							$codigo.= "<b>(Subsanado)</b>";
+							$codigo.= " ...... <b>(Subsanado)</b>";
 						}elseif(isset($value->incidencia) && $value->incidencia == 3){
-							$codigo.= "<b>(Nueva Insp./Obs.)</b>";
+							$codigo.= " ...... <b>(Nueva Insp./Obs.)</b>";
 						}else{
 							$codigo.= "";// change ( - )
 						}
@@ -348,14 +348,14 @@ $codigo.= "
 		    			$codigo.= "( - ) ";
 		    		}
 		    		 
-		    		$codigo.=$value->info_des_um." ...... ";
+		    		$codigo.=$value->info_des_um;
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-				    	$codigo.= "<b>(Reiterativo)</b>";
+				    	$codigo.= " ...... <b>(Reiterativo)</b>";
 				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
-				    	$codigo.= "<b>(Subsanado)</b>";
+				    	$codigo.= " ...... <b>(Subsanado)</b>";
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
-				    	$codigo.= "<b>(Nueva Insp./Obs.)</b>";
+				    	$codigo.= " ...... <b>(Nueva Insp./Obs.)</b>";
 				    }else{
 				    	$codigo.= "";// change ( - )
 				    }
@@ -412,14 +412,14 @@ $codigo.= "
 		    			$codigo.= "( - )";
 		    		}
 
-		    		$codigo.= $value->info_des_doc." ...... ";
+		    		$codigo.= $value->info_des_doc;
 
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-				    	$codigo.= "<b>(Reiterativo)</b>";
+				    	$codigo.= " ...... <b>(Reiterativo)</b>";
 				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
-				    	$codigo.= "<b>(Subsanado)</b>";
+				    	$codigo.= " ...... <b>(Subsanado)</b>";
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
-				    	$codigo.= "<b>(Nueva Insp./Obs.)</b>";
+				    	$codigo.= " ...... <b>(Nueva Insp./Obs.)</b>";
 				    }else{
 				    	$codigo.= "";// change ( - )
 				    }
@@ -479,14 +479,14 @@ $codigo.= "
 		    			$codigo.= "( - ) ";
 		    		}
 
-		    		$codigo.= $value->info_des_act." ...... ";
+		    		$codigo.= $value->info_des_act;
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-				    	$codigo.= "<b>(Reiterativo)</b>";
+				    	$codigo.= " ...... <b>(Reiterativo)</b>";
 				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
-				    	$codigo.= "<b>(Subsanado)</b>";
+				    	$codigo.= " ...... <b>(Subsanado)</b>";
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
-				    	$codigo.= "<b>(Nueva Insp./Obs.)</b>";
+				    	$codigo.= " ...... <b>(Nueva Insp./Obs.)</b>";
 				    }else{
 				    	$codigo.= "";// change ( - )
 				    }
@@ -545,14 +545,14 @@ $codigo.= "
 		    			$codigo.= "( - ) ";
 		    		}
 		    		
-		    		$codigo.= $value->info_des_cond." ...... ";
+		    		$codigo.= $value->info_des_cond;
 			    		
 				   	if(isset($value->incidencia) && $value->incidencia == 1){
-				    	$codigo.= " <b>(Reiterativo)</b>";
+				    	$codigo.= " ...... <b>(Reiterativo)</b>";
 				    }elseif(isset($value->incidencia) && $value->incidencia == 2){
-				    	$codigo.= " <b>(Subsanado)</b>";
+				    	$codigo.= " ...... <b>(Subsanado)</b>";
 					}elseif(isset($value->incidencia) && $value->incidencia == 3){
-				    	$codigo.= " <b>(Nueva Insp./Obs.)</b>";
+				    	$codigo.= " ...... <b>(Nueva Insp./Obs.)</b>";
 				    }else{
 				    	$codigo.= "";// change ( - )
 				    }
