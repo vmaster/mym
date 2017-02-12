@@ -50,12 +50,12 @@ tinymce.init({
 												</div>
 											</td>
 											<td><?php echo utf8_encode('Código:');?></td>
-											<td><?php echo $this->Form->input('codigo', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>'M001-SST')); ?>
+											<td><?php echo $this->Form->input('codigo', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>'M001-SST/MA')); ?>
 											</td>
 										</tr>
 										<tr>
 											<td><?php echo utf8_encode('Versión:'); ?></td>
-											<td><?php echo $this->Form->input('version', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>'00/2015-M001')); ?>
+											<td><?php echo $this->Form->input('version', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>'00/2017-M001')); ?>
 											</td>
 										</tr>
 										<tr>
@@ -179,7 +179,8 @@ tinymce.init({
 
 	<div class="panel panel-primary">
         <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" aria-expanded="false" style="color: white;">IMPLEMENTOS DE PROTECCI&Oacute;N PERSONAL / UNIDADES M&Oacute;VILES</a>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" aria-expanded="false" style="color: white;">DETALLE DE PERSONAL Y UNIDADES M&Oacute;VILES (EPP/EQUIPAMIENTO)
+</a>
         </div>
         <div id="collapseTwo" class="panel-collapse in">
 	        <div class="panel-body">
@@ -276,8 +277,7 @@ tinymce.init({
 												</th>
 												<th><?php echo utf8_encode('N° de Placa'); ?></th>
 												<th><?php echo utf8_encode('Tipo Vehículo'); ?></th>
-												<th style="vertical-align: middle; text-align: center;">Norma
-													Incumplica (Ver parte porterior de la hoja)</th>
+												<th style="vertical-align: middle; text-align: center;">C&oacute;digos de Normas Incumplidas</th>
 											</tr>
 										</thead>
 										<?php 
@@ -331,7 +331,7 @@ tinymce.init({
 		<div class="col-md-12">
 			<div class="panel panel-primary">
                 <div class="panel-heading">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false" style="color: white;">NIVEL DE CUMPLIMIENTO</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false" style="color: white;">NIVEL DE CUMPLIMIENTO E INCIDENCIA (PROCEDIMIENTOS DE TRABAJO SEGURO)</a>
                 </div>
                 <div id="collapseThree" class="panel-collapse in">
 	                <div class="panel-body">
@@ -346,7 +346,7 @@ tinymce.init({
 	                        </li>
 	                        <li class=""><a href="#settings-pills2" data-toggle="tab">CUMPLIMIENTO DEL PROCEDIMIENTO</a>
 	                        </li>
-	                        <li class=""><a href="#settings-pills3" data-toggle="tab">ACTOS Y CONDICIONES</a>
+	                        <li class=""><a href="#settings-pills3" data-toggle="tab">CONDICIONES DE SEGURIDAD</a>
 	                        </li>
 	                    </ul>
 
@@ -866,7 +866,7 @@ tinymce.init({
 												<thead>
 													<tr>
 														<th
-															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('ACTOS Y CONDICIONES SUBESTÁNDARES') ?>
+															style="vertical-align: middle; text-align: center;width:85%"><?php echo utf8_encode('CONDICIONES DE SEGURIDAD') ?>
 														</th>
 														<th>
 															Cumplimiento
@@ -1149,6 +1149,12 @@ tinymce.init({
 			</button>
 		</div>
 	</div>
+	<br>
+
+	<div class="row" style="text-align: center; color:#0489B1;height: 16px;"><div style='border:0px;font-size:11px;padding: 0px 5px;'><strong>Copyright © Todos los Derechos Reservados</strong></div></div>
+
+	<div class="row" style="text-align: center; color:#0489B1;"><div style='border:0px;font-size:11px;padding: 0px 5px;'><strong>M&M Ingeniería Obras y Servicios EIRL</strong></div></div>
+
 	<?php echo $this->Form->end(); ?>
 <hr>
 </div>
