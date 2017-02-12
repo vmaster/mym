@@ -87,7 +87,7 @@
 				</button>
 				<a class="navbar-brand" href="<?= ENV_WEBROOT_FULL_URL; ?>" style="padding:5px 5px">
 					<div style="font-size:19px">GISEMM</div>
-					<div style="font-size: 11px;line-height: 17px;font-weight: 100;">Gesti&oacute;n de Ingenier&iacute;a y Sostenibilidad empresarial M&M</div>
+					<div style="font-size: 11px;line-height: 15px;font-weight: 100;padding: 5px">Gesti&oacute;n de Ingenier&iacute;a y Sostenibilidad empresarial M&M</div>
 				</a>
 			</div>
 			<div
