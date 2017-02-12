@@ -48,6 +48,30 @@
 			        ?>
 		        </select>
 			</div>
+			<div class="span3 col-md-3 col-sm-6 col-xs-6">
+				<label><?php echo __('Estado'); ?> </label>
+				<select name = "data[User][estado]" class='form-control'>
+			        <?php 
+							if (isset($obj_user)){
+								echo "<option value = ".$obj_user->getAttr('estado')." selected='selected'>";
+								if($obj_user->getAttr('estado') == 1){ 
+									echo __('ACTIVO')."</option>";
+									echo "<option value = 0>".__('INACTIVO')."</option>";
+								}else{ 
+									echo __('INACTIVO')."</option>";
+									echo "<option value = 1>".__('ACTIVO')."</option>";
+								}
+							}else{
+							?>
+							<option value= 1>
+								<?php echo __('ACTIVO'); ?>
+							</option>
+							<option value= 0>
+								<?php echo __('INACTIVO'); ?>
+							</option>
+					<?php }  ?>
+		        </select>
+			</div>
 		</div><br>
 		<div class="row">
 			<div class="span3 col-md-3 col-sm-6 col-xs-6">

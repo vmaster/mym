@@ -70,18 +70,18 @@ App::uses('AppModel','Model');
     	return $arr_obj_user;
     }
     
-    public function listFindUsers($order_by='User.created', $search_username='',$order='DESC', $start=0, $per_page=10) {
+    public function listFindUsers($order_by='User.estado', $search_username='',$order='DESC', $start=0, $per_page=10) {
     	$arr_obj_user = $this->findObjects('all',array(
     			'conditions'=>array(
     					'AND' => array(
     							'User.username LIKE'=> '%'.$search_username.'%',
-    							'User.estado != ' => 0
+    							//'User.estado != ' => 0
     					)
     			),
     			//'page'=> $start,
     			'limit'=> $per_page,
     			'offset'=> $start,
-    			'order'=> array($order_by.' '.$order),
+    			'order'=> array('User.estado DESC'),
     	)
     	);
     	return $arr_obj_user;
