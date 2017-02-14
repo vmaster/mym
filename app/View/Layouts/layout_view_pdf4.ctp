@@ -90,7 +90,7 @@ $codigo.= "<div class='head-pag'>
 			<tr>
 			    <td style='text-align:center' class='tg-031e'><strong>Versión Anterior: 00/2015-M001</strong></td>
 			    <td style='text-align:center' class='aling-left'><strong>Modificaci&oacute;n Versión: JAMM</strong></td>
-			    <td style='text-align:center' class='tg-031e'><strong>Fecha Modificaci&oacute;n: ".date('d/m/Y',strtotime(($obj_acta->getAttr('modified')==''?$obj_acta->getAttr('fecha'):$obj_acta->getAttr('modified'))))."</strong></td>
+			    <td style='text-align:center' class='tg-031e'><strong>Fecha Modificaci&oacute;n: 08/02/2017</strong></td>
 			  </tr>
 			</table>
 			<br>
