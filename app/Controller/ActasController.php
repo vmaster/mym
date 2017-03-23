@@ -2328,5 +2328,170 @@ class ActasController extends AppController{
 		}
 		return json_encode(array('success'=>true,'normas'=> array('normas_ipp' => $normas_ipp, 'normas_sd'=>$normas_sd, 'normas_um'=>$normas_um, 'normas_ds'=>$normas_ds, 'normas_cp'=>$normas_cp, 'normas_ac'=>$normas_ac)));
 	}
+
+	public function ajax_export_report_pdf (){
+		ini_set('memory_limit', '512M');
+		$this->layout = "layout_export_report_pdf";
+
+		$this->loadModel('Acta');
+
+		$fec_inicio = $_POST['fec_inicio'];
+		$fec_fin = $_POST['fec_fin'];
+		$empresa = $_POST['empresa'];
+		$uunn = $_POST['uunn'];
+		$img = $_POST['graf'];
+
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+	
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+		
+		if(isset($empresa)){
+			$empresa = $empresa;
+		}else{
+			$empresa = '';
+		}
+		
+		if(isset($uunn)){
+			$uunn = $uunn;
+		}else{
+			$uunn = '';
+		}
+
+		if(isset($graf)){
+			$graf = $graf;
+		}else{
+			$graf = '';
+		}
+
+		$data = str_replace(' ', '+', $this->request->data['graf']);
+		$data_64= base64_decode($data);
+		$filename = date('ymdhis').'.png';
+		$im = imagecreatefromstring($data_64);
+
+		// Save image in the specified location
+		imagepng($im, APP.WEBROOT_DIR.'/files/pdf_informes/'.$filename);
+		//imagedestroy($im);
+
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+		$list_total_ni_nc = $this->Acta->listTotalNiNc($fec_inicio_format, $fec_fin_format, $empresa, $uunn);
+		
+		$sum_nc_epp = 0 ; $sum_ni_epp= 0; $sum_nc_sd= 0; $sum_ni_sd= 0; $sum_nc_um= 0; $sum_ni_um=0; $sum_nc_doc=0; $sum_ni_doc=0; $sum_nc_cp= 0;
+		$sum_ni_cp = 0; $sum_nc_ac= 0; $sum_ni_ac= 0;
+
+		foreach ($list_total_ni_nc as $row_acta):
+			if($row_acta->getAttr('info_des_epp') != ""){
+				$info_des_epp = json_decode($row_acta->getAttr('info_des_epp'));
+				foreach($info_des_epp as $value){
+					if($value->info_des_epp != ""){
+						if($value->alternativa == 1){
+							$sum_nc_epp++;
+						}elseif($value->alternativa == 0){
+							$sum_ni_epp++;
+						}else{
+
+						}
+					}
+				}
+			}
+
+			if($row_acta->getAttr('info_des_se_de') != ""){
+				$info_des_se_de = json_decode($row_acta->getAttr('info_des_se_de'));
+				foreach($info_des_se_de as $value):
+					if($value->info_des_se_de != ""){
+						if($value->alternativa == 1){
+							$sum_nc_sd++;
+						}elseif($value->alternativa == 0){
+							$sum_ni_sd++;
+						}else{
+							
+						}
+					}
+				endforeach;
+			}
+				
+
+			if($row_acta->getAttr('info_des_um') != ""){
+				$info_des_um = json_decode($row_acta->getAttr('info_des_um'));
+				foreach($info_des_um as $value):
+					if($value->info_des_um != ""){
+						if($value->alternativa == 1){
+							$sum_nc_um++;
+						}elseif($value->alternativa == 0){
+							$sum_ni_um++;
+						}else{
+							
+						}
+					}
+				endforeach;
+			}
+
+			if($row_acta->getAttr('info_des_doc') != ""){
+				$info_des_doc = json_decode($row_acta->getAttr('info_des_doc'));
+				foreach($info_des_doc as $value):
+					if($value->info_des_doc != ""){
+						if($value->alternativa == 1){
+							$sum_nc_doc++;
+						}elseif($value->alternativa == 0){
+							$sum_ni_doc++;
+						}else{
+							
+						}
+					}
+				endforeach;
+			}
+
+			if($row_acta->getAttr('info_des_act') != ""){ //cambiar abreviatura "ac" x cp
+				$info_des_act = json_decode($row_acta->getAttr('info_des_act'));
+				foreach($info_des_act as $value):
+					if($value->info_des_act != ""){
+						if($value->alternativa == 1){
+							$sum_nc_cp++; 
+						}elseif($value->alternativa == 0){
+							$sum_ni_cp++;
+						}else{
+							
+						}
+					}
+				endforeach;
+			}
+
+			if($row_acta->getAttr('info_des_cond') != ""){ 
+				$info_des_cond = json_decode($row_acta->getAttr('info_des_cond'));
+				foreach($info_des_cond as $value):
+					if($value->info_des_cond != ""){
+						if($value->alternativa == 1){
+							$sum_nc_ac++; 
+						}elseif($value->alternativa == 0){
+							$sum_ni_ac++;
+						}else{
+							
+						}
+					}
+				endforeach;
+			}
+
+		endforeach;
+
+		$sum_normas_cumplidas = round($sum_nc_epp + $sum_nc_sd + $sum_nc_um + $sum_nc_doc + $sum_nc_cp + $sum_nc_ac);
+		$sum_normas_incumplidas = round($sum_ni_epp + $sum_ni_sd + $sum_ni_um + $sum_ni_doc + $sum_ni_cp + $sum_ni_ac);
+		$suma_total_normas = $sum_normas_cumplidas + $sum_normas_incumplidas;
+
+		$porc_nc = round(($sum_normas_cumplidas * 100) / $suma_total_normas);
+		$porc_ni = round(($sum_normas_incumplidas * 100) / $suma_total_normas);
+
+		$this->set(compact('filename','fec_inicio_format','fec_fin_format'));
+		$this->set(compact('sum_nc_epp', 'sum_nc_sd', 'sum_nc_um', 'sum_nc_doc', 'sum_nc_cp', 'sum_nc_ac'));
+		$this->set(compact('sum_ni_epp', 'sum_ni_sd', 'sum_ni_um', 'sum_ni_doc', 'sum_ni_cp', 'sum_ni_ac'));
+		$this->set(compact('sum_normas_cumplidas', 'sum_normas_incumplidas', 'suma_total_normas', 'porc_nc', 'porc_ni'));
+	}
 		
 }

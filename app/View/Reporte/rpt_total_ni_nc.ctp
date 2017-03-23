@@ -253,6 +253,19 @@
 
 		$( ".btn-consultar-report" ).click(function() {
 				ExecuteReport();
+				setTimeout(function(){
+  					var svg = document.getElementById('container-grafico').children[0].innerHTML;
+					canvg(document.getElementById('canvas'),svg);
+
+					//var canvas = new Canvas();
+					var img = canvas.toDataURL("image/png"); //img is data:image/png;base64
+					img = img.replace('data:image/png;base64,', '');
+
+					$('#id-name-graf').attr("value",img); //Agregamos la imagen base64 en un input oculto para luego enviarlo por Submit
+
+					$("#btn-generar-pdf").css("display", "block");
+				}, 2000);	
+				
 		});
 
 		/* Date Picker */
@@ -286,20 +299,21 @@
 	$fin= date('t');
 	$mes= date('m')."-".date('Y');
 	?>
+	<form method="post" action="<?= ENV_WEBROOT_FULL_URL; ?>actas/ajax_export_report_pdf">
 	<div class="row">
 		<div class="col-md-2 col-sm-6 col-xs-6">
 				<label><?php echo __('Fecha Inicio:');?></label> <input type="text"
-				name="txtBuscarFecIncioRep2" id="txtBuscarFecIncioRep2"
+				name="fec_inicio" id="txtBuscarFecIncioRep2"
 				class="form-control" value="<?php echo '01-'.$mes; ?>" placeholder="dd-mm-aaaa">
 		</div>
 		<div class="col-md-2 col-sm-6 col-xs-6">
 				<label><?php echo __('Fecha Fin:');?></label> <input type="text"
-				name="txtBuscarFecFinRep2" id="txtBuscarFecFinRep2"
+				name="fec_fin" id="txtBuscarFecFinRep2"
 				class="form-control" value="<?php echo date('d-m-Y'); ?>" placeholder="dd-mm-aaaa">
 		</div>
 		<div class="col-md-2 col-sm-6 col-xs-6">
 			<label><?php echo __('Empresa:');?></label>
-			<select class="cbo-rpte-empresas-select2 form-control" id="cbo-empresa-search">
+			<select class="cbo-rpte-empresas-select2 form-control" id="cbo-empresa-search" name="empresa">
 				<?php 
 				if (isset($list_all_empresas)){
 					echo "<option></option>";
@@ -312,7 +326,7 @@
 		</div>
 		<div class="col-md-2 col-sm-6 col-xs-6">
 			<label><?php echo __('UUNN:');?></label>
-			<select class="cbo-rpte-uunn-select2 form-control" id="cbo-uunn-search">
+			<select class="cbo-rpte-uunn-select2 form-control" id="cbo-uunn-search" name="uunn">
 				<?php 
 				if (isset($list_all_uunn)){
 					echo "<option></option>";
@@ -323,6 +337,7 @@
 				?>						
 			</select>
 		</div>
+		<input type="hidden" name="graf" id="id-name-graf" value=""/>
 		<div class="col-md-4 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-report"><?php echo __('Consultar');?></button>
 		</div>
@@ -331,12 +346,17 @@
 	
 	<div id="container-table"></div>
 	<div id="container-grafico" style="min-width: 400px; height: 500px; margin: 0 auto"></div>
+	<canvas id="canvas" style="display:none;"></canvas>
+	<p>
 	<center>
-		<div id="list-data-cant-info-uunn">
-		</div>
+		<button type="submit" class="btn btn-large btn-generar-pdf" id="btn-generar-pdf" style="display: block;"><?php echo __('Generar PDF');?></button>
 	</center>
+	</p>
+	<div id="list-data-cant-info-uunn">
+	</div>
 	<center>
 		<div id="list-data-total-ni-nc">
 		</div>
 	</center>
+	</form>
 </div>
