@@ -86,12 +86,12 @@ $codigo.= "<div class='head-pag'>
 			    <td class='tg-031e'><strong>Versi&oacute;n: 00/2017-M001</strong></td>
 			  </tr>
 			</table>
+			<br>
 			<table class='tg tg-031eF back-gray' width='100%' style='margin-bottom:-10px'>
 			<tr>
-			    <td style='text-align:center' class='tg-031e'><strong>Versión Anterior: 00/2015-M001</strong></td>
-			    <td style='text-align:center' class='aling-left'><strong>Modificaci&oacute;n Versión: JAMM</strong></td>
-			    <td style='text-align:center' class='tg-031e'><strong>Fecha Modificaci&oacute;n: 08/02/2017</strong></td>
-			  </tr>
+			    <td style='text-align:center' class='tg-031e'><strong>Fecha Inicio:</strong> ".$fec_inicio_format."</td>
+			    <td style='text-align:center' class='aling-left'><strong>Fecha Fin:</strong> ".$fec_fin_format."</td>   
+			 </tr>
 			</table>
 			<br>
 			</div>";
@@ -103,15 +103,19 @@ $codigo.= "<div class='head-pag'>
 			$porc_cp = ($sum_nc_cp+$sum_ni_cp>0)?round(($sum_nc_cp*100)/($sum_nc_cp+$sum_ni_cp)):0;
 			$porc_ac = ($sum_nc_ac+$sum_ni_ac>0)?round(($sum_nc_ac*100)/($sum_nc_ac+$sum_ni_ac)):0;
 
+			$codigo.= "<br><table class='tg tg-031eF ' width='40%'><tr><td><strong>EMPRESA:</strong></td><td>".$nombre_empresa."</td></tr>";
+			$codigo.= "<tr><td><strong>UUNN:</strong></td><td>".$nombre_uunn."</td></tr></table><br>";
+
 			$codigo.= "<table class='tg tg-031eF ' width='100%'>";
 			$codigo.= "<tr class='back-blue'><th colspan='8' style='text-align: center;'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
 			$codigo.= "<tr><td></td><td>EPP</td><td>SE</td><td>UM</td><td>DOC</td><td>CP</td><td>AC</td><td>TOTAL</td></tr>";
 			$codigo.= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>". $sum_nc_epp ."</td><td>" . $sum_nc_sd . "</td><td>" .$sum_nc_um. "</td><td>".$sum_nc_doc."</td><td>".$sum_nc_cp."</td><td>".$sum_nc_ac."</td><td>".$sum_normas_cumplidas."</td></tr>";
 			$codigo.="<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$sum_ni_epp."</td><td>".$sum_ni_sd."</td><td>".$sum_ni_um."</td><td>".$sum_ni_doc."</td><td>".$sum_ni_cp."</td><td>".$sum_ni_ac."</td><td>".$sum_normas_incumplidas."</td></tr>";
-			$codigo.="<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>".$porc_epp."%</td><td>".$porc_sd."%</td><td>".$porc_um."%</td><td>".$porc_doc."%</td><td>".$porc_cp."%</td><td>".$porc_ac."%</td><td>".round(($sum_normas_cumplidas * 100)/$suma_total_normas)."%</td></tr>
-			</table>";
+			$codigo.="<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>".$porc_epp."%</td><td>".$porc_sd."%</td><td>".$porc_um."%</td><td>".$porc_doc."%</td><td>".$porc_cp."%</td><td>".$porc_ac."%</td><td>";
+			
+			$porc_total = ($suma_total_normas>0)? round(($sum_normas_cumplidas * 100)/$suma_total_normas):0;
+			$codigo.= $porc_total."%</td></tr></table><br>";
 
-			$codigo.="<p>";
 			$codigo.= "<center><img src= '". ENV_WEBROOT_FULL_URL."files/pdf_informes/".$filename."' style='width: 1000px; heigh: 800px; border:0px;'/></center>";
 		
 //echo $codigo; exit();

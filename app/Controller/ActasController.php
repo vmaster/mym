@@ -2334,6 +2334,8 @@ class ActasController extends AppController{
 		$this->layout = "layout_export_report_pdf";
 
 		$this->loadModel('Acta');
+		$this->loadModel('Empresa');
+		$this->loadModel('UnidadesNegocio');
 
 		$fec_inicio = $_POST['fec_inicio'];
 		$fec_fin = $_POST['fec_fin'];
@@ -2370,6 +2372,24 @@ class ActasController extends AppController{
 		}else{
 			$graf = '';
 		}
+
+		$nombre_empresa = $this->Empresa->find('list', array(
+			'fields' => array('Empresa.nombre'), 
+			'conditions' => array(
+				'Empresa.id' => $empresa
+				)
+			));
+
+		$nombre_empresa = $nombre_empresa[$empresa];
+
+		$nombre_uunn = $this->UnidadesNegocio->find('list', array(
+			'fields' => array('UnidadesNegocio.descripcion'), 
+			'conditions' => array(
+				'UnidadesNegocio.id' => $uunn
+				)
+			));
+
+		$nombre_uunn = $nombre_uunn[$uunn];
 
 		$data = str_replace(' ', '+', $this->request->data['graf']);
 		$data_64= base64_decode($data);
@@ -2485,13 +2505,18 @@ class ActasController extends AppController{
 		$sum_normas_incumplidas = round($sum_ni_epp + $sum_ni_sd + $sum_ni_um + $sum_ni_doc + $sum_ni_cp + $sum_ni_ac);
 		$suma_total_normas = $sum_normas_cumplidas + $sum_normas_incumplidas;
 
-		$porc_nc = round(($sum_normas_cumplidas * 100) / $suma_total_normas);
-		$porc_ni = round(($sum_normas_incumplidas * 100) / $suma_total_normas);
+		if($suma_total_normas > 0){
+			$porc_nc = round(($sum_normas_cumplidas * 100) / $suma_total_normas);
+			$porc_ni = round(($sum_normas_incumplidas * 100) / $suma_total_normas);	
+		}else{
+			$porc_nc = 0;
+			$porc_ni = 0;
+		}
 
-		$this->set(compact('filename','fec_inicio_format','fec_fin_format'));
+		$this->set(compact('filename','fec_inicio_format','fec_fin_format','nombre_empresa','nombre_uunn','fec_inicio_format','fec_fin_format'));
 		$this->set(compact('sum_nc_epp', 'sum_nc_sd', 'sum_nc_um', 'sum_nc_doc', 'sum_nc_cp', 'sum_nc_ac'));
 		$this->set(compact('sum_ni_epp', 'sum_ni_sd', 'sum_ni_um', 'sum_ni_doc', 'sum_ni_cp', 'sum_ni_ac'));
-		$this->set(compact('sum_normas_cumplidas', 'sum_normas_incumplidas', 'suma_total_normas', 'porc_nc', 'porc_ni'));
+		$this->set(compact('sum_normas_cumplidas', 'sum_normas_incumplidas', 'suma_total_normas','porc_nc','porc_ni'));
 	}
 		
 }

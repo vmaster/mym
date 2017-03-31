@@ -349,7 +349,7 @@
 	<canvas id="canvas" style="display:none;"></canvas>
 	<p>
 	<center>
-		<button type="submit" class="btn btn-large btn-generar-pdf" id="btn-generar-pdf" style="display: block;"><?php echo __('Generar PDF');?></button>
+		<button type="submit" class="btn btn-large btn-generar-pdf" id="btn-generar-pdf" style="display: none;"><?php echo __('Generar PDF');?></button>
 	</center>
 	</p>
 	<div id="list-data-cant-info-uunn">
