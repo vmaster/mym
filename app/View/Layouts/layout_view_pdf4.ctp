@@ -226,33 +226,24 @@ $codigo.= "
 				    $codigo.="<br>";
 		    	}
 		    }
-$codigo.= "</td></tr>
-		  <tr>
-		   <td>
-		   	<table class='tg' width='100%'>
-		    ";
-			$cont= 0;
-			$codigo.="<tr>";
-			foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
-				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-						<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' width='190px' height='190px'>
-								<br>".$obj_foto_ipp->getAttr('observacion')."</td>";
-				$cont++;
-				if($cont == 3){
-					$codigo.="</tr>";
-					$codigo.="<tr>";
-					$cont = 0;
-				}
-			}
-			
-			
-$codigo.= "	</tr>
-			</table>
-		</td>
-		</tr>
-		</table>
-	</td>
-		<br>";
+$codigo.= "</td></tr></table>";
+
+$codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
+$cont= 0;
+$codigo.="<tr>";
+foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+			<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' width='190px' height='190px'>
+					<br>".$obj_foto_ipp->getAttr('observacion')."</td>";
+	$cont++;
+	if($cont == 3){
+		$codigo.="</tr></table>";
+		$codigo.="<table class='tg' width='100%'><tr>";
+		$cont = 0;
+	}
+}
+$codigo.= "	</tr></table></div><br>";
+
 $codigo.= "
 			<table class='tg' width='100%'>
 		  		<tr>
@@ -295,32 +286,27 @@ $codigo.= "
 						$codigo.="<br>";
 			    	}
 			    }
-$codigo.= "		
-				</td>
-				</tr>
-		  		<tr>
-		    		<td>
-						<table class='tg' width='100%'>
-						    ";
-							$cont= 0;
-							$codigo.="<tr>";
-							foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
-								$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-											<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='190px' height='190px'>
-											<br>".$obj_foto_sd->getAttr('observacion')."</td>";
-								$cont++;
-								if($cont == 3){
-									$codigo.="</tr>";
-									$codigo.="<tr>";
-									$cont = 0;
-								}
-							}
-		$codigo.= "			</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-		<br>";
+$codigo.= "</td>
+			</tr>
+			</table>";
+
+
+$codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
+$cont= 0;
+$codigo.="<tr>";
+foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='190px' height='190px'>
+				<br>".$obj_foto_sd->getAttr('observacion')."</td>";
+	$cont++;
+	if($cont == 3){
+		$codigo.="</tr></table>";
+		$codigo.="<table class='tg' width='100%'><tr>";
+		$cont = 0;
+	}
+}
+$codigo.= "	</tr></table></div><br>";
+
 
 $codigo.= "
 		<table class='tg' width='100%'>
@@ -362,31 +348,26 @@ $codigo.= "
 				$codigo .="<br>";
 			    }
 		    }
-$codigo.= "
-		  </td></tr>
-		  <tr>
-		  	<td>
-		   	<table class='tg' width='100%'>
-		    ";
-			$cont= 0;
-			$codigo.="<tr>";
-			foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
-				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-						  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' width='190px' height='190px'>
-						  <br>".$obj_foto_um->getAttr('observacion')."</td>";
-				$cont++;
-				if($cont == 3){
-					$codigo.="</tr>";
-					$codigo.="<tr>";
-					$cont = 0;
-				}
-			}
-$codigo.= "	</tr>
-			</table>
-		 </td>
-		</tr>
-		</table>
-<br>";
+$codigo.= "</td></tr>
+		</table>";
+
+
+$codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
+$cont= 0;
+$codigo.="<tr>";
+foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+			  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' width='190px' height='190px'>
+			  <br>".$obj_foto_um->getAttr('observacion')."</td>";
+	$cont++;
+	if($cont == 3){
+		$codigo.="</tr></table>";
+		$codigo.="<table class='tg' width='100%'><tr>";
+		$cont = 0;
+	}
+}
+$codigo.= "	</tr></table></div><br>";
+
 
 $codigo.= "
 		 <table class='tg' width='100%'>
@@ -428,32 +409,27 @@ $codigo.= "
 		    	}
 		    }
 		    	
-$codigo.= "
-		  </tr>
+$codigo.= "</tr>
 		  </td>
-		  <tr>
-		  	<td>
-		   	<table class='tg' width='100%'>
-		    ";
+		</table>";
+
+
+$codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
 $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoDoc as $key => $obj_foto_doc) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-						  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_doc/thumbnail/".$obj_foto_doc->getAttr('file_name')."' width='190px' height='190px'>
-						  <br>".$obj_foto_doc->getAttr('observacion')."</td>";
-				$cont++;
-				if($cont == 3){
-					$codigo.="</tr>";
-					$codigo.="<tr>";
-					$cont = 0;
-				}
+			  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_doc/thumbnail/".$obj_foto_doc->getAttr('file_name')."' width='190px' height='190px'>
+			  <br>".$obj_foto_doc->getAttr('observacion')."</td>";
+	$cont++;
+	if($cont == 3){
+		$codigo.="</tr></table>";
+		$codigo.="<table class='tg' width='100%'><tr>";
+		$cont = 0;
+	}
 }
-$codigo.= "	</tr>
-			</table>
-		 </td>
-		</tr>
-		</table>
-		<br>";
+$codigo.= "	</tr></table></div><br>";
+
 
 $codigo.= "
 		<table class='tg' width='100%'>
@@ -494,31 +470,27 @@ $codigo.= "
 		    	}
 		    }
 		    	
-$codigo.= " </td>
-		   </tr>
-		   <tr>
-		   	<td>
-		   	<table class='tg' width='100%'>
-		    ";
-			$cont= 0;
-			$codigo.="<tr>";
-			foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
-				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_as/thumbnail/".$obj_foto_as->getAttr('file_name')."' width='190px' height='190px'>
-							<br>".$obj_foto_as->getAttr('observacion')."</td>";
-				$cont++;
-				if($cont == 3){
-					$codigo.="</tr>";
-					$codigo.="<tr>";
-					$cont = 0;
-				}
-			}
-$codigo.= "	</tr>
-			</table>
-			</td>
+$codigo.= "</td>
 		  </tr>
-		</table>		
-<br>";
+		</table>";
+
+
+$codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
+$cont= 0;
+$codigo.="<tr>";
+foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_as/thumbnail/".$obj_foto_as->getAttr('file_name')."' width='190px' height='190px'>
+				<br>".$obj_foto_as->getAttr('observacion')."</td>";
+	$cont++;
+	if($cont == 3){
+		$codigo.="</tr></table>";
+		$codigo.="<table class='tg' width='100%'><tr>";
+		$cont = 0;
+	}
+}
+$codigo.= "	</tr></table></div><br>";
+
 
 $codigo.= "
 		<table class='tg' width='100%'>
@@ -560,31 +532,27 @@ $codigo.= "
 		    	}
 		    }
 		    
-$codigo.="	</td>
+$codigo.="</td>
 		  </tr>
-			<tr>
-		   	<td>
-		   	<table class='tg' width='100%'>
-		    ";
-			$cont= 0;
-			$codigo.="<tr>";
-			foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
-				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;' width='100%'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_cs/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='190px' height='190px'>
-							<br>".$obj_foto_cs->getAttr('observacion')."</td>";
-				$cont++;
-				if($cont == 3){
-					$codigo.="</tr>";
-					$codigo.="<tr>";
-					$cont = 0;
-				}
-			}
-$codigo.= "	</tr>
-			</table>
-			</td>
-		  </tr>
-		</table>
-<br>";
+		</table>";
+
+
+$codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
+$cont= 0;
+$codigo.="<tr>";
+foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;' width='100%'>
+				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_cs/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='190px' height='190px'>
+				<br>".$obj_foto_cs->getAttr('observacion')."</td>";
+	$cont++;
+	if($cont == 3){
+		$codigo.="</tr></table>";
+		$codigo.="<table class='tg' width='100%'><tr>";
+		$cont = 0;
+	}
+}
+$codigo.= "	</tr></table></div><br>";
+
 
 $codigo.="
 		<table class='tg salto-linea' width='100%'>
@@ -612,8 +580,10 @@ $codigo.="
 		  </tr>
 		  <tr>
 		   	<td>
-		   	<table class='tg' width='100%'>
-		    ";
+		  </tr></table>";
+
+		  
+		    $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
 			$cont= 0;
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoMed as $key => $obj_foto_med) {
@@ -622,18 +592,14 @@ $codigo.="
 							<br>".$obj_foto_med->getAttr('observacion')."</td>";
 				$cont++;
 				if($cont == 3){
-					$codigo.="</tr>";
-					$codigo.="<tr>";
+					$codigo.="</tr></table>";
+					$codigo.="<table class='tg' width='100%'><tr>";
 					$cont = 0;
 				}
 			}
-$codigo.= "	</tr>
-			</table>
-			</td>
-		  </tr>  		
-		</table>
-		<br>
-		";
+$codigo.= "	</tr></table></div><br>";
+
+
 	
 	$codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-size:8px;'>";
 	$codigo.= "<tr><th colspan=8 class='tg-e3zv back-blue'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
