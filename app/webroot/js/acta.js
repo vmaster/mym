@@ -1047,7 +1047,27 @@ function sumaAcumularNormas(){
 		});
 	}
 	loadAPlaca();
+
+	function loadTagsEmpresa(){
+		$(".cbo-rpte-empresas-select2").select2({
+			placeholder: "Empresa",
+			allowholder: true,
+			width: '100%'
+		})
+	}
+	loadTagsEmpresa();
+
+	function loadTagsUunn(){
+		$(".cbo-rpte-uunn-select2").select2({
+			placeholder: "Unidad de Negocio",
+			allowholder: true,
+			width: '100%'
+		})
+	}
+	loadTagsUunn();
 	
+
+
 	function loadEachTrabajador(){
 		$.each($('.cbo-trabajadores-select2'), function(index) {
 			index_input = (index + 1);

@@ -1236,7 +1236,7 @@ App::uses('AppModel','Model');
         16/09/2016
         Vladimir TM
     */
-    public function listTotalNiNc($fec_inicio, $fec_fin, $empresa, $uunn) {
+    public function listTotalNiNc($fec_inicio, $fec_fin, $array_empresas, $arrays_uunns) { //ES LA MISMA QUE USO , pARA LA GRFICA
 		
 		$conditions_filter = array();
 		
@@ -1246,14 +1246,41 @@ App::uses('AppModel','Model');
             $conditions_filter['Acta.fecha BETWEEN ? and ?'] = array($fec_inicio, $fec_fin);
         }
 
-        if(isset($empresa) && $empresa != ''){
-			$conditions_filter['Acta.empresa_id'] = $empresa;
+        if(isset($empresa) && count($array_empresas)>0){
+			$conditions_filter['Acta.empresa_id'] = $array_empresas;
 		}
 		
-		if(isset($uunn) && $uunn != ''){
-			$conditions_filter['Acta.uunn_id'] = $uunn;
+		if(isset($uunn) && count($arrays_uunns)>0){
+			$conditions_filter['Acta.uunn_id'] = $arrays_uunns;
 		}
-		
+		//debug($conditions_filter);exit(); 
+        $arr_obj_total_ni_nc = $this->findObjects('all',array(
+                'conditions'=>array($conditions_filter)
+            )
+        );
+
+    
+        return $arr_obj_total_ni_nc;
+    }
+
+    public function listTotalNiNc2($fec_inicio, $fec_fin, $array_empresas, $arrays_uunns) { //ES LA MISMA QUE USO , pARA LA GRFICA
+        
+        $conditions_filter = array();
+        
+        $conditions_filter['Acta.estado'] = 1;
+
+        if(isset($fec_inicio)){
+            $conditions_filter['Acta.fecha BETWEEN ? and ?'] = array($fec_inicio, $fec_fin);
+        }
+
+        if(isset($array_empresas) && count($array_empresas)>0){
+            $conditions_filter['Acta.empresa_id'] = $array_empresas; //ARRAY EMPRESA
+        }
+        
+        if(isset($arrays_uunns) && count($arrays_uunns)>0){
+            $conditions_filter['Acta.uunn_id'] = $arrays_uunns; //UUMM
+        }
+        //debug($conditions_filter);exit(); 
         $arr_obj_total_ni_nc = $this->findObjects('all',array(
                 'conditions'=>array($conditions_filter)
             )

@@ -2331,192 +2331,175 @@ class ActasController extends AppController{
 
 	public function ajax_export_report_pdf (){
 		ini_set('memory_limit', '512M');
+		ini_set('max_execution_time', 1000);
 		$this->layout = "layout_export_report_pdf";
 
 		$this->loadModel('Acta');
 		$this->loadModel('Empresa');
 		$this->loadModel('UnidadesNegocio');
 
-		$fec_inicio = $_POST['fec_inicio'];
-		$fec_fin = $_POST['fec_fin'];
-		$empresa = $_POST['empresa'];
-		$uunn = $_POST['uunn'];
-		$img = $_POST['graf'];
+		/*$fec_inicio = $_POST['data[RptTotalNiNc][fec_inicio]'];
+		$fec_fin = $_POST['data[RptTotalNiNc][fec_fin]'];
+		$empresa = $_POST['data[RptTotalNiNc][empresa][]'];
+		$uunn = $_POST['data[RptTotalNiNc][uunn][]'];
+		$img = $_POST['graf'];*/
 
-		if(isset($fec_inicio)){
-			$fec_inicio = $fec_inicio;
-		}else{
-			$fec_inicio = '';
-		}
-	
-		if(isset($fec_fin)){
-			$fec_fin = $fec_fin;
-		}else{
-			$fec_fin = '';
-		}
+		if($this->request->is('post') || $this->request->is('put')){
 		
-		if(isset($empresa)){
-			$empresa = $empresa;
-		}else{
-			$empresa = '';
-		}
-		
-		if(isset($uunn)){
-			$uunn = $uunn;
-		}else{
-			$uunn = '';
-		}
+			$uunns =array();
+			$empresas = array();
 
-		if(isset($graf)){
-			$graf = $graf;
-		}else{
-			$graf = '';
-		}
+			$empresas =  $this->request->data['RptTotalNiNc']['empresa'];
+			$uunns =  $this->request->data['RptTotalNiNc']['uunn'];
 
-		$nombre_empresa = $this->Empresa->find('list', array(
+
+			$nombre_empresas = $this->Empresa->find('list', array(
 			'fields' => array('Empresa.nombre'), 
 			'conditions' => array(
-				'Empresa.id' => $empresa
+				'Empresa.id' => $empresas
 				)
 			));
 
-		$nombre_empresa = $nombre_empresa[$empresa];
 
-		$nombre_uunn = $this->UnidadesNegocio->find('list', array(
-			'fields' => array('UnidadesNegocio.descripcion'), 
-			'conditions' => array(
-				'UnidadesNegocio.id' => $uunn
-				)
-			));
+			$nombre_uunns = $this->UnidadesNegocio->find('list', array(
+				'fields' => array('UnidadesNegocio.descripcion'), 
+				'conditions' => array(
+					'UnidadesNegocio.id' => $uunns
+					)
+				));
 
-		$nombre_uunn = $nombre_uunn[$uunn];
+			$fec_inicio = $this->formatFecha($this->request->data['RptTotalNiNc']['fec_inicio']);
+			$fec_fin =  $this->formatFecha($this->request->data['RptTotalNiNc']['fec_fin']);
 
-		$data = str_replace(' ', '+', $this->request->data['graf']);
-		$data_64= base64_decode($data);
-		$filename = date('ymdhis').'.png';
-		$im = imagecreatefromstring($data_64);
+			$data = str_replace(' ', '+', $this->request->data['graf']);
+			$data_64= base64_decode($data);
+			$filename = date('ymdhis').'.png';
+			$im = imagecreatefromstring($data_64);
 
-		// Save image in the specified location
-		imagepng($im, APP.WEBROOT_DIR.'/files/pdf_informes/'.$filename);
-		//imagedestroy($im);
+			// Save image in the specified location
+			imagepng($im, APP.WEBROOT_DIR.'/files/pdf_informes/'.$filename);
+			//imagedestroy($im);
+			
+			$list_total_ni_nc = $this->Acta->listTotalNiNc2($fec_inicio, $fec_fin, $empresas, $uunns);
 
-		$fec_inicio_format = $this->formatFecha($fec_inicio);
-		$fec_fin_format = $this->formatFecha($fec_fin);
-		$list_total_ni_nc = $this->Acta->listTotalNiNc($fec_inicio_format, $fec_fin_format, $empresa, $uunn);
-		
-		$sum_nc_epp = 0 ; $sum_ni_epp= 0; $sum_nc_sd= 0; $sum_ni_sd= 0; $sum_nc_um= 0; $sum_ni_um=0; $sum_nc_doc=0; $sum_ni_doc=0; $sum_nc_cp= 0;
-		$sum_ni_cp = 0; $sum_nc_ac= 0; $sum_ni_ac= 0;
+			//debug($list_total_ni_nc); exit();
+			
+			$sum_nc_epp = 0 ; $sum_ni_epp= 0; $sum_nc_sd= 0; $sum_ni_sd= 0; $sum_nc_um= 0; $sum_ni_um=0; $sum_nc_doc=0; $sum_ni_doc=0; $sum_nc_cp= 0;
+			$sum_ni_cp = 0; $sum_nc_ac= 0; $sum_ni_ac= 0;
 
-		foreach ($list_total_ni_nc as $row_acta):
-			if($row_acta->getAttr('info_des_epp') != ""){
-				$info_des_epp = json_decode($row_acta->getAttr('info_des_epp'));
-				foreach($info_des_epp as $value){
-					if($value->info_des_epp != ""){
-						if($value->alternativa == 1){
-							$sum_nc_epp++;
-						}elseif($value->alternativa == 0){
-							$sum_ni_epp++;
-						}else{
+			foreach ($list_total_ni_nc as $row_acta):
+				if($row_acta->getAttr('info_des_epp') != ""){
+					$info_des_epp = json_decode($row_acta->getAttr('info_des_epp'));
+					foreach($info_des_epp as $value){
+						if($value->info_des_epp != ""){
+							if($value->alternativa == 1){
+								$sum_nc_epp++;
+							}elseif($value->alternativa == 0){
+								$sum_ni_epp++;
+							}else{
 
+							}
 						}
 					}
 				}
-			}
 
-			if($row_acta->getAttr('info_des_se_de') != ""){
-				$info_des_se_de = json_decode($row_acta->getAttr('info_des_se_de'));
-				foreach($info_des_se_de as $value):
-					if($value->info_des_se_de != ""){
-						if($value->alternativa == 1){
-							$sum_nc_sd++;
-						}elseif($value->alternativa == 0){
-							$sum_ni_sd++;
-						}else{
-							
+				if($row_acta->getAttr('info_des_se_de') != ""){
+					$info_des_se_de = json_decode($row_acta->getAttr('info_des_se_de'));
+					foreach($info_des_se_de as $value):
+						if($value->info_des_se_de != ""){
+							if($value->alternativa == 1){
+								$sum_nc_sd++;
+							}elseif($value->alternativa == 0){
+								$sum_ni_sd++;
+							}else{
+								
+							}
 						}
-					}
-				endforeach;
+					endforeach;
+				}
+					
+
+				if($row_acta->getAttr('info_des_um') != ""){
+					$info_des_um = json_decode($row_acta->getAttr('info_des_um'));
+					foreach($info_des_um as $value):
+						if($value->info_des_um != ""){
+							if($value->alternativa == 1){
+								$sum_nc_um++;
+							}elseif($value->alternativa == 0){
+								$sum_ni_um++;
+							}else{
+								
+							}
+						}
+					endforeach;
+				}
+
+				if($row_acta->getAttr('info_des_doc') != ""){
+					$info_des_doc = json_decode($row_acta->getAttr('info_des_doc'));
+					foreach($info_des_doc as $value):
+						if($value->info_des_doc != ""){
+							if($value->alternativa == 1){
+								$sum_nc_doc++;
+							}elseif($value->alternativa == 0){
+								$sum_ni_doc++;
+							}else{
+								
+							}
+						}
+					endforeach;
+				}
+
+				if($row_acta->getAttr('info_des_act') != ""){ //cambiar abreviatura "ac" x cp
+					$info_des_act = json_decode($row_acta->getAttr('info_des_act'));
+					foreach($info_des_act as $value):
+						if($value->info_des_act != ""){
+							if($value->alternativa == 1){
+								$sum_nc_cp++; 
+							}elseif($value->alternativa == 0){
+								$sum_ni_cp++;
+							}else{
+								
+							}
+						}
+					endforeach;
+				}
+
+				if($row_acta->getAttr('info_des_cond') != ""){ 
+					$info_des_cond = json_decode($row_acta->getAttr('info_des_cond'));
+					foreach($info_des_cond as $value):
+						if($value->info_des_cond != ""){
+							if($value->alternativa == 1){
+								$sum_nc_ac++; 
+							}elseif($value->alternativa == 0){
+								$sum_ni_ac++;
+							}else{
+								
+							}
+						}
+					endforeach;
+				}
+
+			endforeach;
+
+			$sum_normas_cumplidas = round($sum_nc_epp + $sum_nc_sd + $sum_nc_um + $sum_nc_doc + $sum_nc_cp + $sum_nc_ac);
+			$sum_normas_incumplidas = round($sum_ni_epp + $sum_ni_sd + $sum_ni_um + $sum_ni_doc + $sum_ni_cp + $sum_ni_ac);
+			$suma_total_normas = $sum_normas_cumplidas + $sum_normas_incumplidas;
+
+			if($suma_total_normas > 0){
+				$porc_nc = round(($sum_normas_cumplidas * 100) / $suma_total_normas);
+				$porc_ni = round(($sum_normas_incumplidas * 100) / $suma_total_normas);	
+			}else{
+				$porc_nc = 0;
+				$porc_ni = 0;
 			}
 				
-
-			if($row_acta->getAttr('info_des_um') != ""){
-				$info_des_um = json_decode($row_acta->getAttr('info_des_um'));
-				foreach($info_des_um as $value):
-					if($value->info_des_um != ""){
-						if($value->alternativa == 1){
-							$sum_nc_um++;
-						}elseif($value->alternativa == 0){
-							$sum_ni_um++;
-						}else{
-							
-						}
-					}
-				endforeach;
-			}
-
-			if($row_acta->getAttr('info_des_doc') != ""){
-				$info_des_doc = json_decode($row_acta->getAttr('info_des_doc'));
-				foreach($info_des_doc as $value):
-					if($value->info_des_doc != ""){
-						if($value->alternativa == 1){
-							$sum_nc_doc++;
-						}elseif($value->alternativa == 0){
-							$sum_ni_doc++;
-						}else{
-							
-						}
-					}
-				endforeach;
-			}
-
-			if($row_acta->getAttr('info_des_act') != ""){ //cambiar abreviatura "ac" x cp
-				$info_des_act = json_decode($row_acta->getAttr('info_des_act'));
-				foreach($info_des_act as $value):
-					if($value->info_des_act != ""){
-						if($value->alternativa == 1){
-							$sum_nc_cp++; 
-						}elseif($value->alternativa == 0){
-							$sum_ni_cp++;
-						}else{
-							
-						}
-					}
-				endforeach;
-			}
-
-			if($row_acta->getAttr('info_des_cond') != ""){ 
-				$info_des_cond = json_decode($row_acta->getAttr('info_des_cond'));
-				foreach($info_des_cond as $value):
-					if($value->info_des_cond != ""){
-						if($value->alternativa == 1){
-							$sum_nc_ac++; 
-						}elseif($value->alternativa == 0){
-							$sum_ni_ac++;
-						}else{
-							
-						}
-					}
-				endforeach;
-			}
-
-		endforeach;
-
-		$sum_normas_cumplidas = round($sum_nc_epp + $sum_nc_sd + $sum_nc_um + $sum_nc_doc + $sum_nc_cp + $sum_nc_ac);
-		$sum_normas_incumplidas = round($sum_ni_epp + $sum_ni_sd + $sum_ni_um + $sum_ni_doc + $sum_ni_cp + $sum_ni_ac);
-		$suma_total_normas = $sum_normas_cumplidas + $sum_normas_incumplidas;
-
-		if($suma_total_normas > 0){
-			$porc_nc = round(($sum_normas_cumplidas * 100) / $suma_total_normas);
-			$porc_ni = round(($sum_normas_incumplidas * 100) / $suma_total_normas);	
-		}else{
-			$porc_nc = 0;
-			$porc_ni = 0;
 		}
 
-		$this->set(compact('filename','fec_inicio_format','fec_fin_format','nombre_empresa','nombre_uunn','fec_inicio_format','fec_fin_format'));
-		$this->set(compact('sum_nc_epp', 'sum_nc_sd', 'sum_nc_um', 'sum_nc_doc', 'sum_nc_cp', 'sum_nc_ac'));
-		$this->set(compact('sum_ni_epp', 'sum_ni_sd', 'sum_ni_um', 'sum_ni_doc', 'sum_ni_cp', 'sum_ni_ac'));
-		$this->set(compact('sum_normas_cumplidas', 'sum_normas_incumplidas', 'suma_total_normas','porc_nc','porc_ni'));
+
+			$this->set(compact('filename','fec_inicio','fec_fin','nombre_empresas','nombre_uunns','list_total_ni_nc'));
+			$this->set(compact('sum_nc_epp', 'sum_nc_sd', 'sum_nc_um', 'sum_nc_doc', 'sum_nc_cp', 'sum_nc_ac'));
+			$this->set(compact('sum_ni_epp', 'sum_ni_sd', 'sum_ni_um', 'sum_ni_doc', 'sum_ni_cp', 'sum_ni_ac'));
+			$this->set(compact('sum_normas_cumplidas', 'sum_normas_incumplidas', 'suma_total_normas','porc_nc','porc_ni'));
 	}
 		
 }

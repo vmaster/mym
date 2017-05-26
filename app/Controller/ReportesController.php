@@ -438,41 +438,27 @@ class ReportesController extends AppController{
 		$this->set(compact('list_all_empresas','list_all_uunn'));
 	}
 
-	public function load_graf_total_ni_nc($fec_inicio, $fec_fin, $empresa = null, $uunn = null){
+	public function load_graf_total_ni_nc(){
 		$this->loadModel('Acta');
 		$this->autoRender = false;
 	
-		if(isset($fec_inicio)){
-			$fec_inicio = $fec_inicio;
-		}else{
-			$fec_inicio = '';
+
+		if($this->request->is('post') || $this->request->is('put')){
+			//debug($this->request->data['RptTotalNiNc']);
+
+			$fec_inicio_format = $this->formatFecha($this->request->data['RptTotalNiNc']['fec_inicio']);
+			$fec_fin_format = $this->formatFecha($this->request->data['RptTotalNiNc']['fec_fin']);
+
+			$array_empresas = $this->request->data['RptTotalNiNc']['empresa'];
+			$array_uunns = $this->request->data['RptTotalNiNc']['uunn'];
 		}
 	
-		if(isset($fec_fin)){
-			$fec_fin = $fec_fin;
-		}else{
-			$fec_fin = '';
-		}
 		
-		if(isset($empresa)){
-			$empresa = $empresa;
-		}else{
-			$empresa = '';
-		}
-		
-		if(isset($uunn)){
-			$uunn = $uunn;
-		}else{
-			$uunn = '';
-		}
-	
-		$fec_inicio_format = $this->formatFecha($fec_inicio);
-		$fec_fin_format = $this->formatFecha($fec_fin);
 		$y ="";
 		$sum_nc_epp = 0 ; $sum_ni_epp= 0; $sum_nc_sd= 0; $sum_ni_sd= 0; $sum_nc_um= 0; $sum_ni_um=0; $sum_nc_doc=0; $sum_ni_doc=0; $sum_nc_cp= 0;
 		$sum_ni_cp = 0; $sum_nc_ac= 0; $sum_ni_ac= 0;
 
-		$list_total_ni_nc = $this->Acta->listTotalNiNc($fec_inicio_format, $fec_fin_format, $empresa, $uunn);
+		$list_total_ni_nc = $this->Acta->listTotalNiNc2($fec_inicio_format, $fec_fin_format, $array_empresas, $array_uunns);
 
 		foreach ($list_total_ni_nc as $row_acta):
 			if($row_acta->getAttr('info_des_epp') != ""){
@@ -574,39 +560,27 @@ class ReportesController extends AppController{
 		return json_encode(array('success'=>true, 'name'=>'Empresa', 'nc'=> $nc, 'ni'=> $ni));
 	}
 
-	public function load_list_total_ni_nc($fec_inicio, $fec_fin, $empresa = null, $uunn = null){
+	public function load_list_total_ni_nc(){
+
 		$this->layout = "ajax";
 		$this->loadModel('Acta');
 	
-		if(isset($fec_inicio)){
-			$fec_inicio = $fec_inicio;
-		}else{
-			$fec_inicio = '';
+
+		if($this->request->is('post')|| $this->request->is('put')){
+
+			$uunns =array();
+			$empresas = array();
+
+			$fec_inicio = $this->formatFecha($this->request->data['RptTotalNiNc']['fec_inicio']);
+			$fec_fin =  $this->formatFecha($this->request->data['RptTotalNiNc']['fec_fin']);
+			$empresas = $this->request->data['RptTotalNiNc']['empresa'];
+			$uunns = $this->request->data['RptTotalNiNc']['uunn'];
+
+			$list_total_ni_nc = $this->Acta->listTotalNiNc2($fec_inicio, $fec_fin, $empresas, $uunns);
+			$this->set(compact('list_total_ni_nc'));
+			
 		}
-	
-		if(isset($fec_fin)){
-			$fec_fin = $fec_fin;
-		}else{
-			$fec_fin = '';
-		}
-		
-		if(isset($empresa)){
-			$empresa = $empresa;
-		}else{
-			$empresa = '';
-		}
-		
-		if(isset($uunn)){
-			$uunn = $uunn;
-		}else{
-			$uunn = '';
-		}
-	
-		$fec_inicio_format = $this->formatFecha($fec_inicio);
-		$fec_fin_format = $this->formatFecha($fec_fin);
-	
-		$list_total_ni_nc = $this->Acta->listTotalNiNc($fec_inicio_format, $fec_fin_format, $empresa, $uunn);
-		$this->set(compact('list_total_ni_nc'));
+
 	}
 
 	/* FIN */

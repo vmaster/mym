@@ -87,14 +87,16 @@ $codigo.= "<div class='head-pag'>
 			  </tr>
 			</table>
 			<br>
-			<table class='tg tg-031eF back-gray' width='100%' style='margin-bottom:-10px'>
+			</div>";
+			$codigo.= "
+			<table class='tg tg-031eF' width='100%' style='margin-bottom:-10px'>
 			<tr>
-			    <td style='text-align:center' class='tg-031e'><strong>Fecha Inicio:</strong> ".$fec_inicio_format."</td>
-			    <td style='text-align:center' class='aling-left'><strong>Fecha Fin:</strong> ".$fec_fin_format."</td>   
+			    <td style='text-align:center' class='tg-031e'><strong>Fecha Inicio:</strong> ".$fec_inicio."</td>
+			    <td style='text-align:center' class='aling-left'><strong>Fecha Fin:</strong> ".$fec_fin."</td>   
 			 </tr>
 			</table>
-			<br>
-			</div>";
+			";
+
 
 			$porc_epp = ($sum_nc_epp+$sum_ni_epp>0)?round(($sum_nc_epp*100)/($sum_nc_epp+$sum_ni_epp)):0;
 			$porc_sd = ($sum_nc_sd+$sum_ni_sd>0)?round(($sum_nc_sd*100)/($sum_nc_sd+$sum_ni_sd)):0;
@@ -103,8 +105,17 @@ $codigo.= "<div class='head-pag'>
 			$porc_cp = ($sum_nc_cp+$sum_ni_cp>0)?round(($sum_nc_cp*100)/($sum_nc_cp+$sum_ni_cp)):0;
 			$porc_ac = ($sum_nc_ac+$sum_ni_ac>0)?round(($sum_nc_ac*100)/($sum_nc_ac+$sum_ni_ac)):0;
 
-			$codigo.= "<br><table class='tg tg-031eF ' width='40%'><tr><td><strong>EMPRESA:</strong></td><td>".$nombre_empresa."</td></tr>";
-			$codigo.= "<tr><td><strong>UUNN:</strong></td><td>".$nombre_uunn."</td></tr></table><br>";
+			$codigo.= "<br><table class='tg tg-031eF' width='40%' style='margin-bottom:-10px'><tr><td class='back-gray'><strong>EMPRESAS:</strong></td><td>";
+			foreach ($nombre_empresas as $key => $empresa) {
+				$codigo.= $empresa. " / ";
+			}
+
+			$codigo .= "</td></tr>";
+			$codigo .= "<tr><td class='back-gray'><strong>UNIDADES DE NEGOCIO:</strong></td><td>";
+			foreach ($nombre_uunns as $key => $uunn) {
+				$codigo.= $uunn. " / ";
+			}
+			$codigo .= "</td></tr></table><br>";
 
 			$codigo.= "<table class='tg tg-031eF ' width='100%'>";
 			$codigo.= "<tr class='back-blue'><th colspan='8' style='text-align: center;'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
@@ -117,6 +128,28 @@ $codigo.= "<div class='head-pag'>
 			$codigo.= $porc_total."%</td></tr></table><br>";
 
 			$codigo.= "<center><img src= '". ENV_WEBROOT_FULL_URL."files/pdf_informes/".$filename."' style='width: 1000px; heigh: 800px; border:0px;'/></center>";
+
+
+			if(empty($list_total_ni_nc)){
+				$codigo.= "No hay datos estad&iacute;sticos";
+					}else{
+				$codigo.= "<table class='tg tg-031eF ' width='100%'>";
+				$codigo.= "<tr class='back-blue'>";
+				$codigo.= "<th><strong>".utf8_encode('Nombre de Empresa')."</strong></th>";
+				$codigo.= "<th><strong>".utf8_encode('Nro Informe')."</strong></th>";
+				$codigo.= "<th><strong>".utf8_encode('Fecha')."</strong></th>";
+				$codigo.= "<th><strong>".utf8_encode('Cumplimiento(%)')."</strong></th>";
+				$codigo.= "</tr>";
+					foreach ($list_total_ni_nc as $arr_informe):
+				$codigo.= "<tr class='report_row_container'>";
+				$codigo.= "<td>".$arr_informe->Empresa->getAttr('nombre')."</td>";
+				$codigo.="<td>".$arr_informe->getAttr('num_informe')."</td>";
+				$codigo.="<td>".date('Y-m-d H:i',strtotime($arr_informe->getAttr('fecha')))."</td>";
+				$codigo.= "<td>".$arr_informe->getAttr('cumplimiento')."</td>";
+				$codigo.= "</tr>";
+						endforeach;
+				$codigo.= "</table>";
+			}
 		
 //echo $codigo; exit();
 $dompdf = new DOMPDF();

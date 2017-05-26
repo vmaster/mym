@@ -137,15 +137,18 @@
 	$(document).ready(function() {
 
 		function ExecuteReport(){
-			fec_inicio = $('#txtBuscarFecIncioRep2').val();
+
+			$form = $('#frm-rpt-ni-nc').eq(0);
+			/*fec_inicio = $('#txtBuscarFecIncioRep2').val();
 			fec_fin = $('#txtBuscarFecFinRep2').val();
 			empresa = $('#cbo-empresa-search').val();
-			uunn = $('#cbo-uunn-search').val();
+			uunn = $('#cbo-uunn-search').val();*/
 			 $.ajax({
-			    url: env_webroot_script + 'reportes/load_graf_total_ni_nc/'+fec_inicio+'/'+fec_fin+'/'+empresa+'/'+uunn,
-			    type: 'GET',
+			    url: env_webroot_script + 'reportes/load_graf_total_ni_nc',
+			    type: 'post',
 			    async: true,
-			    dataType: "json",
+			    data: $form.serialize(),
+			    dataType: "json"
 			 }).done(function(data){
 					if(data.success == true){
 						console.log(data.nc); //VALORES DE LA SUMA RESPECTIVA DE LA "N.CUMPLI" DE: epp, sd, um, doc, cp, ac 
@@ -156,10 +159,27 @@
 							return false;
 						}
 
+						$array_serialize =  $form.serialize();
+
 						$('#list-data-total-ni-nc').unbind();
-						$('#list-data-total-ni-nc').load(env_webroot_script + 'reportes/load_list_total_ni_nc/'+fec_inicio+'/'+fec_fin+'/'+empresa+'/'+uunn,function(){
+												
+						/*$('#list-data-total-ni-nc').load(env_webroot_script + 'reportes/load_list_total_ni_nc/'+fec_inicio+'/'+fec_fin+'/'+empresa+'/'+uunn,function(){
+
 							
-						});
+						});*/
+
+						$.ajax({
+							url:env_webroot_script + 'reportes/load_list_total_ni_nc',
+							type:'post',
+							async:true,
+							data: $form.serialize(),
+							dataType: 'html'
+						}).done(function(dato){
+								$('#list-data-total-ni-nc').html(dato);
+							//}
+						})
+
+
 
 						n_cu_epp = data.nc[0];
 						n_cu_sd = data.nc[1];
@@ -299,21 +319,25 @@
 	$fin= date('t');
 	$mes= date('m')."-".date('Y');
 	?>
-	<form method="post" action="<?= ENV_WEBROOT_FULL_URL; ?>actas/ajax_export_report_pdf">
+	<form method="post" action="<?= ENV_WEBROOT_FULL_URL; ?>actas/ajax_export_report_pdf" id="frm-rpt-ni-nc">
 	<div class="row">
 		<div class="col-md-2 col-sm-6 col-xs-6">
-				<label><?php echo __('Fecha Inicio:');?></label> <input type="text"
+				<label><?php echo __('Fecha Inicio:');?></label> <input name="data[RptTotalNiNc][fec_inicio]" type="text"
 				name="fec_inicio" id="txtBuscarFecIncioRep2"
 				class="form-control" value="<?php echo '01-'.$mes; ?>" placeholder="dd-mm-aaaa">
 		</div>
 		<div class="col-md-2 col-sm-6 col-xs-6">
-				<label><?php echo __('Fecha Fin:');?></label> <input type="text"
+				<label><?php echo __('Fecha Fin:');?></label> <input name="data[RptTotalNiNc][fec_fin]" type="text"
 				name="fec_fin" id="txtBuscarFecFinRep2"
 				class="form-control" value="<?php echo date('d-m-Y'); ?>" placeholder="dd-mm-aaaa">
 		</div>
-		<div class="col-md-2 col-sm-6 col-xs-6">
+	</div>
+	<p>
+	<div class="row">
+		
+		<div class="col-md-4 col-sm-6 col-xs-6">
 			<label><?php echo __('Empresa:');?></label>
-			<select class="cbo-rpte-empresas-select2 form-control" id="cbo-empresa-search" name="empresa">
+			<select name="data[RptTotalNiNc][empresa][]" class="cbo-rpte-empresas-select2 form-control" id="cbo-empresa-search" name="empresa" multiple="multiple">
 				<?php 
 				if (isset($list_all_empresas)){
 					echo "<option></option>";
@@ -324,9 +348,9 @@
 				?>						
 			</select>
 		</div>
-		<div class="col-md-2 col-sm-6 col-xs-6">
+		<div class="col-md-4 col-sm-6 col-xs-6">
 			<label><?php echo __('UUNN:');?></label>
-			<select class="cbo-rpte-uunn-select2 form-control" id="cbo-uunn-search" name="uunn">
+			<select name="data[RptTotalNiNc][uunn][]" class="cbo-rpte-uunn-select2 form-control" id="cbo-uunn-search" name="uunn" multiple ="multiple">
 				<?php 
 				if (isset($list_all_uunn)){
 					echo "<option></option>";
@@ -337,6 +361,8 @@
 				?>						
 			</select>
 		</div>
+	</div>
+	<div class="row">
 		<input type="hidden" name="graf" id="id-name-graf" value=""/>
 		<div class="col-md-4 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-report"><?php echo __('Consultar');?></button>
