@@ -2371,13 +2371,20 @@ class ActasController extends AppController{
 			$fec_inicio = $this->formatFecha($this->request->data['RptTotalNiNc']['fec_inicio']);
 			$fec_fin =  $this->formatFecha($this->request->data['RptTotalNiNc']['fec_fin']);
 
+			$user_id = $this->Session->read('Auth.User.id');
+
 			$data = str_replace(' ', '+', $this->request->data['graf']);
 			$data_64= base64_decode($data);
-			$filename = date('ymdhis').'.png';
+			//$filename = date('ymdhis').'.png';
+			$filename = $user_id;
 			$im = imagecreatefromstring($data_64);
 
 			// Save image in the specified location
-			imagepng($im, APP.WEBROOT_DIR.'/files/pdf_informes/'.$filename);
+			if(file_exists(APP.WEBROOT_DIR.'/files/pdf_informes/'.$filename)){
+				unlink(APP.WEBROOT_DIR.'/files/pdf_informes/'.$filename);
+			}
+				imagepng($im, APP.WEBROOT_DIR.'/files/pdf_informes/'.$filename);
+
 			//imagedestroy($im);
 			
 			$list_total_ni_nc = $this->Acta->listTotalNiNc2($fec_inicio, $fec_fin, $empresas, $uunns);
