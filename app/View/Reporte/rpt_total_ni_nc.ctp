@@ -235,12 +235,42 @@
 						suma_porc = porc_cu_epp + porc_cu_sd + porc_cu_um + porc_cu_ds + porc_cu_cp + porc_cu_as;
 						suma_vivo = porc_epp_vivo + porc_sd_vivo + porc_um_vivo + porc_ds_vivo + porc_cp_vivo + porc_as_vivo;
 						
-						porc_epp_vivo_test = porc_cu_epp > 0 ? (suma_porc/suma_vivo) : 0;
-						porc_sd_vivo_test = porc_cu_sd > 0 ? (suma_porc/suma_vivo) : 0;
-						porc_um_vivo_test = porc_cu_um > 0 ? (suma_porc/suma_vivo) : 0;
-						porc_ds_vivo_test = porc_cu_ds > 0 ? (suma_porc/suma_vivo) : 0;
-						porc_cp_vivo_test = porc_cu_cp > 0 ? (suma_porc/suma_vivo) : 0;
-						porc_as_vivo_test = porc_cu_as > 0 ?(suma_porc/suma_vivo) : 0;
+						count=0;
+						divisor=0;
+						if(porc_cu_epp == 0){
+							count = count + 2;
+							divisor++;
+						}
+						if(porc_cu_sd == 0){
+							count = count + 2;
+							divisor++;
+						}
+						if(porc_cu_um == 0){
+							count = count + 2;
+							divisor++;
+						}
+						if(porc_cu_ds == 0){
+							count = count + 2;
+							divisor++;
+						}
+						if(porc_cu_cp == 0){
+							count = count + 2;
+							divisor++;
+						}
+						if(porc_cu_as == 0){
+							count = count + 2;
+							divisor++;
+						}
+
+						porc_nc2 = porc_nc - count;
+						divisor = 6 - divisor;
+
+						porc_epp_vivo_test = porc_cu_epp > 0 ? (porc_nc2/divisor) : 2;
+						porc_sd_vivo_test = porc_cu_sd > 0 ? (porc_nc2/divisor) : 2;
+						porc_um_vivo_test = porc_cu_um > 0 ? (porc_nc2/divisor) : 2;
+						porc_ds_vivo_test = porc_cu_ds > 0 ? (porc_nc2/divisor) : 2;
+						porc_cp_vivo_test = porc_cu_cp > 0 ? (porc_nc2/divisor) : 2;
+						porc_as_vivo_test = porc_cu_as > 0 ?(porc_nc2/divisor) : 2;
 						
 						var porc_cu_categorias = [porc_cu_epp, porc_cu_sd, porc_cu_um, porc_cu_ds, porc_cu_cp, porc_cu_as];
 						var porc_cu_categoriastest = [porc_epp_vivo_test, porc_sd_vivo_test, porc_um_vivo_test, porc_ds_vivo_test, porc_cp_vivo_test, porc_as_vivo_test];
