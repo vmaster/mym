@@ -202,45 +202,75 @@
 						porc_nc = Math.round((normas_cumplidas * 100) / suma_normas);
 						porc_ni = Math.round((normas_incumplidas * 100) / suma_normas);
 
-						porc_cu_epp = Math.round((n_cu_epp*100)/suma_normas);
-						porc_in_epp = Math.round((n_in_epp*100)/suma_normas);
-						porc_epp = Math.round((n_cu_epp*100)/(n_cu_epp + n_in_epp));
+						porc_cu_epp = n_cu_epp > 0 ? Math.round((n_cu_epp*100)/suma_normas) : 0;
+						porc_in_epp = n_in_epp > 0 ? Math.round((n_in_epp*100)/suma_normas) : 0;
+						porc_epp = n_cu_epp >0 ? Math.round((n_cu_epp*100)/(n_cu_epp + n_in_epp)) : 0;
 						porc_epp_vivo = porc_cu_epp > 0 ? 1 : 0;
 
-						porc_cu_sd = Math.round((n_cu_sd*100)/suma_normas);
-						porc_in_sd = Math.round((n_in_sd*100)/suma_normas);
-						porc_sd = Math.round((n_cu_sd*100)/(n_cu_sd + n_in_sd));
+						porc_cu_sd = n_cu_sd > 0 ? Math.round((n_cu_sd*100)/suma_normas) : 0;
+						porc_in_sd = n_in_sd > 0 ? Math.round((n_in_sd*100)/suma_normas) : 0;
+						porc_sd = n_cu_sd > 0 ? Math.round((n_cu_sd*100)/(n_cu_sd + n_in_sd)) : 0;
 						porc_sd_vivo = porc_cu_sd > 0 ? 1 : 0;
 
-						porc_cu_um = Math.round((n_cu_um*100)/suma_normas);
-						porc_in_um = Math.round((n_in_um*100)/suma_normas);
-						porc_um = Math.round((n_cu_um*100)/(n_cu_um + n_in_um));
+						porc_cu_um = n_cu_um > 0 ? Math.round((n_cu_um*100)/suma_normas) : 0;
+						porc_in_um = n_in_um > 0 ? Math.round((n_in_um*100)/suma_normas) : 0;
+						porc_um = n_cu_um > 0 ? Math.round((n_cu_um*100)/(n_cu_um + n_in_um)) : 0;
 						porc_um_vivo = porc_cu_um > 0 ? 1 : 0;
 
-						porc_cu_ds = Math.round((n_cu_ds*100)/suma_normas);
-						porc_in_ds = Math.round((n_in_ds*100)/suma_normas);
-						porc_ds = Math.round((n_cu_ds*100)/(n_cu_ds + n_in_ds));
+						porc_cu_ds = n_cu_ds > 0 ? Math.round((n_cu_ds*100)/suma_normas) : 0;
+						porc_in_ds = n_in_ds > 0 ? Math.round((n_in_ds*100)/suma_normas) : 0;
+						porc_ds = n_cu_ds > 0 ? Math.round((n_cu_ds*100)/(n_cu_ds + n_in_ds)) : 0;
 						porc_ds_vivo = porc_cu_ds > 0 ? 1 : 0;
 
-						porc_cu_cp = Math.round((n_cu_cp*100)/suma_normas);
-						porc_in_cp = Math.round((n_in_cp*100)/suma_normas);
-						porc_cp = Math.round((n_cu_cp*100)/(n_cu_cp + n_in_cp));
+						porc_cu_cp = n_cu_cp > 0 ? Math.round((n_cu_cp*100)/suma_normas) : 0;
+						porc_in_cp = n_in_cp > 0 ? Math.round((n_in_cp*100)/suma_normas) : 0;
+						porc_cp = n_cu_cp > 0 ? Math.round((n_cu_cp*100)/(n_cu_cp + n_in_cp)) : 0;
 						porc_cp_vivo = porc_cu_cp > 0 ? 1 : 0;
 
-						porc_cu_as = Math.round((n_cu_as*100)/suma_normas);
-						porc_in_as = Math.round((n_in_as*100)/suma_normas);
-						porc_as = Math.round((n_cu_as*100)/(n_cu_as + n_in_as));
+						porc_cu_as = n_cu_as > 0 ? Math.round((n_cu_as*100)/suma_normas) : 0;
+						porc_in_as = n_in_as > 0 ? Math.round((n_in_as*100)/suma_normas) : 0;
+						porc_as = n_cu_as > 0 ? Math.round((n_cu_as*100)/(n_cu_as + n_in_as)) : 0;
 						porc_as_vivo = porc_cu_as > 0 ? 1 : 0;
 
 						suma_porc = porc_cu_epp + porc_cu_sd + porc_cu_um + porc_cu_ds + porc_cu_cp + porc_cu_as;
 						suma_vivo = porc_epp_vivo + porc_sd_vivo + porc_um_vivo + porc_ds_vivo + porc_cp_vivo + porc_as_vivo;
 						
-						porc_epp_vivo_test = porc_cu_epp > 0 ? (suma_porc/suma_vivo) : 0;
-						porc_sd_vivo_test = porc_cu_sd > 0 ? (suma_porc/suma_vivo) : 0;
-						porc_um_vivo_test = porc_cu_um > 0 ? (suma_porc/suma_vivo) : 0;
-						porc_ds_vivo_test = porc_cu_ds > 0 ? (suma_porc/suma_vivo) : 0;
-						porc_cp_vivo_test = porc_cu_cp > 0 ? (suma_porc/suma_vivo) : 0;
-						porc_as_vivo_test = porc_cu_as > 0 ?(suma_porc/suma_vivo) : 0;
+						count=0;
+						divisor=0;
+						if(porc_cu_epp == 0){
+							count = count + 2;
+							divisor++;
+						}
+						if(porc_cu_sd == 0){
+							count = count + 2;
+							divisor++;
+						}
+						if(porc_cu_um == 0){
+							count = count + 2;
+							divisor++;
+						}
+						if(porc_cu_ds == 0){
+							count = count + 2;
+							divisor++;
+						}
+						if(porc_cu_cp == 0){
+							count = count + 2;
+							divisor++;
+						}
+						if(porc_cu_as == 0){
+							count = count + 2;
+							divisor++;
+						}
+
+						porc_nc2 = porc_nc - count;
+						divisor = 6 - divisor;
+
+						porc_epp_vivo_test = porc_cu_epp > 0 ? (porc_nc2/divisor) : 2;
+						porc_sd_vivo_test = porc_cu_sd > 0 ? (porc_nc2/divisor) : 2;
+						porc_um_vivo_test = porc_cu_um > 0 ? (porc_nc2/divisor) : 2;
+						porc_ds_vivo_test = porc_cu_ds > 0 ? (porc_nc2/divisor) : 2;
+						porc_cp_vivo_test = porc_cu_cp > 0 ? (porc_nc2/divisor) : 2;
+						porc_as_vivo_test = porc_cu_as > 0 ?(porc_nc2/divisor) : 2;
 						
 						var porc_cu_categorias = [porc_cu_epp, porc_cu_sd, porc_cu_um, porc_cu_ds, porc_cu_cp, porc_cu_as];
 						var porc_cu_categoriastest = [porc_epp_vivo_test, porc_sd_vivo_test, porc_um_vivo_test, porc_ds_vivo_test, porc_cp_vivo_test, porc_as_vivo_test];
