@@ -288,49 +288,98 @@ App::uses('AppModel','Model');
     );
     
     
-    public function listAllActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$fec_inicio='', $fec_fin='',$order='DESC') {
-    		$arr_obj_acta = $this->findObjects('all',array(
-    				'joins' => array(
-    						array(
-    								'table' => 'empresas',
-    								'alias' => 'EmpresaJoin',
-    								'type' => 'INNER',
-    								'conditions' => array(
-    										'EmpresaJoin.id = Acta.empresa_id'
-    								)
-    						)
-    				),
-    				'conditions'=>array(
-    						'AND' => array(
-    								'Acta.numero LIKE'=> '%'.$search_nro.'%',
-    								'Acta.actividad LIKE'=> '%'.$search_actividad.'%',
-    								'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
-    								'Acta.obra LIKE'=> '%'.$search_obra.'%',
-                                    'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                                    'Acta.estado '=> 1
-    						)
-    				),
-    				'order'=> array($order_by.' '.$order)
-    		)
-    		);
+    public function listAllActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$fec_inicio='', $fec_fin='',$order='DESC', $tipo_user_id ='') {
+        if($tipo_user_id== 3){
+                    $arr_obj_acta = $this->findObjects('all',array(
+                        'joins' => array(
+                                array(
+                                        'table' => 'empresas',
+                                        'alias' => 'EmpresaJoin',
+                                        'type' => 'INNER',
+                                        'conditions' => array(
+                                                'EmpresaJoin.id = Acta.empresa_id'
+                                        )
+                                )
+                        ),
+                        'conditions'=>array(
+                                'AND' => array(
+                                        'Acta.numero LIKE'=> '%'.$search_nro.'%',
+                                        'Acta.actividad LIKE'=> '%'.$search_actividad.'%',
+                                        'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
+                                        'Acta.obra LIKE'=> '%'.$search_obra.'%',
+                                        'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                                        'Acta.estado '=> 1,
+                                        'Acta.created_mym' => 1
+                                )
+                        ),
+                        'order'=> array($order_by.' '.$order)
+                      )
+                    );
+                }else{
+                    $arr_obj_acta = $this->findObjects('all',array(
+                        'joins' => array(
+                                array(
+                                        'table' => 'empresas',
+                                        'alias' => 'EmpresaJoin',
+                                        'type' => 'INNER',
+                                        'conditions' => array(
+                                                'EmpresaJoin.id = Acta.empresa_id'
+                                        )
+                                )
+                        ),
+                        'conditions'=>array(
+                                'AND' => array(
+                                        'Acta.numero LIKE'=> '%'.$search_nro.'%',
+                                        'Acta.actividad LIKE'=> '%'.$search_actividad.'%',
+                                        'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
+                                        'Acta.obra LIKE'=> '%'.$search_obra.'%',
+                                        'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                                        'Acta.estado '=> 1,
+                                        'Acta.created_mym' => 0
+                                )
+                        ),
+                        'order'=> array($order_by.' '.$order)
+                      )
+                    );
+                }
+    		
     	return $arr_obj_acta;
     }
     
-	public function listSearchActas($search_ano='') {
-    		$arr_obj_acta = $this->findObjects('all',array(
-    				'conditions'=>array(
-    						'AND' => array(
-    								'YEAR(`created`)'=> $search_ano,
-    								'Acta.estado '=> 1
-    						)
-    				),
-    				'order'=> array('Acta.created desc'),
-    		)
-    		);
+	public function listSearchActas($search_ano='', $tipo_user_id = '') {
+
+        if($tipo_user_id == 3){
+            $arr_obj_acta = $this->findObjects('all',array(
+                    'conditions'=>array(
+                            'AND' => array(
+                                    'YEAR(`created`)'=> $search_ano,
+                                    'Acta.estado '=> 1,
+                                    'Acta.created_mym' => 1
+                            )
+                    ),
+                    'order'=> array('Acta.created desc'),
+            )
+            );
+        }else{
+            $arr_obj_acta = $this->findObjects('all',array(
+                    'conditions'=>array(
+                            'AND' => array(
+                                    'YEAR(`created`)'=> $search_ano,
+                                    'Acta.estado '=> 1,
+                                    'Acta.created_mym' => 0
+                            )
+                    ),
+                    'order'=> array('Acta.created desc'),
+            )
+            );
+        }
+    		
     	return $arr_obj_acta;
     }
 	
-    public function listFindActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$search_ano='',$order='DESC', $start=0, $per_page=10) {
+    public function listFindActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$search_ano='',$order='DESC', $start=0, $per_page=10, $tipo_user_id = '') {
+
+        if($tipo_user_id== 3){
     		$arr_obj_acta = $this->findObjects('all',array(
     				'joins' => array(
     						array(
@@ -349,7 +398,8 @@ App::uses('AppModel','Model');
     								'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
     								'Acta.obra LIKE'=> '%'.$search_obra.'%',
 									'YEAR(Acta.`created`)'=> $search_ano,
-    								'Acta.estado '=> 1
+    								'Acta.estado '=> 1,
+                                    'Acta.created_mym' => 1
     						)
     				),
     				//'page'=> $start,
@@ -358,6 +408,36 @@ App::uses('AppModel','Model');
     				'order'=> array($order_by.' '.$order),
     		)
     		);
+        }else{
+            $arr_obj_acta = $this->findObjects('all',array(
+                    'joins' => array(
+                            array(
+                                    'table' => 'empresas',
+                                    'alias' => 'EmpresaJoin',
+                                    'type' => 'INNER',
+                                    'conditions' => array(
+                                            'EmpresaJoin.id = Acta.empresa_id'
+                                    )
+                            )
+                    ),
+                    'conditions'=>array(
+                            'AND' => array(
+                                    'Acta.numero LIKE'=> '%'.$search_nro.'%',
+                                    'Acta.actividad LIKE'=> '%'.$search_actividad.'%',
+                                    'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
+                                    'Acta.obra LIKE'=> '%'.$search_obra.'%',
+                                    'YEAR(Acta.`created`)'=> $search_ano,
+                                    'Acta.estado '=> 1,
+                                    'Acta.created_mym' => 0
+                            )
+                    ),
+                    //'page'=> $start,
+                    'limit'=> $per_page,
+                    'offset'=> $start,
+                    'order'=> array($order_by.' '.$order),
+            )
+            ); 
+        }
     	return $arr_obj_acta;
     }
     

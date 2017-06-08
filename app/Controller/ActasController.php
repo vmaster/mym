@@ -55,9 +55,9 @@ class ActasController extends AppController{
 			$search_empresa = '';
 			$search_obra = '';
 		}
-		
-		$list_acta_all = $this->Acta->listAllActas($order_by,$search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra),$order_by_or);
-		$list_acta = $this->Acta->listFindActas($order_by, $search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra), date('Y'),$order_by_or, $start, $per_page);
+		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
+		$list_acta_all = $this->Acta->listAllActas($order_by,$search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra),$order_by_or, $tipo_user_id);
+		$list_acta = $this->Acta->listFindActas($order_by, $search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra), date('Y'),$order_by_or, $start, $per_page, $tipo_user_id);
 		$count = count($list_acta_all);
 		$no_of_paginations = ceil($count / $per_page);
 		$page = $page + 1;
@@ -68,84 +68,13 @@ class ActasController extends AppController{
 	public function search_actas($search_ano=null) {
 		$this->layout = 'ajax';
 		$this->loadModel('Acta');
-		$list_acta = $this->Acta->listSearchActas($search_ano);
+		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
+		$list_acta = $this->Acta->listSearchActas($search_ano, $tipo_user_id);
 
 		$this->set(compact('list_acta'));
 	}
 	
-	public function find_actas($page=null,$order_by=null,$order_by_or=null,$search_nro=null,$search_actividad=null,$search_empresa=null,$search_obra=null) {
-		$this->layout = 'ajax';
-		$this->loadModel('Acta');
-		$page = $page;
-		$page -= 1;
-		$per_page = 10;
-		$start = $page * $per_page;
-		/*if(isset($order_by)){
-			$order_by = $order_by;
-		}else{
-			$order_by = 'Persona.created';
-		}*/
-		$order_by = 'Acta.created';
-	
-		if($order_by_or!=NULL && isset($order_by_or) && $order_by_or!='null'){
-			$order_by_or = $order_by_or;
-		}else{
-			$order_by_or = 'DESC';
-		}
-	
-		/*if($order_by=='title'){
-			$order_by = 'Bit.title';
-		}elseif($order_by=='username'){
-			$order_by = 'UserJoin.username';
-		}elseif($order_by=='home'){
-			$order_by = 'Bit.view_home';
-		}elseif($order_by=='status'){
-			$order_by = 'Bit.status';
-		}else{
-			$order_by = 'Bit.created';
-		}*/
-	
-		if($this->request->is('get')){
-			if($search_nro == 'null'){
-				$search_nro = '';
-			}else{
-				$search_nro = $search_nro;
-			}
-			
-			if($search_actividad == 'null'){
-				$search_actividad = '';
-			}else{
-				$search_actividad = $search_actividad;
-			}
-			
-			if($search_empresa == 'null'){
-				$search_empresa = '';
-			}else{
-				$search_empresa = $search_empresa;
-			}
-			
-			if($search_obra == 'null'){
-				$search_obra = '';
-			}else{
-				$search_obra = $search_obra;
-			}
-	
-		}else{
-			$search_nro = '';
-			$search_actividad = '';
-			$search_empresa = '';
-			$search_obra = '';
-		}
-
-		$list_acta_all = $this->Acta->listAllActas($order_by, $search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra),$order_by_or);
-		$list_acta = $this->Acta->listFindActas($order_by, $search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra),$order_by_or, $start, $per_page);
-		$count = count($list_acta_all);
-		$no_of_paginations = ceil($count / $per_page);
-		$page = $page+1;
-		$this->set(compact('list_acta','page','no_of_paginations'));
-	}
-	
-	
+		
 	/**
 	 * Add and Edit using Ajax
 	 * 16 March 2015
@@ -227,6 +156,11 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_rec'] = $this->request->data['Acta']['info_des_rec'];
 				$this->request->data['Acta']['info_des_med'] = $this->request->data['Acta']['info_des_med'];
 				$this->request->data['Acta']['vers_cambios'] = 2;
+				if($this->Session->read('Auth.User.tipo_user_id')== 3){
+					$this->request->data['Acta']['created_mym'] = 1;
+				}else{
+					$this->request->data['Acta']['created_mym'] = 0;
+				}
 
 				$data = str_replace(' ', '+', $this->request->data['graf']);
 				$data_64= base64_decode($data);
@@ -1952,21 +1886,25 @@ class ActasController extends AppController{
 	}
 	
 	public function view_informe($acta_id = null){
-			
+
 		ini_set('memory_limit', '512M');
 		$this->loadModel('Acta');
 		$obj_acta = $this->Acta->findById($acta_id);
 
-		if($obj_acta->getAttr('vers_cambios')==1){
-			$this->layout = 'layout_view_pdf1';
+		if($this->Session->read('Auth.User.tipo_user_id') == 3){
+			$this->layout= 'layout_view_pdf_ensa';	
 		}else{
-			// Cambio de direccion que solo afecte a las actas creadas a partir de la nueva fecha
-			if($obj_acta->getAttr('created')>='2016-11-07' && $obj_acta->getAttr('created')<'2017-02-08'){
-				$this->layout = 'layout_view_pdf3';
-			}elseif($obj_acta->getAttr('created')>='2017-02-08'){
-				$this->layout = 'layout_view_pdf4';
+			if($obj_acta->getAttr('vers_cambios')==1){
+				$this->layout = 'layout_view_pdf1';
 			}else{
-				$this->layout = 'layout_view_pdf2';
+				// Cambio de direccion que solo afecte a las actas creadas a partir de la nueva fecha
+				if($obj_acta->getAttr('created')>='2016-11-07' && $obj_acta->getAttr('created')<'2017-02-08'){
+					$this->layout = 'layout_view_pdf3';
+				}elseif($obj_acta->getAttr('created')>='2017-02-08'){
+					$this->layout = 'layout_view_pdf4';
+				}else{
+					$this->layout = 'layout_view_pdf2';
+				}
 			}
 		}
 				
@@ -1981,7 +1919,7 @@ class ActasController extends AppController{
 		$info_ni_v = $this->Acta->infoNiV($acta_id);
 		
 		$obj_acta_ref = array();
-		if($obj_acta->getAttr('acta_referencia')!=''){
+		if($obj_acta->getAttr('acta_referencia')!= 0){
 			$informe_ref_id = $obj_acta->getAttr('acta_referencia');
 			$obj_acta_ref = $this->Acta->findById($informe_ref_id);
 		}

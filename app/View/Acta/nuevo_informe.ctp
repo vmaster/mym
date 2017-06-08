@@ -132,15 +132,21 @@ tinymce.init({
 											</td>
 											<td style="vertical-align: middle" colspan=2>
 											Empresa supervisada al servicio de:
-											<div class="radio">
-													<label> MyM <input name="rbtLugar" type="radio" value="M" id="rbMym" checked>
+											<?php
+												if($this->Session->read('Auth.User.tipo_user_id')== 3){
+													echo "<label>ENSA</label>";
+												}else{
+											?>
+												<div class="radio">
+														<label> MyM <input name="rbtLugar" type="radio" value="M" id="rbMym" checked>
+														</label>
+												</div>
+												<div class="radio" style="display: -webkit-inline-box">
+													<label>Otro <input name="rbtLugar" type="radio" value="O" id="rbOtro">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<?php echo $this->Form->input('empresa_supervisora', array('div' => false, 'label' => false, 'class'=> 'txtEmpSup form-control','id' =>'txtEmpSup', 'type' =>'text', 'style' => 'display:none', 'value'=>'MyM')); ?>
 													</label>
-											</div>
-											<div class="radio" style="display: -webkit-inline-box">
-												<label>Otro <input name="rbtLugar" type="radio" value="O" id="rbOtro">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												<?php echo $this->Form->input('empresa_supervisora', array('div' => false, 'label' => false, 'class'=> 'txtEmpSup form-control','id' =>'txtEmpSup', 'type' =>'text', 'style' => 'display:none', 'value'=>'MyM')); ?>
-												</label>
-											</div>
+												</div>
+											<?php } ?>
 											</td>
 										</tr>
 										<tr>
