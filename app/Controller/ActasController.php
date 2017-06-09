@@ -1506,7 +1506,7 @@ class ActasController extends AppController{
 			}
 		}else{
 			$obj_acta = $this->Acta->findById($acta_id);
-			if(($this->Session->read('Auth.User.tipo_user_id') == 1) || ($this->Session->read('Auth.User.id') == $obj_acta->getAttr('reponsable_sup_id'))){
+			if(($this->Session->read('Auth.User.tipo_user_id') == 1) || ($this->Session->read('Auth.User.id') == $obj_acta->getAttr('reponsable_sup_id') || ($this->Session->read('Auth.User.tipo_user_id') == 3))){
 				$this->request->data = $obj_acta->data;
 				$this->set(compact('acta_id','obj_acta'));
 			}else{
