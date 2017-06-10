@@ -83,10 +83,10 @@ $codigo.= "<div class='head-pag'>
 			</table>
 			<table class='tg tg-031eF back-gray' width='100%' style='margin-bottom:-10px'>
 			<tr>
-			    <td style='text-align:cente; width:20%;' class='back-green'><strong>C&oacute;digo: M001-SST/MA</strong></td>
-			    <td style='text-align:center; width:60%;' class='aling-left back-green'><strong>Programa y formato: GISEMM Propiedad M&M Ingeniería Obras y Servicios EIRL</strong></td>
-			    <td style='text-align:center; width:20%;' class='back-green'><strong>Fecha: 09/02/2017</strong></td>
-			  </tr>
+			    <td style='text-align:center; width:20%; font-size:11px' class='back-green'><strong>C&oacute;digo: M001-SST/MA</strong></td>
+			    <td style='text-align:center; width:60%; font-size:11px' class='aling-left back-green'><strong>Programa y formato: GISEMM Propiedad M&M Ingeniería Obras y Servicios EIRL</strong></td>
+			    <td style='text-align:center; width:20%; font-size:11px' class='back-green'><strong>Fecha: 09/02/2017</strong></td>
+			 </tr>
 			</table>
 			<br>
 			</div>";
