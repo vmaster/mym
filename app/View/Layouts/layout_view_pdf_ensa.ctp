@@ -32,7 +32,7 @@ $codigo = "<style type='text/css'>
 .head-pag {
    position:fixed;
    left:0px;
-   top:-115px;
+   top:-107px;
    width:100%;
    font: 50% sans-serif;
 }
@@ -77,19 +77,17 @@ $codigo.= "<div class='head-pag'>
 			    <th style='width:80%' class='tg-031e' ><h2 style='margin:2px'>INFORME T&Eacute;CNICO N&#176; ".substr($obj_acta->getAttr('num_informe'), 0,6)." ENSA/SST-2017</h2>
 			    <h5 style='margin:2px'>SUPERVISI&Oacute;N (INSPECCI&Oacute;N / OBSERVACI&Oacute;N) EN SEGURIDAD Y SALUD EN EL TRABAJO</h5>		
 			    </th>
-			    
 			  </tr>
-			  
 			</table>
-			<table class='tg tg-031eF back-gray' width='100%' style='margin-bottom:-10px'>
+
+			<table class='tg tg-031eF back-gray' width='100%' >
 			<tr>
-			    <td style='text-align:center; width:20%; font-size:11px' class='back-green'><strong>C&oacute;digo: M001-SST/MA</strong></td>
-			    <td style='text-align:center; width:60%; font-size:11px' class='aling-left back-green'><strong>Programa y formato: GISEMM Propiedad M&M Ingeniería Obras y Servicios EIRL</strong></td>
-			    <td style='text-align:center; width:20%; font-size:11px' class='back-green'><strong>Fecha: 09/02/2017</strong></td>
+			    <td style='text-align:center; width:20%; font-size:12px' class='back-green'><strong>C&oacute;digo: M001-SST/MA</strong></td>
+			    <td style='text-align:center; width:60%; font-size:12px' class='aling-left back-green'><strong>Programa y formato: GISEMM Propiedad M&M Ingeniería Obras y Servicios EIRL</strong></td>
+			    <td style='text-align:center; width:20%; font-size:12px' class='back-green'><strong>Fecha: 09/02/2017</strong></td>
 			 </tr>
 			</table>
-			<br>
-			</div>";
+		  </div>";
 
 
 $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
