@@ -774,7 +774,7 @@ $codigo.= "	</tr></table></div><br>";
 					<td>UM</td>
 					<td>DOC</td>
 					<td>CP</td>
-					<td>AC</td>
+					<td>CS</td>
 					<td>TOTAL</td></tr>";
 		$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_epp2."</td><td>".$total_nc_sd2."</td><td>".$total_nc_um2."</td><td>".$total_nc_ds2."</td><td>".$total_nc_cu2."</td><td>".$total_nc_cs2."</td><td>".$normas_cumplidas2."</td></tr>";
 		$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_epp2."</td><td>".$total_ni_sd2."</td><td>".$total_ni_um2."</td><td>".$total_ni_ds2."</td><td>".$total_ni_cu2."</td><td>".$total_ni_cs2."</td><td>".$normas_incumplidas2."</td></tr>";
