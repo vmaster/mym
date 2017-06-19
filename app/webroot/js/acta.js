@@ -484,7 +484,7 @@ $(document).ready(function(){
 			            color: '#E03737',
 			            drilldown: {
 			                name: 'NI Items',
-			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'AC'],
+			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'CS'],
 			                data: [porc_ni, 0, 0, 0, 0, 0],
 			                color: '#E03737'
 			            }
@@ -493,7 +493,7 @@ $(document).ready(function(){
 			            color: colors[0],
 			            drilldown: {
 			                name: 'NC Items',
-			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'AC'],
+			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'CS'],
 			                data: porc_cu_categorias,
 			                color: colors[0]
 			            }
@@ -507,7 +507,7 @@ $(document).ready(function(){
 			        brightness;
 
 
-				var leyendtitle = ["EQUIPOS DE PROTECCIÓN (PERSONAL Y/O COLECTIVO)", "SEÑALIZACIÓN Y DELIMITACIÓN", "UNIDADES MÓVILES", "DOCUMENTACIÓN DE SEGURIDAD", "CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO", "ACTOS Y CONDICIONES ESTANDARES Y/O SUB-ESTANDARES"];
+				var leyendtitle = ["EQUIPOS DE PROTECCIÓN (PERSONAL Y/O COLECTIVO)", "SEÑALIZACIÓN Y DELIMITACIÓN", "UNIDADES MÓVILES", "DOCUMENTACIÓN DE SEGURIDAD", "CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO", "CONDICIONES DE SEGURIDAD"];
 			    // Build the data arrays
 			    for (i = 0; i < dataLen; i += 1) {
 
