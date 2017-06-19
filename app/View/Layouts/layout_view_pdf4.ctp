@@ -244,7 +244,7 @@ foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
 }
 $codigo.= "	</tr></table></div><br>";
 
-$codigo.= "
+$codigo.= "<table style='padding:-3px;margin:0px' width='100%' border='0'><tr><td>
 			<table class='tg' width='100%'>
 		  		<tr>
 		    		<th class='tg-e3zv back-blue'>SE&Ntilde;ALIZACI&Oacute;N Y DELIMITACI&Oacute;N</th>
@@ -288,7 +288,8 @@ $codigo.= "
 			    }
 $codigo.= "</td>
 			</tr>
-			</table>";
+			</table>
+			</td></tr></table>";
 
 
 $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
@@ -308,7 +309,7 @@ foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
 $codigo.= "	</tr></table></div><br>";
 
 
-$codigo.= "
+$codigo.= "<table style='padding:-3px;margin:0px' width='100%' border='0'><tr><td>
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-blue'>UNIDADES M&Oacute;VILES</th>
@@ -349,7 +350,8 @@ $codigo.= "
 			    }
 		    }
 $codigo.= "</td></tr>
-		</table>";
+		</table>
+		</td></tr></table>";
 
 
 $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
@@ -369,7 +371,7 @@ foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
 $codigo.= "	</tr></table></div><br>";
 
 
-$codigo.= "
+$codigo.= "<table style='padding:-3px;margin:0px' width='100%' border='0'><tr><td>
 		 <table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-blue' width='65%'>DOCUMENTACI&Oacute;N DE SEGURIDAD</th>
@@ -411,7 +413,8 @@ $codigo.= "
 		    	
 $codigo.= "</tr>
 		  </td>
-		</table>";
+		</table>
+		</td></tr></table>";
 
 
 $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
@@ -431,7 +434,7 @@ foreach($obj_acta->FotoDoc as $key => $obj_foto_doc) {
 $codigo.= "	</tr></table></div><br>";
 
 
-$codigo.= "
+$codigo.= "<table style='padding:-3px;margin:0px' width='100%' border='0'><tr><td>
 		<table class='tg' width='100%'>
 		  <tr>
 		    <th class='tg-e3zv back-blue'>CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO</th>
@@ -472,7 +475,8 @@ $codigo.= "
 		    	
 $codigo.= "</td>
 		  </tr>
-		</table>";
+		</table>
+		</td></tr></table>";
 
 
 $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
@@ -492,7 +496,7 @@ foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
 $codigo.= "	</tr></table></div><br>";
 
 
-$codigo.= "
+$codigo.= "<table style='padding:-3px;margin:0px' width='100%' border='0'><tr><td>
 		<table class='tg' width='100%'>
 		  <tr>
 			<th class='tg-e3zv back-blue'>CONDICIONES DE SEGURIDAD</th>
@@ -534,7 +538,8 @@ $codigo.= "
 		    
 $codigo.="</td>
 		  </tr>
-		</table>";
+		</table>
+		</td></tr></table>";
 
 
 $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
