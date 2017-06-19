@@ -10,7 +10,7 @@
 			            color: '#E03737',
 			            drilldown: {
 			                name: 'NI Items',
-			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'AC'],
+			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'CS'],
 			                data: [porc_ni, 0, 0, 0, 0, 0],
 			                color: '#E03737'
 			            }
@@ -19,7 +19,7 @@
 			            color: colors[0],
 			            drilldown: {
 			                name: 'NC Items',
-			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'AC'],
+			                categories: ['EPP', 'SE', 'UM', 'DOC', 'CP', 'CS'],
 			                data: porc_cu_categorias,
 			                color: colors[0]
 			            }
@@ -281,7 +281,7 @@
 						
 						var content = ""
 						content += '<table width="100%" border=1 ><tbody><tr><th colspan="8" style="    background-color: #D6E3BC;text-align: center;"><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr><tr><td></td>';
-						content += '<td>EPP</td><td>SE</td><td>UM</td><td>DOC</td><td>CP</td><td>AC</td><td>TOTAL</td></tr><tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>'+n_cu_epp+'</td><td>'+n_cu_sd+'</td><td>'+n_cu_um+'</td><td>'+n_cu_ds+'</td><td>'+n_cu_cp+'</td><td>'+n_cu_as+'</td><td>'+normas_cumplidas+'</td></tr><tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>'+n_in_epp+'</td><td>'+n_in_sd+'</td><td>'+n_in_um+'</td><td>'+n_in_ds+'</td><td>'+n_in_cp+'</td><td>'+n_in_as+'</td><td>'+normas_incumplidas+'</td></tr><tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>'+porc_epp+'%</td><td>'+porc_sd+'%</td><td>'+porc_um+'%</td><td>'+porc_ds+'%</td><td>'+porc_cp+'%</td><td>'+porc_as+'%</td><td>'+Math.round((normas_cumplidas * 100)/suma_normas)+'%</td></tr></tbody></table>';
+						content += '<td>EPP</td><td>SE</td><td>UM</td><td>DOC</td><td>CP</td><td>CS</td><td>TOTAL</td></tr><tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>'+n_cu_epp+'</td><td>'+n_cu_sd+'</td><td>'+n_cu_um+'</td><td>'+n_cu_ds+'</td><td>'+n_cu_cp+'</td><td>'+n_cu_as+'</td><td>'+normas_cumplidas+'</td></tr><tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>'+n_in_epp+'</td><td>'+n_in_sd+'</td><td>'+n_in_um+'</td><td>'+n_in_ds+'</td><td>'+n_in_cp+'</td><td>'+n_in_as+'</td><td>'+normas_incumplidas+'</td></tr><tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>'+porc_epp+'%</td><td>'+porc_sd+'%</td><td>'+porc_um+'%</td><td>'+porc_ds+'%</td><td>'+porc_cp+'%</td><td>'+porc_as+'%</td><td>'+Math.round((normas_cumplidas * 100)/suma_normas)+'%</td></tr></tbody></table>';
 						$('#container-table').empty();
 						$('#container-table').append(content);
 					}
