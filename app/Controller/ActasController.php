@@ -1889,6 +1889,7 @@ class ActasController extends AppController{
 
 		ini_set('memory_limit', '512M');
 		$this->loadModel('Acta');
+		$this->loadModel('Actividade');
 		$obj_acta = $this->Acta->findById($acta_id);
 
 		if($this->Session->read('Auth.User.tipo_user_id') == 3){
@@ -1914,7 +1915,8 @@ class ActasController extends AppController{
 			exit();
 		}
 
-		
+		$cargo_supervisor = $this->Actividade->getNombreCargo($obj_acta->getAttr('reponsable_sup_cargo_id'));
+				
 		$info_ni_t = $this->Acta->infoNiT($acta_id);
 		$info_ni_v = $this->Acta->infoNiV($acta_id);
 		
@@ -1924,7 +1926,7 @@ class ActasController extends AppController{
 			$obj_acta_ref = $this->Acta->findById($informe_ref_id);
 		}
 
-		$this->set(compact('obj_acta','obj_acta_ref','info_ni_t','info_ni_v'));
+		$this->set(compact('obj_acta','obj_acta_ref','info_ni_t','info_ni_v', 'cargo_supervisor'));
 	}
 	
 	public function send_reporte_email()

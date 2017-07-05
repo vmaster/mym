@@ -775,21 +775,26 @@ $codigo.= "	</tr></table></div><br>";
 
 $codigo .= "<div align='right'><table width='100%'>
 			<tr><td><div style='text-align:right;'>";
-			if($obj_acta->getAttr('reponsable_sup_id') != 0){
+			/*if($obj_acta->getAttr('reponsable_sup_id') != 0){
 				$codigo.= "<img src='".ENV_WEBROOT_FULL_URL."files/firmas/".$obj_acta->Trabajadore2->getAttr('firma')."' style='border:0px;' width='144px' height='80px'> ";
 			}else{
 				$codigo.="";
-			}
+			}*/
+
 $codigo .= "</div>";
-$codigo .= "<div style='text-align:right;'><hr width='30%' align='right'></div>
-		   	<div style='text-align:right;font-size:13px;'>";
+$codigo .= "<div style='text-align:right;'><p>&nbsp;</p></div>
+			
+		   	<div style='text-align:right;font-size:13px;'><strong>";
 			if($obj_acta->getAttr('reponsable_sup_id') !=0){
-				$codigo.= "ING. ".$obj_acta->Trabajadore2->getAttr('apellido_nombre');
+				$codigo.= $obj_acta->Trabajadore2->getAttr('apellido_nombre');
 			}else{
 				$codigo.="";
 			}
-$codigo.="</div>
-		   	<div style='text-align:right;font-size:13px; padding-left: 25px; padding-right: 25px;'>SUPERVISOR DE SST - M&M</div></td></tr></table></div><div class='salto-linea'>&nbsp;</div>";
+$codigo.="</strong></div>
+		   	<div style='text-align:right;font-size:13px; padding-left: 25px; padding-right: 25px;'>(".$cargo_supervisor.")</div></td></tr></table></div>
+		   	<div style='text-align:right; 'width=20%'><hr width='32%' align='right'></div>
+			<div style='text-align:right;font-size:13px;'>RESPONSABLE DE LA SUPERVISIÓN</div>
+		   	<div class='salto-linea'>&nbsp;</div>";
 
 $codigo.= "<table class='tg' width='100%'>
 		<thead>

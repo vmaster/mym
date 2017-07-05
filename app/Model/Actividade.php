@@ -138,6 +138,19 @@ App::uses('AppModel','Model');
     	
     	return $arr_obj_actividad ? true : false;
     }
+
+    public function getNombreCargo($id_cargo=''){
+        //debug("dentro del modelo acti". $id_cargo);
+        $nombre_cargo = $this->find('list', array(
+            'fields' => array('Actividade.descripcion'),
+            'conditions' => array(
+                'Actividade.id' => $id_cargo
+                )
+            )
+        );
+
+        return $nombre_cargo[$id_cargo];
+    }
     
     
   }
