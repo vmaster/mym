@@ -284,7 +284,31 @@ App::uses('AppModel','Model');
     						'rule' => array('notEmpty'),
     						'message' => 'La N&uacute;mero de trabajadores es requerido'
     				)
-    		)
+    		),
+            'reponsable_act_cargo_id' => array(
+                    'notempty' => array(
+                            'rule' => array('notEmpty'),
+                            'message' => 'Cargo del responsable de la Actividad requerido'
+                    )
+            ),
+            'reponsable_act_id' => array(
+                    'notempty' => array(
+                            'rule' => array('notEmpty'),
+                            'message' => 'Responsable de la Actividad requeido'
+                    )
+            ),
+            'reponsable_sup_cargo_id' => array(
+                    'notempty' => array(
+                            'rule' => array('notEmpty'),
+                            'message' => 'Cargo del responsable de la Supervisi&oacute;n requerido'
+                    )
+            ),
+            'reponsable_sup_id' => array(
+                    'notempty' => array(
+                            'rule' => array('notEmpty'),
+                            'message' => 'Responsable de la Supervisi&oacute;n requerido'
+                    )
+            )
     );
     
     

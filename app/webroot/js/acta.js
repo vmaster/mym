@@ -143,6 +143,7 @@ $(document).ready(function(){
 					var span_combo = $("span.select2-selection");
 					$('.span-cbo-empresa').find(span_combo).css("border-color","#a94442");
 					$('.td-cbo-uunn').find(span_combo).css("border-color","#a94442");
+					$('.span-cbo-responsable-act').find(span_combo).css("border-color","#a94442")
 
 					$('.span-cbo-empresa').change(function() {
 						$('.span-cbo-empresa').find(span_combo).css("border-color","");
@@ -152,11 +153,18 @@ $(document).ready(function(){
 						$('.td-cbo-uunn').find(span_combo).css("border-color","");
 					});
 
+					$('.span-cbo-responsable-act').change(function() {
+						$('.span-cbo-responsable-act').find(span_combo).css("border-color","");
+					});
+
 					if($('.span-cbo-empresa').find($('.select2-selection__clear')).length > 0){
 						$('.span-cbo-empresa').find(span_combo).css("border-color","");
 					}
 					if($('.td-cbo-uunn').find($('.select2-selection__clear')).length > 0){
 						$('.td-cbo-uunn').find(span_combo).css("border-color","");
+					}
+					if($('.span-cbo-responsable-act').find($('.select2-selection__clear')).length > 0){
+						$('.span-cbo-responsable-act').find(span_combo).css("border-color","");
 					}
 
 					$('html,body').animate({scrollTop:'400px'}, 700);return false;
@@ -975,7 +983,31 @@ function sumaAcumularNormas(){
 		  placeholder: "Seleccione UUNN",
 		  allowClear: true
 		});
-	
+
+	$(".cbo-reponsable-act-cargo").select2({
+			  placeholder: "Seleccione cargo de resp. carg",
+			  allowClear: true,
+			  width: '100%'
+	});
+
+	$(".cbo-reponsable-sup-cargo").select2({
+			  placeholder: "Seleccione cargo de resp. sup",
+			  allowClear: true,
+			  width: '100%'
+	});
+
+	$(".cbo-reponsable-act").select2({
+			  placeholder: "Seleccione responsable de act.",
+			  allowClear: true,
+			  width: '100%'
+	});
+
+	$(".cbo-reponsable-sup").select2({
+			  placeholder: "Seleccione responsable de sup",
+			  allowClear: true,
+			  width: '100%'
+	});
+
 	function loadATrabajador(){
 	$(".cbo-trabajadores-select2").select2({
 		  placeholder: "Seleccione un trabajador",
@@ -1003,11 +1035,7 @@ function sumaAcumularNormas(){
 	}
 	loadACondSub();
 	
-	$(".cbo-responsable-select2").select2({
-			  placeholder: "Seleccione responsable",
-			  allowClear: true,
-			  width: '100%'
-	});
+	
 	
 	$.each($('.cbo-responsable-select2'), function(index) {
 		index_input = (index + 1);

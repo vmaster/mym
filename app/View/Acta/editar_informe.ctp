@@ -1384,10 +1384,10 @@ tinymce.init({
 								<tr>
 									<td style="vertical-align: middle; width:50%">Cargo:
 									<?php
-										echo "<span style='display: inline-flex; width: 100%;'>";
-										echo "<select name='data[Acta][reponsable_act_cargo_id]' class='cbo-responsable-select2 form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-act-cargo'>";
+										echo "<select name='data[Acta][reponsable_act_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-act-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_actividades)){
-											echo "<option>---</option>";
+											//echo "<option>---</option>";
 									    	foreach ($list_all_actividades as $id => $des):
 									    	if($id == $obj_acta->Actividade1->getAttr('id')){
 									    		$selected = " selected = 'selected'";
@@ -1402,10 +1402,10 @@ tinymce.init({
 									</td>
 									<td style="vertical-align: middle; width:50%">Cargo:
 									<?php
-										echo "<span style='display: inline-flex; width: 100%;'>";
-										echo "<select name='data[Acta][reponsable_sup_cargo_id]' class='cbo-responsable-select2 form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-sup-cargo'>";
+										echo "<select name='data[Acta][reponsable_sup_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-sup-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_actividades)){
-											echo "<option>---</option>";
+											//echo "<option>---</option>";
 									    	foreach ($list_all_actividades as $id => $des):
 									    	if($id == $obj_acta->Actividade2->getAttr('id')){
 									    		$selected = " selected = 'selected'";
@@ -1422,10 +1422,10 @@ tinymce.init({
 								<tr>
 									<td style='width:35%;'>Nombre: 
 									<?php
-										echo "<span style='display: inline-flex; width: 100%;'>";
-										echo "<select name='data[Acta][reponsable_act_id]' class='cbo-responsable-select2 form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<span style='display: inline-flex; width: 100%;' clas'>";
+										echo "<select name='data[Acta][reponsable_act_id]' class='cbo-responsable-select2 cbo-reponsable-act form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
-											echo "<option>---</option>";
+											//echo "<option>---</option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	if($id == $obj_acta->Trabajadore1->getAttr('id')){
 									    		$selected = " selected = 'selected'";
@@ -1440,10 +1440,10 @@ tinymce.init({
 									</td>
 									<td style='width:35%;'>Nombre:
 										<?php 
-										echo "<span style='display: inline-flex; width: 100%;'>";
-										echo "<select name='data[Acta][reponsable_sup_id]' class='cbo-responsable-select2 form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable_sup'>";
+										echo "<select name='data[Acta][reponsable_sup_id]' class='cbo-responsable-select2 cbo-reponsable-sup form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
-											echo "<option>---</option>";
+											//echo "<option>---</option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	if($id == $obj_acta->Trabajadore2->getAttr('id')){
 									    		$selected = " selected = 'selected'";
