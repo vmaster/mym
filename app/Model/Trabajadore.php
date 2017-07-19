@@ -34,6 +34,19 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		),
+            'ActaInstalacione' => array(
+                    'className' => 'ActaInstalacione',
+                    'foreignKey' => 'reponsable_act_id',
+                    'dependent' => false,
+                    'conditions' => '',
+                    'fields' => '',
+                    'order' => '',
+                    'limit' => '',
+                    'offset' => '',
+                    'exclusive' => '',
+                    'finderQuery' => '',
+                    'counterQuery' => ''
+            ),
     		'ImpProtPersonale' => array(
     				'className' => 'ImpProtPersonale',
     				'foreignKey' => 'trabajador_id',

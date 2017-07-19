@@ -17,7 +17,21 @@ App::uses('AppModel','Model');
     				'exclusive' => '',
     				'finderQuery' => '',
     				'counterQuery' => ''
-    		)
+    		),
+
+            'ActaInstalacione' => array(
+                    'className' => 'ActaInstalacione',
+                    'foreignKey' => 'empresa_id',
+                    'dependent' => false,
+                    'conditions' => '',
+                    'fields' => '',
+                    'order' => '',
+                    'limit' => '',
+                    'offset' => '',
+                    'exclusive' => '',
+                    'finderQuery' => '',
+                    'counterQuery' => ''
+            )
     );
     
     public $validate = array(

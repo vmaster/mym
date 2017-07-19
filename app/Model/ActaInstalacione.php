@@ -1,7 +1,7 @@
 <?php
 App::uses('AppModel','Model');
   class ActaInstalacione extends AppModel {
-    public $name = 'Acta';
+    public $name = 'ActaInstalacione';
 
     public $hasMany = array(
     		'CierreActa' => array(
@@ -282,7 +282,7 @@ App::uses('AppModel','Model');
                                         'alias' => 'EmpresaJoin',
                                         'type' => 'INNER',
                                         'conditions' => array(
-                                                'EmpresaJoin.id = Acta.empresa_id'
+                                                'EmpresaJoin.id = ActaInstalacione.empresa_id'
                                         )
                                 )
                         ),
@@ -346,7 +346,7 @@ App::uses('AppModel','Model');
     								'alias' => 'EmpresaJoin',
     								'type' => 'INNER',
     								'conditions' => array(
-    										'EmpresaJoin.id = Acta.empresa_id'
+    										'EmpresaJoin.id = ActaInstalacione.empresa_id'
     								)
     						)
     				),
@@ -356,7 +356,7 @@ App::uses('AppModel','Model');
     								'ActaInstalacione.actividad LIKE'=> '%'.$search_actividad.'%',
     								'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
     								'ActaInstalacione.obra LIKE'=> '%'.$search_obra.'%',
-									'YEAR(Acta.`created`)'=> $search_ano,
+									'YEAR(ActaInstalacione.`created`)'=> $search_ano,
     								'ActaInstalacione.estado '=> 1,
                                     'ActaInstalacione.created_mym' => 1
     						)
@@ -375,7 +375,7 @@ App::uses('AppModel','Model');
                                     'alias' => 'EmpresaJoin',
                                     'type' => 'INNER',
                                     'conditions' => array(
-                                            'EmpresaJoin.id = Acta.empresa_id'
+                                            'EmpresaJoin.id = ActaInstalacione.empresa_id'
                                     )
                             )
                     ),
@@ -385,7 +385,7 @@ App::uses('AppModel','Model');
                                     'ActaInstalacione.actividad LIKE'=> '%'.$search_actividad.'%',
                                     'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
                                     'ActaInstalacione.obra LIKE'=> '%'.$search_obra.'%',
-                                    'YEAR(Acta.`created`)'=> $search_ano,
+                                    'YEAR(ActaInstalacione.`created`)'=> $search_ano,
                                     'ActaInstalacione.estado '=> 1,
                                     'ActaInstalacione.created_mym' => 0
                             )
@@ -469,7 +469,7 @@ App::uses('AppModel','Model');
     
    
     /* Usado para el Combo de Acta en Registrar Acta*/
-    public function listActasInstalaciones() {
+    public function listActaInstalaciones() {
     	return $this->find('all',
     			array(
     					'fields' => array('id','numero','num_informe'),
