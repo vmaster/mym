@@ -1,4 +1,4 @@
-$(docsshhent).ready(function(){
+$(document).ready(function(){
 	
 	Acta = this;
 	$body = $('body');
@@ -95,7 +95,6 @@ $(docsshhent).ready(function(){
 
 	$body.off('click','.btn_crear_acta_instal_trigger');
 	$body.on('click','.btn_crear_acta_instal_trigger',function(){
-		alert("HOLA VLADIMIR");
 		myProccess.showPleaseWait();
 		tinyMCE.triggerSave();
 		$form = $(this).parents('form').eq(0);
@@ -103,13 +102,13 @@ $(docsshhent).ready(function(){
 		var html_recomendaciones = $('#father-container1 .nicEdit-main:last').html();
 		var html_csegeg_control = $('#father-container2 .nicEdit-main:first').html();
 		
-		var svg = docsshhent.getElementById('container_graf_cu').children[0].innerHTML;
-		canvg(docsshhent.getElementById('canvas'),svg);
+		var svg = document.getElementById('container_graf_cu').children[0].innerHTML;
+		canvg(document.getElementById('canvas'),svg);
 
 		//var canvas = new Canvas();
 		var img = canvas.toDataURL("image/png"); //img is data:image/png;base64
 		img = img.replace('data:image/png;base64,', '');
-
+		alert("hola");
 		$.ajax({
 			url: $form.attr('action'),
 			data: $form.serialize() + '&html_conclusiones=' + html_conclusiones + '&html_recomendaciones=' + html_recomendaciones + '&html_csegeg_control=' + html_csegeg_control + '&graf=' +  img,
@@ -118,7 +117,7 @@ $(docsshhent).ready(function(){
 		}).done(function(data){
 			if(data.success==true){
 				myProccess.hidePleaseWait();
-				$('.btn_crear_acta_trigger').prop('disabled',true)
+				$('.btn_crear_acta_instal_trigger').prop('disabled',true)
 				alertify.success(data.msg);
 				setTimeout(function(){
 					window.open(env_webroot_script + 'acta_instalaciones/','_self');
@@ -126,13 +125,14 @@ $(docsshhent).ready(function(){
 				
 			}else{
 				myProccess.hidePleaseWait();
-				$('.btn_crear_acta_trigger').prop('disabled',false)
+
+				$('.btn_crear_acta_instal_trigger').prop('disabled',false)
 				$.each(data.validation, function( key, value ) {
 					alertify.error(value[0]);
-					$('[name="data[Acta]['+key+']"]').parent().addClass('control-group has-error');
+					$('[name="data[ActaInstalacione]['+key+']"]').parent().addClass('control-group has-error');
 					
-					$('[name="data[Acta]['+key+']"]').change(function() {
-						$('[name="data[Acta]['+key+']"]').parent().removeClass('control-group has-error');
+					$('[name="data[ActaInstalacione]['+key+']"]').change(function() {
+						$('[name="data[ActaInstalacione]['+key+']"]').parent().removeClass('control-group has-error');
 					});
 
 
@@ -217,7 +217,7 @@ $(docsshhent).ready(function(){
 	/*Send Report by Email*/
 	$body.off('click','div#acta .open-model-send-informe');
 	$body.on('click','div#acta .open-model-send-informe', function(){
-		docsshhent.getElementById("form_send_email").reset();
+		document.getElementById("form_send_email").reset();
 		acta_instalacion_id = $(this).parents('.acta_instalacion_row_container').attr('acta_instalacion_id');
 		$('div#myModalSendReport').attr('acta_instalacion_id', acta_instalacion_id);
 		$('#spinner-send-report').hide();

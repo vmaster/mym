@@ -18,7 +18,7 @@ App::uses('AppModel','Model');
     				'counterQuery' => ''
     		),
     		'FotoInstalCondSeg' => array(
-    				'className' => 'FotoIpp',
+    				'className' => 'FotoInstalCondSeg',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
     				'conditions' => '',
@@ -31,7 +31,7 @@ App::uses('AppModel','Model');
     				'counterQuery' => ''
     		),
     		'FotoInstalEqEmerg' => array(
-    				'className' => 'FotoUm',
+    				'className' => 'FotoInstalEqEmerg',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
     				'conditions' => '',
@@ -44,7 +44,7 @@ App::uses('AppModel','Model');
     				'counterQuery' => ''
     		),
     		'FotoInstalIlumVents' => array(
-    				'className' => 'FotoSd',
+    				'className' => 'FotoInstalIlumVents',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
     				'conditions' => '',
@@ -57,7 +57,7 @@ App::uses('AppModel','Model');
     				'counterQuery' => ''
     		),
     		'FotoInstalOrdenLimpiezas' => array(
-    				'className' => 'FotoAct',
+    				'className' => 'FotoInstalOrdenLimpiezas',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
     				'conditions' => '',
@@ -70,7 +70,7 @@ App::uses('AppModel','Model');
     				'counterQuery' => ''
     		),
     		'FotoInstalSenSeg' => array(
-    				'className' => 'FotoCond',
+    				'className' => 'FotoInstalSenSeg',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
     				'conditions' => '',
@@ -83,7 +83,7 @@ App::uses('AppModel','Model');
     				'counterQuery' => ''
     		),
     		'FotoInstalSshhs' => array(
-    				'className' => 'FotoDoc',
+    				'className' => 'FotoInstalSshhs',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
     				'conditions' => '',
