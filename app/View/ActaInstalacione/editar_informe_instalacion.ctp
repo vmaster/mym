@@ -20,7 +20,7 @@ tinymce.init({
 </div>
 <hr />
 <div class="div-crear-acta-instal form" id="div-editar-acta-instal">
-	<?php echo $this->Form->create('ActaInstalacione',array('method'=>'post', 'id'=>'add_edit_acta_instal','type'=>'file','acta_id'=>$obj_acta->getID()));?>
+	<?php echo $this->Form->create('ActaInstalacione',array('method'=>'post', 'id'=>'add_edit_acta_instal','type'=>'file','acta_instalacion_id'=>$obj_acta->getID()));?>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
@@ -67,7 +67,7 @@ tinymce.init({
 													if (isset($list_all_actas)){
 														echo "<option>---</option>";
 														foreach ($list_all_actas as $id => $num):
-														if(isset($obj_acta) || isset($acta_id)){
+														if(isset($obj_acta) || isset($acta_instalacion_id)){
 															if($num['ActaInstalacione']['id'] == $obj_acta->getAttr('acta_referencia')){
 																$selected = " selected = 'selected'";
 															}else{
@@ -107,7 +107,7 @@ tinymce.init({
 													<?php 
 													if (isset($list_all_empresas)){
 													foreach ($list_all_empresas as $id => $des):
-														if(isset($obj_acta) || isset($acta_id)){
+														if(isset($obj_acta) || isset($acta_instalacion_id)){
 															if($id == $obj_acta->getAttr('empresa_id')){
 																$selected = " selected = 'selected'";
 															}else{
@@ -140,7 +140,7 @@ tinymce.init({
 												if (isset($list_all_unidades_negocios)){
 													echo "<option>---</option>";
 													foreach ($list_all_unidades_negocios as $id => $des):
-													if(isset($obj_acta) || isset($acta_id)){
+													if(isset($obj_acta) || isset($acta_instalacion_id)){
 														if($id == $obj_acta->getAttr('uunn_id')){
 															$selected = " selected = 'selected'";
 														}else{
@@ -188,7 +188,7 @@ tinymce.init({
 													<?php 
 													if (isset($list_all_tipo_lugares)){
 														foreach ($list_all_tipo_lugares as $id => $des):
-														if(isset($obj_acta) || isset($acta_id)){
+														if(isset($obj_acta) || isset($acta_instalacion_id)){
 															if($id == $obj_acta->getAttr('tipo_lugar_id')){
 																$selected = " selected = 'selected'";
 															}else{
@@ -221,294 +221,6 @@ tinymce.init({
 											<?php echo $this->Form->input('grafico', array('type'=>'hidden','div' => false, 'label' => false, 'maxlength' =>'15')); ?>
 										</tr>
 									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" aria-expanded="false" style="color: white;">IMPLEMENTOS DE PROTECCI&Oacute;N PERSONAL / UNIDADES M&Oacute;VILES</a>
-				</div>
-				<div id="collapseTwo" class="panel-collapse in">
-					<div class="panel-body">
-						<ul class="nav nav-pills">
-			                <li class="active"><a href="#home-pills1" data-toggle="tab">IMPLEMENTOS DE PROTECCI&Oacute;N PERSONAL</a>
-			                </li>
-			                <li class=""><a href="#profile-pills2" data-toggle="tab">UNIDADES M&Oacute;VILES</a>
-			                </li>
-			            </ul>
-			            <div class="tab-content">
-			                <div class="tab-pane fade active in" id="home-pills1">
-			                    <h4>&nbsp;</h4>
-			                    <div class="panel panel-primary">
-									<div class="panel-body">
-										<div class="table-responsive">
-											<table class="table table-striped table-bordered table-hover"
-												id="table-ipp-inf">
-												<thead>
-													<tr>
-														<th colspan=10
-															style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('IMPLEMENTOS DE PROTECCIÓN PERSONAL') ?>
-														</th>
-													</tr>
-													<tr>
-														<th><?php echo utf8_encode('N°'); ?></th>
-														<th>Nombre del trabajador</th>
-														<th>Cargo</th>
-														<th colspan=7
-															style="vertical-align: middle; text-align: center;">C&oacute;digos de Normas Incumplidas</th>
-													</tr>
-												</thead>
-												<tbody>
-												<?php //debug($obj_acta->ImpProtPersonale);
-												if(count($obj_acta->ImpProtPersonale)>0){
-													$key = 0; 
-												}else{
-													$key= -1;
-												}
-												foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
-													echo "<tr>";
-													echo "<td style='width:5%;'>".($key+1)."</td>";
-													echo "<td style='width:25%;'>";
-													echo "<span style='display: inline-flex; width: 100%;'>";
-													echo "<select name='data[TrabajadorActa][".($key+1)."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-													echo "<option>---</option>";
-													if (isset($list_all_trabajadores)){
-														foreach ($list_all_trabajadores as $id => $nom):
-															if($id == $obj_imp_prot_personal->Trabajadore->getID()){
-																$selected = " selected = 'selected'";
-															}else{
-																$selected = "";
-															}
-														
-														echo "<option value = ".$id.$selected.">".$nom."</option>";
-														endforeach;
-													}
-													echo "</select>";
-													echo "<input name='data[TrabajadorActa][".($key+1)."][ipp_id]' type='hidden' value='".$obj_imp_prot_personal->getID()."' id='hiddenIppid".($key+1)."'>";
-													echo "&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-trabajador' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-trabajador".($key+1)."'>...</a></span>";
-													echo "</td>";
-													
-													echo "<td style='width:30%;'><select name='data[TrabajadorActa][".($key+1)."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".($key+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-													echo "<option>--CARGO--</option>";
-													if (isset($list_all_actividades)){
-														foreach ($list_all_actividades as $id => $des):
-														if($id == $obj_imp_prot_personal->getAttr('actividad_id')){
-															$selected = " selected = 'selected'";
-														}else{
-															$selected = "";
-														}
-														echo "<option value = ".$id.$selected.">".$des."</option>";
-														endforeach;
-													}
-													echo "</select></td>";
-													
-													$count_obj_iv_ni = count($obj_imp_prot_personal->IppNormasIncumplida);
-													//if($count_obj_iv_ni > 0){
-
-													$arr_normas_incumplidas = array();
-													$arr_normas_incumplidas_id = array();
-													foreach($obj_imp_prot_personal->IppNormasIncumplida as $k =>$v){
-														$arr_normas_incumplidas[] = $v->getAttr('codigo_id');
-														$arr_normas_incumplidas_id[] = $v->getAttr('id');
-													}
-														echo "<td><select name='data[NiActa][".($key+1)."][]' class='cbo-nincumplidas-select2 form-control' id='Nid' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();' multiple='multiple'>";
-															echo "<option></option>";
-															if (isset($list_all_codigos)){
-																foreach ($list_all_codigos as $id => $cod){
-																	if(in_array($id, $arr_normas_incumplidas)){
-																	//if($id == $v->getAttr('codigo_id')){
-																		$selected = " selected = 'selected'";
-																	}else{
-																		$selected = "";
-																	}
-																	echo "<option value = ".$id.$selected.">".$cod."</option>";
-																}
-															}
-																
-														echo "</select></td>";
-														
-														echo "<input name='data[IppNi][".($key+1)."]' type='hidden' value='".implode(',', $arr_normas_incumplidas_id)."' id='hiddenIppNid".($key+1)."'>";
-														
-												echo "</tr>";
-												}
-												
-												for ($i = ($key+2); $i <= 10; $i++) {
-													    echo "<tr>";
-													    echo "<td>".$i."</td>";
-													    echo "<td style='width:28%;'>";
-													    echo "<span style='display: inline-flex; width: 100%;'>";
-													    echo "<select name='data[TrabajadorActa][".$i."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-													    echo "<option>---</option>";
-													    if (isset($list_all_trabajadores)){
-													    	foreach ($list_all_trabajadores as $id => $nom):
-													    	echo "<option value = ".$id.">".$nom."</option>";
-													    	endforeach;
-													    }
-													    echo "</select>";
-													    echo "<input name='data[TrabajadorActa][".$i."][ipp_id]' type='hidden' value='' id='hiddenIppid".$i."'>";
-													    echo "&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-trabajador' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-trabajador".$i."'>...</a></span>";
-													    echo "</td>";
-													    echo "<td><select name='data[TrabajadorActa][".$i."][actividad_id]' class='cbo-actividades-select2 form-control' id='Actividad".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-													    echo "<option>--CARGO--</option>";
-													    if (isset($list_all_actividades)){
-													    	foreach ($list_all_actividades as $id => $des):
-													    	echo "<option value = ".$id.">".$des."</option>";
-													    	endforeach;
-													    }
-													    echo "</select></td>";
-													    
-													   // for($j= 1; $j <=7; $j++){
-													    	//echo "<td style='width:7%;'><input name='data[NiActa][ni-".$i."-".$j."]' id='ni-".$i."-".$j."' class='form-control txt-ni".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-													   		//echo "<input name='data[NiActa][ni-id".$i."-".$j."]' type='hidden' value='' id='hiddenNid".$i."-".$j."'>";
-													   		echo "<td style='width:7%;'><select name='data[NiActa][".($i)."][]' class='cbo-nincumplidas-select2 form-control' id='Nid' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();' multiple='multiple'>";
-															echo "<option></option>";
-															if (isset($list_all_codigos)){
-																foreach ($list_all_codigos as $id => $cod):
-																echo "<option value = ".$id.">".$cod."</option>";
-																endforeach;
-															}
-															echo "</select>";
-													   		echo "<input name='data[IppNi][".($i)."]' type='hidden' value='' id='hiddenIppNid".$i."'></td>";
-													    //}
-													    echo "</tr>";
-													}
-													?>
-												</tbody>
-											</table>
-										</div>
-										<div class="row" id ="div-btn-add-ipp">
-											<div class="span3 col-md-12 col-sm-6 col-xs-6" style="text-align: right;">
-												<a class="btn btn-primary add-more-row-ipp">+</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="profile-pills2">
-			                    <h4>&nbsp;</h4>
-			                    <div class="panel panel-primary">
-									<div class="panel-body">
-										<div class="table-responsive">
-											<table class="table table-striped table-bordered table-hover"
-												id="table-sshh-inf">
-												<thead>
-													<tr>
-														<th colspan=12
-															style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('UNIDADES MÓVILES') ?>
-														</th>
-													</tr>
-													<tr>
-														<th style="width: 6%;"
-															style="vertical-align:middle; text-align: center;"><?php echo utf8_encode('N°'); ?>
-														</th>
-														<th><?php echo utf8_encode('N° de Placa'); ?></th>
-														<th><?php echo utf8_encode('Tipo Vehículo'); ?></th>
-														<th colspan=9
-															style="vertical-align: middle; text-align: center;">C&oacute;digos de Normas Incumplidas</th>
-													</tr>
-												</thead>
-												<?php //debug($obj_acta->ImpProtPersonale);
-												if(count($obj_acta->UnidadesMovile)>0){
-													$key2 = 0; 
-												}else{
-													$key2 = -1;
-												}
-												foreach ($obj_acta->UnidadesMovile as $key2 => $obj_uni_movil){
-													echo "<tr>";
-													echo "<td style='width:5%;'>".($key2 +1)."</td>";
-													echo "<td style='width:20%;'>";
-													echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
-													echo "<select name='data[UnidadMovil][".($key2 +1)."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".($key2 +1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-													if (isset($list_all_vehiculos)){
-														echo "<option>---</option>";
-														foreach ($list_all_vehiculos as $id => $pla):
-														if($id == $obj_uni_movil->Vehiculo->getAttr('id')){
-															$selected = " selected = 'selected'";
-														}else{
-															$selected = "";
-														}
-														echo "<option value = ".$id.$selected.">".$pla."</option>";
-														endforeach;
-													}
-													echo "</select>";
-													echo "<input name='data[UnidadMovil][".($key2 +1)."][um_id]' type='hidden' value='".$obj_uni_movil->getID()."' id='hiddenUmId".($key2 +1)."'>";
-													echo "<a href='#myModalAddVehiculo' class='btn btn-primary btn-open-modal-vehiculo' style='height: 28px; padding-right: 3px; padding-left: 3px;' role='button' data-toggle='modal' id='btn-open-create-vehiculo".($key2 +1)."'>...</a></span>";
-													echo "</td>";
-													echo "<td style='width:20%;'><input name='data[UnidadMovil][".($key2 +1)."][vehiculo]' id='TipoVehiculoActa".($key2 +1)."' value='".$obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion')."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/>";
-													echo "<input name='data[UnidadMovil][".($key2 +1)."][vehiculo_id]' type='hidden' value='' id='hiddenVehiculoid".($key2 +1)."'></td>";
-													
-													$arr_normas_incumplidas = array();
-													$arr_normas_incumplidas_id = array();
-													
-													foreach($obj_uni_movil->UmNormasIncumplida as $k =>$v){
-														$arr_normas_incumplidas[] = $v->getAttr('codigo_id');
-														$arr_normas_incumplidas_id[] = $v->getAttr('id');
-													}
-													
-													echo "<td><select name='data[UnidadNorma][".($key2+1)."][]' class='cbo-nincumplidas-select2 form-control' id='ni-".($key2+1)."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();' multiple='multiple'>";
-													echo "<option></option>";
-													if (isset($list_all_codigos)){
-																foreach ($list_all_codigos as $id => $cod):
-																if(in_array($id, $arr_normas_incumplidas)){
-																	$selected = " selected = 'selected'";
-																}else{
-																	$selected = "";
-																}
-																echo "<option value = ".$id.$selected.">".$cod."</option>";
-																endforeach;
-													}
-													echo "</select></td>";
-													echo "<input name='data[UmNi][".($key2+1)."]' type='hidden' value='".implode(',', $arr_normas_incumplidas_id)."' id='hiddenUmNid".($key2+1)."'>";
-
-												}
-												echo "</tr>";
-												
-												for ($i = ($key2+2); $i <= 4; $i++) {
-													    echo "<tr>";
-													    echo "<td style='width:5%;'>".$i."</td>";
-													    echo "<td style='width:20%;'>";
-													    echo "<span style='display: inline-flex; width: 100%; margin-right: -20px;'>";
-													    echo "<select name='data[UnidadMovil][".$i."][nro_placa_id]' class='cbo-placas-select2 form-control' id='PlacaActa".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-													    if (isset($list_all_vehiculos)){
-													    	echo "<option>---</option>";
-													    	foreach ($list_all_vehiculos as $id => $pla):
-													    	echo "<option value = ".$id.">".$pla."</option>";
-													    	endforeach;
-													    }
-													    echo "</select>";
-													    echo "<input name='data[UnidadMovil][".$i."][um_id]' type='hidden' value='' id='hiddenUmId".$i."'>";
-													    echo "<a href='#myModalAddVehiculo' class='btn btn-primary btn-open-modal-vehiculo' style='height: 28px; padding-right: 3px; padding-left: 3px;' role='button' data-toggle='modal' id='btn-open-create-vehiculo".$i."'>...</a></span>";
-													    echo "</td>";
-													    echo "<td style='width:20%;'><input name='data[UnidadMovil][".$i."][vehiculo]' id='TipoVehiculoActa".$i."' class='form-control txt-vehiculo' style=' text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'/></td>";
-													    echo "<input name='data[UnidadMovil][".$i."][vehiculo_id]' type='hidden' value='' id='hiddenVehiculoid".$i."'></td>";
-															
-																echo "<td><select name='data[UnidadNorma][".($i)."][]' class='cbo-nincumplidas-select2 form-control' id='ni-".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();' multiple='multiple'>";
-																echo "<option></option>";
-																if (isset($list_all_codigos)){
-																	foreach ($list_all_codigos as $id => $cod):
-																	echo "<option value = ".$id.">".$cod."</option>";
-																	endforeach;
-																}
-																echo "</select>";
-																echo "<input name='data[UmNi][".($i)."]' type='hidden' value='' id='hiddenUmNid".$i."'></td>";
-															echo "</tr>";
-													}
-													?>
-											</table>
-										</div>
-										<div class="row" id ="div-btn-add-um">
-											<div class="span3 col-md-12 col-sm-6 col-xs-6" style="text-align: right;">
-												<a class="btn btn-primary add-more-row-um">+</a>
-											</div>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -598,7 +310,7 @@ tinymce.init({
 													<tr>
 														<td>
 														<?php //echo $this->Form->input('foto',array('type' => 'file')); ?>
-														<div class="fileupload" data-type="FotoIv">
+														<div class="fileupload" data-type="FotoInstalIlumVent">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -733,7 +445,7 @@ tinymce.init({
 												<tbody>
 													<tr>
 														<td>
-														<div class="fileupload" data-type="FotoOl">
+														<div class="fileupload" data-type="FotoInstalOrdenLimpieza">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -816,7 +528,7 @@ tinymce.init({
                             	<h4>&nbsp;</h4>
                             	<div class="panel panel-primary">
 									<div class="panel-body">
-										<div class="table-responsive" id="div-ipp">
+										<div class="table-responsive" id="div-sshh">
 											<table class="table table-striped table-bordered table-hover"
 												id="table-sshh-rep">
 												<thead>
@@ -868,7 +580,7 @@ tinymce.init({
 												<tbody>
 													<tr>
 														<td>
-														<div class="fileupload" data-type="FotoSshh">
+														<div class="fileupload" data-type="FotoInstalSshh">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -1003,7 +715,7 @@ tinymce.init({
 												<tbody>
 													<tr>
 														<td>
-														<div class="fileupload" data-type="FotoSs">
+														<div class="fileupload" data-type="FotoInstalSenSeg">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -1047,8 +759,8 @@ tinymce.init({
 																				title="<?php echo $obj_foto_ss->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
 																				data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_sen_seg/thumbnail/<?php echo $obj_foto_ss->getAttr('file_name'); ?>" width='80px'>
 																			</a>
-																			<textarea rows="3"  name="data[FotoDocUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_ss->getAttr('observacion'); ?></textarea>
-																			<input type="hidden" value="<?php echo $obj_foto_ss->getAttr('id'); ?>" name="data[FotoDocUpdate][<?php echo $key; ?>][id][]">
+																			<textarea rows="3"  name="data[FotoSsUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_ss->getAttr('observacion'); ?></textarea>
+																			<input type="hidden" value="<?php echo $obj_foto_ss->getAttr('id'); ?>" name="data[FotoSsUpdate][<?php echo $key; ?>][id][]">
 																		</span>
 																		</td>
 																		<td>
@@ -1138,7 +850,7 @@ tinymce.init({
 												<tbody>	
 													<tr>
 														<td colspan=2>
-														<div class="fileupload" data-type="FotoEe">
+														<div class="fileupload" data-type="FotoInstalEqEmerg">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -1178,9 +890,9 @@ tinymce.init({
 																<?php $file_name =$obj_foto_ee->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
 																	<tr class="template-download fade in" foto_ee="<?php echo $file_name_explode[0];?>">
 																		<td><span class="preview"> <a
-																				href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_act/<?php echo $obj_foto_ee->getAttr('file_name'); ?>"
+																				href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_eq_emerg/<?php echo $obj_foto_ee->getAttr('file_name'); ?>"
 																				title="<?php echo $obj_foto_ee->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-																				data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_act/thumbnail/<?php echo $obj_foto_ee->getAttr('file_name'); ?>" width='80px'>
+																				data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_eq_emerg/thumbnail/<?php echo $obj_foto_ee->getAttr('file_name'); ?>" width='80px'>
 																			</a>
 																			<textarea rows="3"  name="data[FotoEeUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_ee->getAttr('observacion'); ?></textarea>
 																			<input type="hidden" value="<?php echo $obj_foto_ee->getAttr('id'); ?>" name="data[FotoEeUpdate][<?php echo $key; ?>][id][]">
@@ -1188,7 +900,7 @@ tinymce.init({
 																		</td>
 																		<td>
 																			<p class="name">
-																				<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_act/<?php echo $obj_foto_ee->getAttr('file_name'); ?>"
+																				<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_eq_emerg/<?php echo $obj_foto_ee->getAttr('file_name'); ?>"
 																					title="<?php echo $obj_foto_ee->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
 																					data-gallery=""><?php echo $obj_foto_ee->getAttr('file_name'); ?></a> 
 																			</p>
@@ -1199,7 +911,7 @@ tinymce.init({
 																			<a data-url="<?php echo $obj_foto_ee->getAttr('file_name');?>" data-foto-ee="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-ee">
 																				<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
 																			</a>
-																			<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_act/<?php echo $obj_foto_ee->getAttr('file_name'); ?>" title="<?php echo $obj_foto_ee->getAttr('file_name'); ?>" download="<?php echo $obj_foto_ee->getAttr('file_name'); ?>" class="btn btn-default">
+																			<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_eq_emerg/<?php echo $obj_foto_ee->getAttr('file_name'); ?>" title="<?php echo $obj_foto_ee->getAttr('file_name'); ?>" download="<?php echo $obj_foto_ee->getAttr('file_name'); ?>" class="btn btn-default">
 																					<i class="fa fa-download"></i> <span>Descargar</span>
 																			</a>
 																		</td>
@@ -1273,7 +985,7 @@ tinymce.init({
 											<tbody>
 													<tr>
 														<td colspan=2>
-														<div class="fileupload" data-type="FotoCSeg">
+														<div class="fileupload" data-type="FotoInstalCondSeg">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -1317,8 +1029,8 @@ tinymce.init({
 																				title="<?php echo $obj_foto_cs->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
 																				data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_cond_seg/thumbnail/<?php echo $obj_foto_cs->getAttr('file_name'); ?>" width='80px'>
 																			</a>
-																			<textarea rows="3"  name="data[FotoCSegUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_cs->getAttr('observacion'); ?></textarea>
-																			<input type="hidden" value="<?php echo $obj_foto_cs->getAttr('id'); ?>" name="data[FotoCSegUpdate][<?php echo $key; ?>][id][]">
+																			<textarea rows="3"  name="data[FotoCsegUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_cs->getAttr('observacion'); ?></textarea>
+																			<input type="hidden" value="<?php echo $obj_foto_cs->getAttr('id'); ?>" name="data[FotoCsegUpdate][<?php echo $key; ?>][id][]">
 																		</span>
 																		</td>
 																		<td>
@@ -1591,7 +1303,7 @@ tinymce.init({
 	<div class="row" style="text-align: center;">
 		<div class="col-md-12">
 			<button type="button"
-				class="btn btn-large btn-success btn_crear_acta_trigger"
+				class="btn btn-large btn-success btn_crear_acta_instal_trigger"
 				style="margin-right: 17px;width: 150px;">
 				<?php echo __('Guardar'); ?>
 			</button>

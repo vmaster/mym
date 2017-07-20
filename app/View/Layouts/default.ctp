@@ -37,6 +37,7 @@
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/vehiculo.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/empresa.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/acta.js" type="text/javascript"></script>
+    <script src="<?= ENV_WEBROOT_FULL_URL;?>js/acta_instalaciones.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/categoria_norma.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/codigo.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/uunn.js" type="text/javascript"></script>

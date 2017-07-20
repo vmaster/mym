@@ -265,7 +265,7 @@ tinymce.init({
 													<tr>
 														<td>
 														<?php //echo $this->Form->input('foto',array('type' => 'file')); ?>
-														<div class="fileupload" data-type="FotoIv">
+														<div class="fileupload" data-type="FotoInstalIlumVent">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -366,7 +366,7 @@ tinymce.init({
 												<tbody>
 													<tr>
 														<td>
-														<div class="fileupload" data-type="FotoOl">
+														<div class="fileupload" data-type="FotoInstalOrdenLimpieza">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -467,7 +467,7 @@ tinymce.init({
 												<tbody>
 													<tr>
 														<td>
-														<div class="fileupload" data-type="FotoSshh">
+														<div class="fileupload" data-type="FotoInstalSshh">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -568,7 +568,7 @@ tinymce.init({
 												<tbody>
 													<tr>
 														<td>
-														<div class="fileupload" data-type="FotoSs">
+														<div class="fileupload" data-type="FotoInstalSenSeg">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -668,7 +668,7 @@ tinymce.init({
 											<tbody>	
 													<tr>
 														<td colspan=2>
-														<div class="fileupload" data-type="FotoAct">
+														<div class="fileupload" data-type="FotoInstalEqEmerg">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -768,7 +768,7 @@ tinymce.init({
 											<tbody>	
 													<tr>
 														<td colspan=2>
-														<div class="fileupload" data-type="FotoCseg">
+														<div class="fileupload" data-type="FotoInstalCondSeg">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -997,7 +997,7 @@ tinymce.init({
 	<div class="row" style="text-align: center;">
 		<div class="col-md-12">
 			<button type="button"
-				class="btn btn-large btn-success btn_crear_acta-instal_trigger"
+				class="btn btn-large btn-success btn_crear_acta_instal_trigger"
 				style="margin-right: 17px; width: 150px;">
 				<?php echo __('Guardar'); ?>
 			</button>

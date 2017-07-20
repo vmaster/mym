@@ -224,7 +224,7 @@ div#spinner-send-report
 	
 	<div class="btn-toolbar">
 		<?php //if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>
-	    <a class="btn btn-primary btn-nuevo-acta" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_instalaciones/nuevo_informe_instalacion"><i class="icon-plus"></i> <?php echo __('Nuevo Informe'); ?></a>
+	    <a class="btn btn-primary btn-nuevo-acta-instal" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_instalaciones/nuevo_informe_instalacion"><i class="icon-plus"></i> <?php echo __('Nuevo Informe'); ?></a>
 	    <?php //} ?>
 	  <div class="btn-group">
 	  </div>
@@ -258,7 +258,7 @@ div#spinner-send-report
 	      </div>
 	</div>
 	
-	<div class="modal fade" id="myModalDeleteActaInstalacione" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" acta_id=''>
+	<div class="modal fade" id="myModalDeleteActaInstalacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" acta_instalacion_id=''>
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -280,7 +280,7 @@ div#spinner-send-report
 		</div>
 	</div>
 	
-	<div class="modal fade" id="myModalSendReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" acta_id= ''>
+	<div class="modal fade" id="myModalSendReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" acta_instalacion_id= ''>
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">

@@ -80,7 +80,7 @@ class ActaInstalacionesController extends AppController{
 	 * 16 March 2015
 	 * @author Vladimir
 	 */
-	public function nuevo_informe_instalacion($acta_id=null){
+	public function nuevo_informe_instalacion($acta_instalacion_id=null){
 		$this->verificarAccessoInvitado();
 
 		$this->layout = 'acta';
@@ -93,7 +93,7 @@ class ActaInstalacionesController extends AppController{
 		$this->loadModel('Codigo');
 		$this->loadModel('FotoInstalCondSeg');
 		$this->loadModel('FotoInstalEqEmerg');
-		$this->loadModel('FotoIv');
+		$this->loadModel('FotoInstalIlumVent');
 		$this->loadModel('FotoInstalOrdenLimpieza');
 		$this->loadModel('FotoInstalSenSeg');
 		$this->loadModel('FotoInstalSshh');
@@ -256,12 +256,12 @@ class ActaInstalacionesController extends AppController{
 							
 						if($i['act_sub_tipo_id'] != ''){
 								
-							$new_as_acta['ActosSubestandare']['acta_id'] = $this->ActaInstalacione->id;
-							$new_as_acta['ActosSubestandare']['act_sub_tipo_id'] = $i['act_sub_tipo_id'];
-							$new_as_acta['ActosSubestandare']['codigo_id'] = $i['ni-id'];
+							$new_ss_acta['ActosSubestandare']['acta_instalacion_id'] = $this->ActaInstalacione->id;
+							$new_ss_acta['ActosSubestandare']['act_sub_tipo_id'] = $i['act_sub_tipo_id'];
+							$new_ss_acta['ActosSubestandare']['codigo_id'] = $i['ni-id'];
 								
 							$this->ActosSubestandare->create();
-							if ($this->ActosSubestandare->save($new_as_acta)) {
+							if ($this->ActosSubestandare->save($new_ss_acta)) {
 								$as_id = $this->ActosSubestandare->id;
 								// echo json_encode(array('success'=>true,'msg'=>__('El acto Subestándar fue agregado con &eacute;xito.'),'ActoSubestandar_id'=>$as_id));	
 							}else{
@@ -278,12 +278,12 @@ class ActaInstalacionesController extends AppController{
 						foreach($this->request->data['CondiSubestandar'] as $i){
 							if($i['cond_sub_tipo_id'] != ''){
 						
-								$new_cs_acta['CondicionesSubestandare']['acta_id'] = $this->ActaInstalacione->id;
-								$new_cs_acta['CondicionesSubestandare']['cond_sub_tipo_id'] = $i['cond_sub_tipo_id'];
-								$new_cs_acta['CondicionesSubestandare']['codigo_id'] = $i['ni-id'];
+								$new_ee_acta['CondicionesSubestandare']['acta_instalacion_id'] = $this->ActaInstalacione->id;
+								$new_ee_acta['CondicionesSubestandare']['cond_sub_tipo_id'] = $i['cond_sub_tipo_id'];
+								$new_ee_acta['CondicionesSubestandare']['codigo_id'] = $i['ni-id'];
 						
 								$this->CondicionesSubestandare->create();
-								if ($this->CondicionesSubestandare->save($new_cs_acta)) {
+								if ($this->CondicionesSubestandare->save($new_ee_acta)) {
 									$cs_id = $this->CondicionesSubestandare->id;
 									// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 								}else{
@@ -301,7 +301,7 @@ class ActaInstalacionesController extends AppController{
 							
 							if($i['descripcion'] != ''){
 									
-								$new_cierre_acta['CierreActaInstalacione']['acta_id'] = $this->ActaInstalacione->id;
+								$new_cierre_acta['CierreActaInstalacione']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 								$new_cierre_acta['CierreActaInstalacione']['descripcion'] = $i['descripcion'];
 									
 								$this->CierreActaInstalacione->create();
@@ -318,26 +318,26 @@ class ActaInstalacionesController extends AppController{
 					}*/
 					
 					/* INSERTANDO IMAGENES ILUMINACIÓN Y VENTILACIÓN */
-					if(!empty($this->request->data['FotoIv'])){
+					if(!empty($this->request->data['FotoInstalIlumVent'])){
 						$cont = 0;
-						foreach ($this->request->data['FotoIv'] as $key=> $array):
+						foreach ($this->request->data['FotoInstalIlumVent'] as $key=> $array):
 							$imagen = $array['Imagen'][0];
-							$new_foto_iv['FotoIv']['acta_id'] = $this->ActaInstalacione->id;
+							$new_foto_iv['FotoInstalIlumVent']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
 							
-							$new_foto_iv['FotoIv']['file_name'] = $new_file_name;
-							$new_foto_iv['FotoIv']['observacion'] = $array['Observacion'][0];
-							$this->FotoIv->create();
-							if ($this->FotoIv->save($new_foto_iv)) {
-								$foto_iv_id = $this->FotoIv->id;
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_ilum_vent/'.$new_foto_iv['FotoIv']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_ilum_vent/thumbnail/'.$new_foto_iv['FotoIv']['file_name']);
+							$new_foto_iv['FotoInstalIlumVent']['file_name'] = $new_file_name;
+							$new_foto_iv['FotoInstalIlumVent']['observacion'] = $array['Observacion'][0];
+							$this->FotoInstalIlumVent->create();
+							if ($this->FotoInstalIlumVent->save($new_foto_iv)) {
+								$foto_iv_id = $this->FotoInstalIlumVent->id;
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_ilum_vent/'.$new_foto_iv['FotoInstalIlumVent']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_ilum_vent/thumbnail/'.$new_foto_iv['FotoInstalIlumVent']['file_name']);
 
 								//Backup Images
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_ilum_vent/'.$new_foto_iv['FotoIv']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_ilum_vent/thumbnail/'.$new_foto_iv['FotoIv']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_ilum_vent/'.$new_foto_iv['FotoInstalIlumVent']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_ilum_vent/thumbnail/'.$new_foto_iv['FotoInstalIlumVent']['file_name']);
 
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
@@ -353,35 +353,34 @@ class ActaInstalacionesController extends AppController{
 						endforeach;
 					}
 					
-					/******************* AQUI ME QUEDE ****************/////////
 					/* INSERTANDO IMAGENES ORDEN Y LIMPIEZA */
-					if(!empty($this->request->data['FotoSd'])){
+					if(!empty($this->request->data['FotoInstalOrdenLimpieza'])){
 						$cont = 0;
-						foreach ($this->request->data['FotoSd'] as $key => $array){
+						foreach ($this->request->data['FotoInstalOrdenLimpieza'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_sd['FotoSd']['acta_id'] = $this->ActaInstalacione->id;
+							$new_foto_ol['FotoInstalOrdenLimpieza']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
 								
-							$new_foto_sd['FotoSd']['file_name'] = $new_file_name;
-							$new_foto_sd['FotoSd']['observacion'] = $array['Observacion'][0];
-							$this->FotoSd->create();
-							if ($this->FotoSd->save($new_foto_sd)) {
-								$foto_sd_id = $this->FotoSd->id;
+							$new_foto_ol['FotoInstalOrdenLimpieza']['file_name'] = $new_file_name;
+							$new_foto_ol['FotoInstalOrdenLimpieza']['observacion'] = $array['Observacion'][0];
+							$this->FotoInstalOrdenLimpieza->create();
+							if ($this->FotoInstalOrdenLimpieza->save($new_foto_ol)) {
+								$foto_ol_id = $this->FotoInstalOrdenLimpieza->id;
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/'.$new_foto_sd['FotoSd']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_orden_limp/'.$new_foto_ol['FotoInstalOrdenLimpieza']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_orden_limp/thumbnail/'.$new_foto_ol['FotoInstalOrdenLimpieza']['file_name']);
 
 								//Backup Images	
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/'.$new_foto_sd['FotoSd']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_orden_limp/'.$new_foto_ol['FotoInstalOrdenLimpieza']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_orden_limp/thumbnail/'.$new_foto_ol['FotoInstalOrdenLimpieza']['file_name']);
 
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
-								$foto_sd_id = '';
+								$foto_ol_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
 								//exit();
 							}
@@ -389,69 +388,36 @@ class ActaInstalacionesController extends AppController{
 						}
 					}
 					
-					/* INSERTANDO IMAGENES UNIDADES MOVILES */
-					if(!empty($this->request->data['FotoUm'])){
-						$cont = 0;
-						foreach ($this->request->data['FotoUm'] as $key => $array){
-							$imagen = $array['Imagen'][0];
-							$new_foto_um['FotoUm']['acta_id'] = $this->ActaInstalacione->id;
-							$arr = explode(".", $imagen);
-							$extension = strtolower(array_pop($arr));
-							$new_file_name = time().$cont.'.'.$extension;
 					
-							$new_foto_um['FotoUm']['file_name'] = $new_file_name;
-							$new_foto_um['FotoUm']['observacion'] = $array['Observacion'][0];
-							$this->FotoUm->create();
-							if ($this->FotoUm->save($new_foto_um)) {
-								$foto_um_id = $this->FotoUm->id;
-								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/'.$new_foto_um['FotoUm']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);
-
-								//Backup Images	
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_um/'.$new_foto_um['FotoUm']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);	
-
-								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
-								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
-							}else{
-								$foto_um_id = '';
-								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
-								//exit();
-							}
-						$cont ++;
-						}
-					}
 					
-					/* INSERTANDO IMAGENES DOCUMENTACIÓN DE SEGURIDAD */
-					if(!empty($this->request->data['FotoDoc'])){
+					/* INSERTANDO IMAGENES SERVICIOS HIGIENICOS */
+					if(!empty($this->request->data['FotoInstalSshh'])){
 						$cont = 0;
-						foreach ($this->request->data['FotoDoc'] as $key => $array){
+						foreach ($this->request->data['FotoInstalSshh'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_doc['FotoDoc']['acta_id'] = $this->ActaInstalacione->id;
+							$new_foto_sshh['FotoInstalSshh']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
 								
-							$new_foto_doc['FotoDoc']['file_name'] = $new_file_name;
-							$new_foto_doc['FotoDoc']['observacion'] = $array['Observacion'][0];
-							$this->FotoDoc->create();
-							if ($this->FotoDoc->save($new_foto_doc)) {
-								$foto_doc_id = $this->FotoDoc->id;
+							$new_foto_sshh['FotoInstalSshh']['file_name'] = $new_file_name;
+							$new_foto_sshh['FotoInstalSshh']['observacion'] = $array['Observacion'][0];
+							$this->FotoInstalSshh->create();
+							if ($this->FotoInstalSshh->save($new_foto_sshh)) {
+								$foto_sshh_id = $this->FotoInstalSshh->id;
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_doc/'.$new_foto_doc['FotoDoc']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_doc/thumbnail/'.$new_foto_doc['FotoDoc']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_sshh/'.$new_foto_sshh['FotoInstalSshh']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_sshh/thumbnail/'.$new_foto_sshh['FotoInstalSshh']['file_name']);
 
 								//Backup Images	
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/'.$new_foto_doc['FotoDoc']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/thumbnail/'.$new_foto_doc['FotoDoc']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/'.$new_foto_sshh['FotoInstalSshh']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/thumbnail/'.$new_foto_sshh['FotoInstalSshh']['file_name']);
 
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
-								$foto_doc_id = '';
+								$foto_sshh_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
 								//exit();
 							}
@@ -459,33 +425,33 @@ class ActaInstalacionesController extends AppController{
 						}
 					}
 					
-					/* INSERTANDO IMAGENES ACTOS SUB*/
-					if(!empty($this->request->data['FotoAct'])){
+					/* INSERTANDO IMAGENES SEÑALES DE SEGURIDAD*/
+					if(!empty($this->request->data['FotoInstalSenSeg'])){
 						$cont = 0;
-						foreach ($this->request->data['FotoAct'] as $key => $array){
+						foreach ($this->request->data['FotoInstalSenSeg'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_as['FotoAct']['acta_id'] = $this->ActaInstalacione->id;
+							$new_foto_ss['FotoInstalSenSeg']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
 							
-							$new_foto_as['FotoAct']['file_name'] = $new_file_name;
-							$new_foto_as['FotoAct']['observacion'] = $array['Observacion'][0];
-							$this->FotoAct->create();
-							if ($this->FotoAct->save($new_foto_as)) {
-								$foto_as_id = $this->FotoAct->id;
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/'.$new_foto_as['FotoAct']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/thumbnail/'.$new_foto_as['FotoAct']['file_name']);
+							$new_foto_ss['FotoInstalSenSeg']['file_name'] = $new_file_name;
+							$new_foto_ss['FotoInstalSenSeg']['observacion'] = $array['Observacion'][0];
+							$this->FotoInstalSenSeg->create();
+							if ($this->FotoInstalSenSeg->save($new_foto_ss)) {
+								$foto_ss_id = $this->FotoInstalSenSeg->id;
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/'.$new_foto_ss['FotoInstalSenSeg']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/thumbnail/'.$new_foto_ss['FotoInstalSenSeg']['file_name']);
 
 								//Backup Images	
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_as/'.$new_foto_as['FotoAct']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_as/thumbnail/'.$new_foto_as['FotoAct']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/'.$new_foto_ss['FotoInstalSenSeg']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/thumbnail/'.$new_foto_ss['FotoInstalSenSeg']['file_name']);
 
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
-								$foto_as_id = '';
+								$foto_ss_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
 								//exit();
 							}
@@ -493,34 +459,34 @@ class ActaInstalacionesController extends AppController{
 						}
 					}
 					
-					/* INSERTANDO IMAGENES COND SUB*/
-					if(!empty($this->request->data['FotoCond'])){
+					/* INSERTANDO IMAGENES EQUIPOS DE EMERCIAS*/
+					if(!empty($this->request->data['FotoInstalEqEmerg'])){
 						$cont = 0;
-						foreach ($this->request->data['FotoCond'] as $key => $array){
+						foreach ($this->request->data['FotoInstalEqEmerg'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_cs['FotoCond']['acta_id'] = $this->ActaInstalacione->id;
+							$new_foto_ee['FotoInstalEqEmerg']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
 								
-							$new_foto_cs['FotoCond']['file_name'] = $new_file_name;
-							$new_foto_cs['FotoCond']['observacion'] = $array['Observacion'][0];
-							$this->FotoCond->create();
-							if ($this->FotoCond->save($new_foto_cs)) {
-								$foto_cs_id = $this->FotoCond->id;
+							$new_foto_ee['FotoInstalEqEmerg']['file_name'] = $new_file_name;
+							$new_foto_ee['FotoInstalEqEmerg']['observacion'] = $array['Observacion'][0];
+							$this->FotoInstalEqEmerg->create();
+							if ($this->FotoInstalEqEmerg->save($new_foto_ee)) {
+								$foto_ee_id = $this->FotoInstalEqEmerg->id;
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/'.$new_foto_ee['FotoInstalEqEmerg']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/thumbnail/'.$new_foto_ee['FotoInstalEqEmerg']['file_name']);
 
 								//Backup Images	
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/'.$new_foto_ee['FotoInstalEqEmerg']['file_name']);	
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/thumbnail/'.$new_foto_ee['FotoInstalEqEmerg']['file_name']);
 
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
-								$foto_cs_id = '';
+								$foto_ee_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
 								//exit();
 							}
@@ -528,34 +494,34 @@ class ActaInstalacionesController extends AppController{
 						}
 					}
 					
-					/* INSERTANDO IMAGENES MED CONTROL*/
-					if(!empty($this->request->data['FotoMed'])){
+					/* INSERTANDO IMAGENES CONDICIONES DE SEGURIDAD*/
+					if(!empty($this->request->data['FotoInstalCondSeg'])){
 						$cont = 0;
-						foreach ($this->request->data['FotoMed'] as $key => $array){
+						foreach ($this->request->data['FotoInstalCondSeg'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_med['FotoMed']['acta_id'] = $this->ActaInstalacione->id;
+							$new_foto_eeeg['FotoInstalCondSeg']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
 					
-							$new_foto_med['FotoMed']['file_name'] = $new_file_name;
-							$new_foto_med['FotoMed']['observacion'] = $array['Observacion'][0];
-							$this->FotoMed->create();
-							if ($this->FotoMed->save($new_foto_med)) {
-								$foto_med_id = $this->FotoMed->id;
+							$new_foto_eeeg['FotoInstalCondSeg']['file_name'] = $new_file_name;
+							$new_foto_eeeg['FotoInstalCondSeg']['observacion'] = $array['Observacion'][0];
+							$this->FotoInstalCondSeg->create();
+							if ($this->FotoInstalCondSeg->save($new_foto_eeeg)) {
+								$foto_med_id = $this->FotoInstalCondSeg->id;
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/'.$new_foto_med['FotoMed']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/'.$new_foto_eeeg['FotoInstalCondSeg']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/thumbnail/'.$new_foto_eeeg['FotoInstalCondSeg']['file_name']);
 
 								//Backup Images	
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_cond_seg/'.$new_foto_eeeg['FotoInstalCondSeg']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_cond_seg/thumbnail/'.$new_foto_eeeg['FotoInstalEqEmerg']['file_name']);
 
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
-								$foto_med_id = '';
+								$foto_eeeg_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
 								//exit();
 							}
@@ -563,20 +529,20 @@ class ActaInstalacionesController extends AppController{
 						}
 					}
 					
-					$acta_id = $this->ActaInstalacione->id;
-					echo json_encode(array('success'=>true,'msg'=>__('El ActaInstalacione fue agregada con &eacute;xito.'),'ActaInstalacione_id'=>$acta_id));
+					$acta_instalacion_id = $this->ActaInstalacione->id;
+					//echo json_encode(array('success'=>true,'msg'=>__('El ActaInstalacione fue agregada con &eacute;xito.'),'ActaInstalacione_id'=>$acta_instalacion_id));
 					exit();
 				}else{
-					$acta_id = '';
-					echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->ActaInstalacione->validationErrors));
+					$acta_instalacion_id = '';
+					//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->ActaInstalacione->validationErrors));
 					exit();
 				}
 		}
 	}
 	
-	public function editar_informe($acta_id=null){
+	public function editar_informe($acta_instalacion_id=null){
 		$this->layout = 'acta';
-		if(!isset($acta_id)){
+		if(!isset($acta_instalacion_id)){
 			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
 			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
 			exit();
@@ -594,13 +560,13 @@ class ActaInstalacionesController extends AppController{
 		$this->loadModel('CondicionesSubestandare');
 		$this->loadModel('CierreActaInstalacione');
 		$this->loadModel('Codigo');
-		$this->loadModel('FotoIv');
-		$this->loadModel('FotoSd');
+		$this->loadModel('FotoInstalIlumVent');
+		$this->loadModel('FotoInstalOrdenLimpieza');
 		$this->loadModel('FotoUm');
-		$this->loadModel('FotoDoc');
-		$this->loadModel('FotoAct');
-		$this->loadModel('FotoCond');
-		$this->loadModel('FotoMed');
+		$this->loadModel('FotoInstalSshh');
+		$this->loadModel('FotoInstalSenSeg');
+		$this->loadModel('FotoInstalEqEmerg');
+		$this->loadModel('FotoInstalCondSeg');
 		$this->loadModel('ActosSubestandaresTipo');
 		$this->loadModel('CondicionesSubestandaresTipo');
 		$this->loadModel('UnidadesNegocio');
@@ -620,22 +586,22 @@ class ActaInstalacionesController extends AppController{
 	
 	
 		if($this->request->is('post')  || $this->request->is('put')){
-			if(isset($acta_id) && intval($acta_id) > 0){
+			if(isset($acta_instalacion_id) && intval($acta_instalacion_id) > 0){
 				
 				$this->formatFecha($this->request->data['ActaInstalacione']['fecha']);
 				
 				//update
 				$error_validation = '';
 	
-				$this->ActaInstalacione->id = $acta_id;
+				$this->ActaInstalacione->id = $acta_instalacion_id;
 				
-				$this->request->data['ActaInstalacione']['info_des_act'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_act']);
-				$this->request->data['ActaInstalacione']['info_des_cond'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_cond']);
+				$this->request->data['ActaInstalacione']['json_ilum_vent'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_ilum_vent']);
+				$this->request->data['ActaInstalacione']['json_orden_limpieza'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_orden_limp']);
 				
-				$this->request->data['ActaInstalacione']['info_des_epp'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_epp']);
-				$this->request->data['ActaInstalacione']['info_des_se_de'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_sd']);
-				$this->request->data['ActaInstalacione']['info_des_um'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_um']);
-				$this->request->data['ActaInstalacione']['info_des_doc'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_ds']);
+				$this->request->data['ActaInstalacione']['json_sshh'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_sshh']);
+				$this->request->data['ActaInstalacione']['json_sen_seg'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_sen_seg']);
+				$this->request->data['ActaInstalacione']['json_eq_emerg'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_eq_emerg']);
+				$this->request->data['ActaInstalacione']['json_cond_seg'] = json_encode($this->request->data['ActaInstalacione']['cumplimiento_cond_seg']);
 				
 				$this->request->data['ActaInstalacione']['info_des_conclusion'] = $this->request->data['ActaInstalacione']['info_des_conclusion'];
 				$this->request->data['ActaInstalacione']['info_des_rec'] = $this->request->data['ActaInstalacione']['info_des_rec'];
@@ -644,7 +610,7 @@ class ActaInstalacionesController extends AppController{
 
 				if($this->request->data['ActaInstalacione']['grafico'] != ''){
 
-					unlink(APP.WEBROOT_DIR.'/files/graficos/'.$this->request->data['ActaInstalacione']['grafico']);
+					unlink(APP.WEBROOT_DIR.'/files/graficos_acta_instal/'.$this->request->data['ActaInstalacione']['grafico']);
 
 					$data = str_replace(' ', '+', $this->request->data['graf']);
 					$data_64= base64_decode($data);
@@ -652,7 +618,7 @@ class ActaInstalacionesController extends AppController{
 					$im = imagecreatefromstring($data_64);
 	
 					// Save image in the specified location
-					imagepng($im, APP.WEBROOT_DIR.'/files/graficos/'.$filename);
+					imagepng($im, APP.WEBROOT_DIR.'/files/graficos_acta_instal/'.$filename);
 					$this->request->data['ActaInstalacione']['grafico'] = $filename;
 					
 					
@@ -663,7 +629,7 @@ class ActaInstalacionesController extends AppController{
 					$im = imagecreatefromstring($data_64);
 	
 					// Save image in the specified location
-					imagepng($im, APP.WEBROOT_DIR.'/files/graficos/'.$filename);
+					imagepng($im, APP.WEBROOT_DIR.'/files/graficos_acta_instal/'.$filename);
 					$this->request->data['ActaInstalacione']['grafico'] = $filename;
 				}
 
@@ -673,8 +639,8 @@ class ActaInstalacionesController extends AppController{
 				$normas_cumplidas = 0;
 				
 				
-				foreach($this->request->data['ActaInstalacione']['cumplimiento_act'] as $key => $value){
-					if($value['info_des_act'] != ''){
+				foreach($this->request->data['ActaInstalacione']['cumplimiento_ilum_vent'] as $key => $value){
+					if($value['inf_des_ilum_vent'] != ''){
 						if($value['alternativa'] == 1){
 							$normas_cumplidas++;
 						}else{
@@ -683,8 +649,8 @@ class ActaInstalacionesController extends AppController{
 					}
 				}
 				
-				foreach($this->request->data['ActaInstalacione']['cumplimiento_cond'] as $key => $value){
-					if($value['info_des_cond'] != ''){
+				foreach($this->request->data['ActaInstalacione']['cumplimiento_orden_limp'] as $key => $value){
+					if($value['inf_des_orden_limp'] != ''){
 						if($value['alternativa'] == 1){
 							$normas_cumplidas++;
 						}else{
@@ -693,8 +659,8 @@ class ActaInstalacionesController extends AppController{
 					}
 				}
 				
-				foreach($this->request->data['ActaInstalacione']['cumplimiento_epp'] as $key => $value){
-					if($value['info_des_epp'] != ''){
+				foreach($this->request->data['ActaInstalacione']['cumplimiento_sshh'] as $key => $value){
+					if($value['info_des_sshh'] != ''){
 						if($value['alternativa'] == 1){
 							$normas_cumplidas++;
 						}else{
@@ -703,8 +669,8 @@ class ActaInstalacionesController extends AppController{
 					}
 				}
 				
-				foreach($this->request->data['ActaInstalacione']['cumplimiento_sd'] as $key => $value){
-					if($value['info_des_se_de'] != ''){
+				foreach($this->request->data['ActaInstalacione']['cumplimiento_sen_seg'] as $key => $value){
+					if($value['info_des_sen_seg'] != ''){
 						if($value['alternativa'] == 1){
 							$normas_cumplidas++;
 						}else{
@@ -713,8 +679,8 @@ class ActaInstalacionesController extends AppController{
 					}
 				}
 				
-				foreach($this->request->data['ActaInstalacione']['cumplimiento_um'] as $key => $value){
-					if($value['info_des_um'] != ''){
+				foreach($this->request->data['ActaInstalacione']['cumplimiento_eq_emerg'] as $key => $value){
+					if($value['info_des_eq_emerg'] != ''){
 						if($value['alternativa'] == 1){
 							$normas_cumplidas++;
 						}else{
@@ -723,8 +689,8 @@ class ActaInstalacionesController extends AppController{
 					}
 				}
 				
-				foreach($this->request->data['ActaInstalacione']['cumplimiento_ds'] as $key => $value){
-					if($value['info_des_doc'] != ''){
+				foreach($this->request->data['ActaInstalacione']['cumplimiento_cond_seg'] as $key => $value){
+					if($value['info_des_cond_seg'] != ''){
 						if($value['alternativa'] == 1){
 							$normas_cumplidas++;
 						}else{
@@ -744,338 +710,29 @@ class ActaInstalacionesController extends AppController{
 				$this->request->data['ActaInstalacione']['total_cumplimiento'] = $normas_cumplidas;
 				$this->request->data['ActaInstalacione']['total_incumplimiento'] = $normas_incumplidas;
 				
-			// INICIO UPDATE IMPLEMENTOS DE PROTECCION PERSONAL
-			if(!empty($this->request->data['TrabajadorActaInstalacione'])){
-				foreach($this->request->data['TrabajadorActaInstalacione'] as $key => $i){
-					if($i['ipp_id'] != 0){
-						//ACTUALIZANDO REGISTRO DE IPP
-						
-						$ipp_id = $i['ipp_id'];
-						
+				
+				//INICIO UPDATE FOTOS ILUMINACIÓN Y VENTILACIÓN
 
-						if($i['trabajador_id'] != 0){
-
-							$this->ImpProtPersonale->id = $ipp_id;
-							
-							$update_iv['ImpProtPersonale']['trabajador_id'] = $i['trabajador_id'];
-							$update_iv['ImpProtPersonale']['actividad_id'] = $i['actividad_id'];
-							if ($this->ImpProtPersonale->save($update_iv)) {
-
-								$array_ids = explode(',',$this->request->data['IppNi'][$key]);
-								foreach($array_ids as $ipp_ni_id){
-									$this->IppNormasIncumplida->deleteAll(array('IppNormasIncumplida.id' => $ipp_ni_id), $cascada = true);
-								}
-									
-								if(!empty($this->request->data['NiActaInstalacione'][$key])){
-									foreach($this->request->data['NiActaInstalacione'][$key] as $k => $codigo_id){
-											
-										$this->IppNormasIncumplida->create();
-
-										$new_iv_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
-										$new_iv_ni['IppNormasIncumplida']['codigo_id'] = $codigo_id;
-											
-										if($this->IppNormasIncumplida->save($new_iv_ni)){
-											$ipp_ni_id = $this->IppNormasIncumplida->id;
-										}
-									}
-								}
-							}
-						}else{
-							//En el caso los valores del trabajador esten vacios del ipp.
-							$this->ImpProtPersonale->deleteAll(array('ImpProtPersonale.id' => $ipp_id), $cascada = true);
-							if($this->request->data['IppNi'][$key] != ''){
-								$array_ids = explode(',',$this->request->data['IppNi'][$key]);
-								foreach($array_ids as $ipp_ni_id){
-									$this->IppNormasIncumplida->deleteAll(array('IppNormasIncumplida.id' => $ipp_ni_id), $cascada = true);
-								}
-							}
-
-						}
-					}
-
-					if($i['ipp_id'] == '' && $i['trabajador_id'] != 0){
-						//CREANDO NUEVO REGISTRO DE TABLA IMPLE.PROT.PERS
-						
-						$new_iv['ImpProtPersonale']['acta_id'] = $acta_id;
-						$new_iv['ImpProtPersonale']['trabajador_id'] = $i['trabajador_id'];
-						$new_iv['ImpProtPersonale']['actividad_id'] = $i['actividad_id'];
-						
-						$this->ImpProtPersonale->create();
-						if ($this->ImpProtPersonale->save($new_iv)) {
-							$ipp_id = $this->ImpProtPersonale->id;
-							
-							if($this->request->data['NiActaInstalacione'][$key] != ''){
-								foreach($this->request->data['NiActaInstalacione'][$key] as $k => $codigo_id){
-									//debug($v);
-										
-									$this->IppNormasIncumplida->create();
-							
-									$new_iv_ni['IppNormasIncumplida']['ipp_id'] = $ipp_id;
-									$new_iv_ni['IppNormasIncumplida']['codigo_id'] = $codigo_id;
-										
-									if($this->IppNormasIncumplida->save($new_iv_ni)){
-										$ipp_ni_id = $this->IppNormasIncumplida->id;
-									}
-								}
-							}
-						}else{
-							$ipp_id = '';
-
-						}
-					}
-				}
-			}
-				// FIN UPDATE
-				
-			// INICIO UPDATE UNIDADES MÓVILES
-			if(!empty($this->request->data['UnidadMovil'])){
-				foreach($this->request->data['UnidadMovil'] as $key => $i){
-					
-					if($i['um_id'] != 0){
-						//ACTUALIZANDO REGISTRO DE UM
-				
-						$um_id = $i['um_id']; 
-						if($i['nro_placa_id'] != 0){
-								
-							$this->UnidadesMovile->id = $um_id;
-								
-							$update_um['UnidadesMovile']['vehiculo_id'] = $i['nro_placa_id'];
-							if ($this->UnidadesMovile->save($update_um)) {
-									//Verifico si el id del Ni UM, no es vacía para poder actualizar
-										$array_ids = explode(',',$this->request->data['UmNi'][$key]);
-										foreach($array_ids as $um_ni_id){
-											$this->UmNormasIncumplida->deleteAll(array('UmNormasIncumplida.id' => $um_ni_id), $cascada = true);
-										}
-										
-										if(!empty($this->request->data['UnidadNorma'][$key])){
-											foreach($this->request->data['UnidadNorma'][$key] as $k => $codigo_id){
-													
-												$this->UmNormasIncumplida->create();
-										
-												$new_um_ni['UmNormasIncumplida']['um_id'] = $um_id;
-												$new_um_ni['UmNormasIncumplida']['codigo_id'] = $codigo_id;
-													
-												if($this->UmNormasIncumplida->save($new_um_ni)){
-													$um_ni_id = $this->UmNormasIncumplida->id;
-												}
-											}
-										}
-							}
-						}else{
-							//En el caso los valores del vehiculo esten vacios .
-							$this->UnidadesMovile->deleteAll(array('UnidadesMovile.id' => $um_id), $cascada = true);
-								if($this->request->data['UmNi'][$key] != ''){
-									$array_ids = explode(',',$this->request->data['UmNi'][$key]);
-									foreach($array_ids as $um_ni_id){
-										$this->UmNormasIncumplida->deleteAll(array('UmNormasIncumplida.id' => $um_ni_id), $cascada = true);
-									}
-								}
-								
-						}
-					}
-
-					if($i['um_id'] == '' && $i['nro_placa_id'] != 0){
-						//CREANDO NUEVO REGISTRO DE UM
-				
-						$new_um['UnidadesMovile']['acta_id'] = $acta_id;
-						$new_um['UnidadesMovile']['vehiculo_id'] = $i['nro_placa_id'];
-				
-						$this->UnidadesMovile->create();
-						if ($this->UnidadesMovile->save($new_um)) {
-							$um_id = $this->UnidadesMovile->id;
-								
-								//Verifico si el id del Ni UM
-								if($this->request->data['UnidadNorma'][$key] != null || $this->request->data['UnidadNorma'][$key] !=''){
-									
-									foreach($this->request->data['UnidadNorma'][$key] as $k => $codigo_id){
-										$this->UmNormasIncumplida->create();
-										
-										$new_um_ni['UmNormasIncumplida']['um_id'] = $um_id;
-										$new_um_ni['UmNormasIncumplida']['codigo_id'] = $codigo_id;
-										
-										if($this->UmNormasIncumplida->save($new_um_ni)){
-											$um_ni_id = $this->UmNormasIncumplida->id;
-										}
-									}
-								}
-						}else{
-							$um_id = '';
-						}
-					}
-				}
-			}
-				
-				// FIN UPDATE
-				
-				
-				
-				// INICIO UPDATE ACTOS SUBESTANDARES
-			if(!empty($this->request->data['ActoSubestandar'])){
-				foreach($this->request->data['ActoSubestandar'] as $i){
-					if($i['as-id'] != 0 || $i['as-id'] != ''){
-						//ACTUALIZANDO REGISTRO DE ACT SUB
-				
-						$as_id = $i['as-id'];
-						if($i['act_sub_tipo_id'] !=''){
-				
-							$this->ActosSubestandare->id = $as_id;
-				
-							$update_as['ActosSubestandare']['act_sub_tipo_id'] = $i['act_sub_tipo_id'];
-							$update_as['ActosSubestandare']['codigo_id'] = $i['ni-id'];
-							if ($this->ActosSubestandare->save($update_as)) {//
-								//echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'ImpProtPersonale_id'=>$this->request->data['TrabajadorActaInstalacione']['ipp_id'.$i]));
-								//exit();
-								
-							}else{
-								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->ImpProtPersonale->validationErrors));
-								//exit();
-							}
-						}else{
-							//En el caso los valores del vehiculo esten vacios del ipp.
-							$this->ActosSubestandare->deleteAll(array('ActosSubestandare.id' => $as_id), $cascada = true);//
-						}
-						
-					}elseif($i['as-id'] == '' && $i['act_sub_tipo_id'] != ''){
-						//CREANDO NUEVO REGISTRO DE AC
-				
-						$new_ac['ActosSubestandare']['acta_id'] = $acta_id;
-						$new_ac['ActosSubestandare']['act_sub_tipo_id'] = $i['act_sub_tipo_id'];
-						$new_ac['ActosSubestandare']['codigo_id'] = $i['ni-id'];
-				
-						$this->ActosSubestandare->create();
-						if ($this->ActosSubestandare->save($new_ac)) {
-							$as_id = $this->ActosSubestandare->id;
-				
-							
-							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
-						}else{
-							$as_id = '';
-							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
-							//exit();
-						}
-					}
-				}
-			}
-				// FIN UPDATE
-				
-				
-				// INICIO UPDATE CONDICIONES SUBESTANDARES
-			if(!empty($this->request->data['CondiSubestandar'])){
-				foreach($this->request->data['CondiSubestandar'] as $i){
-					if($i['cs-id'] != 0 || $i['cs-id'] != ''){
-						//ACTUALIZANDO REGISTRO DE ACT SUB
-				
-						$cs_id = $i['cs-id'];
-						if($i['cond_sub_tipo_id'] !=''){
-				
-							$this->CondicionesSubestandare->id = $cs_id;
-				
-							$update_cs['CondicionesSubestandare']['cond_sub_tipo_id'] = $i['cond_sub_tipo_id'];
-							$update_cs['CondicionesSubestandare']['codigo_id'] = $i['ni-id'];
-							if ($this->CondicionesSubestandare->save($update_cs)) {
-								//echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'ImpProtPersonale_id'=>$this->request->data['TrabajadorActaInstalacione']['ipp_id'.$i]));
-								//exit();
-				
-							}else{
-								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->ImpProtPersonale->validationErrors));
-								//exit();
-							}
-						}else{
-							//En el caso los valores del vehiculo esten vacios del ipp.
-							$this->CondicionesSubestandare->deleteAll(array('CondicionesSubestandare.id' => $cs_id), $cascada = true);//
-						}
-				
-					}elseif($i['cs-id'] == '' && $i['cond_sub_tipo_id'] != ''){
-						//CREANDO NUEVO REGISTRO DE AC
-				
-						$new_cs['CondicionesSubestandare']['acta_id'] = $acta_id;
-						$new_cs['CondicionesSubestandare']['cond_sub_tipo_id'] = $i['cond_sub_tipo_id'];
-						$new_cs['CondicionesSubestandare']['codigo_id'] = $i['ni-id'];
-						$this->CondicionesSubestandare->create();
-						if ($this->CondicionesSubestandare->save($new_cs)) {
-							$cs_id = $this->CondicionesSubestandare->id;
-				
-								
-							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
-						}else{
-							$cs_id = '';
-							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
-							//exit();
-						}
-					}
-				}
-			}	
-				// FIN UPDATE
-				
-				
-				// INICIO UPDATE CIERRE DE ACTA
-			if(!empty($this->request->data['MedidasAdoptadas'])){
-				foreach($this->request->data['MedidasAdoptadas'] as $i){
-					if($i['ca_id'] != 0 || $i['ca_id'] != ''){
-						//ACTUALIZANDO REGISTRO DE CIERRE ACTA
-				
-						$ca_id = $i['ca_id'];
-						if($i['descripcion'] !=''){
-				
-							$this->CierreActaInstalacione->id = $ca_id;
-				
-							$update_ca['CierreActaInstalacione']['descripcion'] = $i['descripcion'];
-							if ($this->CierreActaInstalacione->save($update_ca)) {
-								//echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'ImpProtPersonale_id'=>$this->request->data['TrabajadorActaInstalacione']['ipp_id'.$i]));
-								//exit();
-				
-							}else{
-								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->ImpProtPersonale->validationErrors));
-								//exit();
-							}
-						}else{
-							//En el caso los valores del vehiculo esten vacios del ipp.
-							$this->CierreActaInstalacione->deleteAll(array('CierreActaInstalacione.id' => $ca_id), $cascada = true);//
-						}
-				
-					}elseif($i['ca_id'] == '' && $i['descripcion'] != ''){
-						//CREANDO NUEVO REGISTRO DE CA
-				
-						$new_ca['CierreActaInstalacione']['acta_id'] = $acta_id;
-						$new_ca['CierreActaInstalacione']['descripcion'] = $i['descripcion'];
-						$this->CierreActaInstalacione->create();
-						if ($this->CierreActaInstalacione->save($new_ca)) {
-							$ca_id = $this->CierreActaInstalacione->id;
-				
-				
-							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
-						}else{
-							$ca_id = '';
-							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
-							//exit();
-						}
-					}
-				}
-			}
-				// FIN UPDATE
-				
-				//INICIO UPDATE FOTOS IPP
-
-				if(!empty($this->request->data['FotoIv'])){
+				if(!empty($this->request->data['FotoInstalIlumVent'])){
 					$cont = 0;
-					foreach ($this->request->data['FotoIv'] as $key=> $array):
+					foreach ($this->request->data['FotoInstalIlumVent'] as $key=> $array):
 					$imagen = $array['Imagen'][0];
-					$new_foto_iv['FotoIv']['acta_id'] = $this->ActaInstalacione->id;
+					$new_foto_iv['FotoInstalIlumVent']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 					$arr = explode(".", $imagen);
 					$extension = strtolower(array_pop($arr));
 					$new_file_name = time().$cont.'.'.$extension;
 						
-					$new_foto_iv['FotoIv']['file_name'] = $new_file_name;
-					$new_foto_iv['FotoIv']['observacion'] = $array['Observacion'][0];
-					$this->FotoIv->create();
-					if ($this->FotoIv->save($new_foto_iv)) {
-						$foto_iv_id = $this->FotoIv->id;
-						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_ilum_vent/'.$new_foto_iv['FotoIv']['file_name']);
-						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_ilum_vent/thumbnail/'.$new_foto_iv['FotoIv']['file_name']);
+					$new_foto_iv['FotoInstalIlumVent']['file_name'] = $new_file_name;
+					$new_foto_iv['FotoInstalIlumVent']['observacion'] = $array['Observacion'][0];
+					$this->FotoInstalIlumVent->create();
+					if ($this->FotoInstalIlumVent->save($new_foto_iv)) {
+						$foto_iv_id = $this->FotoInstalIlumVent->id;
+						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_ilum_vent/'.$new_foto_iv['FotoInstalIlumVent']['file_name']);
+						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_ilum_vent/thumbnail/'.$new_foto_iv['FotoInstalIlumVent']['file_name']);
 
 						//Backup Images
-						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_ilum_vent/'.$new_foto_iv['FotoIv']['file_name']);
-						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_ilum_vent/thumbnail/'.$new_foto_iv['FotoIv']['file_name']);
+						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_ilum_vent/'.$new_foto_iv['FotoInstalIlumVent']['file_name']);
+						copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_ilum_vent/thumbnail/'.$new_foto_iv['FotoInstalIlumVent']['file_name']);
 
 
 						unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
@@ -1095,44 +752,44 @@ class ActaInstalacionesController extends AppController{
 					foreach ($this->request->data['FotoIvUpdate'] as $key=> $array):
 					if($array['id'][0] != ''){
 						
-						$this->FotoIv->id = $array['id'][0];
+						$this->FotoInstalIlumVent->id = $array['id'][0];
 						
-						$update_foto_iv['FotoIv']['observacion'] = $array['Observacion'][0];
+						$update_foto_iv['FotoInstalIlumVent']['observacion'] = $array['Observacion'][0];
 						
-						$this->FotoIv->save($update_foto_iv);
+						$this->FotoInstalIlumVent->save($update_foto_iv);
 							
 					}
 					endforeach;
 				}
 				
 				//INICIO UPDATE FOTOS SEÑALIZACIÓN Y DELIMITACIÓN
-				if(!empty($this->request->data['FotoSd'])){
+				if(!empty($this->request->data['FotoInstalOrdenLimpieza'])){
 						$cont = 0;
-						foreach ($this->request->data['FotoSd'] as $key => $array){
+						foreach ($this->request->data['FotoInstalOrdenLimpieza'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_sd['FotoSd']['acta_id'] = $this->ActaInstalacione->id;
+							$new_foto_ol['FotoInstalOrdenLimpieza']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
 								
-							$new_foto_sd['FotoSd']['file_name'] = $new_file_name;
-							$new_foto_sd['FotoSd']['observacion'] = $array['Observacion'][0];
-							$this->FotoSd->create();
-							if ($this->FotoSd->save($new_foto_sd)) {
-								$foto_sd_id = $this->FotoSd->id;
+							$new_foto_ol['FotoInstalOrdenLimpieza']['file_name'] = $new_file_name;
+							$new_foto_ol['FotoInstalOrdenLimpieza']['observacion'] = $array['Observacion'][0];
+							$this->FotoInstalOrdenLimpieza->create();
+							if ($this->FotoInstalOrdenLimpieza->save($new_foto_ol)) {
+								$foto_ol_id = $this->FotoInstalOrdenLimpieza->id;
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/'.$new_foto_sd['FotoSd']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_orden_limp/'.$new_foto_ol['FotoInstalOrdenLimpieza']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_orden_limp/thumbnail/'.$new_foto_ol['FotoInstalOrdenLimpieza']['file_name']);
 
 								//Backup Images
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/'.$new_foto_sd['FotoSd']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/thumbnail/'.$new_foto_sd['FotoSd']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_orden_limp/'.$new_foto_ol['FotoInstalOrdenLimpieza']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_orden_limp/thumbnail/'.$new_foto_ol['FotoInstalOrdenLimpieza']['file_name']);
 
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
-								$foto_sd_id = '';
+								$foto_ol_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
 								//exit();
 							}
@@ -1140,100 +797,50 @@ class ActaInstalacionesController extends AppController{
 						}
 				}
 				
-				if(!empty($this->request->data['FotoSdUpdate'])){
+				if(!empty($this->request->data['FotoOlUpdate'])){
 						
-					foreach ($this->request->data['FotoSdUpdate'] as $key=> $array):
+					foreach ($this->request->data['FotoOlUpdate'] as $key=> $array):
 					if($array['id'][0] != ''){
 				
-						$this->FotoSd->id = $array['id'][0];
+						$this->FotoInstalOrdenLimpieza->id = $array['id'][0];
 				
-						$update_foto_sd['FotoSd']['observacion'] = $array['Observacion'][0];
+						$update_foto_ol['FotoInstalOrdenLimpieza']['observacion'] = $array['Observacion'][0];
 				
-						$this->FotoSd->save($update_foto_sd);
+						$this->FotoInstalOrdenLimpieza->save($update_foto_ol);
 							
 					}
 					endforeach;
 				}
 				
-				//INICIO UPDATE FOTOS UNIDADES MOVILES
-				if(!empty($this->request->data['FotoUm'])){
-						$cont = 0;
-						foreach ($this->request->data['FotoUm'] as $key => $array){
-							$imagen = $array['Imagen'][0];
-							$new_foto_um['FotoUm']['acta_id'] = $this->ActaInstalacione->id;
-							$arr = explode(".", $imagen);
-							$extension = strtolower(array_pop($arr));
-							$new_file_name = time().$cont.'.'.$extension;
-					
-							$new_foto_um['FotoUm']['file_name'] = $new_file_name;
-							$new_foto_um['FotoUm']['observacion'] = $array['Observacion'][0];
-							$this->FotoUm->create();
-							if ($this->FotoUm->save($new_foto_um)) {
-								$foto_um_id = $this->FotoUm->id;
-								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/'.$new_foto_um['FotoUm']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);
-
-								//Backup Images
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_um/'.$new_foto_um['FotoUm']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_um/thumbnail/'.$new_foto_um['FotoUm']['file_name']);
-
-								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
-								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
-								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
-							}else{
-								$foto_um_id = '';
-								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
-								//exit();
-							}
-						$cont ++;
-						}
-				}
-				
-				if(!empty($this->request->data['FotoUmUpdate'])){
-				
-					foreach ($this->request->data['FotoUmUpdate'] as $key=> $array):
-					if($array['id'][0] != ''){
-				
-						$this->FotoUm->id = $array['id'][0];
-				
-						$update_foto_um['FotoUm']['observacion'] = $array['Observacion'][0];
-				
-						$this->FotoUm->save($update_foto_um);
-							
-					}
-					endforeach;
-				}
-				
-				
+			
 				//INICIO UPDATE FOTOS DOCUMENTOS DE SEGURIDAD
-				if(!empty($this->request->data['FotoDoc'])){
+				if(!empty($this->request->data['FotoInstalSshh'])){
 					$cont = 0;
-					foreach ($this->request->data['FotoDoc'] as $key => $array){
+					foreach ($this->request->data['FotoInstalSshh'] as $key => $array){
 						$imagen = $array['Imagen'][0];
-						$new_foto_doc['FotoDoc']['acta_id'] = $this->ActaInstalacione->id;
+						$new_foto_sshh['FotoInstalSshh']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 						$arr = explode(".", $imagen);
 						$extension = strtolower(array_pop($arr));
 						$new_file_name = time().$cont.'.'.$extension;
 							
-						$new_foto_doc['FotoDoc']['file_name'] = $new_file_name;
-						$new_foto_doc['FotoDoc']['observacion'] = $array['Observacion'][0];
-						$this->FotoDoc->create();
-						if ($this->FotoDoc->save($new_foto_doc)) {
-							$foto_doc_id = $this->FotoDoc->id;
+						$new_foto_sshh['FotoInstalSshh']['file_name'] = $new_file_name;
+						$new_foto_sshh['FotoInstalSshh']['observacion'] = $array['Observacion'][0];
+						$this->FotoInstalSshh->create();
+						if ($this->FotoInstalSshh->save($new_foto_sshh)) {
+							$foto_sshh_id = $this->FotoInstalSshh->id;
 							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_doc/'.$new_foto_doc['FotoDoc']['file_name']);
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_doc/thumbnail/'.$new_foto_doc['FotoDoc']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_sshh/'.$new_foto_sshh['FotoInstalSshh']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_sshh/thumbnail/'.$new_foto_sshh['FotoInstalSshh']['file_name']);
 
 							//Backup Images
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/'.$new_foto_doc['FotoDoc']['file_name']);
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/thumbnail/'.$new_foto_doc['FotoDoc']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/'.$new_foto_sshh['FotoInstalSshh']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/thumbnail/'.$new_foto_sshh['FotoInstalSshh']['file_name']);
 
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
-							$foto_doc_id = '';
+							$foto_sshh_id = '';
 							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
 							//exit();
 						}
@@ -1241,49 +848,49 @@ class ActaInstalacionesController extends AppController{
 					}
 				}
 				
-				if(!empty($this->request->data['FotoDocUpdate'])){
+				if(!empty($this->request->data['FotoSshhUpdate'])){
 				
-					foreach ($this->request->data['FotoDocUpdate'] as $key=> $array):
+					foreach ($this->request->data['FotoSshhUpdate'] as $key=> $array):
 					if($array['id'][0] != ''){
 				
-						$this->FotoDoc->id = $array['id'][0];
+						$this->FotoInstalSshh->id = $array['id'][0];
 				
-						$update_foto_doc['FotoDoc']['observacion'] = $array['Observacion'][0];
+						$update_foto_sshh['FotoInstalSshh']['observacion'] = $array['Observacion'][0];
 				
-						$this->FotoDoc->save($update_foto_doc);
+						$this->FotoInstalSshh->save($update_foto_sshh);
 							
 					}
 					endforeach;
 				}
 				
-				//INICIO UPDATE FOTOS ACTOS SUB (CUMPLIMIENTO DEL PROCEDIMIENTO DE TRABAJO SEGURO)
-				if(!empty($this->request->data['FotoAct'])){
+				//INICIO UPDATE FOTOS SEÑALES DE SEGURIDAD
+				if(!empty($this->request->data['FotoInstalSenSeg'])){
 						$cont = 0;
-						foreach ($this->request->data['FotoAct'] as $key => $array){
+						foreach ($this->request->data['FotoInstalSenSeg'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_as['FotoAct']['acta_id'] = $this->ActaInstalacione->id;
+							$new_foto_ss['FotoInstalSenSeg']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
 							
-							$new_foto_as['FotoAct']['file_name'] = $new_file_name;
-							$new_foto_as['FotoAct']['observacion'] = $array['Observacion'][0];
-							$this->FotoAct->create();
-							if ($this->FotoAct->save($new_foto_as)) {
-								$foto_as_id = $this->FotoAct->id;
+							$new_foto_ss['FotoInstalSenSeg']['file_name'] = $new_file_name;
+							$new_foto_ss['FotoInstalSenSeg']['observacion'] = $array['Observacion'][0];
+							$this->FotoInstalSenSeg->create();
+							if ($this->FotoInstalSenSeg->save($new_foto_ss)) {
+								$foto_ss_id = $this->FotoInstalSenSeg->id;
 								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/'.$new_foto_as['FotoAct']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_as/thumbnail/'.$new_foto_as['FotoAct']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/'.$new_foto_ss['FotoInstalSenSeg']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/thumbnail/'.$new_foto_ss['FotoInstalSenSeg']['file_name']);
 
 								//Backup Images
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_as/'.$new_foto_as['FotoAct']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_as/thumbnail/'.$new_foto_as['FotoAct']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/'.$new_foto_ss['FotoInstalSenSeg']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/thumbnail/'.$new_foto_ss['FotoInstalSenSeg']['file_name']);
 
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 							}else{
-								$foto_as_id = '';
+								$foto_ss_id = '';
 								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
 								//exit();
 							}
@@ -1291,50 +898,50 @@ class ActaInstalacionesController extends AppController{
 						}
 				}
 				
-				if(!empty($this->request->data['FotoActUpdate'])){
+				if(!empty($this->request->data['FotoSsUpdate'])){
 				
-					foreach ($this->request->data['FotoActUpdate'] as $key=> $array):
+					foreach ($this->request->data['FotoSsUpdate'] as $key=> $array):
 					if($array['id'][0] != ''){
 
-						$this->FotoAct->id = $array['id'][0];
+						$this->FotoInstalSenSeg->id = $array['id'][0];
 				
-						$update_foto_as['FotoAct']['observacion'] = $array['Observacion'][0];
+						$update_foto_ss['FotoInstalSenSeg']['observacion'] = $array['Observacion'][0];
 				
-						$this->FotoAct->save($update_foto_as);
+						$this->FotoInstalSenSeg->save($update_foto_ss);
 							
 					}
 					endforeach;
 				}
 				
 				
-				//INICIO UPDATE FOTOS CONDICIONES SUB (ACTOS Y CONDICIONES SUBESTÁNDARES)
-				if(!empty($this->request->data['FotoCond'])){
+				//INICIO UPDATE FOTOS EQUIPOS DE EMERGENCIAS
+				if(!empty($this->request->data['FotoInstalEqEmerg'])){
 					$cont = 0;
-					foreach ($this->request->data['FotoCond'] as $key => $array){
+					foreach ($this->request->data['FotoInstalEqEmerg'] as $key => $array){
 						$imagen = $array['Imagen'][0];
-						$new_foto_cs['FotoCond']['acta_id'] = $this->ActaInstalacione->id;
+						$new_foto_ee['FotoInstalEqEmerg']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 						$arr = explode(".", $imagen);
 						$extension = strtolower(array_pop($arr));
 						$new_file_name = time().$cont.'.'.$extension;
 							
-						$new_foto_cs['FotoCond']['file_name'] = $new_file_name;
-						$new_foto_cs['FotoCond']['observacion'] = $array['Observacion'][0];
-						$this->FotoCond->create();
-						if ($this->FotoCond->save($new_foto_cs)) {
-							$foto_cs_id = $this->FotoCond->id;
+						$new_foto_ee['FotoInstalEqEmerg']['file_name'] = $new_file_name;
+						$new_foto_ee['FotoInstalEqEmerg']['observacion'] = $array['Observacion'][0];
+						$this->FotoInstalEqEmerg->create();
+						if ($this->FotoInstalEqEmerg->save($new_foto_ee)) {
+							$foto_ee_id = $this->FotoInstalEqEmerg->id;
 							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/'.$new_foto_ee['FotoInstalEqEmerg']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/thumbnail/'.$new_foto_ee['FotoInstalEqEmerg']['file_name']);
 
 							//Backup Images
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/'.$new_foto_ee['FotoInstalEqEmerg']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/thumbnail/'.$new_foto_ee['FotoInstalEqEmerg']['file_name']);
 
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
-							$foto_cs_id = '';
+							$foto_ee_id = '';
 							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
 							//exit();
 						}
@@ -1342,50 +949,50 @@ class ActaInstalacionesController extends AppController{
 					}
 				}
 				
-				if(!empty($this->request->data['FotoCondUpdate'])){
+				if(!empty($this->request->data['FotoEeUpdate'])){
 				
-					foreach ($this->request->data['FotoCondUpdate'] as $key=> $array):
+					foreach ($this->request->data['FotoEeUpdate'] as $key=> $array):
 					if($array['id'][0] != ''){
 				
-						$this->FotoCond->id = $array['id'][0];
+						$this->FotoInstalEqEmerg->id = $array['id'][0];
 				
-						$update_foto_cs['FotoCond']['observacion'] = $array['Observacion'][0];
+						$update_foto_ee['FotoInstalEqEmerg']['observacion'] = $array['Observacion'][0];
 				
-						$this->FotoCond->save($update_foto_cs);
+						$this->FotoInstalEqEmerg->save($update_foto_ee);
 							
 					}
 					endforeach;
 				}
 				
 				
-				//INICIO UPDATE FOTOS MEDIDAS DE CONTROL
-				if(!empty($this->request->data['FotoMed'])){
+				//INICIO UPDATE FOTOS CONDICIONES DE SEGURIDAD
+				if(!empty($this->request->data['FotoInstalCondSeg'])){
 					$cont = 0;
-					foreach ($this->request->data['FotoMed'] as $key => $array){
+					foreach ($this->request->data['FotoInstalCondSeg'] as $key => $array){
 						$imagen = $array['Imagen'][0];
-						$new_foto_med['FotoMed']['acta_id'] = $this->ActaInstalacione->id;
+						$new_foto_eeeg['FotoInstalCondSeg']['acta_instalacion_id'] = $this->ActaInstalacione->id;
 						$arr = explode(".", $imagen);
 						$extension = strtolower(array_pop($arr));
 						$new_file_name = time().$cont.'.'.$extension;
 							
-						$new_foto_med['FotoMed']['file_name'] = $new_file_name;
-						$new_foto_med['FotoMed']['observacion'] = $array['Observacion'][0];
-						$this->FotoMed->create();
-						if ($this->FotoMed->save($new_foto_med)) {
-							$foto_med_id = $this->FotoMed->id;
+						$new_foto_eeeg['FotoInstalCondSeg']['file_name'] = $new_file_name;
+						$new_foto_eeeg['FotoInstalCondSeg']['observacion'] = $array['Observacion'][0];
+						$this->FotoInstalCondSeg->create();
+						if ($this->FotoInstalCondSeg->save($new_foto_eeeg)) {
+							$foto_eeeg_id = $this->FotoInstalCondSeg->id;
 							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/'.$new_foto_med['FotoMed']['file_name']);
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/'.$new_foto_eeeg['FotoInstalCondSeg']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/thumbnail/'.$new_foto_eeeg['FotoInstalCondSeg']['file_name']);
 
 							//Backup Images
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_med/'.$new_foto_med['FotoMed']['file_name']);
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_cond_seg/'.$new_foto_eeeg['FotoInstalCondSeg']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_cond_seg/thumbnail/'.$new_foto_eeeg['FotoInstalCondSeg']['file_name']);
 
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
 							// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
 						}else{
-							$foto_med_id = '';
+							$foto_eeeg_id = '';
 							//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
 							//exit();
 						}
@@ -1393,26 +1000,26 @@ class ActaInstalacionesController extends AppController{
 					}
 				}
 				
-				if(!empty($this->request->data['FotoMedUpdate'])){
+				if(!empty($this->request->data['FotoCsegUpdate'])){
 				
-					foreach ($this->request->data['FotoMedUpdate'] as $key=> $array):
+					foreach ($this->request->data['FotoCsegUpdate'] as $key=> $array):
 					if($array['id'][0] != ''){
 				
-						$this->FotoMed->id = $array['id'][0];
+						$this->FotoInstalCondSeg->id = $array['id'][0];
 				
-						$update_foto_med['FotoMed']['observacion'] = $array['Observacion'][0];
+						$update_foto_eeeg['FotoInstalCondSeg']['observacion'] = $array['Observacion'][0];
 				
-						$this->FotoMed->save($update_foto_med);
+						$this->FotoInstalCondSeg->save($update_foto_eeeg);
 							
 					}
 					endforeach;
 				}
 				
 				
-				//INICIO UPDATE ACTA
+				//INICIO UPDATE ACTA EN A INSTALACIONES
 				//debug($this->request->data);
 				if ($this->ActaInstalacione->save($this->request->data)) {
-					echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'ActaInstalacione_id'=>$acta_id));
+					echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'ActaInstalacione_id'=>$acta_instalacion_id));
 					exit();
 				}else{
 					echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->ActaInstalacione->validationErrors));
@@ -1421,10 +1028,10 @@ class ActaInstalacionesController extends AppController{
 				
 			}
 		}else{
-			$obj_acta = $this->ActaInstalacione->findById($acta_id);
+			$obj_acta = $this->ActaInstalacione->findById($acta_instalacion_id);
 			if(($this->Session->read('Auth.User.tipo_user_id') == 1) || ($this->Session->read('Auth.User.id') == $obj_acta->getAttr('reponsable_sup_id') || ($this->Session->read('Auth.User.tipo_user_id') == 3))){
 				$this->request->data = $obj_acta->data;
-				$this->set(compact('acta_id','obj_acta'));
+				$this->set(compact('acta_instalacion_id','obj_acta'));
 			}else{
 				throw new NotFoundException();
 			}
@@ -1438,9 +1045,9 @@ class ActaInstalacionesController extends AppController{
 		$this->loadModel('ActaInstalacione');
 	
 		if($this->request->is('post')){
-			$acta_id = $this->request->data['acta_id'];
+			$acta_instalacion_id = $this->request->data['acta_instalacion_id'];
 			
-			$obj_acta = $this->ActaInstalacione->findById($acta_id);
+			$obj_acta = $this->ActaInstalacione->findById($acta_instalacion_id);
 			if($obj_acta->saveField('estado', 0)){
 				echo json_encode(array('success'=>true,'msg'=>__('Eliminado con &eacute;xito.')));
 				exit();
@@ -1448,7 +1055,7 @@ class ActaInstalacionesController extends AppController{
 				echo json_encode(array('success'=>false,'msg'=>__('Error inesperado.')));
 				exit();
 			}
-			/*if($this->ActaInstalacione->deleteActaInstalacione($acta_id)){
+			/*if($this->ActaInstalacione->deleteActaInstalacione($acta_instalacion_id)){
 				echo json_encode(array('success'=>true,'msg'=>__('Eliminado con &eacute;xito.')));
 				//exit();
 			}else{
@@ -1590,7 +1197,7 @@ class ActaInstalacionesController extends AppController{
 					));
 				
 			foreach ($arr_obj_trabajadore as $trabajadore):
-			$dni = $trabajadore->getAttr('nro_documento');
+			$dni = $trabajadore->getAttr('nro_sshhumento');
 			endforeach;
 		}
 		return $dni;
@@ -1683,7 +1290,7 @@ class ActaInstalacionesController extends AppController{
 		return $this->request->data['ActaInstalacione']['fecha'];
 	}
 	
-	public function add_file_iv(){
+	/*public function add_file_iv(){
 		$this->layout = 'ajax';
 		$this->loadModel('Actividade');
 		$this->loadModel('Trabajadore');
@@ -1713,7 +1320,7 @@ class ActaInstalacionesController extends AppController{
 		$this->set(compact('list_all_vehiculos','list_all_codigos','long_table'));
 	}
 	
-	public function add_file_as(){
+	public function add_file_ss(){
 		$this->layout = 'ajax';
 		$this->loadModel('ActosSubestandaresTipo');
 		$this->loadModel('Codigo');
@@ -1727,7 +1334,7 @@ class ActaInstalacionesController extends AppController{
 		$this->set(compact('list_all_tipos_actos_sub','list_all_codigos','long_table'));
 	}
 	
-	public function add_file_cs(){
+	public function add_file_ee(){
 		$this->layout = 'ajax';
 		$this->loadModel('Codigo');
 		$this->loadModel('CondicionesSubestandaresTipo');
@@ -1739,9 +1346,9 @@ class ActaInstalacionesController extends AppController{
 		$list_all_codigos = $this->Codigo->listCodigos();
 		$list_all_tipos_condiciones_sub = $this->CondicionesSubestandaresTipo->listTipoCondicionesSubEstandares();
 		$this->set(compact('list_all_tipos_condiciones_sub','list_all_codigos','long_table'));
-	}
+	}*/
 	
-	public function add_row_as_rep(){
+	public function add_row_cond_seg(){
 		$this->layout = 'ajax';
 
 		if($this->request->is('post')){
@@ -1751,7 +1358,7 @@ class ActaInstalacionesController extends AppController{
 		$this->set(compact('long_table'));
 	}
 	
-	public function add_row_cond_rep(){
+	public function add_row_eq_emerg(){
 		$this->layout = 'ajax';
 	
 		if($this->request->is('post')){
@@ -1761,7 +1368,7 @@ class ActaInstalacionesController extends AppController{
 		$this->set(compact('long_table'));
 	}
 	
-	public function add_row_epp_rep(){
+	public function add_row_eq_sshh(){
 		$this->layout = 'ajax';
 	
 		if($this->request->is('post')){
@@ -1771,7 +1378,7 @@ class ActaInstalacionesController extends AppController{
 		$this->set(compact('long_table'));
 	}
 	
-	public function add_row_sd_rep(){
+	public function add_row_ilum_vent(){
 		$this->layout = 'ajax';
 	
 		if($this->request->is('post')){
@@ -1781,7 +1388,7 @@ class ActaInstalacionesController extends AppController{
 		$this->set(compact('long_table'));
 	}
 	
-	public function add_row_um_rep(){
+	public function add_row_orden_limp(){
 		$this->layout = 'ajax';
 	
 		if($this->request->is('post')){
@@ -1791,7 +1398,7 @@ class ActaInstalacionesController extends AppController{
 		$this->set(compact('long_table'));
 	}
 	
-	public function add_row_ds_rep(){
+	public function add_row_sen_seg(){
 		$this->layout = 'ajax';
 	
 		if($this->request->is('post')){
@@ -1801,12 +1408,12 @@ class ActaInstalacionesController extends AppController{
 		$this->set(compact('long_table'));
 	}
 	
-	public function view_informe($acta_id = null){
+	public function view_informe($acta_instalacion_id = null){
 
 		ini_set('memory_limit', '512M');
 		$this->loadModel('ActaInstalacione');
 		$this->loadModel('Actividade');
-		$obj_acta = $this->ActaInstalacione->findById($acta_id);
+		$obj_acta = $this->ActaInstalacione->findById($acta_instalacion_id);
 
 		if($this->Session->read('Auth.User.tipo_user_id') == 3){
 			$this->layout= 'layout_view_pdf_ensa';	
@@ -1825,7 +1432,7 @@ class ActaInstalacionesController extends AppController{
 			}
 		}
 				
-		if(!isset($acta_id)){
+		if(!isset($acta_instalacion_id)){
 			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
 			$this->redirect(array('controller' => 'actas', 'action' => 'index'));
 			exit();
@@ -1833,8 +1440,8 @@ class ActaInstalacionesController extends AppController{
 
 		$cargo_supervisor = $this->Actividade->getNombreCargo($obj_acta->getAttr('reponsable_sup_cargo_id'));
 				
-		$info_ni_t = $this->ActaInstalacione->infoNiT($acta_id);
-		$info_ni_v = $this->ActaInstalacione->infoNiV($acta_id);
+		$info_ni_t = $this->ActaInstalacione->infoNiT($acta_instalacion_id);
+		$info_ni_v = $this->ActaInstalacione->infoNiV($acta_instalacion_id);
 		
 		$obj_acta_ref = array();
 		if($obj_acta->getAttr('acta_referencia')!= 0){
@@ -1852,8 +1459,8 @@ class ActaInstalacionesController extends AppController{
 		
 			if(isset($this->request->data) || $this->request->is('post')){
 				//debug($this->request->data);exit();
-				$acta_id = $this->request->data['acta_id'];
-				$obj_acta = $this->ActaInstalacione->findById($acta_id);
+				$acta_instalacion_id = $this->request->data['acta_instalacion_id'];
+				$obj_acta = $this->ActaInstalacione->findById($acta_instalacion_id);
 				$num_informe = $obj_acta->getAttr('num_informe'); //Obtengo el número de informe
 				$email_destino = $this->request->data['SendEmail']['email_destino'];
 				$email_copia = $this->request->data['SendEmail']['email_copia'];
@@ -1884,11 +1491,11 @@ class ActaInstalacionesController extends AppController{
 				}
 				
 				if($error_validation == false){
-					$this->save_pdf($acta_id);
-					$this->ActaInstalacione->sendReporteEmail($acta_id, $email_destino, $email_copia, $num_informe, $asunto, $mensaje);
+					$this->save_pdf($acta_instalacion_id);
+					$this->ActaInstalacione->sendReporteEmail($acta_instalacion_id, $email_destino, $email_copia, $num_informe, $asunto, $mensaje);
 					/* Save Emails enviados */
 					$this->loadModel('EmailsEnviado');
-					$arr_email_send['EmailsEnviado']['acta_id'] = $acta_id;
+					$arr_email_send['EmailsEnviado']['acta_instalacion_id'] = $acta_instalacion_id;
 					$arr_email_send['EmailsEnviado']['emails_destino'] = $email_destino;
 					$arr_email_send['EmailsEnviado']['emails_copy'] = $email_copia;
 					$arr_email_send['EmailsEnviado']['asunto'] = $asunto;
@@ -1909,14 +1516,14 @@ class ActaInstalacionesController extends AppController{
 	}
 	
 	
-	/* ELIMINAR FOTOS IPP*/
+	/* ELIMINAR FOTOS ILUMINCACIÓN Y VENTILACIÓN*/
 	public function delete_foto_iv()
 	{
 		$this->layout = "ajax";
-		$this->loadModel('FotoIv');
+		$this->loadModel('FotoInstalIlumVent');
 		if($this->request->is('post')){
 			$file_name = $this->request->data['file_name'];
-			if($this->FotoIv->deleteAll(array('FotoIv.file_name' => $file_name), $cascada = false)){
+			if($this->FotoInstalIlumVent->deleteAll(array('FotoInstalIlumVent.file_name' => $file_name), $cascada = false)){
 				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_ilum_vent/'.$file_name)){
 					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_ilum_vent/'.$file_name);
 				}
@@ -1939,26 +1546,26 @@ class ActaInstalacionesController extends AppController{
 		}
 	}
 	
-	/* ELIMINAR FOTOS SD*/
-	public function delete_foto_sd()
+	/* ELIMINAR FOTOS ORDEN Y LIMPIEZA*/
+	public function delete_foto_ol()
 	{
 		$this->layout = "ajax";
-		$this->loadModel('FotoSd');
+		$this->loadModel('FotoInstalOrdenLimpieza');
 		if($this->request->is('post')){
 			$file_name = $this->request->data['file_name'];
-			if($this->FotoSd->deleteAll(array('FotoSd.file_name' => $file_name), $cascada = false)){
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_sd/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_sd/'.$file_name);
+			if($this->FotoInstalOrdenLimpieza->deleteAll(array('FotoInstalOrdenLimpieza.file_name' => $file_name), $cascada = false)){
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_orden_limp/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_orden_limp/'.$file_name);
 				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_sd/thumbnail/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_orden_limp/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_orden_limp/thumbnail/'.$file_name);
 				}
 
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_orden_limp/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_orden_limp/'.$file_name);
 				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_sd/thumbnail/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_orden_limp/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_orden_limp/thumbnail/'.$file_name);
 				}
 
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
@@ -1970,26 +1577,27 @@ class ActaInstalacionesController extends AppController{
 		}
 	}
 	
-	/* ELIMINAR FOTOS UM*/
-	public function delete_foto_um()
+	
+	/* ELIMINAR FOTOS SSHH  */
+	public function delete_foto_sshh()
 	{
 		$this->layout = "ajax";
-		$this->loadModel('FotoUm');
+		$this->loadModel('FotoInstalSshh');
 		if($this->request->is('post')){
 			$file_name = $this->request->data['file_name'];
-			if($this->FotoUm->deleteAll(array('FotoUm.file_name' => $file_name), $cascada = false)){
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_um/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_um/'.$file_name);
+			if($this->FotoInstalSshh->deleteAll(array('FotoInstalSshh.file_name' => $file_name), $cascada = false)){
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_sshh/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_sshh/'.$file_name);
 				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_um/thumbnail/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_sshh/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_sshh/thumbnail/'.$file_name);
 				}
 
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_um/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_um/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/'.$file_name);
 				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_um/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_um/thumbnail/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/thumbnail/'.$file_name);
 				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
@@ -2000,26 +1608,25 @@ class ActaInstalacionesController extends AppController{
 		}
 	}
 	
-	/* ELIMINAR FOTOS DOC - SEG */
-	public function delete_foto_doc()
+	public function delete_foto_ss()
 	{
 		$this->layout = "ajax";
-		$this->loadModel('FotoDoc');
+		$this->loadModel('FotoInstalSenSeg');
 		if($this->request->is('post')){
 			$file_name = $this->request->data['file_name'];
-			if($this->FotoDoc->deleteAll(array('FotoDoc.file_name' => $file_name), $cascada = false)){
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_doc/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_doc/'.$file_name);
+			if($this->FotoInstalSenSeg->deleteAll(array('FotoInstalSenSeg.file_name' => $file_name), $cascada = false)){
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/'.$file_name);
 				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_doc/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_doc/thumbnail/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/thumbnail/'.$file_name);
 				}
 
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/'.$file_name);
 				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_doc/thumbnail/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/thumbnail/'.$file_name);
 				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
@@ -2030,25 +1637,25 @@ class ActaInstalacionesController extends AppController{
 		}
 	}
 	
-	public function delete_foto_as()
+	public function delete_foto_ee()
 	{
 		$this->layout = "ajax";
-		$this->loadModel('FotoAct');
+		$this->loadModel('FotoInstalEqEmerg');
 		if($this->request->is('post')){
 			$file_name = $this->request->data['file_name'];
-			if($this->FotoAct->deleteAll(array('FotoAct.file_name' => $file_name), $cascada = false)){
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_as/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_as/'.$file_name);
+			if($this->FotoInstalEqEmerg->deleteAll(array('FotoInstalEqEmerg.file_name' => $file_name), $cascada = false)){
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/'.$file_name);
 				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_as/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_as/thumbnail/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/thumbnail/'.$file_name);
 				}
 
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_as/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_as/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/'.$file_name);
 				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_as/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_as/thumbnail/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/thumbnail/'.$file_name);
 				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
@@ -2059,47 +1666,18 @@ class ActaInstalacionesController extends AppController{
 		}
 	}
 	
-	public function delete_foto_cs()
+	public function delete_foto_cseg()
 	{
 		$this->layout = "ajax";
-		$this->loadModel('FotoCond');
+		$this->loadModel('FotoInstalCondSeg');
 		if($this->request->is('post')){
 			$file_name = $this->request->data['file_name'];
-			if($this->FotoCond->deleteAll(array('FotoCond.file_name' => $file_name), $cascada = false)){
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_cs/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_cs/'.$file_name);
+			if($this->FotoInstalCondSeg->deleteAll(array('FotoInstalCondSeg.file_name' => $file_name), $cascada = false)){
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/'.$file_name);
 				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_cs/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_cs/thumbnail/'.$file_name);
-				}
-
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$file_name);
-				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$file_name);
-				}
-				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
-				exit();
-			}else{
-				echo json_encode(array('success' =>false, 'msg' => __('La Foto no fue eliminada')));
-				exit();
-			}
-		}
-	}
-	
-	public function delete_foto_med()
-	{
-		$this->layout = "ajax";
-		$this->loadModel('FotoMed');
-		if($this->request->is('post')){
-			$file_name = $this->request->data['file_name'];
-			if($this->FotoMed->deleteAll(array('FotoMed.file_name' => $file_name), $cascada = false)){
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_med/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_med/'.$file_name);
-				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$file_name);
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/thumbnail/'.$file_name);
 				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
@@ -2116,10 +1694,10 @@ class ActaInstalacionesController extends AppController{
 		$this->loadModel('ActaInstalacione');
 	
 		if($this->request->is('post')){
-			$acta_id = $this->request->data['acta_id'];
+			$acta_instalacion_id = $this->request->data['acta_instalacion_id'];
 			$value_check = $this->request->data['value_check'];
 				
-			$obj_acta = $this->ActaInstalacione->findById($acta_id);
+			$obj_acta = $this->ActaInstalacione->findById($acta_instalacion_id);
 			if($obj_acta->saveField('revisado', $value_check)){
 				echo json_encode(array('success'=>true,'msg'=>__('El cambio se realiz&oacute; con &eacute;xito.')));
 				exit();
@@ -2127,7 +1705,7 @@ class ActaInstalacionesController extends AppController{
 				echo json_encode(array('success'=>false,'msg'=>__('Error inesperado.')));
 				exit();
 			}
-			/*if($this->ActaInstalacione->deleteActaInstalacione($acta_id)){
+			/*if($this->ActaInstalacione->deleteActaInstalacione($acta_instalacion_id)){
 			 echo json_encode(array('success'=>true,'msg'=>__('Eliminado con &eacute;xito.')));
 			//exit();
 			}else{
@@ -2138,8 +1716,8 @@ class ActaInstalacionesController extends AppController{
 		}
 	}
 
-	public function save_pdf($acta_id){
-		$source = ENV_WEBROOT_FULL_URL."/actas/view_informe/".$acta_id;
+	public function save_pdf($acta_instalacion_id){
+		$source = ENV_WEBROOT_FULL_URL."/actas/view_informe/".$acta_instalacion_id;
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $source);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -2149,7 +1727,7 @@ class ActaInstalacionesController extends AppController{
 		curl_close ($ch);
 		
 		$this->loadModel('ActaInstalacione');
-		$obj_acta = $this->ActaInstalacione->findById($acta_id);
+		$obj_acta = $this->ActaInstalacione->findById($acta_instalacion_id);
 		
 		$destination = APP.WEBROOT_DIR."/files/pdf/".str_replace('/','-',$obj_acta->getAttr('num_informe')).".pdf";
 		$file = fopen($destination, "w+");
@@ -2173,16 +1751,16 @@ class ActaInstalacionesController extends AppController{
 			
 			//foreach ($arr_obj_trabajadore as $trabajadore):
 			$normas_iv = $obj_acta->getAttr('info_des_epp');
-			$normas_sd = $obj_acta->getAttr('info_des_se_de');
+			$normas_ol = $obj_acta->getAttr('info_des_se_de');
 			$normas_um = $obj_acta->getAttr('info_des_um');
-			$normas_ds = $obj_acta->getAttr('info_des_doc');
+			$normas_ds = $obj_acta->getAttr('info_des_sshh');
 			$normas_cp = $obj_acta->getAttr('info_des_act');
 			$normas_ac = $obj_acta->getAttr('info_des_cond');
 
 		
 			//endforeach;
 		}
-		return json_encode(array('success'=>true,'normas'=> array('normas_iv' => $normas_iv, 'normas_sd'=>$normas_sd, 'normas_um'=>$normas_um, 'normas_ds'=>$normas_ds, 'normas_cp'=>$normas_cp, 'normas_ac'=>$normas_ac)));
+		return json_encode(array('success'=>true,'normas'=> array('normas_iv' => $normas_iv, 'normas_ol'=>$normas_ol, 'normas_um'=>$normas_um, 'normas_ds'=>$normas_ds, 'normas_cp'=>$normas_cp, 'normas_ac'=>$normas_ac)));
 	}
 
 	public function ajax_export_report_pdf (){
@@ -2247,7 +1825,7 @@ class ActaInstalacionesController extends AppController{
 
 			//debug($list_total_ni_nc); exit();
 			
-			$sum_nc_epp = 0 ; $sum_ni_epp= 0; $sum_nc_sd= 0; $sum_ni_sd= 0; $sum_nc_um= 0; $sum_ni_um=0; $sum_nc_doc=0; $sum_ni_doc=0; $sum_nc_cp= 0;
+			$sum_nc_epp = 0 ; $sum_ni_epp= 0; $sum_nc_ol= 0; $sum_ni_ol= 0; $sum_nc_um= 0; $sum_ni_um=0; $sum_nc_sshh=0; $sum_ni_sshh=0; $sum_nc_cp= 0;
 			$sum_ni_cp = 0; $sum_nc_ac= 0; $sum_ni_ac= 0;
 
 			foreach ($list_total_ni_nc as $row_acta):
@@ -2271,9 +1849,9 @@ class ActaInstalacionesController extends AppController{
 					foreach($info_des_se_de as $value):
 						if($value->info_des_se_de != ""){
 							if($value->alternativa == 1){
-								$sum_nc_sd++;
+								$sum_nc_ol++;
 							}elseif($value->alternativa == 0){
-								$sum_ni_sd++;
+								$sum_ni_ol++;
 							}else{
 								
 							}
@@ -2297,14 +1875,14 @@ class ActaInstalacionesController extends AppController{
 					endforeach;
 				}
 
-				if($row_acta->getAttr('info_des_doc') != ""){
-					$info_des_doc = json_decode($row_acta->getAttr('info_des_doc'));
-					foreach($info_des_doc as $value):
-						if($value->info_des_doc != ""){
+				if($row_acta->getAttr('info_des_sshh') != ""){
+					$info_des_sshh = json_decode($row_acta->getAttr('info_des_sshh'));
+					foreach($info_des_sshh as $value):
+						if($value->info_des_sshh != ""){
 							if($value->alternativa == 1){
-								$sum_nc_doc++;
+								$sum_nc_sshh++;
 							}elseif($value->alternativa == 0){
-								$sum_ni_doc++;
+								$sum_ni_sshh++;
 							}else{
 								
 							}
@@ -2344,8 +1922,8 @@ class ActaInstalacionesController extends AppController{
 
 			endforeach;
 
-			$sum_normas_cumplidas = round($sum_nc_epp + $sum_nc_sd + $sum_nc_um + $sum_nc_doc + $sum_nc_cp + $sum_nc_ac);
-			$sum_normas_incumplidas = round($sum_ni_epp + $sum_ni_sd + $sum_ni_um + $sum_ni_doc + $sum_ni_cp + $sum_ni_ac);
+			$sum_normas_cumplidas = round($sum_nc_epp + $sum_nc_ol + $sum_nc_um + $sum_nc_sshh + $sum_nc_cp + $sum_nc_ac);
+			$sum_normas_incumplidas = round($sum_ni_epp + $sum_ni_ol + $sum_ni_um + $sum_ni_sshh + $sum_ni_cp + $sum_ni_ac);
 			$suma_total_normas = $sum_normas_cumplidas + $sum_normas_incumplidas;
 
 			if($suma_total_normas > 0){
@@ -2360,8 +1938,8 @@ class ActaInstalacionesController extends AppController{
 
 
 			$this->set(compact('filename','fec_inicio','fec_fin','nombre_empresas','nombre_uunns','list_total_ni_nc'));
-			$this->set(compact('sum_nc_epp', 'sum_nc_sd', 'sum_nc_um', 'sum_nc_doc', 'sum_nc_cp', 'sum_nc_ac'));
-			$this->set(compact('sum_ni_epp', 'sum_ni_sd', 'sum_ni_um', 'sum_ni_doc', 'sum_ni_cp', 'sum_ni_ac'));
+			$this->set(compact('sum_nc_epp', 'sum_nc_ol', 'sum_nc_um', 'sum_nc_sshh', 'sum_nc_cp', 'sum_nc_ac'));
+			$this->set(compact('sum_ni_epp', 'sum_ni_ol', 'sum_ni_um', 'sum_ni_sshh', 'sum_ni_cp', 'sum_ni_ac'));
 			$this->set(compact('sum_normas_cumplidas', 'sum_normas_incumplidas', 'suma_total_normas','porc_nc','porc_ni'));
 	}
 		

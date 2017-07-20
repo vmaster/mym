@@ -21,7 +21,7 @@
         $cont = 1;
         foreach ($list_acta as $acta):
         ?>
-        <tr class="acta_row_container" acta_id="<?php echo $acta->getAttr('id'); ?>" style="<?php echo ($acta->getAttr('revisado')==0)?'background-color:#BADEFB' : ''; ?>">
+        <tr class="acta_instalacion_row_container" acta_instalacion_id="<?php echo $acta->getAttr('id'); ?>" style="<?php echo ($acta->getAttr('revisado')==0)?'background-color:#BADEFB' : ''; ?>">
             <td><?php echo $acta->getAttr('num_informe'); ?></td>
             <td><?php echo $acta->Empresa->getAttr('nombre'); ?></td>
             <td><?php echo ($acta->getAttr('actividad')=='')?"":$acta->getAttr('actividad'); ?></td>
@@ -46,7 +46,7 @@
                 <a href="<?= ENV_WEBROOT_FULL_URL; ?>acta_instalaciones/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-search fa-lg"></i> </a>
                 <?php if((($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') == $acta->getAttr('reponsable_sup_id'))) || $this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
                     |
-                    <a href="#myModalDeleteActa" role="button" data-toggle="modal" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i class="fa fa-times open-model-delete-acta fa-lg"></i> </a>
+                    <a href="#myModalDeleteActa" role="button" data-toggle="modal" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i class="fa fa-times open-model-delete-acta-instal fa-lg"></i> </a>
                 <?php } ?>  
                     <?php if($this->Session->read('Auth.User.tipo_user_id') == 1){ ?>
                      | <input name="chRevisado<?php echo $cont++; ?>" type="checkbox" value="<?php echo ($acta->getAttr('revisado')==1)?1 : 0; ?>" id="chRevisado" <?php echo ($acta->getAttr('revisado')==1)?'checked':''; ?>> | 
