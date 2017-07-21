@@ -15,7 +15,7 @@ tinymce.init({
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<h2>Editar Informe</h2>
+		<h2>Editar Informe de seguridad a instalaciones</h2>
 	</div>
 </div>
 <hr />
@@ -273,7 +273,7 @@ tinymce.init({
 													</tr>
 												</thead>
 												<tbody>
-													<?php $arr_inf_des_act = json_decode($obj_acta->json_des_ilum_vent)?>
+													<?php $arr_inf_des_act = json_decode($obj_acta->json_ilum_vent)?>
 													<?php foreach($arr_inf_des_act as $i => $inf_des_act){?>
 													<tr>
 														<td><textarea name="data[ActaInstalacione][cumplimiento_ilum_vent][<?php echo $i; ?>][inf_des_ilum_vent]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($inf_des_act->inf_des_ilum_vent) && $inf_des_act->inf_des_ilum_vent != '')?$inf_des_act->inf_des_ilum_vent:'';?></textarea></td>
@@ -305,7 +305,7 @@ tinymce.init({
 											</div>
 											<br>
 											<table class="table table-striped table-bordered table-hover"
-												id="table-ipp">
+												id="table-iv">
 												<tbody>
 													<tr>
 														<td>
@@ -412,16 +412,16 @@ tinymce.init({
 													<?php $arr_inf_des_act = json_decode($obj_acta->json_orden_limpieza)?>
 													<?php foreach($arr_inf_des_act as $i => $inf_des_act){?>
 													<tr>
-														<td><textarea name="data[ActaInstalacione][cumplimiento_ol][<?php echo $i; ?>][inf_des_orden_limp]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($inf_des_act->inf_des_orden_limp) && $inf_des_act->inf_des_orden_limp != '')?$inf_des_act->inf_des_orden_limp:'';?></textarea></td>
+														<td><textarea name="data[ActaInstalacione][cumplimiento_orden_limp][<?php echo $i; ?>][inf_des_orden_limp]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($inf_des_act->inf_des_orden_limp) && $inf_des_act->inf_des_orden_limp != '')?$inf_des_act->inf_des_orden_limp:'';?></textarea></td>
 														<td>
-															<select class="form-control select-NI-NC select_cu_ol" name= "data[ActaInstalacione][cumplimiento_ol][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_ol" name= "data[ActaInstalacione][cumplimiento_orden_limp][<?php echo $i; ?>][alternativa]">
 																<option value="2" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 0)?"selected":""?>>NO</option>
 															</select>
 														</td>
 														<td>
-															<select class="form-control select_re_ol" name= "data[ActaInstalacione][cumplimiento_ol][<?php echo $i; ?>][incidencia]">
+															<select class="form-control select_re_ol" name= "data[ActaInstalacione][cumplimiento_orden_limp][<?php echo $i; ?>][incidencia]">
 																<option value="4" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 4)?"selected":""?>>--</option>
 																<option value="3" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 3)?"selected":""?>>N - Nueva Insp./Obs.</option>
 																<option value="2" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 2)?"selected":""?>>S - Subsanado</option>
@@ -1254,13 +1254,13 @@ tinymce.init({
 									        <!-- The table listing the files available for upload/download -->
 											<table role="presentation" class="table table-striped">
 												<tbody class="files">
-												<?php foreach($obj_acta->FotoMed as $key => $obj_foto_med) {?> 
+												<?php foreach($obj_acta->FotoInstalMed as $key => $obj_foto_med) {?> 
 												<?php $file_name =$obj_foto_med->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
 													<tr class="template-download fade in" foto-med="<?php echo $file_name_explode[0];?>">
 														<td><span class="preview"> <a
-																href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_act/<?php echo $obj_foto_med->getAttr('file_name'); ?>"
+																href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_med/<?php echo $obj_foto_med->getAttr('file_name'); ?>"
 																title="<?php echo $obj_foto_med->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-																data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med/thumbnail/<?php echo $obj_foto_med->getAttr('file_name'); ?>" width='80px'>
+																data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_med/thumbnail/<?php echo $obj_foto_med->getAttr('file_name'); ?>" width='80px'>
 															</a>
 															<textarea rows="3"  name="data[FotoMedUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_med->getAttr('observacion'); ?></textarea>
 															<input type="hidden" value="<?php echo $obj_foto_med->getAttr('id'); ?>" name="data[FotoMedUpdate][<?php echo $key; ?>][id][]">
@@ -1268,7 +1268,7 @@ tinymce.init({
 														</td>
 														<td>
 															<p class="name">
-																<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med/<?php echo $obj_foto_med->getAttr('file_name'); ?>"
+																<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_med/<?php echo $obj_foto_med->getAttr('file_name'); ?>"
 																	title="<?php echo $obj_foto_med->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
 																	data-gallery=""><?php echo $obj_foto_med->getAttr('file_name'); ?></a> 
 															</p>
@@ -1279,7 +1279,7 @@ tinymce.init({
 															<a data-url="<?php echo $obj_foto_med->getAttr('file_name');?>" data-foto-med="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-med">
 																<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
 															</a>
-															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med/<?php echo $obj_foto_med->getAttr('file_name'); ?>" title="<?php echo $obj_foto_med->getAttr('file_name'); ?>" download="<?php echo $obj_foto_med->getAttr('file_name'); ?>" class="btn btn-default">
+															<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_med/<?php echo $obj_foto_med->getAttr('file_name'); ?>" title="<?php echo $obj_foto_med->getAttr('file_name'); ?>" download="<?php echo $obj_foto_med->getAttr('file_name'); ?>" class="btn btn-default">
 																	<i class="fa fa-download"></i> <span>Descargar</span>
 															</a>
 														</td>

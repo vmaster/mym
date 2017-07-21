@@ -946,7 +946,7 @@ tinymce.init({
 									<tr>
 										<td colspan="2">
 										<?php //echo $this->Form->input('foto',array('type' => 'file')); ?>
-										<div class="fileupload" data-type="FotoMed">
+										<div class="fileupload" data-type="FotoInstalMed">
 									        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 									        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 									        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->

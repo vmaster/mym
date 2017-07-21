@@ -43,8 +43,8 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		),
-    		'FotoInstalIlumVents' => array(
-    				'className' => 'FotoInstalIlumVents',
+    		'FotoInstalIlumVent' => array(
+    				'className' => 'FotoInstalIlumVent',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
     				'conditions' => '',
@@ -56,8 +56,8 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		),
-    		'FotoInstalOrdenLimpiezas' => array(
-    				'className' => 'FotoInstalOrdenLimpiezas',
+    		'FotoInstalOrdenLimpieza' => array(
+    				'className' => 'FotoInstalOrdenLimpieza',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
     				'conditions' => '',
@@ -82,8 +82,8 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		),
-    		'FotoInstalSshhs' => array(
-    				'className' => 'FotoInstalSshhs',
+    		'FotoInstalSshh' => array(
+    				'className' => 'FotoInstalSshh',
     				'foreignKey' => 'acta_id',
     				'dependent' => false,
     				'conditions' => '',
@@ -95,9 +95,22 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		),
-            'EmailsEnviadosActaInstals' => array(
-                    'className' => 'EmailsEnviadosActaInstals',
+            'EmailsEnviadosActaInstal' => array(
+                    'className' => 'EmailsEnviadosActaInstal',
                     'foreignKey' => 'acta_instal_id',
+                    'dependent' => false,
+                    'conditions' => '',
+                    'fields' => '',
+                    'order' => '',
+                    'limit' => '',
+                    'offset' => '',
+                    'exclusive' => '',
+                    'finderQuery' => '',
+                    'counterQuery' => ''
+            ),
+            'FotoInstalMed' => array(
+                    'className' => 'FotoInstalMed',
+                    'foreignKey' => 'acta_id',
                     'dependent' => false,
                     'conditions' => '',
                     'fields' => '',
