@@ -368,7 +368,7 @@ tinymce.init({
 																		<td><span class="size">120.37 KB</span>
 																		</td>
 																		<td>
-																			<a data-url="<?php echo $obj_foto_iv->getAttr('file_name');?>" data-foto_iv="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-ipp">
+																			<a data-url="<?php echo $obj_foto_iv->getAttr('file_name');?>" data-foto_iv="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-iv">
 																				<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
 																			</a>
 																			<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_ilum_vent/<?php echo $obj_foto_iv->getAttr('file_name'); ?>" title="<?php echo $obj_foto_iv->getAttr('file_name'); ?>" download="<?php echo $obj_foto_iv->getAttr('file_name'); ?>" class="btn btn-default">
@@ -547,7 +547,7 @@ tinymce.init({
 													<?php $arr_inf_des_act = json_decode($obj_acta->json_sshh)?>
 													<?php foreach($arr_inf_des_act as $i => $inf_des_act){?>
 													<tr>
-														<td><textarea name="data[ActaInstalacione][cumplimiento_sshh][<?php echo $i; ?>][info_des_sshh]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($inf_des_act->info_des_sshh) && $inf_des_act->info_des_sshh != '')?$inf_des_act->info_des_sshh:'';?></textarea></td>
+														<td><textarea name="data[ActaInstalacione][cumplimiento_sshh][<?php echo $i; ?>][inf_des_sshh]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($inf_des_act->inf_des_sshh) && $inf_des_act->inf_des_sshh != '')?$inf_des_act->info_des_sshh:'';?></textarea></td>
 														<td>
 															<select class="form-control select-NI-NC select_cu_sshh" name= "data[ActaInstalacione][cumplimiento_sshh][<?php echo $i; ?>][alternativa]">
 																<option value="2" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 2)?"selected":""?>>--</option>
