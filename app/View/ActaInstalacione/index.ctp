@@ -214,7 +214,7 @@ div#spinner-send-report
 </style>
 <div class="row">
 	<div class="col-md-12">
-		<h2>Listado de Informes</h2>
+		<h2>Listado de Informes de Seguridad a Instalaciones </h2>
 	</div>
 </div>
 <hr />
