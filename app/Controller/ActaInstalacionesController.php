@@ -562,11 +562,11 @@ class ActaInstalacionesController extends AppController{
 		$this->loadModel('Codigo');
 		$this->loadModel('FotoInstalIlumVent');
 		$this->loadModel('FotoInstalOrdenLimpieza');
-		$this->loadModel('FotoUm');
 		$this->loadModel('FotoInstalSshh');
 		$this->loadModel('FotoInstalSenSeg');
 		$this->loadModel('FotoInstalEqEmerg');
 		$this->loadModel('FotoInstalCondSeg');
+		$this->loadModel('FotoInstalMed');
 		$this->loadModel('ActosSubestandaresTipo');
 		$this->loadModel('CondicionesSubestandaresTipo');
 		$this->loadModel('UnidadesNegocio');
@@ -777,7 +777,6 @@ class ActaInstalacionesController extends AppController{
 							$this->FotoInstalOrdenLimpieza->create();
 							if ($this->FotoInstalOrdenLimpieza->save($new_foto_ol)) {
 								$foto_ol_id = $this->FotoInstalOrdenLimpieza->id;
-								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_orden_limp/'.$new_foto_ol['FotoInstalOrdenLimpieza']['file_name']);
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_orden_limp/thumbnail/'.$new_foto_ol['FotoInstalOrdenLimpieza']['file_name']);
 
@@ -1022,6 +1021,9 @@ class ActaInstalacionesController extends AppController{
 					foreach ($this->request->data['FotoInstalMed'] as $key => $array){
 						$imagen = $array['Imagen'][0];
 						$new_foto_med['FotoInstalMed']['acta_id'] = $this->ActaInstalacione->id;
+
+						/*debug("HOLA  ".$new_foto_med['FotoInstalMed']['acta_id']);
+						exit();*/
 						$arr = explode(".", $imagen);
 						$extension = strtolower(array_pop($arr));
 						$new_file_name = time().$cont.'.'.$extension;
@@ -1032,12 +1034,12 @@ class ActaInstalacionesController extends AppController{
 						if ($this->FotoInstalMed->save($new_foto_med)) {
 							$foto_med_id = $this->FotoInstalMed->id;
 							//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/'.$new_foto_med['FotoInstalMed']['file_name']);
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/thumbnail/'.$new_foto_med['FotoInstalMed']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_med/'.$new_foto_med['FotoInstalMed']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_instal_med/thumbnail/'.$new_foto_med['FotoInstalMed']['file_name']);
 
 							//Backup Images
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_cond_seg/'.$new_foto_med['FotoInstalMed']['file_name']);
-							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_cond_seg/thumbnail/'.$new_foto_med['FotoInstalMed']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_med/'.$new_foto_med['FotoInstalMed']['file_name']);
+							copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_med/thumbnail/'.$new_foto_med['FotoInstalMed']['file_name']);
 
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 							unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
@@ -1729,6 +1731,28 @@ class ActaInstalacionesController extends AppController{
 				}
 				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/thumbnail/'.$file_name)){
 					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/thumbnail/'.$file_name);
+				}
+				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
+				exit();
+			}else{
+				echo json_encode(array('success' =>false, 'msg' => __('La Foto no fue eliminada')));
+				exit();
+			}
+		}
+	}
+
+	public function delete_foto_med()
+	{
+		$this->layout = "ajax";
+		$this->loadModel('FotoInstalMed');
+		if($this->request->is('post')){
+			$file_name = $this->request->data['file_name'];
+			if($this->FotoInstalMed->deleteAll(array('FotoInstalMed.file_name' => $file_name), $cascada = false)){
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_med/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_med/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_med/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_med/thumbnail/'.$file_name);
 				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();

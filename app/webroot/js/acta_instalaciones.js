@@ -259,11 +259,11 @@ $(document).ready(function(){
 		});	
 	});
 	
-	/*SCRIPT PARA ELIMINAR FOTOS ILsshhINACIÓN Y VENTILACIÓN -  EXISTENTES*/
+	/*SCRIPT PARA ELIMINAR FOTOS ILUMINACIÓN Y VENTILACIÓN -  EXISTENTES*/
 	$body.off('click','.delete-file-iv');
 	$body.on('click','.delete-file-iv', function(){
 		file_name = $(this).data('url');
-		foto_iv = $(this).data('foto_iv');
+		foto_iv = $(this).data('foto-iv');
 		$.ajax({
 			type: 'post',
 			url: env_webroot_script + 'acta_instalaciones/delete_foto_iv',
@@ -273,7 +273,7 @@ $(document).ready(function(){
 			dataType: 'json'
 		}).done(function(data){
 			if(data.success == true){
-				$('.template-download[foto_iv='+foto_iv+']').fadeOut(function(){$(this).remove()});
+				$('.template-download[foto-iv='+foto_iv+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}
@@ -284,7 +284,7 @@ $(document).ready(function(){
 	$body.off('click','.delete-file-ol');
 	$body.on('click','.delete-file-ol', function(){
 		file_name = $(this).data('url');
-		foto_ol = $(this).data('foto_ol');
+		foto_ol = $(this).data('foto-ol');
 		$.ajax({
 			type: 'post',
 			url: env_webroot_script + 'acta_instalaciones/delete_foto_ol',
@@ -294,7 +294,7 @@ $(document).ready(function(){
 			dataType: 'json'
 		}).done(function(data){
 			if(data.success == true){
-				$('.template-download[foto_ol='+foto_ol+']').fadeOut(function(){$(this).remove()});
+				$('.template-download[foto-ol='+foto_ol+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}
@@ -305,7 +305,7 @@ $(document).ready(function(){
 	$body.off('click','.delete-file-sshh');
 	$body.on('click','.delete-file-sshh', function(){
 		file_name = $(this).data('url');
-		foto_sshh = $(this).data('foto_sshh');
+		foto_sshh = $(this).data('foto-sshh');
 		$.ajax({
 			type: 'post',
 			url: env_webroot_script + 'acta_instalaciones/delete_foto_sshh',
@@ -315,7 +315,7 @@ $(document).ready(function(){
 			dataType: 'json'
 		}).done(function(data){
 			if(data.success == true){
-				$('.template-download[foto_sshh='+foto_sshh+']').fadeOut(function(){$(this).remove()});
+				$('.template-download[foto-sshh='+foto_sshh+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}
@@ -357,7 +357,7 @@ $(document).ready(function(){
 			dataType: 'json'
 		}).done(function(data){
 			if(data.success == true){
-				$('.template-download[foto_ee='+foto_ee+']').fadeOut(function(){$(this).remove()});
+				$('.template-download[foto-ee='+foto_ee+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}
@@ -370,17 +370,38 @@ $(document).ready(function(){
 	$body.off('click','.delete-file-cseg');
 	$body.on('click','.delete-file-cseg', function(){
 		file_name = $(this).data('url');
-		foto_csegeg = $(this).data('foto-cseg');
+		foto_cseg = $(this).data('foto-cseg');
 		$.ajax({
 			type: 'post',
-			url: env_webroot_script + 'acta_instalaciones/delete_foto_csegeg',
+			url: env_webroot_script + 'acta_instalaciones/delete_foto_cseg',
 			data:{
 				'file_name': file_name
 			},
 			dataType: 'json'
 		}).done(function(data){
 			if(data.success == true){
-				$('.template-download[foto-cseg='+foto_csegeg+']').fadeOut(function(){$(this).remove()});
+				$('.template-download[foto-cseg='+foto_cseg+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
+	
+	/*SCRIPT PARA ELIMINAR FOTOS MEDIDAS DE SEGURIDAD -  EXISTENTES*/
+	$body.off('click','.delete-file-med-instal');
+	$body.on('click','.delete-file-med-instal', function(){
+		file_name = $(this).data('url');
+		foto_med = $(this).data('foto-med');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'acta_instalaciones/delete_foto_med',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto-med='+foto_med+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}

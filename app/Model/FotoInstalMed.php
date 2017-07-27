@@ -1,7 +1,7 @@
 <?php
 App::uses('AppModel','Model');
   class FotoInstalMed extends AppModel {
-    public $name = 'FotoMed';
+    public $name = 'FotoInstalMed';
 
     public $belongsTo = array(
     		'ActaInstalacione' => array(
