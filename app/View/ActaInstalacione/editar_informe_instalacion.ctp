@@ -822,21 +822,21 @@ tinymce.init({
 													<?php $arr_inf_des_act = json_decode($obj_acta->json_eq_emerg)?>
 													<?php foreach($arr_inf_des_act as $i => $inf_des_act){?>
 													<tr>
-														<td><textarea name="data[ActaInstalacione][cumplimiento_eq_emerg][<?php echo $i; ?>][inf_des_eq_emerg]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($inf_des_eq_emerg->inf_des_eq_emerg) && $inf_des_eq_emerg->inf_des_eq_emerg != '')?$inf_des_eq_emerg->inf_des_eq_emerg:'';?></textarea></td>
+														<td><textarea name="data[ActaInstalacione][cumplimiento_eq_emerg][<?php echo $i; ?>][inf_des_eq_emerg]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($inf_des_act->inf_des_eq_emerg) && $inf_des_act->inf_des_eq_emerg != '')?$inf_des_act->inf_des_eq_emerg:'';?></textarea></td>
 														<td>
 															<select class="form-control select-NI-NC select_cu_ee" name= "data[ActaInstalacione][cumplimiento_eq_emerg][<?php echo $i; ?>][alternativa]">
-																<option value="2" <?php echo (isset($inf_des_eq_emerg->alternativa) && $inf_des_eq_emerg->alternativa == 2)?"selected":""?>>--</option>
-																<option value="1" <?php echo (isset($inf_des_eq_emerg->alternativa) && $inf_des_eq_emerg->alternativa == 1)?"selected":""?>>SI</option>
-																<option value="0" <?php echo (isset($inf_des_eq_emerg->alternativa) && $inf_des_eq_emerg->alternativa == 0)?"selected":""?>>NO</option>
+																<option value="2" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 2)?"selected":""?>>--</option>
+																<option value="1" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 1)?"selected":""?>>SI</option>
+																<option value="0" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 0)?"selected":""?>>NO</option>
 															</select>
 														</td>
 														<td>
 															<select class="form-control select_re_ee" name= "data[ActaInstalacione][cumplimiento_eq_emerg][<?php echo $i; ?>][incidencia]">
-																<option value="4" <?php echo (isset($inf_des_eq_emerg->incidencia) && $inf_des_eq_emerg->incidencia == 4)?"selected":""?>>--</option>
-																<option value="3" <?php echo (isset($inf_des_eq_emerg->incidencia) && $inf_des_eq_emerg->incidencia == 3)?"selected":""?>>N - Nueva Insp./Obs.</option>
-																<option value="2" <?php echo (isset($inf_des_eq_emerg->incidencia) && $inf_des_eq_emerg->incidencia == 2)?"selected":""?>>S - Subsanado</option>
-																<option value="1" <?php echo (isset($inf_des_eq_emerg->incidencia) && $inf_des_eq_emerg->incidencia == 1)?"selected":""?>>R - Reiterativo</option>
-																<option value="0" <?php echo (isset($inf_des_eq_emerg->incidencia) && $inf_des_eq_emerg->incidencia == 0)?"selected":""?>>NO</option>
+																<option value="4" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 4)?"selected":""?>>--</option>
+																<option value="3" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 3)?"selected":""?>>N - Nueva Insp./Obs.</option>
+																<option value="2" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 2)?"selected":""?>>S - Subsanado</option>
+																<option value="1" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 1)?"selected":""?>>R - Reiterativo</option>
+																<option value="0" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 0)?"selected":""?>>NO</option>
 															</select>
 														</td>
 													</tr>
