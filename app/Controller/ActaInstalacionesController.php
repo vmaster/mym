@@ -1468,7 +1468,8 @@ class ActaInstalacionesController extends AppController{
 		$this->loadModel('Actividade');
 		$obj_acta = $this->ActaInstalacione->findById($acta_instalacion_id);
 
-		if($this->Session->read('Auth.User.tipo_user_id') == 3){
+		$this->layout= 'layout_view_pdf_insp_seguridad';	
+		/*if($this->Session->read('Auth.User.tipo_user_id') == 3){
 			$this->layout= 'layout_view_pdf_ensa';	
 		}else{
 			if($obj_acta->getAttr('vers_cambios')==1){
@@ -1483,7 +1484,7 @@ class ActaInstalacionesController extends AppController{
 					$this->layout = 'layout_view_pdf2';
 				}
 			}
-		}
+		}*/
 				
 		if(!isset($acta_instalacion_id)){
 			echo json_encode(array('success'=>true,'msg'=>__('Esta acción no esta permitida')));
