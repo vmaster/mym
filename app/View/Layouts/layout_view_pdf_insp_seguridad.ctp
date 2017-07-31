@@ -8,15 +8,15 @@ if(isset($obj_acta)){
 }
 $codigo = "<style type='text/css'>
 .tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Times New Roman, Georgia, Serif;font-size:14px;padding:3px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Times New Roman, Georgia, Serif;font-size:14px;font-weight:normal;padding:3px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg td{font-family:Californian FB, Georgia, Serif;font-size:14px;padding:3px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Californian FB, Georgia, Serif;font-size:14px;font-weight:normal;padding:3px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
 .font-head{font-family:Arial, Verdana, Sans-serif !important;font-size:14px;font-weight:normal;}
 .tg-031eF{color:#17365D;}
 .tg .tg-e3zv{font-weight:bold;}
 .tg-uni {text-align:center !important;}
 .aling-left {text-align:left;}
 .aling-right {text-align:right;}
-	
+
 @page { margin-top: 150px; }
 	
 .pie-pag {
@@ -36,6 +36,9 @@ $codigo = "<style type='text/css'>
    width:100%;
    font: 50% sans-serif;
 }
+.head-pag td{
+	padding:0px 5px
+}
 
 .back-green{
  background-color: #D6E3BC;
@@ -46,7 +49,11 @@ $codigo = "<style type='text/css'>
 }
 
 .back-blue{
- background-color: #DBE5F1;
+ background-color: #BDD6EE;
+}
+
+.back-blue2{
+ background-color: #DEEAF6;
 }
 
 .back-gray{
@@ -71,26 +78,20 @@ $codigo.= "</table>";
 $codigo.= "</div>";
 
 $codigo.= "<div class='head-pag'>
-			<table class='tg tg-031eF back-blue' width='100%'>
+			<table class='tg tg-031eF back-blue2' width='100%'>
 			  <tr>
-				<th style='width:10%;' class='tg-031e' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/logo_mym2016.png' style='width: 60px; border:0px;'/></th>
-			    <th style='width:62%' class='tg-031e' rowspan='2'><h2 style='margin:2px'>M&amp;M Ingenier&iacute;a Obras y Servicios <span style='font-size:16px;'>E.I.R.L.</span></h2>
-			    <h5 style='margin:2px'>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, electromec&aacute;nicas, civiles, miner&iacute;a e industrial.<br>Especialistas de gesti&oacute;n en Seguridad, salud en el trabajo, calidad y medio ambiente.</h5>		
-			    </th>
-			    <th style='width:22%' class='aling-left'><strong>Programa: GISEMM </strong></th>
-			  </tr>
-			  <tr>
-			    <td class='aling-left'><strong>C&oacute;digo: M001-SST/MA</strong></td>
+				<th style='width:12%;' class='tg-031e back-green' rowspan='3'><img src='".ENV_WEBROOT_FULL_URL."img/logo_mym2016.png' style='width: 70px; border:0px; padding:0px 0px'/></th>
+			    <th style='width:60%' class='tg-031e' rowspan='2' colspan='2'><h2 style='margin:2px'>M&amp;M Ingenier&iacute;a Obras y Servicios <span style='font-size:16px;'>E.I.R.L.</span></h2>
+			    <span style='font-size:8.0pt;color:#002060;margin:2px'>Ejecuci&oacute;n y supervisi&oacute;n de obras el&eacute;ctricas, electromec&aacute;nicas, civiles, miner&iacute;a e industrial.<br>Especialistas de gesti&oacute;n en Seguridad, salud en el trabajo, calidad y medio ambiente.</span></th>
+				<th class='aling-left'><strong>C&oacute;digo: M001-SST/MA</strong></th>
 			  </tr>
 			  <tr>
 			    <td class='tg-031e'><strong>Versi&oacute;n: 00/2017-M001</strong></td>
 			  </tr>
-			</table>
-			<table class='tg tg-031eF back-gray' width='100%' style='margin-bottom:-10px'>
-			<tr>
-			    <td style='text-align:center' class='tg-031e'><strong>Versión Anterior: 00/2015-M001</strong></td>
-			    <td style='text-align:center' class='aling-left'><strong>Modificaci&oacute;n Versión: JAMM</strong></td>
-			    <td style='text-align:center' class='tg-031e'><strong>Fecha Modificaci&oacute;n: 08/02/2017</strong></td>
+			  <tr>
+			    <td style='text-align:center;font-size:9.5pt;' class='tg-031e back-green'>Versión Anterior: 00/2015-M001</td>
+			    <td style='text-align:center;font-size:9.5pt;' class='aling-left back-green'>Modificaci&oacute;n Versión: JAMM</td>
+			    <td style='text-align:center;font-size:9.5pt;' class='tg-031e back-green'>Fecha Modificaci&oacute;n: 08/02/2017</td>
 			  </tr>
 			</table>
 			<br>
@@ -133,7 +134,7 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <td class='tg-031eF'>".date('d-m-Y',strtotime($obj_acta->getAttr('fecha')))."</td>
   </tr>
   <tr>
-    <td style='width:10%' class='tg-e3zv back-green'>Tipo de Supervisi&oacute;n:</td>
+    <td style='width:10%' class='tg-e3zv back-green'>Tipo de Inspecci&oacute;n:</td>
     <td class='tg-031eF' colspan='3'>".$tipo_supervision."</td>
 	<td class='tg-e3zv back-green'>N&deg; Acta:</td>
 	<td class='tg-031eF'>".$obj_acta->getAttr('numero')."</td>
@@ -209,10 +210,10 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalIlumVent as $key => $obj_foto_iv) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-			<img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_iv->getAttr('file_name')."' width='190px' height='190px'>
+			<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_ilum_vent/thumbnail/".$obj_foto_iv->getAttr('file_name')."' width='340px' height='280px'>
 					<br>".$obj_foto_iv->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -271,10 +272,10 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalOrdenLimpieza as $key => $obj_foto_ol) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_ol->getAttr('file_name')."' width='190px' height='190px'>
+				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_orden_limp/thumbnail/".$obj_foto_ol->getAttr('file_name')."' width='340px' height='280px'>
 				<br>".$obj_foto_ol->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -331,10 +332,10 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalSshh as $key => $obj_foto_sh) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-			  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_sh->getAttr('file_name')."' width='190px' height='190px'>
+			  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_sshh/thumbnail/".$obj_foto_sh->getAttr('file_name')."' width='340px' height='280px'>
 			  <br>".$obj_foto_sh->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -392,10 +393,10 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalSenSeg as $key => $obj_foto_ss) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-			  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_doc/thumbnail/".$obj_foto_ss->getAttr('file_name')."' width='190px' height='190px'>
+			  <img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_sen_seg/thumbnail/".$obj_foto_ss->getAttr('file_name')."' width='340px' height='280px'>
 			  <br>".$obj_foto_ss->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -417,11 +418,11 @@ $codigo.= "<table style='padding:-3px;margin:0px' width='100%' border='0'><tr><t
 		    		if($value->alternativa == 1){
 		    			$codigo.= "<b>(NC)</b> ";
 		    			$normas_cumplidas++;
-		    			$total_nc_cu++;
+		    			$total_nc_ee++;
 		    		}elseif($value->alternativa == 0){
 		    			$codigo.= "<b>(NI)</b> ";
 		    			$normas_incumplidas++;
-		    			$total_ni_cu++;
+		    			$total_ni_ee++;
 		    		}else{
 		    			$codigo.= "( - ) ";
 		    		}
@@ -452,7 +453,7 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalEqEmerg as $key => $obj_foto_ee) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_as/thumbnail/".$obj_foto_ee->getAttr('file_name')."' width='190px' height='190px'>
+				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_eq_emerg/thumbnail/".$obj_foto_ee->getAttr('file_name')."' width='190px' height='190px'>
 				<br>".$obj_foto_ee->getAttr('observacion')."</td>";
 	$cont++;
 	if($cont == 3){
@@ -513,10 +514,10 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalCondSeg as $key => $obj_foto_cs) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;' width='100%'>
-				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_cs/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='190px' height='190px'>
+				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_cond_seg/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='340px' height='280px'>
 				<br>".$obj_foto_cs->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -562,7 +563,7 @@ $codigo.="
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoInstalMed as $key => $obj_foto_med) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' width='190px' height='190px'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' width='340px' height='280px'>
 							<br>".$obj_foto_med->getAttr('observacion')."</td>";
 				$cont++;
 				if($cont == 3){
