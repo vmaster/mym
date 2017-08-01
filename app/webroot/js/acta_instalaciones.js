@@ -831,8 +831,8 @@ function ssshhaAcsshhularNormas(){
 	});
 	
 	/* AGREGAR FILAS A LA TABLA CONDICIONES DE SEGURIDAD*/	
-	$("#div-btn-add-cond-rep .add-more-row-cseg-rep").bind("click", function(e){
-	long_table = $('#table-cond-rep tbody tr').length + 1;
+	$("#div-btn-add-cseg-rep .add-more-row-cseg-rep").bind("click", function(e){
+	long_table = $('#table-cseg-rep tbody tr').length + 1;
 		$.ajax({
 	        type: "POST",
 	        url: env_webroot_script + "acta_instalaciones/add_row_cond_seg",
@@ -840,7 +840,7 @@ function ssshhaAcsshhularNormas(){
 	        cache: false,
 	        success: function(html)
 	         {
-	       	 $('#table-cond-rep tr:last').after(html);
+	       	 $('#table-cseg-rep tr:last').after(html);
 	       	 loadGraficoNuevaActa();
 	         }
 		 });
@@ -850,7 +850,7 @@ function ssshhaAcsshhularNormas(){
 		long_table = $('#table-iv-rep tbody tr').length + 1;
 			$.ajax({
 		        type: "POST",
-		        url: env_webroot_script + "acta_instalaciones/add_row_ilsshh_vent",
+		        url: env_webroot_script + "acta_instalaciones/add_row_ilum_vent",
 		        data: { long_table: long_table },
 		        cache: false,
 		        success: function(html)
