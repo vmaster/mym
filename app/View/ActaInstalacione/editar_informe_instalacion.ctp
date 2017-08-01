@@ -4,6 +4,7 @@ tinymce.init({
     save_onsavecallback: function() {console.log("Save");},
     selector: "textarea.editor",
     language: "es",
+	mode : "textareas",
     browser_spellcheck : true,
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",

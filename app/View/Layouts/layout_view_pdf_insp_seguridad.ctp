@@ -574,7 +574,11 @@ $codigo.="
 			}
 $codigo.= "	</tr></table></div><br>";
 
-
+$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.9em;'>";
+$codigo .= "<tr><td><strong>Total NC (Cumplimiento):</strong> </td><td>".$normas_cumplidas."</td></tr>";
+$codigo .= "<tr><td><strong>Total NI (Imcumplimiento):</strong> </td><td>".$normas_incumplidas."</td></tr>";
+$codigo .= "<tr><td><strong>Nivel de Cumplimiento<br>NC/(NC+NI)</strong> </td><td>".$obj_acta->getAttr('cumplimiento')."%</td></tr>";
+$codigo .= "</table>";
 
 $codigo .= "<div align='right'><table width='100%'>
 			<tr><td><div style='text-align:right;'>";
