@@ -407,6 +407,27 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	/*SCRIPT PARA ELIMINAR FOTOS ACTA DE INSPECCION DE SEGURIDAD -  EXISTENTES*/
+	$body.off('click','.delete-file-act-ins-seg');
+	$body.on('click','.delete-file-act-ins-seg', function(){
+		file_name = $(this).data('url');
+		foto_act_ins_seg = $(this).data('foto-act-ins-seg');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'acta_instalaciones/delete_foto_act_ins_seg',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto-act-ins-seg='+foto_act_ins_seg+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
 	
 	
 /***** ENVIAR EL INDEX DEL BOTON CREAR TRABAJADOR AL MODAL ******/
