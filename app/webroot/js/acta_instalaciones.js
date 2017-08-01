@@ -408,7 +408,7 @@ $(document).ready(function(){
 		});
 	});
 
-	/*SCRIPT PARA ELIMINAR FOTOS ACTA DE INSPECCION DE SEGURIDAD -  EXISTENTES*/
+	/*SCRIPT PARA ELIMINAR  FOTOS ACTA DE INSPECCION DE SEGURIDAD -  EXISTENTES*/
 	$body.off('click','.delete-file-act-ins-seg');
 	$body.on('click','.delete-file-act-ins-seg', function(){
 		file_name = $(this).data('url');
