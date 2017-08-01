@@ -95,6 +95,19 @@ App::uses('AppModel','Model');
     				'finderQuery' => '',
     				'counterQuery' => ''
     		),
+            'FotoInstalActInsSeg' => array(
+                    'className' => 'FotoInstalActInsSeg',
+                    'foreignKey' => 'acta_id',
+                    'dependent' => false,
+                    'conditions' => '',
+                    'fields' => '',
+                    'order' => '',
+                    'limit' => '',
+                    'offset' => '',
+                    'exclusive' => '',
+                    'finderQuery' => '',
+                    'counterQuery' => ''
+            ),
             'EmailsEnviadosActaInstal' => array(
                     'className' => 'EmailsEnviadosActaInstal',
                     'foreignKey' => 'acta_instal_id',

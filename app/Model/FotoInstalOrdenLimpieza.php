@@ -4,8 +4,8 @@ App::uses('AppModel','Model');
     public $name = 'FotoInstalOrdenLimpieza';
     
     public $belongsTo = array(
-    		'FotoInstalOrdenLimpieza' => array(
-    				'className' => 'FotoInstalOrdenLimpieza',
+    		'ActaInstalacione' => array(
+    				'className' => 'ActaInstalacione',
     				'foreignKey' => 'acta_id',
     				'conditions' => '',
     				'fields' => '',
