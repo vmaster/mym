@@ -1365,8 +1365,8 @@ tinymce.init({
 																				title="<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
 																				data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_act_ins_seg/thumbnail/<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>" width='80px'>
 																			</a>
-																			<textarea rows="3"  name="data[FotoMedUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_act_ins_seg->getAttr('observacion'); ?></textarea>
-																			<input type="hidden" value="<?php echo $obj_foto_act_ins_seg->getAttr('id'); ?>" name="data[FotoMedUpdate][<?php echo $key; ?>][id][]">
+																			<textarea rows="3"  name="data[FotoInstalActInsSegUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_act_ins_seg->getAttr('observacion'); ?></textarea>
+																			<input type="hidden" value="<?php echo $obj_foto_act_ins_seg->getAttr('id'); ?>" name="data[FotoInstalActInsSegUpdate][<?php echo $key; ?>][id][]">
 																		</span>
 																		</td>
 																		<td>
@@ -1379,7 +1379,7 @@ tinymce.init({
 																		<td><span class="size">120.37 KB</span>
 																		</td>
 																		<td>
-																			<a data-url="<?php echo $obj_foto_act_ins_seg->getAttr('file_name');?>" foto-act-ins-seg="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-med-instal">
+																			<a data-url="<?php echo $obj_foto_act_ins_seg->getAttr('file_name');?>" data-foto-act-ins-seg="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-act-ins-seg">
 																				<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
 																			</a>
 																			<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_instal_act_ins_seg/<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>" title="<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>" download="<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>" class="btn btn-default">
