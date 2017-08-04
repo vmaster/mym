@@ -533,7 +533,7 @@ $(document).ready(function(){
 			        brightness;
 
 
-				var leyendtitle = ["ILsshhINACIÓN Y VENTILACIÓN", "ORDEN Y LIMPIEZA", "SERVICIOS HIGIENICOS", "SEÑALES DE SEGURIDAD", "EQUIPOS DE EMERGENCIAS", "CONDICIONES DE SEGURIDAD"];
+				var leyendtitle = ["ILUMINACIÓN Y VENTILACIÓN", "ORDEN Y LIMPIEZA", "SERVICIOS HIGIENICOS", "SEÑALES DE SEGURIDAD", "EQUIPOS DE EMERGENCIAS", "CONDICIONES DE SEGURIDAD"];
 			    // Build the data arrays
 			    for (i = 0; i < dataLen; i += 1) {
 
@@ -597,7 +597,7 @@ $(document).ready(function(){
 						labelFormatter: function () {
 							if(this.category == 'NC'){
 								if(this.indice == 5){
-									return '<span style="font-size:5px"><strong>'+this.name + '</strong>: <span style="font-weight:100">'+this.leyendtitle+'</span></span><br><br><span style="font-size:5px"><strong>NI</strong>: <span style="font-weight:100">NIVEL INCsshhPLIMIENTO</span></span><br><span style="font-size:5px"><strong>NC</strong>: <span style="font-weight:100">NIVEL CsshhPLIMIENTO</span></span>';
+									return '<span style="font-size:5px"><strong>'+this.name + '</strong>: <span style="font-weight:100">'+this.leyendtitle+'</span></span><br><br><span style="font-size:5px"><strong>NI</strong>: <span style="font-weight:100">NIVEL INCUMPLIMIENTO</span></span><br><span style="font-size:5px"><strong>NC</strong>: <span style="font-weight:100">NIVEL CUMPLIMIENTO</span></span>';
 								}else{
 									return '<span style="font-size:5px"><strong>'+this.name + '</strong>: <span style="font-weight:100">'+this.leyendtitle+'</span></span>';
 								}

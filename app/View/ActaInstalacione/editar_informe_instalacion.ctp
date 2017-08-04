@@ -38,24 +38,24 @@ tinymce.init({
 										<tr>
 											<td rowspan=3 style="vertical-align: middle; width: 40%">
 												<div class="form-group input-group" style="margin-bottom: -13px;">
-													<span class="input-group-addon"><label id="ni" data-toggle="tooltip" title="N&uacute;mero de informe" style="width: 30px;"><?php echo utf8_encode('N° I') ?></label>
+													<span class="input-group-addon"><label id="ni" data-toggle="tooltip" title="N&uacute;mero de informe" style="width: 30px;">N&deg; I</label>
 													</span>
 													<?php echo $this->Form->input('num_informe', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero')); ?>
 												</div>
 												<br>
 												<div class="form-group input-group">
-													<span class="input-group-addon"><label id="na" data-toggle="tooltip" title="N&uacute;mero de ActaInstalacione" style="width: 30px;"><?php echo utf8_encode('N° A') ?></label>
+													<span class="input-group-addon"><label id="na" data-toggle="tooltip" title="N&uacute;mero de ActaInstalacione" style="width: 30px;">N&deg; A</label>
 													</span>
 													<?php echo $this->Form->input('numero', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'15')); ?>
 												</div>
 											</td>
 											</td>
-											<td><?php echo utf8_encode('Código:');?></td>
+											<td>C&oacute;digo</td>
 											<td><?php echo $this->Form->input('codigo', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>$obj_acta->getAttr('codigo'))); ?>
 											</td>
 										</tr>
 										<tr>
-											<td><?php echo utf8_encode('Versión:'); ?></td>
+											<td>Versi&oacute;n</td>
 											<td><?php echo $this->Form->input('version', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>$obj_acta->getAttr('version'))); ?>
 											</td>
 										</tr>

@@ -102,7 +102,7 @@ $codigo.= "<table class='tg' width='100%' style='margin-bottom:-10px'>
 			    <td class='tg-e3zv back-blue' style='text-align:center'><strong>INFORME T&Eacute;CNICO N&#176; ".$obj_acta->getAttr('num_informe')."</strong></td>
 			  </tr>
 			  <tr>
-			    <td class='tg-e3zv back-blue' style='text-align:center'><strong>Inspecci&oacute;n en Seguridad a las instalaciones de SECHO- ENSA</strong></td>
+			    <td class='tg-e3zv back-blue' style='text-align:center'><strong>Inspecci&oacute;n en Seguridad a Instalaciones</strong></td>
 			  </tr>
 			</table>
 			<br>";
@@ -574,11 +574,42 @@ $codigo.="
 			}
 $codigo.= "	</tr></table></div><br>";
 
-$codigo .= "<table width='50%' class='tg' style='text-align:left; padding-left: 25px; padding-right: 25px; font-size:0.9em;'>";
-$codigo .= "<tr><td><strong>Total NC (Cumplimiento):</strong> </td><td>".$normas_cumplidas."</td></tr>";
-$codigo .= "<tr><td><strong>Total NI (Imcumplimiento):</strong> </td><td>".$normas_incumplidas."</td></tr>";
-$codigo .= "<tr><td><strong>Nivel de Cumplimiento<br>NC/(NC+NI)</strong> </td><td>".$obj_acta->getAttr('cumplimiento')."%</td></tr>";
-$codigo .= "</table>";
+
+$codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-size:8px;'>";
+	$codigo.= "<tr><th colspan=8 class='tg-e3zv back-blue'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
+	$codigo .= "<tr><td width='37%'></td>
+					<td width='9%'>IV</td>
+					<td width='9%'>OL</td>
+					<td width='9%'>SH</td>
+					<td width='9%'>SS</td>
+					<td width='9%'>EE</td>
+					<td width='9%'>CS</td>
+					<td width='9%'>TOTAL</td></tr>";
+	$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_iv."</td><td>".$total_nc_ol."</td><td>".$total_nc_sh."</td><td>".$total_nc_ss."</td><td>".$total_nc_ee."</td><td>".$total_nc_cs."</td><td>".$normas_cumplidas."</td></tr>";
+	$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_iv."</td><td>".$total_ni_ol."</td><td>".$total_ni_sh."</td><td>".$total_ni_ss."</td><td>".$total_ni_ee."</td><td>".$total_ni_cs."</td><td>".$normas_incumplidas."</td></tr>";
+	//$codigo .= "<tr><td><strong>TOTAL (NC + NI):</strong> </td><td>".($normas_incumplidas + $normas_cumplidas)."</td></tr>";
+	$suma_normas = $normas_cumplidas + $normas_incumplidas;
+	if($suma_normas > 0){
+		$formula = ($normas_cumplidas * 100)/$suma_normas;
+	}else{
+		$formula = 0;
+	}
+
+	$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>";
+	if(($total_nc_iv+$total_ni_iv)>0){$codigo .= round(($total_nc_iv*100)/($total_nc_iv+$total_ni_iv),2)."%</td><td>";}else{$codigo .= round(($total_nc_iv*100),2)."%</td><td>";}
+	if(($total_nc_ol+$total_ni_ol)>0){$codigo .= round(($total_nc_ol*100)/($total_nc_ol+$total_ni_ol),2)."%</td><td>";}else{$codigo .= round(($total_nc_ol*100),2)."%</td><td>";}
+	if(($total_nc_sh+$total_ni_sh)>0){$codigo .= round(($total_nc_sh*100)/($total_nc_sh+$total_ni_sh),2)."%</td><td>";}else{$codigo .= round(($total_nc_sh*100),2)."%</td><td>";}
+	if(($total_nc_ss+$total_ni_ss)>0){$codigo .= round(($total_nc_ss*100)/($total_nc_ss+$total_ni_ss),2)."%</td><td>";}else{$codigo .= round(($total_nc_ss*100),2)."%</td><td>";}
+	if(($total_nc_ee+$total_ni_ee)>0){$codigo .= round(($total_nc_ee*100)/($total_nc_ee+$total_ni_ee),2)."%</td><td>";}else{$codigo .= round(($total_nc_ee*100),2)."%</td><td>";}
+	if(($total_nc_cs+$total_ni_cs)>0){$codigo .= round(($total_nc_cs*100)/($total_nc_cs+$total_ni_cs),2)."%</td><td>";}else{$codigo .= round(($total_nc_cs*100),2)."%</td><td>";}
+	$codigo .= round($formula,2)."%</td></tr>";
+	$codigo .= "</table>";
+
+	//SHOW GRAPHIC
+	if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
+		$codigo .= "<br><center><strong>GR&Aacute;FICO</strong></center>";
+		$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos_acta_instal/".$obj_acta->getAttr('grafico')."'></center>";
+	}
 
 $codigo .= "<div align='right'><table width='100%'>
 			<tr><td><div style='text-align:right;'>";
@@ -597,6 +628,23 @@ $codigo .= "<div style='text-align:right;'><hr width='30%' align='right'></div>
 			}
 $codigo.="</div>
 		   	<div style='text-align:right;font-size:13px; padding-left: 25px; padding-right: 25px;'>SUPERVISOR DE SST - M&M</div></td></tr></table></div><div class='salto-linea'>&nbsp;</div>";
+	
+	
+$codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
+			$cont= 0;
+			$codigo.="<tr>";
+			foreach($obj_acta->FotoInstalActInsSeg as $key => $obj_foto_med) {
+				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_act_ins_seg/".$obj_foto_med->getAttr('file_name')."' width='680px' height='870px'>
+							<br>".$obj_foto_med->getAttr('observacion')."</td>";
+				$cont++;
+				if($cont == 3){
+					$codigo.="</tr></table>";
+					$codigo.="<table class='tg' width='100%'><tr>";
+					$cont = 0;
+				}
+			}
+$codigo.= "	</tr></table></div><br>";			
 
 
 //echo $codigo; exit();
