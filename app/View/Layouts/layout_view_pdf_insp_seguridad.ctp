@@ -59,8 +59,6 @@ $codigo = "<style type='text/css'>
 .back-gray{
  background-color: #dcdbdb;
 }
-		
-img { border:1px solid green}
 
 .salto-linea{ page-break-before:always; }
 
@@ -630,12 +628,14 @@ $codigo.="</div>
 		   	<div style='text-align:right;font-size:13px; padding-left: 25px; padding-right: 25px;'>SUPERVISOR DE SST - M&M</div></td></tr></table></div><div class='salto-linea'>&nbsp;</div>";
 	
 	
-$codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'>";
+$codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'><tr>
+		    <th class='tg-e3zv back-blue'>ACTA DE INSPECCI&Oacute;N DE SEGURIDAD</th>
+		  </tr>";
 			$cont= 0;
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoInstalActInsSeg as $key => $obj_foto_med) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_act_ins_seg/".$obj_foto_med->getAttr('file_name')."' width='680px' height='870px'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_act_ins_seg/".$obj_foto_med->getAttr('file_name')."' width='680px' height='840px' style='padding:4px'>
 							<br>".$obj_foto_med->getAttr('observacion')."</td>";
 				$cont++;
 				if($cont == 3){
