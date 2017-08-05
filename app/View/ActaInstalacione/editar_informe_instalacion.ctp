@@ -161,6 +161,10 @@ tinymce.init({
 										<tr>
 											<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActa','maxlength'=>'200')); ?>
 											</td>
+
+											<td style="vertical-align: middle" colspan=2>Llenado de lugar: <?php echo $this->Form->input('llenado_lugar', array('div' => false, 'label' => false, 'class'=> 'txtLugar form-control','id' =>'txtLugar','maxlength'=>'200')); ?>
+											</td>
+											<? /*
 											<td style="vertical-align: middle" colspan=2>
 											Empresa supervisada al servicio de:
 												<div class="radio">
@@ -174,6 +178,7 @@ tinymce.init({
 													</label>
 												</div>
 											</td>
+											*/?>
 										</tr>
 										<tr>
 											<td style="vertical-align: middle">

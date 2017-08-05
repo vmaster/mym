@@ -109,6 +109,11 @@ $codigo.= "<table class='tg' width='100%' style='margin-bottom:-10px'>
 $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
 
   <tr>
+    <th class='tg-e3zv aling-left back-green'>Llenado de Lugar:</th>
+    <th class='tg-031eF aling-left' colspan='5' style='width:43%'>".$obj_acta->getAttr('llenado_lugar')."</th>
+  </tr>
+
+  <tr>
     <th class='tg-e3zv aling-left back-green'>Empresa:</th>
     <th class='tg-031eF aling-left' colspan='3' style='width:43%'>".$obj_acta->Empresa->getAttr('nombre')."</th>
     <th class='aling-left back-green' colspan='1'><strong>UUNN:</strong></th>
