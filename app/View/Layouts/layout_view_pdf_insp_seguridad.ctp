@@ -102,16 +102,14 @@ $codigo.= "<table class='tg' width='100%' style='margin-bottom:-10px'>
 			  <tr>
 			    <td class='tg-e3zv back-blue' style='text-align:center'><strong>Inspecci&oacute;n en Seguridad a Instalaciones</strong></td>
 			  </tr>
+			  <tr>
+			    <td class='tg-e3zv back-blue' style='text-align:center'><strong>".$obj_acta->getAttr('llenado_lugar')."</td>
+			  </tr>
 			</table>
 			<br>";
 
 
 $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
-
-  <tr>
-    <th class='tg-e3zv aling-left back-green'>Llenado de Lugar:</th>
-    <th class='tg-031eF aling-left' colspan='5' style='width:43%'>".$obj_acta->getAttr('llenado_lugar')."</th>
-  </tr>
 
   <tr>
     <th class='tg-e3zv aling-left back-green'>Empresa:</th>
