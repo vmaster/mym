@@ -204,18 +204,6 @@ App::uses('AppModel','Model');
     
     
     public $validate = array(
-    		'actividad'    => array(
-    				'notempty' => array(
-    						'rule' => array('notEmpty'),
-    						'message' => 'La Actividad es requerida'
-    				)
-    		),
-    		'obra'     => array(
-    				'notempty' => array(
-    						'rule' => array('notEmpty'),
-    						'message' => 'El Nombre de la Obra es requerida'
-    				)
-    		),
     		'empresa_id'     => array(
     				'notempty' => array(
     						'rule' => array('notEmpty'),
