@@ -143,20 +143,22 @@ $(document).ready(function(){
 					var span_combo = $("span.select2-selection");
 					$('.span-cbo-empresa').find(span_combo).css("border-color","#a94442");
 					$('.td-cbo-uunn').find(span_combo).css("border-color","#a94442");
-					$('.span-cbo-responsable-act').find(span_combo).css("border-color","#a94442")
+					$('.span-cbo-responsable-act').find(span_combo).css("border-color","#a94442");
+					$('.span-cbo-responsable-sup').find(span_combo).css("border-color","#a94442");
 
 					$('.span-cbo-empresa').change(function() {
 						$('.span-cbo-empresa').find(span_combo).css("border-color","");
 					});
-
 					$('.td-cbo-uunn').change(function() {
 						$('.td-cbo-uunn').find(span_combo).css("border-color","");
 					});
-
 					$('.span-cbo-responsable-act').change(function() {
 						$('.span-cbo-responsable-act').find(span_combo).css("border-color","");
 					});
-
+					$('.span-cbo-responsable-sup').change(function() {
+						$('.span-cbo-responsable-sup').find(span_combo).css("border-color","");
+					});
+					
 					if($('.span-cbo-empresa').find($('.select2-selection__clear')).length > 0){
 						$('.span-cbo-empresa').find(span_combo).css("border-color","");
 					}
@@ -165,6 +167,9 @@ $(document).ready(function(){
 					}
 					if($('.span-cbo-responsable-act').find($('.select2-selection__clear')).length > 0){
 						$('.span-cbo-responsable-act').find(span_combo).css("border-color","");
+					}
+					if($('.span-cbo-responsable-sup').find($('.select2-selection__clear')).length > 0){
+						$('.span-cbo-responsable-sup').find(span_combo).css("border-color","");
 					}
 
 					$('html,body').animate({scrollTop:'400px'}, 700);return false;
