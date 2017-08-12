@@ -1021,7 +1021,7 @@ tinymce.init({
 								<tr>
 									<td style='width:35%;'>Nombre:
 									<?php
-										echo "<span style='display: inline-flex; width: 100%;'>";
+										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-act'>";
 										echo "<select name='data[Acta][reponsable_act_id]' class='cbo-responsable-select2 cbo-reponsable-act form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
 											echo "<option></option>";
@@ -1033,7 +1033,7 @@ tinymce.init({
 									?>
 									<td style='width:35%;'>Nombre:
 									<?php
-										echo "<span style='display: inline-flex; width: 100%;'>";
+										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-sup'>";
 										echo "<select name='data[Acta][reponsable_sup_id]' class='cbo-responsable-select2 cbo-reponsable-sup form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
 											echo "<option></option>";
