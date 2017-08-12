@@ -1,8 +1,8 @@
 <?php
 App::uses('AppModel','Model');
-  class FotoInstalSenSeg extends AppModel {
-    public $name = 'FotoInstalSenSeg';
-    
+  class FotoInstalMed extends AppModel {
+    public $name = 'FotoInstalMed';
+
     public $belongsTo = array(
     		'ActaInstalacione' => array(
     				'className' => 'ActaInstalacione',
@@ -12,6 +12,6 @@ App::uses('AppModel','Model');
     				'order' => ''
     		)
     );
-    
+
   }
 ?>

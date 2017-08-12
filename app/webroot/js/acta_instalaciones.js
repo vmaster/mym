@@ -259,11 +259,11 @@ $(document).ready(function(){
 		});	
 	});
 	
-	/*SCRIPT PARA ELIMINAR FOTOS ILsshhINACIÓN Y VENTILACIÓN -  EXISTENTES*/
+	/*SCRIPT PARA ELIMINAR FOTOS ILUMINACIÓN Y VENTILACIÓN -  EXISTENTES*/
 	$body.off('click','.delete-file-iv');
 	$body.on('click','.delete-file-iv', function(){
 		file_name = $(this).data('url');
-		foto_iv = $(this).data('foto_iv');
+		foto_iv = $(this).data('foto-iv');
 		$.ajax({
 			type: 'post',
 			url: env_webroot_script + 'acta_instalaciones/delete_foto_iv',
@@ -273,7 +273,7 @@ $(document).ready(function(){
 			dataType: 'json'
 		}).done(function(data){
 			if(data.success == true){
-				$('.template-download[foto_iv='+foto_iv+']').fadeOut(function(){$(this).remove()});
+				$('.template-download[foto-iv='+foto_iv+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}
@@ -284,7 +284,7 @@ $(document).ready(function(){
 	$body.off('click','.delete-file-ol');
 	$body.on('click','.delete-file-ol', function(){
 		file_name = $(this).data('url');
-		foto_ol = $(this).data('foto_ol');
+		foto_ol = $(this).data('foto-ol');
 		$.ajax({
 			type: 'post',
 			url: env_webroot_script + 'acta_instalaciones/delete_foto_ol',
@@ -294,7 +294,7 @@ $(document).ready(function(){
 			dataType: 'json'
 		}).done(function(data){
 			if(data.success == true){
-				$('.template-download[foto_ol='+foto_ol+']').fadeOut(function(){$(this).remove()});
+				$('.template-download[foto-ol='+foto_ol+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}
@@ -305,7 +305,7 @@ $(document).ready(function(){
 	$body.off('click','.delete-file-sshh');
 	$body.on('click','.delete-file-sshh', function(){
 		file_name = $(this).data('url');
-		foto_sshh = $(this).data('foto_sshh');
+		foto_sshh = $(this).data('foto-sshh');
 		$.ajax({
 			type: 'post',
 			url: env_webroot_script + 'acta_instalaciones/delete_foto_sshh',
@@ -315,7 +315,7 @@ $(document).ready(function(){
 			dataType: 'json'
 		}).done(function(data){
 			if(data.success == true){
-				$('.template-download[foto_sshh='+foto_sshh+']').fadeOut(function(){$(this).remove()});
+				$('.template-download[foto-sshh='+foto_sshh+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}
@@ -357,7 +357,7 @@ $(document).ready(function(){
 			dataType: 'json'
 		}).done(function(data){
 			if(data.success == true){
-				$('.template-download[foto_ee='+foto_ee+']').fadeOut(function(){$(this).remove()});
+				$('.template-download[foto-ee='+foto_ee+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}
@@ -370,17 +370,59 @@ $(document).ready(function(){
 	$body.off('click','.delete-file-cseg');
 	$body.on('click','.delete-file-cseg', function(){
 		file_name = $(this).data('url');
-		foto_csegeg = $(this).data('foto-cseg');
+		foto_cseg = $(this).data('foto-cseg');
 		$.ajax({
 			type: 'post',
-			url: env_webroot_script + 'acta_instalaciones/delete_foto_csegeg',
+			url: env_webroot_script + 'acta_instalaciones/delete_foto_cseg',
 			data:{
 				'file_name': file_name
 			},
 			dataType: 'json'
 		}).done(function(data){
 			if(data.success == true){
-				$('.template-download[foto-cseg='+foto_csegeg+']').fadeOut(function(){$(this).remove()});
+				$('.template-download[foto-cseg='+foto_cseg+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
+	
+	/*SCRIPT PARA ELIMINAR FOTOS MEDIDAS DE SEGURIDAD -  EXISTENTES*/
+	$body.off('click','.delete-file-med-instal');
+	$body.on('click','.delete-file-med-instal', function(){
+		file_name = $(this).data('url');
+		foto_med = $(this).data('foto-med');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'acta_instalaciones/delete_foto_med',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto-med='+foto_med+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
+
+	/*SCRIPT PARA ELIMINAR  FOTOS ACTA DE INSPECCION DE SEGURIDAD -  EXISTENTES*/
+	$body.off('click','.delete-file-act-ins-seg');
+	$body.on('click','.delete-file-act-ins-seg', function(){
+		file_name = $(this).data('url');
+		foto_act_ins_seg = $(this).data('foto-act-ins-seg');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'acta_instalaciones/delete_foto_act_ins_seg',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto-act-ins-seg='+foto_act_ins_seg+']').fadeOut(function(){$(this).remove()});
 			}else{
 				alertify.error(data.msg);
 			}
@@ -491,7 +533,7 @@ $(document).ready(function(){
 			        brightness;
 
 
-				var leyendtitle = ["ILsshhINACIÓN Y VENTILACIÓN", "ORDEN Y LIMPIEZA", "SERVICIOS HIGIENICOS", "SEÑALES DE SEGURIDAD", "EQUIPOS DE EMERGENCIAS", "CONDICIONES DE SEGURIDAD"];
+				var leyendtitle = ["ILUMINACIÓN Y VENTILACIÓN", "ORDEN Y LIMPIEZA", "SERVICIOS HIGIENICOS", "SEÑALES DE SEGURIDAD", "EQUIPOS DE EMERGENCIAS", "CONDICIONES DE SEGURIDAD"];
 			    // Build the data arrays
 			    for (i = 0; i < dataLen; i += 1) {
 
@@ -555,7 +597,7 @@ $(document).ready(function(){
 						labelFormatter: function () {
 							if(this.category == 'NC'){
 								if(this.indice == 5){
-									return '<span style="font-size:5px"><strong>'+this.name + '</strong>: <span style="font-weight:100">'+this.leyendtitle+'</span></span><br><br><span style="font-size:5px"><strong>NI</strong>: <span style="font-weight:100">NIVEL INCsshhPLIMIENTO</span></span><br><span style="font-size:5px"><strong>NC</strong>: <span style="font-weight:100">NIVEL CsshhPLIMIENTO</span></span>';
+									return '<span style="font-size:5px"><strong>'+this.name + '</strong>: <span style="font-weight:100">'+this.leyendtitle+'</span></span><br><br><span style="font-size:5px"><strong>NI</strong>: <span style="font-weight:100">NIVEL INCUMPLIMIENTO</span></span><br><span style="font-size:5px"><strong>NC</strong>: <span style="font-weight:100">NIVEL CUMPLIMIENTO</span></span>';
 								}else{
 									return '<span style="font-size:5px"><strong>'+this.name + '</strong>: <span style="font-weight:100">'+this.leyendtitle+'</span></span>';
 								}
@@ -810,8 +852,8 @@ function ssshhaAcsshhularNormas(){
 	});
 	
 	/* AGREGAR FILAS A LA TABLA CONDICIONES DE SEGURIDAD*/	
-	$("#div-btn-add-cond-rep .add-more-row-cseg-rep").bind("click", function(e){
-	long_table = $('#table-cond-rep tbody tr').length + 1;
+	$("#div-btn-add-cseg-rep .add-more-row-cseg-rep").bind("click", function(e){
+	long_table = $('#table-cseg-rep tbody tr').length + 1;
 		$.ajax({
 	        type: "POST",
 	        url: env_webroot_script + "acta_instalaciones/add_row_cond_seg",
@@ -819,7 +861,7 @@ function ssshhaAcsshhularNormas(){
 	        cache: false,
 	        success: function(html)
 	         {
-	       	 $('#table-cond-rep tr:last').after(html);
+	       	 $('#table-cseg-rep tr:last').after(html);
 	       	 loadGraficoNuevaActa();
 	         }
 		 });
@@ -829,7 +871,7 @@ function ssshhaAcsshhularNormas(){
 		long_table = $('#table-iv-rep tbody tr').length + 1;
 			$.ajax({
 		        type: "POST",
-		        url: env_webroot_script + "acta_instalaciones/add_row_ilsshh_vent",
+		        url: env_webroot_script + "acta_instalaciones/add_row_ilum_vent",
 		        data: { long_table: long_table },
 		        cache: false,
 		        success: function(html)
