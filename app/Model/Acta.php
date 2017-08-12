@@ -294,7 +294,7 @@ App::uses('AppModel','Model');
             'reponsable_act_id' => array(
                     'notempty' => array(
                             'rule' => array('notEmpty'),
-                            'message' => 'Responsable de la Actividad requeido'
+                            'message' => 'Responsable de la Actividad requerido'
                     )
             ),
             'reponsable_sup_cargo_id' => array(
