@@ -881,7 +881,7 @@ tinymce.init({
 										echo "<span style='display: inline-flex; width: 100%;'>";
 										echo "<select name='data[ActaInstalacione][reponsable_act_id]' class='cbo-responsable-select2 cbo-reponsable-act form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
-											//echo "<option>---</option>";
+											echo "<option>---</option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	echo "<option value = ".$id.">".$nom."</option>";
 									    	endforeach;
@@ -893,7 +893,7 @@ tinymce.init({
 										echo "<span style='display: inline-flex; width: 100%;'>";
 										echo "<select name='data[ActaInstalacione][reponsable_sup_id]' class='cbo-responsable-select2 cbo-reponsable-sup form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
-											//echo "<option>---</option>";
+											echo "<option>---</option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	echo "<option value = ".$id.">".$nom."</option>";
 									    	endforeach;
