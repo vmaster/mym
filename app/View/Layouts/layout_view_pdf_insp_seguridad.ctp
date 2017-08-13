@@ -16,6 +16,7 @@ $codigo = "<style type='text/css'>
 .tg-uni {text-align:center !important;}
 .aling-left {text-align:left;}
 .aling-right {text-align:right;}
+.aling-justify {text-align:justify;}
 
 @page { margin-top: 150px; }
 	
@@ -126,11 +127,13 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
 
   if($obj_acta->getAttr('actividad')!='' && $obj_acta->getAttr('obra')!=''){
 	$codigo .="<tr>
-    <td style='width:10%' class='tg-e3zv back-green'>Actividad:</td>
-    <td style='width:36%' class='tg-031eF' colspan='3'>".$obj_acta->getAttr('actividad')."</td>
-    <td style='width:26%' class='aling-left back-green'><strong>Obra</strong></td>
-    <td style='width:28%' class='tg-031eF'>".$obj_acta->getAttr('obra')."</td>
-  </tr>";
+	    <td class='tg-e3zv back-green'>Actividad:</td>
+	    <td class='tg-031eF aling-justify' colspan='5'>".$obj_acta->getAttr('actividad')."</td>
+	  </tr>
+	  <tr>
+	    <td class='tg-e3zv back-green'>Obra:</td>
+	    <td class='tg-031eF aling-justify' colspan='5'>".$obj_acta->getAttr('obra')."</td>
+	  </tr>";
   }
 
   $codigo .="<tr>
