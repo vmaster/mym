@@ -122,8 +122,18 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <td style='width:36%' class='tg-031eF' colspan='3'>".$obj_acta->getAttr('lugar')."</td>
     <td style='width:26%' class='aling-left back-green'><strong>&Aacute;rea:</strong></td>
     <td style='width:28%' class='tg-031eF'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
-  </tr>
-  <tr>
+  </tr>";
+
+  if($obj_acta->getAttr('actividad')!='' && $obj_acta->getAttr('obra')!=''){
+	$codigo .="<tr>
+    <td style='width:10%' class='tg-e3zv back-green'>Lugar:</td>
+    <td style='width:36%' class='tg-031eF' colspan='3'>".$obj_acta->getAttr('actividad')."</td>
+    <td style='width:26%' class='aling-left back-green'><strong>&Aacute;rea:</strong></td>
+    <td style='width:28%' class='tg-031eF'>".$obj_acta->TipoLugare->getAttr('obra')."</td>
+  </tr>";
+  }
+
+  $codigo .="<tr>
     <td class='tg-e3zv back-green'>Responsable:</td>
     <td class='tg-031eF' colspan='3'>";
     if($obj_acta->getAttr('reponsable_act_id')!=0){
