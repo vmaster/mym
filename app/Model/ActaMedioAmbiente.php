@@ -196,7 +196,7 @@ App::uses('AppModel','Model');
     );
     
     
-    public function listAllActaInstalaciones($order_by='ActaInstalacione.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$fec_inicio='', $fec_fin='',$order='DESC', $tipo_user_id ='') {
+    public function listAllActaMedAmb($order_by='ActaMedioAmbiente.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$fec_inicio='', $fec_fin='',$order='DESC', $tipo_user_id ='') {
         if($tipo_user_id== 3){
                     $arr_obj_acta_instal = $this->findObjects('all',array(
                         'joins' => array(
@@ -211,13 +211,13 @@ App::uses('AppModel','Model');
                         ),
                         'conditions'=>array(
                                 'AND' => array(
-                                        'ActaInstalacione.numero LIKE'=> '%'.$search_nro.'%',
-                                        'ActaInstalacione.actividad LIKE'=> '%'.$search_actividad.'%',
+                                        'ActaMedioAmbiente.numero LIKE'=> '%'.$search_nro.'%',
+                                        'ActaMedioAmbiente.actividad LIKE'=> '%'.$search_actividad.'%',
                                         'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
-                                        'ActaInstalacione.obra LIKE'=> '%'.$search_obra.'%',
-                                        'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                                        'ActaInstalacione.estado '=> 1,
-                                        'ActaInstalacione.created_mym' => 1
+                                        'ActaMedioAmbiente.obra LIKE'=> '%'.$search_obra.'%',
+                                        'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                                        'ActaMedioAmbiente.estado '=> 1,
+                                        'ActaMedioAmbiente.created_mym' => 1
                                 )
                         ),
                         'order'=> array($order_by.' '.$order)
@@ -231,19 +231,19 @@ App::uses('AppModel','Model');
                                         'alias' => 'EmpresaJoin',
                                         'type' => 'INNER',
                                         'conditions' => array(
-                                                'EmpresaJoin.id = ActaInstalacione.empresa_id'
+                                                'EmpresaJoin.id = ActaMedioAmbiente.empresa_id'
                                         )
                                 )
                         ),
                         'conditions'=>array(
                                 'AND' => array(
-                                        'ActaInstalacione.numero LIKE'=> '%'.$search_nro.'%',
-                                        'ActaInstalacione.actividad LIKE'=> '%'.$search_actividad.'%',
+                                        'ActaMedioAmbiente.numero LIKE'=> '%'.$search_nro.'%',
+                                        'ActaMedioAmbiente.actividad LIKE'=> '%'.$search_actividad.'%',
                                         'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
-                                        'ActaInstalacione.obra LIKE'=> '%'.$search_obra.'%',
-                                        'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                                        'ActaInstalacione.estado '=> 1,
-                                        'ActaInstalacione.created_mym' => 0
+                                        'ActaMedioAmbiente.obra LIKE'=> '%'.$search_obra.'%',
+                                        'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                                        'ActaMedioAmbiente.estado '=> 1,
+                                        'ActaMedioAmbiente.created_mym' => 0
                                 )
                         ),
                         'order'=> array($order_by.' '.$order)
@@ -254,18 +254,18 @@ App::uses('AppModel','Model');
     	return $arr_obj_acta_instal;
     }
     
-	public function listSearchActaInstalaciones($search_ano='', $tipo_user_id = '') {
+	public function listSearchActaMedAmb($search_ano='', $tipo_user_id = '') {
 
         if($tipo_user_id == 3){
             $arr_obj_acta_instal = $this->findObjects('all',array(
                     'conditions'=>array(
                             'AND' => array(
                                     'YEAR(`created`)'=> $search_ano,
-                                    'ActaInstalacione.estado '=> 1,
-                                    'ActaInstalacione.created_mym' => 1
+                                    'ActaMedioAmbiente.estado '=> 1,
+                                    'ActaMedioAmbiente.created_mym' => 1
                             )
                     ),
-                    'order'=> array('ActaInstalacione.created desc'),
+                    'order'=> array('ActaMedioAmbiente.created desc'),
             )
             );
         }else{
@@ -273,11 +273,11 @@ App::uses('AppModel','Model');
                     'conditions'=>array(
                             'AND' => array(
                                     'YEAR(`created`)'=> $search_ano,
-                                    'ActaInstalacione.estado '=> 1,
-                                    'ActaInstalacione.created_mym' => 0
+                                    'ActaMedioAmbiente.estado '=> 1,
+                                    'ActaMedioAmbiente.created_mym' => 0
                             )
                     ),
-                    'order'=> array('ActaInstalacione.created desc'),
+                    'order'=> array('ActaMedioAmbiente.created desc'),
             )
             );
         }
@@ -285,7 +285,7 @@ App::uses('AppModel','Model');
     	return $arr_obj_acta_instal;
     }
 	
-    public function listFindActaInstalaciones($order_by='ActaInstalacione.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$search_ano='',$order='DESC', $start=0, $per_page=10, $tipo_user_id = '') {
+    public function listFindActaMedAmb($order_by='ActaMedioAmbiente.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$search_ano='',$order='DESC', $start=0, $per_page=10, $tipo_user_id = '') {
 
         if($tipo_user_id== 3){
     		$arr_obj_acta_instal = $this->findObjects('all',array(
@@ -295,19 +295,19 @@ App::uses('AppModel','Model');
     								'alias' => 'EmpresaJoin',
     								'type' => 'INNER',
     								'conditions' => array(
-    										'EmpresaJoin.id = ActaInstalacione.empresa_id'
+    										'EmpresaJoin.id = ActaMedioAmbiente.empresa_id'
     								)
     						)
     				),
     				'conditions'=>array(
     						'AND' => array(
-    								'ActaInstalacione.numero LIKE'=> '%'.$search_nro.'%',
-    								'ActaInstalacione.actividad LIKE'=> '%'.$search_actividad.'%',
+    								'ActaMedioAmbiente.numero LIKE'=> '%'.$search_nro.'%',
+    								'<.actividad LIKE'=> '%'.$search_actividad.'%',
     								'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
-    								'ActaInstalacione.obra LIKE'=> '%'.$search_obra.'%',
-									'YEAR(ActaInstalacione.`created`)'=> $search_ano,
-    								'ActaInstalacione.estado '=> 1,
-                                    'ActaInstalacione.created_mym' => 1
+    								'ActaMedioAmbiente.obra LIKE'=> '%'.$search_obra.'%',
+									'YEAR(ActaMedioAmbiente.`created`)'=> $search_ano,
+    								'ActaMedioAmbiente.estado '=> 1,
+                                    'ActaMedioAmbiente.created_mym' => 1
     						)
     				),
     				//'page'=> $start,
@@ -324,19 +324,19 @@ App::uses('AppModel','Model');
                                     'alias' => 'EmpresaJoin',
                                     'type' => 'INNER',
                                     'conditions' => array(
-                                            'EmpresaJoin.id = ActaInstalacione.empresa_id'
+                                            'EmpresaJoin.id = ActaMedioAmbiente.empresa_id'
                                     )
                             )
                     ),
                     'conditions'=>array(
                             'AND' => array(
-                                    'ActaInstalacione.numero LIKE'=> '%'.$search_nro.'%',
-                                    'ActaInstalacione.actividad LIKE'=> '%'.$search_actividad.'%',
+                                    'ActaMedioAmbiente.numero LIKE'=> '%'.$search_nro.'%',
+                                    'ActaMedioAmbiente.actividad LIKE'=> '%'.$search_actividad.'%',
                                     'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
-                                    'ActaInstalacione.obra LIKE'=> '%'.$search_obra.'%',
-                                    'YEAR(ActaInstalacione.`created`)'=> $search_ano,
-                                    'ActaInstalacione.estado '=> 1,
-                                    'ActaInstalacione.created_mym' => 0
+                                    'ActaMedioAmbiente.obra LIKE'=> '%'.$search_obra.'%',
+                                    'YEAR(ActaMedioAmbiente.`created`)'=> $search_ano,
+                                    'ActaMedioAmbiente.estado '=> 1,
+                                    'ActaMedioAmbiente.created_mym' => 0
                             )
                     ),
                     //'page'=> $start,
@@ -353,8 +353,8 @@ App::uses('AppModel','Model');
     	return $this->findObjects('all',array(
     			'conditions' => array(
     					'AND' => array(
-    					'ActaInstalacione.id NOT IN (select users.id from users)',
-    					'ActaInstalacione.tipo_acta' => 'I'
+    					'ActaMedioAmbiente.id NOT IN (select users.id from users)',
+    					'ActaMedioAmbiente.tipo_acta' => 'I'
     							)
     			)/*,
     			'order'=> array('Persona.created ASC'),*/
@@ -369,8 +369,8 @@ App::uses('AppModel','Model');
      * @author Vladimir
      * @version 16 Marzo 2015
      */
-    public function deleteActaInstalaciones($acta_id){
-    	if($this->deleteAll(array('ActaInstalacione.id' => $acta_id), $cascada = true)){
+    public function deleteActaMedAmb($acta_id){
+    	if($this->deleteAll(array('ActaMedioAmbiente.id' => $acta_id), $cascada = true)){
     		return true;
     	}else{
     		return false;
@@ -418,14 +418,14 @@ App::uses('AppModel','Model');
     
    
     /* Usado para el Combo de Acta en Registrar Acta*/
-    public function listActaInstalaciones() {
+    public function listActaMedAmb() {
     	return $this->find('all',
     			array(
     					'fields' => array('id','numero','num_informe'),
     					'conditions'=>array(
-    							'ActaInstalacione.estado != '=> 0
+    							'ActaMedioAmbiente.estado != '=> 0
     					),
-    					'order' => array('ActaInstalacione.numero ASC')
+    					'order' => array('ActaMedioAmbiente.numero ASC')
     			));
     }
     
@@ -433,7 +433,7 @@ App::uses('AppModel','Model');
     public function listUltimosInformes() {
     	return $this->findObjects('all',
     			array(
-    					'order' => array('ActaInstalacione.created DESC'),
+    					'order' => array('ActaMedioAmbiente.created DESC'),
     					'limit' => 5
     				)
     			);
@@ -444,7 +444,7 @@ App::uses('AppModel','Model');
     	return $this->find('list',
     			array(
     					'conditions'=>array(
-    							'ActaInstalacione.fecha_envio != '=> NULL
+    							'ActaMedioAmbiente.fecha_envio != '=> NULL
     					)
     			));
     }
@@ -455,8 +455,8 @@ App::uses('AppModel','Model');
     			array(
     					'conditions'=>array(
     							'OR' => array( 
-    								'ActaInstalacione.info_des_conclusion '=> '',
-    								'ActaInstalacione.info_des_rec '=> '',
+    								'ActaMedioAmbiente.info_des_conclusion '=> '',
+    								'ActaMedioAmbiente.info_des_rec '=> '',
     							)
     					)
     			));
@@ -473,7 +473,7 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresaJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresaJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresaJoin.id = ActaMedioAmbiente.empresa_id',
     							)
     					),
                         array(
@@ -481,14 +481,14 @@ App::uses('AppModel','Model');
                                 'alias' => 'TipoLugarJoin',
                                 'type' => 'INNER',
                                 'conditions' => array(
-                                        'TipoLugarJoin.id = ActaInstalacione.tipo_lugar_id',
+                                        'TipoLugarJoin.id = ActaMedioAmbiente.tipo_lugar_id',
                                 )
 
                         )
     			),
     			'conditions'=>array(
     					'OR' => array(
-                            'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                            'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
                             'EmpresaJoin.id' => $empresa_id,
                             'TipoLugarJoin.id' => $area_id,
                             ),
@@ -506,14 +506,14 @@ App::uses('AppModel','Model');
     
     public function listDetalleSupervisionByEmpresa($fec_inicio, $fec_fin, $area_id=null, $empresa_id=null) {
         	$arr_obj_det_sup_emp = $this->findObjects('all',array(
-        			/*'fields' => array('EmpresaJoin.nombre, ActaInstalacione.fecha, Num'),*/
+        			/*'fields' => array('EmpresaJoin.nombre, ActaMedioAmbiente.fecha, Num'),*/
         			'joins' => array(
         					array(
         							'table' => 'empresas',
         							'alias' => 'EmpresaJoin',
         							'type' => 'INNER',
         							'conditions' => array(
-        									'EmpresaJoin.id = ActaInstalacione.empresa_id'
+        									'EmpresaJoin.id = ActaMedioAmbiente.empresa_id'
         							)
         					),
                             array(
@@ -521,7 +521,7 @@ App::uses('AppModel','Model');
                                     'alias' => 'TipoLugarJoin',
                                     'type' => 'INNER',
                                     'conditions' => array(
-                                            'TipoLugarJoin.id = ActaInstalacione.tipo_lugar_id'
+                                            'TipoLugarJoin.id = ActaMedioAmbiente.tipo_lugar_id'
                                     )
 
                             )
@@ -529,12 +529,12 @@ App::uses('AppModel','Model');
         			),
         			'conditions'=>array(
                             'OR' => array(
-                            'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                            'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
                             'EmpresaJoin.id' => $empresa_id,
                             'TipoLugarJoin.id' => $area_id,
                             ),
         			     
-                        'ActaInstalacione.estado' => 1
+                        'ActaMedioAmbiente.estado' => 1
         			),
         			'order'=> array('EmpresaJoin.nombre')
         	)
@@ -553,14 +553,14 @@ App::uses('AppModel','Model');
     							'alias' => 'UnidadesNegocioJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'UnidadesNegocioJoin.id = ActaInstalacione.uunn_id',
+    									'UnidadesNegocioJoin.id = ActaMedioAmbiente.uunn_id',
                                         'UnidadesNegocioJoin.estado' => 1
     							)
     					)
     			),
     			'conditions'=>array(
-    					'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                        'ActaInstalacione.estado' => 1
+    					'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'ActaMedioAmbiente.estado' => 1
     			),
     			'group'=> array('UnidadesNegocioJoin.descripcion'),
                 'order' => array('Cantidad'=>'desc')
@@ -579,14 +579,14 @@ App::uses('AppModel','Model');
     							'alias' => 'UnidadesNegocioJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'UnidadesNegocioJoin.id = ActaInstalacione.uunn_id',
+    									'UnidadesNegocioJoin.id = ActaMedioAmbiente.uunn_id',
                                         'UnidadesNegocioJoin.estado' => 1
     							)
     					)
     			),
     			'conditions'=>array(
-    					'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                        'ActaInstalacione.estado' => 1
+    					'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'ActaMedioAmbiente.estado' => 1
     			),
     			'order'=> array('UnidadesNegocioJoin.descripcion'),
     			//'group'=> array('UnidadesNegocioJoin.descripcion')
@@ -606,7 +606,7 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresasJoin.id = ActaMedioAmbiente.empresa_id',
                                         'EmpresasJoin.estado' => 1
     							)
     					),
@@ -615,7 +615,7 @@ App::uses('AppModel','Model');
     							'alias' => 'ImpProtPersonalesJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'ImpProtPersonalesJoin.acta_id = ActaInstalacione.id'
+    									'ImpProtPersonalesJoin.acta_id = ActaMedioAmbiente.id'
     							)
     					),
     					array(
@@ -628,8 +628,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                        'ActaInstalacione.estado' => 1
+    					'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'ActaMedioAmbiente.estado' => 1
     			),
     			/*'order'=> array($order_by.' '.$order),*/
     			'group'=> array('EmpresasJoin.nombre'),
@@ -648,7 +648,7 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresasJoin.id = ActaMedioAmbiente.empresa_id',
                                         'EmpresasJoin.estado' => 1
     							)
     					),
@@ -679,9 +679,9 @@ App::uses('AppModel','Model');
     			),
     			'conditions'=>array(
     					'AND' => array(
-    							'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'ActaInstalacione.empresa_id'=> $empresa_id,
-                                'ActaInstalacione.estado' => 1
+    							'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'ActaMedioAmbiente.empresa_id'=> $empresa_id,
+                                'ActaMedioAmbiente.estado' => 1
     							)
     			),
     			/*'order'=> array($order_by.' '.$order),*/
@@ -693,14 +693,14 @@ App::uses('AppModel','Model');
     
     public function listDetalleNiByEmpresaTrabajador($fec_inicio, $fec_fin) {
     	$arr_obj_ni_emp = $this->find('all',array(
-    			'fields' => array('EmpresasJoin.nombre, TrabajadorJoin.apellido_nombre, CodigosJoin.codigo, ActaInstalacione.num_informe, ActaInstalacione.fecha'),
+    			'fields' => array('EmpresasJoin.nombre, TrabajadorJoin.apellido_nombre, CodigosJoin.codigo, ActaMedioAmbiente.num_informe, ActaMedioAmbiente.fecha'),
     			'joins' => array(
     					array(
     							'table' => 'empresas',
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresasJoin.id = ActaMedioAmbiente.empresa_id',
                                         'EmpresasJoin.estado' => 1
     							)
     					),
@@ -709,7 +709,7 @@ App::uses('AppModel','Model');
     							'alias' => 'ImpProtPersonalesJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'ImpProtPersonalesJoin.acta_id = ActaInstalacione.id'
+    									'ImpProtPersonalesJoin.acta_id = ActaMedioAmbiente.id'
     							)
     					),
     					array(
@@ -738,8 +738,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                        'ActaInstalacione.estado' => 1
+    					'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'ActaMedioAmbiente.estado' => 1
     			)
     			/*'order'=> array($order_by.' '.$order),*/
     			//'group'=> array('EmpresasJoin.nombre')
@@ -758,7 +758,7 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresasJoin.id = ActaMedioAmbiente.empresa_id',
                                         'EmpresasJoin.estado' => 1
     							)
     					),
@@ -767,7 +767,7 @@ App::uses('AppModel','Model');
     							'alias' => 'UnidadesMovilesJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'UnidadesMovilesJoin.acta_id = ActaInstalacione.id'
+    									'UnidadesMovilesJoin.acta_id = ActaMedioAmbiente.id'
     							)
     					),
     					array(
@@ -780,8 +780,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                        'ActaInstalacione.estado' => 1
+    					'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'ActaMedioAmbiente.estado' => 1
     			),
     			'group'=> array('EmpresasJoin.nombre'),
                 'order' => array('Cantidad'=>'desc')
@@ -830,9 +830,9 @@ App::uses('AppModel','Model');
     			),
     			'conditions'=>array(
     					'AND' => array(
-    							'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'ActaInstalacione.empresa_id'=> $empresa_id,
-                                'ActaInstalacione.estado' => 1
+    							'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'ActaMedioAmbiente.empresa_id'=> $empresa_id,
+                                'ActaMedioAmbiente.estado' => 1
     					)
     			),
     			/*'order'=> array($order_by.' '.$order),*/
@@ -844,14 +844,14 @@ App::uses('AppModel','Model');
     
     public function listDetalleNiByEmpresaVehiculo($fec_inicio, $fec_fin) {
     	$arr_obj_ni_emp = $this->find('all',array(
-    			'fields' => array('EmpresasJoin.nombre, VehiculosJoin.nro_placa, CodigosJoin.codigo, ActaInstalacione.num_informe, ActaInstalacione.fecha'),
+    			'fields' => array('EmpresasJoin.nombre, VehiculosJoin.nro_placa, CodigosJoin.codigo, ActaMedioAmbiente.num_informe, ActaMedioAmbiente.fecha'),
     			'joins' => array(
     					array(
     							'table' => 'empresas',
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresasJoin.id = ActaMedioAmbiente.empresa_id',
                                         'EmpresasJoin.estado' => 1
     							)
     					),
@@ -860,7 +860,7 @@ App::uses('AppModel','Model');
     							'alias' => 'UnidadesMovilesJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'UnidadesMovilesJoin.acta_id = ActaInstalacione.id'
+    									'UnidadesMovilesJoin.acta_id = ActaMedioAmbiente.id'
     							)
     					),
     					array(
@@ -889,8 +889,8 @@ App::uses('AppModel','Model');
     					)
     			),
     			'conditions'=>array(
-    					'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                        'ActaInstalacione.estado' => 1
+    					'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'ActaMedioAmbiente.estado' => 1
     			)
     			/*'order'=> array($order_by.' '.$order),*/
     			//'group'=> array('EmpresasJoin.nombre')
@@ -909,7 +909,7 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresasJoin.id = ActaMedioAmbiente.empresa_id',
                                         'EmpresasJoin.estado' => 1
     							)
     					),
@@ -918,7 +918,7 @@ App::uses('AppModel','Model');
     							'alias' => 'ImpProtPersonalesJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'ImpProtPersonalesJoin.acta_id = ActaInstalacione.id'
+    									'ImpProtPersonalesJoin.acta_id = ActaMedioAmbiente.id'
     							)
     					),
     					array(
@@ -948,9 +948,9 @@ App::uses('AppModel','Model');
     			),
     			'conditions'=>array(
     					'AND' => array(
-    							'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'ActaInstalacione.empresa_id' => $empresa_id,
-                                'ActaInstalacione.estado' => 1
+    							'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'ActaMedioAmbiente.empresa_id' => $empresa_id,
+                                'ActaMedioAmbiente.estado' => 1
     					)
     			),
     			'order'=> array('Cantidad DESC'),
@@ -971,7 +971,7 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresasJoin.id = ActaMedioAmbiente.empresa_id',
                                         'EmpresasJoin.estado' => 1
     							)
     					),
@@ -980,7 +980,7 @@ App::uses('AppModel','Model');
     							'alias' => 'UnidadesMovilesJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'UnidadesMovilesJoin.acta_id = ActaInstalacione.id'
+    									'UnidadesMovilesJoin.acta_id = ActaMedioAmbiente.id'
     							)
     					),
     					array(
@@ -1010,9 +1010,9 @@ App::uses('AppModel','Model');
     			),
     			'conditions'=>array(
     					'AND' => array(
-    							'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'ActaInstalacione.empresa_id' => $empresa_id,
-                                'ActaInstalacione.estado' => 1
+    							'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'ActaMedioAmbiente.empresa_id' => $empresa_id,
+                                'ActaMedioAmbiente.estado' => 1
     					)
     			),
     			'order'=> array('Cantidad DESC'),
@@ -1025,14 +1025,14 @@ App::uses('AppModel','Model');
     
     public function listDetalleNiByEmpresa1($fec_inicio, $fec_fin, $empresa_id) {
     	$arr_obj_det_ni_emp = $this->find('all',array(
-    			'fields' => array('TrabajadorJoin.apellido_nombre, CodigosJoin.codigo, ActaInstalacione.num_informe, ActaInstalacione.fecha'),
+    			'fields' => array('TrabajadorJoin.apellido_nombre, CodigosJoin.codigo, ActaMedioAmbiente.num_informe, ActaMedioAmbiente.fecha'),
     			'joins' => array(
     					array(
     							'table' => 'empresas',
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresasJoin.id = ActaMedioAmbiente.empresa_id',
                                         'EmpresasJoin.estado' => 1
     							)
     					),
@@ -1041,7 +1041,7 @@ App::uses('AppModel','Model');
     							'alias' => 'ImpProtPersonalesJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'ImpProtPersonalesJoin.acta_id = ActaInstalacione.id'
+    									'ImpProtPersonalesJoin.acta_id = ActaMedioAmbiente.id'
     							)
     					),
     					array(
@@ -1071,9 +1071,9 @@ App::uses('AppModel','Model');
     			),
     			'conditions'=>array(
     					'AND' => array(
-    							'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'ActaInstalacione.empresa_id' => $empresa_id,
-                                'ActaInstalacione.estado' => 1
+    							'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'ActaMedioAmbiente.empresa_id' => $empresa_id,
+                                'ActaMedioAmbiente.estado' => 1
     					)
     			),
     			'order by'=> array('CodigosJoin.codigo ASC')
@@ -1085,14 +1085,14 @@ App::uses('AppModel','Model');
     
     public function listDetalleNiByEmpresa2($fec_inicio, $fec_fin, $empresa_id) {
     	$arr_obj_det_ni_emp = $this->find('all',array(
-    			'fields' => array('VehiculosJoin.nro_placa, CodigosJoin.codigo, ActaInstalacione.num_informe, ActaInstalacione.fecha'),
+    			'fields' => array('VehiculosJoin.nro_placa, CodigosJoin.codigo, ActaMedioAmbiente.num_informe, ActaMedioAmbiente.fecha'),
     			'joins' => array(
     					array(
     							'table' => 'empresas',
     							'alias' => 'EmpresasJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresasJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresasJoin.id = ActaMedioAmbiente.empresa_id',
                                         'EmpresasJoin.estado' => 1
     							)
     					),
@@ -1131,9 +1131,9 @@ App::uses('AppModel','Model');
     			),
     			'conditions'=>array(
     					'AND' => array(
-    							'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-    							'ActaInstalacione.empresa_id' => $empresa_id,
-                                'ActaInstalacione.estado' => 1
+    							'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+    							'ActaMedioAmbiente.empresa_id' => $empresa_id,
+                                'ActaMedioAmbiente.estado' => 1
     					)
     			),
     			'order by'=> array('CodigosJoin.codigo ASC')
@@ -1148,8 +1148,8 @@ App::uses('AppModel','Model');
     public function getEmpresaMayorNi() {
     	$tmp_array = (array) $this->query('
 			SELECT count(*) as cantidad, E.nombre,((count(*) + 
-    			(SELECT  count(*) from acta_instalaciones INNER JOIN empresas on acta_instalaciones.empresa_id = empresas.id INNER JOIN imp_prot_personales IPP on IPP.acta_id = acta_instalaciones.id INNER JOIN ipp_normas_incumplidas INI on INI.ipp_id = IPP.id WHERE acta_instalaciones.empresa_id=A.empresa_id))
-    			/(SELECT count(*) as totalacta FROM acta_instalaciones WHERE acta_instalaciones.empresa_id = A.empresa_id)) as promedio from actas A INNER JOIN empresas E on A.empresa_id = E.id INNER JOIN unidades_moviles UM on UM.acta_id = A.id INNER JOIN um_normas_incumplidas UNI on UNI.um_id = UM.id GROUP BY A.empresa_id order by promedio desc limit 1');
+    			(SELECT  count(*) from acta_MedAmb INNER JOIN empresas on acta_MedAmb.empresa_id = empresas.id INNER JOIN imp_prot_personales IPP on IPP.acta_id = acta_MedAmb.id INNER JOIN ipp_normas_incumplidas INI on INI.ipp_id = IPP.id WHERE acta_MedAmb.empresa_id=A.empresa_id))
+    			/(SELECT count(*) as totalacta FROM acta_MedAmb WHERE acta_MedAmb.empresa_id = A.empresa_id)) as promedio from actas A INNER JOIN empresas E on A.empresa_id = E.id INNER JOIN unidades_moviles UM on UM.acta_id = A.id INNER JOIN um_normas_incumplidas UNI on UNI.um_id = UM.id GROUP BY A.empresa_id order by promedio desc limit 1');
     		 
     		return $tmp_array;
     }
@@ -1173,14 +1173,14 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresaJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresaJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresaJoin.id = ActaMedioAmbiente.empresa_id',
                                         'EmpresaJoin.estado' => 1
     							)
     					)
     			),
     			'conditions'=>array(
-    					'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                        'ActaInstalacione.estado' => 1
+    					'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'ActaMedioAmbiente.estado' => 1
     			),
     			'group'=> array('EmpresaJoin.nombre'),
                 'order'=> array('Porcentaje DESC')
@@ -1202,14 +1202,14 @@ App::uses('AppModel','Model');
     							'alias' => 'EmpresaJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'EmpresaJoin.id = ActaInstalacione.empresa_id',
+    									'EmpresaJoin.id = ActaMedioAmbiente.empresa_id',
                                         'EmpresaJoin.estado' => 1
     							)
     					)
     			),
     			'conditions'=>array(
-    					'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
-                        'ActaInstalacione.estado' => 1
+    					'ActaMedioAmbiente.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                        'ActaMedioAmbiente.estado' => 1
     			),
     			'order'=> array('EmpresaJoin.nombre')
     			/*'group'=> array('EmpresaJoin.nombre')*/
@@ -1228,18 +1228,18 @@ App::uses('AppModel','Model');
 		
 		$conditions_filter = array();
 		
-        $conditions_filter['ActaInstalacione.estado'] = 1;
+        $conditions_filter['ActaMedioAmbiente.estado'] = 1;
 
 		if(isset($fec_inicio)){
-            $conditions_filter['ActaInstalacione.fecha BETWEEN ? and ?'] = array($fec_inicio, $fec_fin);
+            $conditions_filter['ActaMedioAmbiente.fecha BETWEEN ? and ?'] = array($fec_inicio, $fec_fin);
         }
 
         if(isset($empresa) && count($array_empresas)>0){
-			$conditions_filter['ActaInstalacione.empresa_id'] = $array_empresas;
+			$conditions_filter['ActaMedioAmbiente.empresa_id'] = $array_empresas;
 		}
 		
 		if(isset($uunn) && count($arrays_uunns)>0){
-			$conditions_filter['ActaInstalacione.uunn_id'] = $arrays_uunns;
+			$conditions_filter['ActaMedioAmbiente.uunn_id'] = $arrays_uunns;
 		}
 		//debug($conditions_filter);exit(); 
         $arr_obj_total_ni_nc = $this->findObjects('all',array(
@@ -1255,18 +1255,18 @@ App::uses('AppModel','Model');
         
         $conditions_filter = array();
         
-        $conditions_filter['ActaInstalacione.estado'] = 1;
+        $conditions_filter['ActaMedioAmbiente.estado'] = 1;
 
         if(isset($fec_inicio)){
-            $conditions_filter['ActaInstalacione.fecha BETWEEN ? and ?'] = array($fec_inicio, $fec_fin);
+            $conditions_filter['ActaMedioAmbiente.fecha BETWEEN ? and ?'] = array($fec_inicio, $fec_fin);
         }
 
         if(isset($array_empresas) && count($array_empresas)>0){
-            $conditions_filter['ActaInstalacione.empresa_id'] = $array_empresas; //ARRAY EMPRESA
+            $conditions_filter['ActaMedioAmbiente.empresa_id'] = $array_empresas; //ARRAY EMPRESA
         }
         
         if(isset($arrays_uunns) && count($arrays_uunns)>0){
-            $conditions_filter['ActaInstalacione.uunn_id'] = $arrays_uunns; //UUMM
+            $conditions_filter['ActaMedioAmbiente.uunn_id'] = $arrays_uunns; //UUMM
         }
         //debug($conditions_filter);exit(); 
         $arr_obj_total_ni_nc = $this->findObjects('all',array(
@@ -1289,7 +1289,7 @@ App::uses('AppModel','Model');
     							'alias' => 'ImpProtPersonalesJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'ImpProtPersonalesJoin.acta_id = ActaInstalacione.id'
+    									'ImpProtPersonalesJoin.acta_id = ActaMedioAmbiente.id'
     							)
     					),
     					array(
@@ -1325,7 +1325,7 @@ App::uses('AppModel','Model');
     							)
     					)    				
     			),
-    			'conditions'=>array('ActaInstalacione.id' => $acta_id, 'ActaInstalacione.estado' => 1),
+    			'conditions'=>array('ActaMedioAmbiente.id' => $acta_id, 'ActaMedioAmbiente.estado' => 1),
     			'group' => array('CodigosJoin.codigo', 'CodigosJoin.observacion', 'CategoriaNormasJoin.descripcion')
     	)
     	);
@@ -1343,7 +1343,7 @@ App::uses('AppModel','Model');
     							'alias' => 'UnidadesMovilesJoin',
     							'type' => 'INNER',
     							'conditions' => array(
-    									'UnidadesMovilesJoin.acta_id = ActaInstalacione.id'
+    									'UnidadesMovilesJoin.acta_id = ActaMedioAmbiente.id'
     							)
     					),
     					array(
@@ -1371,7 +1371,7 @@ App::uses('AppModel','Model');
     							)
     					)
     			),
-    			'conditions'=>array('ActaInstalacione.id' => $acta_id, 'ActaInstalacione.estado' => 1),
+    			'conditions'=>array('ActaMedioAmbiente.id' => $acta_id, 'ActaMedioAmbiente.estado' => 1),
     			'group' => array('CodigosJoin.codigo', 'CodigosJoin.observacion', 'CategoriaNormasJoin.descripcion')
     	)
     	);
@@ -1385,19 +1385,19 @@ App::uses('AppModel','Model');
     /* AGRUPADO POR AREAS (TIPO DE LUGAR) */
     public function listarCantidadInformexArea(){
         $arr_cant_info_x_emp = $this->find('all',array(
-                'fields' => array('ActaInstalacione.tipo_lugar_id','TipoLugaresJoin.descripcion', 'count(ActaInstalacione.id) as cantidad', 'sum(ActaInstalacione.total_cumplimiento) as total_cumplimiento', 'sum(ActaInstalacione.suma_cu_in) as suma_cu_in', 'sum(ActaInstalacione.cumplimiento) as cumplimiento'),
+                'fields' => array('ActaMedioAmbiente.tipo_lugar_id','TipoLugaresJoin.descripcion', 'count(ActaMedioAmbiente.id) as cantidad', 'sum(ActaMedioAmbiente.total_cumplimiento) as total_cumplimiento', 'sum(ActaMedioAmbiente.suma_cu_in) as suma_cu_in', 'sum(ActaMedioAmbiente.cumplimiento) as cumplimiento'),
                 'joins' => array(
                         array(
                                 'table' => 'tipo_lugares',
                                 'alias' => 'TipoLugaresJoin',
                                 'type' => 'INNER',
                                 'conditions' => array(
-                                        'TipoLugaresJoin.id = ActaInstalacione.tipo_lugar_id'
+                                        'TipoLugaresJoin.id = ActaMedioAmbiente.tipo_lugar_id'
                                 )
                         )
                 ),
-                'conditions'=>array('ActaInstalacione.estado' => 1),
-                'group' => array('ActaInstalacione.tipo_lugar_id')
+                'conditions'=>array('ActaMedioAmbiente.estado' => 1),
+                'group' => array('ActaMedioAmbiente.tipo_lugar_id')
         )
         );
          
