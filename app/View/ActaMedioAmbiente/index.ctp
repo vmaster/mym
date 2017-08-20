@@ -23,8 +23,8 @@ var order_by_select;
 var order_by_or;
 
 /* Cambiar de año*/
-$body.off('click','div#acta_instalacion .btn-consultar-acta');
-$body.on('click', 'div#acta_instalacion .btn-consultar-acta' , function(){
+$body.off('click','div#acta_med_amb .btn-consultar-acta');
+$body.on('click', 'div#acta_med_amb .btn-consultar-acta' , function(){
 $('#conteiner_all_rows').html('Cargando...');
 $('#conteiner_all_rows').load(env_webroot_script+'actas/search_actas/'+$('#cbo-ano-search').val(),function(){
 	$('#table_content_actas').DataTable({
@@ -67,7 +67,7 @@ $body.on('keyup','#txtNro',function(e){
 		search_obra = null;
 	}
 
-	$('#conteiner_all_rows').load(env_webroot_script + escape('acta_instalaciones/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
+	$('#conteiner_all_rows').load(env_webroot_script + escape('acta_medio_ambientes/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
 	});
 });
 
@@ -92,7 +92,7 @@ $body.on('keyup','#txtActividad',function(e){
 		search_obra = null;
 	}
 	
-	$('#conteiner_all_rows').load(env_webroot_script + escape('acta_instalaciones/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
+	$('#conteiner_all_rows').load(env_webroot_script + escape('acta_medio_ambientes/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
 	});
 });
 
@@ -117,7 +117,7 @@ $body.on('keyup','#txtEmpresa',function(e){
 		search_obra = null;
 	}
 	
-	$('#conteiner_all_rows').load(env_webroot_script + escape('acta_instalaciones/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
+	$('#conteiner_all_rows').load(env_webroot_script + escape('acta_medio_ambientes/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
 	});
 });
 
@@ -142,7 +142,7 @@ $body.on('keyup','#txtObra',function(e){
 		search_obra = null;
 	}
 	
-	$('#conteiner_all_rows').load(env_webroot_script + escape('acta_instalaciones/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
+	$('#conteiner_all_rows').load(env_webroot_script + escape('acta_medio_ambientes/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
 	});
 });
 
@@ -177,7 +177,7 @@ $body.on('keyup','#txtObra',function(e){
 			search_obra = null;
 		}
 	
-		$('#conteiner_all_rows').load(env_webroot_script + escape('acta_instalaciones/find_actas/'+page+'/'+order_by_select+'/'+order_by_or+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
+		$('#conteiner_all_rows').load(env_webroot_script + escape('acta_medio_ambientes/find_actas/'+page+'/'+order_by_select+'/'+order_by_or+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
 			});
 	}
 });
@@ -218,13 +218,13 @@ div#spinner-send-report
 	</div>
 </div>
 <hr />
-<div id="acta_instalacion">
+<div id="acta_med_amb">
 	<div id="add_edit_acta_container">
 	</div>
 	
 	<div class="btn-toolbar">
 		<?php //if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>
-	    <a class="btn btn-primary btn-nuevo-acta-instal" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_instalaciones/nuevo_informe_instalacion"><i class="icon-plus"></i> <?php echo __('Nuevo Informe'); ?></a>
+	    <a class="btn btn-primary btn-nuevo-acta-instal" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_medio_ambientes/nuevo_informe_med_amb"><i class="icon-plus"></i> <?php echo __('Nuevo Informe'); ?></a>
 	    <?php //} ?>
 	  <div class="btn-group">
 	  </div>
@@ -252,13 +252,13 @@ div#spinner-send-report
 			if(empty($list_acta)){ 
 				echo __('No hay datos de Actas');
 			}else{ 
-				echo $this->element('ActaInstalacione/acta_row');
+				echo $this->element('ActaMedioAmbiente/acta_row');
 			}
 	 	  ?>
 	      </div>
 	</div>
 	
-	<div class="modal fade" id="myModalDeleteActaInstalacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" acta_instalacion_id=''>
+	<div class="modal fade" id="myModalDeleteActaMedioAmbiente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" acta_med_amb_id=''>
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -280,7 +280,7 @@ div#spinner-send-report
 		</div>
 	</div>
 	
-	<div class="modal fade" id="myModalSendReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" acta_instalacion_id= ''>
+	<div class="modal fade" id="myModalSendReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" acta_med_amb_id= ''>
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
