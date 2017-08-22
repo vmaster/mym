@@ -214,7 +214,7 @@ div#spinner-send-report
 </style>
 <div class="row">
 	<div class="col-md-12">
-		<h2>Listado de Informes de Seguridad a Instalaciones </h2>
+		<h2>Listado de Informes de Inspección del Medio Ambiente </h2>
 	</div>
 </div>
 <hr />
@@ -224,7 +224,7 @@ div#spinner-send-report
 	
 	<div class="btn-toolbar">
 		<?php //if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>
-	    <a class="btn btn-primary btn-nuevo-acta-instal" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_medio_ambientes/nuevo_informe_med_amb"><i class="icon-plus"></i> <?php echo __('Nuevo Informe'); ?></a>
+	    <a class="btn btn-primary btn-nuevo-acta-med-amb" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_medio_ambientes/nuevo_informe_med_amb"><i class="icon-plus"></i> <?php echo __('Nuevo Informe'); ?></a>
 	    <?php //} ?>
 	  <div class="btn-group">
 	  </div>
