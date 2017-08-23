@@ -664,7 +664,7 @@ tinymce.init({
 									</tr>
 									<tr>
 										<td colspan=2>
-										<div class="fileupload" data-type="FotoInstalMed">
+										<div class="fileupload" data-type="FotoMedAmbMedida">
 									        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 									        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 									        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -701,13 +701,13 @@ tinymce.init({
 
 											<table role="presentation" class="table table-striped">
 																<tbody class="files">
-																<?php foreach($obj_acta->FotoInstalMed as $key => $obj_foto_med) {?> 
+																<?php foreach($obj_acta->FotoMedAmbMedida as $key => $obj_foto_med) {?> 
 																<?php $file_name =$obj_foto_med->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
 																	<tr class="template-download fade in" foto-med="<?php echo $file_name_explode[0];?>">
 																		<td><span class="preview"> <a
-																				href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_med/<?php echo $obj_foto_med->getAttr('file_name'); ?>"
+																				href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_medida/<?php echo $obj_foto_med->getAttr('file_name'); ?>"
 																				title="<?php echo $obj_foto_med->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-																				data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_med/thumbnail/<?php echo $obj_foto_med->getAttr('file_name'); ?>" width='80px'>
+																				data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_medida/thumbnail/<?php echo $obj_foto_med->getAttr('file_name'); ?>" width='80px'>
 																			</a>
 																			<textarea rows="3"  name="data[FotoMedUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_med->getAttr('observacion'); ?></textarea>
 																			<input type="hidden" value="<?php echo $obj_foto_med->getAttr('id'); ?>" name="data[FotoMedUpdate][<?php echo $key; ?>][id][]">
@@ -715,7 +715,7 @@ tinymce.init({
 																		</td>
 																		<td>
 																			<p class="name">
-																				<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_med/<?php echo $obj_foto_med->getAttr('file_name'); ?>"
+																				<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_medida/<?php echo $obj_foto_med->getAttr('file_name'); ?>"
 																					title="<?php echo $obj_foto_med->getAttr('file_name'); ?>" download=""
 																					data-gallery=""><?php echo $obj_foto_med->getAttr('file_name'); ?></a> 
 																			</p>
@@ -723,10 +723,10 @@ tinymce.init({
 																		<td><span class="size">120.37 KB</span>
 																		</td>
 																		<td>
-																			<a data-url="<?php echo $obj_foto_med->getAttr('file_name');?>" data-foto-med="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-med-med-amb">
+																			<a data-url="<?php echo $obj_foto_med->getAttr('file_name');?>" data-foto-med="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-medida">
 																				<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
 																			</a>
-																			<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_med/<?php echo $obj_foto_med->getAttr('file_name'); ?>" title="<?php echo $obj_foto_med->getAttr('file_name'); ?>" download="<?php echo $obj_foto_med->getAttr('file_name'); ?>" class="btn btn-default">
+																			<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_medida/<?php echo $obj_foto_med->getAttr('file_name'); ?>" title="<?php echo $obj_foto_med->getAttr('file_name'); ?>" download="<?php echo $obj_foto_med->getAttr('file_name'); ?>" class="btn btn-default">
 																					<i class="fa fa-download"></i> <span>Descargar</span>
 																			</a>
 																		</td>
@@ -761,7 +761,7 @@ tinymce.init({
 								<tbody>
 									<tr>
 										<td colspan=2>
-										<div class="fileupload" data-type="FotoInstalActInsSeg">
+										<div class="fileupload" data-type="FotoMedAmbActa">
 									        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 									        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 									        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -798,32 +798,32 @@ tinymce.init({
 
 											<table role="presentation" class="table table-striped">
 																<tbody class="files">
-																<?php foreach($obj_acta->FotoInstalActInsSeg as $key => $obj_foto_act_ins_seg) {?> 
-																<?php $file_name =$obj_foto_act_ins_seg->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
-																	<tr class="template-download fade in" foto-act-ins-seg="<?php echo $file_name_explode[0];?>">
+																<?php foreach($obj_acta->FotoMedAmbActa as $key => $obj_foto_acta) {?> 
+																<?php $file_name =$obj_foto_acta->getAttr('file_name'); $file_name_explode =explode('.', $file_name);?>
+																	<tr class="template-download fade in" foto-acta="<?php echo $file_name_explode[0];?>">
 																		<td><span class="preview"> <a
-																				href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_act_ins_seg/<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>"
-																				title="<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
-																				data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_act_ins_seg/thumbnail/<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>" width='80px'>
+																				href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_acta/<?php echo $obj_foto_acta->getAttr('file_name'); ?>"
+																				title="<?php echo $obj_foto_acta->getAttr('file_name'); ?>" download="b. precios  maestrias soles.png"
+																				data-gallery=""><img src="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_acta/thumbnail/<?php echo $obj_foto_acta->getAttr('file_name'); ?>" width='80px'>
 																			</a>
-																			<textarea rows="3"  name="data[FotoInstalActInsSegUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_act_ins_seg->getAttr('observacion'); ?></textarea>
-																			<input type="hidden" value="<?php echo $obj_foto_act_ins_seg->getAttr('id'); ?>" name="data[FotoInstalActInsSegUpdate][<?php echo $key; ?>][id][]">
+																			<textarea rows="3"  name="data[FotoMedAmbActaUpdate][<?php echo $key; ?>][Observacion][]" placeholder="Observaci&oacute;n"><?php echo $obj_foto_acta->getAttr('observacion'); ?></textarea>
+																			<input type="hidden" value="<?php echo $obj_foto_acta->getAttr('id'); ?>" name="data[FotoMedAmbActaUpdate][<?php echo $key; ?>][id][]">
 																		</span>
 																		</td>
 																		<td>
 																			<p class="name">
-																				<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_act_ins_seg/<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>"
-																					title="<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>" download=""
-																					data-gallery=""><?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?></a> 
+																				<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_acta/<?php echo $obj_foto_acta->getAttr('file_name'); ?>"
+																					title="<?php echo $obj_foto_acta->getAttr('file_name'); ?>" download=""
+																					data-gallery=""><?php echo $obj_foto_acta->getAttr('file_name'); ?></a> 
 																			</p>
 																		</td>
 																		<td><span class="size">120.37 KB</span>
 																		</td>
 																		<td>
-																			<a data-url="<?php echo $obj_foto_act_ins_seg->getAttr('file_name');?>" data-foto-act-ins-seg="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-act-ins-seg">
+																			<a data-url="<?php echo $obj_foto_acta->getAttr('file_name');?>" data-foto-acta="<?php echo $file_name_explode[0];?>" class="btn btn-danger delete-file-acta">
 																				<i class="glyphicon glyphicon-trash"></i> <span>Eliminar</span>
 																			</a>
-																			<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_act_ins_seg/<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>" title="<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>" download="<?php echo $obj_foto_act_ins_seg->getAttr('file_name'); ?>" class="btn btn-default">
+																			<a href="<?= ENV_WEBROOT_FULL_URL; ?>files/fotos_med_amb_acta/<?php echo $obj_foto_acta->getAttr('file_name'); ?>" title="<?php echo $obj_foto_acta->getAttr('file_name'); ?>" download="<?php echo $obj_foto_acta->getAttr('file_name'); ?>" class="btn btn-default">
 																					<i class="fa fa-download"></i> <span>Descargar</span>
 																			</a>
 																		</td>

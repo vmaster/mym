@@ -1185,7 +1185,7 @@ class ActaMedioAmbientesController extends AppController{
 		}
 	}
 	
-	/* ELIMINAR FOTOS ORDEN Y LIMPIEZA*/
+	/* ELIMINAR FOTOS CONDICIONES AMBIENTALES */
 	public function delete_foto_ca()
 	{
 		$this->layout = "ajax";
@@ -1216,124 +1216,6 @@ class ActaMedioAmbientesController extends AppController{
 		}
 	}
 	
-	
-	/* ELIMINAR FOTOS SSHH  */
-	public function delete_foto_sshh()
-	{
-		$this->layout = "ajax";
-		$this->loadModel('FotoInstalSshh');
-		if($this->request->is('post')){
-			$file_name = $this->request->data['file_name'];
-			if($this->FotoInstalSshh->deleteAll(array('FotoInstalSshh.file_name' => $file_name), $cascada = false)){
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_sshh/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_sshh/'.$file_name);
-				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_sshh/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_sshh/thumbnail/'.$file_name);
-				}
-
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/'.$file_name);
-				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sshh/thumbnail/'.$file_name);
-				}
-				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
-				exit();
-			}else{
-				echo json_encode(array('success' =>false, 'msg' => __('La Foto no fue eliminada')));
-				exit();
-			}
-		}
-	}
-	
-	public function delete_foto_ss()
-	{
-		$this->layout = "ajax";
-		$this->loadModel('FotoInstalSenSeg');
-		if($this->request->is('post')){
-			$file_name = $this->request->data['file_name'];
-			if($this->FotoInstalSenSeg->deleteAll(array('FotoInstalSenSeg.file_name' => $file_name), $cascada = false)){
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/'.$file_name);
-				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_sen_seg/thumbnail/'.$file_name);
-				}
-
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/'.$file_name);
-				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_sen_seg/thumbnail/'.$file_name);
-				}
-				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
-				exit();
-			}else{
-				echo json_encode(array('success' =>false, 'msg' => __('La Foto no fue eliminada')));
-				exit();
-			}
-		}
-	}
-	
-	public function delete_foto_ee()
-	{
-		$this->layout = "ajax";
-		$this->loadModel('FotoInstalEqEmerg');
-		if($this->request->is('post')){
-			$file_name = $this->request->data['file_name'];
-			if($this->FotoInstalEqEmerg->deleteAll(array('FotoInstalEqEmerg.file_name' => $file_name), $cascada = false)){
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/'.$file_name);
-				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_eq_emerg/thumbnail/'.$file_name);
-				}
-
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/'.$file_name);
-				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_eq_emerg/thumbnail/'.$file_name);
-				}
-				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
-				exit();
-			}else{
-				echo json_encode(array('success' =>false, 'msg' => __('La Foto no fue eliminada')));
-				exit();
-			}
-		}
-	}
-	
-	public function delete_foto_cseg()
-	{
-		$this->layout = "ajax";
-		$this->loadModel('FotoInstalCondSeg');
-		if($this->request->is('post')){
-			$file_name = $this->request->data['file_name'];
-			if($this->FotoInstalCondSeg->deleteAll(array('FotoInstalCondSeg.file_name' => $file_name), $cascada = false)){
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/'.$file_name);
-				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/fotos_instal_cond_seg/thumbnail/'.$file_name);
-				}
-
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_cond_seg/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_cond_seg/'.$file_name);
-				}
-				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_cond_seg/thumbnail/'.$file_name)){
-					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_instal_cond_seg/thumbnail/'.$file_name);
-				}
-				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
-				exit();
-			}else{
-				echo json_encode(array('success' =>false, 'msg' => __('La Foto no fue eliminada')));
-				exit();
-			}
-		}
-	}
-
 	public function delete_foto_med()
 	{
 		$this->layout = "ajax";
@@ -1363,7 +1245,7 @@ class ActaMedioAmbientesController extends AppController{
 		}
 	}
 
-	public function delete_foto_act_ins_seg()
+	public function delete_foto_acta()
 	{
 		$this->layout = "ajax";
 		$this->loadModel('FotoMedAmbActa');
