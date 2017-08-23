@@ -26,7 +26,7 @@ tinymce.init({
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" aria-expanded="false" style="color: white;">ACTA DE SUPERVISI&Oacute;N SEGURIDAD Y SALUD EN EL TRABAJO</a>
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" aria-expanded="false" style="color: white;">ACTA DE SUPERVISIÓN SEGURIDAD DE INSTALACIONES</a>
 				</div>
 				<div id="collapseOne" class="panel-collapse in">
 					<div class="panel-body">
@@ -164,7 +164,7 @@ tinymce.init({
 
 											<td style="vertical-align: middle" colspan=2>Llenado de lugar: <?php echo $this->Form->input('llenado_lugar', array('div' => false, 'label' => false, 'class'=> 'txtLugar form-control','id' =>'txtLugar','maxlength'=>'200')); ?>
 											</td>
-											<? /*
+											<?php /*
 											<td style="vertical-align: middle" colspan=2>
 											Empresa supervisada al servicio de:
 												<div class="radio">

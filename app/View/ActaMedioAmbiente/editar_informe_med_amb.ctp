@@ -16,17 +16,17 @@ tinymce.init({
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<h2>Editar Informe de seguridad a instalaciones</h2>
+		<h2>Crear un Nuevo Informe de Inspección de medio Ambiente</h2>
 	</div>
 </div>
 <hr />
 <div class="div-crear-acta-med-amb form" id="div-editar-acta-med-amb">
-	<?php echo $this->Form->create('ActaInstalacione',array('method'=>'post', 'id'=>'add_edit_acta_med_amb','type'=>'file','acta_med_ambacion_id'=>$obj_acta->getID()));?>
+	<?php echo $this->Form->create('ActaMedioAmbiente',array('method'=>'post', 'id'=>'add_edit_acta_med_amb','type'=>'file','acta_med_ambacion_id'=>$obj_acta->getID()));?>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" aria-expanded="false" style="color: white;">ACTA DE SUPERVISI&Oacute;N SEGURIDAD Y SALUD EN EL TRABAJO</a>
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" aria-expanded="false" style="color: white;">ACTA DE INSPECCIÓN DE MEDIO AMBIENTE A INSTALACIONES</a>
 				</div>
 				<div id="collapseOne" class="panel-collapse in">
 					<div class="panel-body">
@@ -44,7 +44,7 @@ tinymce.init({
 												</div>
 												<br>
 												<div class="form-group input-group">
-													<span class="input-group-addon"><label id="na" data-toggle="tooltip" title="N&uacute;mero de ActaInstalacione" style="width: 30px;">N&deg; A</label>
+													<span class="input-group-addon"><label id="na" data-toggle="tooltip" title="N&uacute;mero de ActaMedioAmbiente" style="width: 30px;">N&deg; A</label>
 													</span>
 													<?php echo $this->Form->input('numero', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'15')); ?>
 												</div>
@@ -61,7 +61,7 @@ tinymce.init({
 										</tr>
 										<tr>
 											<td><?php echo utf8_encode('Informe Referencia')?></td>
-											<td><select name="data[ActaInstalacione][acta_referencia]"
+											<td><select name="data[ActaMedioAmbiente][acta_referencia]"
 												class="cbo-acta-med-amb-refer-select2 form-control">
 												<option></option>
 													<?php 
@@ -69,7 +69,7 @@ tinymce.init({
 														echo "<option>---</option>";
 														foreach ($list_all_actas as $id => $num):
 														if(isset($obj_acta) || isset($acta_med_ambacion_id)){
-															if($num['ActaInstalacione']['id'] == $obj_acta->getAttr('acta_referencia')){
+															if($num['ActaMedioAmbiente']['id'] == $obj_acta->getAttr('acta_referencia')){
 																$selected = " selected = 'selected'";
 															}else{
 																$selected = "";
@@ -78,7 +78,7 @@ tinymce.init({
 														}else{
 															$selected = "";
 														}
-														echo "<option value = ".$num['ActaInstalacione']['id'].$selected.">".$num['ActaInstalacione']['num_informe']."</option>";
+														echo "<option value = ".$num['ActaMedioAmbiente']['id'].$selected.">".$num['ActaMedioAmbiente']['num_informe']."</option>";
 														endforeach;
 													}
 													?>
@@ -103,7 +103,7 @@ tinymce.init({
 										<tr>
 											<td>Empresa:<br>
 											<span style="display: inline-flex;" class="span-cbo-empresa">
-											<select name="data[ActaInstalacione][empresa_id]"
+											<select name="data[ActaMedioAmbiente][empresa_id]"
 												class="cbo-empresas-select2 form-control">
 													<?php 
 													if (isset($list_all_empresas)){
@@ -135,7 +135,7 @@ tinymce.init({
 											</td>
 											<td style="vertical-align: middle" colspan=3 class="td-cbo-uunn">UU.NN:<br>
 											<?php //echo $this->Form->input('uunn', array('div' => false, 'label' => false, 'class'=> 'txtUunn form-control','id' =>'txtUunn','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
-											<select name="data[ActaInstalacione][uunn_id]"
+											<select name="data[ActaMedioAmbiente][uunn_id]"
 												class="cbo-uunn-select2 form-control">
 											<?php 
 												if (isset($list_all_unidades_negocios)){
@@ -169,12 +169,12 @@ tinymce.init({
 										<tr>
 											<td style="vertical-align: middle">
 												Planeada: <input
-												name="data[ActaInstalacione][tipo]" type="radio" value="P" id="rbTipo1" <?php echo ($obj_acta->getAttr('tipo') == 'P')? 'checked':''; ?>>
-												Inopinada: <input name="data[ActaInstalacione][tipo]" type="radio"
+												name="data[ActaMedioAmbiente][tipo]" type="radio" value="P" id="rbTipo1" <?php echo ($obj_acta->getAttr('tipo') == 'P')? 'checked':''; ?>>
+												Inopinada: <input name="data[ActaMedioAmbiente][tipo]" type="radio"
 												value="I" id="rbTipo2" <?php echo ($obj_acta->getAttr('tipo') == 'I')? 'checked':''; ?>>
 											</td>
 											<td style="vertical-align: middle" width="40%">&Aacute;rea:
-												<select name="data[ActaInstalacione][tipo_lugar_id]"
+												<select name="data[ActaMedioAmbiente][tipo_lugar_id]"
 												class="form-control">
 												<option>---</option>
 													<?php 
@@ -208,7 +208,7 @@ tinymce.init({
 														$fecha_format = $dd.'-'.$mm.'-'.$yy.' '.$time;//12-12-1990
 													}
 											?>
-											<td>Fecha: <input type="text" name="data[ActaInstalacione][fecha]" id="txtFechaActa" class="form-control" placeholder="dd-mm-aaaa" value="<?php echo $fecha_format; ?>">
+											<td>Fecha: <input type="text" name="data[ActaMedioAmbiente][fecha]" id="txtFechaActa" class="form-control" placeholder="dd-mm-aaaa" value="<?php echo $fecha_format; ?>">
 											</td>
 											<?php echo $this->Form->input('grafico', array('type'=>'hidden','div' => false, 'label' => false, 'maxlength' =>'15')); ?>
 										</tr>
@@ -243,7 +243,7 @@ tinymce.init({
 									<div class="panel-body">
 										<div class="table-responsive">
 											<table class="table table-striped table-bordered table-hover"
-												id="table-doc-amb-rep">
+												id="table-dm-rep">
 												<thead>
 													<tr>
 														<th style="vertical-align: middle; text-align: center;width:85%">DOCUMENTACI&Oacute;N MEDIO AMBIENTAL
@@ -260,16 +260,16 @@ tinymce.init({
 													<?php $arr_inf_des_act = json_decode($obj_acta->json_doc_med_amb)?>
 													<?php foreach($arr_inf_des_act as $i => $inf_des_act){?>
 													<tr>
-														<td><textarea name="data[ActaInstalacione][cumplimiento_doc_med][<?php echo $i; ?>][inf_des_doc_med]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($inf_des_act->inf_des_doc_med) && $inf_des_act->inf_des_doc_med != '')?$inf_des_act->inf_des_doc_med:'';?></textarea></td>
+														<td><textarea name="data[ActaMedioAmbiente][cumplimiento_doc_med][<?php echo $i; ?>][inf_des_doc_med]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($inf_des_act->inf_des_doc_med) && $inf_des_act->inf_des_doc_med != '')?$inf_des_act->inf_des_doc_med:'';?></textarea></td>
 														<td>
-															<select class="form-control select-NI-NC select_cu_dm" name= "data[ActaInstalacione][cumplimiento_doc_med][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_dm" name= "data[ActaMedioAmbiente][cumplimiento_doc_med][<?php echo $i; ?>][alternativa]">
 																<option value="2" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 0)?"selected":""?>>NO</option>
 															</select>
 														</td>
 														<td>
-															<select class="form-control select_re_dm" name= "data[ActaInstalacione][cumplimiento_doc_med][<?php echo $i; ?>][incidencia]">
+															<select class="form-control select_re_dm" name= "data[ActaMedioAmbiente][cumplimiento_doc_med][<?php echo $i; ?>][incidencia]">
 																<option value="4" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 4)?"selected":""?>>--</option>
 																<option value="3" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 3)?"selected":""?>>N - Nueva Insp./Obs.</option>
 																<option value="2" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 2)?"selected":""?>>S - Subsanado</option>
@@ -396,16 +396,16 @@ tinymce.init({
 													<?php $arr_inf_des_act = json_decode($obj_acta->json_cond_amb)?>
 													<?php foreach($arr_inf_des_act as $i => $inf_des_act){?>
 													<tr>
-														<td><textarea name="data[ActaInstalacione][cumplimiento_cond_amb][<?php echo $i; ?>][inf_des_cond_amb]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($inf_des_act->inf_des_cond_amb) && $inf_des_act->inf_des_cond_amb != '')?$inf_des_act->inf_des_cond_amb:'';?></textarea></td>
+														<td><textarea name="data[ActaMedioAmbiente][cumplimiento_cond_amb][<?php echo $i; ?>][inf_des_cond_amb]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"><?php echo (isset($inf_des_act->inf_des_cond_amb) && $inf_des_act->inf_des_cond_amb != '')?$inf_des_act->inf_des_cond_amb:'';?></textarea></td>
 														<td>
-															<select class="form-control select-NI-NC select_cu_ca" name= "data[ActaInstalacione][cumplimiento_cond_amb][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_ca" name= "data[ActaMedioAmbiente][cumplimiento_cond_amb][<?php echo $i; ?>][alternativa]">
 																<option value="2" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 2)?"selected":""?>>--</option>
 																<option value="1" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 1)?"selected":""?>>SI</option>
 																<option value="0" <?php echo (isset($inf_des_act->alternativa) && $inf_des_act->alternativa == 0)?"selected":""?>>NO</option>
 															</select>
 														</td>
 														<td>
-															<select class="form-control select_re_ca" name= "data[ActaInstalacione][cumplimiento_cond_amb][<?php echo $i; ?>][incidencia]">
+															<select class="form-control select_re_ca" name= "data[ActaMedioAmbiente][cumplimiento_cond_amb][<?php echo $i; ?>][incidencia]">
 																<option value="4" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 4)?"selected":""?>>--</option>
 																<option value="3" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 3)?"selected":""?>>N - Nueva Insp./Obs.</option>
 																<option value="2" <?php echo (isset($inf_des_act->incidencia) && $inf_des_act->incidencia == 2)?"selected":""?>>S - Subsanado</option>
@@ -498,7 +498,7 @@ tinymce.init({
 																	<?php } ?>
 																</tbody>
 															</table>
-															
+
 													    </div>
 														</td>
 													</tr>
@@ -541,7 +541,7 @@ tinymce.init({
 									<td style="vertical-align: middle; width:50%">Cargo:
 									<?php
 										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-act-cargo'>";
-										echo "<select name='data[ActaInstalacione][reponsable_act_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-act-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<select name='data[ActaMedioAmbiente][reponsable_act_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-act-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_actividades)){
 											//echo "<option>---</option>";
 									    	foreach ($list_all_actividades as $id => $des):
@@ -559,7 +559,7 @@ tinymce.init({
 									<td style="vertical-align: middle; width:50%">Cargo:
 									<?php
 										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-sup-cargo'>";
-										echo "<select name='data[ActaInstalacione][reponsable_sup_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-sup-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<select name='data[ActaMedioAmbiente][reponsable_sup_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-sup-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_actividades)){
 											//echo "<option>---</option>";
 									    	foreach ($list_all_actividades as $id => $des):
@@ -579,7 +579,7 @@ tinymce.init({
 									<td style='width:35%;'>Nombre: 
 									<?php
 										echo "<span style='display: inline-flex; width: 100%;' clas'>";
-										echo "<select name='data[ActaInstalacione][reponsable_act_id]' class='cbo-responsable-select2 cbo-reponsable-act form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<select name='data[ActaMedioAmbiente][reponsable_act_id]' class='cbo-responsable-select2 cbo-reponsable-act form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
 											//echo "<option>---</option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
@@ -597,7 +597,7 @@ tinymce.init({
 									<td style='width:35%;'>Nombre:
 										<?php 
 										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable_sup'>";
-										echo "<select name='data[ActaInstalacione][reponsable_sup_id]' class='cbo-responsable-select2 cbo-reponsable-sup form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<select name='data[ActaMedioAmbiente][reponsable_sup_id]' class='cbo-responsable-select2 cbo-reponsable-sup form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
 											//echo "<option>---</option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):

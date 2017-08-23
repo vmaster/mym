@@ -15,18 +15,18 @@ tinymce.init({
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<h2>Crear un Nuevo Informe de Seguridad a Instalaciones </h2>
+		<h2>Crear un Nuevo Informe de Inspección de medio Ambiente </h2>
 	</div>
 </div>
 <hr />
 
 <div class="div-crear-acta-instal form" id="div-crear-acta-instal">
-	<?php echo $this->Form->create('ActaInstalacione',array('method'=>'post', 'id'=>'add_edit_acta_instal'));?>
+	<?php echo $this->Form->create('ActaMedioAmbiente',array('method'=>'post', 'id'=>'add_edit_acta_instal'));?>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" aria-expanded="false" style="color: white;">ACTA DE SUPERVISI&Oacute;N SEGURIDAD DE INSTALACIONES</a>
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" aria-expanded="false" style="color: white;">ACTA DE INSPECCIÓN DE MEDIO AMBIENTE A INSTALACIONES</a>
 				</div>
 				<div id="collapseOne" class="panel-collapse in">
 					<div class="panel-body">
@@ -44,7 +44,7 @@ tinymce.init({
 												</div>
 												<br>									
 												<div class="form-group input-group">
-													<span class="input-group-addon"><label id="na" data-toggle="tooltip" title="N&uacute;mero de ActaInstalacione" style="width: 30px;"><?php echo ('N° A'); ?></label>
+													<span class="input-group-addon"><label id="na" data-toggle="tooltip" title="N&uacute;mero de ActaMedioAmbiente" style="width: 30px;"><?php echo ('N° A'); ?></label>
 													</span>
 													<?php echo $this->Form->input('numero', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'15')); ?>
 												</div>
@@ -60,13 +60,13 @@ tinymce.init({
 										</tr>
 										<tr>
 											<td><?php echo utf8_encode('Informe Referencia')?></td>
-											<td><select name="data[ActaInstalacione][acta-instal_referencia]"
+											<td><select name="data[ActaMedioAmbiente][acta-instal_referencia]"
 												class="cbo-acta-instal-refer-select2 form-control">
 													<?php 
 													if (isset($list_all_actas)){
 														echo "<option>---</option>";
 														foreach ($list_all_actas as $id => $acta_instal):
-														echo "<option value = ".$acta_instal['ActaInstalacione']['id'].">".$acta_instal['ActaInstalacione']['num_informe']."</option>";
+														echo "<option value = ".$acta_instal['ActaMedioAmbiente']['id'].">".$acta_instal['ActaMedioAmbiente']['num_informe']."</option>";
 													endforeach;
 													}
 													?>
@@ -83,7 +83,7 @@ tinymce.init({
 									<table class="table table-striped table-bordered table-hover"
 										id="dataTables-example">
 										<tr>
-											<td style="vertical-align: middle; width: 55%;">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActaInstalacione','maxlength'=>'200')); ?>
+											<td style="vertical-align: middle; width: 55%;">Actividad: <?php echo $this->Form->input('actividad', array('div' => false, 'label' => false, 'class'=> 'txtActividad form-control','id' =>'txtActividadActaMedioAmbiente','maxlength'=>'200')); ?>
 											</td>
 											<td style="vertical-align: middle" colspan=3><?php echo utf8_encode('Sector'); ?>: <?php echo $this->Form->input('sector', array('div' => false, 'label' => false, 'class'=> 'txtSector form-control','id' =>'txtSectorInforme','maxlength'=>'200')); ?>
 											</td>
@@ -91,7 +91,7 @@ tinymce.init({
 										<tr>
 											<td>Empresa:<br>
 											<span style="display: inline-flex;" class="span-cbo-empresa">
-											<select name="data[ActaInstalacione][empresa_id]"
+											<select name="data[ActaMedioAmbiente][empresa_id]"
 												class="cbo-empresas-select2 form-control">
 													<?php 
 													if (isset($list_all_empresas)){
@@ -114,7 +114,7 @@ tinymce.init({
 											</td>
 											<td style="vertical-align: middle" colspan=3 class="td-cbo-uunn">UU.NN:<br>
 											
-											<select name="data[ActaInstalacione][uunn_id]"
+											<select name="data[ActaMedioAmbiente][uunn_id]"
 												class="cbo-uunn-select2 form-control">
 													<?php 
 													if (isset($list_all_unidades_negocios)){
@@ -128,41 +128,21 @@ tinymce.init({
 											</td>
 										</tr>
 										<tr>
-											<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActaInstalacione','maxlength'=>'200')); ?>
+											<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActaMedioAmbiente','maxlength'=>'200')); ?>
 											</td>	
 											<td style="vertical-align: middle" colspan=2>Llenado de lugar: <?php echo $this->Form->input('llenado_lugar', array('div' => false, 'label' => false, 'class'=> 'txtLugar form-control','id' =>'txtLugar','maxlength'=>'200')); ?>
 											</td>
-											 <?php /*
 											
-											<td style="vertical-align: middle" colspan=2>
-											Empresa supervisada al servicio de:
-											<?php
-												if($this->Session->read('Auth.User.tipo_user_id')== 3){
-													echo "<label>ENSA</label>";
-												}else{
-											?>
-												<div class="radio">
-														<label> MyM <input name="rbtLugar" type="radio" value="M" id="rbMym" checked>
-														</label>
-												</div>
-												<div class="radio" style="display: -webkit-inline-box">
-													<label>Otro <input name="rbtLugar" type="radio" value="O" id="rbOtro">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<?php echo $this->Form->input('empresa_supervisora', array('div' => false, 'label' => false, 'class'=> 'txtEmpSup form-control','id' =>'txtEmpSup', 'type' =>'text', 'style' => 'display:none', 'value'=>'MyM')); ?>
-													</label>
-												</div>
-											<?php } ?>
-											</td>
-											*/?>
 										</tr>
 										 
 										<tr>
 											<td style="vertical-align: middle" width="10%">Planeada: <input
-												name="data[ActaInstalacione][tipo]" type="radio" value="P" id="rbTipo1">
-												Inopinada: <input name="data[ActaInstalacione][tipo]" type="radio"
+												name="data[ActaMedioAmbiente][tipo]" type="radio" value="P" id="rbTipo1">
+												Inopinada: <input name="data[ActaMedioAmbiente][tipo]" type="radio"
 												value="I" id="rbTipo2">
 											</td>
 											<td style="vertical-align: middle" width="40%">&Aacute;rea:
-												<select name="data[ActaInstalacione][tipo_lugar_id]"
+												<select name="data[ActaMedioAmbiente][tipo_lugar_id]"
 												class="form-control">
 												<option>---</option>
 													<?php 
@@ -175,7 +155,7 @@ tinymce.init({
 													?>
 												</select>
 											</td>
-											<td width="50%">Fecha: <input type="text" name="data[ActaInstalacione][fecha]" id="txtFechaActaInstalacione" class="form-control" placeholder="dd-mm-aaaa" value="<?php echo date('d-m-Y'); ?>">
+											<td width="50%">Fecha: <input type="text" name="data[ActaMedioAmbiente][fecha]" id="txtFechaActaMedioAmbiente" class="form-control" placeholder="dd-mm-aaaa" value="<?php echo date('d-m-Y'); ?>">
 											</td>
 										</tr>
 									</table>
@@ -199,17 +179,9 @@ tinymce.init({
                 <div id="collapseThree" class="panel-collapse in">
 	                <div class="panel-body">
 	                    <ul class="nav nav-pills">
-	                        <li class="active"><a href="#home-pills" data-toggle="tab">ILUMINACI&Oacute;N Y VENTILACI&Oacute;N</a>
+	                        <li class="active"><a href="#home-pills" data-toggle="tab">DOCUMENTACI&Oacute;N MEDIO AMBIENTAL</a>
 	                        </li>
-	                        <li class=""><a href="#profile-pills" data-toggle="tab">ORD&Eacute;N Y LIMPIEZA</a>
-	                        </li>
-	                        <li class=""><a href="#messages-pills" data-toggle="tab">SERVICIOS HIGI&Eacute;NICOS</a>
-	                        </li>
-	                        <li class=""><a href="#settings-pills" data-toggle="tab">SEÑALES DE SEGURIDAD</a>
-	                        </li>
-	                        <li class=""><a href="#settings-pills2" data-toggle="tab">EQUIPOS DE EMERGENCIAS</a>
-	                        </li>
-	                        <li class=""><a href="#settings-pills3" data-toggle="tab">CONDICIONES DE SEGURIDAD</a>
+	                        <li class=""><a href="#profile-pills" data-toggle="tab">CONDICIONES AMBIENTALES</a>
 	                        </li>
 	                    </ul>
 
@@ -220,11 +192,11 @@ tinymce.init({
 									<div class="panel-body">
 										<div class="table-responsive">
 											<table class="table table-striped table-bordered table-hover"
-												id="table-iv-rep">
+												id="table-dm-rep">
 												<thead>
 													<tr>
 														<th
-															style="vertical-align: middle; text-align: center;width:85%">ILUMINACI&Oacute;N Y VENTILACI&Oacute;N
+															style="vertical-align: middle; text-align: center;width:85%">DOCUMENTACI&Oacute;N MEDIO AMBIENTAL
 														</th>
 														<th>
 															Cumplimiento
@@ -237,16 +209,16 @@ tinymce.init({
 												<tbody>
 													<?php for ($i = 0; $i<=2; $i++){?>
 													<tr>
-														<td><textarea name="data[ActaInstalacione][cumplimiento_ilum_vent][<?php echo $i; ?>][inf_des_ilum_vent]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
+														<td><textarea name="data[ActaMedioAmbiente][cumplimiento_doc_med][<?php echo $i; ?>][inf_des_doc_med]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
-															<select class="form-control select-NI-NC select_cu_iv" name= "data[ActaInstalacione][cumplimiento_ilum_vent][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_dm" name= "data[ActaMedioAmbiente][cumplimiento_doc_med][<?php echo $i; ?>][alternativa]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
 															</select>
 														</td>
 														<td>
-															<select class="form-control select_re_iv" name= "data[ActaInstalacione][cumplimiento_ilum_vent][<?php echo $i; ?>][incidencia]">
+															<select class="form-control select_re_dm" name= "data[ActaMedioAmbiente][cumplimiento_doc_med][<?php echo $i; ?>][incidencia]">
 																<option value="4">--</option>
 																<option value="3">N - Nueva Insp./Obs.</option>
 																<option value="2">S - Subsanado</option>
@@ -258,20 +230,20 @@ tinymce.init({
 													<?php }?>
 												</tbody>
 											</table>
-											<div class="row" id="div-btn-add-iv-rep">
+											<div class="row" id="div-btn-add-dm-rep">
 												<div class="span3 col-md-12 col-sm-6 col-xs-6"
 													style="text-align: right;">
-													<a class="btn btn-primary add-more-row-iv-rep">+</a>
+													<a class="btn btn-primary add-more-row-dm-rep">+</a>
 												</div>
 											</div>
 											<br>
 											<table class="table table-striped table-bordered table-hover"
-												id="table-iv">
+												id="table-dm">
 												<tbody>
 													<tr>
 														<td>
 														<?php //echo $this->Form->input('foto',array('type' => 'file')); ?>
-														<div class="fileupload" data-type="FotoInstalIlumVent">
+														<div class="fileupload" data-type="FotoMedAmbDoc">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -322,11 +294,11 @@ tinymce.init({
 									<div class="panel-body">
 										<div class="table-responsive">
 											<table class="table table-striped table-bordered table-hover"
-												id="table-ol-rep">
+												id="table-ca-rep">
 												<thead>
 													<tr>
 														<th
-															style="vertical-align: middle; text-align: center;width:85%">ORD&Eacute;N Y LIMPIEZA
+															style="vertical-align: middle; text-align: center;width:85%">CONDICIONES AMBIENTALES
 														</th>
 														<th>
 															Cumplimiento
@@ -339,16 +311,16 @@ tinymce.init({
 												<tbody>
 													<?php for ($i = 0; $i<=2; $i++){?>
 													<tr>
-														<td><textarea name="data[ActaInstalacione][cumplimiento_orden_limp][<?php echo $i; ?>][inf_des_orden_limp]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
+														<td><textarea name="data[ActaMedioAmbiente][cumplimiento_cond_amb][<?php echo $i; ?>][inf_des_cond_amb]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
 														<td>
-															<select class="form-control select-NI-NC select_cu_ol" name= "data[ActaInstalacione][cumplimiento_orden_limp][<?php echo $i; ?>][alternativa]">
+															<select class="form-control select-NI-NC select_cu_ol" name= "data[ActaMedioAmbiente][cumplimiento_cond_amb][<?php echo $i; ?>][alternativa]">
 																<option value="2">--</option>
 																<option value="1">SI</option>
 																<option value="0">NO</option>
 															</select>
 														</td>
 														<td>
-															<select class="form-control select_re_ol" name= "data[ActaInstalacione][cumplimiento_orden_limp][<?php echo $i; ?>][incidencia]">
+															<select class="form-control select_re_ol" name= "data[ActaMedioAmbiente][cumplimiento_cond_amb][<?php echo $i; ?>][incidencia]">
 																<option value="4">--</option>
 																<option value="3">N - Nueva Insp./Obs.</option>
 																<option value="2">S - Subsanado</option>
@@ -360,19 +332,19 @@ tinymce.init({
 													<?php }?>
 												</tbody>
 											</table>
-											<div class="row" id="div-btn-add-ol-rep">
+											<div class="row" id="div-btn-add-ca-rep">
 												<div class="span3 col-md-12 col-sm-6 col-xs-6"
 													style="text-align: right;">
-													<a class="btn btn-primary add-more-row-ol-rep">+</a>
+													<a class="btn btn-primary add-more-row-ca-rep">+</a>
 												</div>
 											</div>
 											<br>
 											<table class="table table-striped table-bordered table-hover"
-												id="table-ol">
+												id="table-ca">
 												<tbody>
 													<tr>
 														<td>
-														<div class="fileupload" data-type="FotoInstalOrdenLimpieza">
+														<div class="fileupload" data-type="FotoMedAmbCond">
 													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
 													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
 													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -417,407 +389,6 @@ tinymce.init({
 								</div>
 	                        </div>
 
-	                        <div class="tab-pane fade" id="messages-pills">
-	                            <h4>&nbsp;</h4>
-	                            <div class="panel panel-primary">
-									<div class="panel-body">
-										<div class="table-responsive" id="div-sshh">
-											<table class="table table-striped table-bordered table-hover"
-												id="table-sshh-rep">
-												<thead>
-													<tr>
-														<th
-															style="vertical-align: middle; text-align: center;width:85%">SERVICIOS HIGI&Eacute;NICOS
-														</th>
-														<th>
-															Cumplimiento
-														</th>
-														<th>
-															Incidencia
-														</th>
-													</tr>
-												</thead>
-												<tbody>
-													<?php for ($i = 0; $i<=2; $i++){?>
-													<tr>
-														<td><textarea name="data[ActaInstalacione][cumplimiento_sshh][<?php echo $i; ?>][inf_des_sshh]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
-														<td>
-															<select class="form-control select-NI-NC select_cu_sshh" name= "data[ActaInstalacione][cumplimiento_sshh][<?php echo $i; ?>][alternativa]">
-																<option value="2">--</option>
-																<option value="1">SI</option>
-																<option value="0">NO</option>
-															</select>
-														</td>
-														<td>
-															<select class="form-control select_re_sshh" name= "data[ActaInstalacione][cumplimiento_sshh][<?php echo $i; ?>][incidencia]">
-																<option value="4">--</option>
-																<option value="3">N - Nueva Insp./Obs.</option>
-																<option value="2">S - Subsanado</option>
-																<option value="1">R - Reiterativo</option>
-																<option value="0">NO</option>
-															</select>
-														</td>
-													</tr>
-													<?php }?>
-												</tbody>
-											</table>
-											<div class="row" id="div-btn-add-sshh-rep">
-												<div class="span3 col-md-12 col-sm-6 col-xs-6"
-													style="text-align: right;">
-													<a class="btn btn-primary add-more-row-sshh-rep">+</a>
-												</div>
-											</div>
-											<br>
-											<table class="table table-striped table-bordered table-hover"
-												id="table-sshh">
-												<tbody>
-													<tr>
-														<td>
-														<div class="fileupload" data-type="FotoInstalSshh">
-													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
-													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
-													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-													        <div class="row fileupload-buttonbar">
-													            <div class="col-lg-7">
-													                <!-- The fileinput-button span is used to style the file input field as button -->
-													                <span class="btn btn-success fileinput-button">
-													                    <i class="glyphicon glyphicon-plus"></i>
-													                    <span>Add files...</span>
-													                    <input type="file" name="files[]" multiple>
-													                </span>
-													                <button type="submit" class="btn btn-primary start">
-													                    <i class="glyphicon glyphicon-upload"></i>
-													                    <span>Start upload</span>
-													                </button>
-													                <button type="reset" class="btn btn-warning cancel">
-													                    <i class="glyphicon glyphicon-ban-circle"></i>
-													                    <span>Cancel upload</span>
-													                </button>
-													                <!-- The global file processing state -->
-													                <span class="fileupload-process"></span>
-													            </div>
-													            <!-- The global progress state -->
-													            <div class="col-lg-5 fileupload-progress fade">
-													                <!-- The global progress bar -->
-													                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-													                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-													                </div>
-													                <!-- The extended global progress state -->
-													                <div class="progress-extended">&nbsp;</div>
-													            </div>
-													        </div>
-													        <!-- The table listing the files available for upload/download -->
-													        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-													    </div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-	                        </div>
-
-	                        <div class="tab-pane fade" id="settings-pills">
-	                            <h4>&nbsp;</h4>
-	                            <div class="panel panel-primary">
-									<div class="panel-body">
-										<div class="table-responsive" id="div-ss">
-											<table class="table table-striped table-bordered table-hover"
-												id="table-ss-rep">
-												<thead>
-													<tr>
-														<th
-															style="vertical-align: middle; text-align: center;width:85%">SEÑALES DE SEGURIDAD
-														</th>
-														<th>
-															Cumplimiento
-														</th>
-														<th>
-															Incidencia
-														</th>
-													</tr>
-												</thead>
-												<tbody>
-													<?php for ($i = 0; $i<=2; $i++){?>
-													<tr>
-														<td><textarea name="data[ActaInstalacione][cumplimiento_sen_seg][<?php echo $i; ?>][inf_des_sen_seg]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
-														<td>
-															<select class="form-control select-NI-NC select_cu_ss" name= "data[ActaInstalacione][cumplimiento_sen_seg][<?php echo $i; ?>][alternativa]">
-																<option value="2">--</option>
-																<option value="1">SI</option>
-																<option value="0">NO</option>
-															</select>
-														</td>
-														<td>
-															<select class="form-control select_re_ss" name= "data[ActaInstalacione][cumplimiento_sen_seg][<?php echo $i; ?>][incidencia]">
-																<option value="4">--</option>
-																<option value="3">N - Nueva Insp./Obs.</option>
-																<option value="2">S - Subsanado</option>
-																<option value="1">R - Reiterativo</option>
-																<option value="0">NO</option>
-															</select>
-														</td>
-													</tr>
-													<?php }?>
-												</tbody>
-											</table>
-											<div class="row" id="div-btn-add-ss-rep">
-												<div class="span3 col-md-12 col-sm-6 col-xs-6"
-													style="text-align: right;">
-													<a class="btn btn-primary add-more-row-ss-rep">+</a>
-												</div>
-											</div>
-											<br>
-											<table class="table table-striped table-bordered table-hover"
-												id="table-ss">
-												<tbody>
-													<tr>
-														<td>
-														<div class="fileupload" data-type="FotoInstalSenSeg">
-													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
-													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
-													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-													        <div class="row fileupload-buttonbar">
-													            <div class="col-lg-7">
-													                <!-- The fileinput-button span is used to style the file input field as button -->
-													                <span class="btn btn-success fileinput-button">
-													                    <i class="glyphicon glyphicon-plus"></i>
-													                    <span>Add files...</span>
-													                    <input type="file" name="files[]" multiple>
-													                </span>
-													                <button type="submit" class="btn btn-primary start">
-													                    <i class="glyphicon glyphicon-upload"></i>
-													                    <span>Start upload</span>
-													                </button>
-													                <button type="reset" class="btn btn-warning cancel">
-													                    <i class="glyphicon glyphicon-ban-circle"></i>
-													                    <span>Cancel upload</span>
-													                </button>
-													                <!-- The global file processing state -->
-													                <span class="fileupload-process"></span>
-													            </div>
-													            <!-- The global progress state -->
-													            <div class="col-lg-5 fileupload-progress fade">
-													                <!-- The global progress bar -->
-													                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-													                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-													                </div>
-													                <!-- The extended global progress state -->
-													                <div class="progress-extended">&nbsp;</div>
-													            </div>
-													        </div>
-													        <!-- The table listing the files available for upload/download -->
-													        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-													    </div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-	                        </div>
-
-	                        <div class="tab-pane fade" id="settings-pills2">
-	                            <h4>&nbsp;</h4>
-	                            <div class="panel panel-primary">
-									<div class="panel-body">
-										<div class="table-responsive" id="div-ee">
-											<table class="table table-striped table-bordered table-hover"
-												id="table-ee-rep">
-												<thead>
-													<tr>
-														<th
-															style="vertical-align: middle; text-align: center;width:85%">EQUIPOS DE EMERGENCIAS
-														</th>
-														<th>
-															Cumplimiento
-														</th>
-														<th>
-															Incidencia
-														</th>
-													</tr>
-												</thead>
-												<tbody>
-													<?php for ($i = 0; $i<=2; $i++){?>
-													<tr>
-														<td><textarea name="data[ActaInstalacione][cumplimiento_eq_emerg][<?php echo $i; ?>][inf_des_eq_emerg]" rows="2" class="txtInfDesAct4 form-control" id="txtInfDesAct4" cols="30"></textarea></td>
-														<td>
-															<select class="form-control select-NI-NC select_cu_ee" name= "data[ActaInstalacione][cumplimiento_eq_emerg][<?php echo $i; ?>][alternativa]">
-																<option value="2">--</option>
-																<option value="1">SI</option>
-																<option value="0">NO</option>
-															</select>
-														</td>
-														<td>
-															<select class="form-control select_re_ee" name= "data[ActaInstalacione][cumplimiento_eq_emerg][<?php echo $i; ?>][incidencia]">
-																<option value="4">--</option>
-																<option value="3">N - Nueva Insp./Obs.</option>
-																<option value="2">S - Subsanado</option>
-																<option value="1">R - Reiterativo</option>
-																<option value="0">NO</option>
-															</select>
-														</td>
-													</tr>
-													<?php }?>
-												</tbody>
-											</table>
-											<div class="row" id="div-btn-add-ee-rep">
-												<div class="span3 col-md-12 col-sm-6 col-xs-6"
-													style="text-align: right;">
-													<a class="btn btn-primary add-more-row-ee-rep">+</a>
-												</div>
-											</div>
-											<br>
-											<table class="table table-striped table-bordered table-hover">
-											<tbody>	
-													<tr>
-														<td colspan=2>
-														<div class="fileupload" data-type="FotoInstalEqEmerg">
-													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
-													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
-													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-													        <div class="row fileupload-buttonbar">
-													            <div class="col-lg-7">
-													                <!-- The fileinput-button span is used to style the file input field as button -->
-													                <span class="btn btn-success fileinput-button">
-													                    <i class="glyphicon glyphicon-plus"></i>
-													                    <span>Add files...</span>
-													                    <input type="file" name="files[]" multiple>
-													                </span>
-													                <button type="submit" class="btn btn-primary start">
-													                    <i class="glyphicon glyphicon-upload"></i>
-													                    <span>Start upload</span>
-													                </button>
-													                <button type="reset" class="btn btn-warning cancel">
-													                    <i class="glyphicon glyphicon-ban-circle"></i>
-													                    <span>Cancel upload</span>
-													                </button>
-													                <!-- The global file processing state -->
-													                <span class="fileupload-process"></span>
-													            </div>
-													            <!-- The global progress state -->
-													            <div class="col-lg-5 fileupload-progress fade">
-													                <!-- The global progress bar -->
-													                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-													                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-													                </div>
-													                <!-- The extended global progress state -->
-													                <div class="progress-extended">&nbsp;</div>
-													            </div>
-													        </div>
-													        <!-- The table listing the files available for upload/download -->
-													        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-													    </div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="tab-pane fade" id="settings-pills3">
-	                            <h4>&nbsp;</h4>
-	                            <div class="panel panel-primary">
-									<div class="panel-body">
-										<div class="table-responsive" id="div-cseg">
-											<table class="table table-striped table-bordered table-hover"
-												id="table-cseg-rep">
-												<thead>
-													<tr>
-														<th
-															style="vertical-align: middle; text-align: center;width:85%">CONDICIONES DE SEGURIDAD
-														</th>
-														<th>
-															Cumplimiento
-														</th>
-														<th>
-															Incidencia
-														</th>
-													</tr>
-												</thead>
-												<tbody>
-													<?php for ($i = 0; $i<=2; $i++){?>
-													<tr>
-														<td><textarea name="data[ActaInstalacione][cumplimiento_cond_seg][<?php echo $i; ?>][inf_des_cond_seg]" rows="2" class="txtInfDesCond4 form-control" id="txtInfDesCond4" cols="30"></textarea></td>
-														<td>
-															<select class="form-control select-NI-NC select_cu_cseg" name= "data[ActaInstalacione][cumplimiento_cond_seg][<?php echo $i; ?>][alternativa]">
-																<option value="2">--</option>
-																<option value="1">SI</option>
-																<option value="0">NO</option>
-															</select>
-														</td>
-														<td>
-															<select class="form-control select_re_cseg" name= "data[ActaInstalacione][cumplimiento_cond_seg][<?php echo $i; ?>][incidencia]">
-																<option value="4">--</option>
-																<option value="3">N - Nueva Insp./Obs.</option>
-																<option value="2">S - Subsanado</option>
-																<option value="1">R - Reiterativo</option>
-																<option value="0">NO</option>
-															</select>
-														</td>
-													</tr>
-													<?php }?>
-													</tbody>
-											</table>
-											<div class="row" id="div-btn-add-cseg-rep">
-												<div class="span3 col-md-12 col-sm-6 col-xs-6"
-													style="text-align: right;">
-													<a class="btn btn-primary add-more-row-cseg-rep">+</a>
-												</div>
-											</div>
-											<br>
-											<table class="table table-striped table-bordered table-hover">
-											<tbody>	
-													<tr>
-														<td colspan=2>
-														<div class="fileupload" data-type="FotoInstalCondSeg">
-													        <!-- Redirect browsers with JavaScript disabled to the origin page -->
-													        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
-													        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-													        <div class="row fileupload-buttonbar">
-													            <div class="col-lg-7">
-													                <!-- The fileinput-button span is used to style the file input field as button -->
-													                <span class="btn btn-success fileinput-button">
-													                    <i class="glyphicon glyphicon-plus"></i>
-													                    <span>Add files...</span>
-													                    <input type="file" name="files[]" multiple>
-													                </span>
-													                <button type="submit" class="btn btn-primary start">
-													                    <i class="glyphicon glyphicon-upload"></i>
-													                    <span>Start upload</span>
-													                </button>
-													                <button type="reset" class="btn btn-warning cancel">
-													                    <i class="glyphicon glyphicon-ban-circle"></i>
-													                    <span>Cancel upload</span>
-													                </button>
-													                <!-- The global file processing state -->
-													                <span class="fileupload-process"></span>
-													            </div>
-													            <!-- The global progress state -->
-													            <div class="col-lg-5 fileupload-progress fade">
-													                <!-- The global progress bar -->
-													                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-													                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-													                </div>
-													                <!-- The extended global progress state -->
-													                <div class="progress-extended">&nbsp;</div>
-													            </div>
-													        </div>
-													        <!-- The table listing the files available for upload/download -->
-													        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-													    </div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
                     </div>
                 </div>
@@ -851,7 +422,7 @@ tinymce.init({
 									<td style="vertical-align: middle; width:50%">Cargo:
 									<?php
 										echo "<span style='display: inline-flex; width: 100%;'>";
-										echo "<select name='data[ActaInstalacione][reponsable_act_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-act-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<select name='data[ActaMedioAmbiente][reponsable_act_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-act-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_actividades)){
 											//echo "<option>---</option>";
 											foreach ($list_all_actividades as $id => $des):
@@ -864,7 +435,7 @@ tinymce.init({
 									<td style="vertical-align: middle; width:50%">Cargo:
 									<?php
 										echo "<span style='display: inline-flex; width: 100%;'>";
-										echo "<select name='data[ActaInstalacione][reponsable_sup_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-sup-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<select name='data[ActaMedioAmbiente][reponsable_sup_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-sup-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_actividades)){
 											//echo "<option>---</option>";
 											foreach ($list_all_actividades as $id => $des):
@@ -879,7 +450,7 @@ tinymce.init({
 									<td style='width:35%;'>Nombre:
 									<?php
 										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-act'>";
-										echo "<select name='data[ActaInstalacione][reponsable_act_id]' class='cbo-responsable-select2 cbo-reponsable-act form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<select name='data[ActaMedioAmbiente][reponsable_act_id]' class='cbo-responsable-select2 cbo-reponsable-act form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
 											echo "<option></option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
@@ -891,7 +462,7 @@ tinymce.init({
 									<td style='width:35%;'>Nombre:
 									<?php
 										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-sup'>";
-										echo "<select name='data[ActaInstalacione][reponsable_sup_id]' class='cbo-responsable-select2 cbo-reponsable-sup form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
+										echo "<select name='data[ActaMedioAmbiente][reponsable_sup_id]' class='cbo-responsable-select2 cbo-reponsable-sup form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
 								 	    if (isset($list_all_trabajadores)){
 											echo "<option></option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
