@@ -580,9 +580,9 @@ function sumAcsshhularNormas(){
 
 		  	normas_cumplidas = Math.round(n_cu_dm + n_cu_ca + n_cu_sshh + n_cu_ss + n_cu_ee + n_cu_cseg);
 			normas_incumplidas = Math.round(n_in_dm + n_in_ca + n_in_sshh + n_in_ss + n_in_ee + n_in_cseg);
-			sum_normas = normas_csshhplidas + normas_incumplidas;
+			sum_normas = normas_cumplidas + normas_incumplidas;
 
-			porc_nc = Math.round((normas_csshhplidas * 100) / sum_normas);
+			porc_nc = Math.round((normas_cumplidas * 100) / sum_normas);
 			porc_ni = Math.round((normas_incumplidas * 100) / sum_normas);
 
 			porc_cu_dm = n_cu_dm > 0 ? Math.round((n_cu_dm*100)/sum_normas) : 0;

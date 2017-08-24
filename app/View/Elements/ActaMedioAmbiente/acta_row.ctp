@@ -41,9 +41,9 @@
             <center>
                 <?php //if((($this->Session->read('Auth.User.tipo_user_id') != 3) && ($this->Session->read('Auth.User.id') == $acta->getAttr('reponsable_sup_id'))) || $this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
                 <?php if(($this->Session->read('Auth.User.id') == $acta->getAttr('reponsable_sup_id')) || $this->Session->read('Auth.User.tipo_user_id') == 1 || $this->Session->read('Auth.User.tipo_user_id') == 3) { ?>
-                    <a href="<?= ENV_WEBROOT_FULL_URL; ?>acta_med_amb/editar_informe_med_amb/<?php echo $acta->getAttr('id')?>"><i class="fa fa-pencil fa-lg"></i> </a>| 
+                    <a href="<?= ENV_WEBROOT_FULL_URL; ?>acta_medio_ambientes/editar_informe_med_amb/<?php echo $acta->getAttr('id')?>"><i class="fa fa-pencil fa-lg"></i> </a>| 
                 <?php } ?>
-                <a href="<?= ENV_WEBROOT_FULL_URL; ?>acta_med_amb/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-search fa-lg"></i> </a>
+                <a href="<?= ENV_WEBROOT_FULL_URL; ?>acta_medio_ambientes/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-search fa-lg"></i> </a>
                 <?php if((($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') == $acta->getAttr('reponsable_sup_id'))) || $this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
                     |
                     <a href="#myModalDeleteActa" role="button" data-toggle="modal" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i class="fa fa-times open-model-delete-acta-instal fa-lg"></i> </a>

@@ -101,7 +101,7 @@ class ActaMedioAmbientesController extends AppController{
 		$this->loadModel('TipoLugare');
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
-		$list_all_actas = $this->ActaMedioAmbiente->listActaMedioAmbientes();
+		$list_all_actas = $this->ActaMedioAmbiente->listActaMedAmb();
 		$list_all_unidades_negocios = $this->UnidadesNegocio->listUnidadesNegocios();
 		$list_all_trabajadores = $this->Trabajadore->listTrabajadores();
 		$list_all_actividades = $this->Actividade->listActividades();
@@ -352,7 +352,7 @@ class ActaMedioAmbientesController extends AppController{
 		$this->loadModel('TipoLugare');
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
-		$list_all_actas = $this->ActaMedioAmbiente->listActaMedioAmbientes();
+		$list_all_actas = $this->ActaMedioAmbiente->listActaMedAmb();
 		$list_all_unidades_negocios = $this->UnidadesNegocio->listUnidadesNegocios();
 		$list_all_trabajadores = $this->Trabajadore->listTrabajadores();
 		$list_all_actividades = $this->Actividade->listActividades();
