@@ -373,8 +373,8 @@ class ActaMedioAmbientesController extends AppController{
 				$error_validation = '';
 	
 				$this->ActaMedioAmbiente->id = $acta_med_amb_id;
-				
-				$this->request->data['ActaMedioAmbiente']['json_doc_med'] = json_encode($this->request->data['ActaMedioAmbiente']['cumplimiento_doc_med']);
+
+				$this->request->data['ActaMedioAmbiente']['json_doc_med_amb'] = json_encode($this->request->data['ActaMedioAmbiente']['cumplimiento_doc_med']);
 				$this->request->data['ActaMedioAmbiente']['json_cond_amb'] = json_encode($this->request->data['ActaMedioAmbiente']['cumplimiento_cond_amb']);
 				
 				
@@ -1053,7 +1053,7 @@ class ActaMedioAmbientesController extends AppController{
 		$this->loadModel('Actividade');
 		$obj_acta = $this->ActaMedioAmbiente->findById($acta_med_amb_id);
 
-		$this->layout= 'layout_view_pdf_insp_seguridad';	
+		$this->layout= 'layout_view_pdf_insp_medio_amb';	
 		/*if($this->Session->read('Auth.User.tipo_user_id') == 3){
 			$this->layout= 'layout_view_pdf_ensa';	
 		}else{
