@@ -832,6 +832,160 @@ class ReportesController extends AppController{
 		echo $tabla;
 	}
 
+	function excel_resumen_cantidad_informes(){
+		$this->autoRender = false;
+		ini_set('memory_limit', '-1');
+		ini_set('max_execution_time', 300000);
+		set_time_limit(0);
+
+		$fec_inicio = $this->params['url']['fec_inicio'];
+		$fec_fin = $this->params['url']['fec_fin'];
+
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+	
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+
+		$this->loadModel('Acta');
+		$this->loadModel('Empresa');
+		$this->loadModel('UnidadesNegocio');
+		
+		//$list_acta_all = $this->Acta->listAllActas('Acta.created','', '','','',$fec_inicio_format,$fec_fin_format,'DESC');
+
+		$color = 'background: #D6DCE4;';
+		$tabla='<table border=1>
+				<tr><th colspan="17">Cuadro Resumen de Cantidades de Supervisi&oacute;n de Seguridad - Ensa 2017</th></tr>
+				<tr>
+					<th rowspan="2" style="'.$color.' width:50px;"">Item</th>
+					<th rowspan="2" style="'.$color.' width:120px;"">Empresa</th>
+					<th rowspan="2" style="'.$color.' width:100px;"">Fecha</th>
+					<th rowspan="2" style="'.$color.' width:200px;">Obra</th>
+					<th rowspan="2" style="'.$color.' width:120px;">Profesionales de Obra</th>
+					<th rowspan="2" style="'.$color.' width:150px;">Zona de Influencia</th>
+					<th rowspan="2" style="'.$color.' width:200px;">&Aacute;rea</th>
+					<th rowspan="2" style="'.$color.' width:150px;">Estado</th>
+					<th colspan="8" style="'.$color.' width:90px;">INFORMES DETALLES</th>
+					<th rowspan="2" style="'.$color.' width:90px;">Total</th>
+				</tr><tr>
+					<th style="'.$color.' width:50px;">ene-17</th>
+					<th style="'.$color.' width:50px;">feb-17</th>
+					<th style="'.$color.' width:50px;">mar-17</th>
+					<th style="'.$color.' width:50px;">abril-17</th>
+					<th style="'.$color.' width:50px;">may-17</th>
+					<th style="'.$color.' width:50px;">jun-17</th>
+					<th style="'.$color.' width:50px;">jul-17</th>
+					<th style="'.$color.' width:50px;">ago-17</th>
+				</tr>';
+		/*foreach ($list_acta_all as $key => $obj_acta){
+			$tabla.='<tr>';
+			$tabla.= '<td>'.($key+1).'</td>';
+			$tabla.= '<td>'.$obj_acta->getAttr('num_informe').'</td>';
+			$tabla.= '<td>'.date('d/m/Y',strtotime($obj_acta->getAttr('fecha'))).'</td>';
+			$tabla.= '<td>'.$obj_acta->UnidadesNegocio->getAttr('descripcion').'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->TipoLugare->getAttr('descripcion')).'</td>';
+			$tabla.= '<td>'.$obj_acta->Empresa->getAttr('nombre').'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('obra')).'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('actividad')).'</td>';
+
+			$tabla.= '<td>'.$obj_acta->getAttr('cumplimiento').'%'.'</td>';
+			$tabla.= '<td>'.$obj_acta->getAttr('total_cumplimiento').'</td>'; // normas cumplidas
+			$suma_cu_in = $obj_acta->getAttr('total_cumplimiento') + $obj_acta->getAttr('total_incumplimiento');
+			$tabla.= '<td>'.$suma_cu_in.'</td>'; // normas cumplidas + normas incumplidas
+
+			$tabla.= '<td>'.strip_tags(utf8_decode($obj_acta->getAttr('info_des_med'))).'</td>';
+			
+			//epp
+			$tabla.= '<td>';
+			$epp = json_decode($obj_acta->getAttr('info_des_epp'));
+			foreach($epp as $key => $value){
+				if($value->info_des_epp != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->info_des_epp);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//señalizacion
+			$tabla.= '<td>';
+			$senalizacion = json_decode($obj_acta->getAttr('info_des_se_de'));
+			foreach($senalizacion as $key => $value){
+				if($value->info_des_se_de != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->info_des_se_de);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//unidad movil
+			$tabla.= '<td>';
+			$undmovil = json_decode($obj_acta->getAttr('info_des_um'));
+			foreach($undmovil as $key => $value){
+				if($value->info_des_um != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->info_des_um);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//documento de seguridad
+			$tabla.= '<td>';
+			$documento = json_decode($obj_acta->getAttr('info_des_doc'));
+			foreach($documento as $key => $value){
+				if($value->info_des_doc != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->info_des_doc);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//cumplimiento de procedimiento
+			$tabla.= '<td>';
+			$cumplimiento_procedimiento = json_decode($obj_acta->getAttr('info_des_act'));
+			foreach($cumplimiento_procedimiento as $key => $value){
+				if($value->info_des_act != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->info_des_act);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//acto y condiciones subestandares
+			$tabla.= '<td>';
+			$act_cond = json_decode($obj_acta->getAttr('info_des_cond'));
+			foreach($act_cond as $key => $value){
+				if($value->info_des_cond != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->info_des_cond);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			$tabla.= '</tr>';
+		}*/
+		$tabla = $tabla.'</table>';
+		header('Content-type: application/vnd.ms-excel');
+		header("Content-Disposition: attachment; filename=reporte-".date('Y-m-d-h-i-s').".xls");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		echo $tabla;
+	}
+
 	function excel_areas(){ //agrupar las actas por Tipo de Lugar
 		$this->autoRender = false;
 		ini_set('memory_limit', '-1');
