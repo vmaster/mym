@@ -369,6 +369,33 @@ App::uses('AppModel','Model');
     		
     	return $arr_obj_acta;
     }
+
+    public function listAllActasbyObra($order_by='Acta.created',$fec_inicio='', $fec_fin='',$order='DESC') {
+        
+        $arr_obj_acta = $this->findObjects('all',array(
+            'joins' => array(
+                    array(
+                            'table' => 'empresas',
+                            'alias' => 'EmpresaJoin',
+                            'type' => 'INNER',
+                            'conditions' => array(
+                                    'EmpresaJoin.id = Acta.empresa_id'
+                            )
+                    )
+            ),
+            'conditions'=>array(
+                    'AND' => array(
+                            'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                            'Acta.estado '=> 1,
+                    )
+            ),
+            'group'=> array('Acta.obra'),
+            'order'=> array($order_by.' '.$order)
+          )
+        );
+            
+        return $arr_obj_acta;
+    }
     
 	public function listSearchActas($search_ano='', $tipo_user_id = '') {
 

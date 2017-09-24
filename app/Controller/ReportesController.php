@@ -868,7 +868,6 @@ class ReportesController extends AppController{
 				<tr>
 					<th rowspan="2" style="'.$color.' width:50px;"">Item</th>
 					<th rowspan="2" style="'.$color.' width:120px;"">Empresa</th>
-					<th rowspan="2" style="'.$color.' width:100px;"">Fecha</th>
 					<th rowspan="2" style="'.$color.' width:200px;">Obra</th>
 					<th rowspan="2" style="'.$color.' width:120px;">Profesionales de Obra</th>
 					<th rowspan="2" style="'.$color.' width:150px;">Zona de Influencia</th>
@@ -886,98 +885,31 @@ class ReportesController extends AppController{
 					<th style="'.$color.' width:50px;">jul-17</th>
 					<th style="'.$color.' width:50px;">ago-17</th>
 				</tr>';
-		/*foreach ($list_acta_all as $key => $obj_acta){
+
+		$list_acta_all = $this->Acta->listAllActasbyObra('Acta.created',$fec_inicio_format,$fec_fin_format,'DESC');
+
+
+//debug($list_acta_all);exit();
+		foreach ($list_acta_all as $key => $obj_acta){
 			$tabla.='<tr>';
 			$tabla.= '<td>'.($key+1).'</td>';
-			$tabla.= '<td>'.$obj_acta->getAttr('num_informe').'</td>';
-			$tabla.= '<td>'.date('d/m/Y',strtotime($obj_acta->getAttr('fecha'))).'</td>';
-			$tabla.= '<td>'.$obj_acta->UnidadesNegocio->getAttr('descripcion').'</td>';
-			$tabla.= '<td>'.utf8_decode($obj_acta->TipoLugare->getAttr('descripcion')).'</td>';
 			$tabla.= '<td>'.$obj_acta->Empresa->getAttr('nombre').'</td>';
 			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('obra')).'</td>';
-			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('actividad')).'</td>';
-
-			$tabla.= '<td>'.$obj_acta->getAttr('cumplimiento').'%'.'</td>';
-			$tabla.= '<td>'.$obj_acta->getAttr('total_cumplimiento').'</td>'; // normas cumplidas
-			$suma_cu_in = $obj_acta->getAttr('total_cumplimiento') + $obj_acta->getAttr('total_incumplimiento');
-			$tabla.= '<td>'.$suma_cu_in.'</td>'; // normas cumplidas + normas incumplidas
-
-			$tabla.= '<td>'.strip_tags(utf8_decode($obj_acta->getAttr('info_des_med'))).'</td>';
-			
-			//epp
-			$tabla.= '<td>';
-			$epp = json_decode($obj_acta->getAttr('info_des_epp'));
-			foreach($epp as $key => $value){
-				if($value->info_des_epp != ''){
-					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_epp);
-					}
-				}
-			}
-			$tabla.= '</td>';
-
-			//señalizacion
-			$tabla.= '<td>';
-			$senalizacion = json_decode($obj_acta->getAttr('info_des_se_de'));
-			foreach($senalizacion as $key => $value){
-				if($value->info_des_se_de != ''){
-					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_se_de);
-					}
-				}
-			}
-			$tabla.= '</td>';
-
-			//unidad movil
-			$tabla.= '<td>';
-			$undmovil = json_decode($obj_acta->getAttr('info_des_um'));
-			foreach($undmovil as $key => $value){
-				if($value->info_des_um != ''){
-					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_um);
-					}
-				}
-			}
-			$tabla.= '</td>';
-
-			//documento de seguridad
-			$tabla.= '<td>';
-			$documento = json_decode($obj_acta->getAttr('info_des_doc'));
-			foreach($documento as $key => $value){
-				if($value->info_des_doc != ''){
-					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_doc);
-					}
-				}
-			}
-			$tabla.= '</td>';
-
-			//cumplimiento de procedimiento
-			$tabla.= '<td>';
-			$cumplimiento_procedimiento = json_decode($obj_acta->getAttr('info_des_act'));
-			foreach($cumplimiento_procedimiento as $key => $value){
-				if($value->info_des_act != ''){
-					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_act);
-					}
-				}
-			}
-			$tabla.= '</td>';
-
-			//acto y condiciones subestandares
-			$tabla.= '<td>';
-			$act_cond = json_decode($obj_acta->getAttr('info_des_cond'));
-			foreach($act_cond as $key => $value){
-				if($value->info_des_cond != ''){
-					if($value->alternativa != 1){
-						$tabla.= utf8_decode($value->info_des_cond);
-					}
-				}
-			}
-			$tabla.= '</td>';
-
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
+			$tabla.= '<td></td>';
 			$tabla.= '</tr>';
-		}*/
+		}
 		$tabla = $tabla.'</table>';
 		header('Content-type: application/vnd.ms-excel');
 		header("Content-Disposition: attachment; filename=reporte-".date('Y-m-d-h-i-s').".xls");
