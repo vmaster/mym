@@ -309,10 +309,37 @@ App::uses('AppModel','Model');
                             'message' => 'Responsable de la Supervisi&oacute;n requerido'
                     )
             )
-    );
-    
-    
-    /*public function listAllActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$fec_inicio='', $fec_fin='',$order='DESC', $tipo_user_id ='') {
+        );
+    }
+
+    public function listAllActasbyObra($order_by='Acta.created',$fec_inicio='', $fec_fin='',$order='DESC') {
+        
+        $arr_obj_acta = $this->findObjects('all',array(
+            'joins' => array(
+                    array(
+                            'table' => 'empresas',
+                            'alias' => 'EmpresaJoin',
+                            'type' => 'INNER',
+                            'conditions' => array(
+                                    'EmpresaJoin.id = Acta.empresa_id'
+                            )
+                    )
+            ),
+            'conditions'=>array(
+                    'AND' => array(
+                            'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                            'Acta.estado '=> 1,
+                    )
+            ),
+            'group'=> array('Acta.obra'),
+            'order'=> array($order_by.' '.$order)
+          )
+        );
+            
+        return $arr_obj_acta;
+    }
+
+    public function listAllActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$fec_inicio='', $fec_fin='',$order='DESC', $tipo_user_id ='') {
         if($tipo_user_id== 3){
                     $arr_obj_acta = $this->findObjects('all',array(
                         'joins' => array(
@@ -366,9 +393,9 @@ App::uses('AppModel','Model');
                       )
                     );
                 }
-    		
-    	return $arr_obj_acta;
-    }*/
+            
+        return $arr_obj_acta;
+    }
     
 	public function listSearchActas($search_ano='', $search_consorcio='', $tipo_user_id = '') {
 
