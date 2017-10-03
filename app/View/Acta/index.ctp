@@ -22,11 +22,11 @@ $body = $('body');
 var order_by_select;
 var order_by_or;
 
-/* Cambiar de año*/
+/* Cambiar de aÃ±o*/
 $body.off('click','div#acta .btn-consultar-acta');
 $body.on('click', 'div#acta .btn-consultar-acta' , function(){
 $('#conteiner_all_rows').html('Cargando...');
-$('#conteiner_all_rows').load(env_webroot_script+'actas/search_actas/'+$('#cbo-ano-search').val(),function(){
+$('#conteiner_all_rows').load(env_webroot_script+ escape('actas/search_actas/'+$('#cbo-ano-search').val()+'/'+ $('#cbo-entidad-search').val()),function(){
 	$('#table_content_actas').DataTable({
 		dom: 'T<"clear">lfrtip',
 		tableTools: {
@@ -241,6 +241,20 @@ div#spinner-send-report
 				?>						
 			</select>
 		</div>
+		<?php /*if($this->Session->read('Auth.User.tipo_user_id')==1) { ?>
+			<div class="col-md-3 col-sm-6 col-xs-6">
+				<label><?php echo __('Consorcio'); ?> </label>
+					<select class="select2 form-control" id="cbo-entidad-search">
+				        <?php 
+					        if (isset($list_consorcios)){
+					            	foreach ($list_consorcios as $consorcio) {
+					            		echo "<option value = ".$consorcio->getAttr('id').">".$consorcio->getAttr('descripcion')."</option>";
+					            	}
+					        }
+				        ?>
+					</select>
+			</div>
+		<?php  } */ ?>
 		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-acta"><?php echo __('Consultar');?></button>
 		</div>
@@ -264,12 +278,12 @@ div#spinner-send-report
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true"><i class="fa fa-times"></i></button>
-					<h3 id="myModalLabel"><?php echo utf8_encode(__('Confirmar Eliminación')); ?></h3>
+					<h3 id="myModalLabel"><?php echo utf8_encode(__('Confirmar EliminaciÃ³n')); ?></h3>
 				</div>
 				<div class="modal-body">
 					<p class="error-text">
 						<i class="icon-warning-sign modal-icon"></i>
-						<?php echo utf8_encode(__('¿Estas seguro de querer Eliminar el acta?')); ?>
+						<?php echo utf8_encode(__('Â¿Estas seguro de querer Eliminar el acta?')); ?>
 					</p>
 				</div>
 				<div class="modal-footer">

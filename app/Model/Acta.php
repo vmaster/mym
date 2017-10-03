@@ -312,7 +312,7 @@ App::uses('AppModel','Model');
     );
     
     
-    public function listAllActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$fec_inicio='', $fec_fin='',$order='DESC', $tipo_user_id ='') {
+    /*public function listAllActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$fec_inicio='', $fec_fin='',$order='DESC', $tipo_user_id ='') {
         if($tipo_user_id== 3){
                     $arr_obj_acta = $this->findObjects('all',array(
                         'joins' => array(
@@ -368,15 +368,16 @@ App::uses('AppModel','Model');
                 }
     		
     	return $arr_obj_acta;
-    }
+    }*/
     
-	public function listSearchActas($search_ano='', $tipo_user_id = '') {
+	public function listSearchActas($search_ano='', $search_consorcio='', $tipo_user_id = '') {
 
         if($tipo_user_id == 3){
             $arr_obj_acta = $this->findObjects('all',array(
+                   
                     'conditions'=>array(
                             'AND' => array(
-                                    'YEAR(`created`)'=> $search_ano,
+                                    'YEAR(Acta.`created`)'=> $search_ano,
                                     'Acta.estado '=> 1,
                                     'Acta.created_mym' => 1
                             )
@@ -384,21 +385,89 @@ App::uses('AppModel','Model');
                     'order'=> array('Acta.created desc'),
             )
             );
-        }else{
-            $arr_obj_acta = $this->findObjects('all',array(
-                    'conditions'=>array(
-                            'AND' => array(
-                                    'YEAR(`created`)'=> $search_ano,
-                                    'Acta.estado '=> 1,
-                                    'Acta.created_mym' => 0
-                            )
-                    ),
-                    'order'=> array('Acta.created desc'),
-            )
-            );
+        }elseif($tipo_user_id== 2){ // CASO SEA SUPERVISOR
+            if(AuthComponent::user('consorcio_id') == 1){
+                $search_consorcio = 1;
+                $arr_obj_acta = $this->findObjects('all',
+                    array(
+                     'joins' => 
+                            array(
+                                array(
+                                    'table'=> 'users',
+                                    'alias'=> 'UserJoin',
+                                    'type' => 'INNER',
+                                    'conditions'=> array(
+                                        'UserJoin.id = Acta.reponsable_sup_id')
+
+                                    )
+                        ),
+                        'conditions'=>array(
+                                'AND' => array(
+                                        'YEAR(Acta.`created`)'=> $search_ano,
+                                        'Acta.estado '=> 1,
+                                        'Acta.created_mym' => 0,
+                                        'UserJoin.consorcio_id' => 1
+                                )
+                        ),
+                        'order'=> array('Acta.created desc'),
+                    )
+                );
+            }else{
+                $search_consorcio = 2;
+                $arr_obj_acta = $this->findObjects('all',
+                    array(
+                        'joins' => 
+                        array(
+                                array(
+                                    'table'=> 'users',
+                                    'alias'=> 'UserJoin',
+                                    'type' => 'INNER',
+                                    'conditions'=> array(
+                                        'UserJoin.id = Acta.reponsable_sup_id')
+
+                                    )
+                        ),
+                        'conditions'=>array(
+                                'AND' => array(
+                                        'YEAR(Acta.`created`)'=> $search_ano,
+                                        'Acta.estado '=> 1,
+                                        'Acta.created_mym' => 0,
+                                        'UserJoin.consorcio_id' => 2
+                                )
+                        ),
+                        'order'=> array('Acta.created desc'),
+                    )
+                );
+            }
+        }else{ // CASO SEA ADMINISTRADOR DEL SISTEMA
+            $arr_obj_acta = $this->findObjects('all',
+                    array(
+                        'joins' => 
+                        array(
+                                array(
+                                    'table'=> 'users',
+                                    'alias'=> 'UserJoin',
+                                    'type' => 'INNER',
+                                    'conditions'=> array(
+                                        'UserJoin.id = Acta.reponsable_sup_id')
+
+                                    )
+                        ),
+                        'conditions'=>array(
+                                'AND' => array(
+                                        'YEAR(Acta.created)'=> $search_ano,
+                                        'Acta.estado '=> 1,
+                                        'Acta.created_mym' => 0,
+                                        'UserJoin.consorcio_id' => $search_consorcio
+                                )
+                        ),
+                        'order'=> array('Acta.created desc')
+                    )
+                );
         }
     		
     	return $arr_obj_acta;
+        
     }
 	
     public function listFindActas($order_by='Acta.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$search_ano='',$order='DESC', $start=0, $per_page=10, $tipo_user_id = '') {
@@ -432,35 +501,123 @@ App::uses('AppModel','Model');
     				'order'=> array($order_by.' '.$order),
     		)
     		);
-        }else{
-            $arr_obj_acta = $this->findObjects('all',array(
-                    'joins' => array(
-                            array(
-                                    'table' => 'empresas',
-                                    'alias' => 'EmpresaJoin',
+        }elseif($tipo_user_id== 2){ //  SI ES TIPO DE USUARIO SUPERVISOR DE MYM PREGUNTAREMOS DE QUE CONSORCIO ES
+            
+            if(AuthComponent::user('consorcio_id') == 1){ // CASO SEA DE ENSA
+                $arr_obj_acta = $this->findObjects('all',array(
+                        'joins' => array(
+                                array(
+                                        'table' => 'empresas',
+                                        'alias' => 'EmpresaJoin',
+                                        'type' => 'INNER',
+                                        'conditions' => array(
+                                                'EmpresaJoin.id = Acta.empresa_id'
+                                        )
+                                ),
+                                array(
+                                    'table'=> 'users',
+                                    'alias'=> 'UserJoin',
                                     'type' => 'INNER',
-                                    'conditions' => array(
-                                            'EmpresaJoin.id = Acta.empresa_id'
+                                    'conditions'=> array(
+                                        'UserJoin.id = Acta.reponsable_sup_id')
+
                                     )
-                            )
-                    ),
-                    'conditions'=>array(
-                            'AND' => array(
-                                    'Acta.numero LIKE'=> '%'.$search_nro.'%',
-                                    'Acta.actividad LIKE'=> '%'.$search_actividad.'%',
-                                    'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
-                                    'Acta.obra LIKE'=> '%'.$search_obra.'%',
-                                    'YEAR(Acta.`created`)'=> $search_ano,
-                                    'Acta.estado '=> 1,
-                                    'Acta.created_mym' => 0
-                            )
-                    ),
-                    //'page'=> $start,
-                    'limit'=> $per_page,
-                    'offset'=> $start,
-                    'order'=> array($order_by.' '.$order),
-            )
-            ); 
+                        ),
+                        'conditions'=>array(
+                                'AND' => array(
+                                        'Acta.numero LIKE'=> '%'.$search_nro.'%',
+                                        'Acta.actividad LIKE'=> '%'.$search_actividad.'%',
+                                        'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
+                                        'Acta.obra LIKE'=> '%'.$search_obra.'%',
+                                        'YEAR(Acta.`created`)'=> $search_ano,
+                                        'Acta.estado '=> 1,
+                                        'Acta.created_mym' => 0,
+                                        'UserJoin.consorcio_id' => 1
+                                )
+                        ), 
+                        //'page'=> $start,
+                        'limit'=> $per_page,
+                        'offset'=> $start,
+                        'order'=> array($order_by.' '.$order),
+                )
+                );
+            }else{// CASO SEA DE ENOSA
+                $arr_obj_acta = $this->findObjects('all',array(
+                        'joins' => array(
+                                array(
+                                        'table' => 'empresas',
+                                        'alias' => 'EmpresaJoin',
+                                        'type' => 'INNER',
+                                        'conditions' => array(
+                                                'EmpresaJoin.id = Acta.empresa_id'
+                                        )
+                                ),
+                                array(
+                                    'table'=> 'users',
+                                    'alias'=> 'UserJoin',
+                                    'type' => 'INNER',
+                                    'conditions'=> array(
+                                        'UserJoin.id = Acta.reponsable_sup_id')
+
+                                    )
+                        ),
+                        'conditions'=>array(
+                                'AND' => array(
+                                        'Acta.numero LIKE'=> '%'.$search_nro.'%',
+                                        'Acta.actividad LIKE'=> '%'.$search_actividad.'%',
+                                        'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
+                                        'Acta.obra LIKE'=> '%'.$search_obra.'%',
+                                        'YEAR(Acta.`created`)'=> $search_ano,
+                                        'Acta.estado '=> 1,
+                                        'Acta.created_mym' => 0,
+                                        'UserJoin.consorcio_id' => 2 // CASO SEA DE ENOSA
+                                )
+                        ), 
+                        //'page'=> $start,
+                        'limit'=> $per_page,
+                        'offset'=> $start,
+                        'order'=> array($order_by.' '.$order),
+                )
+                );
+            } 
+        }else{// EN CASO SEA EL ADMINISTRADOR DEL SISTEMA
+            $arr_obj_acta = $this->findObjects('all',array(
+                        'joins' => array(
+                                array(
+                                        'table' => 'empresas',
+                                        'alias' => 'EmpresaJoin',
+                                        'type' => 'INNER',
+                                        'conditions' => array(
+                                                'EmpresaJoin.id = Acta.empresa_id'
+                                        )
+                                ),
+                                array(
+                                    'table'=> 'users',
+                                    'alias'=> 'UserJoin',
+                                    'type' => 'INNER',
+                                    'conditions'=> array(
+                                        'UserJoin.id = Acta.reponsable_sup_id')
+
+                                    )
+                        ),
+                        'conditions'=>array(
+                                'AND' => array(
+                                        'Acta.numero LIKE'=> '%'.$search_nro.'%',
+                                        'Acta.actividad LIKE'=> '%'.$search_actividad.'%',
+                                        'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
+                                        'Acta.obra LIKE'=> '%'.$search_obra.'%',
+                                        'YEAR(Acta.`created`)'=> $search_ano,
+                                        'Acta.estado '=> 1,
+                                        'Acta.created_mym' => 0,
+                                        'UserJoin.consorcio_id' => 1 //CONSORCIO ENSA
+                                )
+                        ), 
+                        //'page'=> $start,
+                        'limit'=> $per_page,
+                        'offset'=> $start,
+                        'order'=> array($order_by.' '.$order),
+                )
+                );
         }
     	return $arr_obj_acta;
     }
