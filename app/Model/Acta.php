@@ -310,7 +310,6 @@ App::uses('AppModel','Model');
                     )
             )
         );
-    }
 
     public function listAllActasbyObra($order_by='Acta.created',$fec_inicio='', $fec_fin='',$order='DESC') {
         
