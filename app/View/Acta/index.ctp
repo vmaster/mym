@@ -241,7 +241,7 @@ div#spinner-send-report
 				?>						
 			</select>
 		</div>
-		<?php /*if($this->Session->read('Auth.User.tipo_user_id')==1) { ?>
+		<?php if($this->Session->read('Auth.User.tipo_user_id')==1) { ?>
 			<div class="col-md-3 col-sm-6 col-xs-6">
 				<label><?php echo __('Consorcio'); ?> </label>
 					<select class="select2 form-control" id="cbo-entidad-search">
@@ -254,7 +254,7 @@ div#spinner-send-report
 				        ?>
 					</select>
 			</div>
-		<?php  } */ ?>
+		<?php  } ?>
 		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-acta"><?php echo __('Consultar');?></button>
 		</div>
