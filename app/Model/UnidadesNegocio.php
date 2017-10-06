@@ -19,6 +19,22 @@ App::uses('AppModel','Model');
     				'counterQuery' => ''
     		)
     );
+	
+	public $belongsTo = array(
+			'Consorcio' => array(
+    				'className' => 'Consorcio',
+    				'foreignKey' => 'consorcio_id',
+    				'dependent' => false,
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => '',
+    				'limit' => '',
+    				'offset' => '',
+    				'exclusive' => '',
+    				'finderQuery' => '',
+    				'counterQuery' => ''
+    		)
+    );
 
     public $validate = array(
     		'descripcion'    => array(

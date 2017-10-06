@@ -61,6 +61,7 @@
 		          <th><?php echo utf8_encode(__('Nombre de Usuario')); ?></th>
 		          <th><?php echo __('Tipo de usuario'); ?></th>
 		          <th><?php echo __('Nombre y Apellido'); ?></th>
+				  <th><?php echo __('Consorcio'); ?></th>
 		          <th><?php echo __('Estado'); ?></th>
 		          
 		          <th><?php echo __('Operaciones'); ?></th>
@@ -78,6 +79,7 @@
 						<td><?php echo $user->getAttr('username'); ?></td>
 						<td><?php echo $user->TipoUsuario->getAttr('descripcion'); ?></td>
 						<td><?php echo utf8_encode($user->Trabajadore->getAttr('apellido_nombre')); ?></td>
+						<td><?php echo $user->Consorcio->getAttr('descripcion'); ?></td>
 						<td><?php echo ($user->getAttr('estado')==1)?"ACTIVO":"INACTIVO"; ?></td>
 						<td><a><i class="fa fa-pencil edit-user-trigger"></i> </a> 
 							<a href="#myModalDeleteUser" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-user"></i> </a>

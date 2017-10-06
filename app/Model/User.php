@@ -18,6 +18,13 @@ App::uses('AppModel','Model');
     				'conditions' => '',
     				'fields' => '',
     				'order' => ''
+    		),
+			'Consorcio' => array(
+    				'className' => 'Consorcio',
+    				'foreignKey' => 'consorcio_id',
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => ''
     		)
     );
     

@@ -37,7 +37,7 @@ class UnidadesNegociosController extends AppController{
 		
 	
 	
-	$order_by = 'UnidadesNegocio.created';
+		$order_by = 'UnidadesNegocio.created';
 		
 		if($this->request->is('get')){
 			if($search_descripcion!=''){
@@ -108,6 +108,10 @@ class UnidadesNegociosController extends AppController{
 	public function add_edit_uunn($unidades_negocio_id=null){
 		$this->layout = 'ajax';
 		
+		$this->loadModel('Consorcio');
+		$list_consorcios = $this->Consorcio->listConsorcios();
+		$this->set(compact('list_consorcios'));
+		
 		if($this->request->is('post')  || $this->request->is('put')){
 			if(isset($unidades_negocio_id) && intval($unidades_negocio_id) > 0){
 				
@@ -139,7 +143,7 @@ class UnidadesNegociosController extends AppController{
 		}else{
 			if(isset($unidades_negocio_id)){
 				$obj_unidades_negocio = $this->UnidadesNegocio->findById($unidades_negocio_id);
-				
+
 				$this->request->data = $obj_unidades_negocio->data;
 				$this->set(compact('unidades_negocio_id','obj_unidades_negocio'));
 			}
