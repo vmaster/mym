@@ -115,7 +115,7 @@ class ActasController extends AppController{
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
 		$list_all_actas = $this->Acta->listActas();
-		$list_all_unidades_negocios = $this->UnidadesNegocio->listUnidadesNegocios();
+		$list_all_unidades_negocios = $this->UnidadesNegocio->listUnidadesNegocios($this->Session->read('Auth.User.consorcio_id'));
 		$list_all_trabajadores = $this->Trabajadore->listTrabajadores();
 		$list_all_actividades = $this->Actividade->listActividades();
 		$list_all_codigos = $this->Codigo->listCodigos();
