@@ -11,7 +11,10 @@ class ActasController extends AppController{
 	public function index($page=null,$order_by=null,$order_by_or=null,$search_nro=null,$search_actividad=null,$search_empresa=null,$search_obra=null) {
 		$this->layout = "default";
 		$this->loadModel('Acta');
-		
+		$this->loadModel('Consorcio');
+
+		$list_consorcios = $this->Consorcio->listConsorcios();
+
 		$page = 0;
 		//$page -= 1;
 		$per_page = 10000;
@@ -56,20 +59,20 @@ class ActasController extends AppController{
 			$search_obra = '';
 		}
 		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
-		$list_acta_all = $this->Acta->listAllActas($order_by,$search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra),$order_by_or, $tipo_user_id);
+		//$list_acta_all = $this->Acta->listAllActas($order_by,$search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra),$order_by_or, $tipo_user_id);
 		$list_acta = $this->Acta->listFindActas($order_by, $search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra), date('Y'),$order_by_or, $start, $per_page, $tipo_user_id);
-		$count = count($list_acta_all);
-		$no_of_paginations = ceil($count / $per_page);
-		$page = $page + 1;
+		//$count = count($list_acta_all);
+		//$no_of_paginations = ceil($count / $per_page);
+		//$page = $page + 1;
 		
-		$this->set(compact('list_acta','page','no_of_paginations'));
+		$this->set(compact('list_acta','page','no_of_paginations', 'list_consorcios'));
 	}
 	
-	public function search_actas($search_ano=null) {
+	public function search_actas($search_ano=null, $search_consorcio=null) {
 		$this->layout = 'ajax';
 		$this->loadModel('Acta');
 		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
-		$list_acta = $this->Acta->listSearchActas($search_ano, $tipo_user_id);
+		$list_acta = $this->Acta->listSearchActas($search_ano, $search_consorcio, $tipo_user_id);
 
 		$this->set(compact('list_acta'));
 	}
@@ -112,7 +115,7 @@ class ActasController extends AppController{
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
 		$list_all_actas = $this->Acta->listActas();
-		$list_all_unidades_negocios = $this->UnidadesNegocio->listUnidadesNegocios();
+		$list_all_unidades_negocios = $this->UnidadesNegocio->listUnidadesNegocios($this->Session->read('Auth.User.consorcio_id'));
 		$list_all_trabajadores = $this->Trabajadore->listTrabajadores();
 		$list_all_actividades = $this->Actividade->listActividades();
 		$list_all_codigos = $this->Codigo->listCodigos();

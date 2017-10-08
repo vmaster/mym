@@ -19,6 +19,22 @@ App::uses('AppModel','Model');
     				'counterQuery' => ''
     		)
     );
+	
+	public $belongsTo = array(
+			'Consorcio' => array(
+    				'className' => 'Consorcio',
+    				'foreignKey' => 'consorcio_id',
+    				'dependent' => false,
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => '',
+    				'limit' => '',
+    				'offset' => '',
+    				'exclusive' => '',
+    				'finderQuery' => '',
+    				'counterQuery' => ''
+    		)
+    );
 
     public $validate = array(
     		'descripcion'    => array(
@@ -82,12 +98,13 @@ App::uses('AppModel','Model');
     }
     
     /* Usado para el Combo en el registro de Acta*/
-    public function listUnidadesNegocios() {
+    public function listUnidadesNegocios($consorcio_id = 1) {
     	return $this->find('list',
     			array(
     					'fields' => array('id','descripcion'),
     					'conditions'=>array(
-    							'UnidadesNegocio.estado != '=> 0
+    							'UnidadesNegocio.estado != '=> 0,
+								'UnidadesNegocio.consorcio_id != '=> $consorcio_id
     					),
     					'order' => array('UnidadesNegocio.descripcion ASC')
     			));

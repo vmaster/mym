@@ -6,6 +6,27 @@
 				<?php echo "<label id='lblUnidadesNegocio'>".__('UUNN')."</label>"; ?>
 				<?php echo $this->Form->input('descripcion', array('div' => false, 'label' => false, 'class'=> 'txtUuNn form-control','id' =>'txtUuNnMant','style'=>'text-transform:uppercase;', 'onkeyup'=>'javascript:this.value=this.value.toUpperCase();')); ?>
 			</div>
+			<div class="span3 col-md-3 col-sm-6 col-xs-6">
+				<label><?php echo __('Consorcio'); ?> </label>
+				<select name = "data[UnidadesNegocio][consorcio_id]" class='form-control'>
+			        <?php 
+				        if (isset($list_consorcios)){
+				            	foreach ($list_consorcios as $consorcio) {
+									if(isset($obj_unidades_negocio) || isset($unidades_negocio_id)){
+										if($consorcio->getAttr('id') == $obj_unidades_negocio->getAttr('consorcio_id')){
+											$selected = " selected = 'selected'";
+										}else{
+											$selected = "";
+										}
+									}else{
+										$selected = "";
+									}
+				            		echo "<option value = ".$consorcio->getAttr('id').$selected.">".$consorcio->getAttr('descripcion')."</option>";
+				            	}
+				        }
+			        ?>
+		        </select>
+			</div>
 		</div>
 		<br>
 		<div class="row" style="text-align:left;">

@@ -72,6 +72,27 @@
 					<?php }  ?>
 		        </select>
 			</div>
+			<div class="span3 col-md-3 col-sm-6 col-xs-6">
+				<label><?php echo __('Consorcio'); ?> </label>
+				<select name = "data[User][consorcio_id]" class='form-control'>
+			        <?php 
+				        if (isset($list_consorcios)){
+				            	foreach ($list_consorcios as $consorcio) {
+									if(isset($obj_user) || isset($user_id)){
+										if($consorcio->getAttr('id') == $obj_user->getAttr('consorcio_id')){
+											$selected = " selected = 'selected'";
+										}else{
+											$selected = "";
+										}
+									}else{
+										$selected = "";
+									}
+				            		echo "<option value = ".$consorcio->getAttr('id').$selected.">".$consorcio->getAttr('descripcion')."</option>";
+				            	}
+				        }
+			        ?>
+		        </select>
+			</div>	
 		</div><br>
 		<div class="row">
 			<div class="span3 col-md-3 col-sm-6 col-xs-6">

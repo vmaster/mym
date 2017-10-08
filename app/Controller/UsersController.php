@@ -20,6 +20,8 @@ class UsersController extends AppController{
 		$this->layout = "default_external";
 		$this->set('show_captcha', 0);
 
+		$this->loadModel('Consorcio');
+
 		if($this->request->is('post')) {
 
 			// validate the user-entered Captcha code
@@ -237,9 +239,12 @@ class UsersController extends AppController{
 		$this->layout = 'ajax';
 		$this->loadModel('TipoUsuario');
 		$this->loadModel('Trabajadore');
+		$this->loadModel('Consorcio');
 		$list_all_personals = $this->Trabajadore->listAllPersonal();
 		$list_all_tipo_usuarios = $this->TipoUsuario->listAllTipoUsuarios();
-		$this->set(compact('list_all_tipo_usuarios','list_all_personals'));
+
+		$list_consorcios = $this->Consorcio->listConsorcios();
+		$this->set(compact('list_all_tipo_usuarios','list_all_personals', 'list_consorcios'));
 	
 		if($this->request->is('post')  || $this->request->is('put')){
 			if(isset($user_id) && intval($user_id) > 0){
