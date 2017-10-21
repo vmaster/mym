@@ -45,6 +45,7 @@
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/codigo.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/uunn.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/configuration.js" type="text/javascript"></script>
+    <script src="<?= ENV_WEBROOT_FULL_URL;?>js/tarea.js" type="text/javascript"></script>
     
     <script src="<?= ENV_WEBROOT_FULL_URL;?>js/jquery_datepicker/jquery.ui.datepicker-es.js" type="text/javascript"></script>
     <script src="<?= ENV_WEBROOT_FULL_URL;?>lib/alertify-0.3.11/alertify.min.js" type="text/javascript"></script>
@@ -101,7 +102,9 @@
 			</div>
 		</nav>
 		<!-- /. NAV TOP  (MENU LATERAL)-->
-		<?php echo $this->Element('menu_lateral');  ?>
+		<?php 
+				echo $this->Element('menu_lateral');  
+		?>
 		<!-- /. NAV SIDE  -->
 		<div id="page-wrapper">
 			<div id="page-inner">
