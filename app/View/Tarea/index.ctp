@@ -99,10 +99,7 @@ $(document).ready(function(){
 					<h3 id="myModalLabel"><?php echo utf8_encode(__('Actvidades')); ?></h3>
 				</div>
 				<div class="modal-body">
-					<p class="error-text">
-						<i class="icon-warning-sign modal-icon"></i>
-						
-					</p>
+					
 				</div>
 				
 			</div>

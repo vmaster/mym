@@ -132,6 +132,17 @@ $(document).ready(function(){
 		tarea_id = $('div#myModalDeleteTarea').attr('tarea_id');
 		tarea.deleteTarea(tarea_id);
 	});
+ 
+	$body.off('click','tr.tarea_row_container .view-tarea-trigger');
+	$body.on('click','tr.tarea_row_container .view-tarea-trigger', function(){
+		
+		tarea_id = $(this).parents('.tarea_row_container').attr('tarea_id');
+
+		$('.modal-body').append("<p><b>LISTADO DE ACTIVIDADES</b></p>");
+		alert(tarea_id);
+
+		//tarea.deleteTarea(tarea_id);
+	});
 	
 	/* CREAR EMPRESA DESDE UN MODAL (EN EL FORMULARIO CREAR INFORME) */
 	$('#txt-nombre-tarea').keypress(function(e) {

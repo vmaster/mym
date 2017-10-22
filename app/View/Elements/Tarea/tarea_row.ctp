@@ -18,7 +18,7 @@
 			<td><?php echo $tarea->getAttr('created'); ?></td>
 			<td><?php echo $tarea->getAttr('descripcion'); ?></td>
 			<td>
-				<a href="#myModalViewTarea" role="button" data-toggle="modal"><i class="fa fa-eye view-tarea"></i> </a>
+				<a href="#myModalViewTarea" role="button" data-toggle="modal"><i class="fa fa-eye view-tarea-trigger"></i> </a>
 				&nbsp;
 				<a><i class="fa fa-pencil edit-tarea-trigger"></i> </a> <?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
 				<a href="#myModalDeleteTarea" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-tarea"></i> </a><?php } ?>
