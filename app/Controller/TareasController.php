@@ -201,5 +201,78 @@ class TareasController extends AppController{
 			exit();
 		}
 	}
+
+	
+	/* FUNCIÓN PARA LISTAR ACTIVIDADES SEGUN EL TRABAJADOR ENOSA SELECCIONADO */
+	public function listado_tareas($page=null,$order_by=null,$order_by_or=null,$trabajador_id=null) {
+        
+		$this->layout = "default";
+		$this->loadModel('Tarea');
+		
+		$page = 0;
+		//$page -= 1;
+		$per_page = 10000;
+		$start = $page * $per_page;
+		
+		if($order_by_or!=NULL && isset($order_by_or) && $order_by_or!='null'){
+			$order_by_or = $order_by_or;
+		}else{
+			$order_by_or = 'DESC';
+		}
+
+		if(isset($trabajador_id)){
+			$trabajador_id = $trabajador_id;
+		}else{
+			$trabajador_id = "";
+		}
+		
+		$user_id = $this->Session->read('Auth.User.id');
+		/*if($order_by=='title'){
+			$order_by = 'Bit.title';
+		}elseif($order_by=='username'){
+			$order_by = 'UserJoin.username';
+		}elseif($order_by=='home'){
+			$order_by = 'Bit.view_home';
+		}elseif($order_by=='status'){
+			$order_by = 'Bit.status';
+		}else{
+			$order_by = 'Bit.created';
+		}*/
+		$order_by = 'Tarea.created';
+		
+				
+		$list_tarea_all = $this->Tarea->listAllTareas($order_by, $order_by_or, $trabajador_id);
+		$list_tarea = $this->Tarea->listFindTareas($order_by, $order_by_or, $start, $per_page, $trabajador_id);
+		$count = count($list_tarea_all);
+		$no_of_paginations = ceil($count / $per_page);
+		$page = $page + 1;
+		
+		$this->set(compact('list_tarea','page','no_of_paginations'));
+	}
+
+
+	public function active_desactive_edit()
+	{
+		$this->autoRender = false;
+		$this->loadModel('Tarea');
+		
+			if(isset($this->request->data) || $this->request->is('post')){
+				//debug($this->request->data);exit();
+				$tarea_id = $this->request->data['tarea_id'];
+				$estado = $this->request->data['estado'];
+				$obj_tarea = $this->Tarea->findById($tarea_id);
+
+				if($estado = 1){
+					$obj_tarea->saveField('estado', 0);	
+				}else{
+					$obj_tarea->saveField('estado', 1);
+				}
+
+				echo json_encode(array('success'=>true,'msg'=>__('El estado ha sido cambiado')));
+					
+			}
+		
+	}
+
 	
 }

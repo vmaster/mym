@@ -176,7 +176,35 @@ $(document).ready(function(){
 	$body.on('click','.save-tarea-modal-trigger',function(){
 		tarea.saveTareaModal();
 	});
-	
-	
 
+
+
+	$body.off('click','.activar-edit-tarea-trigger');
+	$body.on('click','.activar-edit-tarea-trigger', function(){
+
+		$('#myModalActiveEditTarea .modal-body').hide();
+
+		tarea_id = $(this).parents('.tarea_row_container').attr('tarea_id');
+		estado = $(this).parents('.tarea_row_container').attr('tarea_id');
+		$.ajax({
+			url: env_webroot_script + 'tareas/active_desactive_edit',
+			data: {
+				'tarea_id' : tarea_id,
+				'estado' : estado
+			},
+			dataType: 'json',
+			type: 'post'
+		}).done(function(data){
+			if(data.success == true){
+				alertify.success(data.msg);
+				$('#myModalActiveEditTarea').modal('hide');
+				$('.modal-backdrop').fadeOut(function(){$(this).hide()});
+			}else{
+				$('#myModalActiveEditTarea .modal-body').show();
+				
+			}
+		});	
+	});
+	
+	
 });

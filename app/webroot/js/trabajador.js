@@ -147,6 +147,12 @@ $(document).ready(function(){
 		});
 	});
 
+	$body.off('click','.view-actividades-trigger');
+	$body.on('click','.view-actividades-trigger',function(){
+		trabajador_id = $(this).parents('.trabajador_row_container').attr('trabajador_id');
+		window.open(env_webroot_script + 'tareas/listado_tareas/1/'+null+'/'+null+'/'+trabajador_id,'_self');
+	});
+
 	$body.off('click','div#trabajador .edit-trabajador-trigger');
 	$body.on('click','div#trabajador .edit-trabajador-trigger', function(){
 		trabajador_id = $(this).parents('.trabajador_row_container').attr('trabajador_id');

@@ -105,49 +105,5 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-
-	<div class="modal fade" id="myModalDeleteTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" tarea_id=''>
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true"><i class="fa fa-times"></i></button>
-					<h3 id="myModalLabel">Confirmar Eliminaci&oacute;n/h3>
-				</div>
-				<div class="modal-body">
-					<p class="error-text">
-						<i class="icon-warning-sign modal-icon"></i>
-						<?php echo utf8_encode(__('¿Estas seguro de querer Eliminar La Tarea?')); ?>
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancelar'); ?></button>
-					<button class="btn btn-danger eliminar-tarea-trigger" data-dismiss="modal"><?php echo __('Aceptar'); ?></button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="modal fade" id="myModalActiveEditTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" tarea_id=''>
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true"><i class="fa fa-times"></i></button>
-					<h3 id="myModalLabel">Activación para editar Registro/h3>
-				</div>
-				<div class="modal-body">
-					<p class="error-text">
-						<i class="icon-warning-sign modal-icon"></i>
-						<?php echo utf8_encode(__('¿Estas seguro de confirmar la activación para editar el registrar?')); ?>
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancelar'); ?></button>
-					<button class="btn btn-danger activar-edit-tarea-trigger" data-dismiss="modal"><?php echo __('Aceptar'); ?></button>
-				</div>
-			</div>
-		</div>
-	</div>
 	
 </div>

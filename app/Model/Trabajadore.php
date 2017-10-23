@@ -252,6 +252,69 @@ App::uses('AppModel','Model');
     					'order' => array('Trabajadore.apellido_nombre ASC')
     			));
     }
+
+
+    public function listAllTrabajadoresActividades($order_by='Trabajadore.created', $search_nro_documento='',$search_nombre='',$order='DESC') {
+            $arr_obj_trabajador = $this->findObjects('all',array(
+                    'joins' => array(
+                        array(
+                                'table' => 'users',
+                                'alias' => 'UsuarioJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'UsuarioJoin.id = Trabajadore.id',
+                                )
+                        )
+                    ),
+                    'conditions'=>array(
+                            'AND' => array(
+                                    'OR' => array(
+                                            'Trabajadore.apellido_nombre LIKE'=> '%'.$search_nombre.'%'
+                                            //'Trabajadore.apellido LIKE'=> '%'.$search_nombre.'%'
+                                    ),
+                                    'Trabajadore.nro_documento LIKE'=> '%'.$search_nro_documento.'%',
+                                    'Trabajadore.estado != ' => 0,
+                                    'UsuarioJoin.consorcio_id' => 2
+                            )
+                    ),
+                    'order'=> array($order_by.' '.$order)
+            )
+            );
+        return $arr_obj_trabajador;
+    }
+    
+    public function listFindTrabajadoresActividades($order_by='Trabajadore.created', $search_nro_documento='',$search_nombre='',$order='DESC', $start=0, $per_page=10) {
+            $arr_obj_trabajador = $this->findObjects('all',array(
+                    'joins' => array(
+                        array(
+                                'table' => 'users',
+                                'alias' => 'UsuarioJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'UsuarioJoin.id = Trabajadore.id',
+                                )
+                        )
+                    ),
+                    'conditions'=>array(
+
+                            'AND' => array(
+                                    'OR' => array(
+                                            'Trabajadore.apellido_nombre LIKE'=> '%'.$search_nombre.'%'
+                                            //'Trabajadore.apellido LIKE'=> '%'.$search_nombre.'%'
+                                    ),
+                                    'Trabajadore.nro_documento LIKE'=> '%'.$search_nro_documento.'%',
+                                    'Trabajadore.estado != ' => 0,
+                                    'UsuarioJoin.consorcio_id' => 2
+                            )
+                    ),
+                    //'page'=> $start,
+                    'limit'=> $per_page,
+                    'offset'=> $start,
+                    'order'=> array($order_by.' '.$order),
+            )
+            );
+        return $arr_obj_trabajador;
+    }
     
     
   }
