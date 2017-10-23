@@ -148,10 +148,12 @@ $(document).ready(function(){
 				type: 'post'
 			}).done(function(data){
 				if(data.success==true){
-					$html= "<p><b>LISTADO DE ACTIVIDADES</b></p>"+
-					"<p>"+data.personal+"</p>"+
-					"<p>"+data.fecha+"</p>"+
-					"<p>"+data.actividades+"</p>";
+					$html= 
+					"<b>"+data.personal+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+					data.fecha+"<br>"+
+					data.actividades;
 					$('.modal-body').append($html);
 				}
 			});
@@ -184,8 +186,9 @@ $(document).ready(function(){
 
 		$('#myModalActiveEditTarea .modal-body').hide();
 
-		tarea_id = $(this).parents('.tarea_row_container').attr('tarea_id');
-		estado = $(this).parents('.tarea_row_container').attr('tarea_id');
+		tarea_id = $('#myModalActiveEditTarea').attr('tarea_id');
+		estado = $('#myModalActiveEditTarea').attr('estado');
+
 		$.ajax({
 			url: env_webroot_script + 'tareas/active_desactive_edit',
 			data: {
@@ -199,11 +202,22 @@ $(document).ready(function(){
 				alertify.success(data.msg);
 				$('#myModalActiveEditTarea').modal('hide');
 				$('.modal-backdrop').fadeOut(function(){$(this).hide()});
+				location.reload();
 			}else{
 				$('#myModalActiveEditTarea .modal-body').show();
-				
 			}
 		});	
+	});
+
+
+	$body.off('click','.open-modal-edit-tarea');
+	$body.on('click','.open-modal-edit-tarea', function(){
+		tarea_id = $(this).parents('.tarea_row_container').attr('tarea_id');
+		estado = $(this).parents('.tarea_row_container').attr('estado');
+        
+		$('div#myModalActiveEditTarea').attr('tarea_id', tarea_id);
+		$('div#myModalActiveEditTarea').attr('estado', estado);
+
 	});
 	
 	

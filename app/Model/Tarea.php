@@ -103,5 +103,27 @@ App::uses('AppModel','Model');
         );
         return $arr_obj_tarea;
     }
+
+    public function verficarTareaHoy($user_id) {
+        $registro = $this->find('all',array(
+                'conditions'=>array(
+                        'Acta.estado' => 1,
+                        'Acta.user_id' => user_id,
+                        'DATE(Acta.fecha)= DATE(NOW())'
+
+                ),
+                'group'=> array('EmpresaJoin.nombre'),
+                'order' => array('Cantidad'=>'desc')
+        )
+        );
+
+       //debug("hola  ".count($registro));
+        
+        if(count($registro) > 0){
+          return true;
+       }else{
+          return false;
+       }
+    }
 }
 ?>

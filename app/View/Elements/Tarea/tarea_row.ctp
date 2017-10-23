@@ -33,8 +33,13 @@
 				if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
 					<!--<a href="#myModalDeleteTarea" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-tarea"></i> </a>
 					-->	
-					<a href="#myModalActiveEditTarea" role="button" data-toggle="modal" data-toggle="tooltip" data-placement="top"><i class="fa fa-square-o open-modal-edit-tarea"></i> </a>
+					<a href="#myModalActiveEditTarea" role="button" data-toggle="modal"><i class="fa <?php echo ($tarea->getAttr('estado') == 1)?'fa-check-square-o': 'fa-square-o'; ?>  open-modal-edit-tarea"></i> </a>
 				<?php } ?>
+
+
+				<?php if(($f_creacion == $f_hoy)) { 
+					echo " <b>HOY</b>";
+				} ?>
 			</td>
 		</tr>
 		<?php 

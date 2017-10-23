@@ -101,7 +101,7 @@ class TareasController extends AppController{
 
 				$this->request->data['Tarea']['descripcion'] = $this->request->data['Tarea']['descripcion'];
 				$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
-				$this->request->data['Tarea']['estado'] = 0;
+				$this->request->data['Tarea']['estado'] = 1;
 	
 				if ($this->Tarea->save($this->request->data)) {
 					echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'Tarea_id'=>$tarea_id));
@@ -117,7 +117,7 @@ class TareasController extends AppController{
 
 				$this->request->data['Tarea']['descripcion'] = $this->request->data['Tarea']['descripcion'];
 				$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
-				$this->request->data['Tarea']['estado'] = 0;
+				$this->request->data['Tarea']['estado'] = 1;
 				
 				$this->Tarea->create();
 				if ($this->Tarea->save($this->request->data)) {
@@ -204,7 +204,7 @@ class TareasController extends AppController{
 
 	
 	/* FUNCIÓN PARA LISTAR ACTIVIDADES SEGUN EL TRABAJADOR ENOSA SELECCIONADO */
-	public function listado_tareas($page=null,$order_by=null,$order_by_or=null,$trabajador_id=null) {
+	public function listado_tareas($page=null,$trabajador_id=null,$order_by=null,$order_by_or=null) {
         
 		$this->layout = "default";
 		$this->loadModel('Tarea');
@@ -262,7 +262,7 @@ class TareasController extends AppController{
 				$estado = $this->request->data['estado'];
 				$obj_tarea = $this->Tarea->findById($tarea_id);
 
-				if($estado = 1){
+				if($estado == 1){
 					$obj_tarea->saveField('estado', 0);	
 				}else{
 					$obj_tarea->saveField('estado', 1);
@@ -272,6 +272,22 @@ class TareasController extends AppController{
 					
 			}
 		
+	}
+
+	public function verifica_tarea_hoy($user_id = null){
+		$this->autoRender = false;
+		$this->loadModel('Tarea');
+
+		if(isset($user_id)){
+			$existe = $this->Tarea->verficarTareaHoy($user_id);
+			debug("RETURN ".$existe);
+			if($existe == false){
+				return false;
+			}else{
+				return true;
+			}
+		}
+
 	}
 
 	
