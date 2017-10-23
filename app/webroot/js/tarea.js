@@ -35,10 +35,11 @@ $(document).ready(function(){
 		
 		saveTareaMantenimiento: function(){
 			$form = $('.btn_crear_tarea_trigger').parents('form').eq(0);
-
+			tinyMCE.triggerSave();
+			
 			$.ajax({
 				url: $form.attr('action'),
-				data: $form,
+				data: $form.serialize(),
 				dataType: 'json',
 				type: 'post'
 			}).done(function(data){

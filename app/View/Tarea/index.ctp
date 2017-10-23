@@ -112,7 +112,7 @@ $(document).ready(function(){
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true"><i class="fa fa-times"></i></button>
-					<h3 id="myModalLabel"><?php echo utf8_encode(__('Confirmar Eliminación')); ?></h3>
+					<h3 id="myModalLabel">Confirmar Eliminaci&oacute;n/h3>
 				</div>
 				<div class="modal-body">
 					<p class="error-text">
