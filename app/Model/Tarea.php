@@ -72,5 +72,36 @@ App::uses('AppModel','Model');
     		);
     	return $arr_obj_tarea;
     }
+
+
+    public function obtenerActividades($tarea_id){
+        $arr_obj_tarea = $this->find('all',array(
+                    'fields'  => array('Tarea.descripcion','Tarea.created','TrabajadorJoin.apellido_nombre',),
+                    'joins' => array(
+                        array(
+                                'table' => 'users',
+                                'alias' => 'UsuarioJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'UsuarioJoin.id = Tarea.user_id',
+                                )
+                        ),
+                        array(
+                                'table' => 'trabajadores',
+                                'alias' => 'TrabajadorJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'TrabajadorJoin.id = UsuarioJoin.id',
+                                )
+                        )
+                    ),
+                    'conditions'=>array(
+                            'tarea.id' => $tarea_id
+                            //'tarea.estado != ' => 0
+                    )
+               )
+        );
+        return $arr_obj_tarea;
+    }
 }
 ?>

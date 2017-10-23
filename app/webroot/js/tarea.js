@@ -138,9 +138,22 @@ $(document).ready(function(){
 		
 		tarea_id = $(this).parents('.tarea_row_container').attr('tarea_id');
 
-		$('.modal-body').append("<p><b>LISTADO DE ACTIVIDADES</b></p>");
-		alert(tarea_id);
-
+		$.ajax({
+				url: env_webroot_script + 'tareas/obtener_actividades',
+				data:{
+					tarea_id: tarea_id
+				},
+				dataType: 'json',
+				type: 'post'
+			}).done(function(data){
+				if(data.success==true){
+					$html= "<p><b>LISTADO DE ACTIVIDADES</b></p>"+
+					"<p>"+data.personal+"</p>"+
+					"<p>"+data.fecha+"</p>"+
+					"<p>"+data.actividades+"</p>";
+					$('.modal-body').append($html);
+				}
+			});
 		//tarea.deleteTarea(tarea_id);
 	});
 	

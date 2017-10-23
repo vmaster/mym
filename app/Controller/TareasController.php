@@ -101,6 +101,7 @@ class TareasController extends AppController{
 
 				$this->request->data['Tarea']['descripcion'] = $this->request->data['Tarea']['descripcion'];
 				$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
+				$this->request->data['Tarea']['estado'] = 0;
 	
 				if ($this->Tarea->save($this->request->data)) {
 					echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'Tarea_id'=>$tarea_id));
@@ -114,8 +115,9 @@ class TareasController extends AppController{
 				$error_validation = '';
 				$this->loadModel('Tarea');
 
-				//$this->request->data['Tarea']['descripcion'] = $this->request->data['Tarea']['descripcion'];
-				//$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
+				$this->request->data['Tarea']['descripcion'] = $this->request->data['Tarea']['descripcion'];
+				$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
+				$this->request->data['Tarea']['estado'] = 0;
 				
 				$this->Tarea->create();
 				if ($this->Tarea->save($this->request->data)) {
@@ -180,6 +182,23 @@ class TareasController extends AppController{
 				echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->Tarea->validationErrors));
 				exit();
 			}	
+		}
+	}
+
+	public function obtener_actividades(){
+		$this->layout = 'ajax';
+		$this->loadModel('Tarea');
+		if($this->request->is('post') || $this->request->is('put')){
+			$tarea_id = $this->request->data['tarea_id'];
+			$array_tarea = $this->Tarea->obtenerActividades($tarea_id);
+			$actividades = $array_tarea[0]['Tarea']['descripcion'];
+			$fecha = $array_tarea[0]['Tarea']['created'];
+			$personal =  $array_tarea[0]['TrabajadorJoin']['apellido_nombre'];
+			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal));
+			exit();
+		}else{
+			echo json_encode(array('success'=>false,'fecha'=> '', 'actividades'=> '','personal'=> ''));
+			exit();
 		}
 	}
 	
