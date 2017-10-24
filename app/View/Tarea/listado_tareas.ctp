@@ -74,7 +74,7 @@ $(document).ready(function(){
 	</div>
 	
 	<div class="btn-toolbar">
-	    <button class="btn btn-primary btn-nuevo-tarea"><i class="icon-plus"></i> <?php echo __('Nueva Tarea'); ?></button>
+	    <!--<button class="btn btn-primary btn-nuevo-tarea"><i class="icon-plus"></i> <?php echo __('Nueva Tarea'); ?></button>-->
 	  <div class="btn-group">
 	  </div>
 	</div>

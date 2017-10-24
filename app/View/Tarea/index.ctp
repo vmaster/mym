@@ -61,13 +61,7 @@ $(document).ready(function(){
 	
 	<div class="btn-toolbar">
 		<?php
-			App::import('Controller', 'Tareas');
-			$TareaCont = new TareasController;
-			$user_id = $this->Session->read('Auth.User.user_id') ;
-			$existe = $TareaCont->verifica_tarea_hoy($user_id );
-
-			echo $existe;
-			if($existe == false){
+			if($verificar == 0){
 		?>
 				<button class="btn btn-primary btn-nuevo-tarea"><i class="icon-plus"></i> <?php echo __('Nueva Tarea'); ?></button>
 		<?php
@@ -91,6 +85,7 @@ $(document).ready(function(){
 	    <?php }?>
 	    </div>
 	</div>
+
 	<!-- <div class="pagination">
 	    <ul>
 	        <li><a href="#">Prev</a></li>

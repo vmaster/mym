@@ -35,15 +35,16 @@ class TareasController extends AppController{
 			$order_by = 'Bit.created';
 		}*/
 		$order_by = 'Tarea.created';
-		
-				
+
+		$verificar = $this->Tarea->verficarTareaHoy($user_id);
+			
 		$list_tarea_all = $this->Tarea->listAllTareas($order_by, $order_by_or, $user_id);
 		$list_tarea = $this->Tarea->listFindTareas($order_by, $order_by_or, $start, $per_page, $user_id);
 		$count = count($list_tarea_all);
 		$no_of_paginations = ceil($count / $per_page);
 		$page = $page + 1;
 		
-		$this->set(compact('list_tarea','page','no_of_paginations'));
+		$this->set(compact('list_tarea','page','no_of_paginations', 'verificar'));
 	}
 	
 	public function find_tareas($page=null,$order_by=null,$order_by_or=null) {
@@ -277,10 +278,10 @@ class TareasController extends AppController{
 	public function verifica_tarea_hoy($user_id = null){
 		$this->autoRender = false;
 		$this->loadModel('Tarea');
-
+		//debug("ID DEL USUARIO  " + $user_id);
 		if(isset($user_id)){
 			$existe = $this->Tarea->verficarTareaHoy($user_id);
-			debug("RETURN ".$existe);
+			//debug("RETURN ".$existe);
 			if($existe == false){
 				return false;
 			}else{

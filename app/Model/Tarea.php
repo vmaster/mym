@@ -107,17 +107,15 @@ App::uses('AppModel','Model');
     public function verficarTareaHoy($user_id) {
         $registro = $this->find('all',array(
                 'conditions'=>array(
-                        'Acta.estado' => 1,
-                        'Acta.user_id' => user_id,
-                        'DATE(Acta.fecha)= DATE(NOW())'
+                        'Tarea.estado' => 1,
+                        'Tarea.user_id' => $user_id,
+                        'DATE(Tarea.created)= DATE(NOW())'
 
-                ),
-                'group'=> array('EmpresaJoin.nombre'),
-                'order' => array('Cantidad'=>'desc')
+                )
         )
         );
 
-       //debug("hola  ".count($registro));
+       //debug("IN MODEL  ".count($registro)); exit();
         
         if(count($registro) > 0){
           return true;

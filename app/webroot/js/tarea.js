@@ -44,6 +44,7 @@ $(document).ready(function(){
 				type: 'post'
 			}).done(function(data){
 				if(data.success==true){
+					$('.btn-nuevo-tarea').hide();
 					$('#add_edit_tarea').hide();
 					$('#conteiner_all_rows').load(env_webroot_script + escape('tareas/find_tareas/1/'+null+'/'+null),function(){
 						$('#table_content_tareas').DataTable();
@@ -154,7 +155,8 @@ $(document).ready(function(){
 					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 					data.fecha+"<br>"+
 					data.actividades;
-					$('.modal-body').append($html);
+					$('#myModalViewTarea .modal-body').empty();
+					$('#myModalViewTarea .modal-body').append($html);
 				}
 			});
 		//tarea.deleteTarea(tarea_id);
@@ -184,8 +186,7 @@ $(document).ready(function(){
 	$body.off('click','.activar-edit-tarea-trigger');
 	$body.on('click','.activar-edit-tarea-trigger', function(){
 
-		$('#myModalActiveEditTarea .modal-body').hide();
-
+ 
 		tarea_id = $('#myModalActiveEditTarea').attr('tarea_id');
 		estado = $('#myModalActiveEditTarea').attr('estado');
 
