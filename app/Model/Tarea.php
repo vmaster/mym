@@ -39,7 +39,7 @@ App::uses('AppModel','Model');
     					)
     				),
     				'conditions'=>array(
-    								'tarea.user_id' => $user_id
+    								'Tarea.user_id' => $user_id
     								//'tarea.estado != ' => 0
     				),
     				'order'=> array($order_by.' '.$order)
@@ -61,7 +61,7 @@ App::uses('AppModel','Model');
     					)
     				),
     				'conditions'=>array(
-    					 	'tarea.user_id' => $user_id
+    					 	'Tarea.user_id' => $user_id
     						//'tarea.estado != ' => 0
     				),
     				//'page'=> $start,
@@ -96,7 +96,7 @@ App::uses('AppModel','Model');
                         )
                     ),
                     'conditions'=>array(
-                            'tarea.id' => $tarea_id
+                            'Tarea.id' => $tarea_id
                             //'tarea.estado != ' => 0
                     )
                )
