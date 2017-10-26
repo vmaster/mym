@@ -123,5 +123,16 @@ App::uses('AppModel','Model');
           return false;
        }
     }
+
+    public function ListarTareaRefUser($user_id) {
+        $arr_obj_tarea = $this->find('all',array(
+                    'conditions'=>array(
+                            'Tarea.id' => $tarea_id
+                            //'tarea.estado != ' => 0
+                    )
+               )
+        );
+        return $arr_obj_tarea;
+    }
 }
 ?>

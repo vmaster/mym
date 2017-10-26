@@ -88,6 +88,8 @@ class TareasController extends AppController{
 	public function add_edit_tarea($tarea_id=null){
 		$this->layout = 'ajax';
 		$this->loadModel('Tarea');
+
+		$list_tareas_ref_user = $this->Tarea->ListarTareaRefUser($this->Session->read('Auth.User.id'));
 		
 		if($this->request->is('post')  || $this->request->is('put')){
 			if(isset($tarea_id) && intval($tarea_id) > 0){
@@ -139,6 +141,8 @@ class TareasController extends AppController{
 				$this->set(compact('tarea_id','obj_tarea'));
 			}
 		}
+
+		$this->set(compact('list_tareas_ref_user'));
 	}
 	
 	public function delete_tarea(){

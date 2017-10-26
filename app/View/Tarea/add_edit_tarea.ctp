@@ -22,6 +22,20 @@ tinymce.init({
 				<?php echo $this->Form->input('descripcion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-tareas editor form-control','id' =>'txtTereas')); ?>
 			</div>
 		</div>
+		<div class="roww">
+			<div class="span3 col-md-6 col-sm-6 col-xs-6">
+				<select name="data[Tarea][tarea_id]" class="cbo-tarea-refer-select2 form-control">
+						<?php 
+							if (isset($list_tareas_ref_user)){
+								echo "<option>---</option>";
+								foreach ($list_tareas_ref_user as $id => $tarea):
+								echo "<option value = ".$tarea['Tarea']['id'].">".$tarea['Tarea']['num_informe']."</option>";
+								endforeach;
+							}
+						?>
+				</select>
+			</div>
+		</div>
 		<br>
 		<div class="row" style="text-align:left;">
 			<div class="span3 col-md-3 col-sm-6 col-xs-6">
