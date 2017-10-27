@@ -62,7 +62,7 @@ $(document).ready(function(){
 	</div>
 	
 	<div class="btn-toolbar">
-				<button class="btn btn-primary btn-nuevo-tarea"><i class="icon-plus"></i> <?php echo __('Nueva Tarea'); ?></button>
+		<a class="btn btn-primary btn-nuevo-tarea" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/nueva_tarea"><i class="icon-plus"></i> <?php echo __('Nueva Tarea'); ?></a>
 	  <div class="btn-group">
 	  </div>
 	</div>

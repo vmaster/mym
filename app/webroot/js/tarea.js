@@ -50,6 +50,7 @@ $(document).ready(function(){
 					});
 					$('.tooltip-mym').tooltip();
 					alertify.success(data.msg);
+					window.open(env_webroot_script + 'tareas/','_self');
 				}else{
 					$.each(data.validation, function( key, value ) {
 						alertify.error(value[0]);
@@ -101,7 +102,7 @@ $(document).ready(function(){
 	
 	/* Ocultar formulario Crear Tarea*/
 	$body.on('click','div#div-crear-tarea .btn-cancelar-crear-tarea', function(){
-		$('#add_edit_tarea').hide();
+		window.open(env_webroot_script + 'tareas/','_self');
 	});
 	
 	$body.off('click','.btn_crear_tarea_trigger');

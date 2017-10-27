@@ -78,33 +78,13 @@ class TareasController extends AppController{
 	 * 18 October 2017
 	 * @author Vladimir
 	 */
-	public function add_edit_tarea($tarea_id=null){
-		$this->layout = 'ajax';
+	public function nueva_tarea($tarea_id=null){
+		$this->layout = 'default';
 		$this->loadModel('Tarea');
 
 	
 		if($this->request->is('post')  || $this->request->is('put')){
-			if(isset($tarea_id) && intval($tarea_id) > 0){
-				
-				//update
-				$error_validation = '';
-				
-				$this->Tarea->id = $tarea_id;
-	
-				//$this->Persona->set($this->request->data);
-				//$this->Persona->setFields();
-
-				$this->request->data['Tarea']['descripcion'] = $this->request->data['Tarea']['descripcion'];
-				$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
-				
-				if ($this->Tarea->save($this->request->data)) {
-					echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'Tarea_id'=>$tarea_id));
-					exit();
-				}else{
-					echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->Tarea->validationErrors));
-					exit();
-				}
-			}else{
+			
 				//insert
 				$error_validation = '';
 				$this->loadModel('Tarea');
@@ -126,6 +106,44 @@ class TareasController extends AppController{
 					exit();
 				}else{
 					$tarea_id = '';
+					echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->Tarea->validationErrors));
+					exit();
+				}
+			
+		}else{
+			if(isset($tarea_id)){
+				$obj_tarea = $this->Tarea->findById($tarea_id);
+				
+				$this->request->data = $obj_tarea->data;
+				$this->set(compact('tarea_id','obj_tarea'));
+			}
+		}
+		
+	}
+
+	public function editar_tarea($tarea_id=null){
+		$this->layout = 'default';
+		$this->loadModel('Tarea');
+
+	
+		if($this->request->is('post')  || $this->request->is('put')){
+			if(isset($tarea_id) && intval($tarea_id) > 0){
+				
+				//update
+				$error_validation = '';
+				
+				$this->Tarea->id = $tarea_id;
+	
+				//$this->Persona->set($this->request->data);
+				//$this->Persona->setFields();
+
+				$this->request->data['Tarea']['descripcion'] = $this->request->data['Tarea']['descripcion'];
+				$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
+				
+				if ($this->Tarea->save($this->request->data)) {
+					echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'Tarea_id'=>$tarea_id));
+					exit();
+				}else{
 					echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->Tarea->validationErrors));
 					exit();
 				}

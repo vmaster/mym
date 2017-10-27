@@ -13,6 +13,13 @@ tinymce.init({
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
 });
 </script>
+<div class="row">
+	<div class="col-md-12">
+		<h2>Editar Nueva tarea</h2>
+	</div>
+</div>
+<hr />
+
 <div class="container div-crear-tarea form" id="div-crear-tarea">
 	<?php echo $this->Form->create('Tarea',array('method'=>'post', 'id'=>'add_edit_tarea'));?>
 	<section>

@@ -30,7 +30,7 @@
 				&nbsp;
 				
 				<?php if(($f_creacion == $f_hoy) || ($tarea->getAttr('estado') == 1)) { ?>
-					<a class="tooltip-mym" title="Editar" role="button"><i class="fa fa-pencil edit-tarea-trigger"></i> </a>
+					<a href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/editar_tarea/<?php echo $tarea->getAttr('id')?>" class="tooltip-mym" title="Editar" role="button"><i class="fa fa-pencil edit-tarea-trigger"></i> </a>
 				<?php } ?>
 
 				<?php 
