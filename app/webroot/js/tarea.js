@@ -48,6 +48,7 @@ $(document).ready(function(){
 					$('#conteiner_all_rows').load(env_webroot_script + escape('tareas/find_tareas/1/'+null+'/'+null),function(){
 						$('#table_content_tareas').DataTable();
 					});
+					$('.tooltip-mym').tooltip();
 					alertify.success(data.msg);
 				}else{
 					$.each(data.validation, function( key, value ) {
