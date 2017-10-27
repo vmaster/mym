@@ -12,7 +12,6 @@ class TareasController extends AppController{
 		$this->loadModel('Tarea');
 		
 		$page = 0;
-		//$page -= 1;
 		$per_page = 10000;
 		$start = $page * $per_page;
 		
@@ -21,30 +20,24 @@ class TareasController extends AppController{
 		}else{
 			$order_by_or = 'DESC';
 		}
-		
-		$user_id = $this->Session->read('Auth.User.id');
-		/*if($order_by=='title'){
-			$order_by = 'Bit.title';
-		}elseif($order_by=='username'){
-			$order_by = 'UserJoin.username';
-		}elseif($order_by=='home'){
-			$order_by = 'Bit.view_home';
-		}elseif($order_by=='status'){
-			$order_by = 'Bit.status';
-		}else{
-			$order_by = 'Bit.created';
-		}*/
+
 		$order_by = 'Tarea.created';
 
-		$verificar = $this->Tarea->verficarTareaHoy($user_id);
-			
+		
+
+		if($this->Session->read('Auth.User.tipo_user_id') == 2){
+			$user_id = $this->Session->read('Auth.User.id');
+		}else{
+			$user_id = 0;
+		}
+				
 		$list_tarea_all = $this->Tarea->listAllTareas($order_by, $order_by_or, $user_id);
 		$list_tarea = $this->Tarea->listFindTareas($order_by, $order_by_or, $start, $per_page, $user_id);
 		$count = count($list_tarea_all);
 		$no_of_paginations = ceil($count / $per_page);
 		$page = $page + 1;
 		
-		$this->set(compact('list_tarea','page','no_of_paginations', 'verificar'));
+		$this->set(compact('list_tarea','page','no_of_paginations'));
 	}
 	
 	public function find_tareas($page=null,$order_by=null,$order_by_or=null) {
@@ -89,8 +82,7 @@ class TareasController extends AppController{
 		$this->layout = 'ajax';
 		$this->loadModel('Tarea');
 
-		$list_tareas_ref_user = $this->Tarea->ListarTareaRefUser($this->Session->read('Auth.User.id'));
-		
+	
 		if($this->request->is('post')  || $this->request->is('put')){
 			if(isset($tarea_id) && intval($tarea_id) > 0){
 				
@@ -104,8 +96,7 @@ class TareasController extends AppController{
 
 				$this->request->data['Tarea']['descripcion'] = $this->request->data['Tarea']['descripcion'];
 				$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
-				$this->request->data['Tarea']['estado'] = 1;
-	
+				
 				if ($this->Tarea->save($this->request->data)) {
 					echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'Tarea_id'=>$tarea_id));
 					exit();
@@ -121,10 +112,16 @@ class TareasController extends AppController{
 				$this->request->data['Tarea']['descripcion'] = $this->request->data['Tarea']['descripcion'];
 				$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
 				$this->request->data['Tarea']['estado'] = 1;
+				$this->request->data['Tarea']['dia_libre'] = 0;
 				
 				$this->Tarea->create();
 				if ($this->Tarea->save($this->request->data)) {
 					$tarea_id = $this->Tarea->id;
+					$obj_tarea = $this->Tarea->findById($tarea_id );
+
+					$num_tarea = str_pad($tarea_id, 5, '0', STR_PAD_LEFT);				
+					$obj_tarea->saveField('num_tarea', $num_tarea);
+					$this->request->data['Tarea']['num_tarea'] = $num_tarea;
 					echo json_encode(array('success'=>true,'msg'=>__('La tarea fue agregado con &eacute;xito.'),'Tarea_id'=>$tarea_id));
 					exit();
 				}else{
@@ -141,8 +138,7 @@ class TareasController extends AppController{
 				$this->set(compact('tarea_id','obj_tarea'));
 			}
 		}
-
-		$this->set(compact('list_tareas_ref_user'));
+		
 	}
 	
 	public function delete_tarea(){
@@ -271,6 +267,30 @@ class TareasController extends AppController{
 					$obj_tarea->saveField('estado', 0);	
 				}else{
 					$obj_tarea->saveField('estado', 1);
+				}
+
+				echo json_encode(array('success'=>true,'msg'=>__('El estado ha sido cambiado')));
+					
+			}
+		
+	}
+
+
+	public function active_desactive_dialibre()
+	{
+		$this->autoRender = false;
+		$this->loadModel('Tarea');
+		
+			if(isset($this->request->data) || $this->request->is('post')){
+				//debug($this->request->data);exit();
+				$tarea_id = $this->request->data['tarea_id'];
+				$dia_libre = $this->request->data['dia_libre'];
+				$obj_tarea = $this->Tarea->findById($tarea_id);
+
+				if($dia_libre == 1){
+					$obj_tarea->saveField('dia_libre', 0);	
+				}else{
+					$obj_tarea->saveField('dia_libre', 1);
 				}
 
 				echo json_encode(array('success'=>true,'msg'=>__('El estado ha sido cambiado')));

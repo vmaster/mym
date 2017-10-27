@@ -2,8 +2,10 @@
 	<thead>
         <tr>
           <th><?php echo __('ID'); ?></th>
+          <th><?php echo __('Numero Tarea'); ?></th>
           <th><?php echo __('Fecha'); ?></th>
-          <th><?php echo 'Actividades'; ?></th>
+          <th><?php echo 'Informe de Ref'; ?></th>
+          <th><?php echo 'Trabajador'; ?></th>
           <th><?php echo __('Operaciones'); ?></th>
         </tr>
     </thead>
@@ -13,14 +15,16 @@
 		foreach ($list_tarea as $tarea):
 		$n = $n + 1;
 		?>
-		<tr class="tarea_row_container" tarea_id="<?php echo $tarea->getAttr('id'); ?>" estado="<?php echo $tarea->getAttr('estado'); ?>">
+		<tr class="tarea_row_container" tarea_id="<?php echo $tarea->getAttr('id'); ?>" estado="<?php echo $tarea->getAttr('estado'); ?>" dia_libre="<?php echo $tarea->getAttr('dia_libre'); ?>">
 			<?php 
 				$f_creacion = date("d-m-Y", strtotime($tarea->getAttr('created')));
 				$f_hoy = date("d-m-Y");
 			?> 
 			<td><?php echo $n; ?></td>
+			<td><?php echo $tarea->getAttr('num_tarea'); ?></td>
 			<td><?php echo $f_creacion; ?></td>
-			<td><?php echo $tarea->getAttr('descripcion'); ?></td>
+			<td><?php echo $tarea->getAttr('informe_ref'); ?></td>
+			<td><?php echo $tarea->User->Trabajadore->getAttr('apellido_nombre'); ?></td>
 			<td>
 				<a href="#myModalViewTarea" role="button" data-toggle="modal"><i class="fa fa-eye view-tarea-trigger"></i> </a>
 				&nbsp;
@@ -34,6 +38,8 @@
 					<!--<a href="#myModalDeleteTarea" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-tarea"></i> </a>
 					-->	
 					<a href="#myModalActiveEditTarea" role="button" data-toggle="modal"><i class="fa <?php echo ($tarea->getAttr('estado') == 1)?'fa-check-square-o': 'fa-square-o'; ?>  open-modal-edit-tarea"></i> </a>
+					&nbsp;
+					<a href="#myModalActiveDiaLibre" role="button" data-toggle="modal"><i class="fa <?php echo ($tarea->getAttr('dia_libre') == 1)?'fa-user': 'fa-sun-o'; ?>  open-modal-dia-libre"></i> </a>
 				<?php } ?>
 
 

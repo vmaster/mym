@@ -22,18 +22,26 @@ tinymce.init({
 				<?php echo $this->Form->input('descripcion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-tareas editor form-control','id' =>'txtTereas')); ?>
 			</div>
 		</div>
-		<div class="roww">
-			<div class="span3 col-md-6 col-sm-6 col-xs-6">
-				<select name="data[Tarea][tarea_id]" class="cbo-tarea-refer-select2 form-control">
-						<?php 
-							if (isset($list_tareas_ref_user)){
-								echo "<option>---</option>";
-								foreach ($list_tareas_ref_user as $id => $tarea):
-								echo "<option value = ".$tarea['Tarea']['id'].">".$tarea['Tarea']['num_informe']."</option>";
-								endforeach;
-							}
-						?>
-				</select>
+		<br>
+		<div class="row">
+			<div class="span3 col-md-4 col-sm-6 col-xs-6">
+				<?php echo "<label id='lblInformeRef'>".__('Informe de Referencia')."</label>"; ?>
+				<?php echo $this->Form->input('informe_ref', array('div' => false, 'label'=> false, 'class'=> 'txt-tareas editor form-control','id' =>'txtTereas')); ?>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="span3 col-md-4 col-sm-6 col-xs-6">
+				<strong>Movilidad:</strong>
+				<div class="radio">
+					<label> Viaticos <input name="data[Tarea][movilidad]" type="radio" value="0" id="rbViaticos" checked>
+					</label>
+				</div>
+				<div class="radio" style="display: -webkit-inline-box">
+					<label>Auto <input name="data[Tarea][movilidad]" type="radio" value="1" id="rbAuto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<?php echo $this->Form->input('placa_auto', array('div' => false, 'label' => false, 'class'=> 'txtPlaca form-control','id' =>'txtPlaca', 'type' =>'text', 'style' => 'display:none', 'value'=>'MyM')); ?>
+					</label>
+				</div>
 			</div>
 		</div>
 		<br>

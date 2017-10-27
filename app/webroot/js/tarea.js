@@ -44,7 +44,6 @@ $(document).ready(function(){
 				type: 'post'
 			}).done(function(data){
 				if(data.success==true){
-					$('.btn-nuevo-tarea').hide();
 					$('#add_edit_tarea').hide();
 					$('#conteiner_all_rows').load(env_webroot_script + escape('tareas/find_tareas/1/'+null+'/'+null),function(){
 						$('#table_content_tareas').DataTable();
@@ -220,6 +219,58 @@ $(document).ready(function(){
 		$('div#myModalActiveEditTarea').attr('estado', estado);
 
 	});
+
+
+
+	$body.off('click','.activar-dia-libre-trigger');
+	$body.on('click','.activar-dia-libre-trigger', function(){
+
+ 
+		tarea_id = $('#myModalActiveDiaLibre').attr('tarea_id');
+		dia_libre = $('#myModalActiveDiaLibre').attr('dia_libre');
+
+
+		$.ajax({
+			url: env_webroot_script + 'tareas/active_desactive_dialibre',
+			data: {
+				'tarea_id' : tarea_id,
+				'dia_libre' : dia_libre
+			},
+			dataType: 'json',
+			type: 'post'
+		}).done(function(data){
+			if(data.success == true){
+				alertify.success(data.msg);
+				$('#myModalActiveDiaLibre').modal('hide');
+				$('.modal-backdrop').fadeOut(function(){$(this).hide()});
+				location.reload();
+			}else{
+				$('#myModalActiveEditTarea .modal-body').show();
+			}
+		});	
+	});
+
+
+	$body.off('click','.open-modal-dia-libre');
+	$body.on('click','.open-modal-dia-libre', function(){
+		tarea_id = $(this).parents('.tarea_row_container').attr('tarea_id');
+		dia_libre = $(this).parents('.tarea_row_container').attr('dia_libre');
+        
+		$('div#myModalActiveDiaLibre').attr('tarea_id', tarea_id);
+		$('div#myModalActiveDiaLibre').attr('dia_libre', dia_libre);
+
+	});
 	
+	$body.off('click','#rbViaticos');
+	$body.on('click','#rbViaticos', function(){
+		  $('#txtPlaca').attr('value','');
+		  $('#txtPlaca').css('display','none');
+	});
+	
+	$body.off('click','#rbAuto');
+	$body.on('click','#rbAuto', function(){
+		  $('#txtPlaca').attr('value','');
+		  $('#txtPlaca').css('display','');
+	});
 	
 });
