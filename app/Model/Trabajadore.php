@@ -315,6 +315,29 @@ App::uses('AppModel','Model');
             );
         return $arr_obj_trabajador;
     }
+
+    public function listAllTrabajadoresEnosa() {
+            $arr_obj_trabajador = $this->findObjects('all',array(
+                    'joins' => array(
+                        array(
+                                'table' => 'users',
+                                'alias' => 'UsuarioJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'UsuarioJoin.id = Trabajadore.id',
+                                )
+                        )
+                    ),
+                    'conditions'=>array(
+
+                                    'Trabajadore.estado != ' => 0,
+                                    'UsuarioJoin.consorcio_id' => 2
+                            )
+                    
+            )
+            );
+        return $arr_obj_trabajador;
+    }
     
     
   }

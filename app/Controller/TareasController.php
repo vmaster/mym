@@ -10,6 +10,7 @@ class TareasController extends AppController{
         
 		$this->layout = "default";
 		$this->loadModel('Tarea');
+		$this->loadModel('Trabajadore');
 		
 		$page = 0;
 		$per_page = 10000;
@@ -30,6 +31,9 @@ class TareasController extends AppController{
 		}else{
 			$user_id = 0;
 		}
+
+		$list_trabajadores_enosa = $this->Trabajadore->listAllTrabajadoresEnosa();
+
 				
 		$list_tarea_all = $this->Tarea->listAllTareas($order_by, $order_by_or, $user_id);
 		$list_tarea = $this->Tarea->listFindTareas($order_by, $order_by_or, $start, $per_page, $user_id);
@@ -37,7 +41,7 @@ class TareasController extends AppController{
 		$no_of_paginations = ceil($count / $per_page);
 		$page = $page + 1;
 		
-		$this->set(compact('list_tarea','page','no_of_paginations'));
+		$this->set(compact('list_tarea','page','no_of_paginations','list_trabajadores_enosa'));
 	}
 	
 	public function find_tareas($page=null,$order_by=null,$order_by_or=null) {

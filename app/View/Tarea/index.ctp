@@ -68,6 +68,28 @@ $(document).ready(function(){
 	</div>
 	<p>
 
+	<p>	
+<div class="row">
+	<div class="span3 col-md-3 col-sm-6 col-xs-6" id="div-cbo-trabajadores">
+				<label><?php echo __('Elija un empleado'); ?> </label>
+				<select class='form-control' id="cboTrabajadores">
+					<?php 
+					if (isset($list_trabajadores_enosa)){
+						foreach ($list_trabajadores_enosa as $list_all_personal):
+						echo "<option value = ".$list_all_personal->getAttr('id').">".$list_all_personal->getAttr('apellido_nombre')."</option>";
+						endforeach;
+					}
+					?>
+				</select>
+	</div>
+	<div class="span3 col-md-3 col-sm-6 col-xs-6" id="div-cbo-trabajadores">
+		<a class="btn btn-primary btn-consultar-tareas" ><i class="icon-plus"></i> <?php echo __('Consultar'); ?></a>
+	</div>
+</div>
+	<p>&nbsp;</p>
+
+
+	<br>
 	<div class="well">
 		<div id = "conteiner_all_rows">
 	    <?php 
