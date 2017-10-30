@@ -150,16 +150,26 @@ $(document).ready(function(){
 				dataType: 'json',
 				type: 'post'
 			}).done(function(data){
-				if(data.success==true){
-					$html= 
-					"<b>"+data.personal+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-					data.fecha+"<br>"+
-					data.actividades;
-					$('#myModalViewTarea .modal-body').empty();
-					$('#myModalViewTarea .modal-body').append($html);
-				}
+					if(data.success==true){
+						if(data.movilidad == 0){
+							movilidad = 'Viaticos';	
+							placa = "";
+						}else{
+							movilidad = 'Vehiculo';
+							placa = " ("+data.placa+")";
+						}
+
+						$html= 
+						"<b>"+data.personal+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+						"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+						"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+						data.fecha+"<br>"+
+						"<strong>Info. Ref: </strong>"+data.inf_ref+"<br>"+
+						"<strong>Movilidad: </strong>"+movilidad+''+placa+"<br>"+
+						data.actividades;
+						$('#myModalViewTarea .modal-body').empty();
+						$('#myModalViewTarea .modal-body').append($html);
+					}
 			});
 		//tarea.deleteTarea(tarea_id);
 	});

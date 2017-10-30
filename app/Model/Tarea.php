@@ -142,7 +142,7 @@ App::uses('AppModel','Model');
 
     public function obtenerActividades($tarea_id){
         $arr_obj_tarea = $this->find('all',array(
-                    'fields'  => array('Tarea.descripcion','Tarea.created','TrabajadorJoin.apellido_nombre',),
+                    'fields'  => array('Tarea.descripcion','Tarea.created','TrabajadorJoin.apellido_nombre','Tarea.created','Tarea.informe_ref','Tarea.movilidad','Tarea.placa_auto'),
                     'joins' => array(
                         array(
                                 'table' => 'users',
