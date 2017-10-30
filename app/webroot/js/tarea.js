@@ -45,6 +45,7 @@ $(document).ready(function(){
 			}).done(function(data){
 				if(data.success==true){
 					$('#add_edit_tarea').hide();
+					$('.btn-nuevo-tarea').hide();
 					$('#conteiner_all_rows').load(env_webroot_script + escape('tareas/find_tareas/1/'+null+'/'+null),function(){
 						$('#table_content_tareas').DataTable();
 					});
@@ -273,6 +274,14 @@ $(document).ready(function(){
 	$body.on('click','#rbAuto', function(){
 		  $('#txtPlaca').attr('value','');
 		  $('#txtPlaca').css('display','');
+	});
+
+	$body.off('click','.btn-consultar-tareas');
+	$body.on('click','.btn-consultar-tareas', function(){
+		  trabajador_id = $('#cboTrabajadores').val();
+		  $('#conteiner_all_rows').load(env_webroot_script + escape('tareas/find_tareas/1/'+null+'/'+null+'/'+trabajador_id),function(){
+			$('#table_content_tareas').DataTable();
+		  });
 	});
 	
 });

@@ -44,7 +44,7 @@ class TareasController extends AppController{
 		$this->set(compact('list_tarea','page','no_of_paginations','list_trabajadores_enosa'));
 	}
 	
-	public function find_tareas($page=null,$order_by=null,$order_by_or=null) {
+	public function find_tareas($page=null,$order_by=null,$order_by_or=null, $trabajador_id=null) {
 		$this->layout = 'ajax';
 		$this->loadModel('Tarea');
 		$page = $page;
@@ -58,7 +58,13 @@ class TareasController extends AppController{
 			$order_by = 'Persona.created';
 		}*/
 
-		$user_id = $this->Session->read('Auth.User.id');
+		if(isset($trabajador_id)){
+			//debug("id desde el combo ".$trabajador_id); exit();
+			$user_id = $trabajador_id;
+		}else{
+			$user_id = $this->Session->read('Auth.User.id');
+		}
+		
 		$order_by = 'Tarea.created';
 	
 		if($order_by_or!=NULL && isset($order_by_or) && $order_by_or!='null'){

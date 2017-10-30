@@ -126,12 +126,12 @@ $(document).ready(function(){
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true"><i class="fa fa-times"></i></button>
-					<h3 id="myModalLabel">Activaci&oacute;n para editar Registro</h3>
+					<h3 id="myModalLabel">Activaci&oacute;n / Desactivaci&oacute;n para editar Registro</h3>
 				</div>
 				<div class="modal-body">
 					<p class="error-text">
 						<i class="icon-warning-sign modal-icon"></i>
-						<?php echo utf8_encode(__('¿Estas seguro de confirmar la activación para editar el registrar?')); ?>
+						<?php echo utf8_encode(__('¿Estas seguro de modificar los cambios?')); ?>
 					</p>
 				</div>
 				<div class="modal-footer">
@@ -142,4 +142,25 @@ $(document).ready(function(){
 		</div>
 	</div>
 	
+	<div class="modal fade" id="myModalActiveDiaLibre" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" tarea_id='' dia_libre=''>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"><i class="fa fa-times"></i></button>
+					<h3 id="myModalLabel">Activar / Desactivar d&iacute;a libre</h3>
+				</div>
+				<div class="modal-body">
+					<p class="error-text">
+						<i class="icon-warning-sign modal-icon"></i>
+						<?php echo utf8_encode(__('¿Estas seguro de modificar el registro?')); ?>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __('Cancelar'); ?></button>
+					<button class="btn btn-danger activar-dia-libre-trigger" data-dismiss="modal"><?php echo __('Aceptar'); ?></button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

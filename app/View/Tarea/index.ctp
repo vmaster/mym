@@ -62,16 +62,23 @@ $(document).ready(function(){
 	</div>
 	
 	<div class="btn-toolbar">
-		<a class="btn btn-primary btn-nuevo-tarea" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/nueva_tarea"><i class="icon-plus"></i> <?php echo __('Nueva Tarea'); ?></a>
+		<?php if($this->Session->read('Auth.User.tipo_user_id') == 2){ ?> 
+			<a class="btn btn-primary btn-nuevo-tarea" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/nueva_tarea"><i class="icon-plus"></i> <?php echo __('Nueva Tarea'); ?></a>
+		<?php } ?>
 	  <div class="btn-group">
 	  </div>
 	</div>
 	<p>
 
-	<p>	
+	<p>
+<div class="row">
+	<div class="span3 col-md-3 col-sm-6 col-xs-6">	
+		<label><?php echo __('Elija un empleado'); ?> </label>
+	</div>	
+</div>
 <div class="row">
 	<div class="span3 col-md-3 col-sm-6 col-xs-6" id="div-cbo-trabajadores">
-				<label><?php echo __('Elija un empleado'); ?> </label>
+				
 				<select class='form-control' id="cboTrabajadores">
 					<?php 
 					if (isset($list_trabajadores_enosa)){
