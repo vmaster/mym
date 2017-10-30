@@ -22,9 +22,7 @@ class TareasController extends AppController{
 			$order_by_or = 'DESC';
 		}
 
-		$order_by = 'Tarea.created';
-
-		
+		$order_by = 'Tarea.created';	
 
 		if($this->Session->read('Auth.User.tipo_user_id') == 2){
 			$user_id = $this->Session->read('Auth.User.id');
@@ -35,8 +33,8 @@ class TareasController extends AppController{
 		$list_trabajadores_enosa = $this->Trabajadore->listAllTrabajadoresEnosa();
 
 				
-		$list_tarea_all = $this->Tarea->listAllTareas($order_by, $order_by_or, $user_id);
-		$list_tarea = $this->Tarea->listFindTareas($order_by, $order_by_or, $start, $per_page, $user_id);
+		$list_tarea_all = $this->Tarea->listAllTareas($order_by, $order_by_or, $user_id, '');
+		$list_tarea = $this->Tarea->listFindTareas($order_by, $order_by_or, $start, $per_page, $user_id, '');
 		$count = count($list_tarea_all);
 		$no_of_paginations = ceil($count / $per_page);
 		$page = $page + 1;
@@ -64,7 +62,8 @@ class TareasController extends AppController{
 		}else{
 			$user_id = $this->Session->read('Auth.User.id');
 		}
-		
+
+				
 		$order_by = 'Tarea.created';
 	
 		if($order_by_or!=NULL && isset($order_by_or) && $order_by_or!='null'){
@@ -82,6 +81,51 @@ class TareasController extends AppController{
 		$this->set(compact('list_tarea','page','no_of_paginations'));
 	}
 	
+
+	public function listar_todas_tareas($page=null,$order_by=null,$order_by_or=null) {
+		$this->layout = 'ajax';
+		$this->loadModel('Tarea');
+		$page = $page;
+		$page -= 1;
+		$per_page = 10000;
+		$start = $page * $per_page;
+
+		/*if(isset($order_by)){
+			$order_by = $order_by;
+		}else{
+			$order_by = 'Persona.created';
+		}*/
+
+		if(isset($trabajador_id)){
+			//debug("id desde el combo ".$trabajador_id); exit();
+			$user_id = $trabajador_id;
+		}else{
+			$user_id = $this->Session->read('Auth.User.id');
+		}
+
+		if(isset($all)){
+			debug("TEXTO DE ALL ".$all); exit();
+			$all= $all;
+		}else{
+			$all = '';
+		}
+		
+		$order_by = 'Tarea.created';
+	
+		if($order_by_or!=NULL && isset($order_by_or) && $order_by_or!='null'){
+			$order_by_or = $order_by_or;
+		}else{
+			$order_by_or = 'DESC';
+		}
+	
+
+		//$list_tarea_all = $this->Tarea->listAllTareas($order_by, $order_by_or, $user_id, $all);
+		$list_tarea = $this->Tarea->listTodasTareas($order_by, $order_by_or, $start, $per_page, $user_id, $all);
+		//$count = count($list_tarea_all);
+		//$no_of_paginations = ceil($count / $per_page);
+		//$page = $page+1;
+		$this->set(compact('list_tarea','page','no_of_paginations'));
+	}
 	
 	/**
 	 * Add and Edit using Ajax

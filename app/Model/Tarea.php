@@ -42,7 +42,7 @@ App::uses('AppModel','Model');
         					)
         				),
         				'conditions'=>array(
-        								'Tarea.user_id' => $user_id
+        								'Tarea.user_id' => $user_id,
         								//'tarea.estado != ' => 0
         				),
         				'order'=> array($order_by.' '.$order)
@@ -58,6 +58,7 @@ App::uses('AppModel','Model');
                                     'type' => 'INNER',
                                     'conditions' => array(
                                             'UsuarioJoin.id = Tarea.user_id',
+                                            'DATE(Tarea.created)= DATE(NOW())'
                                     )
                             )
                         ),
@@ -102,6 +103,7 @@ App::uses('AppModel','Model');
                                 'type' => 'INNER',
                                 'conditions' => array(
                                         'UsuarioJoin.id = Tarea.user_id',
+                                        'DATE(Tarea.created)= DATE(NOW())'
                                 )
                         )
                     ),
@@ -113,6 +115,29 @@ App::uses('AppModel','Model');
             );
         }
     	return $arr_obj_tarea;
+    }
+
+    public function listTodasTareas($order_by='Tarea.created', $order='DESC', $start=0, $per_page=10) {
+
+            $arr_obj_tarea = $this->findObjects('all',array(
+                    'joins' => array(
+                        array(
+                                'table' => 'users',
+                                'alias' => 'UsuarioJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'UsuarioJoin.id = Tarea.user_id',
+                                )
+                        )
+                    ),
+                    //'page'=> $start,
+                    'limit'=> $per_page,
+                    'offset'=> $start,
+                    'order'=> array($order_by.' '.$order),
+            )
+            );
+        
+        return $arr_obj_tarea;
     }
 
     public function obtenerActividades($tarea_id){

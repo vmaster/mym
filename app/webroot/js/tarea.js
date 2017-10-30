@@ -46,7 +46,7 @@ $(document).ready(function(){
 				if(data.success==true){
 					$('#add_edit_tarea').hide();
 					$('.btn-nuevo-tarea').hide();
-					$('#conteiner_all_rows').load(env_webroot_script + escape('tareas/find_tareas/1/'+null+'/'+null),function(){
+					$('#conteiner_all_rows').load(env_webroot_script + escape('tareas/find_tareas/1/'+null+'/'+null+'/'+null),function(){
 						$('#table_content_tareas').DataTable();
 					});
 					$('.tooltip-mym').tooltip();
@@ -279,9 +279,17 @@ $(document).ready(function(){
 	$body.off('click','.btn-consultar-tareas');
 	$body.on('click','.btn-consultar-tareas', function(){
 		  trabajador_id = $('#cboTrabajadores').val();
-		  $('#conteiner_all_rows').load(env_webroot_script + escape('tareas/find_tareas/1/'+null+'/'+null+'/'+trabajador_id),function(){
+		  $('#conteiner_all_rows').load(env_webroot_script + escape('tareas/find_tareas/1/'+null+'/'+null+'/'+trabajador_id+'/'+null),function(){
 			$('#table_content_tareas').DataTable();
 		  });
 	});
-	
+
+	$body.off('click','.btn-listar-todos');
+	$body.on('click','.btn-listar-todos', function(){
+		  trabajador_id = $('#cboTrabajadores').val();
+		  $('#conteiner_all_rows').load(env_webroot_script + escape('tareas/listar_todas_tareas/1/'+null+'/'+null),function(){
+			$('#table_content_tareas').DataTable();
+		  });
+	});
+
 });

@@ -71,15 +71,19 @@ $(document).ready(function(){
 	<p>
 
 	<p>
+<?php if($this->Session->read('Auth.User.tipo_user_id') == 1){ ?> 
+	<div class="row">
+				<div class="span3 col-md-3 col-sm-6 col-xs-6">	
+					<label><?php echo __('Elija un empleado'); ?> </label>
+				</div>	
+	</div>
+<?php } ?>
 <div class="row">
-	<div class="span3 col-md-3 col-sm-6 col-xs-6">	
-		<label><?php echo __('Elija un empleado'); ?> </label>
-	</div>	
-</div>
-<div class="row">
-	<div class="span3 col-md-3 col-sm-6 col-xs-6" id="div-cbo-trabajadores">
+	<?php if($this->Session->read('Auth.User.tipo_user_id') == 1){ ?> 
+		<div class="span3 col-md-3 col-sm-6 col-xs-6" id="div-cbo-trabajadores">
 				
 				<select class='form-control' id="cboTrabajadores">
+					<option value="">Elija a un empleado</option>
 					<?php 
 					if (isset($list_trabajadores_enosa)){
 						foreach ($list_trabajadores_enosa as $list_all_personal):
@@ -88,10 +92,14 @@ $(document).ready(function(){
 					}
 					?>
 				</select>
-	</div>
-	<div class="span3 col-md-3 col-sm-6 col-xs-6" id="div-cbo-trabajadores">
-		<a class="btn btn-primary btn-consultar-tareas" ><i class="icon-plus"></i> <?php echo __('Consultar'); ?></a>
-	</div>
+		</div>
+		<div class="span3 col-md-3 col-sm-6 col-xs-6" id="div-cbo-trabajadores">
+			<a class="btn btn-primary btn-consultar-tareas" ><i class="icon-plus"></i> <?php echo __('Consultar'); ?></a>
+		</div>
+		<div class="span3 col-md-3 col-sm-6 col-xs-6" id="div-cbo-trabajadores">
+			<a class="btn btn-primary btn-listar-todos" ><i class="icon-plus"></i> <?php echo __('Listar Todos'); ?></a>		
+		</div>
+	<?php } ?>
 </div>
 	<p>&nbsp;</p>
 
