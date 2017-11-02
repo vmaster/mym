@@ -174,6 +174,12 @@ $(document).ready(function(){
 		//tarea.deleteTarea(tarea_id);
 	});
 	
+	function pad(n, width, z) {
+	  z = z || '0';
+	  n = n + '';
+	  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+	}
+	
 	/* CREAR EMPRESA DESDE UN MODAL (EN EL FORMULARIO CREAR INFORME) */
 	$('#txt-nombre-tarea').keypress(function(e) {
 		if(e.which == 13) {
