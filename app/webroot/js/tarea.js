@@ -155,7 +155,7 @@ $(document).ready(function(){
 							movilidad = 'Viaticos';	
 							placa = "";
 						}else{
-							movilidad = 'Vehiculo';
+							movilidad = 'Placa';
 							placa = " ("+data.placa+")";
 						}
 
