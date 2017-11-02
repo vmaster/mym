@@ -165,7 +165,7 @@ $(document).ready(function(){
 						"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 						data.fecha+"<br>"+
 						"<strong>Info. Ref: </strong>"+data.inf_ref+"<br>"+
-						"<strong>Movilidad: </strong>"+movilidad+''+placa+"<br>"+
+						"<strong>Medio de Transporte: </strong>"+movilidad+''+placa+"<br>"+
 						data.actividades;
 						$('#myModalViewTarea .modal-body').empty();
 						$('#myModalViewTarea .modal-body').append($html);
