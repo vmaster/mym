@@ -22,7 +22,7 @@
 				$f_hoy = date("d-m-Y");
 			?> 
 			<td><?php echo $n; ?></td>
-			<td><?php echo $tarea->getAttr('tarea_id'); ?></td>
+			<td><?php echo $tarea->getAttr('id'); ?></td>
 			<td><?php echo $f_creacion; ?></td>
 			<td><?php echo 'M&M - '.str_pad($tarea->getAttr('informe_ref'), 5, "0", STR_PAD_LEFT); ?></td>
 			<td><?php echo ($tarea->getAttr('movilidad') == 0)?'Viaticos':'Placa: '.$tarea->getAttr('placa_auto'); ?></td>
