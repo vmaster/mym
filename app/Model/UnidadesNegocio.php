@@ -104,7 +104,7 @@ App::uses('AppModel','Model');
     					'fields' => array('id','descripcion'),
     					'conditions'=>array(
     							'UnidadesNegocio.estado != '=> 0,
-								'UnidadesNegocio.consorcio_id != '=> $consorcio_id
+								'UnidadesNegocio.consorcio_id'=> $consorcio_id
     					),
     					'order' => array('UnidadesNegocio.descripcion ASC')
     			));

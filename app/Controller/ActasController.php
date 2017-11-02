@@ -160,6 +160,7 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_med'] = $this->request->data['Acta']['info_des_med'];
 				$this->request->data['Acta']['vers_cambios'] = 2;
 
+
 				if($this->Session->read('Auth.User.tipo_user_id')== 3){
 					
 					$this->request->data['Acta']['created_mym'] = 1;

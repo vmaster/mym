@@ -23,17 +23,7 @@ class TrabajadoresController extends AppController{
 			$order_by_or = 'DESC';
 		}
 		
-		/*if($order_by=='title'){
-			$order_by = 'Bit.title';
-		}elseif($order_by=='username'){
-			$order_by = 'UserJoin.username';
-		}elseif($order_by=='home'){
-			$order_by = 'Bit.view_home';
-		}elseif($order_by=='status'){
-			$order_by = 'Bit.status';
-		}else{
-			$order_by = 'Bit.created';
-		}*/
+		
 		$order_by = 'Trabajadore.created';
 		
 		if($this->request->is('get')){
@@ -405,6 +395,54 @@ class TrabajadoresController extends AppController{
 				exit();
 			}
 		}
+	}
+
+	public function listado_trabajadores($page=null,$order_by=null,$order_by_or=null,$search_nro_documento=null,$search_nombre=null) {
+		ini_set('memory_limit', '1024M');
+		$this->layout = "default";
+		$this->loadModel('Trabajadore');
+		$this->loadModel('Actividade');
+		
+		$page = 0;
+		//$page -= 1;
+		$per_page = 10000;
+		$start = $page * $per_page;
+		
+		if($order_by_or!=NULL && isset($order_by_or) && $order_by_or!='null'){
+			$order_by_or = $order_by_or;
+		}else{
+			$order_by_or = 'DESC';
+		}
+		
+		
+		$order_by = 'Trabajadore.created';
+		
+		if($this->request->is('get')){
+			if($search_nro_documento!=''){
+				$search_nro_documento = $search_nro_documento;
+			}else{
+				$search_nro_documento = '';
+			}
+			
+			if($search_nombre!=''){
+				$search_nombre = $search_nombre;
+			}else{
+				$search_nombre = '';
+			}
+
+		}else{
+			$search_nombre = '';
+			$search_nro_documento = '';
+		}
+		
+		$list_trabajador_all = $this->Trabajadore->listAllTrabajadoresActividades($order_by, utf8_encode($search_nro_documento),utf8_encode($search_nombre),$order_by_or);
+		$list_trabajador = $this->Trabajadore->listFindTrabajadoresActividades($order_by, utf8_encode($search_nro_documento),utf8_encode($search_nombre),$order_by_or, $start, $per_page);
+		$obj_tipo_actividades = $this->Actividade->listActividades();
+		$count = count($list_trabajador_all);
+		$no_of_paginations = ceil($count / $per_page);
+		$page = $page + 1;
+		
+		$this->set(compact('list_trabajador','obj_tipo_actividades','page','no_of_paginations'));
 	}
 	
 }

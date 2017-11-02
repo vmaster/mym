@@ -39,6 +39,9 @@ class UsersController extends AppController{
   				$intento = 1;
   			}
 
+  			//Verificar creacion de tareas para enosa
+			$this->crear_tarea_supervisor_dia_anterior();
+
   			if($intento < 3){
 				if($this->Auth->login()) {
 					if($this->Auth->user('estado')==0){
