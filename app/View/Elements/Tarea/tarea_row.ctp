@@ -5,6 +5,7 @@
           <th><?php echo __('Numero Tarea'); ?></th>
           <th><?php echo __('Fecha'); ?></th>
           <th><?php echo 'Informe de Ref'; ?></th>
+		  <th><?php echo 'Medio de Transporte'; ?></th>
           <th><?php echo 'Trabajador'; ?></th>
           <th><?php echo __('Operaciones'); ?></th>
         </tr>
@@ -23,7 +24,8 @@
 			<td><?php echo $n; ?></td>
 			<td><?php echo $tarea->getAttr('num_tarea'); ?></td>
 			<td><?php echo $f_creacion; ?></td>
-			<td><?php echo $tarea->getAttr('informe_ref'); ?></td>
+			<td><?php echo 'M&M - '.str_pad($tarea->getAttr('informe_ref'), 5, "0", STR_PAD_LEFT); ?></td>
+			<td><?php echo ($tarea->getAttr('movilidad') == 0)?'Viaticos':'Placa: '.$tarea->getAttr('placa_auto'); ?></td>
 			<td><?php echo $tarea->User->Trabajadore->getAttr('apellido_nombre'); ?></td>
 			<td>
 				<a href="#myModalViewTarea" class="tooltip-mym" title="Ver" role="button" data-toggle="modal"><i class="fa fa-eye view-tarea-trigger"></i> </a>

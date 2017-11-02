@@ -39,13 +39,13 @@ tinymce.init({
 		<br>
 		<div class="row">
 			<div class="span3 col-md-4 col-sm-6 col-xs-6">
-				<strong>Movilidad:</strong>
+				<strong>Medio de Transporte:</strong>
 				<div class="radio">
 					<label> Viaticos <input name="data[Tarea][movilidad]" type="radio" value="0" id="rbViaticos" checked>
 					</label>
 				</div>
 				<div class="radio" style="display: -webkit-inline-box">
-					<label>Auto <input name="data[Tarea][movilidad]" type="radio" value="1" id="rbAuto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label>Camioneta <input name="data[Tarea][movilidad]" type="radio" value="1" id="rbAuto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<?php echo $this->Form->input('placa_auto', array('div' => false, 'label' => false, 'class'=> 'txtPlaca form-control','id' =>'txtPlaca', 'type' =>'text', 'style' => 'display:none', 'value'=>'MyM')); ?>
 					</label>
 				</div>
