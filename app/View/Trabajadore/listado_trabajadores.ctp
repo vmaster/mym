@@ -46,8 +46,6 @@ $('#container_page .pagination li.active').live('click',function(){
     
 }); 
 
-$('.tooltip-mym').tooltip();
-
 </script>
 <div class="row">
 	<div class="col-md-12">
@@ -78,3 +76,8 @@ $('.tooltip-mym').tooltip();
 	</div>	
 	
 </div>
+<script>
+$(document).ready(function(){
+	$('.tooltip-mym').tooltip();
+});
+</script>
