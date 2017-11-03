@@ -12,8 +12,6 @@
 				<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'acta_medio_ambientes')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_medio_ambientes" id="link-acta"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Informes de Medio Ambiente'); ?></a></li>
 				*/ ?>
 				<?php if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>
-					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'trabajadores')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Tareas del Personal'); ?></a></li>
-					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'trabajadores')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>trabajadores/listado_trabajadores" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Personal ENOSA'); ?></a></li>
 					<li><a href="#"><i class="fa fa-sitemap fa-3x"></i> Mantenimiento <span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level <?php echo ($this->request->params['controller'] == 'actividades' || $this->request->params['controller'] == 'users' || $this->request->params['controller'] == 'trabajadores' || $this->request->params['controller'] == 'empresas' || $this->request->params['controller'] == 'vehiculos' || $this->request->params['controller'] == 'tipo_vehiculos' || $this->request->params['controller'] == 'codigos' || $this->request->params['controller'] == 'unidades_negocios' || $this->request->params['controller'] == 'categoria_normas')?"collapse in":"collapse";  ?>">
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'actividades')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>actividades" id="link-actividad"><i class="fa fa-qrcode fa-3x"></i> <?php echo ' '.__('Cargos'); ?></a></li>
@@ -58,27 +56,14 @@
 						</ul>
 					</li>
 				<?php } ?>
-				<!-- 
-				<li><a href="#"><i class="fa fa-sitemap fa-3x"></i> Multi-Level
-						Dropdown<span class="fa arrow"></span>
-				</a>
-					<ul class="nav nav-second-level">
-						<li><a href="#">Second Level Link</a></li>
-						<li><a href="#">Second Level Link</a></li>
-						<li><a href="#">Second Level Link<span class="fa arrow"></span>
-						</a>
-							<ul class="nav nav-third-level">
-								<li><a href="#">Third Level Link</a></li>
-								<li><a href="#">Third Level Link</a></li>
-								<li><a href="#">Third Level Link</a></li>
 
-							</ul></li>
-					</ul></li>
-				<li><a href="blank.html"><i class="fa fa-square-o fa-3x"></i> Blank
-						Page</a></li>-->
-				<?php	}else{ ?>
-						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tareas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Tareas'); ?></a></li>
-				<?php }	?>
+			<?php	}else{ ?>
+				<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'trabajadores')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Tareas del Personal'); ?></a></li>
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'trabajadores')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>trabajadores/listado_trabajadores" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Personal ENOSA'); ?></a></li>
+				<?php	}else{ ?>	
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tareas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Tareas'); ?></a></li>
+			<?php }	?>
 		</ul> 
 
 	</div>

@@ -1,7 +1,6 @@
 <table class="table" id="table_content_tareas">
 	<thead>
         <tr>
-          <th><?php echo __('ID'); ?></th>
           <th><?php echo __('Numero Tarea'); ?></th>
           <th><?php echo __('Fecha'); ?></th>
           <th><?php echo 'Informe de Ref'; ?></th>
@@ -21,7 +20,6 @@
 				$f_creacion = date("d-m-Y", strtotime($tarea->getAttr('created')));
 				$f_hoy = date("d-m-Y");
 			?> 
-			<td><?php echo $n; ?></td>
 			<td><?php echo $tarea->getAttr('id'); ?></td>
 			<td><?php echo $f_creacion; ?></td>
 			<td><?php echo 'M&M - '.str_pad($tarea->getAttr('informe_ref'), 5, "0", STR_PAD_LEFT); ?></td>
