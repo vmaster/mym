@@ -19,7 +19,7 @@
 			<td><?php echo $trabajador->getAttr('apellido_nombre'); ?></td>
 			<td><?php echo ($trabajador->getAttr('actividade_id')==0)? "":$trabajador->Actividade->getAttr('descripcion'); ?></td>
 			<td><?php echo $trabajador->getAttr('sexo'); ?></td>
-			<td><a><i class="fa fa-table view-actividades-trigger"></i> </a></td>
+			<td><a class="tooltip-mym" title="Ver" role="button" ><i class="fa fa-table view-actividades-trigger"></i> </a></td>
 		</tr>
 		<?php 
 		endforeach;
