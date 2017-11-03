@@ -60,7 +60,8 @@ $(document).ready(function(){
 	    loadData(page);
 	    
 	});
-
+	
+	$('.tooltip-mym').tooltip();
 });
 </script>
 <div class="row">

@@ -45,6 +45,9 @@ $('#container_page .pagination li.active').live('click',function(){
     loadData(page);
     
 }); 
+
+$('.tooltip-mym').tooltip();
+
 </script>
 <div class="row">
 	<div class="col-md-12">
