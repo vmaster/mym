@@ -18,7 +18,7 @@
 						<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'users')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>users" id="link-usuario"><i class="fa fa-user fa-3x"></i>Usuarios</a></li>
 						<?php }?>
-						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'trabajadores')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>trabajadores" id="link-trabajador"><i class="fa fa-male fa-3x"></i> <?php echo ' '.__('Trabajadores'); ?></a></li>
+						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'trabajadores' && $this->request->params['action']=='index')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>trabajadores" id="link-trabajador"><i class="fa fa-male fa-3x"></i> <?php echo ' '.__('Trabajadores'); ?></a></li>
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'empresas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>empresas" id="link-empresa"><i class="fa fa-building-o fa-3x"></i> <?php echo ' '.__('Empresa'); ?> </a></li>
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'vehiculos')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>vehiculos" id="link-vehiculo"><i class="fa fa-truck fa-3x"></i><?php echo ' '.__('Unidad M&oacute;vil'); ?> </a></li>
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tipo_vehiculos')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tipo_vehiculos" id="link-vehiculo"><i class="fa fa-truck fa-3x"></i><?php echo ' '.__('Tipo Vehiculo'); ?> </a></li>
