@@ -15,7 +15,7 @@
 		foreach ($list_tarea as $tarea):
 		$n = $n + 1;
 		?>
-		<tr class="tarea_row_container" tarea_id="<?php echo $tarea->getAttr('id'); ?>" estado="<?php echo $tarea->getAttr('estado'); ?>" dia_libre="<?php echo $tarea->getAttr('dia_libre'); ?>">
+		<tr class="tarea_row_container" tarea_id="<?php echo $tarea->getAttr('id'); ?>" estado="<?php echo $tarea->getAttr('estado'); ?>" dia_libre="<?php echo $tarea->getAttr('dia_libre'); ?>" style="background-color:<?php echo ($tarea->getAttr('dia_libre') == 1)?'#FCD5AA': ''; ?>";>
 			<?php 
 				$f_creacion = date("d-m-Y", strtotime($tarea->getAttr('created')));
 				$f_hoy = date("d-m-Y");
