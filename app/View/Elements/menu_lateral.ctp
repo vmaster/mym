@@ -61,8 +61,8 @@
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tareas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Tareas'); ?></a></li>
 			<?php 	}	?>
 			<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
-			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'trabajadores')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Tareas del Personal'); ?></a></li>
-					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'trabajadores')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>trabajadores/listado_trabajadores" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Personal ENOSA'); ?></a></li>
+			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tareas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Tareas del Personal'); ?></a></li>
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tareas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>trabajadores/listado_trabajadores" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Personal ENOSA'); ?></a></li>
 			<?php } ?>
 		</ul> 
 
