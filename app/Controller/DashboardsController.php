@@ -8,7 +8,10 @@
 
        public function index(){
            $this->layout = "default";
-           
+		   
+           if($this->Session->read('Auth.User.consorcio_id') == 2) {
+			   $this->redirect(array('controller' => 'tareas', 'action' => 'index'));
+		   }
            $this->loadModel('Acta');
            $this->loadModel('Empresa');
            $this->loadModel('Trabajadore');
