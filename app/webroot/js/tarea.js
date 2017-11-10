@@ -159,6 +159,12 @@ $(document).ready(function(){
 							placa = " ("+data.placa+")";
 						}
 
+						if(data.dia_libre == 1){
+							actividad = "<b>D&iacute;a Libre</b>";	
+						}else{
+							actividad = data.actividades;
+						}
+
 						$html= 
 						"<b>"+data.personal+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 						"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
@@ -166,7 +172,7 @@ $(document).ready(function(){
 						data.fecha+"<br>"+
 						"<strong>Info. Ref: </strong>M&M - "+pad(data.inf_ref,5)+"<br>"+
 						"<strong>Medio de Transporte: </strong>"+movilidad+''+placa+"<br>"+
-						data.actividades;
+						actividad;
 						$('#myModalViewTarea .modal-body').empty();
 						$('#myModalViewTarea .modal-body').append($html);
 					}
