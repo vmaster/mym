@@ -223,22 +223,22 @@ class TareasController extends AppController{
 		if($this->request->is('post')){
 			$tarea_id = $this->request->data['tarea_id'];
 			
-			$obj_tarea = $this->Tarea->findById($tarea_id);
+			/*$obj_tarea = $this->Tarea->findById($tarea_id);
 			if($obj_tarea->saveField('estado', 0)){
 				echo json_encode(array('success'=>true,'msg'=>__('Eliminado con &eacute;xito.')));
 				exit();
 			}else{
 				echo json_encode(array('success'=>false,'msg'=>__('Error inesperado.')));
 				exit();
-			}
-			/*if($this->Tarea->deleteTarea($tarea_id)){
+			}*/
+			if($this->Tarea->delete($tarea_id)){
 				echo json_encode(array('success'=>true,'msg'=>__('Eliminado con &eacute;xito.')));
 				//exit();
 			}else{
 				echo json_encode(array('success'=>false,'msg'=>__('Error inesperado.')));
 				//exit();
 			}
-			exit();*/
+			exit();
 		}
 	}
 	
