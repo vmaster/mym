@@ -29,14 +29,14 @@
 				<a href="#myModalViewTarea" class="tooltip-mym" title="Ver" role="button" data-toggle="modal"><i class="fa fa-eye view-tarea-trigger"></i> </a>
 				&nbsp;
 				
-				<?php if(($f_creacion == $f_hoy) || ($tarea->getAttr('estado') == 1)) { ?>
+				<?php if(($f_creacion == $f_hoy) || ($tarea->getAttr('estado') == 1) || ($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
 					<a href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/editar_tarea/<?php echo $tarea->getAttr('id')?>" class="tooltip-mym" title="Editar" role="button"><i class="fa fa-pencil edit-tarea-trigger"></i> </a>
 				<?php } ?>
 
 				<?php 
 				if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
-					<!--<a href="#myModalDeleteTarea" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-tarea"></i> </a>
-					-->	
+					<a href="#myModalDeleteTarea" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-tarea"></i></a>
+					&nbsp;
 					<a href="#myModalActiveEditTarea" class="tooltip-mym" title="Permitir Editar" role="button" data-toggle="modal"><i class="fa <?php echo ($tarea->getAttr('estado') == 1)?'fa-check-square-o': 'fa-square-o'; ?>  open-modal-edit-tarea"></i> </a>
 					&nbsp;
 					<a href="#myModalActiveDiaLibre" class="tooltip-mym" title="Dia Libre" role="button" data-toggle="modal"><i class="fa <?php echo ($tarea->getAttr('dia_libre') == 1)?'fa-user': 'fa-sun-o'; ?>  open-modal-dia-libre"></i> </a>
