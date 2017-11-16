@@ -97,7 +97,7 @@ class AppController extends Controller {
 		$arr_obj_tareas = $this->Tarea->find('all',array(    			
     			'conditions'=>array(
                         'Tarea.user_id' => $user_id,
-                        'Tarea.created = DATE_SUB(CURDATE(), INTERVAL 1 DAY)'
+                        'DATE(Tarea.created) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)'
     			)
     		)
     	);
