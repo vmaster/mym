@@ -169,10 +169,17 @@ $(document).ready(function(){
 						"<b>"+data.personal+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 						"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 						"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-						data.fecha+"<br>"+
-						"<strong>Info. Ref: </strong>M&M - "+pad(data.inf_ref,5)+"<br>"+
-						"<strong>Medio de Transporte: </strong>"+movilidad+''+placa+"<br>"+
-						actividad;
+						data.fecha+"<br>";	
+						
+						if(data.inf_ref != null){
+							$html+="<strong>Info. Ref: </strong>M&M - "+pad(data.inf_ref,5)+"<br>";
+						}
+						if(data.movilidad != null){
+							$html+="<strong>Medio de Transporte: </strong>"+movilidad+''+placa;
+						}
+						
+						$html+="<br>"+ actividad;
+						
 						$('#myModalViewTarea .modal-body').empty();
 						$('#myModalViewTarea .modal-body').append($html);
 					}

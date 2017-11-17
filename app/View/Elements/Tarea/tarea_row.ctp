@@ -22,8 +22,8 @@
 			?> 
 			<td><?php echo $tarea->getAttr('id'); ?></td>
 			<td><?php echo $f_creacion; ?></td>
-			<td><?php echo 'M&M - '.str_pad($tarea->getAttr('informe_ref'), 5, "0", STR_PAD_LEFT); ?></td>
-			<td><?php echo ($tarea->getAttr('movilidad') == 0)?'Viaticos':'Placa: '.$tarea->getAttr('placa_auto'); ?></td>
+			<td><?php echo (!is_null($tarea->getAttr('informe_ref')))?'M&M - '.str_pad($tarea->getAttr('informe_ref'), 5, "0", STR_PAD_LEFT):''; ?></td>
+			<td><?php echo ($tarea->getAttr('movilidad') == 0 && !is_null($tarea->getAttr('movilidad')))?'Viaticos':(($tarea->getAttr('movilidad') == 1)?'Placa: '.$tarea->getAttr('placa_auto'):''); ?></td>
 			<td><?php echo $tarea->User->Trabajadore->getAttr('apellido_nombre'); ?></td>
 			<td>
 				<a href="#myModalViewTarea" class="tooltip-mym" title="Ver" role="button" data-toggle="modal"><i class="fa fa-eye view-tarea-trigger"></i> </a>
@@ -32,7 +32,7 @@
 				<?php if(($f_creacion == $f_hoy) || ($tarea->getAttr('estado') == 1) || ($this->Session->read('Auth.User.tipo_user_id') == 1)) { ?>
 					<a href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/editar_tarea/<?php echo $tarea->getAttr('id')?>" class="tooltip-mym" title="Editar" role="button"><i class="fa fa-pencil edit-tarea-trigger"></i> </a>
 				<?php } ?>
-
+				&nbsp;
 				<?php 
 				if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
 					<a href="#myModalDeleteTarea" role="button" data-toggle="modal"><i class="fa fa-times open-model-delete-tarea"></i></a>
