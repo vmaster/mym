@@ -267,7 +267,7 @@ class TareasController extends AppController{
 			$tarea_id = $this->request->data['tarea_id'];
 			$array_tarea = $this->Tarea->obtenerActividades($tarea_id);
 			$actividades = $array_tarea[0]['Tarea']['descripcion'];
-			$fecha = $array_tarea[0]['Tarea']['created'];
+			$fecha = date("Y-m-d, g:i a",strtotime($array_tarea[0]['Tarea']['created']));
 			$personal =  $array_tarea[0]['TrabajadorJoin']['apellido_nombre'];
 			$informe_ref = $array_tarea[0]['Tarea']['informe_ref'];
 			$movilidad = $array_tarea[0]['Tarea']['movilidad'];
