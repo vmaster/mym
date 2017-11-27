@@ -135,7 +135,7 @@ class AppController extends Controller {
 
 			if(empty($arr_obj_tareas_ayer)){
 				$arr_obj_tarea_ayer['user_id'] = $user_id;
-				$arr_obj_tarea_ayer['created'] = date('Y-m-d', (strtotime(date('Y-m-d')) - 3600));
+				$arr_obj_tarea_ayer['created'] = date('Y-m-d', strtotime(date('Y-m-d').' -1 day'));
 				$arr_obj_tarea_ayer['modified'] = $arr_obj_tarea_ayer['created'];
 				$arr_obj_tarea_ayer['estado'] = '0';
 		    	
@@ -145,7 +145,7 @@ class AppController extends Controller {
 			
 			if(empty($arr_obj_tareas_antesdeayer)){
 				$arr_obj_tarea_antesdeayer['user_id'] = $user_id;
-				$arr_obj_tarea_antesdeayer['created'] = date('Y-m-d', (strtotime(date('Y-m-d')) - 7200));
+				$arr_obj_tarea_antesdeayer['created'] = date('Y-m-d', strtotime(date('Y-m-d').' -2 day'));
 				$arr_obj_tarea_antesdeayer['modified'] = $arr_obj_tarea_antesdeayer['created'];
 				$arr_obj_tarea_antesdeayer['estado'] = '0';
 		    	
