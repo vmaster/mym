@@ -104,6 +104,19 @@ class AppController extends Controller {
     	//debug($arr_obj_tareas);exit();
     	return $arr_obj_tareas;
 	}
+	
+	public function tareas_supervisores_del_dia_antesdeayer($user_id){
+		$this->loadModel('Tarea');
+		$arr_obj_tareas = $this->Tarea->find('all',array(    			
+    			'conditions'=>array(
+                        'Tarea.user_id' => $user_id,
+                        'DATE(Tarea.created) = DATE_SUB(CURDATE(), INTERVAL 2 DAY)'
+    			)
+    		)
+    	);
+    	//debug($arr_obj_tareas);exit();
+    	return $arr_obj_tareas;
+	}
 
 	/**
 	 * Creamos tareas del dia anterior al supervisor enosa
@@ -111,22 +124,33 @@ class AppController extends Controller {
 	 * @author Alan Hugo
 	 * @version 25 Octubre 2017
 	 */
-	public function crear_tarea_supervisor_dia_anterior(){
+	public function crear_tarea_supervisor_dia_ayer_y_antesdeayer(){
 		$this->loadModel('Tarea');
 		$arr_obj_usuarios = $this->supervisores_enosa();
 
 		foreach ($arr_obj_usuarios as $key => $obj_usuario) {
 			$user_id = $obj_usuario['User']['id'];
-			$arr_obj_tareas = $this->tareas_supervisores_del_dia_ayer($user_id);
+			$arr_obj_tareas_ayer = $this->tareas_supervisores_del_dia_ayer($user_id);
+			$arr_obj_tareas_antesdeayer = $this->tareas_supervisores_del_dia_antesdeayer($user_id);
 
-			if(empty($arr_obj_tareas)){
-				$arr_obj_tarea['user_id'] = $user_id;
-				$arr_obj_tarea['created'] = date('Y-m-d', (strtotime(date('Y-m-d')) - 3600));
-				$arr_obj_tarea['modified'] = $arr_obj_tarea['created'];
-				$arr_obj_tarea['estado'] = '0';
+			if(empty($arr_obj_tareas_ayer)){
+				$arr_obj_tarea_ayer['user_id'] = $user_id;
+				$arr_obj_tarea_ayer['created'] = date('Y-m-d', (strtotime(date('Y-m-d')) - 3600));
+				$arr_obj_tarea_ayer['modified'] = $arr_obj_tarea_ayer['created'];
+				$arr_obj_tarea_ayer['estado'] = '0';
 		    	
 		    	$this->Tarea->create();
-				$this->Tarea->save($arr_obj_tarea);
+				$this->Tarea->save($arr_obj_tarea_ayer);
+			}
+			
+			if(empty($arr_obj_tareas_antesdeayer)){
+				$arr_obj_tarea_antesdeayer['user_id'] = $user_id;
+				$arr_obj_tarea_antesdeayer['created'] = date('Y-m-d', (strtotime(date('Y-m-d')) - 7200));
+				$arr_obj_tarea_antesdeayer['modified'] = $arr_obj_tarea_antesdeayer['created'];
+				$arr_obj_tarea_antesdeayer['estado'] = '0';
+		    	
+		    	$this->Tarea->create();
+				$this->Tarea->save($arr_obj_tarea_antesdeayer);
 			}
 		}
 
