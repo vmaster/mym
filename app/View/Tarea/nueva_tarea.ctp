@@ -32,8 +32,15 @@ tinymce.init({
 		<br>
 		<div class="row">
 			<div class="span3 col-md-4 col-sm-6 col-xs-6">
-				<?php echo "<label id='lblInformeRef'>".__('Informe de Referencia')."</label>"; ?>
+				<?php echo "<label id='lblInformeRef'>".__('Informes de Referencia (separe los informes por comas)')."</label>"; ?>
 				<?php echo $this->Form->input('informe_ref', array('div' => false, 'label'=> false, 'class'=> 'txt-tareas editor form-control','id' =>'txtTereas')); ?>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="span3 col-md-6 col-sm-6 col-xs-6">
+				<?php echo "<label id='lblObservacion'>Observaci&oacute;n</label>"; ?>
+				<?php echo $this->Form->input('observacion', array('div' => false, 'label' => false,'type'=>'textarea','rows'=>'5','cols'=>'80', 'class'=> 'txt-observaciones editor form-control','id' =>'txtObservaciones')); ?>
 			</div>
 		</div>
 		<br>

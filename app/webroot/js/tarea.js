@@ -179,6 +179,9 @@ $(document).ready(function(){
 						}
 						
 						$html+="<br>"+ actividad;
+
+						$html+= "<br><strong>OBSERVACI&Oacute;N:</strong>";
+						$html+= data.observacion;
 						
 						$('#myModalViewTarea .modal-body').empty();
 						$('#myModalViewTarea .modal-body').append($html);

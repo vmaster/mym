@@ -273,7 +273,8 @@ class TareasController extends AppController{
 			$movilidad = $array_tarea[0]['Tarea']['movilidad'];
 			$placa = $array_tarea[0]['Tarea']['placa_auto'];
 			$dia_libre = $array_tarea[0]['Tarea']['dia_libre'];
-			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal, 'inf_ref'=> $informe_ref, 'movilidad'=> $movilidad, 'placa' => $placa, 'dia_libre' => $dia_libre));
+			$observacion = $array_tarea[0]['Tarea']['observacion'];
+			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal, 'inf_ref'=> $informe_ref, 'movilidad'=> $movilidad, 'placa' => $placa, 'dia_libre' => $dia_libre, 'observacion' => $observacion));
 			exit();
 		}else{
 			echo json_encode(array('success'=>false,'fecha'=> '', 'actividades'=> '','personal'=> ''));
