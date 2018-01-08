@@ -114,15 +114,6 @@
 				</div>
 				<?php echo $this->Form->create('UserChangePass',array('method'=>'post', 'id'=>'form_change_pass','action'=> false));?>
 				<div class="modal-body">
-					
-							<div class="row">
-								<div class="span3 col-md-4 col-sm-6 col-xs-6">
-									<label><?php echo utf8_encode(__('Contraseña actual')); ?> </label>
-								</div>
-								<div class="span3 col-md-5 col-sm-6 col-xs-6">
-									<?php echo $this->Form->input('current_password', array('type' =>'password', 'div' => false, 'label' => false, 'class'=>'form-control','id'=>'current-password')); ?>
-								</div>
-							</div>
 							<p>
 							<div class="row">
 								<div class="span3 col-md-4 col-sm-6 col-xs-6">

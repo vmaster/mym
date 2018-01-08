@@ -392,17 +392,17 @@ class UsersController extends AppController{
 		if($this->request->is('post')){
 			//debug($this->request->data);
 			$user_id = $this->request->data['user_id'];
-			$current_pass = $this->request->data['current_pass'];
+			//$current_pass = $this->request->data['current_pass'];
 			$new_pass = $this->request->data['new_pass'];
 			$new_confirm = $this->request->data['confirm_pass'];
 			
 			$error_validation1 = '';
 			$error_validation2 = '';
 			
-			if($current_pass == ''){
+			/*if($current_pass == ''){
 				$arr_validation1['current_password'] = array(__('Debe ingresar su clave actual'));
 				$error_validation1 = true;
-			}
+			}*/
 			
 			if($new_pass == ''){
 				$arr_validation1['new_password'] = array(__('Debe ingresar su nueva clave'));
@@ -419,7 +419,7 @@ class UsersController extends AppController{
 				exit();
 			}
 			
-			if($this->User->checkPasswordForUser($user_id,$current_pass)){
+			//if($this->User->checkPasswordForUser($user_id,$current_pass)){
 				if($new_pass == $new_confirm){
 					$new_pass_hash= AuthComponent::password($new_pass);
 					$obj_user = $this->User->findById($user_id);
@@ -433,12 +433,12 @@ class UsersController extends AppController{
 					$arr_validation2['new_password_confirm'] = array(__('La clave de confirmaci&oacute;n no coincide con su nueva clave'));
 					$error_validation2 = true;
 				}
-			}else{
+			/*}else{
 				//echo json_encode(array('success'=>false,'msg'=>__('La clave ingresada es incorrecta')));
 				//exit();
 				$arr_validation2['current_password'] = array(__('La clave ingresada es incorrecta'));
 				$error_validation2 = true;
-			}
+			}*/
 			
 			if($error_validation2 == true){
 				echo json_encode(array('success' =>false, 'msg' => __('No se pudo guardar'), 'validation' => $arr_validation2));
