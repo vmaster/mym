@@ -638,8 +638,8 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
 
 								//Backup Images	
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_med/'.$new_foto_med['FotoMed']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
 
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
