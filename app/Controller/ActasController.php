@@ -71,7 +71,13 @@ class ActasController extends AppController{
 	public function search_actas($search_ano=null, $search_consorcio=null) {
 		$this->layout = 'ajax';
 		$this->loadModel('Acta');
+
 		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
+
+
+		/*debug("año: ".$search_ano);
+		debug("consorcio: ".$search_consorcio);
+		debug("tipo de usuario: ".$tipo_user_id); exit();*/
 		$list_acta = $this->Acta->listSearchActas($search_ano, $search_consorcio, $tipo_user_id);
 
 		$this->set(compact('list_acta'));
