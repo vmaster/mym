@@ -419,53 +419,30 @@ App::uses('AppModel','Model');
             )
             );
         }elseif($tipo_user_id== 2){ // CASO SEA SUPERVISOR
-            if(AuthComponent::user('consorcio_id') == 1){
-                $search_consorcio = 1;
+
+            if(AuthComponent::user('consorcio_id') == 1){ // CASO SEA DEL CONSORCIO ENSA
                 $arr_obj_acta = $this->findObjects('all',
                     array(
-                     'joins' => 
-                            array(
-                                array(
-                                    'table'=> 'users',
-                                    'alias'=> 'UserJoin',
-                                    'type' => 'INNER',
-                                    'conditions'=> array(
-                                        'UserJoin.id = Acta.reponsable_sup_id')
-
-                                    )
-                        ),
                         'conditions'=>array(
                                 'AND' => array(
                                         'YEAR(Acta.`created`)'=> $search_ano,
                                         'Acta.estado '=> 1,
                                         'Acta.created_mym' => 0,
-                                        'UserJoin.consorcio_id' => 1
+                                        'Acta.consorcio_id' => 1
                                 )
                         ),
                         'order'=> array('Acta.created desc'),
                     )
                 );
-            }else{
-                $search_consorcio = 2;
+            }else{ // CASO SEA DEL CONSORCIO ENOSA
                 $arr_obj_acta = $this->findObjects('all',
                     array(
-                        'joins' => 
-                        array(
-                                array(
-                                    'table'=> 'users',
-                                    'alias'=> 'UserJoin',
-                                    'type' => 'INNER',
-                                    'conditions'=> array(
-                                        'UserJoin.id = Acta.reponsable_sup_id')
-
-                                    )
-                        ),
                         'conditions'=>array(
                                 'AND' => array(
                                         'YEAR(Acta.`created`)'=> $search_ano,
                                         'Acta.estado '=> 1,
                                         'Acta.created_mym' => 0,
-                                        'UserJoin.consorcio_id' => 2
+                                        'Acta.consorcio_id' => 2
                                 )
                         ),
                         'order'=> array('Acta.created desc'),
@@ -475,23 +452,12 @@ App::uses('AppModel','Model');
         }else{ // CASO SEA ADMINISTRADOR DEL SISTEMA
             $arr_obj_acta = $this->findObjects('all',
                     array(
-                        'joins' => 
-                        array(
-                                array(
-                                    'table'=> 'users',
-                                    'alias'=> 'UserJoin',
-                                    'type' => 'INNER',
-                                    'conditions'=> array(
-                                        'UserJoin.id = Acta.reponsable_sup_id')
-
-                                    )
-                        ),
                         'conditions'=>array(
                                 'AND' => array(
                                         'YEAR(Acta.created)'=> $search_ano,
                                         'Acta.estado '=> 1,
                                         'Acta.created_mym' => 0,
-                                        'UserJoin.consorcio_id' => $search_consorcio
+                                        'Acta.consorcio_id' => $search_consorcio
                                 )
                         ),
                         'order'=> array('Acta.created desc')
