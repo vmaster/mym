@@ -1210,4 +1210,39 @@ class ReportesController extends AppController{
 
 	}
 
+	public function rpt_uso_camioneta_asesor() {
+		$this->layout = "default";
+		$this->loadModel('Acta');
+
+	}
+
+	public function load_graf_uso_camioneta_asesor($fec_inicio, $fec_fin){
+		$this->loadModel('Acta');
+		$this->autoRender = false;
+		
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+		
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+		
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+		$x ="";
+		$y ="";
+		$list_sep_emp = $this->Acta->listSupervisionByEmpresa($fec_inicio_format, $fec_fin_format);
+		foreach ($list_sep_emp as $key => $arr_emp):
+			$x[] = $arr_emp['EmpresaJoin']['nombre'];
+			$y[] = intval($arr_emp[0]['Cantidad']);
+		endforeach;
+		return json_encode(array('success'=>true,'categoria'=>$x, 'name'=>'Empresa', 'data'=>$y));
+		//exit();
+	}
+
 }
