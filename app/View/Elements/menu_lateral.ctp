@@ -24,7 +24,9 @@
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tipo_vehiculos')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tipo_vehiculos" id="link-vehiculo"><i class="fa fa-truck fa-3x"></i><?php echo ' '.__('Tipo Vehiculo'); ?> </a></li>
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'categoria_normas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>categoria_normas" id="link-categoria-codigo"><i class="fa fa-gavel fa-3x"></i> <?php echo ' '.__('Categor&iacute;a Normas'); ?> </a></li>
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'codigos')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>codigos" id="link-codigo"><i class="fa fa-gavel fa-3x"></i> <?php echo ' '.__('Normas'); ?> </a></li>
-						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'unidades_negocios')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>unidades_negocios" id="link-uunn"><i class="fa fa-suitcase fa-3x"></i> <?php echo ' '.__('UUNN'); ?> </a></li>
+						<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+							<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'unidades_negocios')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>unidades_negocios" id="link-uunn"><i class="fa fa-suitcase fa-3x"></i> <?php echo ' '.__('UUNN'); ?> </a></li>
+						<?php } ?>
 						</ul>
 					</li>
 				<?php } ?>
@@ -55,15 +57,19 @@
 							<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'configurations' && $this->request->params['action']=='backup_database')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>configurations/backup_database" id="link-actividad"><i class="fa fa-floppy-o fa-3x"></i> <?php echo ' '.__('Backup de Base de Datos'); ?></a></li>
 						</ul>
 					</li>
-				<?php } ?>
+				<?php } }?>
 
-			<?php	}else{ ?>	
-					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tareas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Tareas'); ?></a></li>
-			<?php 	}	?>
+			<?php if($this->Session->read('Auth.User.consorcio_id') == 2) { ?>
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tareas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas" id="link-tarea"><i class="fa fa-file-text fa-3x"></i>
+					<?php echo ' '.__('Tareas'); ?></a></li>
+			<?php } ?>
+
+
 			<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
 			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tareas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Tareas del Personal'); ?></a></li>
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'trabajadores' && $this->request->params['action']=='listado_trabajadores')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>trabajadores/listado_trabajadores" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Personal ENOSA'); ?></a></li>
 			<?php } ?>
+			
 		</ul> 
 
 	</div>

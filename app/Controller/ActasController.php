@@ -173,6 +173,8 @@ class ActasController extends AppController{
 				}else{
 					$this->request->data['Acta']['created_mym'] = 0;
 				}
+					
+				$this->request->data['Acta']['consorcio_id'] = $this->Session->read('Auth.User.consorcio_id');
 
 				$data = str_replace(' ', '+', $this->request->data['graf']);
 				$data_64= base64_decode($data);
