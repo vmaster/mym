@@ -190,5 +190,63 @@ App::uses('AppModel','Model');
        }
     }
 
+    public function listCamionetaAsesor($fec_inicio, $fec_fin, $asesor_id='%%%') {
+        $arr_obj_camionetas_asesor = $this->find('all',array(
+                'fields' => array('TrabajadorJoin.apellido_nombre, count(*) as Cantidad'),
+                'joins' => array(
+                        array(
+                                'table' => 'trabajadores',
+                                'alias' => 'TrabajadorJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'TrabajadorJoin.id = Tarea.user_id',
+                                )
+                        ),
+                ),
+                'conditions'=>array(
+                        'Tarea.estado' => 1,
+                        'Tarea.user_id like' => $asesor_id,
+                        'Tarea.created BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+                ),
+                'group'=> array('Tarea.user_id'),
+                'order' => array('Cantidad'=>'desc')
+        )
+        );
+        //debug($arr_obj_camionetas_asesor); exit();
+        return $arr_obj_camionetas_asesor;
+    }
+
+    public function listDetalleCamionetaAsesor($fec_inicio, $fec_fin, $asesor_id='%%%') {
+            $arr_obj_camionetas_asesor = $this->findObjects('all',array(
+                'joins' => array(
+                        array(
+                                'table' => 'trabajadores',
+                                'alias' => 'TrabajadorJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'TrabajadorJoin.id = Tarea.user_id',
+                                )
+                        ),
+                ),
+                'conditions'=>array(
+                        'Tarea.estado' => 1,
+                        'Tarea.user_id like' => $asesor_id,
+                        'Tarea.created BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
+                )
+        )
+        );
+        //debug($arr_obj_camionetas_asesor); exit();
+        return $arr_obj_camionetas_asesor;
+    }
+
+    public function listAsesores() {
+            $arr_obj_asesores = $this->findObjects('all',array(
+                'group'=> array('Tarea.user_id')
+        )
+        );
+        //debug($arr_obj_asesores); exit();
+        return $arr_obj_asesores;
+    }
+
 }
 ?>

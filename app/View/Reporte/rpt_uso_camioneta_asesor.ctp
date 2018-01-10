@@ -5,14 +5,14 @@ function visitorData (valores) {
 	        type: 'column'
 	    },
 	    title: {
-	        text: 'N\u00FAmero de informes por empresa'
+	        text: 'Cantidad de uso de camioneta'
 	    },
 	    xAxis: {
 	        categories: valores.categoria
 	    },
 	    yAxis: {
 	        title: {
-	            text: 'N\u00FAmero de informes'
+	            text: 'Cantidad de uso de camioneta'
 	        }
 	    },
         plotOptions: {
@@ -23,7 +23,7 @@ function visitorData (valores) {
         },
         tooltip: {
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">Total Imformes: {point.y:.f}</td></tr>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">Total uso de camioneta: {point.y:.f}</td></tr>',
             footerFormat: '</table>',
             shared: true,
             useHTML: true
@@ -41,8 +41,9 @@ function visitorData (valores) {
 		function ExecuteReport1(){
 			fec_incio = $('#txtBuscarFecIncioRep1').val();
 			fec_fin = $('#txtBuscarFecFinRep1').val();
+			asesor = $('#txtAsesor').val();
 			 $.ajax({
-			    url: env_webroot_script + 'reportes/load_graf_uso_camioneta_asesor/'+fec_incio+'/'+fec_fin,
+			    url: env_webroot_script + 'reportes/load_graf_uso_camioneta_asesor/'+fec_incio+'/'+fec_fin+'/'+asesor,
 			    type: 'GET',
 			    async: true,
 			    dataType: "json",
@@ -52,7 +53,7 @@ function visitorData (valores) {
 					}
 	
 					$('div#reporte1 #list-data-cant-info-emp').unbind();
-					$('div#reporte1 #list-data-cant-info-emp').load(env_webroot_script + 'reportes/load_list_uso_camioneta_asesor/'+fec_incio+'/'+fec_fin,function(){
+					$('div#reporte1 #list-data-cant-info-emp').load(env_webroot_script + 'reportes/load_list_uso_camioneta_asesor/'+fec_incio+'/'+fec_fin+'/'+asesor,function(){
 						
 					});
 			});
@@ -88,7 +89,7 @@ function visitorData (valores) {
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<h2><?php echo utf8_encode(__('Número de Informes por Empresas')); ?></h2>
+		<h2><?php echo utf8_encode(__('Número de uso de camioneta')); ?></h2>
 	</div>
 </div>
 <hr />
@@ -107,6 +108,19 @@ function visitorData (valores) {
 				<label><?php echo __('Fecha Fin');?></label> <input type="text"
 				name="txtBuscarFecFinRep1" id="txtBuscarFecFinRep1"
 				class="form-control" value="<?php echo date('d-m-Y'); ?>" placeholder="dd-mm-aaaa">
+		</div>
+		<div class="col-md-3 col-sm-6 col-xs-6">
+				<label><?php echo __('Asesor');?></label> 
+				<select class="cbo-empresas-select2 form-control" id ="txtAsesor">
+										<?php 
+										if (isset($list_all_asesores)){
+										echo "<option>---</option>";
+										foreach ($list_all_asesores as $id => $des):
+										echo "<option value = ".$des->getAttr('user_id').">".$des->User->Trabajadore->getAttr('apellido_nombre')."</option>";
+										endforeach;
+										}
+										?>
+				</select>
 		</div>
 		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-report1"><?php echo __('Consultar');?></button>

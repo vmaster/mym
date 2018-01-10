@@ -1212,12 +1212,13 @@ class ReportesController extends AppController{
 
 	public function rpt_uso_camioneta_asesor() {
 		$this->layout = "default";
-		$this->loadModel('Acta');
-
+		$this->loadModel('Tarea');
+		$list_all_asesores = $this->Tarea->listAsesores();
+		$this->set(compact('list_all_asesores'));
 	}
 
-	public function load_graf_uso_camioneta_asesor($fec_inicio, $fec_fin){
-		$this->loadModel('Acta');
+	public function load_graf_uso_camioneta_asesor($fec_inicio, $fec_fin, $asesor_id = null){
+		$this->loadModel('Tarea');
 		$this->autoRender = false;
 		
 		if(isset($fec_inicio)){
@@ -1231,18 +1232,56 @@ class ReportesController extends AppController{
 		}else{
 			$fec_fin = '';
 		}
+
+		if(isset($asesor_id) && $asesor_id !='---'){
+			$asesor_id = $asesor_id;
+		}else{
+			$asesor_id = '%%%';
+		}
 		
 		$fec_inicio_format = $this->formatFecha($fec_inicio);
 		$fec_fin_format = $this->formatFecha($fec_fin);
 		$x ="";
 		$y ="";
-		$list_sep_emp = $this->Acta->listSupervisionByEmpresa($fec_inicio_format, $fec_fin_format);
-		foreach ($list_sep_emp as $key => $arr_emp):
-			$x[] = $arr_emp['EmpresaJoin']['nombre'];
-			$y[] = intval($arr_emp[0]['Cantidad']);
+
+		$list_camioneta_asesor = $this->Tarea->listCamionetaAsesor($fec_inicio_format, $fec_fin_format, $asesor_id);
+
+		//debug($list_camioneta_asesor); exit();
+		foreach ($list_camioneta_asesor as $key => $arr_asesor):
+			$x[] = $arr_asesor['TrabajadorJoin']['apellido_nombre'];
+			$y[] = intval($arr_asesor[0]['Cantidad']);
 		endforeach;
-		return json_encode(array('success'=>true,'categoria'=>$x, 'name'=>'Empresa', 'data'=>$y));
+		return json_encode(array('success'=>true,'categoria'=>$x, 'name'=>'Asesor', 'data'=>$y));
 		//exit();
+	}
+
+	public function load_list_uso_camioneta_asesor($fec_inicio, $fec_fin, $asesor_id = null){
+		$this->layout = "ajax";
+		$this->loadModel('Tarea');
+		
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+		
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+
+		if(isset($asesor_id) && $asesor_id !='---'){
+			$asesor_id = $asesor_id;
+		}else{
+			$asesor_id = '%%%';
+		}
+
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+		
+		$list_camioneta_asesor = $this->Tarea->listDetalleCamionetaAsesor($fec_inicio_format, $fec_fin_format, $asesor_id);
+		$this->set(compact('list_camioneta_asesor'));
 	}
 
 }
