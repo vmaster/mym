@@ -30,7 +30,6 @@ $(document).ready(function() {
 				<tr>
 					<th><?php echo utf8_encode(__('Nombre de Asesor')); ?></th>
 					<th><?php echo utf8_encode(__('N° Informe Ref.')); ?></th>
-					<th><?php echo utf8_encode(__('Viatico')); ?></th>
 					<th><?php echo utf8_encode(__('Fecha')); ?></th>
 				</tr>
 			</thead>
@@ -42,7 +41,6 @@ $(document).ready(function() {
 				<tr class="report_row_container">
 					<td><?php echo $arr_viatico->User->Trabajadore->getAttr('apellido_nombre'); ?></td>
 					<td><?php echo $arr_viatico->getAttr('informe_ref'); ?></td>
-					<td><?php echo $arr_viatico->getAttr('viatico'); ?></td>
 					<td><?php echo date('Y-m-d H:i',strtotime($arr_viatico->getAttr('created'))); ?></td>
 				</tr>
 				<?php 

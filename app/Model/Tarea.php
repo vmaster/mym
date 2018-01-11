@@ -205,6 +205,7 @@ App::uses('AppModel','Model');
                 ),
                 'conditions'=>array(
                         'Tarea.estado' => 1,
+                        'Tarea.movilidad' => 1,
                         'Tarea.user_id like' => $asesor_id,
                         'Tarea.created BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
                 ),
@@ -230,6 +231,7 @@ App::uses('AppModel','Model');
                 ),
                 'conditions'=>array(
                         'Tarea.estado' => 1,
+                        'Tarea.movilidad' => 1,
                         'Tarea.user_id like' => $asesor_id,
                         'Tarea.created BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
                 )
@@ -264,6 +266,7 @@ App::uses('AppModel','Model');
                 ),
                 'conditions'=>array(
                         'Tarea.estado' => 1,
+                        'Tarea.movilidad' => 0,
                         'Tarea.user_id like' => $asesor_id,
                         'Tarea.created BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
                 ),
@@ -289,6 +292,7 @@ App::uses('AppModel','Model');
                 ),
                 'conditions'=>array(
                         'Tarea.estado' => 1,
+                        'Tarea.movilidad' => 0,
                         'Tarea.user_id like' => $asesor_id,
                         'Tarea.created BETWEEN ? and ?'=>array($fec_inicio, $fec_fin)
                 )

@@ -42,7 +42,7 @@ $(document).ready(function() {
 				<tr class="report_row_container">
 					<td><?php echo $arr_camioneta->User->Trabajadore->getAttr('apellido_nombre'); ?></td>
 					<td><?php echo $arr_camioneta->getAttr('informe_ref'); ?></td>
-					<td><?php echo $arr_camioneta->getAttr('placa_auto	'); ?></td>
+					<td><?php echo $arr_camioneta->getAttr('placa_auto'); ?></td>
 					<td><?php echo date('Y-m-d H:i',strtotime($arr_camioneta->getAttr('created'))); ?></td>
 				</tr>
 				<?php 

@@ -1284,7 +1284,7 @@ class ReportesController extends AppController{
 		$this->set(compact('list_camioneta_asesor'));
 	}
 	
-	public function rpt_uso_viaticos_asesor() {
+	public function rpt_uso_viatico_asesor() {
 		$this->layout = "default";
 		$this->loadModel('Tarea');
 		$list_all_asesores = $this->Tarea->listAsesores();
