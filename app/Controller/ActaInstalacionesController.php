@@ -149,11 +149,17 @@ class ActaInstalacionesController extends AppController{
 				$this->request->data['ActaInstalacione']['info_des_rec'] = $this->request->data['ActaInstalacione']['info_des_rec'];
 				$this->request->data['ActaInstalacione']['info_des_med'] = $this->request->data['ActaInstalacione']['info_des_med'];
 				$this->request->data['ActaInstalacione']['vers_cambios'] = 2;
+				
 				if($this->Session->read('Auth.User.tipo_user_id')== 3){
 					$this->request->data['ActaInstalacione']['created_mym'] = 1;
 				}else{
 					$this->request->data['ActaInstalacione']['created_mym'] = 0;
 				}
+
+				$this->request->data['ActaInstalacione']['consorcio_id'] = $this->Session->read('Auth.User.consorcio_id');
+				$this->request->data['ActaInstalacione']['user_id'] = $this->Session->read('Auth.User.id');
+
+
 
 				$data = str_replace(' ', '+', $this->request->data['graf']);
 				$data_64= base64_decode($data);
@@ -644,6 +650,9 @@ class ActaInstalacionesController extends AppController{
 				$this->request->data['ActaInstalacione']['info_des_conclusion'] = $this->request->data['ActaInstalacione']['info_des_conclusion'];
 				$this->request->data['ActaInstalacione']['info_des_rec'] = $this->request->data['ActaInstalacione']['info_des_rec'];
 				$this->request->data['ActaInstalacione']['info_des_med'] = $this->request->data['ActaInstalacione']['info_des_med'];
+
+				$this->request->data['ActaInstalacione']['consorcio_id'] = $this->Session->read('Auth.User.consorcio_id');
+				$this->request->data['ActaInstalacione']['user_id'] = $this->Session->read('Auth.User.id');
 
 
 				if($this->request->data['ActaInstalacione']['grafico'] != ''){

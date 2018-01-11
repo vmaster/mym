@@ -147,6 +147,9 @@ class ActaMedioAmbientesController extends AppController{
 					$this->request->data['ActaMedioAmbiente']['created_mym'] = 0;
 				}
 
+				$this->request->data['ActaMedioAmbiente']['consorcio_id'] = $this->Session->read('Auth.User.consorcio_id');
+				$this->request->data['ActaMedioAmbiente']['user_id'] = $this->Session->read('Auth.User.id');
+
 				$data = str_replace(' ', '+', $this->request->data['graf']);
 				$data_64= base64_decode($data);
 				$filename = date('ymdhis').'.png';
@@ -381,6 +384,9 @@ class ActaMedioAmbientesController extends AppController{
 				$this->request->data['ActaMedioAmbiente']['info_des_conclusion'] = $this->request->data['ActaMedioAmbiente']['info_des_conclusion'];
 				$this->request->data['ActaMedioAmbiente']['info_des_rec'] = $this->request->data['ActaMedioAmbiente']['info_des_rec'];
 				$this->request->data['ActaMedioAmbiente']['info_des_med'] = $this->request->data['ActaMedioAmbiente']['info_des_med'];
+
+				$this->request->data['ActaMedioAmbiente']['consorcio_id'] = $this->Session->read('Auth.User.consorcio_id');
+				$this->request->data['ActaMedioAmbiente']['user_id'] = $this->Session->read('Auth.User.id');
 
 
 				if($this->request->data['ActaMedioAmbiente']['grafico'] != ''){
