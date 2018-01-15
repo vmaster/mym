@@ -248,13 +248,56 @@ div#spinner-send-report
 				        <?php 
 					        if (isset($list_consorcios)){
 					            	foreach ($list_consorcios as $consorcio) {
-					            		echo "<option value = ".$consorcio->getAttr('id').">".$consorcio->getAttr('descripcion')."</option>";
+					            		if($consorcio->getAttr('id') == 1){
+					            			$selected = " selected "; 
+					            		}else{
+					            			$selected = "";
+					            		}
+					            		echo "<option value = ".$consorcio->getAttr('id').$selected.">".$consorcio->getAttr('descripcion')."</option>";
 					            	}
 					        }
 				        ?>
 					</select>
 			</div>
-		<?php  } ?>
+		<?php  }elseif(($this->Session->read('Auth.User.tipo_user_id')==2) && ($this->Session->read('Auth.User.consorcio_id')==1)) { ?>
+			<div class="col-md-3 col-sm-6 col-xs-6" style="display: none">
+				<label><?php echo __('Consorcio'); ?> </label>
+					<select class="select2 form-control" id="cbo-entidad-search">
+				        <?php 
+					        if (isset($list_consorcios)){
+					            	foreach ($list_consorcios as $consorcio) {
+					            		if($consorcio->getAttr('id') == 1){
+					            			$selected = " selected "; 
+					            		}else{
+					            			$selected = "";
+					            		}
+					            		echo "<option value = ".$consorcio->getAttr('id').$selected.">".$consorcio->getAttr('descripcion')."</option>";
+					            	}
+					        }
+				        ?>
+					</select>
+			</div>
+
+
+		<?php } else{ ?>
+			<div class="col-md-3 col-sm-6 col-xs-6" style="display: none">
+				<label><?php echo __('Consorcio'); ?> </label>
+					<select class="select2 form-control" id="cbo-entidad-search">
+				        <?php 
+					        if (isset($list_consorcios)){
+					            	foreach ($list_consorcios as $consorcio) {
+					            		if($consorcio->getAttr('id') == 2){
+					            			$selected = " selected "; 
+					            		}else{
+					            			$selected = "";
+					            		}
+					            		echo "<option value = ".$consorcio->getAttr('id').$selected.">".$consorcio->getAttr('descripcion')."</option>";
+					            	}
+					        }
+				        ?>
+					</select>
+			</div>
+		<?php } ?>
 		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-acta"><?php echo __('Consultar');?></button>
 		</div>

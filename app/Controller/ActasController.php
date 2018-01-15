@@ -71,7 +71,13 @@ class ActasController extends AppController{
 	public function search_actas($search_ano=null, $search_consorcio=null) {
 		$this->layout = 'ajax';
 		$this->loadModel('Acta');
+
 		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
+
+
+		/*debug("año: ".$search_ano);
+		debug("consorcio: ".$search_consorcio);
+		debug("tipo de usuario: ".$tipo_user_id); exit();*/
 		$list_acta = $this->Acta->listSearchActas($search_ano, $search_consorcio, $tipo_user_id);
 
 		$this->set(compact('list_acta'));
@@ -167,6 +173,9 @@ class ActasController extends AppController{
 				}else{
 					$this->request->data['Acta']['created_mym'] = 0;
 				}
+					
+				$this->request->data['Acta']['consorcio_id'] = $this->Session->read('Auth.User.consorcio_id');
+				$this->request->data['Acta']['user_id'] = $this->Session->read('Auth.User.id');
 
 				$data = str_replace(' ', '+', $this->request->data['graf']);
 				$data_64= base64_decode($data);
@@ -638,8 +647,8 @@ class ActasController extends AppController{
 								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
 
 								//Backup Images	
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/'.$new_foto_cs['FotoCond']['file_name']);
-								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_cs/thumbnail/'.$new_foto_cs['FotoCond']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_med/'.$new_foto_med['FotoMed']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_med/thumbnail/'.$new_foto_med['FotoMed']['file_name']);
 
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
 								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
@@ -730,6 +739,9 @@ class ActasController extends AppController{
 				$this->request->data['Acta']['info_des_conclusion'] = $this->request->data['Acta']['info_des_conclusion'];
 				$this->request->data['Acta']['info_des_rec'] = $this->request->data['Acta']['info_des_rec'];
 				$this->request->data['Acta']['info_des_med'] = $this->request->data['Acta']['info_des_med'];
+
+				$this->request->data['Acta']['consorcio_id'] = $this->Session->read('Auth.User.consorcio_id');
+				$this->request->data['Acta']['user_id'] = $this->Session->read('Auth.User.id');
 
 
 				if($this->request->data['Acta']['grafico'] != ''){

@@ -40,7 +40,7 @@
 			<td>
 			<center>
 				<?php //if((($this->Session->read('Auth.User.tipo_user_id') != 3) && ($this->Session->read('Auth.User.id') == $acta->getAttr('reponsable_sup_id'))) || $this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
-				<?php if(($this->Session->read('Auth.User.id') == $acta->getAttr('reponsable_sup_id')) || $this->Session->read('Auth.User.tipo_user_id') == 1 || $this->Session->read('Auth.User.tipo_user_id') == 3) { ?>
+				<?php if(($this->Session->read('Auth.User.id') == $acta->getAttr('reponsable_sup_id')) || $this->Session->read('Auth.User.tipo_user_id') == 1 || $this->Session->read('Auth.User.tipo_user_id') == 3 || ($this->Session->read('Auth.User.id') == $acta->getAttr('user_id')) ) { ?>
 					<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/editar_informe/<?php echo $acta->getAttr('id')?>"><i class="fa fa-pencil fa-lg"></i> </a>| 
 				<?php } ?>
 				<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/view_informe/<?php echo $acta->getAttr('id')?>" target="_blank"><i class="fa fa-search fa-lg"></i> </a>

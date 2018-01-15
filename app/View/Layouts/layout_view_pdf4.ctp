@@ -114,7 +114,12 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <th class='tg-e3zv aling-left back-green'>Empresa:</th>
     <th class='tg-031eF aling-left' colspan='3' style='width:43%'>".$obj_acta->Empresa->getAttr('nombre')."</th>
     <th class='aling-left back-green' colspan='1'><strong>UUNN:</strong></th>
-    <th class='tg-031eF aling-left' style='width:29%' colspan='1'>".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
+    <th class='tg-031eF aling-left' style='width:29%' colspan='1'>";
+    if($obj_acta->getAttr('uunn_id') != 0){
+    	$codigo.=$obj_acta->UnidadesNegocio->getAttr('descripcion');
+    }
+
+$codigo.="</th>
   </tr>
   <tr>
     <td class='tg-e3zv back-green'>Actividad:</td>
@@ -645,7 +650,7 @@ $codigo.= "	</tr></table></div><br>";
 
 
 	//Show Tabla de acta de referencia y grafico de referencia 
-	if($obj_acta->getAttr('acta_referencia')!=''){
+	if(($obj_acta->getAttr('acta_referencia')!= 0)){
 
 		$normas_epp2 = $obj_acta_ref->getAttr('info_des_epp');
 		$normas_sd2 = $obj_acta_ref->getAttr('info_des_se_de');
@@ -881,38 +886,42 @@ $codigo.= "<table class='tg' width='100%'>
 								</tr>
 							</thead>
 							<tbody>";
-							
-							foreach ($obj_acta->UnidadesMovile as $key2 => $obj_uni_movil){
-									$codigo.= "<tr>";
-									$codigo.= "<td>".($key2+1)."</td>";
-									$codigo.= "<td style='width:14%;'>";
-									$codigo.= $obj_uni_movil->Vehiculo->getAttr('nro_placa');
-									$codigo.= "</td>";
-								
-									$codigo.= "<td>";
-									$codigo.= $obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion');
-									$codigo.= "</td>";
-								
-									$count_obj_um_ni = count($obj_uni_movil->UmNormasIncumplida);
-									if($count_obj_um_ni > 0){
-										foreach($obj_uni_movil->UmNormasIncumplida as $k =>$v){
-											$codigo.= "<td style='width:7%;'>";
-											$codigo.= $v->Codigo->getAttr('codigo');
-											$codigo.= "</td>";
+							//if(isset($obj_acta->UnidadesMovile)){
+								foreach ($obj_acta->UnidadesMovile as $key2 => $obj_uni_movil){
+										$codigo.= "<tr>";
+										$codigo.= "<td>".($key2+1)."</td>";
+										if($obj_uni_movil->getAttr('vehiculo_id') != 0){
+											$codigo.= $obj_uni_movil->Vehiculo->getAttr('nro_placa');
 										}
-											
-										for($j= ($k+2); $j <=8; $j++){
-											$codigo.= "<td style='width:7%; text-align: center;'>-";
-											$codigo.= "</td>";
+										$codigo.= "</td>";
+									
+										$codigo.= "<td>";
+										if($obj_uni_movil->getAttr('vehiculo_id') != 0){
+											$codigo.= $obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion');
 										}
-											
-									}else{
-										for($i= 1; $i <=8; $i++){
-											$codigo.= "<td style='width:7%; text-align: center;'>-";
-											$codigo.= "</td>";
+										$codigo.= "</td>";
+									
+										$count_obj_um_ni = count($obj_uni_movil->UmNormasIncumplida);
+										if($count_obj_um_ni > 0){
+											foreach($obj_uni_movil->UmNormasIncumplida as $k =>$v){
+												$codigo.= "<td style='width:7%;'>";
+												$codigo.= $v->Codigo->getAttr('codigo');
+												$codigo.= "</td>";
+											}
+												
+											for($j= ($k+2); $j <=8; $j++){
+												$codigo.= "<td style='width:7%; text-align: center;'>-";
+												$codigo.= "</td>";
+											}
+												
+										}else{
+											for($i= 1; $i <=8; $i++){
+												$codigo.= "<td style='width:7%; text-align: center;'>-";
+												$codigo.= "</td>";
+											}
 										}
-									}
-							}
+								}
+							//}
 							$codigo.= "</tr>";
 							$codigo.= "</tbody>";
 							$codigo.= "</table><br>";

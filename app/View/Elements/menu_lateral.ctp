@@ -5,12 +5,14 @@
 					src="<?= ENV_WEBROOT_FULL_URL; ?>img/logo_mym2012602.jpg" width="140"
 					class="user-image img-responsive" /></li>
 
-			<?php if($this->Session->read('Auth.User.consorcio_id') != 2) { ?>
+			<?php if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>
 				<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'dashboards')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>dashboards" id="link-dashboard"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a></li>
 				<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'actas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>actas" id="link-acta"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Informes'); ?></a></li>
-				<?php /* <li><a class="enlaces <?php echo ($this->request->params['controller'] == 'acta_instalaciones')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_instalaciones" id="link-acta"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Informes de Instalaciones'); ?></a></li>
-				<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'acta_medio_ambientes')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_medio_ambientes" id="link-acta"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Informes de Medio Ambiente'); ?></a></li>
-				*/ ?>
+				<?php /*if($this->Session->read('Auth.User.consorcio_id') != 2) { ?>
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'acta_instalaciones')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_instalaciones" id="link-acta"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Informes de Instalaciones'); ?></a></li>
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'acta_medio_ambientes')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_medio_ambientes" id="link-acta"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Informes de Medio Ambiente'); ?></a></li>
+				<?php } */?>
+				
 				<?php if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>
 					<li><a href="#"><i class="fa fa-sitemap fa-3x"></i> Mantenimiento <span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level <?php echo ($this->request->params['controller'] == 'actividades' || $this->request->params['controller'] == 'users' || $this->request->params['controller'] == 'empresas' || $this->request->params['controller'] == 'vehiculos' || $this->request->params['controller'] == 'tipo_vehiculos' || $this->request->params['controller'] == 'codigos' || $this->request->params['controller'] == 'unidades_negocios' || $this->request->params['controller'] == 'categoria_normas')?"collapse in":"collapse";  ?>">
@@ -24,7 +26,9 @@
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tipo_vehiculos')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tipo_vehiculos" id="link-vehiculo"><i class="fa fa-truck fa-3x"></i><?php echo ' '.__('Tipo Vehiculo'); ?> </a></li>
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'categoria_normas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>categoria_normas" id="link-categoria-codigo"><i class="fa fa-gavel fa-3x"></i> <?php echo ' '.__('Categor&iacute;a Normas'); ?> </a></li>
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'codigos')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>codigos" id="link-codigo"><i class="fa fa-gavel fa-3x"></i> <?php echo ' '.__('Normas'); ?> </a></li>
-						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'unidades_negocios')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>unidades_negocios" id="link-uunn"><i class="fa fa-suitcase fa-3x"></i> <?php echo ' '.__('UUNN'); ?> </a></li>
+						<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+							<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'unidades_negocios')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>unidades_negocios" id="link-uunn"><i class="fa fa-suitcase fa-3x"></i> <?php echo ' '.__('UUNN'); ?> </a></li>
+						<?php } ?>
 						</ul>
 					</li>
 				<?php } ?>
@@ -45,6 +49,8 @@
 						<?php } ?>
 						<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_total_ni_nc')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_total_ni_nc" id="link-usuario"><i class="fa fa-user fa-3x"></i>Consultar Ni y Nc por Fecha</a></li>
+						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_uso_camioneta_asesor')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_uso_camioneta_asesor" id="link-usuario"><i class="fa fa-user fa-3x"></i>Uso de Camioneta</a></li>
+						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_uso_viatico_asesor')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_uso_viatico_asesor" id="link-usuario"><i class="fa fa-user fa-3x"></i>Uso de Viatico</a></li>
 						<?php } ?>
 
 					</ul>
@@ -55,15 +61,19 @@
 							<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'configurations' && $this->request->params['action']=='backup_database')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>configurations/backup_database" id="link-actividad"><i class="fa fa-floppy-o fa-3x"></i> <?php echo ' '.__('Backup de Base de Datos'); ?></a></li>
 						</ul>
 					</li>
-				<?php } ?>
+				<?php } }?>
 
-			<?php	}else{ ?>	
-					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tareas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Tareas'); ?></a></li>
-			<?php 	}	?>
+			<?php if($this->Session->read('Auth.User.consorcio_id') == 2) { ?>
+					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tareas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas" id="link-tarea"><i class="fa fa-file-text fa-3x"></i>
+					<?php echo ' '.__('Tareas'); ?></a></li>
+			<?php } ?>
+
+
 			<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
 			<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'tareas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Tareas del Personal'); ?></a></li>
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'trabajadores' && $this->request->params['action']=='listado_trabajadores')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>trabajadores/listado_trabajadores" id="link-tarea"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Personal ENOSA'); ?></a></li>
 			<?php } ?>
+			
 		</ul> 
 
 	</div>
