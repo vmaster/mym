@@ -12,8 +12,11 @@ echo "<option value= '2'>--</option><option value= '1'>SI</option>
 </td>";
 echo "<td>
 <select class='form-control select_re_as' name= 'data[ActaMedioAmbiente][cumplimiento_cond_amb][".$i."][incidencia]'>";
-echo "<option value= '2'>--</option><option value= '1'>SI</option>
-<option value='0'>NO</option>
+echo "<option value='4'>--</option>
+		<option value='3'>N - Nueva Insp./Obs.</option>
+		<option value='2'>S - Subsanado</option>
+		<option value='1'>R - Reiterativo</option>
+		<option value='0'>NO</option>
 </select>
 </td></tr>";
 ?>
