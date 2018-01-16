@@ -360,7 +360,7 @@ $(document).ready(function(){
 			            color: '#E03737',
 			            drilldown: {
 			                name: 'NI Items',
-			                categories: ['DM', 'CA'],
+			                categories: ['DMA', 'CA'],
 			                data: [porc_ni, 0, 0, 0, 0, 0],
 			                color: '#E03737'
 			            }
@@ -369,7 +369,7 @@ $(document).ready(function(){
 			            color: colors[0],
 			            drilldown: {
 			                name: 'NC Items',
-			                categories: ['DM', 'CA'],
+			                categories: ['DMA', 'CA'],
 			                data: porc_cu_categorias,
 			                color: colors[0]
 			            }
@@ -612,7 +612,7 @@ function sumAcsshhularNormas(){
 
 
 			porc_nc2 = porc_nc - count;
-			divisor = 6 - divisor;
+			divisor = 2 - divisor;
 
 			porc_dm_vivo_test = (porc_cu_dm > 2 && porc_nc2/divisor > 2) ? (porc_nc2/divisor) : 2;
 			porc_ca_vivo_test = (porc_cu_ca > 2 && porc_nc2/divisor > 2) ? (porc_nc2/divisor) : 2;

@@ -133,30 +133,25 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
 	  </tr>";
   }
 
-  if($obj_acta->getAttr('obra')!=''){
-  	$codigo .="<tr>
-	    <td class='tg-e3zv back-green'>Obra:</td>
-	    <td class='tg-031eF aling-justify' colspan='5'>".$obj_acta->getAttr('obra')."</td>
-	  </tr>";
-  }
-
   $codigo .="<tr>
     <td class='tg-e3zv back-green'>Responsable:</td>
-    <td class='tg-031eF' colspan='3'>";
-    if($obj_acta->getAttr('reponsable_act_id')!=0){
-    	$codigo.= $obj_acta->Trabajadore1->getAttr('apellido_nombre')." (".$obj_acta->Actividade1->getAttr('descripcion').') ';
-    }else{
-    	$codigo.="--";
-    }
+    <td class='tg-031eF' colspan='3'>".$obj_acta->getAttr('obra');
+    
     $codigo.= "</td><td class='aling-left back-green'><strong>Fecha:</strong></td>
     <td class='tg-031eF'>".date('d-m-Y',strtotime($obj_acta->getAttr('fecha')))."</td>
   </tr>
   <tr>
     <td style='width:10%' class='tg-e3zv back-green'>Tipo de Inspecci&oacute;n:</td>
     <td class='tg-031eF' colspan='3'>".$tipo_supervision."</td>
-	<td class='tg-e3zv back-green'>Inspecci&oacute;n Realizado Por::</td>
-	<td class='tg-031eF'>".$obj_acta->getAttr('numero')."</td>
-  </tr>
+	<td class='tg-e3zv back-green'>Inspecci&oacute;n Realizado Por:</td>
+	<td class='tg-031eF'>";
+if($obj_acta->getAttr('reponsable_act_id')!=0){
+    	$codigo.= $obj_acta->Trabajadore1->getAttr('apellido_nombre')." (".$obj_acta->Actividade1->getAttr('descripcion').') ';
+    }else{
+    	$codigo.="--";
+    }
+	
+  $codigo.="<td></tr>
 </table><br>";
 $codigo.= "
 	<table class='tg' width='100%' style='margin-bottom:-10px'>
@@ -339,7 +334,7 @@ $codigo.= "	</tr></table></div><br>";
 $codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-size:8px;'>";
 	$codigo.= "<tr><th colspan=4 class='tg-e3zv back-blue'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
 	$codigo .= "<tr><td width='25%'></td>
-					<td width='25%'>DA</td>
+					<td width='25%'>DMA</td>
 					<td width='25%'>CA</td>
 					<td width='25%'>TOTAL</td></tr>";
 	$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_ma."</td><td>".$total_nc_ca."</td><td>".$normas_cumplidas."</td></tr>";

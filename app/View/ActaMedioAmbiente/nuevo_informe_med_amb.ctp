@@ -42,12 +42,6 @@ tinymce.init({
 													</span>
 													<?php echo $this->Form->input('num_informe', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','value'=>(isset($codigo_completo))? $codigo_completo: '')); ?>
 												</div>
-												<br>									
-												<div class="form-group input-group">
-													<span class="input-group-addon"><label id="na" data-toggle="tooltip" title="N&uacute;mero de ActaMedioAmbiente" style="width: 30px;"><?php echo ('N° A'); ?></label>
-													</span>
-													<?php echo $this->Form->input('numero', array('div' => false, 'label' => false, 'class'=> 'txtNumero form-control','id' =>'txtNumero','maxlength' =>'15')); ?>
-												</div>
 											</td>
 											<td>C&oacute;digo</td>
 											<td><?php echo $this->Form->input('codigo', array('div' => false, 'label' => false, 'class'=> 'txtCodigo form-control','id' =>'txtCodigo', 'value'=>'M001-SST/MA')); ?>
@@ -128,7 +122,7 @@ tinymce.init({
 											</td>
 										</tr>
 										<tr>
-											<td style="vertical-align: middle">Obra: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtObraActaMedioAmbiente','maxlength'=>'200')); ?>
+											<td style="vertical-align: middle">Responsable: <?php echo $this->Form->input('obra', array('div' => false, 'label' => false, 'class'=> 'txtObra form-control','id' =>'txtResponsableActaMedioAmbiente','maxlength'=>'200')); ?>
 											</td>	
 											<td style="vertical-align: middle" colspan=2>Llenado de lugar: <?php echo $this->Form->input('llenado_lugar', array('div' => false, 'label' => false, 'class'=> 'txtLugar form-control','id' =>'txtLugar','maxlength'=>'200')); ?>
 											</td>
