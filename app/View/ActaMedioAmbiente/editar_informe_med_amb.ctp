@@ -526,30 +526,10 @@ tinymce.init({
 							<table class="table table-striped table-bordered table-hover"
 								id="dataTables-example">
 								<tr>
-									<td style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Responsable de la actividad'); ?>
-									</td>
 									<td style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Responsable de la Supervisión de SST'); ?>
 									</td>
 								</tr>
 								<tr>
-									<td style="vertical-align: middle; width:50%">Cargo:
-									<?php
-										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-act-cargo'>";
-										echo "<select name='data[ActaMedioAmbiente][reponsable_act_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-act-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								 	    if (isset($list_all_actividades)){
-											//echo "<option>---</option>";
-									    	foreach ($list_all_actividades as $id => $des):
-									    	if($id == $obj_acta->Actividade1->getAttr('id')){
-									    		$selected = " selected = 'selected'";
-									    	}else{
-									    		$selected = "";
-									    	}
-									    	echo "<option value = ".$id.$selected.">".$des."</option>";
-									    	endforeach;
-									    }
-									    echo "</select>";
-									?>
-									</td>
 									<td style="vertical-align: middle; width:50%">Cargo:
 									<?php
 										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-sup-cargo'>";
@@ -570,24 +550,6 @@ tinymce.init({
 									</td>
 								</tr>
 								<tr>
-									<td style='width:35%;'>Nombre: 
-									<?php
-										echo "<span style='display: inline-flex; width: 100%;' clas'>";
-										echo "<select name='data[ActaMedioAmbiente][reponsable_act_id]' class='cbo-responsable-select2 cbo-reponsable-act form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								 	    if (isset($list_all_trabajadores)){
-											//echo "<option>---</option>";
-									    	foreach ($list_all_trabajadores as $id => $nom):
-									    	if($id == $obj_acta->Trabajadore1->getAttr('id')){
-									    		$selected = " selected = 'selected'";
-									    	}else{
-									    		$selected = "";
-									    	}
-									    	echo "<option value = ".$id.$selected.">".$nom."</option>";
-									    	endforeach;
-									    }
-										echo "</select>&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-responsable' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-resp1'>...</a></span></td>";
-									?>
-									</td>
 									<td style='width:35%;'>Nombre:
 										<?php 
 										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable_sup'>";
@@ -609,9 +571,6 @@ tinymce.init({
 									
 								</tr>
 								<tr>
-									<td>DNI:<input name='data[ResponsableAct1][dni_res_act]'
-										id='txtDniRes1' class='form-control' maxlength=8 value="<?php echo $obj_acta->Trabajadore1->getAttr('nro_documento'); ?>" disabled/>
-									</td>
 									<td>DNI:<input name='data[ResponsableSup1][dni_res_sup]'
 										id='txtDniRes2' class='form-control' maxlength=8 value="<?php echo $obj_acta->Trabajadore2->getAttr('nro_documento'); ?>" disabled/>
 									</td>
