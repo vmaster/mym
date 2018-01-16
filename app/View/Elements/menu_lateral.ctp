@@ -5,7 +5,7 @@
 					src="<?= ENV_WEBROOT_FULL_URL; ?>img/logo_mym2012602.jpg" width="140"
 					class="user-image img-responsive" /></li>
 
-			<?php if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>
+			<?php if($this->Session->read('Auth.User.tipo_user_id') != 3 and $this->Session->read('Auth.User.consorcio_id') != 2) { ?>
 				<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'dashboards')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>dashboards" id="link-dashboard"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a></li>
 				<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'actas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>actas" id="link-acta"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Informes'); ?></a></li>
 				<?php if($this->Session->read('Auth.User.consorcio_id') != 2) { ?>
@@ -13,7 +13,7 @@
 					<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'acta_medio_ambientes')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>acta_medio_ambientes" id="link-acta"><i class="fa fa-file-text fa-3x"></i> <?php echo ' '.__('Informes de Medio Ambiente'); ?></a></li>
 				<?php } ?>
 				
-				<?php if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>
+				<?php if($this->Session->read('Auth.User.tipo_user_id') != 3 and $this->Session->read('Auth.User.consorcio_id') != 2) { ?>
 					<li><a href="#"><i class="fa fa-sitemap fa-3x"></i> Mantenimiento <span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level <?php echo ($this->request->params['controller'] == 'actividades' || $this->request->params['controller'] == 'users' || $this->request->params['controller'] == 'empresas' || $this->request->params['controller'] == 'vehiculos' || $this->request->params['controller'] == 'tipo_vehiculos' || $this->request->params['controller'] == 'codigos' || $this->request->params['controller'] == 'unidades_negocios' || $this->request->params['controller'] == 'categoria_normas')?"collapse in":"collapse";  ?>">
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'actividades')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>actividades" id="link-actividad"><i class="fa fa-qrcode fa-3x"></i> <?php echo ' '.__('Cargos'); ?></a></li>
@@ -31,10 +31,15 @@
 						<?php } ?>
 						</ul>
 					</li>
+<<<<<<< HEAD
 				<?php } ?>
 				<?php
 				if($this->Session->read('Auth.User.consorcio_id') != 2) {
 				?>
+=======
+				<?php } 
+				if($this->Session->read('Auth.User.consorcio_id') != 2) {?>
+>>>>>>> 1ab1d723af0f797ffe7f39330eaa8f528ad29818
 				<li><a href="#"><i class="fa fa-signal fa-3x"></i> Reportes <span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level <?php echo ($this->request->params['controller'] == 'reportes')?"collapse in":"collapse";  ?>">
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_cant_info_empresas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_cant_info_empresas" id="link-rpt_cant_empresas"><i class="fa fa-qrcode fa-3x"></i> <?php echo ' '.__('Informes por empresa'); ?></a></li>
@@ -58,10 +63,16 @@
 
 					</ul>
 				</li>
+<<<<<<< HEAD
 				<?php
 				}
 				?>
 				<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+=======
+				<?php 
+				}
+				if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
+>>>>>>> 1ab1d723af0f797ffe7f39330eaa8f528ad29818
 					<li><a href="#"><i class="fa fa-cog fa-3x"></i> Configuraci&oacute;n <span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level <?php echo ($this->request->params['controller'] == 'configurations')?"collapse in":"collapse";  ?>">
 							<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'configurations' && $this->request->params['action']=='backup_database')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>configurations/backup_database" id="link-actividad"><i class="fa fa-floppy-o fa-3x"></i> <?php echo ' '.__('Backup de Base de Datos'); ?></a></li>
