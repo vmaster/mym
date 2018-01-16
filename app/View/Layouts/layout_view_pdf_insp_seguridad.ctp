@@ -132,22 +132,10 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
 	  </tr>";
   }
 
-  if($obj_acta->getAttr('obra')!=''){
-  	$codigo .="<tr>
-	    <td class='tg-e3zv back-green'>Obra:</td>
-	    <td class='tg-031eF aling-justify' colspan='5'>".$obj_acta->getAttr('obra')."</td>
-	  </tr>";
-  }
-
   $codigo .="<tr>
     <td class='tg-e3zv back-green'>Responsable:</td>
-    <td class='tg-031eF' colspan='3'>";
-    if($obj_acta->getAttr('reponsable_act_id')!=0){
-    	$codigo.= $obj_acta->Trabajadore1->getAttr('apellido_nombre')." (".$obj_acta->Actividade1->getAttr('descripcion').') ';
-    }else{
-    	$codigo.="--";
-    }
-    $codigo.= "</td><td class='aling-left back-green'><strong>Fecha:</strong></td>
+    <td class='tg-031eF' colspan='3'>".$obj_acta->getAttr('obra')."</td>
+	<td class='aling-left back-green'><strong>Fecha:</strong></td>
     <td class='tg-031eF'>".date('d-m-Y',strtotime($obj_acta->getAttr('fecha')))."</td>
   </tr>
   <tr>
