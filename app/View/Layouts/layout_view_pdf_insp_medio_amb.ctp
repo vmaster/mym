@@ -116,8 +116,8 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
   <tr>
     <th class='tg-e3zv aling-left back-green'>Empresa:</th>
     <th class='tg-031eF aling-left' colspan='3' style='width:43%'>".$obj_acta->Empresa->getAttr('nombre')."</th>
-    <th class='aling-left back-green' colspan='1'><strong>UUNN:</strong></th>
-    <th class='tg-031eF aling-left' style='width:29%' colspan='1'>".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
+    <th class='aling-left back-green'><strong>UUNN:</strong></th>
+    <th class='tg-031eF aling-left' style='width:29%'>".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
   </tr>
   <tr>
     <td style='width:10%' class='tg-e3zv back-green'>Lugar:</td>
@@ -135,9 +135,8 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
 
   $codigo .="<tr>
     <td class='tg-e3zv back-green'>Responsable:</td>
-    <td class='tg-031eF' colspan='3'>".$obj_acta->getAttr('obra');
-    
-    $codigo.= "</td><td class='aling-left back-green'><strong>Fecha:</strong></td>
+    <td class='tg-031eF' colspan='3'>".$obj_acta->getAttr('obra')."</td>
+	<td class='aling-left back-green'><strong>Fecha:</strong></td>
     <td class='tg-031eF'>".date('d-m-Y',strtotime($obj_acta->getAttr('fecha')))."</td>
   </tr>
   <tr>
@@ -151,7 +150,7 @@ if($obj_acta->getAttr('reponsable_act_id')!=0){
     	$codigo.="--";
     }
 	
-  $codigo.="<td></tr>
+  $codigo.="</td></tr>
 </table><br>";
 $codigo.= "
 	<table class='tg' width='100%' style='margin-bottom:-10px'>
