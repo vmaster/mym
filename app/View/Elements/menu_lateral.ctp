@@ -32,6 +32,9 @@
 						</ul>
 					</li>
 				<?php } ?>
+				<?php
+				if($this->Session->read('Auth.User.consorcio_id') != 2) {
+				?>
 				<li><a href="#"><i class="fa fa-signal fa-3x"></i> Reportes <span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level <?php echo ($this->request->params['controller'] == 'reportes')?"collapse in":"collapse";  ?>">
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_cant_info_empresas')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_cant_info_empresas" id="link-rpt_cant_empresas"><i class="fa fa-qrcode fa-3x"></i> <?php echo ' '.__('Informes por empresa'); ?></a></li>
@@ -55,6 +58,9 @@
 
 					</ul>
 				</li>
+				<?php
+				}
+				?>
 				<?php if($this->Session->read('Auth.User.tipo_user_id') == 1) { ?>
 					<li><a href="#"><i class="fa fa-cog fa-3x"></i> Configuraci&oacute;n <span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level <?php echo ($this->request->params['controller'] == 'configurations')?"collapse in":"collapse";  ?>">
