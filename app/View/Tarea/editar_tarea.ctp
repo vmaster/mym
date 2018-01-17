@@ -44,16 +44,29 @@ tinymce.init({
 			</div>
 		</div>
 		<br>
+		<?php 
+			$select_veaticos = "";
+			$select_camioneta = "";
+			if($obj_tarea->getAttr('movilidad') == 0){
+				$select_veaticos = "checked";
+				$select_camioneta = "";
+				$display = "none";
+			}else{
+				$select_veaticos = "";
+				$select_camioneta = "checked";
+				$display = "";
+			} 
+		?>
 		<div class="row">
 			<div class="span3 col-md-4 col-sm-6 col-xs-6">
 				<strong>Medio de Transporte:</strong>
 				<div class="radio">
-					<label> Viaticos <input name="data[Tarea][movilidad]" type="radio" value="0" id="rbViaticos" checked>
+					<label> Viaticos <input name="data[Tarea][movilidad]" type="radio" value="0" id="rbViaticos" <?php echo $select_veaticos; ?>>
 					</label>
 				</div>
 				<div class="radio" style="display: -webkit-inline-box">
-					<label>Camioneta <input name="data[Tarea][movilidad]" type="radio" value="1" id="rbAuto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<?php echo $this->Form->input('placa_auto', array('div' => false, 'label' => false, 'class'=> 'txtPlaca form-control','id' =>'txtPlaca', 'type' =>'text', 'style' => 'display:none', 'value'=>'MyM')); ?>
+					<label>Camioneta <input name="data[Tarea][movilidad]" type="radio" value="1" id="rbAuto" <?php echo $select_camioneta ; ?>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<?php echo $this->Form->input('placa_auto', array('div' => false, 'label' => false, 'class'=> 'txtPlaca form-control','id' =>'txtPlaca', 'type' =>'text', 'style' => 'display:'.$display)); ?>
 					</label>
 				</div>
 			</div>
