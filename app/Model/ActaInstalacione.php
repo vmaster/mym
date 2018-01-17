@@ -234,18 +234,6 @@ App::uses('AppModel','Model');
     						'message' => 'La N&uacute;mero de trabajadores es requerido'
     				)
     		),
-            'reponsable_act_cargo_id' => array(
-                    'notempty' => array(
-                            'rule' => array('notEmpty'),
-                            'message' => 'Cargo del responsable de la Actividad requerido'
-                    )
-            ),
-            'reponsable_act_id' => array(
-                    'notempty' => array(
-                            'rule' => array('notEmpty'),
-                            'message' => 'Responsable de la Actividad requeido'
-                    )
-            ),
             'reponsable_sup_cargo_id' => array(
                     'notempty' => array(
                             'rule' => array('notEmpty'),
