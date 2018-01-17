@@ -526,11 +526,11 @@ tinymce.init({
 							<table class="table table-striped table-bordered table-hover"
 								id="dataTables-example">
 								<tr>
-									<td style="vertical-align: middle; text-align: center;"><?php echo utf8_encode('Responsable de la Supervisión de SST'); ?>
+									<td style="vertical-align: middle; text-align: center;">Responsable de la Supervisi&oacute;n de SST
 									</td>
 								</tr>
 								<tr>
-									<td style="vertical-align: middle; width:50%">Cargo:
+									<td style="vertical-align: middle; width:50%;padding-right: 44%;">Cargo:
 									<?php
 										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-sup-cargo'>";
 										echo "<select name='data[ActaMedioAmbiente][reponsable_sup_cargo_id]' class='cbo-responsable-select2 cbo-reponsable-sup-cargo form-control'style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
@@ -550,7 +550,7 @@ tinymce.init({
 									</td>
 								</tr>
 								<tr>
-									<td style='width:35%;'>Nombre:
+									<td style='width:35%;padding-right: 44%;'>Nombre:
 										<?php 
 										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable_sup'>";
 										echo "<select name='data[ActaMedioAmbiente][reponsable_sup_id]' class='cbo-responsable-select2 cbo-reponsable-sup form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
@@ -571,7 +571,7 @@ tinymce.init({
 									
 								</tr>
 								<tr>
-									<td>DNI:<input name='data[ResponsableSup1][dni_res_sup]'
+									<td style="padding-right: 44%;">DNI:<input name='data[ResponsableSup1][dni_res_sup]'
 										id='txtDniRes2' class='form-control' maxlength=8 value="<?php echo $obj_acta->Trabajadore2->getAttr('nro_documento'); ?>" disabled/>
 									</td>
 								</tr>
