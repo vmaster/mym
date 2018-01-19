@@ -99,9 +99,6 @@ $codigo.= "<div class='head-pag'>
 $codigo.= "<table class='tg' width='100%' style='margin-bottom:-10px'>
 			<tr>
 			    <td class='tg-e3zv back-blue' style='text-align:center'><strong>INFORME T&Eacute;CNICO N&#176; ".$obj_acta->getAttr('num_informe')."</strong></td>
-			  </tr>
-			  <tr>
-			    <td class='tg-e3zv back-blue' style='text-align:center'><strong>INSPECCI&Oacute;N DE MEDIO AMBIENTE A LAS INSTALACIONES DE SECHO</strong></td>
 			  </tr>";
 if($obj_acta->getAttr('llenado_lugar')!=null && $obj_acta->getAttr('llenado_lugar')!=''){			 
 $codigo.="<tr><td class='tg-e3zv back-blue' style='text-align:center'><strong>".$obj_acta->getAttr('llenado_lugar')."</td></tr>";
@@ -125,13 +122,6 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <td style='width:26%' class='aling-left back-green'><strong>&Aacute;rea:</strong></td>
     <td style='width:28%' class='tg-031eF'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
   </tr>";
-
-  if($obj_acta->getAttr('actividad')!=''){
-	$codigo .="<tr>
-	    <td class='tg-e3zv back-green'>Actividad:</td>
-	    <td class='tg-031eF aling-justify' colspan='5'>".$obj_acta->getAttr('actividad')."</td>
-	  </tr>";
-  }
 
   $codigo .="<tr>
     <td class='tg-e3zv back-green'>Responsable:</td>
