@@ -101,9 +101,6 @@ $codigo.= "<table class='tg' width='100%' style='margin-bottom:-10px'>
 			    <td class='tg-e3zv back-blue' style='text-align:center'><strong>INFORME T&Eacute;CNICO N&#176; ".$obj_acta->getAttr('num_informe')."</strong></td>
 			  </tr>
 			  <tr>
-			    <td class='tg-e3zv back-blue' style='text-align:center'><strong>Inspecci&oacute;n en Seguridad a Instalaciones</strong></td>
-			  </tr>
-			  <tr>
 			    <td class='tg-e3zv back-blue' style='text-align:center'><strong>".$obj_acta->getAttr('llenado_lugar')."</td>
 			  </tr>
 			</table>
@@ -568,7 +565,7 @@ $codigo.="
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoInstalMed as $key => $obj_foto_med) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' width='340px' height='280px'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' width='340px' height='280px'>
 							<br>".$obj_foto_med->getAttr('observacion')."</td>";
 				$cont++;
 				if($cont == 3){
