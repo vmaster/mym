@@ -889,7 +889,7 @@ $codigo.= "<table class='tg' width='100%'>
 							//if(isset($obj_acta->UnidadesMovile)){
 								foreach ($obj_acta->UnidadesMovile as $key2 => $obj_uni_movil){
 										$codigo.= "<tr>";
-										$codigo.= "<td>".($key2+1)."</td>";
+										$codigo.= "<td>".($key2+1)."</td><td>";
 										if($obj_uni_movil->getAttr('vehiculo_id') != 0){
 											$codigo.= $obj_uni_movil->Vehiculo->getAttr('nro_placa');
 										}
