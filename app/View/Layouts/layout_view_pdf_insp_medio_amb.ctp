@@ -114,7 +114,13 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <th class='tg-e3zv aling-left back-green'>Empresa:</th>
     <th class='tg-031eF aling-left' colspan='3' style='width:43%'>".$obj_acta->Empresa->getAttr('nombre')."</th>
     <th class='aling-left back-green'><strong>UUNN:</strong></th>
-    <th class='tg-031eF aling-left' style='width:29%'>".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
+    <th class='tg-031eF aling-left' style='width:29%'>";
+    if($obj_acta->getAttr('reponsable_act_id')!=0){
+    	$codigo.= $obj_acta->Trabajadore2->getAttr('apellido_nombre')." (".$obj_acta->Actividade2->getAttr('descripcion').') ';
+    }else{
+    	$codigo.="--";
+    }
+  $codigo .= "</th>
   </tr>
   <tr>
     <td style='width:10%' class='tg-e3zv back-green'>Lugar:</td>
