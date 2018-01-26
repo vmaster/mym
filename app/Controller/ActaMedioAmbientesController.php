@@ -69,7 +69,7 @@ class ActaMedioAmbientesController extends AppController{
 		$this->layout = 'ajax';
 		$this->loadModel('ActaMedioAmbiente');
 		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
-		$list_acta = $this->ActaMedioAmbiente->listSearchActaMedioAmbientes($search_ano, $tipo_user_id);
+		$list_acta = $this->ActaMedioAmbiente->listSearchActaMedAmb($search_ano, $tipo_user_id);
 
 		$this->set(compact('list_acta'));
 	}

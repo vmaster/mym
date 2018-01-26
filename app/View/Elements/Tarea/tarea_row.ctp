@@ -17,8 +17,15 @@
 		?>
 		<tr class="tarea_row_container" tarea_id="<?php echo $tarea->getAttr('id'); ?>" estado="<?php echo $tarea->getAttr('estado'); ?>" dia_libre="<?php echo $tarea->getAttr('dia_libre'); ?>" style="background-color:<?php echo ($tarea->getAttr('dia_libre') == 1)?'#FCD5AA': ''; ?>";>
 			<?php 
-				$f_creacion = date("d-m-Y", strtotime($tarea->getAttr('created')));
-				$f_hoy = date("d-m-Y");
+				$f_creacion = date("d-m-Y", strtotime($tarea->getAttr('created')));	
+
+
+				$f_inicio = strtotime(date("Y-m-d", strtotime($tarea->getAttr('created'))));
+
+				$f_fin = strtotime('+36 hour',$f_inicio);
+
+				$f_hoy = strtotime(date("Y-m-d H:i:s"));
+
 			?> 
 			<td><?php echo $tarea->getAttr('id'); ?></td>
 			<td><?php echo $f_creacion; ?></td>
@@ -29,7 +36,7 @@
 				<a href="#myModalViewTarea" class="tooltip-mym" title="Ver" role="button" data-toggle="modal"><i class="fa fa-eye view-tarea-trigger"></i> </a>
 				&nbsp;
 				
-				<?php if(($f_creacion == $f_hoy) || ($tarea->getAttr('estado') == 1) || ($this->Session->read('Auth.User.tipo_user_id') == 1)) { ?>
+				<?php if((($f_inicio <= $f_hoy) && ( $f_hoy <= $f_fin)) || ($tarea->getAttr('estado') == 1) || ($this->Session->read('Auth.User.tipo_user_id') == 1)) { ?>
 					<a href="<?= ENV_WEBROOT_FULL_URL; ?>tareas/editar_tarea/<?php echo $tarea->getAttr('id')?>" class="tooltip-mym" title="Editar" role="button"><i class="fa fa-pencil edit-tarea-trigger"></i> </a>
 				<?php } ?>
 				&nbsp;
