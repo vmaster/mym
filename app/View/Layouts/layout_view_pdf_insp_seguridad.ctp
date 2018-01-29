@@ -122,13 +122,6 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <td style='width:28%' class='tg-031eF'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
   </tr>";
 
-  if($obj_acta->getAttr('actividad')!=''){
-	$codigo .="<tr>
-	    <td class='tg-e3zv back-green'>Actividad:</td>
-	    <td class='tg-031eF aling-justify' colspan='5'>".$obj_acta->getAttr('actividad')."</td>
-	  </tr>";
-  }
-
   $codigo .="<tr>
     <td class='tg-e3zv back-green'>Responsable:</td>
     <td class='tg-031eF' colspan='3'>".$obj_acta->getAttr('obra')."</td>
