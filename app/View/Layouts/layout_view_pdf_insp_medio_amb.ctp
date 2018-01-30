@@ -115,8 +115,8 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <th class='tg-031eF aling-left' colspan='3' style='width:43%'>".$obj_acta->Empresa->getAttr('nombre')."</th>
     <th class='aling-left back-green'><strong>UUNN:</strong></th>
     <th class='tg-031eF aling-left' style='width:29%'>";
-    if($obj_acta->getAttr('reponsable_act_id')!=0){
-    	$codigo.= $obj_acta->Trabajadore2->getAttr('apellido_nombre')." (".$obj_acta->Actividade2->getAttr('descripcion').') ';
+    if($obj_acta->getAttr('uunn_id') != 0){
+    	$codigo.= $obj_acta->UnidadesNegocio->getAttr('descripcion');
     }else{
     	$codigo.="--";
     }
@@ -141,7 +141,7 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
 	<td class='tg-e3zv back-green'>Inspecci&oacute;n Realizado Por:</td>
 	<td class='tg-031eF'>";
 if($obj_acta->getAttr('reponsable_sup_cargo_id')!=0){
-    	$codigo.= "Ing. ".$obj_acta->Trabajadore2->getAttr('apellido_nombre');
+    	$codigo.= $obj_acta->Trabajadore2->getAttr('apellido_nombre')." (".$obj_acta->Actividade2->getAttr('descripcion').') ';
     }else{
     	$codigo.="--";
     }
@@ -393,7 +393,7 @@ $codigo.= "<div class='salto-linea'>&nbsp;</div>
 $codigo.= "	</tr></table></div><br>";
 }
 
-//echo $codigo; exit();
+echo $codigo; exit();
 $dompdf = new DOMPDF();
 $dompdf->set_paper("A4");
 $dompdf->load_html($codigo);
