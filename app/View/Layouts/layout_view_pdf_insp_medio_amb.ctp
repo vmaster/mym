@@ -393,7 +393,7 @@ $codigo.= "<div class='salto-linea'>&nbsp;</div>
 $codigo.= "	</tr></table></div><br>";
 }
 
-echo $codigo; exit();
+//echo $codigo; exit();
 $dompdf = new DOMPDF();
 $dompdf->set_paper("A4");
 $dompdf->load_html($codigo);
