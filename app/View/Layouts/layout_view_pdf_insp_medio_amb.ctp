@@ -141,7 +141,7 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
 	<td class='tg-e3zv back-green'>Inspecci&oacute;n Realizado Por:</td>
 	<td class='tg-031eF'>";
 if($obj_acta->getAttr('reponsable_sup_cargo_id')!=0){
-    	$codigo.= $obj_acta->Trabajadore2->getAttr('apellido_nombre')." (".$obj_acta->Actividade2->getAttr('descripcion').') ';
+    	$codigo.= "Ing. ".$obj_acta->Trabajadore2->getAttr('apellido_nombre');
     }else{
     	$codigo.="--";
     }
