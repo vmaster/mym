@@ -454,7 +454,7 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalEqEmerg as $key => $obj_foto_ee) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_eq_emerg/thumbnail/".$obj_foto_ee->getAttr('file_name')."' width='190px' height='190px'>
+				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_eq_emerg/thumbnail/".$obj_foto_ee->getAttr('file_name')."' width='340px' height='280px'>
 				<br>".$obj_foto_ee->getAttr('observacion')."</td>";
 	$cont++;
 	if($cont == 3){
