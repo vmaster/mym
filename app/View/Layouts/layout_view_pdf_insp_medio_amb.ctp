@@ -126,7 +126,15 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <td style='width:10%' class='tg-e3zv back-green'>Lugar:</td>
     <td style='width:36%' class='tg-031eF' colspan='3'>".$obj_acta->getAttr('lugar')."</td>
     <td style='width:26%' class='aling-left back-green'><strong>&Aacute;rea:</strong></td>
-    <td style='width:28%' class='tg-031eF'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
+    <td style='width:28%' class='tg-031eF'>";
+    if($obj_acta->getAttr('tipo_lugar_id') != 0){
+    	$obj_acta->TipoLugare->getAttr('descripcion');
+    }else{
+    	$codigo.="--";
+    }
+     
+
+     $codigo.="</td>
   </tr>";
 
   $codigo .="<tr>

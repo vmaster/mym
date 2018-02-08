@@ -211,7 +211,7 @@ class ActaMedioAmbientesController extends AppController{
 						$cont = 0;
 						foreach ($this->request->data['FotoMedAmbDoc'] as $key=> $array):
 							$imagen = $array['Imagen'][0];
-							$new_foto_dm['FotoMedAmbDoc']['acta_med_amb_id'] = $this->ActaMedioAmbiente->id;
+							$new_foto_dm['FotoMedAmbDoc']['acta_id'] = $this->ActaMedioAmbiente->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
@@ -247,7 +247,7 @@ class ActaMedioAmbientesController extends AppController{
 						$cont = 0;
 						foreach ($this->request->data['FotoMedAmbCond'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_ca['FotoMedAmbCond']['acta_med_amb_id'] = $this->ActaMedioAmbiente->id;
+							$new_foto_ca['FotoMedAmbCond']['acta_id'] = $this->ActaMedioAmbiente->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
@@ -283,7 +283,7 @@ class ActaMedioAmbientesController extends AppController{
 						$cont = 0;
 						foreach ($this->request->data['FotoMedAmbActa'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_act_med_amb['FotoMedAmbActa']['acta_med_amb_id'] = $this->ActaMedioAmbiente->id;
+							$new_foto_act_med_amb['FotoMedAmbActa']['acta_id'] = $this->ActaMedioAmbiente->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
