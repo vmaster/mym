@@ -83,6 +83,7 @@ class TareasController extends AppController{
 	
 
 	public function listar_todas_tareas($page=null,$order_by=null,$order_by_or=null) {
+		ini_set('memory_limit', '512M');
 		$this->layout = 'ajax';
 		$this->loadModel('Tarea');
 		$page = $page;
