@@ -90,7 +90,7 @@ $codigo.= "<div class='head-pag'>
 			  <tr>
 			    <td style='text-align:center;font-size:9.5pt;' class='tg-031e back-green'>Versión Anterior: 00/2015-M001</td>
 			    <td style='text-align:center;font-size:9.5pt;' class='aling-left back-green'>Modificaci&oacute;n Versión: JAMM</td>
-			    <td style='text-align:center;font-size:9.5pt;' class='tg-031e back-green'>Fecha Modificaci&oacute;n: 08/02/2017</td>
+			    <td style='text-align:center;font-size:9.5pt;' class='tg-031e back-green'>Fecha Modificaci&oacute;n: 01/01/2018</td>
 			  </tr>
 			</table>
 			<br>
@@ -128,7 +128,7 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <td style='width:26%' class='aling-left back-green'><strong>&Aacute;rea:</strong></td>
     <td style='width:28%' class='tg-031eF'>";
     if($obj_acta->getAttr('tipo_lugar_id') != 0){
-    	$obj_acta->TipoLugare->getAttr('descripcion');
+    	$codigo.= $obj_acta->TipoLugare->getAttr('descripcion');
     }else{
     	$codigo.="--";
     }

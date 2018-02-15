@@ -303,7 +303,7 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='190px' height='190px'></a>
+				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_sd/".$obj_foto_sd->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='190px' height='190px'></a>
 				<br>".$obj_foto_sd->getAttr('observacion')."</td>";
 	$cont++;
 	if($cont == 3){
