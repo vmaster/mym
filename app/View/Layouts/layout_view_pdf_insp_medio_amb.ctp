@@ -128,7 +128,7 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <td style='width:26%' class='aling-left back-green'><strong>&Aacute;rea:</strong></td>
     <td style='width:28%' class='tg-031eF'>";
     if($obj_acta->getAttr('tipo_lugar_id') != 0){
-    	$obj_acta->TipoLugare->getAttr('descripcion');
+    	$codigo.= $obj_acta->TipoLugare->getAttr('descripcion');
     }else{
     	$codigo.="--";
     }
