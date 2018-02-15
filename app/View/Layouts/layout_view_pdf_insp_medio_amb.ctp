@@ -115,8 +115,8 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <th class='tg-031eF aling-left' colspan='3' style='width:43%'>".$obj_acta->Empresa->getAttr('nombre')."</th>
     <th class='aling-left back-green'><strong>UUNN:</strong></th>
     <th class='tg-031eF aling-left' style='width:29%'>";
-    if($obj_acta->getAttr('reponsable_act_id')!=0){
-    	$codigo.= $obj_acta->Trabajadore2->getAttr('apellido_nombre')." (".$obj_acta->Actividade2->getAttr('descripcion').') ';
+    if($obj_acta->getAttr('uunn_id') != 0){
+    	$codigo.= $obj_acta->UnidadesNegocio->getAttr('descripcion');
     }else{
     	$codigo.="--";
     }
@@ -126,7 +126,15 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <td style='width:10%' class='tg-e3zv back-green'>Lugar:</td>
     <td style='width:36%' class='tg-031eF' colspan='3'>".$obj_acta->getAttr('lugar')."</td>
     <td style='width:26%' class='aling-left back-green'><strong>&Aacute;rea:</strong></td>
-    <td style='width:28%' class='tg-031eF'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
+    <td style='width:28%' class='tg-031eF'>";
+    if($obj_acta->getAttr('tipo_lugar_id') != 0){
+    	$obj_acta->TipoLugare->getAttr('descripcion');
+    }else{
+    	$codigo.="--";
+    }
+     
+
+     $codigo.="</td>
   </tr>";
 
   $codigo .="<tr>
@@ -141,7 +149,7 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
 	<td class='tg-e3zv back-green'>Inspecci&oacute;n Realizado Por:</td>
 	<td class='tg-031eF'>";
 if($obj_acta->getAttr('reponsable_sup_cargo_id')!=0){
-    	$codigo.= $obj_acta->Trabajadore2->getAttr('apellido_nombre')." (".$obj_acta->Actividade2->getAttr('descripcion').') ';
+    	$codigo.= "ING. ".$obj_acta->Trabajadore2->getAttr('apellido_nombre');
     }else{
     	$codigo.="--";
     }

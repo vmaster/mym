@@ -113,7 +113,13 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <th class='tg-e3zv aling-left back-green'>Empresa:</th>
     <th class='tg-031eF aling-left' colspan='3' style='width:43%'>".$obj_acta->Empresa->getAttr('nombre')."</th>
     <th class='aling-left back-green' colspan='1'><strong>UUNN:</strong></th>
-    <th class='tg-031eF aling-left' style='width:29%' colspan='1'>".$obj_acta->UnidadesNegocio->getAttr('descripcion')."</th>
+    <th class='tg-031eF aling-left' style='width:29%' colspan='1'>";
+	    if($obj_acta->getAttr('uunn_id') != 0){
+	    	$codigo.= $obj_acta->UnidadesNegocio->getAttr('descripcion');
+	    }else{
+	    	$codigo.="--";
+	    }
+	  $codigo .= "</th>
   </tr>
   <tr>
     <td style='width:10%' class='tg-e3zv back-green'>Lugar:</td>
@@ -121,13 +127,6 @@ $codigo .="<table class='tg font-head' width='100%' style='margin-bottom:-10px'>
     <td style='width:26%' class='aling-left back-green'><strong>&Aacute;rea:</strong></td>
     <td style='width:28%' class='tg-031eF'>".$obj_acta->TipoLugare->getAttr('descripcion')."</td>
   </tr>";
-
-  if($obj_acta->getAttr('actividad')!=''){
-	$codigo .="<tr>
-	    <td class='tg-e3zv back-green'>Actividad:</td>
-	    <td class='tg-031eF aling-justify' colspan='5'>".$obj_acta->getAttr('actividad')."</td>
-	  </tr>";
-  }
 
   $codigo .="<tr>
     <td class='tg-e3zv back-green'>Responsable:</td>
@@ -455,7 +454,7 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalEqEmerg as $key => $obj_foto_ee) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_eq_emerg/thumbnail/".$obj_foto_ee->getAttr('file_name')."' width='190px' height='190px'>
+				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_eq_emerg/thumbnail/".$obj_foto_ee->getAttr('file_name')."' width='340px' height='280px'>
 				<br>".$obj_foto_ee->getAttr('observacion')."</td>";
 	$cont++;
 	if($cont == 3){

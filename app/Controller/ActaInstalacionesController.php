@@ -329,7 +329,7 @@ class ActaInstalacionesController extends AppController{
 						$cont = 0;
 						foreach ($this->request->data['FotoInstalIlumVent'] as $key=> $array):
 							$imagen = $array['Imagen'][0];
-							$new_foto_iv['FotoInstalIlumVent']['acta_instalacion_id'] = $this->ActaInstalacione->id;
+							$new_foto_iv['FotoInstalIlumVent']['acta_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
@@ -365,7 +365,7 @@ class ActaInstalacionesController extends AppController{
 						$cont = 0;
 						foreach ($this->request->data['FotoInstalOrdenLimpieza'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_ol['FotoInstalOrdenLimpieza']['acta_instalacion_id'] = $this->ActaInstalacione->id;
+							$new_foto_ol['FotoInstalOrdenLimpieza']['acta_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
@@ -402,7 +402,7 @@ class ActaInstalacionesController extends AppController{
 						$cont = 0;
 						foreach ($this->request->data['FotoInstalSshh'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_sshh['FotoInstalSshh']['acta_instalacion_id'] = $this->ActaInstalacione->id;
+							$new_foto_sshh['FotoInstalSshh']['acta_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
@@ -437,7 +437,7 @@ class ActaInstalacionesController extends AppController{
 						$cont = 0;
 						foreach ($this->request->data['FotoInstalSenSeg'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_ss['FotoInstalSenSeg']['acta_instalacion_id'] = $this->ActaInstalacione->id;
+							$new_foto_ss['FotoInstalSenSeg']['acta_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
@@ -471,7 +471,7 @@ class ActaInstalacionesController extends AppController{
 						$cont = 0;
 						foreach ($this->request->data['FotoInstalEqEmerg'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_ee['FotoInstalEqEmerg']['acta_instalacion_id'] = $this->ActaInstalacione->id;
+							$new_foto_ee['FotoInstalEqEmerg']['acta_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
@@ -506,7 +506,7 @@ class ActaInstalacionesController extends AppController{
 						$cont = 0;
 						foreach ($this->request->data['FotoInstalCondSeg'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_med['FotoInstalCondSeg']['acta_instalacion_id'] = $this->ActaInstalacione->id;
+							$new_foto_med['FotoInstalCondSeg']['acta_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
@@ -541,7 +541,7 @@ class ActaInstalacionesController extends AppController{
 						$cont = 0;
 						foreach ($this->request->data['FotoInstalActInsSeg'] as $key => $array){
 							$imagen = $array['Imagen'][0];
-							$new_foto_act_ins_seg['FotoInstalActInsSeg']['acta_instalacion_id'] = $this->ActaInstalacione->id;
+							$new_foto_act_ins_seg['FotoInstalActInsSeg']['acta_id'] = $this->ActaInstalacione->id;
 							$arr = explode(".", $imagen);
 							$extension = strtolower(array_pop($arr));
 							$new_file_name = time().$cont.'.'.$extension;
