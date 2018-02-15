@@ -17,6 +17,32 @@ App::uses('AppModel','Model');
     				'exclusive' => '',
     				'finderQuery' => '',
     				'counterQuery' => ''
+    		),
+			'ActaMedioAmbiente' => array(
+    				'className' => 'ActaMedioAmbiente',
+    				'foreignKey' => 'tipo_lugar_id',
+    				'dependent' => false,
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => '',
+    				'limit' => '',
+    				'offset' => '',
+    				'exclusive' => '',
+    				'finderQuery' => '',
+    				'counterQuery' => ''
+    		),
+			'ActaInstalacione' => array(
+    				'className' => 'ActaInstalacione',
+    				'foreignKey' => 'tipo_lugar_id',
+    				'dependent' => false,
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => '',
+    				'limit' => '',
+    				'offset' => '',
+    				'exclusive' => '',
+    				'finderQuery' => '',
+    				'counterQuery' => ''
     		)
     );
     
