@@ -415,6 +415,27 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	/*SCRIPT PARA ELIMINAR  FOTOS ACTA 	DE SUPERVISIÓN DE SEGURIDAD -  EXISTENTES*/
+	$body.off('click','.delete-file-acta');
+	$body.on('click','.delete-file-acta', function(){
+		file_name = $(this).data('url');
+		foto_acta = $(this).data('foto-acta');
+		$.ajax({
+			type: 'post',
+			url: env_webroot_script + 'acta/delete_foto_acta',
+			data:{
+				'file_name': file_name
+			},
+			dataType: 'json'
+		}).done(function(data){
+			if(data.success == true){
+				$('.template-download[foto-acta='+foto_acta+']').fadeOut(function(){$(this).remove()});
+			}else{
+				alertify.error(data.msg);
+			}
+		});
+	});
 	
 	
 /***** ENVIAR EL INDEX DEL BOTON CREAR TRABAJADOR AL MODAL ******/

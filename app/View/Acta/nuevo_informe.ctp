@@ -1142,6 +1142,69 @@ tinymce.init({
 		</div>
 	</div>
 
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseFive" class="collapsed" aria-expanded="false" style="color: white;">ACTA DE SUPERVISIÓN DE SEGURIDAD Y SALUD EN EL TRABAJO</a>
+				</div>
+				<div id="collapseFive" class="panel-collapse in">
+					<div class="panel-body">
+						<div class="table-responsive" id="div-act-sup-seg">
+							<table class="table table-striped table-bordered table-hover"
+								id="table-act-sup">
+								
+								<tbody>
+									<tr>
+										<td colspan="2">
+										<?php //echo $this->Form->input('foto',array('type' => 'file')); ?>
+										<div class="fileupload" data-type="FotoSupervisionActa">
+									        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+									        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+									        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+									        <div class="row fileupload-buttonbar">
+									            <div class="col-lg-7">
+									                <!-- The fileinput-button span is used to style the file input field as button -->
+									                <span class="btn btn-success fileinput-button">
+									                    <i class="glyphicon glyphicon-plus"></i>
+									                    <span>Add files...</span>
+									                    <input type="file" name="files[]" multiple>
+									                </span>
+									                <button type="submit" class="btn btn-primary start">
+									                    <i class="glyphicon glyphicon-upload"></i>
+									                    <span>Start upload</span>
+									                </button>
+									                <button type="reset" class="btn btn-warning cancel">
+									                    <i class="glyphicon glyphicon-ban-circle"></i>
+									                    <span>Cancel upload</span>
+									                </button>
+									                <!-- The global file processing state -->
+									                <span class="fileupload-process"></span>
+									            </div>
+									            <!-- The global progress state -->
+									            <div class="col-lg-5 fileupload-progress fade">
+									                <!-- The global progress bar -->
+									                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+									                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+									                </div>
+									                <!-- The extended global progress state -->
+									                <div class="progress-extended">&nbsp;</div>
+									            </div>
+									        </div>
+									        <!-- The table listing the files available for upload/download -->
+									        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+									    </div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<br>
 	<div class="row" style="text-align: center;">
 		<div class="col-md-12">

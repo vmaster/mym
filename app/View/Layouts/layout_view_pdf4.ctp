@@ -968,6 +968,27 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 	$codigo.= "</table><p>&nbsp;</p>";
 }
 
+if(count($obj_acta->FotoSupervisionActa)>0){	
+$codigo.= "<div class='salto-linea'>&nbsp;</div>
+<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'><tr>
+		    <th class='tg-e3zv back-blue'>ACTA DE SUPERVISIÓN</th>
+		  </tr>";
+			$cont= 0;
+			$codigo.="<tr>";
+			foreach($obj_acta->FotoSupervisionActa as $key => $obj_foto_sup) {
+				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_acta_supervision/".$obj_foto_sup->getAttr('file_name')."' width='680px' height='840px' style='padding:4px'>
+							<br>".$obj_foto_sup->getAttr('observacion')."</td>";
+				$cont++;
+				if($cont == 3){
+					$codigo.="</tr></table>";
+					$codigo.="<table class='tg' width='100%'><tr>";
+					$cont = 0;
+				}
+			}
+$codigo.= "	</tr></table></div><br>";
+}
+
 //echo $codigo; exit();
 $dompdf = new DOMPDF();
 $dompdf->set_paper("A4");
