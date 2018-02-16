@@ -457,7 +457,7 @@ foreach($obj_acta->FotoInstalEqEmerg as $key => $obj_foto_ee) {
 				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_eq_emerg/thumbnail/".$obj_foto_ee->getAttr('file_name')."' width='340px' height='280px'>
 				<br>".$obj_foto_ee->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -567,7 +567,7 @@ $codigo.="
 							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' width='340px' height='280px'>
 							<br>".$obj_foto_med->getAttr('observacion')."</td>";
 				$cont++;
-				if($cont == 3){
+				if($cont == 2){
 					$codigo.="</tr></table>";
 					$codigo.="<table class='tg' width='100%'><tr>";
 					$cont = 0;
