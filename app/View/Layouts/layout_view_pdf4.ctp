@@ -977,10 +977,9 @@ $codigo.= "<div class='salto-linea'>&nbsp;</div>
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoSupervisionActa as $key => $obj_foto_sup) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_acta_supervision/".$obj_foto_sup->getAttr('file_name')."' width='680px' height='840px' style='padding:4px'>
-							<br>".$obj_foto_sup->getAttr('observacion')."</td>";
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_acta_supervision/".$obj_foto_sup->getAttr('file_name')."' width='680px' height='840px' style='padding:4px'></td>";
 				$cont++;
-				if($cont == 3){
+				if($cont == 1){
 					$codigo.="</tr></table>";
 					$codigo.="<table class='tg' width='100%'><tr>";
 					$cont = 0;
