@@ -638,10 +638,9 @@ $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' w
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoInstalActInsSeg as $key => $obj_foto_med) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_act_ins_seg/".$obj_foto_med->getAttr('file_name')."' width='680px' height='840px' style='padding:4px'>
-							<br>".$obj_foto_med->getAttr('observacion')."</td>";
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_act_ins_seg/".$obj_foto_med->getAttr('file_name')."' width='680px' height='840px' style='padding:4px'></td>";
 				$cont++;
-				if($cont == 3){
+				if($cont == 1){
 					$codigo.="</tr></table>";
 					$codigo.="<table class='tg' width='100%'><tr>";
 					$cont = 0;
