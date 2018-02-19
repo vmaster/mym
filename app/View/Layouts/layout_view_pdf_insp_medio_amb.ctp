@@ -85,10 +85,10 @@ $codigo.= "<div class='head-pag'>
 				<th class='aling-left'><strong>C&oacute;digo: M001-SST/MA</strong></th>
 			  </tr>
 			  <tr>
-			    <td class='tg-031e'><strong>Versi&oacute;n: 00/2017-M001</strong></td>
+			    <td class='tg-031e'><strong>Versi&oacute;n: 01/2018-M001</strong></td>
 			  </tr>
 			  <tr>
-			    <td style='text-align:center;font-size:9.5pt;' class='tg-031e back-green'>Versión Anterior: 00/2018-M001</td>
+			    <td style='text-align:center;font-size:9.5pt;' class='tg-031e back-green'>Versión Anterior: 01/2017-M001</td>
 			    <td style='text-align:center;font-size:9.5pt;' class='aling-left back-green'>Modificaci&oacute;n Versión: JAMM</td>
 			    <td style='text-align:center;font-size:9.5pt;' class='tg-031e back-green'>Fecha Modificaci&oacute;n: 01/01/2018</td>
 			  </tr>
