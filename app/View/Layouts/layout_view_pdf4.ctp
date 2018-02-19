@@ -84,14 +84,14 @@ $codigo.= "<div class='head-pag'>
 			    <td class='aling-left'><strong>C&oacute;digo: M001-SST/MA</strong></td>
 			  </tr>
 			  <tr>
-			    <td class='tg-031e'><strong>Versi&oacute;n: 00/2017-M001</strong></td>
+			    <td class='tg-031e'><strong>Versi&oacute;n: 00/2018-M001</strong></td>
 			  </tr>
 			</table>
 			<table class='tg tg-031eF back-gray' width='100%' style='margin-bottom:-10px'>
 			<tr>
-			    <td style='text-align:center' class='tg-031e'><strong>Versión Anterior: 00/2015-M001</strong></td>
+			    <td style='text-align:center' class='tg-031e'><strong>Versión Anterior: 00/2017-M001</strong></td>
 			    <td style='text-align:center' class='aling-left'><strong>Modificaci&oacute;n Versión: JAMM</strong></td>
-			    <td style='text-align:center' class='tg-031e'><strong>Fecha Modificaci&oacute;n: 08/02/2017</strong></td>
+			    <td style='text-align:center' class='tg-031e'><strong>Fecha Modificaci&oacute;n: 01/01/2018</strong></td>
 			  </tr>
 			</table>
 			<br>
@@ -239,10 +239,10 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-			<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/".$obj_foto_ipp->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' width='190px' height='190px'></a>
+			<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/".$obj_foto_ipp->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_ipp/thumbnail/".$obj_foto_ipp->getAttr('file_name')."' height='255px'></a>
 					<br>".$obj_foto_ipp->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -303,10 +303,10 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_sd/".$obj_foto_sd->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' width='190px' height='190px'></a>
+				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_sd/".$obj_foto_sd->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_sd/thumbnail/".$obj_foto_sd->getAttr('file_name')."' height='255px'></a>
 				<br>".$obj_foto_sd->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -365,10 +365,10 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-			  <a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_um/".$obj_foto_um->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' width='190px' height='190px'></a>
+			  <a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_um/".$obj_foto_um->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_um/thumbnail/".$obj_foto_um->getAttr('file_name')."' height='255px'></a>
 			  <br>".$obj_foto_um->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -428,10 +428,10 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoDoc as $key => $obj_foto_doc) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-			  <a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_doc/".$obj_foto_doc->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_doc/thumbnail/".$obj_foto_doc->getAttr('file_name')."' width='190px' height='190px'></a>
+			  <a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_doc/".$obj_foto_doc->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_doc/thumbnail/".$obj_foto_doc->getAttr('file_name')."' height='255px'></a>
 			  <br>".$obj_foto_doc->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -490,10 +490,10 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_as/".$obj_foto_as->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_as/thumbnail/".$obj_foto_as->getAttr('file_name')."' width='190px' height='190px'></a>
+				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_as/".$obj_foto_as->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_as/thumbnail/".$obj_foto_as->getAttr('file_name')."' height='255px'></a>
 				<br>".$obj_foto_as->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -553,10 +553,10 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;' width='100%'>
-				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_cs/".$obj_foto_cs->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_cs/thumbnail/".$obj_foto_cs->getAttr('file_name')."' width='190px' height='190px'></a>
+				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_cs/".$obj_foto_cs->getAttr('file_name')."'><img src='".ENV_WEBROOT_FULL_URL."files/fotos_cs/thumbnail/".$obj_foto_cs->getAttr('file_name')."' height='255px'></a>
 				<br>".$obj_foto_cs->getAttr('observacion')."</td>";
 	$cont++;
-	if($cont == 3){
+	if($cont == 2){
 		$codigo.="</tr></table>";
 		$codigo.="<table class='tg' width='100%'><tr>";
 		$cont = 0;
@@ -599,10 +599,10 @@ $codigo.="
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoMed as $key => $obj_foto_med) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' width='190px' height='190px'></a>
+							<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' height='255px'></a>
 							<br>".$obj_foto_med->getAttr('observacion')."</td>";
 				$cont++;
-				if($cont == 3){
+				if($cont == 2){
 					$codigo.="</tr></table>";
 					$codigo.="<table class='tg' width='100%'><tr>";
 					$cont = 0;
@@ -966,6 +966,26 @@ if(isset($info_ni_t) || isset($info_ni_v)){
 	}
 	
 	$codigo.= "</table><p>&nbsp;</p>";
+}
+
+if(count($obj_acta->FotoSupervisionActa)>0){	
+$codigo.= "<div class='salto-linea'>&nbsp;</div>
+<div style='border-style:solid;border-width:1px;'><table class='tg' width='100%'><tr>
+		    <th class='tg-e3zv back-blue'>ACTA DE SUPERVISIÓN</th>
+		  </tr>";
+			$cont= 0;
+			$codigo.="<tr>";
+			foreach($obj_acta->FotoSupervisionActa as $key => $obj_foto_sup) {
+				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_acta_supervision/".$obj_foto_sup->getAttr('file_name')."' width='680px' height='840px' style='padding:4px'></td>";
+				$cont++;
+				if($cont == 1){
+					$codigo.="</tr></table>";
+					$codigo.="<table class='tg' width='100%'><tr>";
+					$cont = 0;
+				}
+			}
+$codigo.= "	</tr></table></div><br>";
 }
 
 //echo $codigo; exit();

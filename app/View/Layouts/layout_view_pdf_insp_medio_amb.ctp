@@ -85,10 +85,10 @@ $codigo.= "<div class='head-pag'>
 				<th class='aling-left'><strong>C&oacute;digo: M001-SST/MA</strong></th>
 			  </tr>
 			  <tr>
-			    <td class='tg-031e'><strong>Versi&oacute;n: 00/2017-M001</strong></td>
+			    <td class='tg-031e'><strong>Versi&oacute;n: 01/2018-M001</strong></td>
 			  </tr>
 			  <tr>
-			    <td style='text-align:center;font-size:9.5pt;' class='tg-031e back-green'>Versión Anterior: 00/2015-M001</td>
+			    <td style='text-align:center;font-size:9.5pt;' class='tg-031e back-green'>Versión Anterior: 01/2017-M001</td>
 			    <td style='text-align:center;font-size:9.5pt;' class='aling-left back-green'>Modificaci&oacute;n Versión: JAMM</td>
 			    <td style='text-align:center;font-size:9.5pt;' class='tg-031e back-green'>Fecha Modificaci&oacute;n: 01/01/2018</td>
 			  </tr>
@@ -389,10 +389,9 @@ $codigo.= "<div class='salto-linea'>&nbsp;</div>
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoMedAmbActa as $key => $obj_foto_med) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_acta/".$obj_foto_med->getAttr('file_name')."' width='680px' height='840px' style='padding:4px'>
-							<br>".$obj_foto_med->getAttr('observacion')."</td>";
+							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_acta/".$obj_foto_med->getAttr('file_name')."' width='680px' height='840px' style='padding:4px'></td>";
 				$cont++;
-				if($cont == 3){
+				if($cont == 1){
 					$codigo.="</tr></table>";
 					$codigo.="<table class='tg' width='100%'><tr>";
 					$cont = 0;

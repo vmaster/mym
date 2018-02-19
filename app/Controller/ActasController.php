@@ -114,6 +114,7 @@ class ActasController extends AppController{
 		$this->loadModel('FotoAct');
 		$this->loadModel('FotoCond');
 		$this->loadModel('FotoMed');
+		$this->loadModel('FotoSupervisionActa');		
 		$this->loadModel('ActosSubestandaresTipo');
 		$this->loadModel('CondicionesSubestandaresTipo');
 		$this->loadModel('UnidadesNegocio');
@@ -661,6 +662,41 @@ class ActasController extends AppController{
 							$cont ++;
 						}
 					}
+
+					/* INSERTANDO IMAGENES 	ACTA DE SUPERVISIÓN DE SEGURIDAD */
+					if(!empty($this->request->data['FotoSupervisionActa'])){
+						$cont = 0;
+						foreach ($this->request->data['FotoSupervisionActa'] as $key => $array){
+							$imagen = $array['Imagen'][0];
+							$new_foto_act_sup['FotoSupervisionActa']['acta_id'] = $this->Acta->id;
+							$arr = explode(".", $imagen);
+							$extension = strtolower(array_pop($arr));
+							$new_file_name = time().$cont.'.'.$extension;
+					
+							$new_foto_act_sup['FotoSupervisionActa']['file_name'] = $new_file_name;
+							$new_foto_act_sup['FotoSupervisionActa']['observacion'] = $array['Observacion'][0];
+							$this->FotoSupervisionActa->create();
+							if ($this->FotoSupervisionActa->save($new_foto_act_sup)) {
+								$foto_act_sup_id = $this->FotoSupervisionActa->id;
+								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_acta_supervision/'.$new_foto_act_sup['FotoSupervisionActa']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_acta_supervision/thumbnail/'.$new_foto_act_sup['FotoSupervisionActa']['file_name']);
+
+								//Backup Images	
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_acta_supervision/'.$new_foto_act_sup['FotoSupervisionActa']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_acta_supervision/thumbnail/'.$new_foto_act_sup['FotoSupervisionActa']['file_name']);
+
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							}else{
+								$foto_act_sup_id = '';
+								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
+								//exit();
+							}
+							$cont ++;
+						}
+					}
 					
 					$acta_id = $this->Acta->id;
 					echo json_encode(array('success'=>true,'msg'=>__('El Acta fue agregada con &eacute;xito.'),'Acta_id'=>$acta_id));
@@ -700,6 +736,7 @@ class ActasController extends AppController{
 		$this->loadModel('FotoAct');
 		$this->loadModel('FotoCond');
 		$this->loadModel('FotoMed');
+		$this->loadModel('FotoSupervisionActa');
 		$this->loadModel('ActosSubestandaresTipo');
 		$this->loadModel('CondicionesSubestandaresTipo');
 		$this->loadModel('UnidadesNegocio');
@@ -1509,6 +1546,61 @@ class ActasController extends AppController{
 					}
 					endforeach;
 				}
+
+
+				/* INICIO UPDATES FOTOS	ACTA DE SUPERVISIÓN DE SEGURIDAD */
+					if(!empty($this->request->data['FotoSupervisionActa'])){
+						$cont = 0;
+						foreach ($this->request->data['FotoSupervisionActa'] as $key => $array){
+							$imagen = $array['Imagen'][0];
+							$new_foto_act_sup['FotoSupervisionActa']['acta_id'] = $this->Acta->id;
+							$arr = explode(".", $imagen);
+							$extension = strtolower(array_pop($arr));
+							$new_file_name = time().$cont.'.'.$extension;
+					
+							$new_foto_act_sup['FotoSupervisionActa']['file_name'] = $new_file_name;
+							$new_foto_act_sup['FotoSupervisionActa']['observacion'] = $array['Observacion'][0];
+
+							$this->FotoSupervisionActa->create();
+							if ($this->FotoSupervisionActa->save($new_foto_act_sup)) {
+								$foto_act_sup_id = $this->FotoSupervisionActa->id;
+								//debug(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/');exit();
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_acta_supervision/'.$new_foto_act_sup['FotoSupervisionActa']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/fotos_acta_supervision/thumbnail/'.$new_foto_act_sup['FotoSupervisionActa']['file_name']);
+
+								//Backup Images	
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_acta_supervision/'.$new_foto_act_sup['FotoSupervisionActa']['file_name']);
+								copy(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen, APP.WEBROOT_DIR.'/files/backup_image/fotos_acta_supervision/thumbnail/'.$new_foto_act_sup['FotoSupervisionActa']['file_name']);
+
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/'.$imagen);
+								unlink(APP.WEBROOT_DIR.'/lib/file.upload/server/php/files/thumbnail/'.$imagen);
+								// echo json_encode(array('success'=>true,'msg'=>__('La Condicion Subestándar fue agregado con &eacute;xito.'),'CondicionesSubestandare_id'=>$cs_id));
+							}else{
+								$foto_act_sup_id = '';
+								//echo json_encode(array('success'=>false,'msg'=>__('Su informaci&oacute;n es incorrecta'),'validation'=>$this->CondicionesSubestandare->validationErrors));
+								//exit();
+							}
+
+							debug($this->FotoSupervisionActa->observacion);
+							exit();
+							$cont ++;
+						}
+					}
+
+				if(!empty($this->request->data['FotoSupActaUpdate'])){
+				
+					foreach ($this->request->data['FotoSupActaUpdate'] as $key=> $array):
+					if($array['id'][0] != ''){
+				
+						$this->FotoSupervisionActa->id = $array['id'][0];
+				
+						$update_foto_act_sup['FotoSupervisionActa']['observacion'] = $array['Observacion'][0];
+				
+						$this->FotoSupervisionActa->save($update_foto_act_sup);
+							
+					}
+					endforeach;
+				}
 				
 				
 				//INICIO UPDATE ACTA
@@ -2202,6 +2294,36 @@ class ActasController extends AppController{
 				}
 				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$file_name)){
 					unlink(APP.WEBROOT_DIR.'/files/fotos_med/thumbnail/'.$file_name);
+				}
+				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
+				exit();
+			}else{
+				echo json_encode(array('success' =>false, 'msg' => __('La Foto no fue eliminada')));
+				exit();
+			}
+		}
+	}
+
+	//DELETE FOTO ACTA DE SUPERVISIÓN
+	public function delete_foto_acta()
+	{
+		$this->layout = "ajax";
+		$this->loadModel('FotoMedAmbActa');
+		if($this->request->is('post')){
+			$file_name = $this->request->data['file_name'];
+			if($this->FotoMedAmbActa->deleteAll(array('FotoMedAmbActa.file_name' => $file_name), $cascada = false)){
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_med_amb_acta/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_med_amb_acta/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_med_amb_acta/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/fotos_med_amb_acta/thumbnail/'.$file_name);
+				}
+
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_med_amb_acta/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_med_amb_acta/'.$file_name);
+				}
+				if(file_exists(APP.WEBROOT_DIR.'/files/backup_image/fotos_med_amb_acta/thumbnail/'.$file_name)){
+					unlink(APP.WEBROOT_DIR.'/files/backup_image/fotos_med_amb_acta/thumbnail/'.$file_name);
 				}
 				echo json_encode(array('success' =>true, 'msg' => __('Foto eliminada')));
 				exit();
