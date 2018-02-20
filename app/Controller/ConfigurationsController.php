@@ -15,7 +15,8 @@ class ConfigurationsController extends AppController{
 	}
 	
 	function send_database($tables = '*') {
-			
+		ini_set('memory_limit', '512M');
+		
 		$return = '';
 			
 		$modelName = $this->modelClass;
@@ -103,8 +104,8 @@ class ConfigurationsController extends AppController{
 			if(Validation::email($email_destino)){
 				App::uses('CakeEmail', 'Network/Email');
 		 
-				$Email = new CakeEmail('mym');
-				$Email->from(array('informes@mym-iceperu.com' => 'M&M'));
+				$Email = new CakeEmail('default');
+				$Email->from(array('mym.ingenieria@mym-iceperu.com' => 'M&M'));
 				$Email->emailFormat('html');
 				$Email->template('content_send_backup','layout_email_backup');
 				$Email->viewVars(array('mensaje'=> $mensaje));
@@ -219,12 +220,12 @@ class ConfigurationsController extends AppController{
 
 				App::uses('CakeEmail', 'Network/Email');
 					
-				$Email = new CakeEmail('mym');
-				$Email->from(array('mym@mym-iceperu.com' => 'M&M'));
+				$Email = new CakeEmail('default');
+				$Email->from(array('mym.ingenieria@mym-iceperu.com' => 'M&M'));
 				$Email->emailFormat('html');
 				$Email->template('content_send_backup','layout_email_backup');
 				$Email->viewVars(array('mensaje'=> 'Esta una copia de seguridad autom&aacute;tica de su Base de Datos'));
-				$Email->to(array('jmaldonado.milian@gmail.com','ahugo.soft@gmail.com'));
+				$Email->to(array('jmaldonado.milian@gmail.com','ahugo.soft@gmail.com','vladitorresmirez@gmail.com'));
 				$Email->subject(utf8_encode('Copia Automática - ').$fileName);
 				$Email->attachments(array(
 						$fileName => array(
