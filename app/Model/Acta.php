@@ -664,7 +664,7 @@ App::uses('AppModel','Model');
     
     public function sendReporteEmail($acta_id, $email_destino, $email_copia, $num_informe, $asunto, $mensaje){
     	App::uses('CakeEmail', 'Network/Email');
-    	$Email = new CakeEmail('mym');
+    	$Email = new CakeEmail('default');
     	$Email->from(array('mym.ingenieria@mym-iceperu.com' => 'M&M Ingenieria'));
     	$Email->emailFormat('html');
     	$Email->template('informe','send_informe');
