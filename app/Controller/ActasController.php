@@ -2308,10 +2308,10 @@ class ActasController extends AppController{
 	public function delete_foto_acta()
 	{
 		$this->layout = "ajax";
-		$this->loadModel('FotoMedAmbActa');
+		$this->loadModel('FotoSupervisionActa');
 		if($this->request->is('post')){
 			$file_name = $this->request->data['file_name'];
-			if($this->FotoMedAmbActa->deleteAll(array('FotoMedAmbActa.file_name' => $file_name), $cascada = false)){
+			if($this->FotoSupervisionActa->deleteAll(array('FotoSupervisionActa.file_name' => $file_name), $cascada = false)){
 				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_med_amb_acta/'.$file_name)){
 					unlink(APP.WEBROOT_DIR.'/files/fotos_med_amb_acta/'.$file_name);
 				}

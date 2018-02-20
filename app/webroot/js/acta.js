@@ -423,7 +423,7 @@ $(document).ready(function(){
 		foto_acta = $(this).data('foto-acta');
 		$.ajax({
 			type: 'post',
-			url: env_webroot_script + 'acta/delete_foto_acta',
+			url: env_webroot_script + 'actas/delete_foto_acta',
 			data:{
 				'file_name': file_name
 			},
