@@ -783,7 +783,9 @@ class ActasController extends AppController{
 
 				if($this->request->data['Acta']['grafico'] != ''){
 
-					unlink(APP.WEBROOT_DIR.'/files/graficos/'.$this->request->data['Acta']['grafico']);
+					if (file_exists(APP.WEBROOT_DIR.'/files/graficos/'.$this->request->data['Acta']['grafico'])) {
+						unlink(APP.WEBROOT_DIR.'/files/graficos/'.$this->request->data['Acta']['grafico']);	
+					}
 
 					$data = str_replace(' ', '+', $this->request->data['graf']);
 					$data_64= base64_decode($data);
