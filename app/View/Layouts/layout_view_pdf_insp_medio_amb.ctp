@@ -214,7 +214,7 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoMedAmbDoc as $key => $obj_foto_ad) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-			<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/thumbnail/".$obj_foto_ad->getAttr('file_name')."' width='340px' height='280px'>
+			<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/".$obj_foto_ad->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/thumbnail/".$obj_foto_ad->getAttr('file_name')."' height='255px'></a>
 					<br>".$obj_foto_ad->getAttr('observacion')."</td>";
 	$cont++;
 	if($cont == 2){
@@ -274,7 +274,7 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoMedAmbCond as $key => $obj_foto_ca) {
 	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-				<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/thumbnail/".$obj_foto_ca->getAttr('file_name')."' width='340px' height='280px'>
+				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/".$obj_foto_ca->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/thumbnail/".$obj_foto_ca->getAttr('file_name')."' height='255px'></a>
 				<br>".$obj_foto_ca->getAttr('observacion')."</td>";
 	$cont++;
 	if($cont == 2){
@@ -322,10 +322,10 @@ $codigo.="
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoMedAmbMedida as $key => $obj_foto_med) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/thumbnail/".$obj_foto_med->getAttr('file_name')."' width='340px' height='280px'>
+							<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/thumbnail/".$obj_foto_med->getAttr('file_name')."' height='255px'></a>
 							<br>".$obj_foto_med->getAttr('observacion')."</td>";
 				$cont++;
-				if($cont == 3){
+				if($cont == 2){
 					$codigo.="</tr></table>";
 					$codigo.="<table class='tg' width='100%'><tr>";
 					$cont = 0;
@@ -389,7 +389,7 @@ $codigo.= "<div class='salto-linea'>&nbsp;</div>
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoMedAmbActa as $key => $obj_foto_med) {
 				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
-							<img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_acta/".$obj_foto_med->getAttr('file_name')."' width='680px' height='840px' style='padding:4px'></td>";
+							<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_acta/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_acta/".$obj_foto_med->getAttr('file_name')."' width='680px' height='840px' style='padding:4px'></a></td>";
 				$cont++;
 				if($cont == 1){
 					$codigo.="</tr></table>";
