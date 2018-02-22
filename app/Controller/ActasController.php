@@ -783,7 +783,9 @@ class ActasController extends AppController{
 
 				if($this->request->data['Acta']['grafico'] != ''){
 
-					unlink(APP.WEBROOT_DIR.'/files/graficos/'.$this->request->data['Acta']['grafico']);
+					if (file_exists(APP.WEBROOT_DIR.'/files/graficos/'.$this->request->data['Acta']['grafico'])) {
+						unlink(APP.WEBROOT_DIR.'/files/graficos/'.$this->request->data['Acta']['grafico']);	
+					}
 
 					$data = str_replace(' ', '+', $this->request->data['graf']);
 					$data_64= base64_decode($data);
@@ -2011,8 +2013,10 @@ class ActasController extends AppController{
 				// Cambio de direccion que solo afecte a las actas creadas a partir de la nueva fecha
 				if($obj_acta->getAttr('created')>='2016-11-07' && $obj_acta->getAttr('created')<'2017-02-08'){
 					$this->layout = 'layout_view_pdf3';
-				}elseif($obj_acta->getAttr('created')>='2017-02-08'){
+				}elseif($obj_acta->getAttr('created')>='2017-02-08' && $obj_acta->getAttr('created')<'2018-02-22'){
 					$this->layout = 'layout_view_pdf4';
+				}elseif($obj_acta->getAttr('created')>='2018-02-22'){
+					$this->layout = 'layout_view_pdf5';
 				}else{
 					$this->layout = 'layout_view_pdf2';
 				}
@@ -2308,10 +2312,10 @@ class ActasController extends AppController{
 	public function delete_foto_acta()
 	{
 		$this->layout = "ajax";
-		$this->loadModel('FotoMedAmbActa');
+		$this->loadModel('FotoSupervisionActa');
 		if($this->request->is('post')){
 			$file_name = $this->request->data['file_name'];
-			if($this->FotoMedAmbActa->deleteAll(array('FotoMedAmbActa.file_name' => $file_name), $cascada = false)){
+			if($this->FotoSupervisionActa->deleteAll(array('FotoSupervisionActa.file_name' => $file_name), $cascada = false)){
 				if(file_exists(APP.WEBROOT_DIR.'/files/fotos_med_amb_acta/'.$file_name)){
 					unlink(APP.WEBROOT_DIR.'/files/fotos_med_amb_acta/'.$file_name);
 				}
