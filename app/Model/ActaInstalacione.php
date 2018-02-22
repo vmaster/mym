@@ -435,7 +435,7 @@ App::uses('AppModel','Model');
     	$Email = new CakeEmail('default');
     	$Email->from(array('mym.ingenieria@mym-iceperu.com' => 'M&M Ingenieria'));
     	$Email->emailFormat('html');
-    	$Email->template('informe','send_informe');
+    	$Email->template('inspeccion','send_informe');
     	$Email->viewVars(array('acta_id' => $acta_id,'num_informe'=> $num_informe, 'mensaje'=> $mensaje));
 		
 		// Email de Destino
@@ -459,13 +459,13 @@ App::uses('AppModel','Model');
         $fileName = str_replace('/','-',$num_informe).".pdf";
     	
 		$Email->subject($asunto);
-        $Email->attachments(array(
+        /*$Email->attachments(array(
                         $fileName => array(
                                 'file' => APP.WEBROOT_DIR."/files/pdf/".$fileName,
                                 'mimetype' => 'text/x-sql',
                                 'contentId' => 'my-unique-id'
                         )
-                ));
+                ));*/
     	$Email->send('Mi Mensaje');
     }
     
