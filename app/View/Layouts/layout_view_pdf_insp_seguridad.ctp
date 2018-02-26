@@ -210,7 +210,7 @@ $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' w
 $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalIlumVent as $key => $obj_foto_iv) {
-	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 			<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_ilum_vent/".$obj_foto_iv->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_ilum_vent/thumbnail/".$obj_foto_iv->getAttr('file_name')."' height='255px'></a>
 					<br>".$obj_foto_iv->getAttr('observacion')."</td>";
 	$cont++;
@@ -272,7 +272,7 @@ $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' w
 $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalOrdenLimpieza as $key => $obj_foto_ol) {
-	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_orden_limp/".$obj_foto_ol->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_orden_limp/thumbnail/".$obj_foto_ol->getAttr('file_name')."' height='255px'></a>
 				<br>".$obj_foto_ol->getAttr('observacion')."</td>";
 	$cont++;
@@ -332,7 +332,7 @@ $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' w
 $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalSshh as $key => $obj_foto_sh) {
-	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 			  <a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_sshh/".$obj_foto_sh->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_sshh/thumbnail/".$obj_foto_sh->getAttr('file_name')."' height='255px'></a>
 			  <br>".$obj_foto_sh->getAttr('observacion')."</td>";
 	$cont++;
@@ -393,7 +393,7 @@ $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' w
 $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalSenSeg as $key => $obj_foto_ss) {
-	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 			  <a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_sen_seg/".$obj_foto_ss->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_sen_seg/thumbnail/".$obj_foto_ss->getAttr('file_name')."' height='255px'></a>
 			  <br>".$obj_foto_ss->getAttr('observacion')."</td>";
 	$cont++;
@@ -453,7 +453,7 @@ $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' w
 $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalEqEmerg as $key => $obj_foto_ee) {
-	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_eq_emerg/".$obj_foto_ee->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_eq_emerg/thumbnail/".$obj_foto_ee->getAttr('file_name')."' height='255px'></a>
 				<br>".$obj_foto_ee->getAttr('observacion')."</td>";
 	$cont++;
@@ -514,7 +514,7 @@ $codigo.= "<div style='border-style:solid;border-width:1px;'><table class='tg' w
 $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoInstalCondSeg as $key => $obj_foto_cs) {
-	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;' width='100%'>
+	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_cond_seg/".$obj_foto_cs->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_cond_seg/thumbnail/".$obj_foto_cs->getAttr('file_name')."' height='255px'></a>
 				<br>".$obj_foto_cs->getAttr('observacion')."</td>";
 	$cont++;
@@ -563,7 +563,7 @@ $codigo.="
 			$cont= 0;
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoInstalMed as $key => $obj_foto_med) {
-				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none;'>
+				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 							<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_med/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' height='255px'></a>
 							<br>".$obj_foto_med->getAttr('observacion')."</td>";
 				$cont++;
