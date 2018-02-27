@@ -821,6 +821,18 @@ $codigo .= "<div style='text-align:right;'><hr width='30%' align='right'></div>
 $codigo.="</div>
 		   	<div style='text-align:right;font-size:13px; padding-left: 25px; padding-right: 25px;'>SUPERVISOR DE SST - M&M</div></td></tr></table></div><div class='salto-linea'>&nbsp;</div>";
 
+$codigo.="<table class='tg' width='100%'>
+		<thead><tr>
+		<th colspan='2' class='tg-e3zv back-blue' style='text-align: center;'>DATOS DE OBRA</th>
+		</tr></thead>
+		<tr>OBRA O SERVICIO<td></td><td>".$obj_acta->getAttr('obra')."</td></tr>
+		<tr>RESIDENTE DE OBRA Y/O SUPERVISOR DEL SERVICIO (CONTRATISTA)<td></td><td>".$obj_acta->Obra->getAttr('residente')."</td></tr>
+		<tr>INGENIERO SUPERVISOR DE SEGURIDAD, ST Y MA (CONTRATISTA)<td></td><td>".$obj_acta->Obra->getAttr('supervisor_contratista')."</td></tr>
+		<tr>COORDINADOR O JEFE DE SUPERVISI&Oacute;N DE OBRA O SERVICIO POR ENSA (INDICAR EMPRESA)<td></td><td>".$obj_acta->Obra->getAttr('coordinador')."</td></tr>
+		<tr>SUPERVISOR DE OBRA O SERVICIO POR ENSA (INDICAR EMPRESA)<td></td><td>".$obj_acta->Obra->getAttr('supervisor_empresa')."</td></tr>
+		</table>
+		";
+
 $codigo.= "<table class='tg' width='100%'>
 		<thead>
 		<tr>
