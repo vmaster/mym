@@ -119,6 +119,7 @@ class ActasController extends AppController{
 		$this->loadModel('CondicionesSubestandaresTipo');
 		$this->loadModel('UnidadesNegocio');
 		$this->loadModel('TipoLugare');
+		$this->loadModel('Obra');
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
 		$list_all_actas = $this->Acta->listActas();
@@ -188,11 +189,22 @@ class ActasController extends AppController{
 				//imagedestroy($im);
 				$this->request->data['Acta']['grafico'] = $filename;
 					
+				/* Save datos de obra*/
+				$new_obra['Obra']['acta_id'] = $this->Acta->id;
+				$new_obra['Obra']['residente'] = $this->request->data['Acta']['residente'];
+				$new_obra['Obra']['supervisor_contratista'] = $this->request->data['Acta']['supervisor_contratista'];
+				$new_obra['Obra']['coordinador'] = $this->request->data['Acta']['coordinador'];
+				$new_obra['Obra']['supervisor_empresa'] = $this->request->data['Acta']['supervisor_empresa'];
+		
+				$this->Obra->create();
+				if($this->Obra->save($new_obra)){
+					$obra_id = $this->Obra->id;
+					$this->request->data['Acta']['obra_id'] = $obra_id;
+				}
 				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
 				$normas_cumplidas = 0;
-				
 				
 				foreach($this->request->data['Acta']['cumplimiento_act'] as $key => $value){
 					if($value['info_des_act'] != ''){
@@ -741,6 +753,7 @@ class ActasController extends AppController{
 		$this->loadModel('CondicionesSubestandaresTipo');
 		$this->loadModel('UnidadesNegocio');
 		$this->loadModel('TipoLugare');
+		$this->loadModel('Obra');
 		
 		$list_all_empresas = $this->Empresa->listEmpresas();
 		$list_all_actas = $this->Acta->listActas();
@@ -808,11 +821,20 @@ class ActasController extends AppController{
 					$this->request->data['Acta']['grafico'] = $filename;
 				}
 
+				/* Save datos de obra*/
+				$new_obra['Obra']['id'] = $this->request->data['Obra']['id'];
+				$new_obra['Obra']['acta_id'] = $this->Acta->id;
+				$new_obra['Obra']['residente'] = $this->request->data['Obra']['residente'];
+				$new_obra['Obra']['supervisor_contratista'] = $this->request->data['Obra']['supervisor_contratista'];
+				$new_obra['Obra']['coordinador'] = $this->request->data['Obra']['coordinador'];
+				$new_obra['Obra']['supervisor_empresa'] = $this->request->data['Obra']['supervisor_empresa'];
+		
+				$this->Obra->create();
+				$this->Obra->save($new_obra);
 								
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
 				$normas_cumplidas = 0;
-				
 				
 				foreach($this->request->data['Acta']['cumplimiento_act'] as $key => $value){
 					if($value['info_des_act'] != ''){
@@ -2013,10 +2035,8 @@ class ActasController extends AppController{
 				// Cambio de direccion que solo afecte a las actas creadas a partir de la nueva fecha
 				if($obj_acta->getAttr('created')>='2016-11-07' && $obj_acta->getAttr('created')<'2017-02-08'){
 					$this->layout = 'layout_view_pdf3';
-				}elseif($obj_acta->getAttr('created')>='2017-02-08' && $obj_acta->getAttr('created')<'2018-02-22'){
+				}elseif($obj_acta->getAttr('created')>='2017-02-08'){
 					$this->layout = 'layout_view_pdf4';
-				}elseif($obj_acta->getAttr('created')>='2018-02-22'){
-					$this->layout = 'layout_view_pdf5';
 				}else{
 					$this->layout = 'layout_view_pdf2';
 				}

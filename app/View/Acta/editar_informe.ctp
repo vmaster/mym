@@ -1474,6 +1474,47 @@ tinymce.init({
 		</div>
 	</div>
 	
+	<!-- DATOS DE OBRA -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed" aria-expanded="false" style="color: white;">DATOS DE OBRA</a>
+				</div>
+				<div id="collapseFour" class="panel-collapse in">
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover"
+								id="dataTables-example">
+								<tr>
+									<td style="vertical-align: middle; text-align: left; width:50%">RESIDENTE DE OBRA Y/O SUPERVISOR DEL SERVICIO (CONTRATISTA)
+									<input name='data[Obra][id]' type="hidden" value="<?php echo $obj_acta->Obra->getAttr('id'); ?>"/>
+									</td>
+									<td><input name='data[Obra][residente]' type="text" id='txtResidente' class='form-control' value="<?php echo $obj_acta->Obra->getAttr('residente'); ?>"/></td>
+								</tr>
+								<tr>
+									<td style="vertical-align: middle; text-align: left; width:50%">INGENIERO SUPERVISOR DE SEGURIDAD, ST Y MA (CONTRATISTA)
+									</td>
+									<td><input name='data[Obra][supervisor_contratista]' type="text" id='txtResidente' class='form-control' value="<?php echo $obj_acta->Obra->getAttr('supervisor_contratista'); ?>"/></td>
+								</tr>
+								<tr>
+									<td style="vertical-align: middle; text-align: left; width:50%">COORDINADOR O JEFE DE SUPERVISIÓN DE OBRA O SERVICIO POR ENSA (INDICAR EMPRESA)
+									</td>
+									<td><input name='data[Obra][coordinador]' type="text" id='txtResidente' class='form-control' value="<?php echo $obj_acta->Obra->getAttr('coordinador'); ?>"/></td>
+								</tr>
+								<tr>
+									<td style="vertical-align: middle; text-align: left; width:50%">SUPERVISOR DE OBRA O SERVICIO POR ENSA (INDICAR EMPRESA)
+									</td>
+									<td><input name='data[Obra][supervisor_empresa]' type="text" id='txtResidente' class='form-control' value="<?php echo $obj_acta->Obra->getAttr('supervisor_empresa'); ?>"/></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-primary">

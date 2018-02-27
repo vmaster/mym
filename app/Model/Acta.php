@@ -258,7 +258,14 @@ App::uses('AppModel','Model');
                     'conditions' => '',
                     'fields' => '',
                     'order' => ''
-            )
+            ),
+			'Obra' => array(
+    				'className' => 'Obra',
+    				'foreignKey' => 'obra_id',
+    				'conditions' => '',
+    				'fields' => '',
+    				'order' => ''
+    		)
     );
     
     
