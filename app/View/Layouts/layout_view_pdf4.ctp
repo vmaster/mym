@@ -825,12 +825,12 @@ $codigo.="<table class='tg' width='100%'>
 		<thead><tr>
 		<th colspan='2' class='tg-e3zv back-blue' style='text-align: center;'>DATOS DE OBRA</th>
 		</tr></thead>
-		<tr>OBRA O SERVICIO<td></td><td>".$obj_acta->getAttr('obra')."</td></tr>
-		<tr>RESIDENTE DE OBRA Y/O SUPERVISOR DEL SERVICIO (CONTRATISTA)<td></td><td>".$obj_acta->Obra->getAttr('residente')."</td></tr>
-		<tr>INGENIERO SUPERVISOR DE SEGURIDAD, ST Y MA (CONTRATISTA)<td></td><td>".$obj_acta->Obra->getAttr('supervisor_contratista')."</td></tr>
-		<tr>COORDINADOR O JEFE DE SUPERVISI&Oacute;N DE OBRA O SERVICIO POR ENSA (INDICAR EMPRESA)<td></td><td>".$obj_acta->Obra->getAttr('coordinador')."</td></tr>
-		<tr>SUPERVISOR DE OBRA O SERVICIO POR ENSA (INDICAR EMPRESA)<td></td><td>".$obj_acta->Obra->getAttr('supervisor_empresa')."</td></tr>
-		</table>
+		<tr><td>OBRA O SERVICIO</td><td>".$obj_acta->getAttr('obra')."</td></tr>
+		<tr><td>RESIDENTE DE OBRA Y/O SUPERVISOR DEL SERVICIO (CONTRATISTA)</td><td>".$obj_acta->Obra->getAttr('residente')."</td></tr>
+		<tr><td>INGENIERO SUPERVISOR DE SEGURIDAD, ST Y MA (CONTRATISTA)</td><td>".$obj_acta->Obra->getAttr('supervisor_contratista')."</td></tr>
+		<tr><td>COORDINADOR O JEFE DE SUPERVISI&Oacute;N DE OBRA O SERVICIO POR ENSA (INDICAR EMPRESA)</td><td>".$obj_acta->Obra->getAttr('coordinador')."</td></tr>
+		<tr><td>SUPERVISOR DE OBRA O SERVICIO POR ENSA (INDICAR EMPRESA)</td><td>".$obj_acta->Obra->getAttr('supervisor_empresa')."</td></tr>
+		</table><br>
 		";
 
 $codigo.= "<table class='tg' width='100%'>
