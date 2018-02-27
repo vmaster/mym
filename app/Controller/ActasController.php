@@ -824,10 +824,10 @@ class ActasController extends AppController{
 				/* Save datos de obra*/
 				$new_obra['Obra']['id'] = $this->request->data['Obra']['id'];
 				$new_obra['Obra']['acta_id'] = $this->Acta->id;
-				$new_obra['Obra']['residente'] = $this->request->data['Acta']['residente'];
-				$new_obra['Obra']['supervisor_contratista'] = $this->request->data['Acta']['supervisor_contratista'];
-				$new_obra['Obra']['coordinador'] = $this->request->data['Acta']['coordinador'];
-				$new_obra['Obra']['supervisor_empresa'] = $this->request->data['Acta']['supervisor_empresa'];
+				$new_obra['Obra']['residente'] = $this->request->data['Obra']['residente'];
+				$new_obra['Obra']['supervisor_contratista'] = $this->request->data['Obra']['supervisor_contratista'];
+				$new_obra['Obra']['coordinador'] = $this->request->data['Obra']['coordinador'];
+				$new_obra['Obra']['supervisor_empresa'] = $this->request->data['Obra']['supervisor_empresa'];
 		
 				$this->Obra->create();
 				$this->Obra->save($new_obra);
