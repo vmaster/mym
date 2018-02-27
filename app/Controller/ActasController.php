@@ -197,7 +197,10 @@ class ActasController extends AppController{
 				$new_obra['Obra']['supervisor_empresa'] = $this->request->data['Acta']['supervisor_empresa'];
 		
 				$this->Obra->create();
-				$this->Obra->save($new_obra);
+				if($this->Obra->save($new_obra)){
+					$obra_id = $this->Obra->id;
+					$this->request->data['Acta']['obra_id'] = $obra_id;
+				}
 				
 				/* Guardar porcentaje de cumplimiento */
 				$normas_incumplidas = 0;
