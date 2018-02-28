@@ -276,7 +276,7 @@ class TareasController extends AppController{
 		if($this->request->is('post') || $this->request->is('put')){
 			$tarea_id = $this->request->data['tarea_id'];
 			$array_tarea = $this->Tarea->obtenerActividades($tarea_id);
-			if(count(array_tarea)>0){
+			if(count($array_tarea)>0){
 				$actividades = $array_tarea[0]['Tarea']['descripcion'];
 				$fecha = date("Y-m-d, g:i a",strtotime($array_tarea[0]['Tarea']['created']));
 				$personal =  $array_tarea[0]['TrabajadorJoin']['apellido_nombre'];
