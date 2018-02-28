@@ -214,9 +214,12 @@ class TareasController extends AppController{
 		}else{
 			if(isset($tarea_id)){
 				$obj_tarea = $this->Tarea->findById($tarea_id);
-				
+				$this->loadModel('Trabajadore');
+				$arr_trabaj_enosa = $this->Trabajadore->listAllTrabajadoresEnosaChofer();
+			
 				$this->request->data = $obj_tarea->data;
-				$this->set(compact('tarea_id','obj_tarea'));
+				
+				$this->set(compact('tarea_id','obj_tarea','arr_trabaj_enosa'));
 			}
 		}
 		
@@ -281,7 +284,8 @@ class TareasController extends AppController{
 			$placa = $array_tarea[0]['Tarea']['placa_auto'];
 			$dia_libre = $array_tarea[0]['Tarea']['dia_libre'];
 			$observacion = $array_tarea[0]['Tarea']['observacion'];
-			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal, 'inf_ref'=> $informe_ref, 'movilidad'=> $movilidad, 'placa' => $placa, 'dia_libre' => $dia_libre, 'observacion' => $observacion));
+			$chofer = $array_tarea[0]['ChoferJoin']['apellido_nombre'];
+			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal, 'inf_ref'=> $informe_ref, 'movilidad'=> $movilidad, 'placa' => $placa, 'dia_libre' => $dia_libre, 'observacion' => $observacion, 'chofer' => $chofer));
 			exit();
 		}else{
 			echo json_encode(array('success'=>false,'fecha'=> '', 'actividades'=> '','personal'=> ''));

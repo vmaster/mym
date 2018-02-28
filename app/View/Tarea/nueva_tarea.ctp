@@ -54,7 +54,7 @@ tinymce.init({
 				<div class="radio" style="display: -webkit-inline-box">
 					<label>Camioneta <input name="data[Tarea][movilidad]" type="radio" value="1" id="rbAuto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<?php echo $this->Form->input('placa_auto', array('div' => false, 'label' => false, 'class'=> 'txtPlaca form-control','id' =>'txtPlaca', 'type' =>'text', 'style' => 'display:none', 'value'=>'MyM')); ?>
-						<select name="data[Tarea][trabajador_id]" class="txtTrabajador form-control">
+						<select name="data[Tarea][trabajador_id]" class="txtTrabajador form-control" style="display:none">
 							<?php 
 							if (isset($arr_trabaj_enosa)){
 								foreach ($arr_trabaj_enosa as $id => $obj_trabaj_enosa):
