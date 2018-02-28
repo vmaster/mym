@@ -276,15 +276,28 @@ class TareasController extends AppController{
 		if($this->request->is('post') || $this->request->is('put')){
 			$tarea_id = $this->request->data['tarea_id'];
 			$array_tarea = $this->Tarea->obtenerActividades($tarea_id);
-			$actividades = $array_tarea[0]['Tarea']['descripcion'];
-			$fecha = date("Y-m-d, g:i a",strtotime($array_tarea[0]['Tarea']['created']));
-			$personal =  $array_tarea[0]['TrabajadorJoin']['apellido_nombre'];
-			$informe_ref = $array_tarea[0]['Tarea']['informe_ref'];
-			$movilidad = $array_tarea[0]['Tarea']['movilidad'];
-			$placa = $array_tarea[0]['Tarea']['placa_auto'];
-			$dia_libre = $array_tarea[0]['Tarea']['dia_libre'];
-			$observacion = $array_tarea[0]['Tarea']['observacion'];
-			$chofer = $array_tarea[0]['ChoferJoin']['apellido_nombre'];
+			if(count(array_tarea)>0){
+				$actividades = $array_tarea[0]['Tarea']['descripcion'];
+				$fecha = date("Y-m-d, g:i a",strtotime($array_tarea[0]['Tarea']['created']));
+				$personal =  $array_tarea[0]['TrabajadorJoin']['apellido_nombre'];
+				$informe_ref = $array_tarea[0]['Tarea']['informe_ref'];
+				$movilidad = $array_tarea[0]['Tarea']['movilidad'];
+				$placa = $array_tarea[0]['Tarea']['placa_auto'];
+				$dia_libre = $array_tarea[0]['Tarea']['dia_libre'];
+				$observacion = $array_tarea[0]['Tarea']['observacion'];
+				$chofer = $array_tarea[0]['ChoferJoin']['apellido_nombre'];
+			}else{
+				$actividades = "";
+				$fecha = "";
+				$personal =  "";
+				$informe_ref = "";
+				$movilidad = "";
+				$placa = "";
+				$dia_libre = "";
+				$observacion = "";
+				$chofer = "";
+			}
+			
 			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal, 'inf_ref'=> $informe_ref, 'movilidad'=> $movilidad, 'placa' => $placa, 'dia_libre' => $dia_libre, 'observacion' => $observacion, 'chofer' => $chofer));
 			exit();
 		}else{
