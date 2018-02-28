@@ -136,7 +136,6 @@ class TareasController extends AppController{
 	public function nueva_tarea($tarea_id=null){
 		$this->layout = 'default';
 		$this->loadModel('Tarea');
-
 	
 		if($this->request->is('post')  || $this->request->is('put')){
 			
@@ -148,6 +147,7 @@ class TareasController extends AppController{
 				$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
 				$this->request->data['Tarea']['estado'] = 0;
 				$this->request->data['Tarea']['dia_libre'] = 0;
+				$this->request->data['Tarea']['trabajador_id'] = $this->request->data['Tarea']['trabajador_id'];
 				
 				$this->Tarea->create();
 				if ($this->Tarea->save($this->request->data)) {
@@ -168,10 +168,15 @@ class TareasController extends AppController{
 		}else{
 			if(isset($tarea_id)){
 				$obj_tarea = $this->Tarea->findById($tarea_id);
+				$arr_trabaj_enosa = $this->Trabajadore->listAllTrabajadoresEnosaChofer();
 				
 				$this->request->data = $obj_tarea->data;
-				$this->set(compact('tarea_id','obj_tarea'));
+				$this->set(compact('tarea_id','obj_tarea','arr_trabaj_enosa'));
 			}
+			
+			$this->loadModel('Trabajadore');
+			$arr_trabaj_enosa = $this->Trabajadore->listAllTrabajadoresEnosaChofer();
+			$this->set(compact('arr_trabaj_enosa'));
 		}
 		
 	}
@@ -193,6 +198,7 @@ class TareasController extends AppController{
 				//$this->Persona->setFields();
 
 				$this->request->data['Tarea']['descripcion'] = $this->request->data['Tarea']['descripcion'];
+				$this->request->data['Tarea']['trabajador_id'] = $this->request->data['Tarea']['trabajador_id'];
 				if($this->Session->read('Auth.User.id') != 1){
 					$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
 				}
