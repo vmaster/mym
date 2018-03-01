@@ -163,7 +163,7 @@ App::uses('AppModel','Model');
                         array(
                                 'table' => 'trabajadores',
                                 'alias' => 'ChoferJoin',
-                                'type' => 'INNER',
+                                'type' => 'LEFT',
                                 'conditions' => array(
                                         'ChoferJoin.id = Tarea.trabajador_id',
                                 )

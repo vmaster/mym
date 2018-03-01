@@ -179,7 +179,7 @@ $(document).ready(function(){
 						}
 						
 						if(data.chofer != null){
-							actividad = "<strong>Chofer</strong>: "+ data.chofer;	
+							actividad = "<strong>Conductor: </strong>: "+ data.chofer;	
 						}
 						
 						$html+="<br>"+ actividad;
