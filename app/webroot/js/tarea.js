@@ -177,9 +177,8 @@ $(document).ready(function(){
 						if(data.movilidad != null){
 							$html+="<strong>Medio de Transporte: </strong>"+movilidad+' '+placa;
 						}
-						
 						if(data.chofer != null){
-							actividad = "<strong>Conductor: </strong>: "+ data.chofer;	
+							$html+="<strong>Conductor: </strong>: "+ data.chofer;	
 						}
 						
 						$html+="<br>"+ actividad;
