@@ -142,7 +142,7 @@ App::uses('AppModel','Model');
 
     public function obtenerActividades($tarea_id){
         $arr_obj_tarea = $this->find('all',array(
-                    'fields'  => array('Tarea.descripcion','Tarea.created','TrabajadorJoin.apellido_nombre','Tarea.created','Tarea.informe_ref','Tarea.movilidad','Tarea.placa_auto','Tarea.dia_libre','Tarea.observacion'),
+                    'fields'  => array('Tarea.descripcion','Tarea.created','TrabajadorJoin.apellido_nombre','Tarea.created','Tarea.informe_ref','Tarea.movilidad','Tarea.placa_auto','Tarea.dia_libre','Tarea.observacion','ChoferJoin.apellido_nombre'),
                     'joins' => array(
                         array(
                                 'table' => 'users',
@@ -158,6 +158,14 @@ App::uses('AppModel','Model');
                                 'type' => 'INNER',
                                 'conditions' => array(
                                         'TrabajadorJoin.id = UsuarioJoin.id',
+                                )
+                        ),
+                        array(
+                                'table' => 'trabajadores',
+                                'alias' => 'ChoferJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'ChoferJoin.id = Tarea.trabajador_id',
                                 )
                         )
                     ),

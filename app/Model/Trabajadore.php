@@ -338,6 +338,18 @@ App::uses('AppModel','Model');
             );
         return $arr_obj_trabajador;
     }
+	
+	public function listAllTrabajadoresEnosaChofer() {
+            $arr_obj_trabajador = $this->findObjects('all',array(
+                    'conditions'=>array(
+
+                                    'Trabajadore.actividade_id' => 54
+                            )
+                    
+            )
+            );
+        return $arr_obj_trabajador;
+    }
     
     
   }

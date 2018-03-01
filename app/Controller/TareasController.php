@@ -136,7 +136,6 @@ class TareasController extends AppController{
 	public function nueva_tarea($tarea_id=null){
 		$this->layout = 'default';
 		$this->loadModel('Tarea');
-
 	
 		if($this->request->is('post')  || $this->request->is('put')){
 			
@@ -148,6 +147,7 @@ class TareasController extends AppController{
 				$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
 				$this->request->data['Tarea']['estado'] = 0;
 				$this->request->data['Tarea']['dia_libre'] = 0;
+				$this->request->data['Tarea']['trabajador_id'] = $this->request->data['Tarea']['trabajador_id'];
 				
 				$this->Tarea->create();
 				if ($this->Tarea->save($this->request->data)) {
@@ -168,10 +168,15 @@ class TareasController extends AppController{
 		}else{
 			if(isset($tarea_id)){
 				$obj_tarea = $this->Tarea->findById($tarea_id);
+				$arr_trabaj_enosa = $this->Trabajadore->listAllTrabajadoresEnosaChofer();
 				
 				$this->request->data = $obj_tarea->data;
-				$this->set(compact('tarea_id','obj_tarea'));
+				$this->set(compact('tarea_id','obj_tarea','arr_trabaj_enosa'));
 			}
+			
+			$this->loadModel('Trabajadore');
+			$arr_trabaj_enosa = $this->Trabajadore->listAllTrabajadoresEnosaChofer();
+			$this->set(compact('arr_trabaj_enosa'));
 		}
 		
 	}
@@ -193,6 +198,7 @@ class TareasController extends AppController{
 				//$this->Persona->setFields();
 
 				$this->request->data['Tarea']['descripcion'] = $this->request->data['Tarea']['descripcion'];
+				$this->request->data['Tarea']['trabajador_id'] = $this->request->data['Tarea']['trabajador_id'];
 				if($this->Session->read('Auth.User.id') != 1){
 					$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
 				}
@@ -208,9 +214,12 @@ class TareasController extends AppController{
 		}else{
 			if(isset($tarea_id)){
 				$obj_tarea = $this->Tarea->findById($tarea_id);
-				
+				$this->loadModel('Trabajadore');
+				$arr_trabaj_enosa = $this->Trabajadore->listAllTrabajadoresEnosaChofer();
+			
 				$this->request->data = $obj_tarea->data;
-				$this->set(compact('tarea_id','obj_tarea'));
+				
+				$this->set(compact('tarea_id','obj_tarea','arr_trabaj_enosa'));
 			}
 		}
 		
@@ -267,15 +276,29 @@ class TareasController extends AppController{
 		if($this->request->is('post') || $this->request->is('put')){
 			$tarea_id = $this->request->data['tarea_id'];
 			$array_tarea = $this->Tarea->obtenerActividades($tarea_id);
-			$actividades = $array_tarea[0]['Tarea']['descripcion'];
-			$fecha = date("Y-m-d, g:i a",strtotime($array_tarea[0]['Tarea']['created']));
-			$personal =  $array_tarea[0]['TrabajadorJoin']['apellido_nombre'];
-			$informe_ref = $array_tarea[0]['Tarea']['informe_ref'];
-			$movilidad = $array_tarea[0]['Tarea']['movilidad'];
-			$placa = $array_tarea[0]['Tarea']['placa_auto'];
-			$dia_libre = $array_tarea[0]['Tarea']['dia_libre'];
-			$observacion = $array_tarea[0]['Tarea']['observacion'];
-			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal, 'inf_ref'=> $informe_ref, 'movilidad'=> $movilidad, 'placa' => $placa, 'dia_libre' => $dia_libre, 'observacion' => $observacion));
+			if(count($array_tarea)>0){
+				$actividades = $array_tarea[0]['Tarea']['descripcion'];
+				$fecha = date("Y-m-d, g:i a",strtotime($array_tarea[0]['Tarea']['created']));
+				$personal =  $array_tarea[0]['TrabajadorJoin']['apellido_nombre'];
+				$informe_ref = $array_tarea[0]['Tarea']['informe_ref'];
+				$movilidad = $array_tarea[0]['Tarea']['movilidad'];
+				$placa = $array_tarea[0]['Tarea']['placa_auto'];
+				$dia_libre = $array_tarea[0]['Tarea']['dia_libre'];
+				$observacion = $array_tarea[0]['Tarea']['observacion'];
+				$chofer = $array_tarea[0]['ChoferJoin']['apellido_nombre'];
+			}else{
+				$actividades = "";
+				$fecha = "";
+				$personal =  "";
+				$informe_ref = "";
+				$movilidad = "";
+				$placa = "";
+				$dia_libre = "";
+				$observacion = "";
+				$chofer = "";
+			}
+			
+			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal, 'inf_ref'=> $informe_ref, 'movilidad'=> $movilidad, 'placa' => $placa, 'dia_libre' => $dia_libre, 'observacion' => $observacion, 'chofer' => $chofer));
 			exit();
 		}else{
 			echo json_encode(array('success'=>false,'fecha'=> '', 'actividades'=> '','personal'=> ''));

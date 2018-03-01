@@ -164,7 +164,7 @@ $(document).ready(function(){
 						}else{
 							actividad = data.actividades;
 						}
-
+						
 						$html= 
 						"<b>"+data.personal+"</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 						"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
@@ -175,7 +175,11 @@ $(document).ready(function(){
 							$html+="<strong>Info. Ref: </strong>M&M - "+pad(data.inf_ref,5)+"<br>";
 						}
 						if(data.movilidad != null){
-							$html+="<strong>Medio de Transporte: </strong>"+movilidad+''+placa;
+							$html+="<strong>Medio de Transporte: </strong>"+movilidad+' '+placa;
+						}
+						
+						if(data.chofer != null){
+							actividad = "<strong>Chofer</strong>: "+ data.chofer;	
 						}
 						
 						$html+="<br>"+ actividad;
@@ -300,12 +304,14 @@ $(document).ready(function(){
 	$body.on('click','#rbViaticos', function(){
 		  $('#txtPlaca').attr('value','');
 		  $('#txtPlaca').css('display','none');
+		  $('.txtTrabajador').css('display','none');
 	});
 	
 	$body.off('click','#rbAuto');
 	$body.on('click','#rbAuto', function(){
 		  $('#txtPlaca').attr('value','');
 		  $('#txtPlaca').css('display','');
+		  $('.txtTrabajador').css('display','');
 	});
 
 	$body.off('click','.btn-consultar-tareas');
