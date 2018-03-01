@@ -175,7 +175,7 @@ $(document).ready(function(){
 							$html+="<strong>Info. Ref: </strong>M&M - "+pad(data.inf_ref,5)+"<br>";
 						}
 						if(data.movilidad != null){
-							$html+="<strong>Medio de Transporte: </strong>"+movilidad+' '+placa;
+							$html+="<strong>Medio de Transporte: </strong>"+movilidad+' '+placa+"<br>";
 						}
 						if(data.chofer != null){
 							$html+="<strong>Conductor: </strong>: "+ data.chofer;	
