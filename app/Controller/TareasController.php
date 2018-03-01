@@ -204,6 +204,9 @@ class TareasController extends AppController{
 				if($this->Session->read('Auth.User.id') != 1){
 					$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
 				}
+				if($this->request->data['Tarea']['movilidad'] == 0){
+					$this->request->data['Tarea']['trabajador_id'] = 0;
+				}
 				
 				if ($this->Tarea->save($this->request->data)) {
 					echo json_encode(array('success'=>true,'msg'=>__('Guardado con &eacute;xito.'),'Tarea_id'=>$tarea_id));
