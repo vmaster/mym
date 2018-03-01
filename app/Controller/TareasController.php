@@ -147,7 +147,9 @@ class TareasController extends AppController{
 				$this->request->data['Tarea']['user_id'] = $this->Session->read('Auth.User.id');
 				$this->request->data['Tarea']['estado'] = 0;
 				$this->request->data['Tarea']['dia_libre'] = 0;
-				$this->request->data['Tarea']['trabajador_id'] = $this->request->data['Tarea']['trabajador_id'];
+				if($this->request->data['Tarea']['movilidad'] == 0){
+					$this->request->data['Tarea']['trabajador_id'] = 0;
+				}
 				
 				$this->Tarea->create();
 				if ($this->Tarea->save($this->request->data)) {
