@@ -329,4 +329,23 @@ $(document).ready(function(){
 		  });
 	});
 
+
+	/* CARGAR TRABAJADORES POR UNIDAD DE NEGOCIO */
+
+	$body.on('change','.cboUunnTarea', function(){
+		var id=$(this).val(); 
+        var uunn = $(this).find('option:selected').html();  
+        $.ajax({
+          type: "POST",
+          url: env_webroot_script + "tareas/ajax_list_trabajador",
+          data: { uunn_id: id , uunn_nombre : uunn },
+          cache: false,
+          success: function(html)
+           {
+             $("#cboTrabajadores").html(html);
+             $("#cboTrabajadores").removeAttr('disabled');
+           }
+        })
+	});
+
 });

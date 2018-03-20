@@ -74,15 +74,29 @@ $(document).ready(function(){
 <?php if($this->Session->read('Auth.User.tipo_user_id') == 1){ ?> 
 	<div class="row">
 				<div class="span3 col-md-3 col-sm-6 col-xs-6">	
-					<label><?php echo __('Elija un empleado'); ?> </label>
+					
 				</div>	
 	</div>
 <?php } ?>
 <div class="row">
+	<div class="span3 col-md-3 col-sm-6 col-xs-6" id="div-cbo-uunn-tarea">
+		<label><?php echo __('Unidad de negocio'); ?> </label>
+				<select class='cboUunnTarea form-control'>
+					<option selected="selected">
+						--
+						<?php echo utf8_encode(__('Seleccione Unidad de Negocio')); ?>
+						--
+					</option>
+			       	<option value = 1>ENOSA - PIURA - SULLANA</option>
+			       	<option value = 2>ENSA - CAJAMARCA CENTRO</option>
+				</select>
+			</div>
+
+
 	<?php if($this->Session->read('Auth.User.tipo_user_id') == 1){ ?> 
 		<div class="span3 col-md-3 col-sm-6 col-xs-6" id="div-cbo-trabajadores">
-				
-				<select class='form-control' id="cboTrabajadores">
+			<label><?php echo __('Elija un empleado'); ?> </label>	
+				<select disabled class='form-control' id="cboTrabajadores">
 					<option value="">Elija a un empleado</option>
 					<?php 
 					if (isset($list_trabajadores_enosa)){
