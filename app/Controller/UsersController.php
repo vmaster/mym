@@ -243,11 +243,13 @@ class UsersController extends AppController{
 		$this->loadModel('TipoUsuario');
 		$this->loadModel('Trabajadore');
 		$this->loadModel('Consorcio');
+		$this->loadModel('UnidadesNegocio');
 		$list_all_personals = $this->Trabajadore->listAllPersonal();
 		$list_all_tipo_usuarios = $this->TipoUsuario->listAllTipoUsuarios();
+		$list_all_uunn = $this->UnidadesNegocio->listUunn();
 
 		$list_consorcios = $this->Consorcio->listConsorcios();
-		$this->set(compact('list_all_tipo_usuarios','list_all_personals', 'list_consorcios'));
+		$this->set(compact('list_all_tipo_usuarios','list_all_personals', 'list_consorcios', 'list_all_uunn'));
 	
 		if($this->request->is('post')  || $this->request->is('put')){
 			if(isset($user_id) && intval($user_id) > 0){
@@ -289,10 +291,21 @@ class UsersController extends AppController{
 			}
 		}
 	}
+
 	
-	
-	
-	
+	public function ajax_list_uunn(){
+		$this->layout = 'ajax';
+		$this->loadModel('UnidadesNegocio');
+		
+		if($this->request->is('post')){
+			$consorcio_id = $this->request->data['consorcio_id'];
+			//$departamento_name = $this->request->data['departamento_nombre'];
+		
+			$array_uunn = $this->UnidadesNegocio->listUunnsByConsorcioId($consorcio_id);
+		}
+		
+		$this->set(compact('array_uunn'));
+	}
 	
 
 	/**
@@ -446,5 +459,6 @@ class UsersController extends AppController{
 			}
 		}
 	}
+
 }
 ?>

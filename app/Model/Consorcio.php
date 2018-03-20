@@ -29,7 +29,20 @@ App::uses('AppModel','Model');
                     'exclusive' => '',
                     'finderQuery' => '',
                     'counterQuery' => ''
-            )
+            ),
+            'UnidadesNegocio' => array(
+                    'className' => 'UnidadesNegocio',
+                    'foreignKey' => 'consorcio_id',
+                    'dependent' => false,
+                    'conditions' => '',
+                    'fields' => '',
+                    'order' => '',
+                    'limit' => '',
+                    'offset' => '',
+                    'exclusive' => '',
+                    'finderQuery' => '',
+                    'counterQuery' => ''
+            )            
     );
     
     public function listConsorcios() {
