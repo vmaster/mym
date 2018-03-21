@@ -60,7 +60,10 @@ class ActasController extends AppController{
 		}
 		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
 		//$list_acta_all = $this->Acta->listAllActas($order_by,$search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra),$order_by_or, $tipo_user_id);
-		$list_acta = $this->Acta->listFindActas($order_by, $search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra), date('Y'),$order_by_or, $start, $per_page, $tipo_user_id);
+		//$list_acta = $this->Acta->listFindActas($order_by, $search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra), date('Y'),$order_by_or, $start, $per_page, $tipo_user_id);
+		$search_ano = date ("Y");
+		$search_consorcio = 1;
+		$list_acta = $this->Acta->listSearchActas($search_ano, $search_consorcio, $tipo_user_id);
 		//$count = count($list_acta_all);
 		//$no_of_paginations = ceil($count / $per_page);
 		//$page = $page + 1;
