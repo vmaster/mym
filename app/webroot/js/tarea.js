@@ -174,14 +174,18 @@ $(document).ready(function(){
 						if(data.inf_ref != null){
 							$html+="<strong>Info. Ref: </strong>M&M - "+pad(data.inf_ref,5)+"<br>";
 						}
-						if(data.movilidad != null){
-							$html+="<strong>Medio de Transporte: </strong>"+movilidad+' '+placa+"<br>";
+
+						if(data.uunn != 2){
+							if(data.movilidad != null){
+								$html+="<strong>Medio de Transporte: </strong>"+movilidad+' '+placa+"<br>";
+							}
+							if(data.chofer != null){
+								$html+="<strong>Conductor: </strong>: "+ data.chofer;	
+							}
 						}
-						if(data.chofer != null){
-							$html+="<strong>Conductor: </strong>: "+ data.chofer;	
-						}
-						
-						$html+="<br>"+ actividad;
+
+						$html+= "<br><strong>ACTIVIDAD DEL DIA:</strong>";
+						$html+= actividad;
 
 						$html+= "<br><strong>OBSERVACI&Oacute;N:</strong>";
 						$html+= data.observacion;

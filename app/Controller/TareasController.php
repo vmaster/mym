@@ -291,6 +291,7 @@ class TareasController extends AppController{
 				$dia_libre = $array_tarea[0]['Tarea']['dia_libre'];
 				$observacion = $array_tarea[0]['Tarea']['observacion'];
 				$chofer = $array_tarea[0]['ChoferJoin']['apellido_nombre'];
+				$uunn = $array_tarea[0]['UsuarioJoin']['uunn_id'];
 			}else{
 				$actividades = "";
 				$fecha = "";
@@ -303,7 +304,7 @@ class TareasController extends AppController{
 				$chofer = "";
 			}
 			
-			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal, 'inf_ref'=> $informe_ref, 'movilidad'=> $movilidad, 'placa' => $placa, 'dia_libre' => $dia_libre, 'observacion' => $observacion, 'chofer' => $chofer));
+			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal, 'inf_ref'=> $informe_ref, 'movilidad'=> $movilidad, 'placa' => $placa, 'dia_libre' => $dia_libre, 'observacion' => $observacion, 'chofer' => $chofer, 'uunn' => $uunn));
 			exit();
 		}else{
 			echo json_encode(array('success'=>false,'fecha'=> '', 'actividades'=> '','personal'=> ''));
