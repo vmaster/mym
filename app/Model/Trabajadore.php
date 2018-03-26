@@ -316,7 +316,54 @@ App::uses('AppModel','Model');
         return $arr_obj_trabajador;
     }
 
-    public function listAllTrabajadoresEnosa() {
+
+    public function listTrabajadoresByUunnId($uunn_id =''){
+        if($uunn_id == 2){   /// CODIGO DOS VIENE A SER UUNN PARA USUARIOS DE CAJAMARCA CENTRO Y EL RESTO VENDRÍA A SER SULLANA Y PIURA
+         $arr_obj_trabajador = $this->find('list',array(
+                    'fields' => array('Trabajadore.id','Trabajadore.apellido_nombre'),
+                    'joins' => array(
+                        array(
+                                'table' => 'users',
+                                'alias' => 'UsuarioJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'UsuarioJoin.id = Trabajadore.id',
+                                )
+                        )
+                    ),
+                    'conditions'=>array(
+
+                                    'Trabajadore.estado != ' => 0,
+                                    'UsuarioJoin.uunn_id' => 2 // UUNN CAJAMARCA CENTRO
+                            )
+                    
+            )
+            );
+        }else{
+            $arr_obj_trabajador = $this->find('list',array(
+                    'fields' => array('Trabajadore.id','Trabajadore.apellido_nombre'),
+                    'joins' => array(
+                        array(
+                                'table' => 'users',
+                                'alias' => 'UsuarioJoin',
+                                'type' => 'INNER',
+                                'conditions' => array(
+                                        'UsuarioJoin.id = Trabajadore.id',
+                                )
+                        )
+                    ),
+                    'conditions'=>array(
+
+                                    'Trabajadore.estado != ' => 0,
+                                    'UsuarioJoin.consorcio_id' => 2 // CONSORCIO ENOSA
+                            )
+            )
+            ); 
+        }
+        return $arr_obj_trabajador;
+    }
+
+    /*public function listAllTrabajadoresEnosa() {
             $arr_obj_trabajador = $this->findObjects('all',array(
                     'joins' => array(
                         array(
@@ -337,7 +384,7 @@ App::uses('AppModel','Model');
             )
             );
         return $arr_obj_trabajador;
-    }
+    }*/
 	
 	public function listAllTrabajadoresEnosaChofer() {
             $arr_obj_trabajador = $this->findObjects('all',array(

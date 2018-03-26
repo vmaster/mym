@@ -174,14 +174,18 @@ $(document).ready(function(){
 						if(data.inf_ref != null){
 							$html+="<strong>Info. Ref: </strong>M&M - "+pad(data.inf_ref,5)+"<br>";
 						}
-						if(data.movilidad != null){
-							$html+="<strong>Medio de Transporte: </strong>"+movilidad+' '+placa+"<br>";
+
+						if(data.uunn != 2){
+							if(data.movilidad != null){
+								$html+="<strong>Medio de Transporte: </strong>"+movilidad+' '+placa+"<br>";
+							}
+							if(data.chofer != null){
+								$html+="<strong>Conductor: </strong>: "+ data.chofer;	
+							}
 						}
-						if(data.chofer != null){
-							$html+="<strong>Conductor: </strong>: "+ data.chofer;	
-						}
-						
-						$html+="<br>"+ actividad;
+
+						$html+= "<br><strong>ACTIVIDAD DEL DIA:</strong>";
+						$html+= actividad;
 
 						$html+= "<br><strong>OBSERVACI&Oacute;N:</strong>";
 						$html+= data.observacion;
@@ -327,6 +331,25 @@ $(document).ready(function(){
 		  $('#conteiner_all_rows').load(env_webroot_script + escape('tareas/listar_todas_tareas/1/'+null+'/'+null),function(){
 			$('#table_content_tareas').DataTable();
 		  });
+	});
+
+
+	/* CARGAR TRABAJADORES POR UNIDAD DE NEGOCIO */
+
+	$body.on('change','.cboUunnTarea', function(){
+		var id=$(this).val(); 
+        var uunn = $(this).find('option:selected').html();  
+        $.ajax({
+          type: "POST",
+          url: env_webroot_script + "tareas/ajax_list_trabajador",
+          data: { uunn_id: id , uunn_nombre : uunn },
+          cache: false,
+          success: function(html)
+           {
+             $("#cboTrabajadores").html(html);
+             $("#cboTrabajadores").removeAttr('disabled');
+           }
+        })
 	});
 
 });

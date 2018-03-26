@@ -68,6 +68,25 @@ $(document).ready(function(){
 		}
 	}
 	
+	/* CARGAR UUNN POR CONSORCIO */
+
+	$body.on('change','.cboConsorcio', function(){
+		var id=$(this).val(); 
+        var consorcio = $(this).find('option:selected').html();  
+        $.ajax({
+          type: "POST",
+          url: env_webroot_script + "users/ajax_list_uunn",
+          data: { consorcio_id: id , consorcio_nombre : consorcio },
+          cache: false,
+          success: function(html)
+           {
+             $(".cboUunn").html(html);
+             $(".cboUunn").removeAttr('disabled');
+           }
+        })
+	});
+
+	
 	/* Mostrar formulario: Crear user */
 	$body.off('click','div#user .btn-nuevo-user');
 	$body.on('click', 'div#user .btn-nuevo-user' , function(){
@@ -142,5 +161,8 @@ $(document).ready(function(){
 		confirm_pass = $('#confirm-password').val();
 		user.changePassword(user_id, current_pass, new_pass, confirm_pass);
 	});
+
+
+	
 	
 });

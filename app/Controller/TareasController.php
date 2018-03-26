@@ -30,7 +30,7 @@ class TareasController extends AppController{
 			$user_id = 0;
 		}
 
-		$list_trabajadores_enosa = $this->Trabajadore->listAllTrabajadoresEnosa();
+		//$list_trabajadores_enosa = $this->Trabajadore->listAllTrabajadoresEnosa();
 
 				
 		$list_tarea_all = $this->Tarea->listAllTareas($order_by, $order_by_or, $user_id, '');
@@ -39,7 +39,7 @@ class TareasController extends AppController{
 		$no_of_paginations = ceil($count / $per_page);
 		$page = $page + 1;
 		
-		$this->set(compact('list_tarea','page','no_of_paginations','list_trabajadores_enosa'));
+		$this->set(compact('list_tarea','page','no_of_paginations'));
 	}
 	
 	public function find_tareas($page=null,$order_by=null,$order_by_or=null, $trabajador_id=null) {
@@ -291,6 +291,7 @@ class TareasController extends AppController{
 				$dia_libre = $array_tarea[0]['Tarea']['dia_libre'];
 				$observacion = $array_tarea[0]['Tarea']['observacion'];
 				$chofer = $array_tarea[0]['ChoferJoin']['apellido_nombre'];
+				$uunn = $array_tarea[0]['UsuarioJoin']['uunn_id'];
 			}else{
 				$actividades = "";
 				$fecha = "";
@@ -303,7 +304,7 @@ class TareasController extends AppController{
 				$chofer = "";
 			}
 			
-			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal, 'inf_ref'=> $informe_ref, 'movilidad'=> $movilidad, 'placa' => $placa, 'dia_libre' => $dia_libre, 'observacion' => $observacion, 'chofer' => $chofer));
+			echo json_encode(array('success'=>true,'fecha'=> $fecha, 'actividades'=> $actividades,'personal'=> $personal, 'inf_ref'=> $informe_ref, 'movilidad'=> $movilidad, 'placa' => $placa, 'dia_libre' => $dia_libre, 'observacion' => $observacion, 'chofer' => $chofer, 'uunn' => $uunn));
 			exit();
 		}else{
 			echo json_encode(array('success'=>false,'fecha'=> '', 'actividades'=> '','personal'=> ''));
@@ -410,7 +411,7 @@ class TareasController extends AppController{
 	public function verifica_tarea_hoy($user_id = null){
 		$this->autoRender = false;
 		$this->loadModel('Tarea');
-		//debug("ID DEL USUARIO  " + $user_id);
+
 		if(isset($user_id)){
 			$existe = $this->Tarea->verficarTareaHoy($user_id);
 			//debug("RETURN ".$existe);
@@ -422,6 +423,22 @@ class TareasController extends AppController{
 		}
 
 	}
+
+	public function ajax_list_trabajador(){
+		$this->layout = 'ajax';
+		$this->loadModel('Trabajadore');
+		
+		if($this->request->is('post')){
+			$uunn_id = $this->request->data['uunn_id'];
+			//$departamento_name = $this->request->data['departamento_nombre'];
+		
+			$array_trabajadores = $this->Trabajadore->listTrabajadoresByUunnId($uunn_id);
+
+		}
+		
+		$this->set(compact('array_trabajadores'));
+	}
+	
 
 	
 }

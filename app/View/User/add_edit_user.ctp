@@ -74,7 +74,12 @@
 			</div>
 			<div class="span3 col-md-3 col-sm-6 col-xs-6">
 				<label><?php echo __('Consorcio'); ?> </label>
-				<select name = "data[User][consorcio_id]" class='form-control'>
+				<select name = "data[User][consorcio_id]" class='cboConsorcio form-control'>
+					<option selected="selected">
+						--
+						<?php echo utf8_encode(__('Seleccione Consorcio')); ?>
+						--
+					</option>
 			        <?php 
 				        if (isset($list_consorcios)){
 				            	foreach ($list_consorcios as $consorcio) {
@@ -93,7 +98,36 @@
 			        ?>
 		        </select>
 			</div>	
-		</div><br>
+		</div>
+		<p>
+		<div class="row">
+			<div class="span3 col-md-3 col-sm-6 col-xs-6">
+				<label><?php echo __('Unidad de negocio'); ?> </label>
+				<select disabled name = "data[User][uunn_id]" class='cboUunn form-control'>
+					<option selected="selected">
+						--
+						<?php echo utf8_encode(__('Seleccione Unidad de Negocio')); ?>
+						--
+					</option>
+			        <?php 
+				        if (isset($list_all_uunn)){
+				            	foreach ($list_all_uunn as $uunn) {
+									if(isset($obj_user) || isset($user_id)){
+										if($uunn->getAttr('id') == $obj_user->getAttr('uunn_id')){
+											$selected = " selected = 'selected'";
+										}else{
+											$selected = "";
+										}
+									}else{
+										$selected = "";
+									}
+				            		echo "<option value = ".$uunn->getAttr('id').$selected.">".$uunn->getAttr('descripcion')."</option>";
+				            	}
+				        }
+			        ?>
+		        </select>
+			</div>
+		<br>
 		<div class="row">
 			<div class="span3 col-md-3 col-sm-6 col-xs-6">
 				<button type="button" class="btn btn-large btn-success btn_crear_user_trigger" style="margin-right:17px;"><?php echo __('Guardar'); ?></button>

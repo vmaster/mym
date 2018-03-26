@@ -44,6 +44,7 @@ tinymce.init({
 			</div>
 		</div>
 		<br>
+	<?php if($this->Session->read('Auth.User.uunn_id') != 2){ ?>	 
 		<div class="row">
 			<div class="span3 col-md-4 col-sm-6 col-xs-6">
 				<strong>Medio de Transporte:</strong>
@@ -67,6 +68,7 @@ tinymce.init({
 				</div>
 			</div>
 		</div>
+	<?php } ?>	
 		<br>
 		<div class="row" style="text-align:left;">
 			<div class="span3 col-md-3 col-sm-6 col-xs-6">

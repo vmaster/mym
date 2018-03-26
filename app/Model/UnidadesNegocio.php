@@ -17,7 +17,20 @@ App::uses('AppModel','Model');
     				'exclusive' => '',
     				'finderQuery' => '',
     				'counterQuery' => ''
-    		)
+    		),
+            'User' => array(
+                    'className' => 'User',
+                    'foreignKey' => 'uunn_id',
+                    'dependent' => false,
+                    'conditions' => '',
+                    'fields' => '',
+                    'order' => '',
+                    'limit' => '',
+                    'offset' => '',
+                    'exclusive' => '',
+                    'finderQuery' => '',
+                    'counterQuery' => ''
+            )
     );
 	
 	public $belongsTo = array(
@@ -109,6 +122,24 @@ App::uses('AppModel','Model');
     					'order' => array('UnidadesNegocio.descripcion ASC')
     			));
     }
+
+
+
+    /* USARIO EN EL REGISTRO DE USUARIO */
+    public function listUunn() {
+        return $this->findObjects('all');
+    }
+
+
+    public function listUunnsByConsorcioId($consorcio_id='') {
+        return $this->find('list',
+                array(
+                        'fields' => array('id','descripcion'),
+                        'conditions' => array('UnidadesNegocio.consorcio_id' => $consorcio_id),
+                        'order' => array('UnidadesNegocio.descripcion ASC'),
+                ));
+    }
+    
     
   }
 ?>

@@ -25,7 +25,14 @@ App::uses('AppModel','Model');
     				'conditions' => '',
     				'fields' => '',
     				'order' => ''
-    		)
+    		),
+            'UnidadesNegocio' => array(
+                    'className' => 'UnidadesNegocio',
+                    'foreignKey' => 'uunn_id',
+                    'conditions' => '',
+                    'fields' => '',
+                    'order' => ''
+            )
     );
     
     public $hasOne = array(
