@@ -68,6 +68,8 @@ tinymce.init({
 				</div>
 			</div>
 		</div>
+	<?php }else{ ?>
+		<input name="data[Tarea][movilidad]" type="hidden" value="0"/>
 	<?php } ?>	
 		<br>
 		<div class="row" style="text-align:left;">
