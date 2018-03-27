@@ -78,8 +78,8 @@ $(document).ready(function(){
 
 
 	/* Mostrar formulario: Crear vehículo */
-	$body.off('click','div#acta_instal .btn-nuevo-acta-instal');
-	$body.on('click', 'div#acta_instal .btn-nuevo-acta-instal' , function(){
+	$body.off('click','div#acta_instalacion .btn-nuevo-acta-instal');
+	$body.on('click', 'div#acta_instalacion .btn-nuevo-acta-instal' , function(){
 		acta_instalacion_id = $(this).attr('acta_instalacion_id');
 		acta.openAddActa(acta_instalacion_id);
 	});
@@ -174,8 +174,8 @@ $(document).ready(function(){
 		});
 	});
 
-	$body.off('click','div#acta_instal .edit-acta-trigger');
-	$body.on('click','div#acta_instal .edit-acta-trigger', function(){
+	$body.off('click','div#acta_instalacion .edit-acta-trigger');
+	$body.on('click','div#acta_instalacion .edit-acta-trigger', function(){
 		acta_instalacion_id = $(this).parents('.acta_instalacion_row_container').attr('acta_instalacion_id');
 		//acta.openEditActa(acta_instalacion_id);
 		
@@ -187,8 +187,8 @@ $(document).ready(function(){
 		//}
 	});
 	
-	$body.off('click','div#acta_instal .open-model-delete-acta-instal');
-	$body.on('click','div#acta_instal .open-model-delete-acta-instal', function(){
+	$body.off('click','div#acta_instalacion .open-model-delete-acta-instal');
+	$body.on('click','div#acta_instalacion .open-model-delete-acta-instal', function(){
 		acta_instalacion_id = $(this).parents('.acta_instalacion_row_container').attr('acta_instalacion_id');
 		$('div#myModaldeleteActaInstalacion').attr('acta_instalacion_id', acta_instalacion_id);
 	});
@@ -204,8 +204,8 @@ $(document).ready(function(){
 		  $('#txtEmpSup').css('display','none');
 	});
 	
-	$body.off('click','div#acta_instal #chRevisado');
-	$body.on('click','div#acta_instal #chRevisado', function(){
+	$body.off('click','div#acta_instalacion #chRevisado');
+	$body.on('click','div#acta_instalacion #chRevisado', function(){
 		if($(this).prop('checked') == true){
 			$(this).val(1);
 			$(this).parents('.acta_instalacion_row_container').attr('style','');
@@ -219,8 +219,8 @@ $(document).ready(function(){
 	});
 	
 	/*Send Report by Email*/
-	$body.off('click','div#acta_instal .open-model-send-informe');
-	$body.on('click','div#acta_instal .open-model-send-informe', function(){
+	$body.off('click','div#acta_instalacion .open-model-send-informe');
+	$body.on('click','div#acta_instalacion .open-model-send-informe', function(){
 		document.getElementById("form_send_email").reset();
 		acta_instalacion_id = $(this).parents('.acta_instalacion_row_container').attr('acta_instalacion_id');
 		$('div#myModalSendReport').attr('acta_instalacion_id', acta_instalacion_id);
