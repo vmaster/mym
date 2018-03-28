@@ -190,12 +190,12 @@ $(document).ready(function(){
 	$body.off('click','div#acta_instalacion .open-model-delete-acta-instal');
 	$body.on('click','div#acta_instalacion .open-model-delete-acta-instal', function(){
 		acta_instalacion_id = $(this).parents('.acta_instalacion_row_container').attr('acta_instalacion_id');
-		$('div#myModaldeleteActaInstalacion').attr('acta_instalacion_id', acta_instalacion_id);
+		$('div#myModalDeleteActaInstalacion').attr('acta_instalacion_id', acta_instalacion_id);
 	});
 	
-	$body.off('click','div#myModaldeleteActaInstalacion .eliminar-acta-trigger');
-	$body.on('click','div#myModaldeleteActaInstalacion .eliminar-acta-trigger', function(){
-		acta_instalacion_id = $('div#myModaldeleteActaInstalacion').attr('acta_instalacion_id');
+	$body.off('click','div#myModalDeleteActaInstalacion .eliminar-acta-trigger');
+	$body.on('click','div#myModalDeleteActaInstalacion .eliminar-acta-trigger', function(){
+		acta_instalacion_id = $('div#myModalDeleteActaInstalacion').attr('acta_instalacion_id');
 		acta.deleteActaInstalacion(acta_instalacion_id);
 	});
 	
