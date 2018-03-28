@@ -1043,46 +1043,108 @@ class ReportesController extends AppController{
 		echo $tabla;
 	}
 	
-	function excel_tareas_dia_libre($data_general, $usuario, $fecha){
+	function excel_tareas_dia_libre_o_trabajado($data_general, $usuario, $fecha){
 		$this->autoRender = false;
-		$valor = 'x';//hizo la tarea
+		$valor = '0';//NO hizo la tarea
 		foreach ($data_general as $key => $data) {
 			if($data[0]['created'] == $fecha && $data['trabajadores']['id'] == $usuario){
-				if($data['tareas']['dia_libre'] == '1'){
-					$valor = '0';//dia libre
+				if($data['tareas']['dia_libre'] != 1 && (!is_null($data['tareas']['descripcion']) or $data['tareas']['descripcion'] != '')){
+					$valor = 'x';//HIZO la tarea
 				}
 			}
 		}
 		
 		return $valor;
 	}
+
+	function excel_tareas_dia_libre_o_trabajado_chofer($data_general, $data_general2, $usuario, $fecha){
+		$this->autoRender = false;
+		$valor = '0';//NO hizo la tarea
+		foreach ($data_general as $key => $data) {
+			if($data[0]['created'] == $fecha && $data['trabajadores']['id'] == $usuario){
+				if($data['tareas']['dia_libre'] != 1 && (!is_null($data['tareas']['descripcion']) or $data['tareas']['descripcion'] != '')){
+					$valor = 'x';//HIZO la tarea
+				}
+			}
+		}
+		
+		foreach ($data_general2 as $key => $data) {
+			if($data[0]['created'] == $fecha && $data['trabajadores']['id'] == $usuario){
+				$valor = 'x';//HIZO la tarea
+			}
+		}
+		
+		return $valor;
+	}
 	
-	function excel_tareas_dias_trabajados($data_general, $usuario, $dias_totales){
+	function excel_tareas_dias_trabajados($data_general, $usuario){
 		$this->autoRender = false;
 		$cant_dias_libres = 0;
 		foreach ($data_general as $key => $data) {
 			if($data['trabajadores']['id'] == $usuario){
-				if($data['tareas']['dia_libre'] == '1'){
+				if($data['tareas']['dia_libre'] != 1 && (!is_null($data['tareas']['descripcion']) or $data['tareas']['descripcion'] != '')){
 					$cant_dias_libres++;//dia libre
 				}
 			}
 		}
 		
-		$cant_dias_trabajados = $dias_totales - $cant_dias_libres;
+		return $cant_dias_libres;
+	}
+
+	function excel_tareas_dias_trabajados_chofer($data_general, $data_general2, $usuario){
+		$this->autoRender = false;
+		$cant_dias_trabajados = 0;
+		foreach ($data_general as $key => $data) {
+			if($data['trabajadores']['id'] == $usuario){
+				if($data['tareas']['dia_libre'] != 1 && (!is_null($data['tareas']['descripcion']) or $data['tareas']['descripcion'] != '')){
+					$cant_dias_trabajados++;
+				}
+			}
+		}
+		
+		foreach ($data_general2 as $key => $data) {
+			if($data['trabajadores']['id'] == $usuario){
+				$cant_dias_trabajados++;
+			}
+		}
 		
 		return $cant_dias_trabajados;
 	}
 	
-	function excel_tareas_dias_libres($data_general, $usuario){
+	function excel_tareas_dias_libres($data_general, $usuario, $dias_totales){
 		$this->autoRender = false;
-		$cant_dias_libres = 0;
+		$cant_dias_trabajados = 0;
 		foreach ($data_general as $key => $data) {
 			if($data['trabajadores']['id'] == $usuario){
-				if($data['tareas']['dia_libre'] == '1'){
-					$cant_dias_libres++;//dia libre
+				if($data['tareas']['dia_libre'] != 1 && (!is_null($data['tareas']['descripcion']) or $data['tareas']['descripcion'] != '')){
+					$cant_dias_trabajados++;
 				}
 			}
 		}
+
+		$cant_dias_libres = $dias_totales - $cant_dias_trabajados;
+		
+		return $cant_dias_libres;
+	}
+
+	function excel_tareas_dias_libres_chofer($data_general, $data_general2, $usuario, $dias_totales){
+		$this->autoRender = false;
+		$cant_dias_trabajados = 0;
+		foreach ($data_general as $key => $data) {
+			if($data['trabajadores']['id'] == $usuario){
+				if($data['tareas']['dia_libre'] != 1 && (!is_null($data['tareas']['descripcion']) or $data['tareas']['descripcion'] != '')){
+					$cant_dias_trabajados++;//dia libre
+				}
+			}
+		}
+		
+		foreach ($data_general2 as $key => $data) {
+			if($data['trabajadores']['id'] == $usuario){
+				$cant_dias_trabajados++;
+			}
+		}
+
+		$cant_dias_libres = $dias_totales - $cant_dias_trabajados;
 		
 		return $cant_dias_libres;
 	}
@@ -1092,8 +1154,8 @@ class ReportesController extends AppController{
 		ini_set('memory_limit', '-1');
 		
 		$this->loadModel('Tarea');
-		$fecha1 = "2018-01-01";
-		$fecha2 = "2018-01-10";
+		$fecha1 = "2018-03-10";
+		$fecha2 = "2018-03-30";
 		
 		$data_general = (array) $this->Tarea->query("
 			SELECT 
@@ -1101,7 +1163,8 @@ class ReportesController extends AppController{
 				trabajadores.id,
 				CAST(tareas.created AS DATE) AS created,
 				tareas.movilidad, 
-				tareas.dia_libre 
+				tareas.dia_libre,
+				tareas.descripcion
 			FROM 
 				tareas 
 			INNER JOIN
@@ -1114,8 +1177,52 @@ class ReportesController extends AppController{
 				tareas.created
 		");
 		debug($data_general);
+
+		$data_general_chofer = (array) $this->Tarea->query("
+			SELECT 
+				trabajadores.apellido_nombre, 
+				trabajadores.id,
+				CAST(tareas.created AS DATE) AS created,
+				tareas.movilidad, 
+				tareas.dia_libre,
+				tareas.descripcion
+			FROM 
+				tareas 
+			INNER JOIN
+				trabajadores ON trabajadores.id = tareas.user_id
+			WHERE 
+				tareas.created >= '".$fecha1."' AND 
+				tareas.created <= '".$fecha2."'	AND 
+				trabajadores.actividade_id = 51
+			ORDER BY 
+				trabajadores.apellido_nombre, 
+				tareas.created
+		");
+		debug($data_general_chofer);
 		
-		$data_usuario = (array) $this->Tarea->query("
+		$data_general_chofer2 = (array) $this->Tarea->query("
+			SELECT 
+				trabajadores.apellido_nombre, 
+				trabajadores.id,
+				CAST(tareas.created AS DATE) AS created,
+				tareas.movilidad, 
+				tareas.dia_libre,
+				tareas.descripcion
+			FROM 
+				tareas 
+			INNER JOIN
+				trabajadores ON trabajadores.id = tareas.trabajador_id
+			WHERE 
+				tareas.created >= '".$fecha1."' AND 
+				tareas.created <= '".$fecha2."'	AND 
+				tareas.trabajador_id != 0
+			ORDER BY 
+				trabajadores.apellido_nombre, 
+				tareas.created
+		");
+		debug($data_general_chofer2);
+		
+		$data_usuario_asesor = (array) $this->Tarea->query("
 			SELECT 
 				trabajadores.apellido_nombre,
 				trabajadores.id
@@ -1125,11 +1232,25 @@ class ReportesController extends AppController{
 				trabajadores ON trabajadores.id = tareas.user_id
 			WHERE 
 				tareas.created >= '".$fecha1."' AND 
-				tareas.created <= '".$fecha2."'
+				tareas.created <= '".$fecha2."' AND
+				trabajadores.actividade_id <> 51
 			GROUP BY
 				trabajadores.apellido_nombre
 		");
-		debug($data_usuario);
+		debug($data_usuario_asesor);
+
+		$data_usuario_chofer = (array) $this->Tarea->query("
+			SELECT 
+				trabajadores.apellido_nombre,
+				trabajadores.id
+			FROM 
+				trabajadores
+			WHERE 
+				trabajadores.actividade_id = 51
+			ORDER BY
+				trabajadores.apellido_nombre DESC
+		");
+		debug($data_usuario_chofer);
 		
 		$cant_dias = 0;
 		$tabla="<table border=1>
@@ -1141,24 +1262,33 @@ class ReportesController extends AppController{
 						$cant_dias++;
 					}
 		$tabla.="	<th style ='background:#C0CAD1;'>N° DE ASISTENCIA A TRABAJO</th>
-					<th style ='background:#C0CAD1;'>N° DE MEDIO DIA DE TRABAJO</th>
 					<th style ='background:#C0CAD1;'>N° DE Día Libre</th>
-					<th style ='background:#C0CAD1;'>N° DE DIAS QUE NOS DEBEN </th>
 				</tr>";
 		
-		foreach ($data_usuario as $key => $usuario) {
+		foreach ($data_usuario_asesor as $key => $usuario) {
 			$tabla.="<tr>
 						<th>".$usuario['trabajadores']['apellido_nombre']."</th>
 						<th>ASESOR</th>";
 						for($i = $fecha1; $i <= $fecha2; $i = date("Y-m-d", strtotime($i ."+ 1 days"))){
-							$tabla.="<th>".$this->excel_tareas_dia_libre($data_general, $usuario['trabajadores']['id'], $i)."</th>";
+							$tabla.="<th>".$this->excel_tareas_dia_libre_o_trabajado($data_general, $usuario['trabajadores']['id'], $i)."</th>";
 						}
-			$tabla.="	<th>".$this->excel_tareas_dias_trabajados($data_general, $usuario['trabajadores']['id'], $cant_dias)."</th>
-						<th>x</th>
-						<th>".$this->excel_tareas_dias_libres($data_general, $usuario['trabajadores']['id'])."</th>
-						<th>x</th>
+			$tabla.="	<th>".$this->excel_tareas_dias_trabajados($data_general, $usuario['trabajadores']['id'])."</th>
+						<th>".$this->excel_tareas_dias_libres($data_general, $usuario['trabajadores']['id'], $cant_dias)."</th>
 					</tr>";
 		}
+
+		foreach ($data_usuario_chofer as $key => $usuario) {
+			$tabla.="<tr>
+						<th>".$usuario['trabajadores']['apellido_nombre']."</th>
+						<th>CONDUCTOR</th>";
+						for($i = $fecha1; $i <= $fecha2; $i = date("Y-m-d", strtotime($i ."+ 1 days"))){
+							$tabla.="<th>".$this->excel_tareas_dia_libre_o_trabajado_chofer($data_general_chofer, $data_general_chofer2, $usuario['trabajadores']['id'], $i)."</th>";
+						}
+			$tabla.="	<th>".$this->excel_tareas_dias_trabajados_chofer($data_general_chofer, $data_general_chofer2, $usuario['trabajadores']['id'])."</th>
+						<th>".$this->excel_tareas_dias_libres_chofer($data_general_chofer, $data_general_chofer2, $usuario['trabajadores']['id'], $cant_dias)."</th>
+					</tr>";
+		}
+
 		$tabla = $tabla.'</table>';
 		
 		echo $tabla;	
