@@ -54,6 +54,7 @@
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_total_ni_nc')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_total_ni_nc" id="link-usuario"><i class="fa fa-user fa-3x"></i>Consultar Ni y Nc por Fecha</a></li>
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_uso_camioneta_asesor')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_uso_camioneta_asesor" id="link-usuario"><i class="fa fa-user fa-3x"></i>Uso de Camioneta</a></li>
 						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_uso_viatico_asesor')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_uso_viatico_asesor" id="link-usuario"><i class="fa fa-user fa-3x"></i>Uso de Viatico</a></li>
+						<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'reportes' && $this->request->params['action']=='rpt_tareas_asistencia')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>reportes/rpt_tareas_asistencia" id="link-usuario"><i class="fa fa-user fa-3x"></i>Reporte de asistencia - excel</a></li>
 						<?php } ?>
 
 					</ul>
