@@ -1149,13 +1149,15 @@ class ReportesController extends AppController{
 		return $cant_dias_libres;
 	}
 	
-	function excel_tareas(){
+	function excel_tareas_asistencia(){
 		$this->autoRender = false;
 		ini_set('memory_limit', '-1');
+		ini_set('max_execution_time', 300000);
+		set_time_limit(0);
 		
 		$this->loadModel('Tarea');
-		$fecha1 = "2018-03-10";
-		$fecha2 = "2018-03-30";
+		$fecha1 = $this->params['url']['fec_inicio'];
+		$fecha2 = $this->params['url']['fec_fin'];
 		
 		$data_general = (array) $this->Tarea->query("
 			SELECT 
@@ -1176,7 +1178,7 @@ class ReportesController extends AppController{
 				trabajadores.apellido_nombre, 
 				tareas.created
 		");
-		debug($data_general);
+		//debug($data_general);
 
 		$data_general_chofer = (array) $this->Tarea->query("
 			SELECT 
@@ -1198,7 +1200,7 @@ class ReportesController extends AppController{
 				trabajadores.apellido_nombre, 
 				tareas.created
 		");
-		debug($data_general_chofer);
+		//debug($data_general_chofer);
 		
 		$data_general_chofer2 = (array) $this->Tarea->query("
 			SELECT 
@@ -1220,7 +1222,7 @@ class ReportesController extends AppController{
 				trabajadores.apellido_nombre, 
 				tareas.created
 		");
-		debug($data_general_chofer2);
+		//debug($data_general_chofer2);
 		
 		$data_usuario_asesor = (array) $this->Tarea->query("
 			SELECT 
@@ -1237,7 +1239,7 @@ class ReportesController extends AppController{
 			GROUP BY
 				trabajadores.apellido_nombre
 		");
-		debug($data_usuario_asesor);
+		//debug($data_usuario_asesor);
 
 		$data_usuario_chofer = (array) $this->Tarea->query("
 			SELECT 
@@ -1250,7 +1252,7 @@ class ReportesController extends AppController{
 			ORDER BY
 				trabajadores.apellido_nombre DESC
 		");
-		debug($data_usuario_chofer);
+		//debug($data_usuario_chofer);
 		
 		$cant_dias = 0;
 		$tabla="<table border=1>
@@ -1290,7 +1292,10 @@ class ReportesController extends AppController{
 		}
 
 		$tabla = $tabla.'</table>';
-		
+		header('Content-type: application/vnd.ms-excel');
+		header("Content-Disposition: attachment; filename=reporte-".date('Y-m-d-h-i-s').".xls");
+		header("Pragma: no-cache");
+		header("Expires: 0");
 		echo $tabla;	
 	
 	}
