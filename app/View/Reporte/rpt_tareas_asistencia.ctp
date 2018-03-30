@@ -35,19 +35,18 @@
 <hr />
 <div id="reporte5">
 	<?php 
-	$fin= date('t');
-	$mes= date('m')."-".date('Y');
+	$fecha_inicio= date('Y').'-'.date('m')."-01";
 	?>
 	<div class="row">
 		<div class="col-md-3 col-sm-6 col-xs-6">
 				<label><?php echo __('Fecha Inicio');?></label> <input type="text"
 				name="txtBuscarFecIncio" id="txtBuscarFecIncio"
-				class="form-control" value="<?php echo '01-'.$mes; ?>" placeholder="dd-mm-aaaa">
+				class="form-control" value="<?php echo $fecha_inicio; ?>" placeholder="aaaa-mm-dd">
 		</div>
 		<div class="col-md-3 col-sm-6 col-xs-6">
 				<label><?php echo __('Fecha Fin');?></label> <input type="text"
 				name="txtBuscarFecFin" id="txtBuscarFecFin"
-				class="form-control" value="<?php echo date('d-m-Y'); ?>" placeholder="dd-mm-aaaa">
+				class="form-control" value="<?php echo date('Y-m-d'); ?>" placeholder="aaaa-mm-dd">
 		</div>
 	</div>
 	<p>

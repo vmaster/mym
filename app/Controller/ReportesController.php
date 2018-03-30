@@ -1364,6 +1364,13 @@ class ReportesController extends AppController{
 		}
 	}
 
+	function rpt_tareas_asistencia(){
+		$this->layout = "default";
+		if($this->Session->read('Auth.User.tipo_user_id') == 3) {
+			$this->redirect(array('controller' => 'dashboards'));
+		}
+	}
+
 	/* Excel llevado a web (gráfico)*/	
 
 	public function rpt_cumplimiento_area_emp() {
