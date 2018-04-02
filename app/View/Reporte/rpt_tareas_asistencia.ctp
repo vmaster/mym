@@ -3,7 +3,7 @@
 		$('#txtBuscarFecIncio').datepicker(
 				{
 					changeYear: true, 
-					dateFormat: 'dd-mm-yy',
+					dateFormat: 'yy-mm-dd',
 					minDate: new Date(1924, 1 - 1, 1),
 					maxDate: new Date()
 		});
@@ -11,7 +11,7 @@
 		$('#txtBuscarFecFin').datepicker(
 				{
 					changeYear: true, 
-					dateFormat: 'dd-mm-yy',
+					dateFormat: 'yy-mm-dd',
 					minDate: new Date(1924, 1 - 1, 1),
 					maxDate: new Date()
 		});
