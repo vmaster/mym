@@ -1195,7 +1195,7 @@ class ReportesController extends AppController{
 			WHERE 
 				tareas.created >= '".$fecha1."' AND 
 				tareas.created <= '".$fecha2."'	AND 
-				trabajadores.actividade_id = 51
+				trabajadores.actividade_id = 54
 			ORDER BY 
 				trabajadores.apellido_nombre, 
 				tareas.created
@@ -1235,7 +1235,7 @@ class ReportesController extends AppController{
 			WHERE 
 				tareas.created >= '".$fecha1."' AND 
 				tareas.created <= '".$fecha2."' AND
-				trabajadores.actividade_id <> 51
+				trabajadores.actividade_id <> 54
 			GROUP BY
 				trabajadores.apellido_nombre
 		");
@@ -1246,11 +1246,15 @@ class ReportesController extends AppController{
 				trabajadores.apellido_nombre,
 				trabajadores.id
 			FROM 
-				trabajadores
+				tareas 
+			INNER JOIN
+				trabajadores ON trabajadores.id = tareas.trabajador_id
 			WHERE 
-				trabajadores.actividade_id = 51
-			ORDER BY
-				trabajadores.apellido_nombre DESC
+				tareas.created >= '".$fecha1."' AND 
+				tareas.created <= '".$fecha2."' AND
+				tareas.trabajador_id != 0
+			GROUP BY
+				trabajadores.apellido_nombre
 		");
 		//debug($data_usuario_chofer);
 		
