@@ -85,11 +85,12 @@ class AppController extends Controller {
     			'conditions'=>array(
     				'AND' => array(
     					'User.estado' => 1,
-	    				'OR' =>	'User.consorcio_id' => 2,	                        	
-	    						'AND' => array(
-		                        	'User.consorcio_id' => 1,
-		                        	'User.uunn_id' => 2,
-		                       	),
+	    				'OR' => array('User.consorcio_id' => 2,	                        	
+    						'AND' => array(
+	                        	'User.consorcio_id' => 1,
+	                        	'User.uunn_id' => 2
+	                       	)
+                       	)
 		            )
     			)
     		)
