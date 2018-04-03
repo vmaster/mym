@@ -78,13 +78,19 @@ class AppController extends Controller {
 		}
 	}
 
-	public function supervisores_enosa(){
+	public function supervisores(){
 		$this->loadModel('User');
 		$arr_obj_usuario = $this->User->find('all',array(
     			'fields' => array('User.id'),
     			'conditions'=>array(
-                        'User.consorcio_id' => 2,
-                        'User.estado' => 1
+    				'AND' => array(
+    					'User.estado' => 1,
+	    				'OR' =>	'User.consorcio_id' => 2,	                        	
+	    						'AND' => array(
+		                        	'User.consorcio_id' => 1,
+		                        	'User.uunn_id' => 2,
+		                       	),
+		            )
     			)
     		)
     	);
@@ -126,7 +132,7 @@ class AppController extends Controller {
 	 */
 	public function crear_tarea_supervisor_dia_ayer_y_antesdeayer(){
 		$this->loadModel('Tarea');
-		$arr_obj_usuarios = $this->supervisores_enosa();
+		$arr_obj_usuarios = $this->supervisores();
 
 		foreach ($arr_obj_usuarios as $key => $obj_usuario) {
 			$user_id = $obj_usuario['User']['id'];
