@@ -868,13 +868,13 @@ foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
 				$codigo.= "</td>";
 			}
 				
-			for($j= ($k+2); $j <=7; $j++){
+			for($j= ($k+2); $j <=10; $j++){
 				$codigo.= "<td style='width:7%; text-align: center;'>-";
 				$codigo.= "</td>";
 			}
 				
 		}else{
-			for($i= 1; $i <=7; $i++){
+			for($i= 1; $i <=10; $i++){
 				$codigo.= "<td style='width:7%; text-align: center;'>-";
 				$codigo.= "</td>";
 			}
