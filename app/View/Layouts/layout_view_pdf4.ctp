@@ -835,16 +835,24 @@ $codigo.="<table class='tg' width='100%'>
 		";
 }
 
+$columnas = 0;
+foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
+	if($columnas < count($obj_imp_prot_personal->IppNormasIncumplida)){
+		$columnas = count($obj_imp_prot_personal->IppNormasIncumplida);
+	}
+}
+$columnas = $columnas <= 7 ? 7 : $columnas; 
+
 $codigo.= "<table class='tg' width='100%'>
 		<thead>
 		<tr>
-		<th class='tg-e3zv back-blue' colspan=10 style='text-align: center;'>TRABAJADORES SUPERVISADOS</th>
+		<th class='tg-e3zv back-blue' colspan=".($columnas + 3)." style='text-align: center;'>TRABAJADORES SUPERVISADOS</th>
 				</tr>
 				<tr>
 				<th>N&deg;</th>
 				<th>Nombre del trabajador</th>
 				<th>Cargo</th>
-				<th colspan=7 style='vertical-align: middle; text-align: center;'>Normas Incumplidas</th>
+				<th colspan=".$columnas." style='vertical-align: middle; text-align: center;'>Normas Incumplidas</th>
 				</tr>
 				</thead>
 		<tbody>";
@@ -861,6 +869,7 @@ foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
 		$codigo.= "</td>";
 
 		$count_obj_ipp_ni = count($obj_imp_prot_personal->IppNormasIncumplida);
+		 
 		if($count_obj_ipp_ni > 0){
 			foreach($obj_imp_prot_personal->IppNormasIncumplida as $k =>$v){
 				$codigo.= "<td style='width:7%;'>";
@@ -868,13 +877,13 @@ foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
 				$codigo.= "</td>";
 			}
 				
-			for($j= ($k+2); $j <=7; $j++){
+			for($j= ($k+2); $j <=$columnas; $j++){
 				$codigo.= "<td style='width:7%; text-align: center;'>-";
 				$codigo.= "</td>";
 			}
 				
 		}else{
-			for($i= 1; $i <=7; $i++){
+			for($i= 1; $i <=$columnas; $i++){
 				$codigo.= "<td style='width:7%; text-align: center;'>-";
 				$codigo.= "</td>";
 			}
