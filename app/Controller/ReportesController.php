@@ -610,7 +610,7 @@ class ReportesController extends AppController{
 		$info_des_act = json_decode($obj_acta->info_des_epp);
 	    foreach($info_des_act as $value){
 	    	if($value->info_des_epp != ''){
-		    	if($value->alternativa == 1){
+		    	if($value->alternativa == 1 && $value['alternativa'] != 2){
 		    		$normas_cumplidas++;
 		    	}elseif($value->alternativa == 0){
 		    		$normas_incumplidas++;
@@ -620,7 +620,7 @@ class ReportesController extends AppController{
 	    $info_des_act1 = json_decode($obj_acta->info_des_se_de);
 	    foreach($info_des_act1 as $value){
 	    	if(isset($value->info_des_se_de) && $value->info_des_se_de != ''){
-		    	if($value->alternativa == 1){
+		    	if($value->alternativa == 1 && $value['alternativa'] != 2){
 		    		$normas_cumplidas++;
 		    	}elseif($value->alternativa == 0){
 		    		$normas_incumplidas++;
@@ -630,7 +630,7 @@ class ReportesController extends AppController{
 		$info_des_act2 = json_decode($obj_acta->info_des_um);
 	    foreach($info_des_act2 as $value){
 	    	if(isset($value->info_des_um) && $value->info_des_um != ''){
-		    	if($value->alternativa == 1){
+		    	if($value->alternativa == 1 && $value['alternativa'] != 2){
 		    		$normas_cumplidas++;
 		    	}elseif($value->alternativa == 0){
 		    		$normas_incumplidas++;
@@ -640,7 +640,7 @@ class ReportesController extends AppController{
 	    $info_des_act3 = json_decode($obj_acta->info_des_doc);
 	    foreach($info_des_act3 as $value){
 	    	if(isset($value->info_des_doc) && $value->info_des_doc != ''){
-		    	if($value->alternativa == 1){
+		    	if($value->alternativa == 1 && $value['alternativa'] != 2){
 		    		$normas_cumplidas++;
 		    	}elseif($value->alternativa == 0){
 		    		$normas_incumplidas++;
@@ -650,7 +650,7 @@ class ReportesController extends AppController{
 	    $info_des_act4 = json_decode($obj_acta->info_des_act);
 	    foreach($info_des_act4 as $value){
 	    	if(isset($value->info_des_act) && $value->info_des_act != ''){
-		    	if($value->alternativa == 1){
+		    	if($value->alternativa == 1 && $value['alternativa'] != 2){
 		    		$normas_cumplidas++;
 		    	}elseif($value->alternativa == 0){
 		    		$normas_incumplidas++;
@@ -660,7 +660,7 @@ class ReportesController extends AppController{
 	    $info_des_act5 = json_decode($obj_acta->info_des_cond);
 	    foreach($info_des_act5 as $value){
 	    	if(isset($value->info_des_cond) && $value->info_des_cond != ''){
-		    	if($value->alternativa == 1){
+		    	if($value->alternativa == 1 && $value['alternativa'] != 2){
 		    		$normas_cumplidas++;
 		    	}elseif($value->alternativa == 0){
 		    		$normas_incumplidas++;
@@ -1463,7 +1463,7 @@ class ReportesController extends AppController{
 
 		$this->loadModel('Acta');
 		
-		$list_acta_all = $this->Acta->listAllActas('Acta.created','', '','','','DESC');
+		$list_acta_all = $this->Acta->listAllActas('Acta.created');
 
 
 		foreach ($list_acta_all as $key => $obj_acta){

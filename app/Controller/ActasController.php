@@ -211,7 +211,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_act'] as $key => $value){
 					if($value['info_des_act'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
@@ -221,7 +221,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_cond'] as $key => $value){
 					if($value['info_des_cond'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
@@ -231,7 +231,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_epp'] as $key => $value){
 					if($value['info_des_epp'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
@@ -241,7 +241,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_sd'] as $key => $value){
 					if($value['info_des_se_de'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
@@ -251,7 +251,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_um'] as $key => $value){
 					if($value['info_des_um'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
@@ -261,7 +261,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_ds'] as $key => $value){
 					if($value['info_des_doc'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
@@ -809,7 +809,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_act'] as $key => $value){
 					if($value['info_des_act'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
@@ -819,7 +819,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_cond'] as $key => $value){
 					if($value['info_des_cond'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
@@ -829,7 +829,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_epp'] as $key => $value){
 					if($value['info_des_epp'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
@@ -839,7 +839,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_sd'] as $key => $value){
 					if($value['info_des_se_de'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
@@ -849,7 +849,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_um'] as $key => $value){
 					if($value['info_des_um'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
@@ -859,7 +859,7 @@ class ActasController extends AppController{
 				
 				foreach($this->request->data['Acta']['cumplimiento_ds'] as $key => $value){
 					if($value['info_des_doc'] != ''){
-						if($value['alternativa'] == 1){
+						if($value['alternativa'] == 1 && $value['alternativa'] != 2){
 							$normas_cumplidas++;
 						}else{
 							$normas_incumplidas++;
