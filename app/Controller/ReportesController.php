@@ -1469,11 +1469,18 @@ class ReportesController extends AppController{
 		foreach ($list_acta_all as $key => $obj_acta){
 			$normas_cumplidas = $this->calculo_ni_cu($obj_acta)[0];
 			$normas_incumplidas = $this->calculo_ni_cu($obj_acta)[1];
-			$suma_cumplidas_incumplidas = $this->calculo_ni_cu($obj_acta)[2];
+			$suma_cumplidas_incumplidas = $normas_incumplidas + $normas_cumplidas;
 
 			$obj_acta->saveField('total_cumplimiento', $normas_cumplidas);
 			$obj_acta->saveField('total_incumplimiento', $normas_incumplidas);
 			$obj_acta->saveField('suma_cu_in', $suma_cumplidas_incumplidas);
+
+			if($suma_cumplidas_incumplidas > 0){
+				$formula = ($normas_cumplidas * 100)/$suma_cumplidas_incumplidas;
+			}else{
+				$formula = 0;
+			}
+			$obj_acta->saveField('cumplimiento', $formula);
 		}
 
 		echo "ok";
