@@ -562,11 +562,15 @@ foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
 	$codigo.= "<tr>";
 	$codigo.= "<td>".($key+1)."</td>";
 	$codigo.= "<td style='width:28%;'>";
-	$codigo.= $obj_imp_prot_personal->Trabajadore->getAttr('apellido_nombre');
+	if($obj_imp_prot_personal->getAttr('trabajador_id') != 0){
+		$codigo.= $obj_imp_prot_personal->Trabajadore->getAttr('apellido_nombre');
+	}
 	$codigo.= "</td>";
 
 	$codigo.= "<td>";
-	$codigo.= $obj_imp_prot_personal->Actividade->getAttr('descripcion');
+	if($obj_imp_prot_personal->getAttr('actividad_id') != 0){
+		$codigo.= $obj_imp_prot_personal->Actividade->getAttr('descripcion');
+	}
 	$codigo.= "</td>";
 
 	$count_obj_ipp_ni = count($obj_imp_prot_personal->IppNormasIncumplida);
@@ -614,11 +618,15 @@ $codigo.= "<table class='tg' width='100%'>
 								$codigo.= "<tr>";
 								$codigo.= "<td>".($key2+1)."</td>";
 								$codigo.= "<td style='width:14%;'>";
+							if($obj_uni_movil->getAttr('vehiculo_id') != 0){
 								$codigo.= $obj_uni_movil->Vehiculo->getAttr('nro_placa');
+							}
 								$codigo.= "</td>";
 							
 								$codigo.= "<td>";
+							if($obj_uni_movil->getAttr('vehiculo_id') != 0){
 								$codigo.= $obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion');
+							}
 								$codigo.= "</td>";
 							
 								$count_obj_um_ni = count($obj_uni_movil->UmNormasIncumplida);

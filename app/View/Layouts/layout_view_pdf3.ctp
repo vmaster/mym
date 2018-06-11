@@ -740,11 +740,15 @@ foreach ($obj_acta->ImpProtPersonale as $key => $obj_imp_prot_personal){
 		$codigo.= "<tr>";
 		$codigo.= "<td>".($key+1)."</td>";
 		$codigo.= "<td style='width:28%;'>";
-		$codigo.= $obj_imp_prot_personal->Trabajadore->getAttr('apellido_nombre');
+		if($obj_imp_prot_personal->getAttr('trabajador_id')!=0){
+			$codigo.= $obj_imp_prot_personal->Trabajadore->getAttr('apellido_nombre');
+		}
 		$codigo.= "</td>";
 
 		$codigo.= "<td>";
-		$codigo.= $obj_imp_prot_personal->Actividade->getAttr('descripcion');
+		if($obj_imp_prot_personal->getAttr('actividad_id')!=0){
+			$codigo.= $obj_imp_prot_personal->Actividade->getAttr('descripcion');
+		}
 		$codigo.= "</td>";
 
 		$count_obj_ipp_ni = count($obj_imp_prot_personal->IppNormasIncumplida);

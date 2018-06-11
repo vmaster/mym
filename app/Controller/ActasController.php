@@ -1987,7 +1987,7 @@ class ActasController extends AppController{
 			exit();
 		}
 
-		if($obj_acta->getAttr('reponsable_sup_cargo_id') != NULL || $obj_acta->getAttr('reponsable_sup_cargo_id') != ''){
+		if(is_null($obj_acta->getAttr('reponsable_sup_cargo_id')) && $obj_acta->getAttr('reponsable_sup_cargo_id') != NULL){
 			$cargo_supervisor = $this->Actividade->getNombreCargo($obj_acta->getAttr('reponsable_sup_cargo_id'));
 		}else{
 			$cargo_supervisor = $this->Actividade->getNombreCargo(1);
