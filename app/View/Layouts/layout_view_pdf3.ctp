@@ -563,7 +563,7 @@ $codigo.= "	</tr>
 
 
 	//Show Tabla de acta de referencia y grafico de referencia 
-	if($obj_acta->getAttr('acta_referencia')!=''){
+	if($obj_acta->getAttr('acta_referencia')!=0){
 
 		$normas_epp2 = $obj_acta_ref->getAttr('info_des_epp');
 		$normas_sd2 = $obj_acta_ref->getAttr('info_des_se_de');
