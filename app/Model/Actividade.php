@@ -124,7 +124,11 @@ App::uses('AppModel','Model');
             )
         );
 
-        return $nombre_cargo[$id_cargo];
+        if(is_null($nombre_cargo[$id_cargo]) && $nombre_cargo[$id_cargo] != NULL){
+            return $nombre_cargo[$id_cargo];
+        }else{
+            return null;
+        }
     }
     
     
