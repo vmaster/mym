@@ -796,11 +796,15 @@ $codigo.= "<table class='tg' width='100%'>
 									$codigo.= "<tr>";
 									$codigo.= "<td>".($key2+1)."</td>";
 									$codigo.= "<td style='width:14%;'>";
+								if($obj_uni_movil->getAttr('vehiculo_id') != 0){
 									$codigo.= $obj_uni_movil->Vehiculo->getAttr('nro_placa');
+								}
 									$codigo.= "</td>";
 								
 									$codigo.= "<td>";
+								if($obj_uni_movil->getAttr('vehiculo_id') != 0){
 									$codigo.= $obj_uni_movil->Vehiculo->TipoVehiculo->getAttr('descripcion');
+								}
 									$codigo.= "</td>";
 								
 									$count_obj_um_ni = count($obj_uni_movil->UmNormasIncumplida);
