@@ -1987,7 +1987,11 @@ class ActasController extends AppController{
 			exit();
 		}
 
-		$cargo_supervisor = $this->Actividade->getNombreCargo($obj_acta->getAttr('reponsable_sup_cargo_id'));
+		if($obj_acta->getAttr('reponsable_sup_cargo_id') != NULL || $obj_acta->getAttr('reponsable_sup_cargo_id') != ''){
+			$cargo_supervisor = $this->Actividade->getNombreCargo($obj_acta->getAttr('reponsable_sup_cargo_id'));
+		}else{
+			$cargo_supervisor = $this->Actividade->getNombreCargo(1);
+		}
 				
 		$info_ni_t = $this->Acta->infoNiT($acta_id);
 		$info_ni_v = $this->Acta->infoNiV($acta_id);
