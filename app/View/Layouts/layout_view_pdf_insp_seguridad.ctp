@@ -610,11 +610,15 @@ $codigo.="
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoInstalMed as $key => $obj_foto_med) {
 				$file = ENV_WEBROOT_FULL_URL."files/fotos_instal_med/".$obj_foto_med->getAttr('file_name');
-				list($ancho, $alto, $type, $attr) = getimagesize($file);
-				$width = ($ancho > $alto) ? "width='340px'":"";
-				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
-							<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_med/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' ".$width." height='255px'></a>
-							<br>".$obj_foto_med->getAttr('observacion')."</td>";
+				if(file_exists($file)){
+					list($ancho, $alto, $type, $attr) = getimagesize($file);
+					$width = ($ancho > $alto) ? "width='340px'":"";
+					$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
+								<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_med/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' ".$width." height='255px'></a>
+								<br>".$obj_foto_med->getAttr('observacion')."</td>";
+				}else{
+					$width = "";
+				}
 				$cont++;
 				if($cont == 2){
 					$codigo.="</tr></table>";
