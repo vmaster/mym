@@ -1456,6 +1456,64 @@ App::uses('AppModel','Model');
          
         return $arr_cant_info_x_emp;
     }
+
+    public function listAllActas($order_by='ActaInstalacione.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$fec_inicio='', $fec_fin='',$order='DESC', $tipo_user_id ='') {
+        if($tipo_user_id== 3){
+                    $arr_obj_acta = $this->findObjects('all',array(
+                        'joins' => array(
+                                array(
+                                        'table' => 'empresas',
+                                        'alias' => 'EmpresaJoin',
+                                        'type' => 'INNER',
+                                        'conditions' => array(
+                                                'EmpresaJoin.id = ActaInstalacione.empresa_id'
+                                        )
+                                )
+                        ),
+                        'conditions'=>array(
+                                'AND' => array(
+                                        'ActaInstalacione.numero LIKE'=> '%'.$search_nro.'%',
+                                        'ActaInstalacione.actividad LIKE'=> '%'.$search_actividad.'%',
+                                        'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
+                                        'ActaInstalacione.obra LIKE'=> '%'.$search_obra.'%',
+                                        'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                                        'ActaInstalacione.estado '=> 1,
+                                        'ActaInstalacione.created_mym' => 1
+                                )
+                        ),
+                        'order'=> array($order_by.' '.$order)
+                      )
+                    );
+                }else{
+                    $arr_obj_acta = $this->findObjects('all',array(
+                        'joins' => array(
+                                array(
+                                        'table' => 'empresas',
+                                        'alias' => 'EmpresaJoin',
+                                        'type' => 'INNER',
+                                        'conditions' => array(
+                                                'EmpresaJoin.id = ActaInstalacione.empresa_id'
+                                        )
+                                )
+                        ),
+                        'conditions'=>array(
+                                'AND' => array(
+                                        'ActaInstalacione.numero LIKE'=> '%'.$search_nro.'%',
+                                        'ActaInstalacione.actividad LIKE'=> '%'.$search_actividad.'%',
+                                        'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
+                                        'ActaInstalacione.obra LIKE'=> '%'.$search_obra.'%',
+                                        'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                                        'ActaInstalacione.estado '=> 1,
+                                        'ActaInstalacione.created_mym' => 0
+                                )
+                        ),
+                        'order'=> array($order_by.' '.$order)
+                      )
+                    );
+                }
+            
+        return $arr_obj_acta;
+    }
     
   }
 ?>
