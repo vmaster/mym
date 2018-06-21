@@ -665,6 +665,160 @@ $codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-siz
 		$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos_acta_instal/".$obj_acta->getAttr('grafico')."'></center>";
 	}
 
+//Show Tabla de acta de referencia y grafico de referencia 
+	if(($obj_acta->getAttr('acta_referencia')!= 0)){
+
+		$normas_iv2 = $obj_acta_ref->getAttr('json_ilum_vent');
+		$normas_ol2 = $obj_acta_ref->getAttr('json_orden_limpieza');
+		$normas_sh2 = $obj_acta_ref->getAttr('json_sshh');
+		$normas_ss2 = $obj_acta_ref->getAttr('json_sen_seg');
+		$normas_ee2 = $obj_acta_ref->getAttr('json_eq_emerg');
+		$normas_cs2 = $obj_acta_ref->getAttr('json_cond_seg');
+
+		//Contador inicializado en cero
+		$total_nc_iv2 = 0;
+		$total_ni_iv2 = 0;
+
+		$total_nc_ol2 = 0;
+		$total_ni_ol2 = 0;
+
+		$total_nc_sh2 = 0;
+		$total_ni_sh2 = 0;
+
+		$total_nc_ss2 = 0;
+		$total_ni_ss2 = 0;
+		 
+		$total_nc_cu2 = 0;
+		$total_ni_cu2 = 0;
+
+		$total_nc_cs2 = 0;
+		$total_ni_cs2 = 0;
+
+		$normas_cumplidas2 = 0;
+		$normas_incumplidas2 = 0;
+
+		//recorremos
+		$json_ilum_vent2 = json_decode($normas_iv2);		
+		foreach($json_ilum_vent2 as $value){
+			if($value->inf_des_ilum_vent != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas2++;
+		    		$total_nc_iv2++;
+		    	}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+		    		$total_ni_iv2++;
+		    	}
+
+			}
+		}
+
+		$json_ol2 = json_decode($normas_ol2);
+		foreach($json_ol2 as $value){
+			if($value->inf_des_orden_limp  != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas2++;
+		    		$total_nc_ol2++;
+		    	}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+		    		$total_ni_ol2++;
+		    	}
+			}	
+		}
+
+
+		$json_sh2 = json_decode($normas_sh2);
+		foreach($json_sh2 as $value){
+			if($value->inf_des_sshh  != ''){
+				if($value->alternativa == 1){
+					$normas_cumplidas2++;
+			    	$total_nc_sh2++;
+				}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+			    	$total_ni_sh2++;
+				}
+			}
+		}
+
+		$json_ss2 = json_decode($normas_ss2);
+		foreach($json_ss2 as $value){
+			if($value->inf_des_sen_seg  != ''){
+				if($value->alternativa == 1){
+					$normas_cumplidas2++;
+			    	$total_nc_ss2++;
+				}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+			    	$total_ni_ss2++;
+				}
+			}
+		}
+
+		$json_ee2 = json_decode($normas_ee2);
+		foreach($json_ee2 as $value){
+			if($value->inf_des_eq_emerg != ''){
+				if($value->alternativa == 1){
+					$normas_cumplidas2++;
+			    	$total_nc_cu2++;
+				}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+			    	$total_ni_cu2++;
+				}
+			}
+		}
+
+
+		$json_cond2 = json_decode($normas_cs2);
+		foreach($json_cond2 as $value){
+			if($value->inf_des_cond_seg != ''){
+				if($value->alternativa == 1){
+					$normas_cumplidas2++;
+			    	$total_nc_cs2++;
+				}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+			    	$total_ni_cs2++;
+				}
+			}
+		}
+
+		$suma_normas2 = $normas_cumplidas2 + $normas_incumplidas2;
+		if($suma_normas > 0){
+			$formula2 = ($normas_cumplidas2 * 100)/$suma_normas2;
+		}else{
+			$formula2 = 0;
+		}
+
+		$codigo.= "<div class='tg salto-linea'></div>";
+		$codigo.= "<div><strong>INF. DE REFERENCIA N&#176; ".$obj_acta_ref->getAttr('num_informe')."</strong></div><br>";
+		$codigo.= "<table class='tg' width='100%' style='border:0px;font-size:8px;'>";
+		$codigo.= "<tr><th colspan=8 class='tg-e3zv bcsk-blue'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
+		$codigo .= "<tr><td></td>
+					<td>EPP</td>
+					<td>SE</td>
+					<td>UM</td>
+					<td>DOC</td>
+					<td>CP</td>
+					<td>CS</td>
+					<td>TOTAL</td></tr>";
+		$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_iv2."</td><td>".$total_nc_ol2."</td><td>".$total_nc_sh2."</td><td>".$total_nc_ss2."</td><td>".$total_nc_cu2."</td><td>".$total_nc_cs2."</td><td>".$normas_cumplidas2."</td></tr>";
+		$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_iv2."</td><td>".$total_ni_ol2."</td><td>".$total_ni_sh2."</td><td>".$total_ni_ss2."</td><td>".$total_ni_cu2."</td><td>".$total_ni_cs2."</td><td>".$normas_incumplidas2."</td></tr>";
+
+		$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>";
+		if(($total_nc_iv2+$total_ni_iv2)>0){$codigo .= round(($total_nc_iv2*100)/($total_nc_iv2+$total_ni_iv2),2)."%</td><td>";}else{$codigo .= round(($total_nc_iv2*100),2)."%</td><td>";}
+		if(($total_nc_ol2+$total_ni_ol2)>0){$codigo .= round(($total_nc_ol2*100)/($total_nc_ol2+$total_ni_ol2),2)."%</td><td>";}else{$codigo .= round(($total_nc_ol2*100),2)."%</td><td>";}
+		if(($total_nc_sh2+$total_ni_sh2)>0){$codigo .= round(($total_nc_sh2*100)/($total_nc_sh2+$total_ni_sh2),2)."%</td><td>";}else{$codigo .= round(($total_nc_sh2*100),2)."%</td><td>";}
+		if(($total_nc_ss2+$total_ni_ss2)>0){$codigo .= round(($total_nc_ss2*100)/($total_nc_ss2+$total_ni_ss2),2)."%</td><td>";}else{$codigo .= round(($total_nc_ss2*100),2)."%</td><td>";}
+		if(($total_nc_cu2+$total_ni_cu2)>0){$codigo .= round(($total_nc_cu2*100)/($total_nc_cu2+$total_ni_cu2),2)."%</td><td>";}else{$codigo .= round(($total_nc_cu2*100),2)."%</td><td>";}
+		if(($total_nc_cs2+$total_ni_cs2)>0){$codigo .= round(($total_nc_cs2*100)/($total_nc_cs2+$total_ni_cs2),2)."%</td><td>";}else{$codigo .= round(($total_nc_cs2*100),2)."%</td><td>";}
+		$codigo .= round($formula2,2)."%</td></tr>";
+		$codigo .= "</table>";
+
+		//SHOW GRAPHIC
+		if($obj_acta_ref->getAttr('grafico')!='' && $obj_acta_ref->getAttr('grafico') != null){
+			$codigo .= "<br><center><strong>GR&Acsute;FICO</strong></center>";
+			$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos_acta_instal/".$obj_acta_ref->getAttr('grafico')."'></center>";
+		}
+	}
+	//END Informe de referencia
+
 $codigo .= "<div align='right'><table width='100%'>
 			<tr><td><div style='text-align:right;'>";
 			if($obj_acta->getAttr('reponsable_sup_id') != 0){
