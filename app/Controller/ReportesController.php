@@ -832,6 +832,280 @@ class ReportesController extends AppController{
 		echo $tabla;
 	}
 
+	function excel_resumen_seguimiento_instalaciones(){
+		$this->autoRender = false;
+		ini_set('memory_limit', '-1');
+		ini_set('max_execution_time', 300000);
+		set_time_limit(0);
+
+		$fec_inicio = $this->params['url']['fec_inicio'];
+		$fec_fin = $this->params['url']['fec_fin'];
+
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+	
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+
+		$this->loadModel('ActaInstalacione');
+		$this->loadModel('Empresa');
+		$this->loadModel('UnidadesNegocio');
+		
+		$list_acta_all = $this->ActaInstalacione->listAllActas('ActaInstalacione.created','', '','','',$fec_inicio_format,$fec_fin_format,'DESC');
+
+		$color = 'background: #81EFF1;';
+		$tabla='<table border=1>
+				<th colspan="18" style="'.$color.' height:60px">SEGUIMIENTO A NO CONFORMIDADES SEG&Uacute;N INFORMES DE SEGURIDAD DE CAMPO - SEG&Uacute;N PROGRAMA SEGESEM (Sostenibilidad empresarial  en gestion de la Seguridad y Salud en el trabajo en M&M)</th>
+				<tr>
+					<th colspan="8" style="'.$color.'">DESCRIPCI&Oacute;N DEL INFORME</th>
+					<th colspan="3" style="'.$color.'">NIVEL DE CUMPLIMIENTO</th>
+					<th style="'.$color.'">Acci&oacute;n Correctiva</th>
+					<th colspan="6" style="'.$color.'">DEFICIENCIAS - NO CONFORMIDADES</th>
+				</tr>
+				<tr>
+					<th style="'.$color.'">Item</th>
+					<th style="'.$color.'">N. Informe T&eacute;cnico</th>
+					<th style="'.$color.'">Fecha</th>
+					<th style="'.$color.' width:120px;">UUNN</th>
+					<th style="'.$color.' width:120px;">&Aacute;rea</th>
+					<th style="'.$color.' width:150px;">Empresa</th>
+					<th style="'.$color.' width:200px;">Obra/Servicio</th>
+					<th style="'.$color.' width:150px;">Actividad(es)</th>
+					
+					<th style="'.$color.' width:90px;">% Cumplimiento</th>
+					<th style="'.$color.' width:90px;">Cumplimientos</th>
+					<th style="'.$color.' width:90px;">Total Item Inspeccionados</th>
+
+					<th style="'.$color.' width:250px;">Acci&oacute;n Correctiva</th>
+
+					<th style="'.$color.' width:200px;">Iluminacion y Ventilacion</th>
+					<th style="'.$color.' width:200px;">Orden y Limpieza</th>
+					<th style="'.$color.' width:200px;">Servicios Higienicos</th>
+					<th style="'.$color.' width:200px;">Señales de Seguridad</th>
+					<th style="'.$color.' width:200px;">Equipos de Emergencias</th>
+					<th style="'.$color.' width:300px;">Condiciones de Seguridad</th>
+				</tr>';
+		foreach ($list_acta_all as $key => $obj_acta){
+			$tabla.='<tr>';
+			$tabla.= '<td>'.($key+1).'</td>';
+			$tabla.= '<td>'.$obj_acta->getAttr('num_informe').'</td>';
+			$tabla.= '<td>'.date('d/m/Y',strtotime($obj_acta->getAttr('fecha'))).'</td>';
+			$tabla.= '<td>'.$obj_acta->UnidadesNegocio->getAttr('descripcion').'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->TipoLugare->getAttr('descripcion')).'</td>';
+			$tabla.= '<td>'.$obj_acta->Empresa->getAttr('nombre').'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('obra')).'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('actividad')).'</td>';
+
+			$tabla.= '<td>'.$obj_acta->getAttr('cumplimiento').'%'.'</td>';
+			$tabla.= '<td>'.$obj_acta->getAttr('total_cumplimiento').'</td>'; // normas cumplidas
+			$suma_cu_in = $obj_acta->getAttr('total_cumplimiento') + $obj_acta->getAttr('total_incumplimiento');
+			$tabla.= '<td>'.$suma_cu_in.'</td>'; // normas cumplidas + normas incumplidas
+
+			$tabla.= '<td>'.strip_tags(utf8_decode($obj_acta->getAttr('info_des_med'))).'</td>';
+			
+			//Iluminacion y Ventilacion
+			$tabla.= '<td>';
+			$epp = json_decode($obj_acta->getAttr('json_ilum_vent'));
+			foreach($epp as $key => $value){
+				if($value->inf_des_ilum_vent != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->inf_des_ilum_vent);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//Orden y Limpieza
+			$tabla.= '<td>';
+			$senalizacion = json_decode($obj_acta->getAttr('json_orden_limpieza'));
+			foreach($senalizacion as $key => $value){
+				if($value->inf_des_orden_limp != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->inf_des_orden_limp);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//Servicios Higienicos
+			$tabla.= '<td>';
+			$undmovil = json_decode($obj_acta->getAttr('json_sshh'));
+			foreach($undmovil as $key => $value){
+				if($value->inf_des_sshh != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->inf_des_sshh);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//Señales de Seguridad
+			$tabla.= '<td>';
+			$documento = json_decode($obj_acta->getAttr('json_sen_seg'));
+			foreach($documento as $key => $value){
+				if($value->inf_des_sen_seg != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->inf_des_sen_seg);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//Equipos de Emergencias
+			$tabla.= '<td>';
+			$cumplimiento_procedimiento = json_decode($obj_acta->getAttr('json_eq_emerg'));
+			foreach($cumplimiento_procedimiento as $key => $value){
+				if($value->inf_des_eq_emerg != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->inf_des_eq_emerg);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//Condiciones de Seguridad
+			$tabla.= '<td>';
+			$act_cond = json_decode($obj_acta->getAttr('json_cond_seg'));
+			foreach($act_cond as $key => $value){
+				if($value->inf_des_cond_seg != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->inf_des_cond_seg);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			$tabla.= '</tr>';
+		}
+		$tabla = $tabla.'</table>';
+		header('Content-type: application/vnd.ms-excel');
+		header("Content-Disposition: attachment; filename=reporte-".date('Y-m-d-h-i-s').".xls");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		echo $tabla;
+	}	
+
+	function excel_resumen_seguimiento_medio_ambiente(){
+		$this->autoRender = false;
+		ini_set('memory_limit', '-1');
+		ini_set('max_execution_time', 300000);
+		set_time_limit(0);
+
+		$fec_inicio = $this->params['url']['fec_inicio'];
+		$fec_fin = $this->params['url']['fec_fin'];
+
+		if(isset($fec_inicio)){
+			$fec_inicio = $fec_inicio;
+		}else{
+			$fec_inicio = '';
+		}
+
+		if(isset($fec_fin)){
+			$fec_fin = $fec_fin;
+		}else{
+			$fec_fin = '';
+		}
+	
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+
+		$this->loadModel('ActaMedioAmbiente');
+		$this->loadModel('Empresa');
+		$this->loadModel('UnidadesNegocio');
+		
+		$list_acta_all = $this->ActaMedioAmbiente->listAllActas('ActaMedioAmbiente.created','', '','','',$fec_inicio_format,$fec_fin_format,'DESC');
+
+		$color = 'background: #81EFF1;';
+		$tabla='<table border=1>
+				<th colspan="14" style="'.$color.' height:60px">SEGUIMIENTO A NO CONFORMIDADES SEG&Uacute;N INFORMES DE SEGURIDAD DE CAMPO - SEG&Uacute;N PROGRAMA SEGESEM (Sostenibilidad empresarial  en gestion de la Seguridad y Salud en el trabajo en M&M)</th>
+				<tr>
+					<th colspan="8" style="'.$color.'">DESCRIPCI&Oacute;N DEL INFORME</th>
+					<th colspan="3" style="'.$color.'">NIVEL DE CUMPLIMIENTO</th>
+					<th style="'.$color.'">Acci&oacute;n Correctiva</th>
+					<th colspan="2" style="'.$color.'">DEFICIENCIAS - NO CONFORMIDADES</th>
+				</tr>
+				<tr>
+					<th style="'.$color.'">Item</th>
+					<th style="'.$color.'">N. Informe T&eacute;cnico</th>
+					<th style="'.$color.'">Fecha</th>
+					<th style="'.$color.' width:120px;">UUNN</th>
+					<th style="'.$color.' width:120px;">&Aacute;rea</th>
+					<th style="'.$color.' width:150px;">Empresa</th>
+					<th style="'.$color.' width:200px;">Obra/Servicio</th>
+					<th style="'.$color.' width:150px;">Actividad(es)</th>
+					
+					<th style="'.$color.' width:90px;">% Cumplimiento</th>
+					<th style="'.$color.' width:90px;">Cumplimientos</th>
+					<th style="'.$color.' width:90px;">Total Item Inspeccionados</th>
+
+					<th style="'.$color.' width:250px;">Acci&oacute;n Correctiva</th>
+
+					<th style="'.$color.' width:200px;">Documentacion Medio Ambiental</th>
+					<th style="'.$color.' width:200px;">Condiciones Ambientales</th>
+				</tr>';
+		foreach ($list_acta_all as $key => $obj_acta){
+			$tabla.='<tr>';
+			$tabla.= '<td>'.($key+1).'</td>';
+			$tabla.= '<td>'.$obj_acta->getAttr('num_informe').'</td>';
+			$tabla.= '<td>'.date('d/m/Y',strtotime($obj_acta->getAttr('fecha'))).'</td>';
+			$tabla.= '<td>'.$obj_acta->UnidadesNegocio->getAttr('descripcion').'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->TipoLugare->getAttr('descripcion')).'</td>';
+			$tabla.= '<td>'.$obj_acta->Empresa->getAttr('nombre').'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('obra')).'</td>';
+			$tabla.= '<td>'.utf8_decode($obj_acta->getAttr('actividad')).'</td>';
+
+			$tabla.= '<td>'.$obj_acta->getAttr('cumplimiento').'%'.'</td>';
+			$tabla.= '<td>'.$obj_acta->getAttr('total_cumplimiento').'</td>'; // normas cumplidas
+			$suma_cu_in = $obj_acta->getAttr('total_cumplimiento') + $obj_acta->getAttr('total_incumplimiento');
+			$tabla.= '<td>'.$suma_cu_in.'</td>'; // normas cumplidas + normas incumplidas
+
+			$tabla.= '<td>'.strip_tags(utf8_decode($obj_acta->getAttr('info_des_med'))).'</td>';
+			
+			//DOCUMENTACIÓN MEDIO AMBIENTAL	
+			$tabla.= '<td>';
+			$epp = json_decode($obj_acta->getAttr('json_doc_med_amb'));
+			foreach($epp as $key => $value){
+				if($value->inf_des_doc_med != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->inf_des_doc_med);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			//CONDICIONES AMBIENTALES	
+			$tabla.= '<td>';
+			$senalizacion = json_decode($obj_acta->getAttr('json_cond_amb'));
+			foreach($senalizacion as $key => $value){
+				if($value->inf_des_cond_amb != ''){
+					if($value->alternativa != 1){
+						$tabla.= utf8_decode($value->inf_des_cond_amb);
+					}
+				}
+			}
+			$tabla.= '</td>';
+
+			
+
+			$tabla.= '</tr>';
+		}
+		$tabla = $tabla.'</table>';
+		header('Content-type: application/vnd.ms-excel');
+		header("Content-Disposition: attachment; filename=reporte-".date('Y-m-d-h-i-s').".xls");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		echo $tabla;
+	}
+
 	function excel_resumen_cantidad_informes(){
 		$this->autoRender = false;
 		ini_set('memory_limit', '-1');
