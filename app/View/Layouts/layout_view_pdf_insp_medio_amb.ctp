@@ -214,11 +214,16 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoMedAmbDoc as $key => $obj_foto_ad) {
 	$file = ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/".$obj_foto_ad->getAttr('file_name');
-	list($ancho, $alto, $type, $attr) = getimagesize($file);
-	$width = ($ancho > $alto) ? "width='340px'":"";
-	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
-			<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/".$obj_foto_ad->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/thumbnail/".$obj_foto_ad->getAttr('file_name')."' ".$width." height='255px'></a>
-					<br>".$obj_foto_ad->getAttr('observacion')."</td>";
+
+	if(file_exists($file)){
+		list($ancho, $alto, $type, $attr) = getimagesize($file);
+		$width = ($ancho > $alto) ? "width='340px'":"";
+		$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
+				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/".$obj_foto_ad->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/thumbnail/".$obj_foto_ad->getAttr('file_name')."' ".$width." height='255px'></a>
+						<br>".$obj_foto_ad->getAttr('observacion')."</td>";
+	}else{
+		$width = "";		
+	}
 	$cont++;
 	if($cont == 2){
 		$codigo.="</tr></table>";
@@ -277,11 +282,15 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoMedAmbCond as $key => $obj_foto_ca) {
 	$file = ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/".$obj_foto_ca->getAttr('file_name');
-	list($ancho, $alto, $type, $attr) = getimagesize($file);
-	$width = ($ancho > $alto) ? "width='340px'":"";
-	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
-				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/".$obj_foto_ca->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/thumbnail/".$obj_foto_ca->getAttr('file_name')."' ".$width." height='255px'></a>
-				<br>".$obj_foto_ca->getAttr('observacion')."</td>";
+	if(file_exists($file)){
+		list($ancho, $alto, $type, $attr) = getimagesize($file);
+		$width = ($ancho > $alto) ? "width='340px'":"";
+		$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
+					<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/".$obj_foto_ca->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/thumbnail/".$obj_foto_ca->getAttr('file_name')."' ".$width." height='255px'></a>
+					<br>".$obj_foto_ca->getAttr('observacion')."</td>";
+	}else{
+		$width = "";
+	}
 	$cont++;
 	if($cont == 2){
 		$codigo.="</tr></table>";
@@ -327,12 +336,16 @@ $codigo.="
 			$cont= 0;
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoMedAmbMedida as $key => $obj_foto_med) {
-				$file = ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/".$obj_foto_med->getAttr('file_name');
-				list($ancho, $alto, $type, $attr) = getimagesize($file);
-				$width = ($ancho > $alto) ? "width='340px'":"";
-				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
-							<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/thumbnail/".$obj_foto_med->getAttr('file_name')."' ".$width." height='255px'></a>
-							<br>".$obj_foto_med->getAttr('observacion')."</td>";
+				if(file_exists($file)){
+					$file = ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/".$obj_foto_med->getAttr('file_name');
+					list($ancho, $alto, $type, $attr) = getimagesize($file);
+					$width = ($ancho > $alto) ? "width='340px'":"";
+					$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
+								<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/thumbnail/".$obj_foto_med->getAttr('file_name')."' ".$width." height='255px'></a>
+								<br>".$obj_foto_med->getAttr('observacion')."</td>";
+				}else{
+					$width = "";
+				}
 				$cont++;
 				if($cont == 2){
 					$codigo.="</tr></table>";
@@ -427,7 +440,7 @@ $codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-siz
 		$codigo.= "<div class='tg salto-linea'></div>";
 		$codigo.= "<div><strong>INF. DE REFERENCIA N&#176; ".$obj_acta_ref->getAttr('num_informe')."</strong></div><br>";
 		$codigo.= "<table class='tg' width='100%' style='border:0px;font-size:8px;'>";
-		$codigo.= "<tr><th colspan=8 class='tg-e3zv bcsk-blue'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
+		$codigo.= "<tr><th colspan=4 class='tg-e3zv bcsk-blue'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
 		$codigo .= "<tr><td></td>
 					<td>DOC-MED AMB</td>
 					<td>COND-MED AMB</td>
@@ -487,7 +500,7 @@ $codigo.= "<div class='salto-linea'>&nbsp;</div>
 $codigo.= "	</tr></table></div><br>";
 }
 
-echo $codigo; exit();
+//echo $codigo; exit();
 $dompdf = new DOMPDF();
 $dompdf->set_paper("A4");
 $dompdf->load_html($codigo);
