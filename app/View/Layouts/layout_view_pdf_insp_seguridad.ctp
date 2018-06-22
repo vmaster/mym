@@ -791,12 +791,12 @@ $codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-siz
 		$codigo.= "<table class='tg' width='100%' style='border:0px;font-size:8px;'>";
 		$codigo.= "<tr><th colspan=8 class='tg-e3zv bcsk-blue'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
 		$codigo .= "<tr><td></td>
-					<td>EPP</td>
-					<td>SE</td>
-					<td>UM</td>
-					<td>DOC</td>
-					<td>CP</td>
-					<td>CS</td>
+					<td>IV</td>
+					<td>OL</td>
+					<td>SH</td>
+					<td>SS</td>
+					<td>EE</td>
+					<td>COND</td>
 					<td>TOTAL</td></tr>";
 		$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_iv2."</td><td>".$total_nc_ol2."</td><td>".$total_nc_sh2."</td><td>".$total_nc_ss2."</td><td>".$total_nc_cu2."</td><td>".$total_nc_cs2."</td><td>".$normas_cumplidas2."</td></tr>";
 		$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_iv2."</td><td>".$total_ni_ol2."</td><td>".$total_ni_sh2."</td><td>".$total_ni_ss2."</td><td>".$total_ni_cu2."</td><td>".$total_ni_cs2."</td><td>".$normas_incumplidas2."</td></tr>";
