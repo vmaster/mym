@@ -371,6 +371,84 @@ $codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-siz
 		$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos_acta_med_amb/".$obj_acta->getAttr('grafico')."'></center>";
 	}
 
+
+	//Show Tabla de acta de referencia y grafico de referencia 
+	if(($obj_acta->getAttr('acta_referencia')!= 0)){
+
+		$normas_ma2 = $obj_acta_ref->getAttr('json_doc_med_amb');
+		$normas_ca2 = $obj_acta_ref->getAttr('json_cond_amb');
+		
+		//Contador inicializado en cero
+		$total_nc_ma2 = 0;
+		$total_ni_ma2 = 0;
+
+		$total_nc_ca2 = 0;
+		$total_ni_ca2 = 0;
+
+		$normas_cumplidas2 = 0;
+		$normas_incumplidas2 = 0;
+
+		//recorremos
+		$json_ma2 = json_decode($normas_ma2);		
+		foreach($json_ma2 as $value){
+			if($value->inf_des_doc_med != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas2++;
+		    		$total_nc_ma2++;
+		    	}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+		    		$total_ni_ma2++;
+		    	}
+
+			}
+		}
+
+		$json_ca2 = json_decode($normas_ca2);
+		foreach($json_ca2 as $value){
+			if($value->inf_des_cond_amb != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas2++;
+		    		$total_nc_ca2++;
+		    	}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+		    		$total_ni_ca2++;
+		    	}
+			}	
+		}
+		
+
+		$suma_normas2 = $normas_cumplidas2 + $normas_incumplidas2;
+		if($suma_normas > 0){
+			$formula2 = ($normas_cumplidas2 * 100)/$suma_normas2;
+		}else{
+			$formula2 = 0;
+		}
+
+		$codigo.= "<div class='tg salto-linea'></div>";
+		$codigo.= "<div><strong>INF. DE REFERENCIA N&#176; ".$obj_acta_ref->getAttr('num_informe')."</strong></div><br>";
+		$codigo.= "<table class='tg' width='100%' style='border:0px;font-size:8px;'>";
+		$codigo.= "<tr><th colspan=8 class='tg-e3zv bcsk-blue'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
+		$codigo .= "<tr><td></td>
+					<td>DOC-MED AMB</td>
+					<td>COND-MED AMB</td>
+					<td>TOTAL</td></tr>";
+		$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_ma2."</td><td>".$total_nc_ca2."</td><td>".$normas_cumplidas2."</td></tr>";
+		$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_ma2."</td><td>".$total_ni_ca2."</td><td>".$normas_incumplidas2."</td></tr>";
+
+		$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>";
+		if(($total_nc_ma2+$total_ni_ma2)>0){$codigo .= round(($total_nc_ma2*100)/($total_nc_ma2+$total_ni_ma2),2)."%</td><td>";}else{$codigo .= round(($total_nc_ma2*100),2)."%</td><td>";}
+		if(($total_nc_ca2+$total_ni_ca2)>0){$codigo .= round(($total_nc_ca2*100)/($total_nc_ca2+$total_ni_ca2),2)."%</td><td>";}else{$codigo .= round(($total_nc_ca2*100),2)."%</td><td>";}
+		$codigo .= round($formula2,2)."%</td></tr>";
+		$codigo .= "</table>";
+
+		//SHOW GRAPHIC
+		if($obj_acta_ref->getAttr('grafico')!='' && $obj_acta_ref->getAttr('grafico') != null){
+			$codigo .= "<br><center><strong>GR&Acsute;FICO</strong></center>";
+			$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos_acta_med_amb/".$obj_acta_ref->getAttr('grafico')."'></center>";
+		}
+	}
+	//END Informe de referencia
+
 $codigo .= "<div align='right'><table width='100%'>
 			<tr><td><div style='text-align:right;'>";
 			if($obj_acta->getAttr('reponsable_sup_id') != 0){
@@ -409,7 +487,7 @@ $codigo.= "<div class='salto-linea'>&nbsp;</div>
 $codigo.= "	</tr></table></div><br>";
 }
 
-//echo $codigo; exit();
+echo $codigo; exit();
 $dompdf = new DOMPDF();
 $dompdf->set_paper("A4");
 $dompdf->load_html($codigo);
