@@ -214,11 +214,16 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoMedAmbDoc as $key => $obj_foto_ad) {
 	$file = ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/".$obj_foto_ad->getAttr('file_name');
-	list($ancho, $alto, $type, $attr) = getimagesize($file);
-	$width = ($ancho > $alto) ? "width='340px'":"";
-	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
-			<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/".$obj_foto_ad->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/thumbnail/".$obj_foto_ad->getAttr('file_name')."' ".$width." height='255px'></a>
-					<br>".$obj_foto_ad->getAttr('observacion')."</td>";
+
+	if(file_exists($file)){
+		list($ancho, $alto, $type, $attr) = getimagesize($file);
+		$width = ($ancho > $alto) ? "width='340px'":"";
+		$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
+				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/".$obj_foto_ad->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_doc/thumbnail/".$obj_foto_ad->getAttr('file_name')."' ".$width." height='255px'></a>
+						<br>".$obj_foto_ad->getAttr('observacion')."</td>";
+	}else{
+		$width = "";		
+	}
 	$cont++;
 	if($cont == 2){
 		$codigo.="</tr></table>";
@@ -277,11 +282,15 @@ $cont= 0;
 $codigo.="<tr>";
 foreach($obj_acta->FotoMedAmbCond as $key => $obj_foto_ca) {
 	$file = ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/".$obj_foto_ca->getAttr('file_name');
-	list($ancho, $alto, $type, $attr) = getimagesize($file);
-	$width = ($ancho > $alto) ? "width='340px'":"";
-	$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
-				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/".$obj_foto_ca->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/thumbnail/".$obj_foto_ca->getAttr('file_name')."' ".$width." height='255px'></a>
-				<br>".$obj_foto_ca->getAttr('observacion')."</td>";
+	if(file_exists($file)){
+		list($ancho, $alto, $type, $attr) = getimagesize($file);
+		$width = ($ancho > $alto) ? "width='340px'":"";
+		$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
+					<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/".$obj_foto_ca->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_cond/thumbnail/".$obj_foto_ca->getAttr('file_name')."' ".$width." height='255px'></a>
+					<br>".$obj_foto_ca->getAttr('observacion')."</td>";
+	}else{
+		$width = "";
+	}
 	$cont++;
 	if($cont == 2){
 		$codigo.="</tr></table>";
@@ -327,12 +336,16 @@ $codigo.="
 			$cont= 0;
 			$codigo.="<tr>";
 			foreach($obj_acta->FotoMedAmbMedida as $key => $obj_foto_med) {
-				$file = ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/".$obj_foto_med->getAttr('file_name');
-				list($ancho, $alto, $type, $attr) = getimagesize($file);
-				$width = ($ancho > $alto) ? "width='340px'":"";
-				$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
-							<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/thumbnail/".$obj_foto_med->getAttr('file_name')."' ".$width." height='255px'></a>
-							<br>".$obj_foto_med->getAttr('observacion')."</td>";
+				if(file_exists($file)){
+					$file = ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/".$obj_foto_med->getAttr('file_name');
+					list($ancho, $alto, $type, $attr) = getimagesize($file);
+					$width = ($ancho > $alto) ? "width='340px'":"";
+					$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
+								<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_med_amb_medida/thumbnail/".$obj_foto_med->getAttr('file_name')."' ".$width." height='255px'></a>
+								<br>".$obj_foto_med->getAttr('observacion')."</td>";
+				}else{
+					$width = "";
+				}
 				$cont++;
 				if($cont == 2){
 					$codigo.="</tr></table>";
@@ -370,6 +383,84 @@ $codigo.= "<table class='tg salto-linea' width='100%' style='border:0px;font-siz
 		$codigo .= "<br><center><strong>GR&Aacute;FICO</strong></center>";
 		$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos_acta_med_amb/".$obj_acta->getAttr('grafico')."'></center>";
 	}
+
+
+	//Show Tabla de acta de referencia y grafico de referencia 
+	if(($obj_acta->getAttr('acta_referencia')!= 0)){
+
+		$normas_ma2 = $obj_acta_ref->getAttr('json_doc_med_amb');
+		$normas_ca2 = $obj_acta_ref->getAttr('json_cond_amb');
+		
+		//Contador inicializado en cero
+		$total_nc_ma2 = 0;
+		$total_ni_ma2 = 0;
+
+		$total_nc_ca2 = 0;
+		$total_ni_ca2 = 0;
+
+		$normas_cumplidas2 = 0;
+		$normas_incumplidas2 = 0;
+
+		//recorremos
+		$json_ma2 = json_decode($normas_ma2);		
+		foreach($json_ma2 as $value){
+			if($value->inf_des_doc_med != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas2++;
+		    		$total_nc_ma2++;
+		    	}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+		    		$total_ni_ma2++;
+		    	}
+
+			}
+		}
+
+		$json_ca2 = json_decode($normas_ca2);
+		foreach($json_ca2 as $value){
+			if($value->inf_des_cond_amb != ''){
+		    	if($value->alternativa == 1){
+		    		$normas_cumplidas2++;
+		    		$total_nc_ca2++;
+		    	}elseif($value->alternativa == 0){
+					$normas_incumplidas2++;
+		    		$total_ni_ca2++;
+		    	}
+			}	
+		}
+		
+
+		$suma_normas2 = $normas_cumplidas2 + $normas_incumplidas2;
+		if($suma_normas > 0){
+			$formula2 = ($normas_cumplidas2 * 100)/$suma_normas2;
+		}else{
+			$formula2 = 0;
+		}
+
+		$codigo.= "<div class='tg salto-linea'></div>";
+		$codigo.= "<div><strong>INF. DE REFERENCIA N&#176; ".$obj_acta_ref->getAttr('num_informe')."</strong></div><br>";
+		$codigo.= "<table class='tg' width='100%' style='border:0px;font-size:8px;'>";
+		$codigo.= "<tr><th colspan=4 class='tg-e3zv bcsk-blue'><strong>CUADRO RESUMEN DE NIVEL DE CUMPLIMIENTO A NORMAS DE SEGURIDAD</strong></th></tr>";
+		$codigo .= "<tr><td></td>
+					<td>DOC-MED AMB</td>
+					<td>COND-MED AMB</td>
+					<td>TOTAL</td></tr>";
+		$codigo .= "<tr><td><strong>TOTAL CUMPLIMIENTO (NC):</strong> </td><td>".$total_nc_ma2."</td><td>".$total_nc_ca2."</td><td>".$normas_cumplidas2."</td></tr>";
+		$codigo .= "<tr><td><strong>TOTAL INCUMPLIMIENTO (NI):</strong> </td><td>".$total_ni_ma2."</td><td>".$total_ni_ca2."</td><td>".$normas_incumplidas2."</td></tr>";
+
+		$codigo .= "<tr><td><strong>NIVEL DE CUMPLIMIENTO:</strong> </td><td>";
+		if(($total_nc_ma2+$total_ni_ma2)>0){$codigo .= round(($total_nc_ma2*100)/($total_nc_ma2+$total_ni_ma2),2)."%</td><td>";}else{$codigo .= round(($total_nc_ma2*100),2)."%</td><td>";}
+		if(($total_nc_ca2+$total_ni_ca2)>0){$codigo .= round(($total_nc_ca2*100)/($total_nc_ca2+$total_ni_ca2),2)."%</td><td>";}else{$codigo .= round(($total_nc_ca2*100),2)."%</td><td>";}
+		$codigo .= round($formula2,2)."%</td></tr>";
+		$codigo .= "</table>";
+
+		//SHOW GRAPHIC
+		if($obj_acta_ref->getAttr('grafico')!='' && $obj_acta_ref->getAttr('grafico') != null){
+			$codigo .= "<br><center><strong>GR&Acsute;FICO</strong></center>";
+			$codigo .= "<center><img src='".ENV_WEBROOT_FULL_URL."files/graficos_acta_med_amb/".$obj_acta_ref->getAttr('grafico')."'></center>";
+		}
+	}
+	//END Informe de referencia
 
 $codigo .= "<div align='right'><table width='100%'>
 			<tr><td><div style='text-align:right;'>";
