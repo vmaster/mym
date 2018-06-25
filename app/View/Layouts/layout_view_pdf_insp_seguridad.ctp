@@ -215,7 +215,7 @@ foreach($obj_acta->FotoInstalIlumVent as $key => $obj_foto_iv) {
 			list($ancho, $alto, $type, $attr) = getimagesize($file);
 			$width = ($ancho > $alto) ? "width='340px'":"";
 		}else{
-			$width = "";
+			$width = "width='340px'";
 		}
 		$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 				<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_ilum_vent/".$obj_foto_iv->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_ilum_vent/thumbnail/".$obj_foto_iv->getAttr('file_name')."' ".$width." height='255px'></a>
@@ -285,7 +285,7 @@ foreach($obj_acta->FotoInstalOrdenLimpieza as $key => $obj_foto_ol) {
 		list($ancho, $alto, $type, $attr) = getimagesize($file);
 		$width = ($ancho > $alto) ? "width='340px'":"";
 	}else{
-		$width = "";
+		$width = "width='340px'";
 	}
 		$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 					<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_orden_limp/".$obj_foto_ol->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_orden_limp/thumbnail/".$obj_foto_ol->getAttr('file_name')."' ".$width." height='255px'></a>
@@ -353,7 +353,7 @@ foreach($obj_acta->FotoInstalSshh as $key => $obj_foto_sh) {
 		list($ancho, $alto, $type, $attr) = getimagesize($file);
 		$width = ($ancho > $alto) ? "width='340px'":"";
 	}else{
-		$width = "";
+		$width = "width='340px'";
 	}
 		$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 				  <a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_sshh/".$obj_foto_sh->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_sshh/thumbnail/".$obj_foto_sh->getAttr('file_name')."' ".$width." height='255px'></a>
@@ -421,7 +421,7 @@ foreach($obj_acta->FotoInstalSenSeg as $key => $obj_foto_ss) {
 		list($ancho, $alto, $type, $attr) = getimagesize($file);
 		$width = ($ancho > $alto) ? "width='340px'":"";
 	}else{
-		$width = "";
+		$width = "width='340px'";
 	}
 		$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 				  <a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_sen_seg/".$obj_foto_ss->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_sen_seg/thumbnail/".$obj_foto_ss->getAttr('file_name')."' ".$width." height='255px'></a>
@@ -488,7 +488,7 @@ foreach($obj_acta->FotoInstalEqEmerg as $key => $obj_foto_ee) {
 		list($ancho, $alto, $type, $attr) = getimagesize($file);
 		$width = ($ancho > $alto) ? "width='340px'":"";
 	}else{
-		$width = "";
+		$width = "width='340px'";
 	}
 		$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 					<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_eq_emerg/".$obj_foto_ee->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_eq_emerg/thumbnail/".$obj_foto_ee->getAttr('file_name')."' ".$width." height='255px'></a>
@@ -556,7 +556,7 @@ foreach($obj_acta->FotoInstalCondSeg as $key => $obj_foto_cs) {
 		list($ancho, $alto, $type, $attr) = getimagesize($file);
 		$width = ($ancho > $alto) ? "width='340px'":"";
 	}else{
-		$width = "";
+		$width = "width='340px'";
 	}
 		$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 					<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_cond_seg/".$obj_foto_cs->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_cond_seg/thumbnail/".$obj_foto_cs->getAttr('file_name')."' ".$width." height='255px'></a>
@@ -612,7 +612,7 @@ $codigo.="
 					list($ancho, $alto, $type, $attr) = getimagesize($file);
 					$width = ($ancho > $alto) ? "width='340px'":"";
 				}else{
-					$width = "";
+					$width = "width='340px'";
 				}
 					$codigo.= "<td class='tg-031e' style='vertical-align:middle; text-align:center; border-style: none; width:50%'>
 								<a target='_blank' href='".ENV_WEBROOT_FULL_URL."files/fotos_instal_med/".$obj_foto_med->getAttr('file_name')."' ><img src='".ENV_WEBROOT_FULL_URL."files/fotos_instal_med/thumbnail/".$obj_foto_med->getAttr('file_name')."' ".$width." height='255px'></a>
