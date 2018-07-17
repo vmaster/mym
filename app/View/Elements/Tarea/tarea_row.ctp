@@ -17,7 +17,7 @@
 		?>
 		<tr class="tarea_row_container" tarea_id="<?php echo $tarea->getAttr('id'); ?>" estado="<?php echo $tarea->getAttr('estado'); ?>" dia_libre="<?php echo $tarea->getAttr('dia_libre'); ?>" style="background-color:<?php echo ($tarea->getAttr('dia_libre') == 1)?'#FCD5AA': ''; ?>";>
 			<?php 
-				$f_creacion = date("d-m-Y", strtotime($tarea->getAttr('created')));	
+				$f_creacion = date("Y-m-d", strtotime($tarea->getAttr('created')));	
 
 
 				$f_inicio = strtotime(date("Y-m-d", strtotime($tarea->getAttr('created'))));
