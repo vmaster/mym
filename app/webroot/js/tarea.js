@@ -46,12 +46,15 @@ $(document).ready(function(){
 				if(data.success==true){
 					$('#add_edit_tarea').hide();
 					$('.btn-nuevo-tarea').hide();
+					$('.btn_crear_tarea_trigger').attr("disabled", true);
 					$('#conteiner_all_rows').load(env_webroot_script + escape('tareas/find_tareas/1/'+null+'/'+null+'/'+null),function(){
 						$('#table_content_tareas').DataTable();
 					});
 					$('.tooltip-mym').tooltip();
 					alertify.success(data.msg);
-					window.open(env_webroot_script + 'tareas/','_self');
+					setTimeout(function(){
+						window.open(env_webroot_script + 'tareas/','_self');
+					}, 1000);
 				}else{
 					$.each(data.validation, function( key, value ) {
 						alertify.error(value[0]);
@@ -108,6 +111,7 @@ $(document).ready(function(){
 	
 	$body.off('click','.btn_crear_tarea_trigger');
 	$body.on('click','.btn_crear_tarea_trigger',function(){
+		myProccess.showPleaseWait();
 		tarea.saveTareaMantenimiento();
 	});
 	
