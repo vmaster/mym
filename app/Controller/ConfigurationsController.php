@@ -244,4 +244,67 @@ class ConfigurationsController extends AppController{
 		exit();
 	}
 
+	public function backup_img($page=null,$order_by=null,$order_by_or=null,$search_nro=null,$search_actividad=null,$search_empresa=null,$search_obra=null) {
+		$this->layout = "default";
+		$this->loadModel('Acta');
+		$this->loadModel('Consorcio');
+
+		$list_consorcios = $this->Consorcio->listConsorcios();
+
+		$page = 0;
+		//$page -= 1;
+		$per_page = 10000;
+		$start = $page * $per_page;
+		
+		if($order_by_or!=NULL && isset($order_by_or) && $order_by_or!='null'){
+			$order_by_or = $order_by_or;
+		}else{
+			$order_by_or = 'DESC';
+		}
+		
+
+		$order_by = 'Acta.created';
+		
+		if($this->request->is('get')){
+			if($search_nro!=''){
+				$search_nro = $search_nro;
+			}else{
+				$search_nro = '';
+			}
+			if($search_actividad!=''){
+				$search_actividad = $search_actividad;
+			}else{
+				$search_actividad = '';
+			}
+			if($search_empresa!=''){
+				$search_empresa = $search_empresa;
+			}else{
+				$search_empresa = '';
+			}
+			if($search_obra!=''){
+				$search_obra = $search_obra;
+			}else{
+				$search_obra = '';
+			}
+			  
+
+		}else{
+			$search_nro = '';
+			$search_actividad = '';
+			$search_empresa = '';
+			$search_obra = '';
+		}
+		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
+		//$list_acta_all = $this->Acta->listAllActas($order_by,$search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra),$order_by_or, $tipo_user_id);
+		//$list_acta = $this->Acta->listFindActas($order_by, $search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra), date('Y'),$order_by_or, $start, $per_page, $tipo_user_id);
+		$search_ano = date ("Y");
+		$search_consorcio = 1;
+		$list_acta = $this->Acta->listSearchActas($search_ano, $search_consorcio, $tipo_user_id);
+		//$count = count($list_acta_all);
+		//$no_of_paginations = ceil($count / $per_page);
+		//$page = $page + 1;
+		
+		$this->set(compact('list_acta','page','no_of_paginations', 'list_consorcios'));
+	}
+
 }
