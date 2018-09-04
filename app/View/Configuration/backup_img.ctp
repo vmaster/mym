@@ -180,8 +180,24 @@ $body.on('keyup','#txtObra',function(e){
 		$('#conteiner_all_rows').load(env_webroot_script + escape('actas/find_actas/'+page+'/'+order_by_select+'/'+order_by_or+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
 			});
 	}
-});
 
+	/* Date Picker */
+		$('#txtBuscarFecIncioBkp').datepicker(
+				{
+					changeYear: true, 
+					dateFormat: 'dd-mm-yy',
+					minDate: new Date(1924, 1 - 1, 1),
+					maxDate: new Date()
+		});
+
+		$('#txtBuscarFecFinBkp').datepicker(
+				{
+					changeYear: true, 
+					dateFormat: 'dd-mm-yy',
+					minDate: new Date(1924, 1 - 1, 1),
+					maxDate: new Date()
+		});
+});
 
 	
 tinymce.init({
@@ -214,7 +230,7 @@ div#spinner-send-report
 </style>
 <div class="row">
 	<div class="col-md-12">
-		<h2>Listado de Informes</h2>
+		<h2>Generar Backup de Imagenes por Actas </h2>
 	</div>
 </div>
 <hr />
@@ -231,16 +247,21 @@ div#spinner-send-report
 	</div>
 	<p>
 	<div class="row">
+		<?php 
+			$fin= date('t');
+			$mes= date('m')."-".date('Y');
+		?>
 		<div class="col-md-3 col-sm-6 col-xs-6">
-			<label><?php echo __('Periodo:');?></label>
-			<select class="select2 form-control" id="cbo-ano-search">
-				<?php 
-				for ($ano = 2015; $ano <= date('Y');$ano++){
-					echo "<option value = ".$ano." ".((date('Y') == $ano)?'selected':'').">".$ano."</option>";
-				}
-				?>						
-			</select>
+				<label><?php echo __('Fecha Inicio');?></label> <input type="text"
+				name="txtBuscarFecIncioBkp" id="txtBuscarFecIncioBkp"
+				class="form-control" value="<?php echo '01-'.$mes; ?>" placeholder="dd-mm-aaaa">
 		</div>
+		<div class="col-md-3 col-sm-6 col-xs-6">
+				<label><?php echo __('Fecha Fin');?></label> <input type="text"
+				name="txtBuscarFecFinBkp" id="txtBuscarFecFinBkp"
+				class="form-control" value="<?php echo date('d-m-Y'); ?>" placeholder="dd-mm-aaaa">
+		</div>
+
 		<?php if($this->Session->read('Auth.User.tipo_user_id')==1) { ?>
 			<div class="col-md-3 col-sm-6 col-xs-6">
 				<label><?php echo __('Consorcio'); ?> </label>
@@ -259,6 +280,7 @@ div#spinner-send-report
 				        ?>
 					</select>
 			</div>
+
 		<?php  }elseif(($this->Session->read('Auth.User.tipo_user_id')==2) && ($this->Session->read('Auth.User.consorcio_id')==1)) { ?>
 			<div class="col-md-3 col-sm-6 col-xs-6" style="display: none">
 				<label><?php echo __('Consorcio'); ?> </label>
