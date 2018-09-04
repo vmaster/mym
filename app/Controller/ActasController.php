@@ -1,10 +1,12 @@
 <?php
 class ActasController extends AppController{
 	public $name = 'Acta';
-	public $components = array('RequestHandler');
+	public $components = array('RequestHandler','Zip');
+	//public $components = array( 'Zip' );
+
 	
 	public function beforeFilter(){
-		$this->Auth->allow(array('view_informe','save_pdf'));
+		$this->Auth->allow(array('view_informe','save_pdf','downloadActa','test'));
 		parent::beforeFilter();
 		//$this->layout = 'default';
 	}
@@ -2511,5 +2513,97 @@ class ActasController extends AppController{
 			$this->set(compact('sum_ni_epp', 'sum_ni_sd', 'sum_ni_um', 'sum_ni_doc', 'sum_ni_cp', 'sum_ni_ac'));
 			$this->set(compact('sum_normas_cumplidas', 'sum_normas_incumplidas', 'suma_total_normas','porc_nc','porc_ni'));
 	}
+
+	public function test(){
+		ini_set('memory_limit', '512M');
+		ini_set('max_execution_time', 1000);
+        // Load on the fly component Zip in Action
+        //if(isset($this->Zip)==false){ $this->Zip = $this->Components->load('Zip'); }
+        // Init Ejemplo de Uso:
+        $path = WWW_ROOT . 'files' . DS;
+        //$path2 = WWW_ROOT . 'img' . DS;
+        $files = array(
+            array( 'path' => $path, 'file' => DS . 'fotos_ipp' . DS . '15359018020.jpg' ),
+            //array( 'path' => $path, 'file' => 'index_e-om_desing_group.png' ),
+        );
+        $nowNameFile = 'Zip-Generator-' . date('YmdHis') . '.zip';
+        // Dir Temp out Zip Generator in Server
+        $pathTmp = TMP;
+//        $pathTmp = TMP . 'zips' . DS;
+        // Download ..?
+        $download = true;
+        // Create zip and force download
+        $out = $this->Zip->crearZip($files, $nowNameFile, $pathTmp, $download);
+        if ( $out == false ) {
+            exit('Error created zip');
+        } else {
+            // Return String NameFile or File Download = true
+            return $out;
+        }
+    
+
+	}
+
+	public function downloadActa($acta_id=null){
+
+		ini_set('memory_limit', '512M');
+		ini_set('max_execution_time', 1000);
+		
+		//$this->autoRender = false;
+		$this->layout = 'ajax';
+		$this->loadModel('Acta');
+		
+		$obj_acta = $this->Acta->findById($acta_id);
+
+		$zip = new ZipArchive();
+		if ($zip->open("test_new.zip", ZipArchive::CREATE) !== TRUE) {
+			exit("cannot open <test_new.zip>\n");
+		}
+
+
+		foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
+			debug(APP.WEBROOT_DIR.DS."files/fotos_ipp/".$obj_foto_ipp->getAttr('file_name'));
+			$zip->addFile("../webroot/files/fotos_ipp/15359018020.jpg");
+		}
+		foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
+			//debug($obj_foto_sd->getAttr('file_name'));
+		}
+		foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
+			//debug($obj_foto_um->getAttr('file_name'));
+		}
+		foreach($obj_acta->FotoDoc as $key => $obj_foto_doc) {
+			//debug($obj_foto_doc->getAttr('file_name'));
+		}
+		foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
+			//debug($obj_foto_as->getAttr('file_name'));
+		}
+		foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
+			//debug($obj_foto_cs->getAttr('file_name'));
+		}
+		foreach($obj_acta->FotoMed as $key => $obj_foto_med) {
+			//debug($obj_foto_med->getAttr('file_name'));
+		}
+		if(count($obj_acta->FotoSupervisionActa)>0){
+			//debug($obj_foto_sup->getAttr('file_name'));
+		}
+		
+		$zip->close();
+		// Creamos las cabezeras que forzaran la descarga del archivo como archivo zip.
+		/*header("Content-type: application/zip");
+		header("Content-disposition: attachment; filename=test_new.zip");
+		header("Pragma: no-cache");
+	    header("Expires: 0");
+		readfile('test_new.zip');
+		unlink('test_new.zip');//Destruye el archivo temporal
+		*/
+		header("Content-type: application/zip");
+	    header("Content-Disposition: attachment; filename = test_new.zip");
+	    header("Pragma: no-cache");
+	    header("Expires: 0");
+	    readfile("test_new.zip");
+	    exit;
+	
+		//debug($obj_acta);
+	}	
 		
 }
