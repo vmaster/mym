@@ -640,6 +640,43 @@ App::uses('AppModel','Model');
         }
     	return $arr_obj_acta;
     }
+
+    /**
+    FUNCIÓN PARA BUSCAR ACTAS PARA EL BACKUP DE SUS IMAGENES
+    **/
+
+    public function listSearchActasBkpImg($search_consorcio='', $fec_inicio, $fec_fin) {
+
+            if($search_consorcio == 1){ // CASO SEA DEL CONSORCIO ENSA
+                $arr_obj_acta = $this->findObjects('all',
+                    array(
+                        'conditions'=>array(
+                                        'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                                        'Acta.estado '=> 1,
+                                        'Acta.created_mym' => 0,
+                                        'Acta.consorcio_id' => 1
+                        ),
+                        'order'=> array('Acta.created desc'),
+                    )
+                );
+            }else{ // CASO SEA DEL CONSORCIO ENOSA
+                $arr_obj_acta = $this->findObjects('all',
+                    array(
+                        'conditions'=>array(
+                                        'Acta.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                                        'Acta.estado '=> 1,
+                                        'Acta.created_mym' => 0,
+                                        'Acta.consorcio_id' => 2
+                        ),
+                        'order'=> array('Acta.created desc'),
+                    )
+                );
+            }
+        
+            
+        return $arr_obj_acta;
+        
+    }
     
     public function listAllPersonal() {
     	return $this->findObjects('all',array(
