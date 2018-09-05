@@ -645,9 +645,9 @@ App::uses('AppModel','Model');
     FUNCIÓN PARA BUSCAR ACTAS PARA EL BACKUP DE SUS IMAGENES
     **/
 
-    public function listSearchActasBkpImg($search_consorcio='', $fec_inicio, $fec_fin) {
+    public function listSearchActasBkpImg($fec_inicio, $fec_fin) {
 
-            if($search_consorcio == 1){ // CASO SEA DEL CONSORCIO ENSA
+            //if($search_consorcio == 1){ // CASO SEA DEL CONSORCIO ENSA
                 $arr_obj_acta = $this->findObjects('all',
                     array(
                         'conditions'=>array(
@@ -659,7 +659,7 @@ App::uses('AppModel','Model');
                         'order'=> array('Acta.created desc'),
                     )
                 );
-            }else{ // CASO SEA DEL CONSORCIO ENOSA
+            /*}else{ // CASO SEA DEL CONSORCIO ENOSA
                 $arr_obj_acta = $this->findObjects('all',
                     array(
                         'conditions'=>array(
@@ -671,7 +671,7 @@ App::uses('AppModel','Model');
                         'order'=> array('Acta.created desc'),
                     )
                 );
-            }
+            }*/
         
             
         return $arr_obj_acta;

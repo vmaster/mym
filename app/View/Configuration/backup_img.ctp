@@ -30,7 +30,7 @@ $('#conteiner_all_rows').html('Cargando...');
 fec_incio = $('#txtBuscarFecIncioBkp').val();
 fec_fin = $('#txtBuscarFecFinBkp').val();
 
-$('#conteiner_all_rows').load(env_webroot_script+ escape('configurations/search_actas_bkp_img/'+$( "#cbo-tipo-acta" ).val()+'/'+ $('#cbo-entidad-search').val()+'/'+fec_incio + '/' + fec_fin),function(){
+$('#conteiner_all_rows').load(env_webroot_script+ escape('configurations/search_actas_bkp_img/'+$( "#cbo-tipo-acta" ).val()+'/'+fec_incio + '/' + fec_fin),function(){
 	$('#table_content_actas').DataTable({
 		dom: 'T<"clear">lfrtip',
 		tableTools: {
@@ -70,7 +70,7 @@ $('#conteiner_all_rows').load(env_webroot_script+ escape('configurations/search_
 	
 
 
-		$( "#cbo-tipo-acta" )
+		/*$( "#cbo-tipo-acta" )
 		  .change(function() {
 		    var str = "";
 		    $( "#cbo-tipo-acta option:selected" ).each(function() {
@@ -85,7 +85,7 @@ $('#conteiner_all_rows').load(env_webroot_script+ escape('configurations/search_
 		    });
 		    //$( "div" ).text( str );
 		  })
-		  .trigger( "change" );
+		  .trigger( "change" );*/
 
 
 });
@@ -147,7 +147,7 @@ div#spinner-send-report
 			</select>
 		</div>
 
-		<?php if($this->Session->read('Auth.User.tipo_user_id')==1) { ?>
+		<?php /* if($this->Session->read('Auth.User.tipo_user_id')==1) { ?>
 			<div class="col-md-3 col-sm-6 col-xs-6 div-consorcio">
 				<label><?php echo __('Consorcio'); ?> </label>
 					<select class="select2 form-control" id="cbo-entidad-search">
@@ -164,9 +164,9 @@ div#spinner-send-report
 					        }
 				        ?>
 					</select>
-			</div>
-
-
+			</div>*/
+		?>
+		
 		<?php 
 			$fin= date('t');
 			$mes= date('m')."-".date('Y');
@@ -182,7 +182,7 @@ div#spinner-send-report
 				class="form-control" value="<?php echo date('d-m-Y'); ?>" placeholder="dd-mm-aaaa">
 		</div>
 
-		<?php  }elseif(($this->Session->read('Auth.User.tipo_user_id')==2) && ($this->Session->read('Auth.User.consorcio_id')==1)) { ?>
+		<?php /* }elseif(($this->Session->read('Auth.User.tipo_user_id')==2) && ($this->Session->read('Auth.User.consorcio_id')==1)) { ?>
 			<div class="col-md-3 col-sm-6 col-xs-6" style="display: none">
 				<label><?php echo __('Consorcio'); ?> </label>
 					<select class="select2 form-control" id="cbo-entidad-search">
@@ -220,7 +220,7 @@ div#spinner-send-report
 				        ?>
 					</select>
 			</div>
-		<?php } ?>
+		<?php } */?>
 		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-acta"><?php echo __('Consultar');?></button>
 		</div>

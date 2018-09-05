@@ -401,6 +401,30 @@ App::uses('AppModel','Model');
         }
     	return $arr_obj_acta_instal;
     }
+
+    /**
+    FUNCIÓN PARA BUSCAR ACTAS PARA EL BACKUP DE SUS IMAGENES
+    **/
+
+    public function listSearchActasBkpImg($fec_inicio, $fec_fin) {
+
+                $arr_obj_acta = $this->findObjects('all',
+                    array(
+                        'conditions'=>array(
+                                        'ActaInstalacione.fecha BETWEEN ? and ?'=>array($fec_inicio, $fec_fin),
+                                        'ActaInstalacione.estado '=> 1,
+                                        'ActaInstalacione.created_mym' => 0
+                                        //'Acta.consorcio_id' => 1
+                        ),
+                        'order'=> array('ActaInstalacione.created desc'),
+                    )
+                );
+            
+        
+            
+        return $arr_obj_acta;
+        
+    }
     
     public function listAllPersonal() {
     	return $this->findObjects('all',array(

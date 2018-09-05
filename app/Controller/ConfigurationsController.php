@@ -244,17 +244,24 @@ class ConfigurationsController extends AppController{
 		exit();
 	}
 
-	public function search_actas_bkp_img($search_tipo_acta=null, $search_consorcio=null, $fec_inicio, $fec_fin) {
+	public function search_actas_bkp_img($search_tipo_acta=null, $fec_inicio, $fec_fin) {
 		$this->layout = 'ajax';
 		$this->loadModel('Acta');
+		$this->loadModel('ActaInstalacione');
+		$this->loadModel('ActaMedioAmbiente');
 
-		//$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
 
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
 
-		/*debug("año: ".$search_ano);
-		debug("consorcio: ".$search_consorcio);
-		debug("tipo de usuario: ".$tipo_user_id); exit();*/
-		$list_acta = $this->Acta->listSearchActasBkpImg($search_consorcio, $fec_inicio, $fec_fin);
+		if($search_tipo_acta==0){
+			$list_acta = $this->Acta->listSearchActasBkpImg($fec_inicio_format, $fec_fin_format);
+		}elseif ($search_tipo_acta == 1) {
+			$list_acta = $this->ActaInstalacione->listSearchActasBkpImg($fec_inicio_format, $fec_fin_format);
+		}else{
+			$list_acta = $this->ActaMedioAmbiente->listSearchActasBkpImg($fec_inicio_format, $fec_fin_format);
+		}
+		
 
 		$this->set(compact('list_acta'));
 	}
@@ -289,6 +296,25 @@ class ConfigurationsController extends AppController{
 
 		
 		$this->set(compact('list_acta','page','no_of_paginations', 'list_consorcios'));
+	}
+
+	function formatFecha($fecha){
+		if(isset($fecha)){
+			$fec_nac = $fecha;//12-12-1990
+	
+			if($fecha == '' || $fecha == NULL){
+				$fecha = '';
+			}else{
+				$dd = substr($fecha, 0, 2);
+				$mm = substr($fecha, 3, 2);
+				$yy = substr($fecha, 6, 4);
+				$time= substr($fecha, 11, 8);
+				$fecha = $yy.'-'.$mm.'-'.$dd;//1990-12-12
+			}
+			$this->request->data['Acta']['fecha'] = $fecha.' '.$time;
+		}
+	
+		return $this->request->data['Acta']['fecha'];
 	}
 
 }

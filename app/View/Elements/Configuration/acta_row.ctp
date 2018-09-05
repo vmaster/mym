@@ -39,7 +39,7 @@
 			<td><?php echo date('Y-m-d',strtotime($acta->getAttr('fecha'))); ?></td>
 			<td>
 			<center>
-					<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/descargar_img/<?php echo $acta->getAttr('id')?>"><i class="fa fa-download fa-lg"></i> </a>
+					<a href="<?= ENV_WEBROOT_FULL_URL; ?>actas/downloadActa/<?php echo $acta->getAttr('id')?>"><i class="fa fa-download fa-lg"></i> </a>
 			</center>
 			</td>
 		</tr>
