@@ -56,9 +56,9 @@ class ZipComponent extends Component {
      * startup
      * @param type $controller
      */
-    public function startup(&$controller) {
+    /*public function startup(&$controller) {
         
-    }
+    }*/
 
     /**
      * begin
@@ -68,8 +68,8 @@ class ZipComponent extends Component {
      * $overwrite :    
      * usage :    
      */
-    public function begin($path = '', $overwrite = true) {
-        $overwrite = ($overwrite) ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE;
+    public function begin($path = '') {
+        $overwrite = ZIPARCHIVE::OVERWRITE | ZIPARCHIVE::CREATE;
         return $this->zip->open($path, $overwrite);
     }
 
