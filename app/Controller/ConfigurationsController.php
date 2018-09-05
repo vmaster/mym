@@ -254,12 +254,12 @@ class ConfigurationsController extends AppController{
 		/*debug("año: ".$search_ano);
 		debug("consorcio: ".$search_consorcio);
 		debug("tipo de usuario: ".$tipo_user_id); exit();*/
-		$list_acta = $this->Acta->listSearchActas($search_ano, $search_consorcio, $tipo_user_id);
+		$list_acta = $this->Acta->listSearchActasBkpImg($search_consorcio, $fec_inicio, $fec_fin);
 
 		$this->set(compact('list_acta'));
 	}
 
-	public function backup_img($page=null,$order_by=null,$order_by_or=null,$search_nro=null,$search_actividad=null,$search_empresa=null,$search_obra=null) {
+	public function backup_img($page=null,$order_by=null,$order_by_or=null) {
 		$this->layout = "default";
 		$this->loadModel('Acta');
 		$this->loadModel('Consorcio');
@@ -280,35 +280,7 @@ class ConfigurationsController extends AppController{
 
 		$order_by = 'Acta.created';
 		
-		if($this->request->is('get')){
-			if($search_nro!=''){
-				$search_nro = $search_nro;
-			}else{
-				$search_nro = '';
-			}
-			if($search_actividad!=''){
-				$search_actividad = $search_actividad;
-			}else{
-				$search_actividad = '';
-			}
-			if($search_empresa!=''){
-				$search_empresa = $search_empresa;
-			}else{
-				$search_empresa = '';
-			}
-			if($search_obra!=''){
-				$search_obra = $search_obra;
-			}else{
-				$search_obra = '';
-			}
-			  
-
-		}else{
-			$search_nro = '';
-			$search_actividad = '';
-			$search_empresa = '';
-			$search_obra = '';
-		}
+	
 		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
 	
 		$search_ano = date ("Y");

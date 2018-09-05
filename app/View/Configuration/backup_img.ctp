@@ -30,7 +30,7 @@ $('#conteiner_all_rows').html('Cargando...');
 fec_incio = $('#txtBuscarFecIncioBkp').val();
 fec_fin = $('#txtBuscarFecFinBkp').val();
 
-$('#conteiner_all_rows').load(env_webroot_script+ escape('actas/search_actas_bkp_img/'+$( "#cbo-tipo-acta" ).val()+'/'+ $('#cbo-entidad-search').val()+'/'+fec_incio + '/' + fec_fin),function(){
+$('#conteiner_all_rows').load(env_webroot_script+ escape('configurations/search_actas_bkp_img/'+$( "#cbo-tipo-acta" ).val()+'/'+ $('#cbo-entidad-search').val()+'/'+fec_incio + '/' + fec_fin),function(){
 	$('#table_content_actas').DataTable({
 		dom: 'T<"clear">lfrtip',
 		tableTools: {
@@ -229,11 +229,11 @@ div#spinner-send-report
 	<div class="well"> 
 	      <div id = "conteiner_all_rows">
 	      <?php 
-			if(empty($list_acta)){ 
+			/*if(empty($list_acta)){ 
 				echo __('No hay datos de Actas');
 			}else{ 
 				echo $this->element('Configuration/acta_row');
-			}
+			}*/
 	 	  ?>
 	      </div>
 	</div>
