@@ -51,7 +51,7 @@
 					<?php if($this->Session->read('Auth.User.tipo_user_id') == 1){ ?>
 					 | <input name="chRevisado<?php echo $cont++; ?>" type="checkbox" value="<?php echo ($acta->getAttr('revisado')==1)?1 : 0; ?>" id="chRevisado" <?php echo ($acta->getAttr('revisado')==1)?'checked':''; ?>> | 
 					<a href="#myModalSendReport" role="button" data-toggle="modal" class="<?php if(($this->Session->read('Auth.User.tipo_user_id') == 2) && ($this->Session->read('Auth.User.id') != $acta->getAttr('reponsable_sup_id'))) { ?>not-active<?php }?>"><i data-toggle="tooltip" data-placement="top" title="<?php echo ($acta->getAttr('fecha_envio')!='' && $acta->getAttr('fecha_envio')!=null)?'Se envio':'No se envio'?>" class="fa fa-envelope open-model-send-informe fa-lg" style="<?php echo ($acta->getAttr('fecha_envio')!='' && $acta->getAttr('fecha_envio')!=null)?'color:burlywood':''?>"></i> </a>
-					<?php }?>
+					<?php }?>		
 			</center>
 			</td>
 		</tr>

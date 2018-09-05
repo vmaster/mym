@@ -25,8 +25,12 @@ var order_by_or;
 /* Cambiar de año*/
 $body.off('click','div#acta .btn-consultar-acta');
 $body.on('click', 'div#acta .btn-consultar-acta' , function(){
+
 $('#conteiner_all_rows').html('Cargando...');
-$('#conteiner_all_rows').load(env_webroot_script+ escape('actas/search_actas/'+$('#cbo-ano-search').val()+'/'+ $('#cbo-entidad-search').val()),function(){
+fec_incio = $('#txtBuscarFecIncioBkp').val();
+fec_fin = $('#txtBuscarFecFinBkp').val();
+
+$('#conteiner_all_rows').load(env_webroot_script+ escape('actas/search_actas_bkp_img/'+$( "#cbo-tipo-acta" ).val()+'/'+ $('#cbo-entidad-search').val()+'/'+fec_incio + '/' + fec_fin),function(){
 	$('#table_content_actas').DataTable({
 		dom: 'T<"clear">lfrtip',
 		tableTools: {
@@ -46,141 +50,6 @@ $('#conteiner_all_rows').load(env_webroot_script+ escape('actas/search_actas/'+$
 });
 });
 	
-$body.on('keyup','#txtNro',function(e){
-	e.stopPropagation();
-	//$('#check_all').prop('checked', false);
-	search_nro = $(this).val();
-	search_actividad = $('#txtActividad').val();
-	search_empresa = $('#txtEmpresa').val();
-	search_obra = $('#txtObra').val();
-
-	if(search_nro==''){
-		search_nro = null;
-	}
-	if(search_actividad==''){
-		search_actividad = null;
-	}
-	if(search_empresa==''){
-		search_empresa = null;
-	}
-	if(search_obra==''){
-		search_obra = null;
-	}
-
-	$('#conteiner_all_rows').load(env_webroot_script + escape('actas/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
-	});
-});
-
-$body.on('keyup','#txtActividad',function(e){
-	e.stopPropagation();
-	//$('#check_all').prop('checked', false);
-	search_actividad = $(this).val();
-	search_nro = $('#txtNro').val();
-	search_empresa = $('#txtEmpresa').val();
-	search_obra = $('#txtObra').val();
-
-	if(search_nro==''){
-		search_nro = null;
-	}
-	if(search_actividad==''){
-		search_actividad = null;
-	}
-	if(search_empresa==''){
-		search_empresa = null;
-	}
-	if(search_obra==''){
-		search_obra = null;
-	}
-	
-	$('#conteiner_all_rows').load(env_webroot_script + escape('actas/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
-	});
-});
-
-$body.on('keyup','#txtEmpresa',function(e){
-	e.stopPropagation();
-	//$('#check_all').prop('checked', false);
-	search_empresa = $(this).val();
-	search_nro = $('#txtNro').val();
-	search_actividad = $('#txtActividad').val();
-	search_obra = $('#txtObra').val();
-
-	if(search_nro==''){
-		search_nro = null;
-	}
-	if(search_actividad==''){
-		search_actividad = null;
-	}
-	if(search_empresa==''){
-		search_empresa = null;
-	}
-	if(search_obra==''){
-		search_obra = null;
-	}
-	
-	$('#conteiner_all_rows').load(env_webroot_script + escape('actas/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
-	});
-});
-
-$body.on('keyup','#txtObra',function(e){
-	e.stopPropagation();
-	//$('#check_all').prop('checked', false);
-	search_obra= $(this).val();
-	search_nro = $('#txtNro').val();
-	search_actividad = $('#txtActividad').val();
-	search_empresa = $('#txtEmpresa').val();
-
-	if(search_nro==''){
-		search_nro = null;
-	}
-	if(search_actividad==''){
-		search_actividad = null;
-	}
-	if(search_empresa==''){
-		search_empresa = null;
-	}
-	if(search_obra==''){
-		search_obra = null;
-	}
-	
-	$('#conteiner_all_rows').load(env_webroot_script + escape('actas/find_actas/1/'+null+'/'+null+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
-	});
-});
-
-	function loadData(page){
-	    //loading_show();  
-	    search_nro = $('#txtNro').val();
-		search_actividad = $('#txtActividad').val();
-		search_empresa = $('#txtEmpresa').val();
-		search_obra = $('#txtObra').val();
-		
-		if (typeof(order_by_select) === "undefined"){
-			order_by_select = null;
-		}else{
-			order_by_select = order_by_select;
-		}
-		if (typeof(order_by_or) === "undefined"){
-			order_by_or = null;
-		}else{
-			order_by_or = order_by_or;
-		}
-	
-		if(search_nro==''){
-			search_nro = null;
-		}
-		if(search_actividad==''){
-			search_actividad = null;
-		}
-		if(search_empresa==''){
-			search_empresa = null;
-		}
-		if(search_obra==''){
-			search_obra = null;
-		}
-	
-		$('#conteiner_all_rows').load(env_webroot_script + escape('actas/find_actas/'+page+'/'+order_by_select+'/'+order_by_or+'/'+search_nro+'/'+search_actividad+'/'+search_empresa+'/'+search_obra),function(){
-			});
-	}
-
 	/* Date Picker */
 		$('#txtBuscarFecIncioBkp').datepicker(
 				{
@@ -197,6 +66,28 @@ $body.on('keyup','#txtObra',function(e){
 					minDate: new Date(1924, 1 - 1, 1),
 					maxDate: new Date()
 		});
+
+	
+
+
+		$( "#cbo-tipo-acta" )
+		  .change(function() {
+		    var str = "";
+		    $( "#cbo-tipo-acta option:selected" ).each(function() {
+		      str = $( this ).val();
+		      if(str==0){
+		      	$('.div-consorcio').show();
+		      }
+
+		      if(str==1 || str==2){
+		      	$('.div-consorcio').hide();
+		      }
+		    });
+		    //$( "div" ).text( str );
+		  })
+		  .trigger( "change" );
+
+
 });
 
 	
@@ -247,23 +138,17 @@ div#spinner-send-report
 	</div>
 	<p>
 	<div class="row">
-		<?php 
-			$fin= date('t');
-			$mes= date('m')."-".date('Y');
-		?>
 		<div class="col-md-3 col-sm-6 col-xs-6">
-				<label><?php echo __('Fecha Inicio');?></label> <input type="text"
-				name="txtBuscarFecIncioBkp" id="txtBuscarFecIncioBkp"
-				class="form-control" value="<?php echo '01-'.$mes; ?>" placeholder="dd-mm-aaaa">
-		</div>
-		<div class="col-md-3 col-sm-6 col-xs-6">
-				<label><?php echo __('Fecha Fin');?></label> <input type="text"
-				name="txtBuscarFecFinBkp" id="txtBuscarFecFinBkp"
-				class="form-control" value="<?php echo date('d-m-Y'); ?>" placeholder="dd-mm-aaaa">
+			<label><?php echo __('Elija tipo de Acta'); ?> </label>
+			<select class="select2 form-control" id="cbo-tipo-acta">
+				<option value = 0> Acta de inspección de seguridad </option>
+				<option value = 1> Acta de instalaciones </option>
+				<option value = 2> Acta de Medio Ambiente </option>
+			</select>
 		</div>
 
 		<?php if($this->Session->read('Auth.User.tipo_user_id')==1) { ?>
-			<div class="col-md-3 col-sm-6 col-xs-6">
+			<div class="col-md-3 col-sm-6 col-xs-6 div-consorcio">
 				<label><?php echo __('Consorcio'); ?> </label>
 					<select class="select2 form-control" id="cbo-entidad-search">
 				        <?php 
@@ -280,6 +165,22 @@ div#spinner-send-report
 				        ?>
 					</select>
 			</div>
+
+
+		<?php 
+			$fin= date('t');
+			$mes= date('m')."-".date('Y');
+		?>
+		<div class="col-md-3 col-sm-6 col-xs-6">
+				<label><?php echo __('Fecha Inicio');?></label> <input type="text"
+				name="txtBuscarFecIncioBkp" id="txtBuscarFecIncioBkp"
+				class="form-control" value="<?php echo '01-'.$mes; ?>" placeholder="dd-mm-aaaa">
+		</div>
+		<div class="col-md-3 col-sm-6 col-xs-6">
+				<label><?php echo __('Fecha Fin');?></label> <input type="text"
+				name="txtBuscarFecFinBkp" id="txtBuscarFecFinBkp"
+				class="form-control" value="<?php echo date('d-m-Y'); ?>" placeholder="dd-mm-aaaa">
+		</div>
 
 		<?php  }elseif(($this->Session->read('Auth.User.tipo_user_id')==2) && ($this->Session->read('Auth.User.consorcio_id')==1)) { ?>
 			<div class="col-md-3 col-sm-6 col-xs-6" style="display: none">
@@ -331,7 +232,7 @@ div#spinner-send-report
 			if(empty($list_acta)){ 
 				echo __('No hay datos de Actas');
 			}else{ 
-				echo $this->element('Acta/acta_row');
+				echo $this->element('Configuration/acta_row');
 			}
 	 	  ?>
 	      </div>

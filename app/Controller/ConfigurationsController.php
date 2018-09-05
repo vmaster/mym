@@ -244,6 +244,21 @@ class ConfigurationsController extends AppController{
 		exit();
 	}
 
+	public function search_actas_bkp_img($search_tipo_acta=null, $search_consorcio=null, $fec_inicio, $fec_fin) {
+		$this->layout = 'ajax';
+		$this->loadModel('Acta');
+
+		//$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
+
+
+		/*debug("año: ".$search_ano);
+		debug("consorcio: ".$search_consorcio);
+		debug("tipo de usuario: ".$tipo_user_id); exit();*/
+		$list_acta = $this->Acta->listSearchActas($search_ano, $search_consorcio, $tipo_user_id);
+
+		$this->set(compact('list_acta'));
+	}
+
 	public function backup_img($page=null,$order_by=null,$order_by_or=null,$search_nro=null,$search_actividad=null,$search_empresa=null,$search_obra=null) {
 		$this->layout = "default";
 		$this->loadModel('Acta');
@@ -252,7 +267,7 @@ class ConfigurationsController extends AppController{
 		$list_consorcios = $this->Consorcio->listConsorcios();
 
 		$page = 0;
-		//$page -= 1;
+
 		$per_page = 10000;
 		$start = $page * $per_page;
 		
@@ -295,14 +310,11 @@ class ConfigurationsController extends AppController{
 			$search_obra = '';
 		}
 		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
-		//$list_acta_all = $this->Acta->listAllActas($order_by,$search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra),$order_by_or, $tipo_user_id);
-		//$list_acta = $this->Acta->listFindActas($order_by, $search_nro, utf8_encode($search_actividad),utf8_encode($search_empresa),utf8_encode($search_obra), date('Y'),$order_by_or, $start, $per_page, $tipo_user_id);
+	
 		$search_ano = date ("Y");
 		$search_consorcio = 1;
 		$list_acta = $this->Acta->listSearchActas($search_ano, $search_consorcio, $tipo_user_id);
-		//$count = count($list_acta_all);
-		//$no_of_paginations = ceil($count / $per_page);
-		//$page = $page + 1;
+
 		
 		$this->set(compact('list_acta','page','no_of_paginations', 'list_consorcios'));
 	}
