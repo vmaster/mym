@@ -49,7 +49,7 @@ $('#conteiner_all_rows').load(env_webroot_script+ escape('configurations/search_
 		}
 	});
 
-	$('.btn-descargar-img').show();
+	$('.div-btn-descargar').removeAttr('hidden');
 });
 });
 
@@ -224,9 +224,11 @@ div#spinner-send-report
 		<?php } */?>
 		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-acta"><?php echo __('Consultar');?></button>
-		</div>
-		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;" style="display: none">
-			<button type="button" class="btn btn-large btn-descargar-img"><?php echo __('Descargar Todas las Imagenes');?></button>
+		</div>		
+	</div>
+	<div class="row">
+		<div class="col-md-3 col-sm-6 col-xs-6 div-btn-descargar" style="margin-top: 26px;" hidden>
+			<button type="button" class="btn btn-primary btn-descargar-img"><?php echo __('Descargar Todas las Imagenes');?></button>
 		</div>
 	</div>
 	<br>
