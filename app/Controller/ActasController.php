@@ -2551,6 +2551,9 @@ class ActasController extends AppController{
 		foreach($obj_acta->FotoSupervisionActa as $key => $obj_superv_acta) {
 			array_push($files, array('path' => $path, 'file' => DS.'fotos_acta_supervision'.DS.$obj_superv_acta->getAttr('file_name')));
 		}
+		if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
+			array_push($files, array('path' => $path, 'file' => DS.'graficos'.DS.$obj_acta->getAttr('grafico')));
+		}
 		
 		$nowNameFile = str_replace('/','_',$obj_acta->getAttr('num_informe')) .'_'. date('YmdHis') . '.zip';
 		//Dir Temp out Zip Generator in Server
@@ -2572,7 +2575,6 @@ class ActasController extends AppController{
 
 	function createZipActaNormal($obj_acta = null){
 
-		$nowNameFile = str_replace('/','_',$obj_acta->getAttr('num_informe')) .'_'. date('YmdHis') . '.zip';
 		$path = WWW_ROOT . 'files' . DS;
 		$files = array();
 
@@ -2599,6 +2601,87 @@ class ActasController extends AppController{
 		}
 		foreach($obj_acta->FotoSupervisionActa as $key => $obj_superv_acta) {
 			array_push($files, array('path' => $path, 'file' => DS.'fotos_acta_supervision'.DS.$obj_superv_acta->getAttr('file_name')));
+		}
+		if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
+			array_push($files, array('path' => $path, 'file' => DS.'graficos'.DS.$obj_acta->getAttr('grafico')));
+		}
+		
+		$nowNameFile = str_replace('/','_',$obj_acta->getAttr('num_informe')) .'_'. date('YmdHis') . '.zip';
+		//Dir Temp out Zip Generator in Server
+		$pathTmp = TMP;
+		//$pathTmp = TMP . 'zips' . DS;
+		$download = false;
+		//Create zip and force download
+		$this->Zip = $this->Components->load('Zip'); 
+		$out = $this->Zip->crearZip($files, $nowNameFile, $pathTmp, $download);
+
+		return $out;
+	}
+	
+	function createZipActaInspeccionSeguridad($obj_acta = null){
+
+		$path = WWW_ROOT . 'files' . DS;
+		$files = array();
+
+		foreach($obj_acta->FotoInstalIlumVent as $key => $obj_foto_iv) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_ilum_vent'.DS.$obj_foto_iv->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalOrdenLimpieza as $key => $obj_foto_ol) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_orden_limp'.DS.$obj_foto_ol->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalSshh as $key => $obj_foto_sh) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_sshh'.DS.$obj_foto_sh->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalSenSeg as $key => $obj_foto_ss) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_sen_seg'.DS.$obj_foto_ss->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalEqEmerg as $key => $obj_foto_ee) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_eq_emerg'.DS.$obj_foto_ee->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalCondSeg as $key => $obj_foto_cs) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_cond_seg'.DS.$obj_foto_cs->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalMed as $key => $obj_foto_med) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_med'.DS.$obj_foto_med->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalActInsSeg as $key => $obj_foto_med) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_act_ins_seg'.DS.$obj_foto_med->getAttr('file_name')));
+		}
+		if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
+			array_push($files, array('path' => $path, 'file' => DS.'graficos_acta_instal'.DS.$obj_acta->getAttr('grafico')));
+		}
+		
+		$nowNameFile = str_replace('/','_',$obj_acta->getAttr('num_informe')) .'_'. date('YmdHis') . '.zip';
+		//Dir Temp out Zip Generator in Server
+		$pathTmp = TMP;
+		//$pathTmp = TMP . 'zips' . DS;
+		$download = false;
+		//Create zip and force download
+		$this->Zip = $this->Components->load('Zip'); 
+		$out = $this->Zip->crearZip($files, $nowNameFile, $pathTmp, $download);
+
+		return $out;
+	}
+	
+	function createZipActaMedioAmbiente($obj_acta = null){
+
+		$path = WWW_ROOT . 'files' . DS;
+		$files = array();
+
+		foreach($obj_acta->FotoMedAmbDoc as $key => $obj_foto_ad) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_doc'.DS.$obj_foto_ad->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoMedAmbCond as $key => $obj_foto_ca) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_cond'.DS.$obj_foto_ca->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoMedAmbMedida as $key => $obj_foto_med) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_medida'.DS.$obj_foto_med->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoMedAmbActa as $key => $obj_foto_med) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_acta'.DS.$obj_foto_med->getAttr('file_name')));
+		}
+		if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
+			array_push($files, array('path' => $path, 'file' => DS.'graficos_acta_med_amb'.DS.$obj_acta->getAttr('grafico')));
 		}
 		
 		$nowNameFile = str_replace('/','_',$obj_acta->getAttr('num_informe')) .'_'. date('YmdHis') . '.zip';
@@ -2634,8 +2717,14 @@ class ActasController extends AppController{
 			}
 		}elseif ($search_tipo_acta == 1) {
 			$list_acta = $this->ActaInstalacione->listSearchActasBkpImg($fec_inicio_format, $fec_fin_format);
+			foreach($list_acta as $key => $obj_acta){
+				array_push($files, array('path' => $path, 'file' => DS.$this->createZipActaInspeccionSeguridad($obj_acta)));
+			}
 		}else{
 			$list_acta = $this->ActaMedioAmbiente->listSearchActasBkpImg($fec_inicio_format, $fec_fin_format);
+			foreach($list_acta as $key => $obj_acta){
+				array_push($files, array('path' => $path, 'file' => DS.$this->createZipActaMedioAmbiente($obj_acta)));
+			}
 		}
 
 		$nowNameFile =  date('YmdHis') . '.zip';
