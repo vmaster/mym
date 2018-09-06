@@ -2546,7 +2546,7 @@ class ActasController extends AppController{
 			array_push($files, array('path' => $path, 'file' => DS.'fotos_cs'.DS.$obj_foto_cs->getAttr('file_name')));
 		}
 		foreach($obj_acta->FotoMed as $key => $obj_foto_med) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_med'.DS.$obj_foto_ipp->getAttr('file_name')));
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_med'.DS.$obj_foto_med->getAttr('file_name')));
 		}
 		foreach($obj_acta->FotoSupervisionActa as $key => $obj_superv_acta) {
 			array_push($files, array('path' => $path, 'file' => DS.'fotos_acta_supervision'.DS.$obj_superv_acta->getAttr('file_name')));
@@ -2568,6 +2568,94 @@ class ActasController extends AppController{
 			return $out;
 		}
 
-	}	
+	}
+
+	function createZipActaNormal($obj_acta = null){
+
+		$nowNameFile = str_replace('/','_',$obj_acta->getAttr('num_informe')) .'_'. date('YmdHis') . '.zip';
+		$path = WWW_ROOT . 'files' . DS;
+		$files = array();
+
+		foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_ipp'.DS.$obj_foto_ipp->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_sd'.DS.$obj_foto_sd->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_um'.DS.$obj_foto_um->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoDoc as $key => $obj_foto_doc) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_doc'.DS.$obj_foto_doc->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_as'.DS.$obj_foto_as->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_cs'.DS.$obj_foto_cs->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoMed as $key => $obj_foto_med) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_med'.DS.$obj_foto_med->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoSupervisionActa as $key => $obj_superv_acta) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_acta_supervision'.DS.$obj_superv_acta->getAttr('file_name')));
+		}
+		
+		$nowNameFile = str_replace('/','_',$obj_acta->getAttr('num_informe')) .'_'. date('YmdHis') . '.zip';
+		//Dir Temp out Zip Generator in Server
+		$pathTmp = TMP;
+		//$pathTmp = TMP . 'zips' . DS;
+		$download = false;
+		//Create zip and force download
+		$this->Zip = $this->Components->load('Zip'); 
+		$out = $this->Zip->crearZip($files, $nowNameFile, $pathTmp, $download);
+
+		return $out;
+	}
+
+	public function downloadActaxFecha($search_tipo_acta=null, $fec_inicio, $fec_fin) {
+
+		$this->layout = 'ajax';
+		$this->loadModel('Acta');
+		$this->loadModel('ActaInstalacione');
+		$this->loadModel('ActaMedioAmbiente');
+
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+
+		$this->Zip = $this->Components->load('Zip'); 
+		$files = array();
+		$path = TMP;
+
+		if($search_tipo_acta==0){
+			$list_acta = $this->Acta->listSearchActasBkpImg($fec_inicio_format, $fec_fin_format);
+			foreach($list_acta as $key => $obj_acta){
+				array_push($files, array('path' => $path, 'file' => DS.$this->createZipActaNormal($obj_acta)));
+			}
+		}elseif ($search_tipo_acta == 1) {
+			$list_acta = $this->ActaInstalacione->listSearchActasBkpImg($fec_inicio_format, $fec_fin_format);
+		}else{
+			$list_acta = $this->ActaMedioAmbiente->listSearchActasBkpImg($fec_inicio_format, $fec_fin_format);
+		}
+
+		$nowNameFile =  date('YmdHis') . '.zip';
+		//Dir Temp out Zip Generator in Server
+		$pathTmp = TMP;
+		//$pathTmp = TMP . 'zips' . DS;
+		$download = true;
+		//Create zip and force download
+		$this->Zip = $this->Components->load('Zip'); 
+		$out = $this->Zip->crearZip($files, $nowNameFile, $pathTmp, $download);
+		
+		if($out == false) {
+			exit('Error created zip');
+		}else{
+			//Return String NameFile or File Download = true
+			return $out;
+		}
+
+		exit();
+		
+	}
 		
 }
