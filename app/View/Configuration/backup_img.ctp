@@ -27,10 +27,11 @@ $body.off('click','div#acta .btn-consultar-acta');
 $body.on('click', 'div#acta .btn-consultar-acta' , function(){
 
 $('#conteiner_all_rows').html('Cargando...');
-fec_incio = $('#txtBuscarFecIncioBkp').val();
+fec_inicio = $('#txtBuscarFecIncioBkp').val();
 fec_fin = $('#txtBuscarFecFinBkp').val();
+tipo_acta = $( "#cbo-tipo-acta" ).val()
 
-$('#conteiner_all_rows').load(env_webroot_script+ escape('configurations/search_actas_bkp_img/'+$( "#cbo-tipo-acta" ).val()+'/'+fec_incio + '/' + fec_fin),function(){
+$('#conteiner_all_rows').load(env_webroot_script+ escape('configurations/search_actas_bkp_img/'+tipo_acta+'/'+fec_inicio + '/' + fec_fin),function(){
 	$('#table_content_actas').DataTable({
 		dom: 'T<"clear">lfrtip',
 		tableTools: {
@@ -47,8 +48,19 @@ $('#conteiner_all_rows').load(env_webroot_script+ escape('configurations/search_
 			]
 		}
 	});
+
+	$('.btn-descargar-img').show();
 });
 });
+
+$body.off('click','div#acta .btn-descargar-img');
+$body.on('click', 'div#acta .btn-descargar-img' , function(){
+	fec_inicio = $('#txtBuscarFecIncioBkp').val();
+	fec_fin = $('#txtBuscarFecFinBkp').val();
+	tipo_acta = $( "#cbo-tipo-acta" ).val()
+
+		window.open(env_webroot_script + 'actas/downloadActaxFecha'+'/'+ tipo_acta +'/'+fec_inicio + '/' + fec_fin,'_self');
+	})
 	
 	/* Date Picker */
 		$('#txtBuscarFecIncioBkp').datepicker(
@@ -67,7 +79,7 @@ $('#conteiner_all_rows').load(env_webroot_script+ escape('configurations/search_
 					maxDate: new Date()
 		});
 
-	
+		
 
 
 		/*$( "#cbo-tipo-acta" )
@@ -126,17 +138,6 @@ div#spinner-send-report
 </div>
 <hr />
 <div id="acta">
-	<div id="add_edit_acta_container">
-	</div>
-	
-	<div class="btn-toolbar">
-		<?php //if($this->Session->read('Auth.User.tipo_user_id') != 3) { ?>
-	    <a class="btn btn-primary btn-nuevo-acta" href="<?= ENV_WEBROOT_FULL_URL; ?>actas/nuevo_informe"><i class="icon-plus"></i> <?php echo __('Nuevo Informe'); ?></a>
-	    <?php //} ?>
-	  <div class="btn-group">
-	  </div>
-	</div>
-	<p>
 	<div class="row">
 		<div class="col-md-3 col-sm-6 col-xs-6">
 			<label><?php echo __('Elija tipo de Acta'); ?> </label>
@@ -223,6 +224,9 @@ div#spinner-send-report
 		<?php } */?>
 		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;">
 			<button type="button" class="btn btn-large btn-consultar-acta"><?php echo __('Consultar');?></button>
+		</div>
+		<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 26px;" style="display: none">
+			<button type="button" class="btn btn-large btn-descargar-img"><?php echo __('Descargar Todas las Imagenes');?></button>
 		</div>
 	</div>
 	<br>
