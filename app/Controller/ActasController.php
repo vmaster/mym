@@ -2513,7 +2513,97 @@ class ActasController extends AppController{
 			$this->set(compact('sum_normas_cumplidas', 'sum_normas_incumplidas', 'suma_total_normas','porc_nc','porc_ni'));
 	}
 
-	public function downloadActa($acta_id=null){
+	public function arrfileActa($obj_acta, $files, $path, $thumbnail){
+
+		$thumbnail = ($thumbnail) ? DS . 'thumbnail' . DS : DS;
+
+		foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_ipp'.$thumbnail.$obj_foto_ipp->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_sd'.$thumbnail.$obj_foto_sd->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_um'.$thumbnail.$obj_foto_um->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoDoc as $key => $obj_foto_doc) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_doc'.$thumbnail.$obj_foto_doc->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_as'.$thumbnail.$obj_foto_as->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_cs'.$thumbnail.$obj_foto_cs->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoMed as $key => $obj_foto_med) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_med'.$thumbnail.$obj_foto_med->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoSupervisionActa as $key => $obj_superv_acta) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_acta_supervision'.DS.$obj_superv_acta->getAttr('file_name')));
+		}
+		if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
+			array_push($files, array('path' => $path, 'file' => DS.'graficos'.DS.$obj_acta->getAttr('grafico')));
+		}
+
+		return $files;
+	}
+
+	public function arrfileActaInspeccionSeguridad($obj_acta, $files, $path, $thumbnail){
+
+		$thumbnail = ($thumbnail) ? DS . 'thumbnail' . DS : DS;
+
+		foreach($obj_acta->FotoInstalIlumVent as $key => $obj_foto_iv) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_ilum_vent'.$thumbnail.$obj_foto_iv->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalOrdenLimpieza as $key => $obj_foto_ol) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_orden_limp'.$thumbnail.$obj_foto_ol->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalSshh as $key => $obj_foto_sh) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_sshh'.$thumbnail.$obj_foto_sh->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalSenSeg as $key => $obj_foto_ss) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_sen_seg'.$thumbnail.$obj_foto_ss->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalEqEmerg as $key => $obj_foto_ee) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_eq_emerg'.$thumbnail.$obj_foto_ee->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalCondSeg as $key => $obj_foto_cs) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_cond_seg'.$thumbnail.$obj_foto_cs->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalMed as $key => $obj_foto_med) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_med'.$thumbnail.$obj_foto_med->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoInstalActInsSeg as $key => $obj_foto_med) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_act_ins_seg'.$thumbnail.$obj_foto_med->getAttr('file_name')));
+		}
+		if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
+			array_push($files, array('path' => $path, 'file' => DS.'graficos_acta_instal'.DS.$obj_acta->getAttr('grafico')));
+		}
+	}
+
+
+	public function arrfileActaMedioAmbiente($obj_acta, $files, $path, $thumbnail){
+
+		$thumbnail = ($thumbnail) ? DS . 'thumbnail' . DS : DS;
+
+		foreach($obj_acta->FotoMedAmbDoc as $key => $obj_foto_ad) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_doc'.$thumbnail.$obj_foto_ad->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoMedAmbCond as $key => $obj_foto_ca) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_cond'.$thumbnail.$obj_foto_ca->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoMedAmbMedida as $key => $obj_foto_med) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_medida'.$thumbnail.$obj_foto_med->getAttr('file_name')));
+		}
+		foreach($obj_acta->FotoMedAmbActa as $key => $obj_foto_med) {
+			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_acta'.$thumbnail.$obj_foto_med->getAttr('file_name')));
+		}
+		if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
+			array_push($files, array('path' => $path, 'file' => DS.'graficos_acta_med_amb'.DS.$obj_acta->getAttr('grafico')));
+		}
+	}
+
+	public function downloadActa($search_tipo_acta=null, $acta_id=null){
 
 		ini_set('memory_limit', '512M');
 		ini_set('max_execution_time', 1000);
@@ -2526,33 +2616,14 @@ class ActasController extends AppController{
 		
 		$path = WWW_ROOT . 'files' . DS;
 		$files = array();
-		
-		foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_ipp'.DS.$obj_foto_ipp->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_sd'.DS.$obj_foto_sd->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_um'.DS.$obj_foto_um->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoDoc as $key => $obj_foto_doc) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_doc'.DS.$obj_foto_doc->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_as'.DS.$obj_foto_as->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_cs'.DS.$obj_foto_cs->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoMed as $key => $obj_foto_med) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_med'.DS.$obj_foto_med->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoSupervisionActa as $key => $obj_superv_acta) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_acta_supervision'.DS.$obj_superv_acta->getAttr('file_name')));
-		}
-		if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
-			array_push($files, array('path' => $path, 'file' => DS.'graficos'.DS.$obj_acta->getAttr('grafico')));
+
+		//se obtiene todos los files de imagenes del objecto acta
+		if($search_tipo_acta==0){
+			$files = $this->arrfileActa($obj_acta, $files, $path, false);	
+		}elseif ($search_tipo_acta == 1) {
+			$files = $this->arrfileActaInspeccionSeguridad($obj_acta, $files, $path, false);
+		}else{
+			$files = $this->arrfileActaMedioAmbiente($obj_acta, $files, $path, false);
 		}
 		
 		$nowNameFile = str_replace('/','_',$obj_acta->getAttr('num_informe')) .'_'. date('YmdHis') . '.zip';
@@ -2578,33 +2649,8 @@ class ActasController extends AppController{
 		$path = WWW_ROOT . 'files' . DS;
 		$files = array();
 
-		foreach($obj_acta->FotoIpp as $key => $obj_foto_ipp) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_ipp'.DS.$obj_foto_ipp->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoSd as $key => $obj_foto_sd) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_sd'.DS.$obj_foto_sd->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoUm as $key => $obj_foto_um) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_um'.DS.$obj_foto_um->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoDoc as $key => $obj_foto_doc) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_doc'.DS.$obj_foto_doc->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoAct as $key => $obj_foto_as) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_as'.DS.$obj_foto_as->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoCond as $key => $obj_foto_cs) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_cs'.DS.$obj_foto_cs->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoMed as $key => $obj_foto_med) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_med'.DS.$obj_foto_med->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoSupervisionActa as $key => $obj_superv_acta) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_acta_supervision'.DS.$obj_superv_acta->getAttr('file_name')));
-		}
-		if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
-			array_push($files, array('path' => $path, 'file' => DS.'graficos'.DS.$obj_acta->getAttr('grafico')));
-		}
+		//se obtiene todos los files de imagenes del objecto acta
+		$files = $this->arrfileActa($obj_acta, $files, $path, true);
 		
 		$nowNameFile = str_replace('/','_',$obj_acta->getAttr('num_informe')) .'_'. date('YmdHis') . '.zip';
 		//Dir Temp out Zip Generator in Server
@@ -2623,33 +2669,8 @@ class ActasController extends AppController{
 		$path = WWW_ROOT . 'files' . DS;
 		$files = array();
 
-		foreach($obj_acta->FotoInstalIlumVent as $key => $obj_foto_iv) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_ilum_vent'.DS.$obj_foto_iv->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoInstalOrdenLimpieza as $key => $obj_foto_ol) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_orden_limp'.DS.$obj_foto_ol->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoInstalSshh as $key => $obj_foto_sh) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_sshh'.DS.$obj_foto_sh->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoInstalSenSeg as $key => $obj_foto_ss) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_sen_seg'.DS.$obj_foto_ss->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoInstalEqEmerg as $key => $obj_foto_ee) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_eq_emerg'.DS.$obj_foto_ee->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoInstalCondSeg as $key => $obj_foto_cs) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_cond_seg'.DS.$obj_foto_cs->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoInstalMed as $key => $obj_foto_med) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_med'.DS.$obj_foto_med->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoInstalActInsSeg as $key => $obj_foto_med) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_instal_act_ins_seg'.DS.$obj_foto_med->getAttr('file_name')));
-		}
-		if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
-			array_push($files, array('path' => $path, 'file' => DS.'graficos_acta_instal'.DS.$obj_acta->getAttr('grafico')));
-		}
+		//se obtiene todos los files de imagenes del objecto acta
+		$files = $this->arrfileActaInspeccionSeguridad($obj_acta, $files, $path, true);
 		
 		$nowNameFile = str_replace('/','_',$obj_acta->getAttr('num_informe')) .'_'. date('YmdHis') . '.zip';
 		//Dir Temp out Zip Generator in Server
@@ -2668,21 +2689,8 @@ class ActasController extends AppController{
 		$path = WWW_ROOT . 'files' . DS;
 		$files = array();
 
-		foreach($obj_acta->FotoMedAmbDoc as $key => $obj_foto_ad) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_doc'.DS.$obj_foto_ad->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoMedAmbCond as $key => $obj_foto_ca) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_cond'.DS.$obj_foto_ca->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoMedAmbMedida as $key => $obj_foto_med) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_medida'.DS.$obj_foto_med->getAttr('file_name')));
-		}
-		foreach($obj_acta->FotoMedAmbActa as $key => $obj_foto_med) {
-			array_push($files, array('path' => $path, 'file' => DS.'fotos_med_amb_acta'.DS.$obj_foto_med->getAttr('file_name')));
-		}
-		if($obj_acta->getAttr('grafico')!='' && $obj_acta->getAttr('grafico') !=null){
-			array_push($files, array('path' => $path, 'file' => DS.'graficos_acta_med_amb'.DS.$obj_acta->getAttr('grafico')));
-		}
+		//se obtiene todos los files de imagenes del objecto acta
+		$files = $this->arrfileActaMedioAmbiente($obj_acta, $files, $path, true);
 		
 		$nowNameFile = str_replace('/','_',$obj_acta->getAttr('num_informe')) .'_'. date('YmdHis') . '.zip';
 		//Dir Temp out Zip Generator in Server

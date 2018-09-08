@@ -228,7 +228,7 @@ div#spinner-send-report
 	</div>
 	<div class="row">
 		<div class="col-md-3 col-sm-6 col-xs-6 div-btn-descargar" style="margin-top: 26px;" hidden>
-			<button type="button" class="btn btn-primary btn-descargar-img"><?php echo __('Descargar Todas las Imagenes');?></button>
+			<button type="button" class="btn btn-primary btn-descargar-img"><?php echo __('Descargar Todas las Imagenes en Thumbnail');?></button>
 		</div>
 	</div>
 	<br>

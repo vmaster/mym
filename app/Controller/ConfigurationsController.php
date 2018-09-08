@@ -263,7 +263,7 @@ class ConfigurationsController extends AppController{
 		}
 		
 
-		$this->set(compact('list_acta'));
+		$this->set(compact('list_acta','search_tipo_acta'));
 	}
 
 	public function backup_img($page=null,$order_by=null,$order_by_or=null) {
