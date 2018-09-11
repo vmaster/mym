@@ -43,6 +43,7 @@ Temporary Items
 .apdisk
 
 app/tmp/*
+app/webroot/*
 
 app/tmp/cache/models/myapp_cake_model_default_dbmym_actas
 app/tmp/cache/models/myapp_cake_model_default_dbmym_actas
