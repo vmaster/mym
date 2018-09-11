@@ -65,6 +65,8 @@
 					<li><a href="#"><i class="fa fa-cog fa-3x"></i> Configuraci&oacute;n <span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level <?php echo ($this->request->params['controller'] == 'configurations')?"collapse in":"collapse";  ?>">
 							<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'configurations' && $this->request->params['action']=='backup_database')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>configurations/backup_database" id="link-actividad"><i class="fa fa-floppy-o fa-3x"></i> <?php echo ' '.__('Backup de Base de Datos'); ?></a></li>
+
+							<li><a class="enlaces <?php echo ($this->request->params['controller'] == 'configurations' && $this->request->params['action']=='backup_img')?"active-menu":""; ?>" href="<?= ENV_WEBROOT_FULL_URL; ?>configurations/backup_img" id="link-actividad"><i class="fa fa-floppy-o fa-3x"></i> <?php echo ' '.__('Backup de Imagenes'); ?></a></li>
 						</ul>
 					</li>
 				<?php } }?>

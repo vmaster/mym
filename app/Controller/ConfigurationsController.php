@@ -244,4 +244,77 @@ class ConfigurationsController extends AppController{
 		exit();
 	}
 
+	public function search_actas_bkp_img($search_tipo_acta=null, $fec_inicio, $fec_fin) {
+		$this->layout = 'ajax';
+		$this->loadModel('Acta');
+		$this->loadModel('ActaInstalacione');
+		$this->loadModel('ActaMedioAmbiente');
+
+
+		$fec_inicio_format = $this->formatFecha($fec_inicio);
+		$fec_fin_format = $this->formatFecha($fec_fin);
+
+		if($search_tipo_acta==0){
+			$list_acta = $this->Acta->listSearchActasBkpImg($fec_inicio_format, $fec_fin_format);
+		}elseif ($search_tipo_acta == 1) {
+			$list_acta = $this->ActaInstalacione->listSearchActasBkpImg($fec_inicio_format, $fec_fin_format);
+		}else{
+			$list_acta = $this->ActaMedioAmbiente->listSearchActasBkpImg($fec_inicio_format, $fec_fin_format);
+		}
+		
+
+		$this->set(compact('list_acta','search_tipo_acta'));
+	}
+
+	public function backup_img($page=null,$order_by=null,$order_by_or=null) {
+		$this->layout = "default";
+		$this->loadModel('Acta');
+		$this->loadModel('Consorcio');
+
+		$list_consorcios = $this->Consorcio->listConsorcios();
+
+		$page = 0;
+
+		$per_page = 10000;
+		$start = $page * $per_page;
+		
+		if($order_by_or!=NULL && isset($order_by_or) && $order_by_or!='null'){
+			$order_by_or = $order_by_or;
+		}else{
+			$order_by_or = 'DESC';
+		}
+		
+
+		$order_by = 'Acta.created';
+		
+	
+		$tipo_user_id = $this->Session->read('Auth.User.tipo_user_id');
+	
+		$search_ano = date ("Y");
+		$search_consorcio = 1;
+		$list_acta = $this->Acta->listSearchActas($search_ano, $search_consorcio, $tipo_user_id);
+
+		
+		$this->set(compact('list_acta','page','no_of_paginations', 'list_consorcios'));
+	}
+
+	function formatFecha($fecha){
+		if(isset($fecha)){
+			$fec_nac = $fecha;//12-12-1990
+	
+			if($fecha == '' || $fecha == NULL){
+				$fecha = '';
+			}else{
+				$dd = substr($fecha, 0, 2);
+				$mm = substr($fecha, 3, 2);
+				$yy = substr($fecha, 6, 4);
+				$time= substr($fecha, 11, 8);
+				$fecha = $yy.'-'.$mm.'-'.$dd;//1990-12-12
+			}
+			$this->request->data['Acta']['fecha'] = $fecha.' '.$time;
+		}
+	
+		return $this->request->data['Acta']['fecha'];
+	}
+
 }
