@@ -2706,6 +2706,9 @@ class ActasController extends AppController{
 
 	public function downloadActaxFecha($search_tipo_acta=null, $fec_inicio, $fec_fin) {
 
+		ini_set('memory_limit', '512M');
+		ini_set('max_execution_time', 0);
+		
 		$this->layout = 'ajax';
 		$this->loadModel('Acta');
 		$this->loadModel('ActaInstalacione');
