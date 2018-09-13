@@ -509,6 +509,10 @@ $(document).ready(function(){
 
 	function showHighchart (porc_in_categorias, porc_cu_categorias, porc_cu){
 		console.log(porc_cu_categorias);
+		console.log(porc_in_categorias);
+		console.log(porc_cu);
+		console.log(porc_ni);
+		console.log(porc_nc);
 		//$(function () {
 				//alert(categorias);
 			    var colors = Highcharts.getOptions().colors,
@@ -742,8 +746,8 @@ function sumaAcumularNormas(){
 			normas_incumplidas = Math.round(n_in_epp + n_in_sd + n_in_um + n_in_ds + n_in_cp + n_in_as);
 			suma_normas = normas_cumplidas + normas_incumplidas;
 
-			porc_nc = Math.round((normas_cumplidas * 100) / suma_normas);
-			porc_ni = Math.round((normas_incumplidas * 100) / suma_normas);
+			porc_nc = Math.round(((normas_cumplidas * 100) / suma_normas)*100)/100;
+			porc_ni = Math.round(((normas_incumplidas * 100) / suma_normas)*100)/100;
 
 			porc_cu_epp = n_cu_epp > 0 ? Math.round((n_cu_epp*100)/suma_normas) : 0;
 			porc_in_epp = n_in_epp > 0 ? Math.round((n_in_epp*100)/suma_normas) : 0;
