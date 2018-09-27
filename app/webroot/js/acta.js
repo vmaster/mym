@@ -1068,11 +1068,32 @@ function sumaAcumularNormas(){
 			  width: '100%'
 	});
 
-	function loadATrabajador(){
+	/*function loadATrabajador(){
 	$(".cbo-trabajadores-select2").select2({
 		  placeholder: "Seleccione un trabajador",
 		  allowClear: true,
 		  width: '100%'
+	});
+	}*/
+
+	$(".cbo-trabajadores-select2").select2({
+		 placeholder: 'Seleccione un trabajador',
+		 allowClear: true,
+		 width: '100%',
+        ajax: {
+          url: env_webroot_script + "actas/ajax_list_trabajadores",
+          dataType: 'json',
+          delay: 250,
+ 
+          processResults: function (data) {
+			  return {
+			    results: $.map(data, function(obj) {
+			      return { id: obj.id, text: obj.value };
+			    })
+			  };
+			},
+          cache: true
+        }
 	});
 	}
 	loadATrabajador();

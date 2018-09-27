@@ -97,10 +97,24 @@ class ActasController extends AppController{
 		$lista = "";
 		
 		
+		//debug($this->request['data']['text']); exit();
+
+
+		if(isset($_GET['q'])){
+			$q = $_GET['q'];
+		}else{
+			$q = "";
+		}
+
 		$arr_obj_trabajador = $this->Trabajadore->find('list',
 				array(
 						'fields' => array('id','apellido_nombre'),
-						'conditions'=>array('Trabajadore.estado != ' => 0),
+						'conditions'=>array(
+							'AND' => array(
+										'Trabajadore.apellido_nombre LIKE'=> '%'.$q.'%',
+                                        'Trabajadore.estado != ' => 0
+                                )
+							),
 						'order' => array('Trabajadore.apellido_nombre ASC')
 				));
 	
