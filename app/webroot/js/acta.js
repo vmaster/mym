@@ -1075,7 +1075,7 @@ function sumaAcumularNormas(){
 		  width: '100%'
 	});
 	}*/
-
+	function loadATrabajador(){
 	$(".cbo-trabajadores-select2").select2({
 		 placeholder: 'Seleccione un trabajador',
 		 allowClear: true,
