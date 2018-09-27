@@ -87,6 +87,32 @@ class ActasController extends AppController{
 		$this->set(compact('list_acta'));
 	}
 	
+	/**
+	* Ajax de lista de los trabajadores habilitados
+	* @author Alan Hugo
+	*/
+	public function ajax_list_trabajadores(){
+		$this->autoRender = false;
+		$this->loadModel('Trabajadore');
+		$lista = "";
+		
+		
+		$arr_obj_trabajador = $this->Trabajadore->find('list',
+				array(
+						'fields' => array('id','apellido_nombre'),
+						'conditions'=>array('Trabajadore.estado != ' => 0),
+						'order' => array('Trabajadore.apellido_nombre ASC')
+				));
+	
+		foreach ($arr_obj_trabajador as $id => $trabajador):
+		$lista.= json_encode(array("value"=> $trabajador, "id"=>$id)).",";
+		endforeach;
+	
+		$lista = substr($lista, 0,strlen($lista) - 1);
+	
+		$h= '['.$lista.']';
+		return $h;
+	}
 		
 	/**
 	 * Add and Edit using Ajax
