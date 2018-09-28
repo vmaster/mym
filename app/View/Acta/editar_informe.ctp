@@ -285,11 +285,12 @@ tinymce.init({
 														foreach ($list_all_trabajadores as $id => $nom):
 															if($id == $obj_imp_prot_personal->Trabajadore->getID()){
 																$selected = " selected = 'selected'";
+																echo "<option value = ".$id.$selected.">".$nom."</option>";
 															}else{
 																$selected = "";
 															}
 														
-														echo "<option value = ".$id.$selected.">".$nom."</option>";
+														//echo "<option value = ".$id.$selected.">".$nom."</option>";
 														endforeach;
 													}
 													echo "</select>";
@@ -350,7 +351,7 @@ tinymce.init({
 													    echo "<option>---</option>";
 													    if (isset($list_all_trabajadores)){
 													    	foreach ($list_all_trabajadores as $id => $nom):
-													    	echo "<option value = ".$id.">".$nom."</option>";
+													    	//echo "<option value = ".$id.">".$nom."</option>";
 													    	endforeach;
 													    }
 													    echo "</select>";
@@ -1429,10 +1430,11 @@ tinymce.init({
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	if($id == $obj_acta->Trabajadore1->getAttr('id')){
 									    		$selected = " selected = 'selected'";
+												echo "<option value = ".$id.$selected.">".$nom."</option>";
 									    	}else{
 									    		$selected = "";
 									    	}
-									    	echo "<option value = ".$id.$selected.">".$nom."</option>";
+									    	//echo "<option value = ".$id.$selected.">".$nom."</option>";
 									    	endforeach;
 									    }
 										echo "</select>&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-responsable' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-resp1'>...</a></span></td>";
@@ -1447,10 +1449,11 @@ tinymce.init({
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	if($id == $obj_acta->Trabajadore2->getAttr('id')){
 									    		$selected = " selected = 'selected'";
+												echo "<option value = ".$id.$selected.">".$nom."</option>";
 									    	}else{
 									    		$selected = "";
 									    	}
-									    	echo "<option value = ".$id.$selected.">".$nom."</option>";
+									    	//echo "<option value = ".$id.$selected.">".$nom."</option>";
 									    	endforeach;
 									    }
 										echo "</select>&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-responsable' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-resp2'>...</a></span></td>";
