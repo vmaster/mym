@@ -226,12 +226,12 @@ tinymce.init({
 											    echo "<td style='width:25%;'>";
 											    echo "<span style='display: inline-flex; width: 100%;'>";
 											    echo "<select name='data[TrabajadorActa][".$i."][trabajador_id]' class='cbo-trabajadores-select2 form-control' id='Trabajador".$i."' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-										 	    if (isset($list_all_trabajadores)){
+										 	    /*if (isset($list_all_trabajadores)){
 													echo "<option>---</option>";
 											    	foreach ($list_all_trabajadores as $id => $nom):
 											    	echo "<option value = ".$id.">".$nom."</option>";
 											    	endforeach;
-											    }
+											    }*/
 												echo "</select>";
 												echo "&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-trabajador' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-trabajador".$i."'>...</a></span>";
 												echo "</td>";
@@ -1022,24 +1022,24 @@ tinymce.init({
 									<?php
 										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-act'>";
 										echo "<select name='data[Acta][reponsable_act_id]' class='cbo-responsable-select2 cbo-reponsable-act form-control' id='ResId1' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								 	    if (isset($list_all_trabajadores)){
+								 	    /*if (isset($list_all_trabajadores)){
 											echo "<option></option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	echo "<option value = ".$id.">".$nom."</option>";
 									    	endforeach;
-									    }
+									    }*/
 										echo "</select>&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-responsable' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-resp1'>...</a></span></td>";
 									?>
 									<td style='width:35%;'>Nombre:
 									<?php
 										echo "<span style='display: inline-flex; width: 100%;' class='span-cbo-responsable-sup'>";
 										echo "<select name='data[Acta][reponsable_sup_id]' class='cbo-responsable-select2 cbo-reponsable-sup form-control' id='ResId2' style='text-transform:uppercase;' onkeyup='javascript:this.value=this.value.toUpperCase();'>";
-								 	    if (isset($list_all_trabajadores)){
+								 	    /*if (isset($list_all_trabajadores)){
 											echo "<option></option>";
 									    	foreach ($list_all_trabajadores as $id => $nom):
 									    	echo "<option value = ".$id.">".$nom."</option>";
 									    	endforeach;
-									    }
+									    }*/
 										echo "</select>&nbsp;<a href='#myModalAddTrabajador' class='btn btn-primary btn-open-modal-responsable' style='height: 28px; padding-right: 4px; padding-left: 4px;' role='button' data-toggle='modal' id='btn-open-create-resp2'>...</a></span></td>";
 									?>
 								</tr>
