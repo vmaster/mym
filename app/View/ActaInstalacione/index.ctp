@@ -26,7 +26,7 @@ var order_by_or;
 $body.off('click','div#acta_instalacion .btn-consultar-acta');
 $body.on('click', 'div#acta_instalacion .btn-consultar-acta' , function(){
 $('#conteiner_all_rows').html('Cargando...');
-$('#conteiner_all_rows').load(env_webroot_script+'actas/search_actas/'+$('#cbo-ano-search').val(),function(){
+$('#conteiner_all_rows').load(env_webroot_script+'acta_instalaciones/search_actas/'+$('#cbo-ano-search').val(),function(){
 	$('#table_content_actas').DataTable({
 		dom: 'T<"clear">lfrtip',
 		tableTools: {
