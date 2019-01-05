@@ -430,12 +430,12 @@ App::uses('AppModel','Model');
                    
                     'conditions'=>array(
                             'AND' => array(
-                                    'YEAR(Acta.`created`)'=> $search_ano,
+                                    'YEAR(Acta.`fecha`)'=> $search_ano,
                                     'Acta.estado '=> 1,
                                     'Acta.created_mym' => 1
                             )
                     ),
-                    'order'=> array('Acta.created desc'),
+                    'order'=> array('Acta.fecha desc'),
             )
             );
         }elseif($tipo_user_id== 2){ // CASO SEA SUPERVISOR
@@ -445,13 +445,13 @@ App::uses('AppModel','Model');
                     array(
                         'conditions'=>array(
                                 'AND' => array(
-                                        'YEAR(Acta.`created`)'=> $search_ano,
+                                        'YEAR(Acta.`fecha`)'=> $search_ano,
                                         'Acta.estado '=> 1,
                                         'Acta.created_mym' => 0,
                                         'Acta.consorcio_id' => 1
                                 )
                         ),
-                        'order'=> array('Acta.created desc'),
+                        'order'=> array('Acta.fecha desc'),
                     )
                 );
             }else{ // CASO SEA DEL CONSORCIO ENOSA
@@ -459,13 +459,13 @@ App::uses('AppModel','Model');
                     array(
                         'conditions'=>array(
                                 'AND' => array(
-                                        'YEAR(Acta.`created`)'=> $search_ano,
+                                        'YEAR(Acta.`fecha`)'=> $search_ano,
                                         'Acta.estado '=> 1,
                                         'Acta.created_mym' => 0,
                                         'Acta.consorcio_id' => 2
                                 )
                         ),
-                        'order'=> array('Acta.created desc'),
+                        'order'=> array('Acta.fecha desc'),
                     )
                 );
             }
@@ -474,13 +474,13 @@ App::uses('AppModel','Model');
                     array(
                         'conditions'=>array(
                                 'AND' => array(
-                                        'YEAR(Acta.created)'=> $search_ano,
+                                        'YEAR(Acta.fecha)'=> $search_ano,
                                         'Acta.estado '=> 1,
                                         'Acta.created_mym' => 0,
                                         'Acta.consorcio_id' => $search_consorcio
                                 )
                         ),
-                        'order'=> array('Acta.created desc')
+                        'order'=> array('Acta.fecha desc')
                     )
                 );
         }
