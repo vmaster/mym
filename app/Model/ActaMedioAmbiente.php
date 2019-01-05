@@ -287,7 +287,7 @@ App::uses('AppModel','Model');
     	return $arr_obj_acta_instal;
     }
 	
-    public function listFindActaMedAmb($order_by='ActaMedioAmbiente.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$search_ano='',$order='DESC', $start=0, $per_page=10, $tipo_user_id = '') {
+    public function listFindActaMedAmb($order_by='ActaMedioAmbiente.fecha', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$search_ano='',$order='DESC', $start=0, $per_page=10, $tipo_user_id = '') {
 
         if($tipo_user_id== 3){
     		$arr_obj_acta_instal = $this->findObjects('all',array(
@@ -307,7 +307,7 @@ App::uses('AppModel','Model');
     								'<.actividad LIKE'=> '%'.$search_actividad.'%',
     								'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
     								'ActaMedioAmbiente.obra LIKE'=> '%'.$search_obra.'%',
-									'YEAR(ActaMedioAmbiente.`created`)'=> $search_ano,
+									'YEAR(ActaMedioAmbiente.`fecha`)'=> $search_ano,
     								'ActaMedioAmbiente.estado '=> 1,
                                     'ActaMedioAmbiente.created_mym' => 1
     						)
@@ -336,7 +336,7 @@ App::uses('AppModel','Model');
                                     'ActaMedioAmbiente.actividad LIKE'=> '%'.$search_actividad.'%',
                                     'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
                                     'ActaMedioAmbiente.obra LIKE'=> '%'.$search_obra.'%',
-                                    'YEAR(ActaMedioAmbiente.`created`)'=> $search_ano,
+                                    'YEAR(ActaMedioAmbiente.`fecha`)'=> $search_ano,
                                     'ActaMedioAmbiente.estado '=> 1,
                                     'ActaMedioAmbiente.created_mym' => 0
                             )
@@ -361,7 +361,7 @@ App::uses('AppModel','Model');
                                         'ActaMedioAmbiente.created_mym' => 0
                                         //'Acta.consorcio_id' => 1
                         ),
-                        'order'=> array('ActaMedioAmbiente.created desc'),
+                        'order'=> array('ActaMedioAmbiente.fecha desc'),
                     )
                 );
             

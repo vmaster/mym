@@ -338,7 +338,7 @@ App::uses('AppModel','Model');
     	return $arr_obj_acta_instal;
     }
 	
-    public function listFindActaInstalaciones($order_by='ActaInstalacione.created', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$search_ano='',$order='DESC', $start=0, $per_page=10, $tipo_user_id = '') {
+    public function listFindActaInstalaciones($order_by='ActaInstalacione.fecha', $search_nro='',$search_actividad='',$search_empresa='',$search_obra='',$search_ano='',$order='DESC', $start=0, $per_page=10, $tipo_user_id = '') {
 
         if($tipo_user_id== 3){
     		$arr_obj_acta_instal = $this->findObjects('all',array(
@@ -358,7 +358,7 @@ App::uses('AppModel','Model');
     								'ActaInstalacione.actividad LIKE'=> '%'.$search_actividad.'%',
     								'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
     								'ActaInstalacione.obra LIKE'=> '%'.$search_obra.'%',
-									'YEAR(ActaInstalacione.`created`)'=> $search_ano,
+									'YEAR(ActaInstalacione.`fecha`)'=> $search_ano,
     								'ActaInstalacione.estado '=> 1,
                                     'ActaInstalacione.created_mym' => 1
     						)
@@ -387,7 +387,7 @@ App::uses('AppModel','Model');
                                     'ActaInstalacione.actividad LIKE'=> '%'.$search_actividad.'%',
                                     'EmpresaJoin.nombre LIKE'=> '%'.$search_empresa.'%',
                                     'ActaInstalacione.obra LIKE'=> '%'.$search_obra.'%',
-                                    'YEAR(ActaInstalacione.`created`)'=> $search_ano,
+                                    'YEAR(ActaInstalacione.`fecha`)'=> $search_ano,
                                     'ActaInstalacione.estado '=> 1,
                                     'ActaInstalacione.created_mym' => 0
                             )
